@@ -17,12 +17,16 @@ class Sheet:
         self.s = AuthorizedSession(creds)
         self.url = f'https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values'
 
+    @staticmethod
+    def _ok(r):  # Google's error body says why (API not enabled for the project, Sheet not shared with the account, ...)
+        if not r.ok: raise RuntimeError(f'Sheets API {r.status_code}: {r.text[:500]}')
+        return r
+
     def _get(self, rng):
-        r = self.s.get(f'{self.url}/{rng}', params={'valueRenderOption': 'FORMATTED_VALUE'}); r.raise_for_status()
-        return r.json().get('values', [])
+        return self._ok(self.s.get(f'{self.url}/{rng}', params={'valueRenderOption': 'FORMATTED_VALUE'})).json().get('values', [])
 
     def _put(self, data):
-        r = self.s.post(f'{self.url}:batchUpdate', json={'valueInputOption': 'RAW', 'data': data}); r.raise_for_status()
+        self._ok(self.s.post(f'{self.url}:batchUpdate', json={'valueInputOption': 'RAW', 'data': data}))
 
     def fills(self):
         """[(row number, fill id, fill doc, status)] for every row with an id and a parseable fill JSON."""
