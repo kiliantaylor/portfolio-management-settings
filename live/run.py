@@ -3,9 +3,11 @@
     python3 live/run.py SLICE FILLS_DIR OUT_DIR [--force]
 
 SLICE is a checkout of the live-data branch (live/slice.py), reached as /mnt/project-files so the valuation scripts'
-own paths work. FILLS_DIR holds one JSON per fill entered on the page (fields as on the page's Fills tab: symbol, side,
-shares, price, date, note, entered_at; the file name is the fill id). OUT_DIR is a checkout of the live-out branch;
-it gets patch.json (live/patch.py format, plus fills, quotes_as_of) and state.json.
+own paths work. FILLS_DIR (main's fills/) holds one JSON per fill entered on the page (symbol, side, shares, price,
+date, note, entered_at; the file name is the fill id). With SHEET_ID and GOOGLE_SA_JSON set, new rows on the Sheet's
+fills tab are first written there (the workflow commits them), each row gets a status, and the patch goes to the
+Sheet's live tab, where the page reads it. OUT_DIR is a checkout of the live-out branch; it gets patch.json
+(live/patch.py format, plus fills and quotes_as_of) and state.json.
 
 Runs the valuation step when the market is open or the set of fills changed since the last patch; otherwise exits.
 Applying fills is idempotent: every fill not yet in the nightly trades.json is appended on each run (fill_intake.py),
@@ -32,8 +34,19 @@ def page_data(html):
     return json.loads(m.group(1).replace('<\\/', '</'))
 
 if __name__ == '__main__':
-    now = dt.datetime.now(dt.timezone.utc)
+    now = dt.datetime.now(dt.timezone.utc); stamp = now.strftime('%Y-%m-%dT%H:%M:%SZ')
     meta = json.load(open(f'{SLICE}/slice.json')); D = meta['date']
+    sheet = None
+    if os.environ.get('SHEET_ID') and os.environ.get('GOOGLE_SA_JSON'):
+        from sheet import Sheet, DONE
+        sheet = Sheet(os.environ['SHEET_ID'], os.environ['GOOGLE_SA_JSON'])
+        rows = sheet.fills()
+        for _, fid, doc, status in rows:  # pending rows become fill files; done or rejected ones never do
+            if status not in DONE and not status.startswith('rejected') and not os.path.exists(f'{FILLS}/{fid}.json'):
+                keep = {k: doc.get(k) for k in ('symbol', 'side', 'shares', 'price', 'date', 'note', 'entered_at')}
+                json.dump(keep, open(f'{FILLS}/{fid}.json', 'w'), indent=1)
+        for _, fid, _, status in rows:  # a removed or rejected row drops its file (the nightly run never takes those)
+            if (status == 'removed' or status.startswith('rejected')) and os.path.exists(f'{FILLS}/{fid}.json'): os.remove(f'{FILLS}/{fid}.json')
     fills = sorted(glob.glob(f'{FILLS}/*.json'))
     fill_key = hashlib.sha1(b''.join(open(p, 'rb').read() for p in fills)).hexdigest()
     try: state = json.load(open(f'{OUT}/state.json'))
@@ -53,11 +66,21 @@ if __name__ == '__main__':
     live = page_data('/tmp/live.html'); base = json.load(open(f'{SLICE}/base.json'))
     p = patch.diff(base, live)
     quotes = json.load(open(f'{V}/data/live_quotes.json'))
-    p.update(base=meta['base'], version=now.strftime('%Y-%m-%dT%H:%M:%SZ'), quotes_as_of=quotes.get('as_of'),
+    p.update(base=meta['base'], version=stamp, quotes_as_of=quotes.get('as_of'),
              fills=dict(applied=intake['logged'], already=intake['already_in_trades'], rejected=intake['rejected']))
     os.makedirs(OUT, exist_ok=True)
     json.dump(p, open(f'{OUT}/patch.json', 'w'), separators=(',', ':'))
     json.dump(dict(fill_key=fill_key, base=meta['base'], version=p['version']), open(f'{OUT}/state.json', 'w'))
     open(f'{OUT}/.updated', 'w').close()  # tells the workflow to push live-out
+    if sheet:
+        sheet.write_patch(p)
+        tj = json.load(open(f'{V}/data/trades.json')); nightly = {t.get('fill_id') for t in tj['trades']} - set(intake['logged'])
+        why = {r['id']: r['why'] for r in intake['rejected']}
+        upd = {}
+        for row, fid, _, status in rows:
+            new = ('in trades.json' if fid in nightly else 'live, in trades.json tonight' if fid in intake['logged']
+                   else f'rejected: {why[fid]}' if fid in why else status)
+            if new != status and status not in DONE: upd[row] = new
+        sheet.set_status(upd, stamp)
     print(json.dumps(dict(version=p['version'], bytes=os.path.getsize(f'{OUT}/patch.json'), sets=len(p['set']),
-                          fills_applied=len(intake['logged']), rejected=intake['rejected'])))
+                          fills_applied=len(intake['logged']), rejected=intake['rejected'], sheet=bool(sheet))))

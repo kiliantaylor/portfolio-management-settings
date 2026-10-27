@@ -13,7 +13,6 @@ ROOT = ARGS[ARGS.index('--root') + 1] if '--root' in ARGS else '/mnt/project-fil
 V = f'{ROOT}/valuation'
 D = ARGS[ARGS.index('--date') + 1] if '--date' in ARGS else sorted(p.split('/')[-2] for p in glob.glob(f'{V}/runs/*/review_summary.json'))[-1]
 SKIP = re.compile(r'\.bak|\.tmp$|/__pycache__/|/gate/|/locks/')
-OLD_RUN = re.compile(r'/runs/\d{4}-\d\d-\d\d/[A-Z.]+/((supervisor|agent_[1-5]|memo|model_engine|result|allocation|review)\.json|std_model_[A-Z.]+\.xlsx)$')
 
 def walk(base, keep=lambda p: True):
     for dp, dn, fn in os.walk(base):
@@ -21,21 +20,84 @@ def walk(base, keep=lambda p: True):
             p = os.path.join(dp, f)
             if not SKIP.search(p) and keep(p): yield p
 
+TRACER = r"""import builtins, io, json, os, sys, runpy
+root, out, tmp, script = sys.argv[1:5]; seen = set()
+_open, _isfile, _real = builtins.open, os.path.isfile, os.path.realpath
+def under(p):
+    try: return _real(p).startswith(root + '/')
+    except TypeError: return False
+def note(p):
+    q = _real(p)
+    if q.startswith(root + '/') and _isfile(q): seen.add(q)
+def mirror(p): return os.path.join(tmp, 'w', _real(p)[len(root) + 1:])
+def topen(p, mode='r', *a, **k):  # the run reads the project files and writes into a scratch mirror, never the mount
+    if isinstance(p, (str, os.PathLike)) and under(p):
+        m = mirror(p)
+        if any(c in mode for c in 'wax+'):
+            os.makedirs(os.path.dirname(m), exist_ok=True); return _open(m, mode, *a, **k)
+        if _isfile(m): return _open(m, mode, *a, **k)  # read back what the run wrote
+        if str(p).endswith('data/live_quotes.json') and os.environ.get('TRACE_QUOTES'): note(p); return _open(os.environ['TRACE_QUOTES'], mode, *a, **k)
+        note(p)
+    return _open(p, mode, *a, **k)
+builtins.open = io.open = topen
+def logged(f):
+    def g(p, *a, **k):
+        if under(p) and _isfile(mirror(p)): return f(mirror(p), *a, **k)
+        r = f(p, *a, **k)
+        if under(p): note(p)
+        return r
+    return g
+for n in ('exists', 'isfile', 'getsize', 'getmtime'): setattr(os.path, n, logged(getattr(os.path, n)))
+def blocked(f):
+    def g(*a, **k):
+        if any(under(x) for x in a if isinstance(x, (str, os.PathLike))):
+            if f.__name__ in ('replace', 'rename'): return f(*(mirror(x) if under(x) else x for x in a))
+            return None
+        return f(*a, **k)
+    return g
+for n in ('replace', 'rename', 'remove', 'unlink', 'chmod', 'utime', 'makedirs', 'mkdir'): setattr(os, n, blocked(getattr(os, n)))
+def hook(ev, args):
+    if ev != 'open' or not isinstance(args[0], str) or not under(args[0]): return
+    if (args[1] and any(c in str(args[1]) for c in 'wax+')) or (args[2] or 0) & (os.O_WRONLY | os.O_RDWR | os.O_CREAT):
+        raise PermissionError('slice trace: no writes under ' + root)
+sys.addaudithook(hook)
+os.chdir(os.path.dirname(script)); sys.path.insert(0, os.path.dirname(script)); sys.argv = [script] + sys.argv[5:]
+try: runpy.run_path(script, run_name='__main__')
+finally: _open(out, 'w').write('\n'.join(sorted(seen)))
+"""
+
+def traced(script, *args, env=None):
+    """Every file under ROOT that `script` reads or checks for, run against the project files read-only (writes go to /tmp)."""
+    import subprocess, tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        open(f'{tmp}/t.py', 'w').write(TRACER)
+        real = os.path.realpath(ROOT)
+        r = subprocess.run(['python3', '-I', f'{tmp}/t.py', real, f'{tmp}/seen', tmp, f'{V}/{script}', *args],
+                           capture_output=True, text=True, env={**os.environ, **(env or {})})
+        if r.returncode: sys.exit(f'{script} trace failed:\n' + r.stderr[-2000:])
+        return [ROOT + p[len(real):] for p in open(f'{tmp}/seen').read().split('\n') if p and '__pycache__' not in p]
+
+def traced_review():  # review.py at live prices, with tonight's quotes dated tomorrow so the live repricing path runs
+    import tempfile
+    q = json.load(open(f'{V}/data/live_quotes.json'))
+    for x in (q.get('quotes') or {}).values(): x['date'] = '9999-12-31'
+    with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f: json.dump(q, f)
+    try: return traced('review.py', D, env={'LIVE_QUOTES': '1', 'TRACE_QUOTES': f.name})
+    finally: os.unlink(f.name)
+
 def wanted():
     yield from glob.glob(f'{V}/*.py')
-    yield f'{V}/report_template.html'
     yield f'{ROOT}/adhoc/page_search.py'
     yield f'{ROOT}/risk/riskcalc.py'
     yield from glob.glob(f'{ROOT}/risk/model/*.json')
-    yield from (p for p in glob.glob(f'{V}/data/*') if os.path.isfile(p) and p.endswith(('.json', '.csv')) and not SKIP.search(p))
+    yield from (p for p in glob.glob(f'{V}/data/*.json') if not SKIP.search(p))
+    trades = json.load(open(f'{V}/data/trades.json'))
+    held = {t['symbol'] for t in (trades['trades'] if isinstance(trades, dict) else trades)}
+    yield from (p for p in glob.glob(f'{V}/data/daily_*.csv') if p[len(V) + 12:-4] in held)
     yield from walk(f'{ROOT}/portfolio/data')
     yield from walk(f'{V}/priors/{D}')
-    yield from glob.glob(f'{V}/ideas/*/*.json')
-    yield from glob.glob(f'{V}/scoring/*.json')
-    yield from sorted(glob.glob(f'{ROOT}/market_color/beats_check/*.json'))[-10:]  # active_names.py: in-reach check
-    yield from walk(f'{V}/runs/{D}', lambda p: p.endswith(('.json', '.xlsx')))
-    for d in glob.glob(f'{V}/runs/*/'):
-        if os.path.basename(d.rstrip('/')) != D: yield from walk(d, lambda p: bool(OLD_RUN.search(p)))
+    yield from traced('build_report.py', D, '--out', '/tmp/slice_trace_page.html')
+    yield from traced_review()
 
 def base_key(data):  # the page computes the same key from its embedded DATA (applyLive in report_template.html)
     return f"{data.get('as_of')}|{data.get('generated')}|{(data.get('live') or {}).get('time_utc')}"
@@ -53,7 +115,7 @@ if __name__ == '__main__':
     gone = 0
     for p in walk(OUT):
         rel = os.path.relpath(p, OUT)
-        if rel.split('/')[0] in ('valuation', 'portfolio', 'risk', 'adhoc', 'market_color') and rel not in keep: os.remove(p); gone += 1
+        if rel not in keep and rel not in ('base.json', 'slice.json') and not rel.startswith('.git/'): os.remove(p); gone += 1
     h = open(f'{V}/report.html').read()
     m = re.search(r'<script id="data" type="application/json">(.*?)</script>', h, re.S)
     base = json.loads(m.group(1).replace('<\\/', '</'))
