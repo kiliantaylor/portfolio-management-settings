@@ -16,8 +16,6 @@ import datetime as dt, glob, hashlib, json, os, subprocess, sys
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import patch
 
-SLICE, FILLS, OUT = (os.path.abspath(a) for a in sys.argv[1:4]); FORCE = '--force' in sys.argv
-V = f'{SLICE}/valuation'
 
 def sh(*cmd, env=None):
     r = subprocess.run(cmd, cwd=V, capture_output=True, text=True, env={**os.environ, **(env or {})})
@@ -34,6 +32,8 @@ def page_data(html):
     return json.loads(m.group(1).replace('<\\/', '</'))
 
 if __name__ == '__main__':
+    SLICE, FILLS, OUT = (os.path.abspath(a) for a in sys.argv[1:4]); FORCE = '--force' in sys.argv
+    V = f'{SLICE}/valuation'
     now = dt.datetime.now(dt.timezone.utc); stamp = now.strftime('%Y-%m-%dT%H:%M:%SZ')
     meta = json.load(open(f'{SLICE}/slice.json')); D = meta['date']
     sheet = None
