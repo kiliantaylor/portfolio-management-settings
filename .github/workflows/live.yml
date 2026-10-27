@@ -1,0 +1,51 @@
+name: live
+# Price Targets live refresh without a Claude session: fills, live quotes, review at live prices, page patch.
+# Inputs: branch live-data (live/slice.py, pushed by the nightly run). Output: branch live-out (patch.json), read by the page.
+on:
+  schedule:
+    - cron: '*/15 13-21 * * 1-5'   # market hours in both EDT and EST; run.py checks the New York clock
+    - cron: '7 0-12,22,23 * * *'   # hourly off-hours, so fills entered after the close still show
+  push:
+    branches: [main]
+    paths: ['fills/**']
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Rebuild the patch even when the market is closed and no fill changed
+        type: boolean
+        default: false
+concurrency:
+  group: live
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main
+      - name: Check out live-data and live-out
+        env:
+          URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
+        run: |
+          git clone -q --depth 1 -b live-data "$URL" slice
+          git clone -q --depth 1 -b live-out "$URL" out || mkdir -p out
+          sudo mkdir -p /mnt && sudo ln -sfn "$GITHUB_WORKSPACE/slice" /mnt/project-files
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Refresh
+        run: python3 main/live/run.py /mnt/project-files main/fills out ${{ inputs.force && '--force' || '' }}
+      - name: Publish patch
+        env:
+          URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
+        run: |
+          cd out
+          [ -f .updated ] || exit 0
+          rm .updated
+          rm -rf .git && git init -q && git checkout -q -b live-out && git add patch.json state.json
+          git -c user.name=live-bot -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live $(date -u +%FT%TZ)"
+          git push -qf "$URL" live-out
