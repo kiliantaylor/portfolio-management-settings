@@ -10,7 +10,7 @@ it gets patch.json (live/patch.py format, plus fills, quotes_as_of) and state.js
 Runs the valuation step when the market is open or the set of fills changed since the last patch; otherwise exits.
 Applying fills is idempotent: every fill not yet in the nightly trades.json is appended on each run (fill_intake.py),
 and the nightly run folds them into the project's trades.json for good."""
-import datetime as dt, glob, hashlib, json, os, subprocess, sys, tempfile
+import datetime as dt, glob, hashlib, json, os, subprocess, sys
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import patch
 
@@ -42,13 +42,10 @@ if __name__ == '__main__':
     if not (FORCE or changed or market_open(now)):
         print(json.dumps({'skipped': 'market closed, no new fills'})); sys.exit(0)
 
-    with tempfile.TemporaryDirectory() as tmp:  # fill_intake.py reads page-style docs: {"id", "data": {..., "status": "new"}}
-        docs = []
-        for p in fills:
-            fid = os.path.splitext(os.path.basename(p))[0]
-            doc = json.load(open(p)); doc['status'] = 'new'
-            q = f'{tmp}/{fid}.json'; json.dump({'id': fid, 'data': doc}, open(q, 'w')); docs.append(q)
-        intake = json.loads(sh('python3', 'fill_intake.py', *docs)) if docs else {'logged': [], 'already_in_trades': [], 'rejected': []}
+    r = subprocess.run(['python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fold_fills.py'), FILLS, V],
+                       capture_output=True, text=True)
+    if r.returncode: sys.exit(f'fold_fills.py failed:\n{r.stderr[-3000:]}')
+    intake = json.loads(r.stdout)
 
     sh('python3', 'live_quotes.py', D)
     sh('python3', 'review.py', D, env={'LIVE_QUOTES': '1'})
