@@ -7,6 +7,8 @@ on:
     - cron: '*/30 13-21 * * 1-5'       # market hours in both EDT and EST; the gate checks the New York clock
     - cron: '5 0,2,4,11,12,22,23 * * *'  # off-hours checks, so fills entered after the close still show
     # About 900-1,000 Actions minutes a month, inside the 2,000 free for a private repo.
+  push:  # TEMPORARY: test runs from the PR branch before merge (removed before merging)
+    branches: [claude/project-thread-j1yu9d]
   workflow_dispatch:
     inputs:
       force:
@@ -33,7 +35,7 @@ jobs:
         env:
           SHEET_ID: 1eSjig2l4LWcO7YNdXprVNZKend-53uyM8-6PS4aw-0U
           GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
-          FORCE: ${{ inputs.force }}
+          FORCE: ${{ inputs.force || github.event_name == 'push' }}
         run: python3 live/gate.py >> "$GITHUB_OUTPUT"
   live:
     needs: gate
@@ -59,7 +61,7 @@ jobs:
         env:
           SHEET_ID: 1eSjig2l4LWcO7YNdXprVNZKend-53uyM8-6PS4aw-0U
           GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
-        run: python3 main/live/run.py /mnt/project-files main/fills out ${{ inputs.force && '--force' || '' }}
+        run: python3 main/live/run.py /mnt/project-files main/fills out ${{ (inputs.force || github.event_name == 'push') && '--force' || '' }}
       - name: Commit new fills
         env:
           URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
@@ -68,7 +70,7 @@ jobs:
           git add -A fills
           git diff --cached --quiet && exit 0
           git -c user.name=live-bot -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "Fills from the Price Targets page"
-          git pull -q --rebase "$URL" main && git push -q "$URL" HEAD:main
+          git pull -q --rebase "$URL" "$GITHUB_REF_NAME" && git push -q "$URL" "HEAD:$GITHUB_REF_NAME"
       - name: Publish patch
         env:
           URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
