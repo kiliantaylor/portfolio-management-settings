@@ -1,0 +1,21 @@
+name: cboe-probe
+# Temporary: checks that Cboe's delayed option chains answer from GitHub's runners. Removed after the check.
+on:
+  push:
+    branches: [claude/project-thread-rq9uui]
+    paths: [.github/workflows/cboe-probe.yml]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: |
+          for s in GOOGL AMZN MOD; do
+            python3 - "$s" <<'PY'
+          import json, sys, time, urllib.request
+          s = sys.argv[1]; t = time.time()
+          u = f'https://cdn.cboe.com/api/global/delayed_quotes/options/{s}.json'
+          d = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'Mozilla/5.0'}), timeout=90))['data']
+          print(s, 'ok', round(time.time() - t, 1), 's', len(d['options']), 'contracts', 'close', d.get('close'), 'current', d.get('current_price'), 'prev', d.get('prev_day_close'), d.get('last_trade_time'))
+          PY
+          done
