@@ -1,0 +1,32 @@
+name: live-test
+# Temporary: runs the live job's refresh on this branch with no Sheet and no pushes, to test live/remark.py. Removed after.
+on:
+  push:
+    branches: [claude/project-thread-rq9uui]
+    paths: [.github/workflows/live-test.yml, live/**]
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main
+      - name: Check out live-data
+        env:
+          URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
+        run: |
+          git clone -q --depth 1 -b live-data "$URL" slice
+          mkdir -p out
+          sudo mkdir -p /mnt && sudo ln -sfn "$GITHUB_WORKSPACE/slice" /mnt/project-files
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install -q google-auth requests
+      - name: Refresh (no Sheet)
+        run: |
+          time python3 main/live/run.py /mnt/project-files main/fills out --force
+          ls -la out out/remark
+          python3 -c "import json; p=json.load(open('out/patch.json')); print('remarked', p.get('remarked')); print([s for s in p['set']][:40] if isinstance(p['set'], dict) else str(p['set'])[:1500])"
+      - name: Second pass measures from the stored leg
+        run: python3 main/live/remark.py /mnt/project-files out

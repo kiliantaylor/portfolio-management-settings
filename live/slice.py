@@ -97,6 +97,8 @@ def wanted():
     yield from walk(f'{ROOT}/portfolio/data')
     yield from walk(f'{V}/priors/{D}')
     yield from traced('build_report.py', D, '--out', '/tmp/slice_trace_page.html')
+    marked = sorted(s for s in held if os.path.exists(f'{V}/priors/{D}/{s}.json'))
+    if marked: yield from traced('combine.py', D, *marked, '--dry-run')  # what live/remark.py needs to re-mark a held name
     yield from traced_review()
 
 def base_key(data):  # the page computes the same key from its embedded DATA (applyLive in report_template.html)
