@@ -9,6 +9,8 @@ fills tab are first written there (the workflow commits them), each row gets a s
 Sheet's live tab, where the page reads it. OUT_DIR is a checkout of the live-out branch; it gets patch.json
 (live/patch.py format, plus fills and quotes_as_of) and state.json.
 
+Held names that moved past their implied move since their last market leg are re-marked on a fresh option chain first
+(live/remark.py; the legs it pulls are kept in OUT_DIR/remark for the rest of the session).
 Runs the valuation step when the market is open or the set of fills changed since the last patch; otherwise exits.
 Applying fills is idempotent: every fill not yet in the nightly trades.json is appended on each run (fill_intake.py),
 and the nightly run folds them into the project's trades.json for good."""
@@ -61,13 +63,19 @@ if __name__ == '__main__':
     intake = json.loads(r.stdout)
 
     sh('python3', 'live_quotes.py', D)
+    # held names that moved past their implied move get a fresh option chain and a re-mark of their own (live/remark.py)
+    r = subprocess.run(['python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'remark.py'), SLICE, OUT],
+                       capture_output=True, text=True)
+    if r.returncode: sys.exit(f'remark.py failed:\n{r.stderr[-3000:]}')
+    remark = json.loads(r.stdout.strip().splitlines()[-1])
     sh('python3', 'review.py', D, env={'LIVE_QUOTES': '1'})
     sh('python3', 'build_report.py', D, '--out', '/tmp/live.html')
     live = page_data('/tmp/live.html'); base = json.load(open(f'{SLICE}/base.json'))
     p = patch.diff(base, live)
     quotes = json.load(open(f'{V}/data/live_quotes.json'))
     p.update(base=meta['base'], version=stamp, quotes_as_of=quotes.get('as_of'),
-             fills=dict(applied=intake['logged'], already=intake['already_in_trades'], rejected=intake['rejected']))
+             fills=dict(applied=intake['logged'], already=intake['already_in_trades'], rejected=intake['rejected']),
+             remarked=remark['remarked'])
     os.makedirs(OUT, exist_ok=True)
     json.dump(p, open(f'{OUT}/patch.json', 'w'), separators=(',', ':'))
     json.dump(dict(fill_key=fill_key, base=meta['base'], version=p['version']), open(f'{OUT}/state.json', 'w'))
@@ -83,4 +91,5 @@ if __name__ == '__main__':
             if new != status and status not in DONE: upd[row] = new
         sheet.set_status(upd, stamp)
     print(json.dumps(dict(version=p['version'], bytes=os.path.getsize(f'{OUT}/patch.json'), sets=len(p['set']),
-                          fills_applied=len(intake['logged']), rejected=intake['rejected'], sheet=bool(sheet))))
+                          fills_applied=len(intake['logged']), rejected=intake['rejected'], sheet=bool(sheet),
+                          chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'])))

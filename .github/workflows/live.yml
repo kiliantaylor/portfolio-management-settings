@@ -74,6 +74,6 @@ jobs:
           cd out
           [ -f .updated ] || exit 0
           rm .updated
-          rm -rf .git && git init -q && git checkout -q -b live-out && git add patch.json state.json
+          rm -rf .git && git init -q && git checkout -q -b live-out && git add patch.json state.json && { [ -d remark ] && git add remark || true; }
           git -c user.name=live-bot -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live $(date -u +%FT%TZ)"
           git push -qf "$URL" live-out
