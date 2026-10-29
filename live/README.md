@@ -5,7 +5,8 @@ Fills, live quotes and the page's numbers update here, in GitHub Actions, with n
 - **Inputs.** Branch `live-data` holds the files the review and page build read (`live/slice.py`, pushed by
   `live/nightly.sh push` after each nightly publish). The `fills` tab of the "Price Targets live" Google Sheet holds
   fills entered on the page.
-- **Run** (`.github/workflows/live.yml`). The gate job (`live/gate.py`) runs the full job only while the New York market
+- **Run** (`.github/workflows/live.yml`), started every 30 minutes by an Apps Script time trigger in the Sheet
+  (`live/apps_script.gs`, which holds a fine-grained token with Actions read and write on this repo). The gate job (`live/gate.py`) runs the full job only while the New York market
   is open or a fill on the Sheet is waiting. `live/run.py` turns waiting Sheet rows into `fills/<id>.json`, folds them
   into the slice's trades, refreshes quotes, reruns `review.py` and `build_report.py`, then writes the difference from
   the published page's data (`live/patch.py`) to the Sheet's `live` tab and branch `live-out`, and sets each row's status.
