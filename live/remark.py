@@ -8,7 +8,8 @@ Runs inside live/run.py after live_quotes.py and before review.py. For each held
               slice's priors/D/<SYM>.json (the nightly's, or one a research thread placed there);
   implied move = the 30-day ATM implied vol x sqrt(sessions since the reference / 252), one standard deviation;
   trigger   = |ln(live price / reference spot)| above the implied move, and a chain quoted in the live price's session.
-Swap candidates (Kilian 2026-10-30 19:17Z): an unheld name with gate-clean research (its result's citation_gate status) whose
+Swap candidates (Kilian 2026-10-30 19:17Z; 19:40Z "only names audited and up-to-date research"): an unheld name whose
+research passed the citation audit ('clean', not a pre-gate round) and is dated on or after its last earnings report, whose
 live price is at or below its Entry below at the last close, (target + a year of dividends) / (1 + rf + beta premium), is
 re-marked the same way on every run, with no move trigger; live/swaps.py then scores it.
 A triggered name gets market_dist.py's 12-month and 1-month distributions from a fresh chain (kept in OUT_DIR/remark,
@@ -38,14 +39,16 @@ if __name__ == '__main__':
     for f in glob.glob(f'{R}/*.json'):  # a market leg from an earlier session is the nightly's job now
         if json.load(open(f)).get('market_date') != session: os.remove(f)
     pulled, checked, failed, cands = [], {}, {}, {}
+    EM = json.load(open(f'{V}/data/earnings_miss.json'))  # last_report_date per name: research must postdate the last print
     for f in sorted(glob.glob(f'{V}/runs/{D}/*/result.json')):  # swap candidates: unheld, gate-clean, at or below Entry below
         s = f.split('/')[-2]; q = quotes.get(s) or {}; P = q.get('price')
         if s in held or not P or (q.get('date') or '') <= D or not os.path.exists(f'{V}/priors/{D}/{s}.json'): continue
         r, pr = json.load(open(f)), json.load(open(f'{V}/priors/{D}/{s}.json'))
-        if not (r.get('citation_gate') or {}).get('status'): continue
+        last = (EM.get(s) or {}).get('last_report_date') if isinstance(EM.get(s), dict) else None
+        if (r.get('citation_gate') or {}).get('status') != 'clean' or not last or (r.get('research_as_of') or '') < last: continue
         E = (r['target'] + divs.dps(s)) / (1 + pr['rf'] + pr['premium'])
         if P <= E: cands[s] = dict(price=P, entry_below_close=round(E, 2), target_close=r['target'], research=r.get('research_as_of'),
-                                   gate=r['citation_gate']['status'], remarked=False)
+                                   last_report=last, remarked=False)
     for s in held + sorted(cands):
         q = quotes.get(s) or {}; P = q.get('price')
         if not P or (q.get('date') or '') <= D: continue
