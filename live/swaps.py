@@ -8,17 +8,19 @@ research at or below its Entry below at the last close) on a fresh option chain.
   floor  = the re-marked Entry below, (target + a year of dividends) / (1 + rf + beta premium), against the live price;
            a name above it drops out (the beta-adjusted floor every buy needs);
   score  = market_color/beats_check.py on the names left: the nightly whole-book test, held names at cost and at their
-           latest mark, candidates at the re-marked spot. A candidate buys 1..max whole shares with the planned held-name
-           adds' dollars plus the dollars of the held name it replaces. Kilian 2026-10-30 19:40Z ("i don't really want to
-           swap out nflx right now though, i'd rather do amzn or one of the other smaller positions"): the replaced name is
-           the best of the held names outside SWAP_OUT_NEVER and under BIG_SHARE of the book's invested cost;
+           latest mark, candidates at the re-marked spot. Each holding is tried against its full planned position (Kilian
+           2026-10-30 19:46Z: names end up near the 15% cap, so today's size says little): sell it and drop its planned
+           add, put both dollars into the candidate (1..max whole shares), keep every other planned add; the best is kept.
+           SWAP_OUT_HOLDS keeps a holding out of the pool until the day after its next print;
   winner = with the 10-name cap full, the swap's book Sharpe beats doing the planned adds instead; with a slot free, the
            plain buy (adds' dollars, nothing sold) does.
 A winner is shown on the page's Holdings tab for Kilian to pick; the next-share table and the nightly sizing are unchanged.
 Prints one JSON line (the page's DATA.live_swaps)."""
-import contextlib, json, os, sys
-SWAP_OUT_NEVER = ('NFLX',)  # Kilian 2026-10-30 19:40Z
-BIG_SHARE = 0.20  # positions at or above this share of invested cost (NFLX, ABT, T on 10-30, ~25% each) are not swapped out
+import contextlib, datetime as dt, json, os, sys
+# Kilian 2026-10-30 19:55Z: "our thesis on nflx has not played out yet in one direction or another so i'd like to wait and see on
+# that before liquidating the position (especially for a loss)". Held out until the day after its next print (data/earnings_miss.json
+# next_report; while that date is unknown the hold stands). Remove the entry to lift it.
+SWAP_OUT_HOLDS = {'NFLX': "thesis not played out yet; Kilian waits for its next print"}
 
 if __name__ == '__main__':
     SLICE = os.path.abspath(sys.argv[1]); cands = json.loads(sys.argv[2])
@@ -26,8 +28,7 @@ if __name__ == '__main__':
     import book, divs
     D = json.load(open(f'{SLICE}/slice.json'))['date']
     quotes = json.load(open(f'{V}/data/live_quotes.json')).get('quotes') or {}
-    pos = {p['symbol']: p.get('cost_basis') or 0 for p in book.load()['positions'] if p.get('shares')}; held = list(pos)
-    pool = [h for h in held if h not in SWAP_OUT_NEVER and pos[h] < BIG_SHARE * sum(pos.values())]
+    held = [p['symbol'] for p in book.load()['positions'] if p.get('shares')]
     cap = json.load(open(f'{V}/data/review_settings.json')).get('max_positions')
     rows, passed = {}, []
     for s, c in sorted(cands.items()):
@@ -41,10 +42,15 @@ if __name__ == '__main__':
     if passed:
         import beats_check
         f = '/tmp/live_swaps.json'
-        os.environ['BEATS_SWAP_POOL'] = ','.join(pool)
+        em = json.load(open(f'{V}/data/earnings_miss.json'))
+        def hold_on(h):
+            nx = ((em.get(h) or {}).get('next_report') or {}).get('date')
+            return h in SWAP_OUT_HOLDS and not (nx and out['session'] > nx)
+        out['swap_holds'] = {h: SWAP_OUT_HOLDS[h] for h in held if hold_on(h)}
+        os.environ['BEATS_SWAP_POOL'] = ','.join(h for h in held if not hold_on(h))
         with contextlib.redirect_stdout(sys.stderr): beats_check.main(D, passed, f)  # its summary lines go to the log
         t = json.load(open(f))
-        out.update({k: t[k] for k in ('base_sharpe', 'planned_adds', 'planned_budget', 'sharpe_all_planned')}, swap_pool=pool)
+        out.update({k: t[k] for k in ('base_sharpe', 'planned_adds', 'planned_budget', 'sharpe_all_planned')})
         for c in t['candidates']:
             x = rows[c['sym']]
             x.update({k: c.get(k) for k in ('shares', 'sharpe', 'swap_out', 'swap_shares', 'swap_sharpe', 'beats_all_planned')}, scored_spot=c.get('spot'), note=c.get('note'))
