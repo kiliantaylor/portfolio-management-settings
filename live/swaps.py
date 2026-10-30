@@ -11,7 +11,9 @@ research at or below its Entry below at the last close) on a fresh option chain.
            latest mark, candidates at the re-marked spot. Each holding is tried against its full planned position (Kilian
            2026-10-30 19:46Z: names end up near the 15% cap, so today's size says little): sell it and drop its planned
            add, put both dollars into the candidate (1..max whole shares), keep every other planned add; the best is kept.
-           SWAP_OUT_HOLDS keeps a holding out of the pool until the day after its next print;
+           SWAP_OUT_HOLDS keeps a holding out of the pool until the day after its next print. Planned adds on an
+           expected-miss or big-miss hold are left out (Kilian 2026-10-30 20:00Z): the swap is compared with the adds
+           that can be bought today;
   winner = with the 10-name cap full, the swap's book Sharpe beats doing the planned adds instead; with a slot free, the
            plain buy (adds' dollars, nothing sold) does.
 A winner is shown on the page's Holdings tab for Kilian to pick; the next-share table and the nightly sizing are unchanged.
@@ -48,6 +50,9 @@ if __name__ == '__main__':
             return h in SWAP_OUT_HOLDS and not (nx and out['session'] > nx)
         out['swap_holds'] = {h: SWAP_OUT_HOLDS[h] for h in held if hold_on(h)}
         os.environ['BEATS_SWAP_POOL'] = ','.join(h for h in held if not hold_on(h))
+        import earnings_miss, expected_miss  # adds on an expected-miss or big-miss hold can't be bought today: not in the comparison
+        out['add_blocks'] = sorted((set(expected_miss.blocks(out['session'])) | set(earnings_miss.blocks(out['session']))) & set(held))
+        os.environ['BEATS_ADD_BLOCKS'] = ','.join(out['add_blocks'])
         with contextlib.redirect_stdout(sys.stderr): beats_check.main(D, passed, f)  # its summary lines go to the log
         t = json.load(open(f))
         out.update({k: t[k] for k in ('base_sharpe', 'planned_adds', 'planned_budget', 'sharpe_all_planned')})
