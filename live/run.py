@@ -10,7 +10,8 @@ Sheet's live tab, where the page reads it. OUT_DIR is a checkout of the live-out
 (live/patch.py format, plus fills and quotes_as_of) and state.json.
 
 Held names that moved past their implied move since their last market leg are re-marked on a fresh option chain first
-(live/remark.py; the legs it pulls are kept in OUT_DIR/remark for the rest of the session).
+(live/remark.py; the legs it pulls are kept in OUT_DIR/remark for the rest of the session), and so is every unheld,
+gate-clean researched name at or below its Entry below; live/swaps.py scores those as swaps (patch key live_swaps).
 Runs the valuation step when the market is open or the set of fills changed since the last patch; otherwise exits.
 Applying fills is idempotent: every fill not yet in the nightly trades.json is appended on each run (fill_intake.py),
 and the nightly run folds them into the project's trades.json for good."""
@@ -69,8 +70,13 @@ if __name__ == '__main__':
     if r.returncode: sys.exit(f'remark.py failed:\n{r.stderr[-3000:]}')
     remark = json.loads(r.stdout.strip().splitlines()[-1])
     sh('python3', 'review.py', D, env={'LIVE_QUOTES': '1'})
+    # unheld names it re-marked under their Entry below are scored as swaps on the nightly whole-book test, against the live planned adds (live/swaps.py)
+    r = subprocess.run(['python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'swaps.py'), SLICE, json.dumps(remark['candidates'])],
+                       capture_output=True, text=True)
+    swaps = json.loads(r.stdout.strip().splitlines()[-1]) if not r.returncode else dict(failed=r.stderr[-500:], winners=[])
     sh('python3', 'build_report.py', D, '--out', '/tmp/live.html')
     live = page_data('/tmp/live.html'); base = json.load(open(f'{SLICE}/base.json'))
+    live['live_swaps'] = dict(swaps, time_utc=stamp)  # the Holdings tab's swap box (report_template.html swapBox)
     p = patch.diff(base, live)
     quotes = json.load(open(f'{V}/data/live_quotes.json'))
     p.update(base=meta['base'], version=stamp, quotes_as_of=quotes.get('as_of'),
@@ -92,4 +98,5 @@ if __name__ == '__main__':
         sheet.set_status(upd, stamp)
     print(json.dumps(dict(version=p['version'], bytes=os.path.getsize(f'{OUT}/patch.json'), sets=len(p['set']),
                           fills_applied=len(intake['logged']), rejected=intake['rejected'], sheet=bool(sheet),
-                          chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'])))
+                          chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'],
+                          swap_candidates=sorted(remark['candidates']), swap_winners=swaps['winners'], swap_failed=swaps.get('failed'))))

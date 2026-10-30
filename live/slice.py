@@ -99,6 +99,16 @@ def wanted():
     yield from traced('build_report.py', D, '--out', '/tmp/slice_trace_page.html')
     marked = sorted(s for s in held if os.path.exists(f'{V}/priors/{D}/{s}.json'))
     if marked: yield from traced('combine.py', D, *marked, '--dry-run')  # what live/remark.py needs to re-mark a held name
+    # live/remark.py re-marks, and live/swaps.py scores, any unheld gate-clean name that falls under its Entry below
+    yield f'{ROOT}/market_color/beats_check.py'
+    cands = sorted(s for s in (p.split('/')[-2] for p in glob.glob(f'{V}/runs/{D}/*/result.json'))
+                   if os.path.exists(f'{V}/priors/{D}/{s}.json')
+                   and (json.load(open(f'{V}/runs/{D}/{s}/result.json')).get('citation_gate') or {}).get('status'))
+    if cands:
+        yield from traced('combine.py', D, *cands, '--dry-run')
+        sys.path.insert(0, V); import book  # allocate.py sizes unheld names only, as the nightly does
+        now = {p['symbol'] for p in book.load()['positions'] if p.get('shares')}
+        yield from traced('allocate.py', D, *[s for s in cands if s not in now])  # the inputs of beats_check.py's probe (allocate.py's own code up to its Sharpe test)
     yield from traced_review()
 
 def base_key(data):  # the page computes the same key from its embedded DATA (applyLive in report_template.html)
