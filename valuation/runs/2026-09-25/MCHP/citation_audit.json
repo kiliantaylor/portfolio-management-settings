@@ -1,0 +1,783 @@
+{
+ "date": "2026-09-25",
+ "symbol": "MCHP",
+ "clean": true,
+ "checked": 78,
+ "ok": 72,
+ "failures": [
+  {
+   "item": "FY28 consensus EPS $4.58 / revenue $7.43B",
+   "value": "$4.58 / $7.43B",
+   "cited": "https://www.alphavantage.co/ (agents 1, 2, 5; model A1, A6, A7)",
+   "result": "not_found",
+   "fix": "Homepage shows nothing and the estimates feed needs an API key, so it is not a source. Same figures re-cited to https://stockanalysis.com/stocks/mchp/forecast/ (data updated 2026-09-18, in force on 2026-09-25)."
+  },
+  {
+   "item": "FY28 EPS range $4.08-5.44, 25 analysts, revenue range $6.985-8.39B, revised up from $4.19 in 60 days",
+   "value": "as stated",
+   "cited": "Alpha Vantage",
+   "result": "not_found",
+   "fix": "No open page shows them (StockAnalysis gates FY28 low/high; not worked around). Removed from supervisor key drivers and model text; they fed no number. Agent 2 reasoning still quotes them (agent view, not edited)."
+  },
+  {
+   "item": "Distributor inventory decade range 17-43 days",
+   "value": "17-43 days",
+   "cited": "supervisor key driver (Citi TMT)",
+   "result": "not_found",
+   "fix": "Not in the Citi summary or transcript, the Q1 FY27 call transcripts (Motley Fool, Equibles), the release or the slides; only \"25 days ... at the lower end of what we have experienced historically\". Removed from the key driver."
+  },
+  {
+   "item": "\"No double ordering\"",
+   "value": "qualitative",
+   "cited": "Citi TMT",
+   "result": "not_found",
+   "fix": "Phrase not in the source; reworded to the CFO's \"no significant stocking ... no major customer inventory build\"."
+  },
+  {
+   "item": "$48.52 low \"came before the six above-seasonal quarters\"",
+   "value": "timing claim",
+   "cited": "StockAnalysis/Robinhood quote pages",
+   "result": "wrong",
+   "fix": "The low sits between Oct-2025 and Aug-2026, inside the above-seasonal run (Sep-2026 = sixth quarter per the Q1 call). Resolution text corrected; $55 kept on ~12x FY28 consensus and convertible dilution."
+  },
+  {
+   "item": "~50% realized volatility",
+   "value": "50%",
+   "cited": "none",
+   "result": "not_found",
+   "fix": "No source; price feed rate-limited, not computed. Removed as a fact from the sizing reason and flagged as agent 1's estimate in the disagreement; no number used it (ladder sigmas are agent judgments)."
+  },
+  {
+   "item": "Supervisor FCF leg \"net of ~$3.8B net debt = ~$85-87\"",
+   "value": "$85-87",
+   "cited": "supervisor fair_value.reason",
+   "result": "mislabelled",
+   "fix": "Arithmetic written: equity basis 2.45/0.05/0.575 = 85.2 to 2.6/0.052/0.575 = 87.0, no net-debt deduction. Leg and blend unchanged."
+  },
+  {
+   "item": "Peer multiples NXPI/ON/TXN/ADI (fwd P/E 15.2/23.7/32.5/30.4x, EV/EBITDA 13.0/15.9/27.2/30.0x, FCF yield 4.7/4.9/2.1/2.4%)",
+   "value": "as stated",
+   "cited": "https://www.investing.com/news/stock-market-news/nxp-semiconductors-leads-analog-ai-stocks-on-value-metrics-93CH-4843344",
+   "result": "not_found",
+   "fix": "Aggregator, not a source. Rebuilt from filings at 2026-09-25 closes and consensus EPS, basis estimate (see verified). Conclusions hold: current-FY P/E NXPI 15.8x, ON 24.1x, TXN 32.8x, ADI 30.5x; FCF yield NXPI 4.7%, ON 5.0%. On NTM EPS the NXPI-ON bracket is ~13.7-18.5x, so the 18.5-19x NTM multiple sits at its top. The judgment multiples are not changed."
+  },
+  {
+   "item": "MCHP statistics: fwd P/E 19.96x, EV/EBITDA 31.8x, FCF yield 2.6%, EV $47.9B",
+   "value": "as stated",
+   "cited": "https://stockanalysis.com/stocks/mchp/statistics/",
+   "result": "not_found",
+   "fix": "Aggregator; rebuilt at the 2026-09-25 close from filings: EV $47.8B, 32.5x trailing GAAP EBITDA, FCF yield 2.6%, ~19.1x NTM / 17.2x FY28 consensus (estimate)."
+  },
+  {
+   "item": "Non-GAAP tax ~8% (model A4: \"verified fact\", agents \"guidance\")",
+   "value": "8%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "result": "mislabelled",
+   "fix": "Guidance is ~7.5% for FY27; 8% relabelled estimate with derivation (7.5% + ~0.5pp for unguided FY28). Feeds only the A6 cross-check."
+  },
+  {
+   "item": "Agent 4 bull: \"45% long-term operating margin model\"",
+   "value": "45%",
+   "cited": "agent 4 (Citi TMT)",
+   "result": "wrong",
+   "fix": "Company through-cycle non-GAAP operating margin model is 40% (Citi TMT transcript); text corrected. Bull price is agent 4's judgment (21x x ~$5.7), unchanged."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "Q1 FY27 net sales",
+   "value": "$1,484.7M (+38.0% y/y)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "fair_value (FCF margin, revenue path)"
+  },
+  {
+   "item": "Q1 FY27 non-GAAP gross margin",
+   "value": "63.8%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A2"
+  },
+  {
+   "item": "Q1 FY27 non-GAAP operating income",
+   "value": "$521.1M (35.1% of sales)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A3, EBITDA A12"
+  },
+  {
+   "item": "Q1 FY27 non-GAAP net income / EPS",
+   "value": "$438.6M / $0.76",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A6 cross-check"
+  },
+  {
+   "item": "Q1 FY27 non-GAAP tax",
+   "value": "$35.6M, 7.5% rate (pretax 521.1 - 46.9 = 474.2)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A4"
+  },
+  {
+   "item": "Q1 FY27 non-GAAP diluted shares",
+   "value": "574.3M (550.5M GAAP + 23.8M Series A preferred)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A15 (575M), all methods"
+  },
+  {
+   "item": "Q2 FY27 guidance: net sales",
+   "value": "$1.589-1.618B",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "scenarios, model A1 path"
+  },
+  {
+   "item": "Q2 FY27 guidance: non-GAAP gross margin",
+   "value": "66.0-67.0%",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A2, key drivers"
+  },
+  {
+   "item": "Q2 FY27 guidance: non-GAAP operating margin",
+   "value": "38.5-39.5%",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A3"
+  },
+  {
+   "item": "Q2 FY27 guidance: non-GAAP tax",
+   "value": "$42.2-44.3M, the expected FY27 cash tax rate (= 7.5% of $562.2-590.7M pretax)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A4"
+  },
+  {
+   "item": "Q2 FY27 guidance: non-GAAP EPS and diluted shares",
+   "value": "$0.91-0.95; 574.5-575.5M shares",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A15, catalysts"
+  },
+  {
+   "item": "Net debt reduction, June quarter",
+   "value": "~$170M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A14 paydown pace"
+  },
+  {
+   "item": "Common dividends paid, June quarter; declared rate",
+   "value": "$246.9M; 45.5c/qtr ($1.82/yr, 2.3% at $78.69)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A14, sizing (dividend yield)"
+  },
+  {
+   "item": "Series A preferred dividend",
+   "value": "$27.8M/qtr (~$111M/yr)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A9 (FCF before preferred), A14"
+  },
+  {
+   "item": "Q1 FY27 free cash flow",
+   "value": "$497.6M (33.5% of sales); capex $13.9M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A9 (33-35% FCF margin)"
+  },
+  {
+   "item": "Capex guidance",
+   "value": "Sep-qtr $20-25M; FY27 ~$100M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A9"
+  },
+  {
+   "item": "Company inventory days",
+   "value": "175 days at Jun-2026",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "agent 4 reasoning (channel)"
+  },
+  {
+   "item": "Long-term debt / cash / net debt at Jun-2026",
+   "value": "$5,361.3M / $272.3M / $5,089M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000038/mchp-20260630.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A14, key driver",
+   "derivation": "5,361.3 - 272.3 = 5,089.0 (facts F95, F94, F101)"
+  },
+  {
+   "item": "Series A mandatory convertible terms",
+   "value": "16.0060 sh/pref above $62.4766 (23.8M sh); up to 19.6080 sh below $50.9996 (29.1M sh); 1.485M pref; converts 2028-03-15",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000038/mchp-20260630.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "thesis break, model A15"
+  },
+  {
+   "item": "Q1 FY27 PP&E depreciation; interest expense",
+   "value": "$37.8M; $48.8M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000038/mchp-20260630.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A12 (EBITDA add-back), A5"
+  },
+  {
+   "item": "Share repurchase authorization remaining",
+   "value": "~$1.56B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000038/mchp-20260630.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "agent 4 bull scenario"
+  },
+  {
+   "item": "Net debt / adjusted TTM EBITDA at Jun-2026",
+   "value": "2.85x (3.54x prior quarter)",
+   "basis": "reported",
+   "source_url": "https://d1io3yog0oux5.cloudfront.net/_7af08e3197edf60f7384c6a46244de93/microchip/db/946/10620/presentation/Q1FY27+Investor+Presentation.pdf",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "deleveraging driver"
+  },
+  {
+   "item": "FY23 (Mar-2023) revenue",
+   "value": "$8,438.7M",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000827054.json",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "agent 3/4 bull scenarios (FY23 peak ~$8.4B)"
+  },
+  {
+   "item": "Gross margin outlook",
+   "value": "66-67% through FY27; December quarter relatively flat",
+   "basis": "guidance",
+   "source_url": "https://www.investing.com/news/transcripts/microchip-at-citi-2026-global-tmt-conference-recovery-broadens-93CH-4894731",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A2, key drivers"
+  },
+  {
+   "item": "Through-cycle model",
+   "value": "65% non-GAAP gross margin, 40% non-GAAP operating margin",
+   "basis": "guidance",
+   "source_url": "https://www.investing.com/news/transcripts/microchip-at-citi-2026-global-tmt-conference-recovery-broadens-93CH-4894731",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A2, A3; agent 4 bull (corrected)"
+  },
+  {
+   "item": "Distributor inventory",
+   "value": "25 days, at the lower end of the historical range",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/microchip-mchp-q1-2027-earnings-call-transcript/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "key driver (channel), scenarios"
+  },
+  {
+   "item": "Customer stocking",
+   "value": "\"no significant stocking ... or restocking at customers\"; no major customer inventory build",
+   "basis": "reported",
+   "source_url": "https://www.investing.com/news/transcripts/microchip-at-citi-2026-global-tmt-conference-recovery-broadens-93CH-4894731",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "key driver, bear weights"
+  },
+  {
+   "item": "Net debt / EBITDA expected at end-Sep 2026",
+   "value": "below 2.5x",
+   "basis": "guidance",
+   "source_url": "https://www.investing.com/news/transcripts/microchip-at-citi-2026-global-tmt-conference-recovery-broadens-93CH-4894731",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "deleveraging driver"
+  },
+  {
+   "item": "Bookings",
+   "value": "strongest in about four years",
+   "basis": "reported",
+   "source_url": "https://www.investing.com/news/transcripts/microchip-at-citi-2026-global-tmt-conference-recovery-broadens-93CH-4894731",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "scenarios"
+  },
+  {
+   "item": "Data center",
+   "value": "~$500M CY25 pure-play; standard products ~$500M CY26; PCIe Gen6 revenue minimal in 2026",
+   "basis": "guidance",
+   "source_url": "https://www.investing.com/news/transcripts/microchip-at-citi-2026-global-tmt-conference-recovery-broadens-93CH-4894731",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "agent 3 base scenario"
+  },
+  {
+   "item": "Capital return",
+   "value": "dividend flat for a period; no buybacks until balance sheet further improved",
+   "basis": "guidance",
+   "source_url": "https://www.investing.com/news/transcripts/microchip-at-citi-2026-global-tmt-conference-recovery-broadens-93CH-4894731",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "key driver, model A14"
+  },
+  {
+   "item": "FY27 non-GAAP tax rate",
+   "value": "~7.5%",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/microchip-mchp-q1-2027-earnings-call-transcript/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A4"
+  },
+  {
+   "item": "Price increase",
+   "value": "effective mid-Aug to early Sep; full-quarter effect in December; Sep-qtr one-time licensing and distribution price effects",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/microchip-mchp-q1-2027-earnings-call-transcript/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "key driver (GM)"
+  },
+  {
+   "item": "Above-seasonal run",
+   "value": "September 2026 quarter would be the sixth quarter above seasonal (analyst on call; CEO: \"I haven't counted\")",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/microchip-mchp-q1-2027-earnings-call-transcript/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "thesis-break discussion (corrected)"
+  },
+  {
+   "item": "Acquisitions",
+   "value": "Hailo closed 2026-09-21, not material; VORAGO acquired 2026-10-09 (after research date), not material, terms undisclosed",
+   "basis": "reported",
+   "source_url": "https://ir.microchip.com/news-events/press-releases/detail/1415/microchip-technology-completes-acquisition-of-hailo",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "net debt path (no change)",
+   "note": "VORAGO release: https://ir.microchip.com/news-events/press-releases/detail/1419/microchip-technology-acquires-vorago-technologies"
+  },
+  {
+   "item": "Product launch",
+   "value": "PAC1761/PAC1861 digital power monitors, 2026-09-24",
+   "basis": "reported",
+   "source_url": "https://ir.microchip.com/news-events/press-releases/detail/1416/build-smarter-more-resilient-48v-power-systems-with-energy-aware-digital-power-monitoring-from-microchip",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "news context only"
+  },
+  {
+   "item": "MCHP close 2026-09-25",
+   "value": "$78.69",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/mchp/history/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "spot, upside, thesis break, sizing"
+  },
+  {
+   "item": "MCHP 52-week range",
+   "value": "$48.52-105.91 (low between Oct-2025 and Aug-2026)",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/mchp/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "thesis break discussion"
+  },
+  {
+   "item": "FY28 (Mar-2028) consensus",
+   "value": "EPS $4.58, revenue $7.43B (S&P Global via StockAnalysis, data updated 2026-09-18)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/mchp/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A1, A6, A7; thesis break; key driver"
+  },
+  {
+   "item": "FY27 (Mar-2027) consensus EPS",
+   "value": "$3.65",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/mchp/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "NTM P/E estimate"
+  },
+  {
+   "item": "10-yr UST",
+   "value": "5.14% intraday per StockStory 2026-09-25; Treasury close 5.17%",
+   "basis": "reported",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202609",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "multiple judgment (A8, A13)",
+   "note": "StockStory: https://stockstory.org/us/stocks/nasdaq/mchp/news/why-up-down/microchip-technology-mchp-stock-is-up-what-you-need-to-know-3"
+  },
+  {
+   "item": "Q2 FY27 earnings date",
+   "value": "~2026-11-05, estimated, not confirmed (still so on 2026-10-14)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mchp/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "sizing (tranche timing)"
+  },
+  {
+   "item": "NXPI close 2026-09-25",
+   "value": "$238.08",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/nxpi/history/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps"
+  },
+  {
+   "item": "NXPI consensus EPS",
+   "value": "15.07 FY26 / 18.18 FY27",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/nxpi/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps",
+   "note": "forecast page data dated after 2026-09-25 for NXPI (2026-10-08) and ON (2026-10-05); TXN/ADI 2026-09-22"
+  },
+  {
+   "item": "NXPI forward P/E (current FY / next FY)",
+   "value": "15.8x / 13.1x, NTM ~13.7x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/nxpi/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A8",
+   "derivation": "close 238.08 / consensus EPS 15.07 FY26 / 18.18 FY27; NTM = time-weighted blend"
+  },
+  {
+   "item": "NXPI trailing EV/EBITDA",
+   "value": "13.6x (EV $67.8B / GAAP EBITDA $4.99B TTM Jun-26)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1413447/000141344726000045/nxpi-20260628.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A13",
+   "derivation": "EV = close x cover-page shares + debt - cash; EBITDA = GAAP operating income + D&A, TTM from 10-K/10-Q"
+  },
+  {
+   "item": "NXPI TTM FCF yield",
+   "value": "4.7% ($2.81B / $60.0B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1413447/000141344726000045/nxpi-20260628.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A11",
+   "derivation": "(operating cash flow - capex) TTM / (close x cover-page shares)"
+  },
+  {
+   "item": "ON close 2026-09-25",
+   "value": "$77.2",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/on/history/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps"
+  },
+  {
+   "item": "ON consensus EPS",
+   "value": "3.20 FY26 / 4.53 FY27",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/on/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps",
+   "note": "forecast page data dated after 2026-09-25 for NXPI (2026-10-08) and ON (2026-10-05); TXN/ADI 2026-09-22"
+  },
+  {
+   "item": "ON forward P/E (current FY / next FY)",
+   "value": "24.1x / 17.0x, NTM ~18.5x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/on/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A8",
+   "derivation": "close 77.2 / consensus EPS 3.20 FY26 / 4.53 FY27; NTM = time-weighted blend"
+  },
+  {
+   "item": "ON trailing EV/EBITDA",
+   "value": "21.0x ($30.7B / $1.46B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000017/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A13",
+   "derivation": "EV = close x cover-page shares + debt - cash; EBITDA = GAAP operating income + D&A, TTM from 10-K/10-Q"
+  },
+  {
+   "item": "ON TTM FCF yield",
+   "value": "5.0% ($1.50B / $30.1B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1097864/000109786426000017/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A11",
+   "derivation": "(operating cash flow - capex) TTM / (close x cover-page shares)"
+  },
+  {
+   "item": "TXN close 2026-09-25",
+   "value": "$278.07",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/txn/history/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps"
+  },
+  {
+   "item": "TXN consensus EPS",
+   "value": "8.49 FY26 / 10.64 FY27",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/txn/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps"
+  },
+  {
+   "item": "TXN forward P/E (current FY / next FY)",
+   "value": "32.8x / 26.1x, NTM ~27.6x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/txn/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A8",
+   "derivation": "close 278.07 / consensus EPS 8.49 FY26 / 10.64 FY27; NTM = time-weighted blend"
+  },
+  {
+   "item": "TXN trailing EV/EBITDA",
+   "value": "~27.6x ($261.0B / ~$9.46B; amortization approximated)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000152/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A13",
+   "derivation": "EV = close x cover-page shares + debt - cash; EBITDA = GAAP operating income + D&A, TTM from 10-K/10-Q"
+  },
+  {
+   "item": "TXN TTM FCF yield",
+   "value": "2.1% ($5.36B / $254.0B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000152/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A11",
+   "derivation": "(operating cash flow - capex) TTM / (close x cover-page shares)"
+  },
+  {
+   "item": "ADI close 2026-09-25",
+   "value": "$393.6",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/adi/history/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps"
+  },
+  {
+   "item": "ADI consensus EPS",
+   "value": "12.89 FY Oct-26 / 16.35 FY Oct-27",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/adi/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps"
+  },
+  {
+   "item": "ADI forward P/E (current FY / next FY)",
+   "value": "30.5x / 24.1x, NTM ~24.6x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/adi/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A8",
+   "derivation": "close 393.6 / consensus EPS 12.89 FY Oct-26 / 16.35 FY Oct-27; NTM = time-weighted blend"
+  },
+  {
+   "item": "ADI trailing EV/EBITDA",
+   "value": "28.6x ($197.5B / $6.91B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/6281/000000628126000073/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A13",
+   "derivation": "EV = close x cover-page shares + debt - cash; EBITDA = GAAP operating income + D&A, TTM from 10-K/10-Q"
+  },
+  {
+   "item": "ADI TTM FCF yield",
+   "value": "2.6% ($4.94B / $190.7B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/6281/000000628126000073/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "comps for A11",
+   "derivation": "(operating cash flow - capex) TTM / (close x cover-page shares)"
+  },
+  {
+   "item": "MCHP multiples at 2026-09-25",
+   "value": "EV $47.8B; trailing EV/EBITDA 32.5x; FCF yield 2.6%; P/E 17.2x FY28, ~19.1x NTM, 21.6x FY27",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000038/mchp-20260630.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "key driver, A8 context",
+   "derivation": "78.69 x 543.0M = $42.73B + net debt $5.089B = $47.82B; / GAAP EBITDA TTM $1.470B (F102); FCF TTM $1.111B (F103) / $42.73B; 78.69 / 4.58; 78.69 / (0.5 x 3.65 + 0.5 x 4.58)"
+  },
+  {
+   "item": "Sep-2027 net debt",
+   "value": "~$3.8B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000038/mchp-20260630.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "fair_value (FCF EV-basis, EV/EBITDA), model A14",
+   "derivation": "5.089 - 5 quarters x ~$0.26B = ~3.8; June-qtr paydown $170M with FCF $497.6M less $274.7M dividends; pace rises with guided earnings"
+  },
+  {
+   "item": "FY28 FCF / per share",
+   "value": "~$2.45B / $4.26",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A9, A10",
+   "derivation": "~$7.4B x ~33% (Q1 FY27 FCF margin 33.5%) = $2.44B; / 575M = $4.26"
+  },
+  {
+   "item": "FY28 EBITDA (non-GAAP op income + depreciation)",
+   "value": "~$3.2B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A12",
+   "derivation": "7.4 x 40% = 2.96 + ~0.15-0.27 (PP&E depreciation $37.8M/qtr; D&A ex acquired intangibles $66.7M/qtr) = ~3.1-3.2"
+  },
+  {
+   "item": "Non-GAAP tax FY28",
+   "value": "~8%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "model A4 (feeds A6 cross-check only)",
+   "derivation": "FY27 guide 7.5% + ~0.5pp cushion"
+  },
+  {
+   "item": "NTM EPS at Sep-2027",
+   "value": "~$4.60 (agents $4.50-4.75)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mchp/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "fair_value P/E leg, model A7",
+   "derivation": "consensus FY28 $4.58 rolled half a year into FY29 = ~$4.7-4.8, less agents' cycle haircuts"
+  },
+  {
+   "item": "Thesis break $55",
+   "value": "~12.0x FY28 consensus; -30.1% vs $78.69",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mchp/forecast/",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "thesis_break",
+   "derivation": "55 / 4.58 = 12.0; 55 / 78.69 - 1 = -30.1%"
+  },
+  {
+   "item": "Supervisor method legs and blend",
+   "value": "P/E $86.25; FCF $85.2-87.0; EV/EBITDA $82.4; blend $85.2 -> $85",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "fair_value",
+   "derivation": "18.75 x 4.60 = 86.25; 2.45/0.05/0.575 = 85.2, 2.6/0.052/0.575 = 87.0; (16 x 3.2 - 3.8)/0.575 = 82.4; 0.5 x 86.25 + 0.3 x 86 + 0.2 x 82.4 = 85.2"
+  },
+  {
+   "item": "EV/EBITDA consistency check",
+   "value": "18.5-19x P/E implies ~16-17x EBITDA",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "fair_value (harmonized 16x)",
+   "derivation": "86 x 0.575 = $49.5B + 3.8 = $53.3B / 3.2-3.3 = 16.1-16.6x; 15x leg = (15 x 3.2 - 3.8)/0.575 = 76.9 = 16.7x of 4.60"
+  },
+  {
+   "item": "Agent method arithmetic",
+   "value": "agent 1 85.5/82/77 -> 83; agent 2 85.5/85.2/75.6 -> 83.5; agent 3 87/90/78 -> 86; agent 4 88/85/73 -> 84; agent 5 84/87/82 -> 85; mean 84.3",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/exhibit991q1fy27.htm",
+   "checked": "2026-09-25",
+   "opened": "2026-10-14",
+   "feeds": "fair_value (forecaster mean)",
+   "derivation": "each leg recomputed from the agent inputs (e.g. agent 1 FCF (2.45/0.048 - 3.8)/0.575 = 82.2); weights as stated; agents 4 and 5 round 83.4/84.2 up"
+  }
+ ],
+ "gate_run": "2026-10-14 (single-agent fallback brief; split-gate script used only on a scratch copy to list figures)",
+ "checked_note": "checked = verified figures (ok or labelled estimate with arithmetic) plus 6 claims removed or reworded (FY28 range/revision, 17-43 range, double ordering, 50% vol, $48.52 timing, 45% model); 11 failures, all fixed.",
+ "fair_value_effect": {
+  "old": 85.0,
+  "new": 85.0,
+  "note": "No fix changes a number: ladder, thesis break $55 and 5% sizing also unchanged."
+ },
+ "since_research_date": [
+  "VORAGO Technologies acquired 2026-10-09: terms undisclosed, not expected to be material; Sep-2027 net-debt path (~$3.8B) kept.",
+  "Hailo closed 2026-09-21: terms undisclosed, not material.",
+  "MCHP closed $74.16 on 2026-10-13 (vs $78.69 on 2026-09-25); 10-yr UST 5.29% on 2026-09-30 (5.17% on 2026-09-25).",
+  "FY28 consensus still $4.58 / $7.43B on 2026-10-14; Q2 FY27 earnings still an estimated 2026-11-05.",
+  "Reuse rule: re-open price, consensus and peer pages before reuse (they change); filing figures are fixed."
+ ],
+ "not_used": [
+  "Alpha Vantage, Twelve Data and Bigdata.com connectors and any key-gated feed (not sources under the key rule)",
+  "Yahoo chart feed (HTTP 429, not retried around)",
+  "No option prices or implied volatility"
+ ]
+}

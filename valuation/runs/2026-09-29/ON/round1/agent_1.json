@@ -1,0 +1,79 @@
+{
+  "symbol": "ON", "agent_id": "agent_1", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 18.99, "p": 0.99}, {"K": 30, "p": 0.96}, {"K": 38, "p": 0.92}, {"K": 46, "p": 0.85},
+    {"K": 53, "p": 0.78}, {"K": 61, "p": 0.70}, {"K": 68, "p": 0.62}, {"K": 76, "p": 0.54},
+    {"K": 84, "p": 0.46}, {"K": 91, "p": 0.40}, {"K": 103, "p": 0.31}, {"K": 114, "p": 0.245},
+    {"K": 133, "p": 0.16}, {"K": 152, "p": 0.105}, {"K": 190, "p": 0.045}
+  ],
+  "ladder_1m": [
+    {"K": 60.76, "p": 0.915}, {"K": 64.56, "p": 0.84}, {"K": 68.36, "p": 0.74}, {"K": 70.63, "p": 0.67},
+    {"K": 72.91, "p": 0.60}, {"K": 75.95, "p": 0.505}, {"K": 78.99, "p": 0.41}, {"K": 81.27, "p": 0.345},
+    {"K": 83.55, "p": 0.285}, {"K": 87.34, "p": 0.20}, {"K": 91.14, "p": 0.135}
+  ],
+  "one_month_reasoning": "The Q3 2026 report is scheduled for 2026-11-02 (Alpha Vantage earnings calendar), i.e. AFTER the 2026-10-29 window, so no company-specific scheduled catalyst falls inside the month. In-window drivers are peer earnings (TXN/NXPI/STM/ADI-type analog and power reporters in late October, which set sentiment for auto/industrial), any pre-announcement (unlikely given Q3 guide $1.65-1.75B was reiterated in spirit at the Aug 27 Deutsche Bank conference with book-to-bill >1), the Synaptics HSR/regulatory process and ongoing merger-arb short pressure on ON. The stock has rebounded from $66.60 post-analyst-day (Sep 16) to $75.95; I do not have a directional edge, so I use a near-symmetric lognormal centred at ~$76.1 (tiny positive drift from revisions trending up: 21 up vs 1 down in 30 days on Q4 EPS) with ~16.5% monthly sigma (between 64% realized/3.5 = 18% and a calmer ~50% forward vol).",
+  "fair_value": {
+    "value": 82.0,
+    "method": "Blend of forward P/E (NTM EPS at Sep-2027 ~ $5.20 x 16x = $83) and FCF yield (NTM FCF/share ~ $4.90 at a 6% yield = $81.7), both treating the Synaptics deal (1.35 ON shares per SYNA share, ~12% dilution, close mid-2027) as roughly EPS-neutral in year one.",
+    "methods": [
+      {"name": "P/E", "value": 83.0, "weight": 0.5,
+       "inputs": "NTM (Q4'27-Q3'28) non-GAAP EPS $5.20 x 16x",
+       "inputs_detail": [
+         {"input": "CY2027 consensus non-GAAP EPS", "value": "$4.53 (31 analysts; range $3.98-$5.40)", "basis": "consensus", "source_ids": [7], "derivation": ""},
+         {"input": "CY2026 consensus non-GAAP EPS", "value": "$3.20", "basis": "consensus", "source_ids": [7], "derivation": ""},
+         {"input": "Q3 2026 EPS guidance", "value": "$0.81-$0.93 non-GAAP on 395M diluted shares", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "NTM EPS at horizon (Sep 2027)", "value": "$5.20", "basis": "estimate", "source_ids": [3, 7, 2], "derivation": "Blend of CY27 $4.53 and CY28; CY28 standalone ~$5.45 = CY27 grown ~20% (analyst-day target: 12-14% revenue CAGR with operating income growing >2x revenue, GM 40.3% 2026E -> 53% 2030). Synaptics adds ~12% shares but deal guided accretive within 18 months with $200M synergies; I haircut ~4% for dilution in the first year post-close -> ~$5.20 NTM."},
+         {"input": "P/E multiple", "value": "16x", "basis": "judgment", "source_ids": [9, 7, 5], "derivation": "Current price $75.95 / CY27 consensus $4.53 = 16.8x; at the $120 June-24 VWAP cited in the S-4 fairness analysis the stock traded ~26x CY27. Deal overhang, cyclicality and execution risk on 2030 targets argue for staying near today's de-rated multiple rather than reverting to June levels; 16x NTM."}
+       ]},
+      {"name": "FCF yield", "value": 81.7, "weight": 0.5,
+       "inputs": "NTM FCF/share $4.90 capitalised at 6%",
+       "inputs_detail": [
+         {"input": "LTM free cash flow", "value": "$1,500M on $6,198M revenue (24%)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "2026E FCF / 2030 FCF target", "value": "$1.6B (25%) in 2026E; ~$3.5B (30-35% margin) 2030 target; capex ~5% of revenue", "basis": "guidance", "source_ids": [3, 6], "derivation": ""},
+         {"input": "NTM FCF at horizon", "value": "~$2.05B standalone + ~$0.15B Synaptics/synergies = $2.2B", "basis": "estimate", "source_ids": [3, 7, 2], "derivation": "CY27 consensus revenue $7.42B x ~27% FCF margin (between 2026E 25% and 30-35% target) = $2.0B; stepping forward half a year ~ $2.05B; Synaptics FCF plus partial synergies ~$0.15B."},
+         {"input": "Diluted share count post-deal", "value": "~450M", "basis": "estimate", "source_ids": [1, 2, 4], "derivation": "395M Q3 diluted guide less ~2%/yr buybacks (Q2 buyback $332M; $5.3B authorization left) = ~390M, grossed up for ~12% Synaptics pro forma ownership -> ~445-450M."},
+         {"input": "FCF yield", "value": "6%", "basis": "judgment", "source_ids": [1, 9], "derivation": "At $75.95 and ~392M shares (~$30B cap) LTM FCF yield is ~5%; a 6% NTM yield reflects cyclical/merger risk. $2.2B/450M = $4.89 / 0.06 = $81.5."},
+         {"input": "Net debt", "value": "~$0.6B (cash+ST inv $3.86B vs debt $4.46B at Jul 3, 2026)", "basis": "reported", "source_ids": [1, 13], "derivation": "Immaterial to per-share value (~$1.5/share); ignored in the yield calc."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 50.0, "prob": 0.25, "story": "Analog/auto cycle rolls over again in 2027 after the pricing/restock bump, AI-DC ($>500M 2026) is too small to offset; gross margin stalls near 40%; Synaptics integration disappoints or regulatory delay keeps arb pressure on; ~12.5x on ~$4.00 EPS."},
+    "base": {"price": 83.0, "prob": 0.50, "story": "Utilization climbs from 83% toward 90%, two price increases flow through, GM reaches mid-40s by mid-2027, CY27 EPS ~$4.5 and NTM ~$5.2; Synaptics closes mid-2027 roughly neutral; multiple stays ~16x."},
+    "bull": {"price": 125.0, "prob": 0.25, "story": "AI data center doubles again in 2027 as guided, 800VDC/SiC/EPP wins broaden, book-to-bill stays >1 and GM tracks the 53% 2030 path; EPS ~$5.8 NTM re-rated to ~21x as the market regains confidence seen in June (~26x CY27)."}
+  },
+  "thesis_break_price": 52.0,
+  "thesis_break_reason": "Below ~$52 the stock would trade ~11.5x CY27 consensus EPS and ~8% FCF yield on 2026E FCF; getting there most likely requires a guidance cut (demand/booking reversal, utilization falling back from 83%, pricing not sticking) or a materially worse Synaptics outcome, not ordinary volatility. It also sits near the post-deal washout low territory ($65.80 Sep 16) less another ~20%.",
+  "catalysts": [
+    {"date": "2026-11-02", "event": "Q3 2026 results and Q4 guide (Q3 guide $1.65-1.75B rev, 40-42% GM, $0.81-0.93 EPS)", "direction": "?"},
+    {"date": "2026 Q4-2027 Q1", "event": "Synaptics stockholder vote, HSR and foreign (incl. possible China) antitrust approvals", "direction": "?"},
+    {"date": "2027-02 (early)", "event": "Q4 2026 results / 2027 framing; AI-DC revenue 'more than double in 2026' check", "direction": "+"},
+    {"date": "2027-05 (early)", "event": "Q1 2027 results; pricing flow-through and utilization", "direction": "?"},
+    {"date": "mid-2027", "event": "Synaptics close (~12% share issuance), end of merger-arb short pressure, $200M synergy plan", "direction": "?"},
+    {"date": "2027-08 (early)", "event": "Q2 2027 results, first pro-forma guidance", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether the 2026 demand upturn (book-to-bill >1, lead times 27->32 weeks) is durable or a restock/pricing-driven bump",
+    "Gross margin path: 83% utilization, each 1pt = 25-30bp GM; 2026E 40.3% vs 53% 2030 target",
+    "Synaptics deal: exchange ratio 1.35x exceeded the top of several Qatalyst fairness ranges (e.g. 0.63-1.26x on precedent transactions) at ON's $120 VWAP, so the market has punished ON; regulatory timing to mid-2027",
+    "AI data center scale (>$500M 2026 to >$2.5B 2030) vs auto/industrial exposure",
+    "Convertible-note dilution mechanics (0% notes warrants dilutive above $74.34 average price)"
+  ],
+  "reasoning": "Primary filings frame the setup: Q2 2026 (8-K, Aug 3) revenue $1,604M (+9% y/y), non-GAAP GM 39.3%, EPS $0.74, FCF $425M (27% margin), LTM FCF $1.50B on capex only ~3% of sales; Q3 guide $1.65-1.75B, GM 40-42%, EPS $0.81-0.93. The Aug 27 Deutsche Bank conference added utilization 68%->83%, two price increases, book-to-bill >1. The Sep 16 analyst-day deck (filed as a 425) sets 2030 targets ($11B rev, 53% GM, 38% OM, ~$3.5B FCF, 100% FCF return) and 2026E GM 40.3%/FCF $1.6B. Yet the stock fell from ~$125 to ~$90 in the week of the June 25 all-stock Synaptics announcement (EV ~$7B, 1.35x ratio, ~12% dilution) and to $66.60 after the analyst day; the S-4 shows the ratio sat above the top of several of Synaptics' own adviser's value ranges at ON's $120 VWAP, i.e. ON paid up, and merger-arb shorting likely weighs until the mid-2027 close. Consensus EPS is being revised up (CY26 $3.20, CY27 $4.53; 21 up/5 down in 30 days), so fundamentals are improving while the multiple de-rated to ~16.8x CY27. My fair value (~$82) blends 16x NTM EPS ~$5.20 and a 6% yield on ~$4.90 NTM FCF/share, modestly above spot. Scenarios bear $50 (25%) / base $83 (50%) / bull $125 (25%), mean ~$85. The ladder is a lognormal with median ~$80 and sigma ~0.52 (below the 64% realized, which is inflated by the deal-announcement crash, but well above a typical large cap), with slightly fattened left tail. Research limited to ~15 queries; Twelve Data analyst endpoints were unavailable on the plan so consensus came from Alpha Vantage.",
+  "lane": "primary",
+  "sources": [
+    {"title": "onsemi Reports Second Quarter 2026 Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126030989/ef20079200_ex99-1.htm", "date": "2026-08-03", "type": "filing", "in_lane": true},
+    {"title": "onsemi to Acquire Synaptics (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126026395/ef20076747_ex99-1.htm", "date": "2026-06-25", "type": "filing", "in_lane": true},
+    {"title": "onsemi Analyst Day presentation 'Powering a Smarter World' (Form 425)", "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126036771/ef20081954_425.htm", "date": "2026-09-16", "type": "filing", "in_lane": true},
+    {"title": "Form 10-Q for quarter ended July 3, 2026 (share repurchases, authorization remaining)", "url": "https://investor.onsemi.com/static-files/02f573b1-86c1-4a65-a271-a375fd4aba52", "date": "2026-08-03", "type": "filing", "in_lane": true},
+    {"title": "Form S-4 proxy statement/prospectus for Synaptics merger (fairness analyses, HSR)", "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126033970/ny20076897x1_s4.htm", "date": "2026-08-21", "type": "filing", "in_lane": true},
+    {"title": "onsemi at Deutsche Bank 2026 Technology Conference (management commentary)", "url": "https://www.investing.com/news/transcripts/onsemi-at-deutsche-bank-2026-technology-conference-margin-push-builds-93CH-4879948", "date": "2026-08-27", "type": "company", "in_lane": true},
+    {"title": "Alpha Vantage EARNINGS_ESTIMATES for ON (consensus EPS/revenue, revisions)", "url": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=ON", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Alpha Vantage EARNINGS_CALENDAR for ON (Q3 report 2026-11-02)", "url": "https://www.alphavantage.co/query?function=EARNINGS_CALENDAR&symbol=ON", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Twelve Data weekly price history for ON (Mar-Sep 2026)", "url": "https://api.twelvedata.com/time_series?symbol=ON&interval=1week", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "ON Semiconductor Stock Is Already Half Off Its High (Trefis)", "url": "https://www.trefis.com/stock/on/articles/615701/on-semiconductor-stock-is-already-half-off-its-high-so-how-low-could-a-market-shock-take-it/2026-09-17", "date": "2026-09-17", "type": "press", "in_lane": false},
+    {"title": "ON Semiconductor Stock Fell 9% After Its Analyst Day (TIKR via Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/semiconductor-stock-fell-9-analyst-145422594.html", "date": "2026-09-17", "type": "press", "in_lane": false},
+    {"title": "onsemi (NASDAQ:ON) Stock Price Down 9.3% (MarketBeat; consensus target $96.44)", "url": "https://www.marketbeat.com/instant-alerts/price-onsemi-nasdaq-on-stock-price-down-93-time-to-sell-2026-09-16/", "date": "2026-09-16", "type": "press", "in_lane": false},
+    {"title": "8-K: $1.5B 0% Convertible Senior Notes due 2031", "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126020642/ef20072923_8k.htm", "date": "2026-05-12", "type": "filing", "in_lane": true}
+  ]
+}

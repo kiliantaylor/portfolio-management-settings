@@ -1,0 +1,85 @@
+{
+  "symbol": "RMBS", "agent_id": "agent_5", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 28, "p": 0.995}, {"K": 45, "p": 0.965}, {"K": 56, "p": 0.925}, {"K": 67, "p": 0.86},
+    {"K": 78, "p": 0.78}, {"K": 90, "p": 0.69}, {"K": 101, "p": 0.605}, {"K": 112, "p": 0.525},
+    {"K": 123, "p": 0.45}, {"K": 134, "p": 0.38}, {"K": 151, "p": 0.29}, {"K": 168, "p": 0.215},
+    {"K": 196, "p": 0.13}, {"K": 224, "p": 0.08}, {"K": 280, "p": 0.03}
+  ],
+  "ladder_1m": [
+    {"K": 89.58, "p": 0.9}, {"K": 95.17, "p": 0.825}, {"K": 100.77, "p": 0.73}, {"K": 104.13, "p": 0.665},
+    {"K": 107.49, "p": 0.6}, {"K": 111.97, "p": 0.51}, {"K": 116.45, "p": 0.425}, {"K": 119.81, "p": 0.36},
+    {"K": 123.17, "p": 0.305}, {"K": 128.77, "p": 0.225}, {"K": 134.36, "p": 0.16}
+  ],
+  "one_month_reasoning": "The window (to 2026-11-01) contains Q3 2026 earnings, expected around Oct 27-29 (third-party calendar estimate Oct 29), and the Oct 27-28 FOMC meeting. Q3 guide is $210-216M revenue / $0.75-0.82 non-GAAP EPS; Rambus has beaten its guide in Q2, but the April print showed the stock can fall ~23% on a modest miss plus supply-risk commentary, so the earnings reaction is two-sided and fat-tailed. The key item is Q4 product guidance and any comment on DRAM/RDIMM supply limiting module units into 2027. On macro, Polymarket (Fed Decision in October, ~$24.2M volume, read 2026-10-02) prices ~82.5% hold and ~17.5% a 25bp hike, a mild tail risk for high-multiple semis. After a ~30% rally off the August lows, short-term momentum is positive but reversal risk is high. I center the distribution slightly above spot ($112.5) and use a monthly log sigma of about 0.18. That is above RMBS's long-run monthly 0.147 because earnings fall in the window, and below 80%/3.5=0.23 because the 80% realized figure includes the extreme Apr-Jul 2026 swings.",
+  "fair_value": {
+    "value": 118.0,
+    "method": "Blend of 28x estimated 2028 EPS ($4.40, built from 2027 consensus $3.72 growing ~18%) = $123, 30x 2027 consensus EPS $3.72 = $112, and a 20% haircut to the ~$148 consensus analyst target = $118. Weights 50/35/15 give about $118 for the 12-month fair value.",
+    "methods": [
+      {"name": "P/E", "value": 123.0, "weight": 0.5,
+       "inputs": "2028E EPS $4.40 x 28x forward multiple (the market in Oct 2027 prices the next year)",
+       "inputs_detail": [
+         {"input": "2027 consensus non-GAAP EPS", "value": "$3.72", "basis": "consensus", "source_ids": [6], "derivation": ""},
+         {"input": "2028E EPS", "value": "$4.40", "basis": "estimate", "source_ids": [6, 16, 11], "derivation": "2027 consensus $3.72 grown ~18%. That is below the 22.6% 2027 consensus growth because TrendForce sees 2027 RDIMM bit supply growth of only 15-20%, which caps unit growth for interface chips. The proprietary model in [16] has a 4% 2028 growth rate, so I treat 18% as base, not bull."},
+         {"input": "Forward P/E multiple", "value": "28x", "basis": "judgment", "source_ids": [7, 8, 9], "derivation": "Forward P/E has ranged ~24x (July 2026 trough, [7]) to ~44x (Aug 2026) and ~57x a year earlier ([8]); the 12-month average P/E was ~41x ([9]). Growth slows toward the high teens as the shortage limits units, so I use a multiple near the low end of the recent range."}
+       ]},
+      {"name": "P/E", "value": 112.0, "weight": 0.35,
+       "inputs": "2027 consensus EPS $3.72 x 30x",
+       "inputs_detail": [
+         {"input": "2027 consensus EPS", "value": "$3.72", "basis": "consensus", "source_ids": [6], "derivation": ""},
+         {"input": "Multiple on 2027E", "value": "30x", "basis": "judgment", "source_ids": [7, 8, 9], "derivation": "Midpoint between the 24x trough and the 44x Aug-2026 forward P/E, lowered slightly for the DOJ probe overhang ([4],[5])."}
+       ]},
+      {"name": "other", "value": 118.0, "weight": 0.15,
+       "inputs": "Consensus analyst target ~$148 x 0.8",
+       "inputs_detail": [
+         {"input": "Consensus price target", "value": "$147.86 (8 analysts, range $100-$180)", "basis": "consensus", "source_ids": [6, 7], "derivation": ""},
+         {"input": "Haircut", "value": "20%", "basis": "judgment", "source_ids": [10, 2], "derivation": "Sell-side targets on RMBS have repeatedly overshot. For example, the stock fell from $174 to $83 within weeks in 2026 while targets stayed near $149 ([7],[2]). A 20% haircut is about one-half of a 1-sigma annual move from the price history ([10])."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 70.0, "prob": 0.25, "story": "The DRAM/RDIMM shortage caps module units in 2027. Rambus is unit-leveraged and cannot pass on price ([2],[11]), so product revenue growth stalls and 2027 EPS falls to ~$3.2. The DOJ criminal antitrust probe also escalates or a Fed hike compresses semi multiples, and the stock rerates to ~22x, revisiting the March 2026 low area ($78) and lower."},
+    "base": {"price": 120.0, "prob": 0.5, "story": "Rambus keeps beating its guide modestly. 2027 EPS lands near $3.7 and the market prices 2028E of ~$4.4 at ~27-28x. The DOJ probe stays unresolved but quiet, and the stock grinds toward fair value with typical RMBS volatility."},
+    "bull": {"price": 175.0, "prob": 0.25, "story": "AI inference server builds, MRDIMM/companion-chip content gains and higher royalties push 2027 EPS above $4.2. The multiple returns to the ~40x seen in Aug 2026, retaking the June 2026 high of $174."}
+  },
+  "thesis_break_price": 70.0,
+  "thesis_break_reason": "$70 is ~10% below the 52-week low ($77.89, March 2026) and ~19x 2027 consensus EPS, a multiple RMBS has not traded at since its AI rerating. A trade there would most likely mean earnings are being cut: memory-supply-driven unit losses, share loss in DDR5 RCD/PMIC, or a DOJ indictment or fine. Ordinary volatility has not taken the stock there in 2026 despite 80% realized vol.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "FOMC decision (Polymarket ~17.5% odds of a 25bp hike)", "direction": "?"},
+    {"date": "2026-10-29", "event": "Q3 2026 results and Q4 guide (date estimated)", "direction": "?"},
+    {"date": "2026 Q4-2027 Q1", "event": "Completion of $100M accelerated share repurchase", "direction": "+"},
+    {"date": "2027-02", "event": "Q4 2026 results and 2027 outlook, including supply commentary", "direction": "?"},
+    {"date": "2027 (undated)", "event": "DOJ Antitrust Division grand jury probe outcome (charges, settlement, or close)", "direction": "-"},
+    {"date": "2027 H1", "event": "DRAM contract/supply data for 2027 (TrendForce) and server CPU platform ramps", "direction": "?"},
+    {"date": "2027-04 / 2027-07", "event": "Q1 and Q2 2027 results", "direction": "?"},
+    {"date": "2026-2027", "event": "Possible expansion of Section 232 semiconductor tariffs beyond the January 2026 narrow scope", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Whether the 2027 DRAM/RDIMM supply shortage limits module units and therefore Rambus product revenue",
+    "Outcome and timing of the DOJ criminal antitrust investigation disclosed in the Q1 2026 10-Q",
+    "Multiple durability for an AI-linked semi at 30x+ with markets pricing no Fed cuts and some hike risk",
+    "How far 2027 consensus EPS ($3.72, +22.6%) is from reality; one third-party model is ~20% lower"
+  ],
+  "reasoning": "Anchor (base rates): from 20 years of RMBS monthly closes (2006-2026, 228 overlapping 12-month windows), the 12-month log-return sd is ~0.45. Median 12-month return is +10%, the 5th/95th percentiles are -60%/+118%, and P(>=1.0x)=0.65, P(>=1.5x)=0.26, P(>=2x)=0.07, P(<0.5x)=0.07. Conditioning on the stock sitting >25% below its trailing-12-month high (as now: $112 vs $174 high) gives 43 cases with a median +63% but a wide 10th percentile of -56%, which supports mean reversion with fat tails. These are overlapping windows and many come from the 2009-2013 and 2023-2025 rebounds, so I give them only modest weight. The 2026 realized vol of 80% is a regime outlier driven by the April -23% post-earnings drop, the June legal and sector selloff, and a ~$174-to-$83 round trip. I use sigma ~0.50 for 12 months, between long-run and current. Center: the fair value of ~$118 sits about 5% above spot; blended with the historical positive drift and offset by known left-tail events (DOJ probe, a shortage that hurts a unit-leveraged business, and Polymarket pricing ~96% no Fed cuts in 2026 with 17.5% odds of an October hike), I set the median at ~$116. Polymarket's US recession market is only 7.5% by end-2026, so macro recession is not the main risk. The ladder is a lognormal (median 116, sigma 0.50) with the far right tail (2x+) trimmed toward the empirical 7% and a slightly fatter far-left tail. The scenario mean (~$121) is consistent. Research limits: Twelve Data estimates were paywalled, so 2027 consensus comes from stockanalysis.com. The Polymarket figures come from the public gamma API on 2026-10-02 (US recession by end of 2026: 7.5% yes, $2.24M volume; Fed Decision in October: 82.5% hold / 17.5% +25bp, $24.2M volume; How many Fed cuts in 2026: 96% zero, $53.8M volume). I found no prediction market specific to Rambus, the DOJ probe or chip tariffs.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Rambus Reports Second Quarter 2026 Financial Results", "url": "https://www.rambus.com/second-quarter-2026-financial-results/", "date": "2026-07-27", "type": "company", "in_lane": false},
+    {"title": "Rambus shares crater after revenue miss, Baird warns of DRAM supply squeeze", "url": "https://finance.yahoo.com/markets/stocks/articles/rambus-shares-crater-revenue-miss-173700183.html", "date": "2026-04-28", "type": "press", "in_lane": true},
+    {"title": "Why Rambus Plunged Today", "url": "https://www.fool.com/investing/2026/04/28/why-rambus-plunged-today/", "date": "2026-04-28", "type": "press", "in_lane": true},
+    {"title": "Rambus (RMBS) falls as legal overhang and chip-sector weakness pressure shares", "url": "https://www.quiverquant.com/news/Rambus+(RMBS)+falls+as+legal+overhang+and+chip-sector+weakness+pressure+shares", "date": "2026-06-23", "type": "press", "in_lane": true},
+    {"title": "Rambus targeted in US DOJ criminal antitrust probe", "url": "https://www.mlex.com/mlex/articles/2471162/rambus-targeted-in-us-doj-criminal-antitrust-probe", "date": "2026-04", "type": "press", "in_lane": true},
+    {"title": "Rambus (RMBS) Stock Forecast & Price Target", "url": "https://stockanalysis.com/stocks/rmbs/forecast/", "date": "2026-10-02", "type": "data", "in_lane": false},
+    {"title": "Wall Street Keeps Warming to Rambus Stock. Here's Our Price Target", "url": "https://247wallst.com/investing/2026/07/21/wall-street-keeps-warming-to-rambus-stock-heres-our-price-target/", "date": "2026-07-21", "type": "press", "in_lane": false},
+    {"title": "Rambus Forward P/E", "url": "https://eulerpool.com/stock/Rambus-Stock-US7509171069/forwardpe", "date": "2026-08-04", "type": "data", "in_lane": true},
+    {"title": "Rambus P/E ratio history", "url": "https://fullratio.com/stocks/nasdaq-rmbs/pe-ratio", "date": "2026-04-02", "type": "data", "in_lane": true},
+    {"title": "Twelve Data RMBS monthly OHLC 2006-11 to 2026-10 (base-rate computation)", "url": "https://twelvedata.com/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "TrendForce: server DRAM contract prices to rise 13-18% QoQ in 3Q26; 2027 RDIMM bit supply +15-20%", "url": "https://www.trendforce.com/presscenter/news/20260709-13140.html", "date": "2026-07-09", "type": "trade", "in_lane": true},
+    {"title": "Polymarket: US recession by end of 2026? (7.5% yes, $2.24M volume, read via gamma API)", "url": "https://polymarket.com/event/us-recession-by-end-of-2026", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket: Fed Decision in October? (82.5% hold, 17.5% +25bp, $24.2M volume)", "url": "https://polymarket.com/event/fed-decision-in-october", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket: How many Fed rate cuts in 2026? (96% zero, $53.8M volume)", "url": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "President Trump orders narrowly targeted 25% Section 232 tariff on certain advanced semiconductor articles", "url": "https://www.whitecase.com/insight-alert/president-trump-orders-narrowly-targeted-25-section-232-tariff-certain-advanced", "date": "2026-01", "type": "expert", "in_lane": true},
+    {"title": "VCP Scanner RMBS estimates", "url": "https://www.vcpscanner.com/valuation/rmbs/estimates", "date": "2026-06-15", "type": "data", "in_lane": false},
+    {"title": "Equibles RMBS (share count, $100M ASR, next earnings date)", "url": "https://equibles.com/stocks/RMBS", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Rambus price target raised to 114 from 81 at Evercore ISI", "url": "https://www.tipranks.com/news/the-fly/rambus-price-target-raised-to-114-from-81-at-evercore-isi-thefly", "date": "2025/2026 (undated in fetch)", "type": "sell-side", "in_lane": false}
+  ]
+}

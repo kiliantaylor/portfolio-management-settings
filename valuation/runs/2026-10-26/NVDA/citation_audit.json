@@ -1,0 +1,489 @@
+{
+ "date": "2026-10-26",
+ "symbol": "NVDA",
+ "clean": true,
+ "checked": 44,
+ "ok": 43,
+ "removed": 1,
+ "failures": [
+  {
+   "item": "supervisor model: years.sbc_pct_rev",
+   "value": "0.0239",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json (via secfacts.py show NVDA; no source cited by agent)",
+   "result": "mislabelled",
+   "fix": "basis set to derived (TTM SBC 7,241 / TTM revenue 302,970 = 0.0239), fact ids F46/F6; reference only under sbc_treatment cost"
+  },
+  {
+   "item": "supervisor disagreements: GuruFocus NVDA forward PE",
+   "value": "24.24",
+   "cited": "https://www.gurufocus.com/term/forward-pe-ratio/NVDA",
+   "result": "not_found",
+   "fix": "removed: page would not open (HTTP 403); figure dropped from disagreements and sources[12] title; feeds no number (FY27-basis 25.4x from stockanalysis stands in)"
+  },
+  {
+   "item": "supervisor comps_review: basis, peers[].pe_ntm, judgment",
+   "value": "basis \"re-based to ex-SBC\"; pe_ntm AVGO 17.42 / AMD 38.07 / MRVL 35.15 / ANET 35.91 / NVDA 14.8; \"Kept 16.0x\"",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "as-published column promoted to pe_ntm, ex-SBC kept as pe_ntm_ex_sbc_ref; basis and judgment restated to live 17.33x (-9.1% vs 19.06x)"
+  },
+  {
+   "item": "supervisor thesis_break_reason: multiples on the set NTM EPS",
+   "value": "~9.6x the set NTM EPS $16.71 (160/16.71); flat year needs 210.96/16.71 = 12.6x",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed on the set NTM EPS $16.26"
+  },
+  {
+   "item": "supervisor sizing.reason: upside to research target",
+   "value": "+21.7% to the 256.65 research target (12m)",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed on research target $262.70"
+  },
+  {
+   "item": "supervisor changes: change log for this round",
+   "value": "last entries: exit 16.0x -> 16.73x; fair value 266.2 -> 263.0",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "entry added for this round"
+  },
+  {
+   "item": "supervisor disagreements[0]: horizon multiple resolution",
+   "value": "16x; 18.48x ex-SBC anchor, 16x = -13.4%",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "marked superseded with live figures"
+  },
+  {
+   "item": "supervisor model inputs_detail: terminal.exit_ev_ebitda",
+   "value": "13.2 (\"its own 16x horizon P/E\" x 0.84 x EBIT/EBITDA)",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed on live 17.33x; no FV effect"
+  },
+  {
+   "item": "supervisor model: driver:opex",
+   "value": "23,076 -> 35,050/49,000/58,800",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "confidence medium added; arithmetic unchanged"
+  },
+  {
+   "item": "supervisor model: driver:fcf_conv",
+   "value": "0.8691 -> 0.71/0.72/0.72",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "confidence medium added; arithmetic unchanged"
+  },
+  {
+   "item": "supervisor model: comps[AVGO].pe_ntm",
+   "value": "18.59",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "derivation reworded: ex-SBC re-base is a prior-basis reference; as-published value used (value unchanged)"
+  },
+  {
+   "item": "supervisor model: comps[AMD].pe_ntm",
+   "value": "40.71",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "derivation reworded: ex-SBC re-base is a prior-basis reference; as-published value used (value unchanged)"
+  },
+  {
+   "item": "supervisor model: comps[MRVL].pe_ntm",
+   "value": "43.77",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "derivation reworded: ex-SBC re-base is a prior-basis reference; as-published value used (value unchanged)"
+  },
+  {
+   "item": "supervisor model: comps[TSM].pe_ntm",
+   "value": "19.53",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "derivation reworded: ex-SBC re-base is a prior-basis reference; as-published value used (value unchanged)"
+  },
+  {
+   "item": "supervisor model: comps[ANET].pe_ntm",
+   "value": "38.14",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "derivation reworded: ex-SBC re-base is a prior-basis reference; as-published value used (value unchanged)"
+  },
+  {
+   "item": "supervisor model: comps[NVDA].pe_ntm",
+   "value": "15.09",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "label restated (as published = set basis); confidence high for 15.09x, ex-SBC 14.80x reference only"
+  },
+  {
+   "item": "supervisor model: comps.peer_median_pe_ntm",
+   "value": "30.12",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "label restated: as published is the set basis, 27.34x ex-SBC reference only"
+  },
+  {
+   "item": "supervisor model: comps.at_scale_anchor_pe_ntm",
+   "value": "19.06",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "comparisons restated on live basis: -9.1% / -20.8% / -49.9%"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "years.sbc_pct_rev",
+   "value": "0.0239",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Big-4 2027 capex consensus and split; 2026 guide total",
+   "value": "$934.5B (GOOGL 284.8, AMZN 256.5, MSFT 207.6, META 185.6); 2026 $732.5B",
+   "basis": "consensus",
+   "source_url": "https://io-fund.com/ai-stocks/ai-capex-1-trillion-estimates-too-low",
+   "checked": "2026-10-26",
+   "feeds": "record"
+  },
+  {
+   "item": "NVDA FY27 consensus EPS",
+   "value": "$9.31 (53 analysts)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/nvda/forecast/",
+   "checked": "2026-10-26",
+   "feeds": "record"
+  },
+  {
+   "item": "NVDA NTM EPS (Fool quarterly table)",
+   "value": "$2.47/$2.73/$3.17/$3.63 = $12.00",
+   "basis": "consensus",
+   "source_url": "https://www.fool.com/investing/2026/09/30/nvidia-stock-just-did-something-for-the-first-time/",
+   "checked": "2026-10-26",
+   "feeds": "record"
+  },
+  {
+   "item": "NVDA forward PE (stockanalysis, 2026-10-05 base)",
+   "value": "19.34",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/nvda/statistics/",
+   "checked": "2026-10-26",
+   "feeds": "record"
+  },
+  {
+   "item": "NVDA net cash",
+   "value": "$23.61B",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/nvda/statistics/",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "NVDA 52-week low",
+   "value": "$164.27",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA",
+   "checked": "2026-10-26",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "Q2 FY27 OCF / FCF / H1 FCF / DSO / supply commitments",
+   "value": "$24.1B / $21.3B / $69.9B / DSO 60 / $279B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000073/q2fy27cfocommentary.htm",
+   "checked": "2026-10-26",
+   "feeds": "record"
+  },
+  {
+   "item": "Q2 FY27 EPS, SBC, diluted shares, non-GAAP SBC policy",
+   "value": "GAAP $2.46 / non-GAAP $2.22; SBC $2,027M; 24,285M; non-GAAP incl. SBC from Q1 FY27",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/q2fy27pr.htm",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "NVDA Zacks FY1/FY2 consensus EPS and last reported EPS",
+   "value": "9.30 / 15.74; reported 2.22",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/NVDA/earnings-forecast ; https://api.nasdaq.com/api/company/NVDA/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "AVGO Zacks FY1/FY2 consensus EPS and last reported EPS",
+   "value": "10.37 / 17.46; reported 3.03",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/AVGO/earnings-forecast ; https://api.nasdaq.com/api/company/AVGO/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMD Zacks FY1/FY2 consensus EPS and last reported EPS",
+   "value": "6.5 / 14.14; reported 1.44",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/AMD/earnings-forecast ; https://api.nasdaq.com/api/company/AMD/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "MRVL Zacks FY1/FY2 consensus EPS and last reported EPS",
+   "value": "3.05 / 6.04; reported 0.62",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/MRVL/earnings-forecast ; https://api.nasdaq.com/api/company/MRVL/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "TSM Zacks FY1/FY2 consensus EPS and last reported EPS",
+   "value": "17.07 / 22.44; reported 4.60",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/TSM/earnings-forecast ; https://api.nasdaq.com/api/company/TSM/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "ANET Zacks FY1/FY2 consensus EPS and last reported EPS",
+   "value": "3.79 / 4.69; reported 0.95",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/ANET/earnings-forecast ; https://api.nasdaq.com/api/company/ANET/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "AVGO latest-quarter GAAP / non-GAAP EPS and SBC",
+   "value": "GAAP $2.68 / non-GAAP $3.32; SBC $2,019M; 4,887M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMD latest-quarter GAAP / non-GAAP EPS and SBC",
+   "value": "GAAP $1.38 / non-GAAP $1.66; SBC $0.30/sh, amort $0.33/sh; 13% tax",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000121/q22026991.htm",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "MRVL latest-quarter GAAP / non-GAAP EPS and SBC",
+   "value": "GAAP $0.33 / non-GAAP $0.94; SBC $326.2M; 921.2M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "ANET latest-quarter GAAP / non-GAAP EPS and SBC",
+   "value": "GAAP $0.95 / non-GAAP $1.02; SBC $120.4M; 1,276.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000174/ex991q226-earningsrelease.htm",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "TSM latest-quarter GAAP / non-GAAP EPS and SBC",
+   "value": "3Q26 NT$29.43 = US$4.60/ADR; no non-GAAP",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000726/a3q26e_withguidancexfinal.htm",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "TSMC FY2024 SBC / profit to owners",
+   "value": "NT$1,646.2M / NT$1,158,380.2M",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001046179.json",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "NVDA / TSM close 2026-10-23",
+   "value": "210.96 / 418.51",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA ; https://query1.finance.yahoo.com/v8/finance/chart/TSM",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "basis, peers[].pe_ntm, judgment",
+   "value": "pe_ntm as published AVGO 18.59 / AMD 40.71 / MRVL 43.77 / TSM 19.53 / ANET 38.14 / NVDA 15.09; reconciled_horizon_multiple 17.33",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/avgo/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "multiples on the set NTM EPS",
+   "value": "9.8x $16.26 (160/16.26 = 9.84); flat year 13.0x (210.96/16.26 = 12.97)",
+   "basis": "estimate",
+   "source_url": "update.json; model_engine check (P/E leg 281.75 / 17.33 = 16.26)",
+   "checked": "2026-10-26",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "upside to research target",
+   "value": "+24.5% to 262.70 (262.70/210.96 - 1)",
+   "basis": "estimate",
+   "source_url": "model_engine check 2026-10-27; 2026-10-23 close",
+   "checked": "2026-10-26",
+   "feeds": "sizing"
+  },
+  {
+   "item": "change log for this round",
+   "value": "SBC-as-cost entry: research target $263.97 -> $262.70",
+   "basis": "judgment",
+   "source_url": "supervisor.json changes[-1]",
+   "checked": "2026-10-26",
+   "feeds": "record"
+  },
+  {
+   "item": "horizon multiple resolution",
+   "value": "superseded: live 17.33x, -9.1% vs 19.06x",
+   "basis": "judgment",
+   "source_url": "comps.at_scale_anchor_pe_ntm",
+   "checked": "2026-10-26",
+   "feeds": "record"
+  },
+  {
+   "item": "research target and drivers",
+   "value": "262.70 = 0.6 x 281.75 + 0.4 x 234.12",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "terminal.exit_ev_ebitda",
+   "value": "14.3 (17.33 x 0.84 x 0.982 = 14.30)",
+   "basis": "estimate",
+   "source_url": "horizon_multiples[P/E] 17.33",
+   "checked": "2026-10-26",
+   "feeds": "model (DCF diagnostic, weight 0)"
+  },
+  {
+   "item": "discount_rate.wacc",
+   "value": "0.1349 = 0.0422 + 1.85 x 5%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "tax, net debt, shares.horizon, shares.annual_change, sbc_pct_rev",
+   "value": "0.16; -23,610; 23,900; -0.0133; 0.0239",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "horizon_multiples[P/E].value",
+   "value": "17.33",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:gm",
+   "value": "0.7107 -> 0.7366/0.72/0.72",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:opex",
+   "value": "23,076 -> 35,050/49,000/58,800",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:fcf_conv",
+   "value": "0.8691 -> 0.71/0.72/0.72",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000073/q2fy27cfocommentary.htm",
+   "checked": "2026-10-26",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "comps[AVGO].pe_ntm",
+   "value": "18.59",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/avgo/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "comps[AMD].pe_ntm",
+   "value": "40.71",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/amd/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "comps[MRVL].pe_ntm",
+   "value": "43.77",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/mrvl/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "comps[TSM].pe_ntm",
+   "value": "19.53",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/tsm/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "comps[ANET].pe_ntm",
+   "value": "38.14",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/anet/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "comps[NVDA].pe_ntm",
+   "value": "15.09",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/nvda/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "comps.peer_median_pe_ntm",
+   "value": "30.12",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/avgo/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  },
+  {
+   "item": "comps.at_scale_anchor_pe_ntm",
+   "value": "19.06",
+   "basis": "estimate",
+   "source_url": "https://www.nasdaq.com/market-activity/stocks/avgo/earnings (Zacks consensus via Nasdaq.com, 2026-10-26)",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  }
+ ],
+ "model_engine_check": "OK base 262.70 (P/E 281.75 x 0.6, FCF yield 234.12 x 0.4); bear 160.19 / base 262.70 / bull 376.02; fair_value.value 262.7",
+ "quarterly_gate": {
+  "checked": 88,
+  "fixes": 5,
+  "file": "driver_models/NVDA/quarterly/gate.json"
+ }
+}

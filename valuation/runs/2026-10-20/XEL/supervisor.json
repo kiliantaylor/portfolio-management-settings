@@ -1,0 +1,1163 @@
+{
+ "symbol": "XEL",
+ "as_of": "2026-10-20",
+ "horizon": "2027-10-20",
+ "disagreements": [
+  {
+   "topic": "DCF leg: interest tax shield counted twice (the main source of the $44.9-63.7 DCF spread)",
+   "positions": "agent_1 enters EBIT as NOPAT (net income + interest x 0.79) with an after-tax cost of debt (DCF $55.3 at 5.94%). agent_2 (EBIT = NI/1.05 + full net interest, tax -5% to +3%, after-tax Kd) $62.6; agent_3 (EBIT = NI + full interest, tax 0, after-tax Kd 4.27%) $63.7; agent_4 (EBIT = NI/1.10 + interest, tax 0, after-tax Kd) $50.8 at 6.55%; agent_5 (tax -8% to +5% on EBIT incl. full interest, after-tax Kd 4.8%) $44.9 at 6.4%.",
+   "resolution": "With tax 0 on an EBIT that adds back full pre-tax interest, FCFF already carries the interest tax shield; discounting at an after-tax cost of debt counts it again (~21% x $1.7-3.0B = $0.4-0.6B a year, ~20% of steady-state FCFF). Reconciled set uses agent_1's NOPAT form. Re-run on agent_3's own years and 6.1% WACC with EBIT restated to NOPAT, its DCF is $29.8, not $63.7 (engine check). Reconciled DCF $48.0 at 5.93%: EV at the horizon ~1.0x rate base, i.e. returns about equal to a CAPM cost of capital; the market's 17.2x implies a ~5.5% WACC.",
+   "evidence": "Arithmetic in each agent's inputs_detail (EBIT and tax rows) checked against model_engine.py check; interest TTM $1,642M (F67), 2026 +$240-250M [2]."
+  },
+  {
+   "topic": "Peer median NTM P/E is on mixed bases",
+   "positions": "All five use the peers.md median 18.85x and call XEL's 17.2x a 0.91x relative (9% discount).",
+   "resolution": "8 of 12 peer rows weight FY2026/FY2027 consensus from the last filed quarter (WEC, CMS, AEE, ES 0.504/0.496; LNT, PPL, CNP, EVRG 0.753/0.247), i.e. NTM windows starting earlier in 2026, while XEL is on the Oct-2026 window (0.197/0.803). Re-weighted to 0.197/0.803 the median is 18.45x and XEL is 0.93x (a ~7% discount). Value unchanged because every agent holds XEL's own current 17.2x; it removes '9% discount, room to close' as an upside argument.",
+   "evidence": "peers.json eps_ntm derivations (e.g. WEC 0.504 x 5.5975 + 0.496 x 6.0069) recomputed; prices spot-checked: DUK $121.33, AEE $106.23, WEC $108.75 at the 2026-10-20 close (Twelve Data), equal to the table."
+  },
+  {
+   "topic": "NTM EPS at the horizon ($4.70 to $4.85)",
+   "positions": "agent_4 $4.70 (FY27 $4.40, 3.1% under consensus); agent_2 $4.74; agent_1 $4.77; agent_3 $4.79; agent_5 $4.85 (FY28 $4.95, above the 9% path, citing '9%+' to the deck).",
+   "resolution": "$4.78 (FY27 $4.48, FY28 $4.85). The CFO said on the Q2 call 'expect to deliver 9-plus percent EPS growth on average through 2030' (the decks say only '6-8+%'), off 2025 ongoing $3.80; with the 2026 midpoint $4.10 that is ~9.3% a year after 2026 ($4.48, $4.90). The two post-call lag facts are real (CPUC 13-month historical test year; NSPM freeze) but the freeze is the company's own proposal with an ITC offset and 2026 guidance was reaffirmed after the CPUC decision, so a ~1% FY2028 trim, not 2-3%.",
+   "evidence": "Q2 call transcript [6]; Q3 2025 and Q2 2026 decks [16][2]; Q4 2025 release [3]; 8-Ks [4][5]."
+  },
+  {
+   "topic": "DCF discount rate (5.94%-6.55%)",
+   "positions": "agent_1 5.94%, agent_2 5.97%, agent_3 6.1%, agent_5 6.4% (Blume beta 0.47, after-tax Kd 4.8%), agent_4 6.55% (beta 0.6 x 5.5% ERP).",
+   "resolution": "5.93%: CoE 7.62% (5.12% + 0.5 x 5.0%), marginal pre-tax Kd 5.3% from the 2026 issues (after tax 4.19%), horizon market weights 50.75/49.25. Agent_4's beta is unmeasured and above agent_5's measured 0.47; agent_5's 4.8% after-tax Kd ignores the 21% shield its own WACC needs. Each 15bp moves the DCF ~$9 and the blend ~$1.8.",
+   "evidence": "Treasury 10y 5.12% on 2026-10-20 [7]; deck 2026 debt coupons [2]."
+  },
+  {
+   "topic": "Smokehouse Creek adjustment (-$75M to -$150M expected)",
+   "positions": "agent_2 -$75M, agent_5 -$80M, agent_1 -$80M, agent_3 -$125M, agent_4 -$150M.",
+   "resolution": "-$110M expected (50% x ~$220M): the $56M remaining probable loss is the low end of the range, ~$80M of cover is left, and the Texas AG penalties are not estimable. Immaterial to value (+/-$0.05/sh).",
+   "evidence": "10-Q Q2 2026 [1], opened and read."
+  },
+  {
+   "topic": "Net debt and shares at the horizon",
+   "positions": "Net debt $48.5B (agent_4) to $50.2B (agent_5); shares 658M (agents 3-5) vs 662M (agents 1-2).",
+   "resolution": "$49.2B from a cash bridge on the deck's capex by year, CFO net of dividends ~$6.1B and $1.976B of 2025 forward minimum proceeds; 658M shares (651.9M floor + DRIP + treasury-method dilution).",
+   "evidence": "10-Q forward table: 12.2M Dec-2026 to May-2027 ($932M), 15.1M collared Dec-2026 ($1,044M), 21.2M and 21.3M Dec-2027 to Dec-2028 [1]; deck capex [2]."
+  },
+  {
+   "topic": "Colorado wildfire-liability legislation (upside) probability",
+   "positions": "agent_1 0.40, agent_4 0.30, agents 2-3 0.25, agent_5 0.15.",
+   "resolution": "0.20 for the 2027 session: the 2025 attempt dropped the utility trade after utilities balked, nothing passed in 2026 that I could find, and management only calls Colorado 'a focus area for us in 2027' and plans a new wildfire mitigation plan filing.",
+   "evidence": "KUNC [14]; Q2 call [6]."
+  },
+  {
+   "topic": "WSJ/Anthropic S-1: direct load, backlash and counterparty risk",
+   "positions": "All five: no verified Anthropic load in Xcel territory; indirect demand via Google; S-1 opposition risk visible in MN/CO.",
+   "resolution": "Agreed after my own search: no named source ties Anthropic (or Nscale/Lambda capacity) to an Xcel site. The channel is Google ($111B of Anthropic cloud commitments plus a >$160B TPU lease per the WSJ), which is Xcel's Pine Island ESA counterparty. Backlash is already in the record: the MN AG asks the MPUC not to approve the Google ESA as filed (Oct 1). Counterparty risk sits first on tariff terms (MN 15-year approved tariff; CO large-load tariff filed 2026-04-02 and pending at the CPUC: 15-year contracts, financial assurance in cash or credit and exit fees for loads of 50 MW+ [15]); SPS Texas/New Mexico large-load tariffs were still to be filed per the Q2 call, so that is where shareholders carry more of it.",
+   "evidence": "WSJ [13]; MN AG [12]; Q2 release Google ESA terms [18]; Denver Post on the CO filing [15]; Q2 call [6]."
+  }
+ ],
+ "ladder": [
+  {
+   "K": 19.17,
+   "p": 0.999
+  },
+  {
+   "K": 31,
+   "p": 0.998
+  },
+  {
+   "K": 38,
+   "p": 0.997
+  },
+  {
+   "K": 46,
+   "p": 0.99
+  },
+  {
+   "K": 54,
+   "p": 0.965
+  },
+  {
+   "K": 61,
+   "p": 0.888
+  },
+  {
+   "K": 69,
+   "p": 0.71
+  },
+  {
+   "K": 77,
+   "p": 0.477
+  },
+  {
+   "K": 84,
+   "p": 0.286
+  },
+  {
+   "K": 92,
+   "p": 0.134
+  },
+  {
+   "K": 104,
+   "p": 0.031
+  },
+  {
+   "K": 115,
+   "p": 0.008
+  },
+  {
+   "K": 134,
+   "p": 0.002
+  },
+  {
+   "K": 153,
+   "p": 0.001
+  },
+  {
+   "K": 192,
+   "p": 0.0
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 61.34,
+   "p": 0.997
+  },
+  {
+   "K": 65.18,
+   "p": 0.99
+  },
+  {
+   "K": 69.01,
+   "p": 0.955
+  },
+  {
+   "K": 71.31,
+   "p": 0.885
+  },
+  {
+   "K": 73.61,
+   "p": 0.75
+  },
+  {
+   "K": 76.68,
+   "p": 0.495
+  },
+  {
+   "K": 79.75,
+   "p": 0.25
+  },
+  {
+   "K": 82.05,
+   "p": 0.125
+  },
+  {
+   "K": 84.35,
+   "p": 0.055
+  },
+  {
+   "K": 88.18,
+   "p": 0.012
+  },
+  {
+   "K": 92.02,
+   "p": 0.003
+  }
+ ],
+ "one_month_reasoning": "Window to 2026-11-19: Oct 28 FOMC, Oct 29 Q3 results with the 2027-2031 capital and financing roll-forward (verified date; equity on the incremental capex is the swing factor), Nov 3 midterms (MN/CO), MN gas decision; an Anthropic listing, if it comes, is reported for late November and may fall after the window. Centre ~spot (the 10y fell from 5.31% to 5.12% since Oct 5 and XEL rallied ~9% off the Sep 25 low), slight left lean for an equity-heavy plan.",
+ "confidence": "low",
+ "confidence_reason": "My checks confirmed the inputs that move the price (NTM EPS ~$4.78 matches the agents' mean; 17.2x is XEL's current multiple) and found two method errors: the DCF tax-shield double count (lowers agents 2-4's DCF leg) and the mixed-basis peer median (no value effect). Fair value moves only ~2% below the mean (75.2 vs 76.5), on a 0.2-weight leg whose level is very sensitive to the WACC, so the ladder shift is small and not clearly a better forecast.",
+ "thesis_break_price": 63.0,
+ "thesis_break_reason": "$63 is ~13.2x my horizon NTM EPS ($4.78) and ~14.1x today's NTM consensus ($4.46), below every regulated peer but ES (13.45x on a consistent basis) and ~8% under the $68.72 52-week low set on 2026-09-25 with the 10y near its 5.3% peak. Rates alone did not take XEL there; a close below $63 would be pricing a fundamental break (a new at-fault wildfire, an adverse TX AG outcome, an MPUC rejection plus a heavy equity plan, or a downgrade to Baa2), so re-underwrite rather than average down.",
+ "key_drivers": [
+  "10-year Treasury (5.12% on 2026-10-20 after a 5.31% peak on Oct 5): the group P/E moves ~1.5-2 turns per 50bp; the FOMC raised the funds target 25bp to 3.75-4.00% on 2026-09-16 [20].",
+  "Oct 29 2027-2031 plan: how much of the $10B+ line of sight is added and with how much equity (40% on increments); 9-plus % EPS growth through 2030 is the guide to defend.",
+  "Regulatory lag: MPUC ruling on the NSPM 2027-28 freeze (by Jan 2027) and PSCo's 13-month historical test year (9.3% ROE).",
+  "Data-centre conversion and approvals: ~4 GW more ESAs targeted by YE2027, the Google Pine Island ESA under MN AG challenge, CO/TX/NM large-load tariffs.",
+  "Wildfire tail: TX AG Smokehouse suit with ~$80M of cover left; no Colorado liability shield; Moody's negative outlooks on the holdco and PSCo."
+ ],
+ "long_dated_review": [
+  {
+   "risk": "New at-fault wildfire in Colorado or the Texas Panhandle with losses above insurance, before any liability framework",
+   "probability": 0.12,
+   "when": "2027-2031 fire seasons",
+   "value_effect_per_share": -1.0,
+   "agents_that_missed_it": [],
+   "how_applied": "In the 17.2x (discount held) and the bear scenario; agents range -0.6 to -3.0, I take ~p x -$8/sh."
+  },
+  {
+   "risk": "Higher-for-longer long rates (10y >= 5.5%) compress the group P/E and raise the cost of the equity plan",
+   "probability": 0.3,
+   "when": "through and after the horizon",
+   "value_effect_per_share": -1.3,
+   "agents_that_missed_it": [],
+   "how_applied": "Bear scenario (multiple -2.3, WACC +30bp)."
+  },
+  {
+   "risk": "Affordability and organised data-centre opposition (Anthropic S-1 risk factor; MN AG on the Google ESA; NSPM freeze; CO test year) cap ROEs or slow large-load approvals",
+   "probability": 0.35,
+   "when": "2027-2030 rate cases and dockets",
+   "value_effect_per_share": -1.0,
+   "agents_that_missed_it": [],
+   "how_applied": "Earned ROE held ~8.1-8.2% (below the 8.43% TTM) and the discount held."
+  },
+  {
+   "risk": "AI build-out slows or AI tenants/neoclouds default; line-of-sight capex not deployed",
+   "probability": 0.25,
+   "when": "2028-2031",
+   "value_effect_per_share": -0.8,
+   "agents_that_missed_it": [],
+   "how_applied": "Only half the line of sight in the base set; tariff collateral, minimum bills and exit fees absorb tenant defaults first (MN; CO proposed financial assurance and exit fees [15]), SPS TX/NM still unfiled."
+  },
+  {
+   "risk": "Stranded-cost tail when 15-year large-load contracts end",
+   "probability": 0.15,
+   "when": "2040s",
+   "value_effect_per_share": -0.3,
+   "agents_that_missed_it": [],
+   "how_applied": "Terminal growth 3.5%, below the 2029-30 base-plan rate-base growth."
+  },
+  {
+   "risk": "Colorado wildfire-liability framework passes (upside)",
+   "probability": 0.2,
+   "when": "2027 session (Jan-May)",
+   "value_effect_per_share": 0.4,
+   "agents_that_missed_it": [],
+   "how_applied": "Bull scenario; +$1.9/sh if it passes (discount to 0.96x), x 0.2."
+  }
+ ],
+ "fair_value": {
+  "value": 75.23,
+  "reason": "Engine base horizon value of model.reconciled_inputs: P/E leg 17.2x x NTM EPS $4.78 less $0.17/sh Smokehouse = $82.05 (weight 0.8) and a NOPAT-consistent driver DCF at 5.93% WACC / 3.5% g, $49.2B net debt and 658M shares = $47.97 (weight 0.2). It is 1.7% under the forecasters' mean ($76.53) because the DCF no longer counts the interest tax shield twice; a price, ex-dividend (~$2.45/sh of dividends over the year come on top)."
+ },
+ "model": {
+  "reconciled_inputs": {
+   "unit": "$M",
+   "ebit_basis": "gaap (after stock comp)",
+   "sbc_treatment": "cost",
+   "base": {
+    "fy_end": "2025-12-31",
+    "revenue": 14669.0
+   },
+   "years": [
+    {
+     "label": "FY2026",
+     "revenue_growth": 0.065,
+     "ebit_margin": 0.2513,
+     "da_pct_rev": 0.199,
+     "capex_pct_rev": 0.8827,
+     "shareholder_returns": 1490.0,
+     "tax_rate": 0.0,
+     "nwc_pct_incr_rev": 0.0,
+     "sbc_pct_rev": 0.003,
+     "shareholder_returns_pct_rev": 0.0,
+     "other_uses": 0.0,
+     "adj_ebitda_addback_pct_rev": 0.0
+    },
+    {
+     "label": "FY2027",
+     "revenue_growth": 0.09,
+     "ebit_margin": 0.2692,
+     "da_pct_rev": 0.203,
+     "capex_pct_rev": 0.8885,
+     "shareholder_returns": 1630.0
+    },
+    {
+     "label": "FY2028",
+     "revenue_growth": 0.08,
+     "ebit_margin": 0.2851,
+     "da_pct_rev": 0.21,
+     "capex_pct_rev": 0.7422,
+     "shareholder_returns": 1790.0
+    },
+    {
+     "label": "FY2029",
+     "revenue_growth": 0.07,
+     "ebit_margin": 0.2959,
+     "da_pct_rev": 0.22,
+     "capex_pct_rev": 0.56,
+     "shareholder_returns": 1940.0
+    },
+    {
+     "label": "FY2030",
+     "revenue_growth": 0.06,
+     "ebit_margin": 0.3006,
+     "da_pct_rev": 0.24,
+     "capex_pct_rev": 0.4252,
+     "shareholder_returns": 2080.0
+    }
+   ],
+   "terminal": {
+    "method": "gordon",
+    "growth": 0.035,
+    "exit_ev_ebitda": null
+   },
+   "discount_rate": {
+    "wacc": 0.0593,
+    "basis": "Cost of equity 7.62% = 10y UST 5.12% (Treasury par curve 2026-10-20, verified [7]) + beta 0.5 x 5.0% ERP (beta between agent_5's measured Blume-adjusted 0.47 and the 0.5 used by agent_1; agent_4's 0.6 x 5.5% has no measurement behind it). Pre-tax marginal cost of debt 5.3% (2026 issues in the deck: 4.15% 3y, 4.85-5.30% 10y, 5.48-5.875% 15-30y, 5.75% HoldCo junior sub [2]) x (1-21%) = 4.19%. Weights at the horizon on market values: equity 658M x ~$77 = $50.7B, net debt $49.2B: weights 50.75% / 49.25% of $99.9B: 0.5075 x 7.62% + 0.4925 x 4.19% = 3.867% + 2.064% = 5.93%. Consistent with EBIT entered as NOPAT (net income + interest x (1-21%), tax_rate 0), so the interest tax shield is counted once, in the WACC."
+   },
+   "balance": {
+    "as_of": "2026-06-30",
+    "net_debt": 37447.0,
+    "minorities": 0.0,
+    "preferred": 0.0,
+    "interest_rate": 0.046,
+    "net_debt_horizon": 49200.0
+   },
+   "shares": {
+    "diluted_now": 627.0,
+    "as_of": "2026-06-30",
+    "annual_change": 0.043,
+    "horizon": 658.0
+   },
+   "dcf_weight": 0.2,
+   "horizon_multiples": [
+    {
+     "metric": "P/E",
+     "value": 17.2,
+     "weight": 0.8,
+     "basis": "ntm",
+     "ebitda": "gaap",
+     "eps": 4.78,
+     "fcf_per_share": null,
+     "levered": true,
+     "peer_basis": "Peer median NTM P/E 18.45x on one basis (12 regulated electrics in peers.md, NEE out; the 8 Alpha Vantage rows re-weighted to the Oct-2026 NTM window 0.197 x FY2026 + 0.803 x FY2027; table median 18.85x mixes bases). 17.2x = XEL's own current NTM multiple (76.68 / (0.197 x 4.1212 + 0.803 x 4.5403 = $4.46)), 0.93x the consistent median, held to the horizon."
+    }
+   ],
+   "segments": [],
+   "sotp_weight": 0.0,
+   "adjustments": [
+    {
+     "name": "Smokehouse Creek / Texas AG exposure above remaining insurance",
+     "value": -220.0,
+     "probability": 0.5,
+     "note": "Equity level, after tax. 10-Q Q2 2026 [1]: total estimated loss $460M ($503M incl. $43M legal), $404M settled, $56M remaining probable losses (low end of the range), ~$80M of the $525M policy left; Texas AG suit (Dec 2025) seeks damages and civil penalties the company cannot estimate. Judgment: 50% x ~$220M uninsured after tax = -$110M (-$0.17/sh). Variant: -$250M x 50% (agent_3) = -$0.19/sh, immaterial (-$0.02/sh)."
+    }
+   ],
+   "custom": [],
+   "scenarios": {
+    "bear": {
+     "prob": 0.25,
+     "deltas": {
+      "multiple": -2.3,
+      "eps_pct": -0.05,
+      "revenue_growth": -0.01,
+      "ebit_margin": -0.005,
+      "wacc": 0.003
+     },
+     "story": "10y to ~5.5% (further Fed hikes after the 2026-09-16 increase [20]; Polymarket ~25% for 5.5% before 2027 per agent_5), Oct-29 plan adds equity beyond the 40% on incremental capex, MPUC rejects the NSPM freeze/ITC offset and PSCo keeps earning ~7.2-7.5% on a historical test year, Moody's moves the holdco to Baa2: NTM EPS ~$4.54 x ~14.9x, plus a wildfire-season or TX AG headline."
+    },
+    "base": {
+     "prob": 0.5,
+     "deltas": {},
+     "story": "Rate-base EPS ~9% a year (FY2027 $4.48, FY2028 $4.85, NTM $4.78) as guided on the Q2 call, 17.2x held (XEL's current 0.93x of the consistent peer median); DCF at 5.93% for the rates-risk anchor."
+    },
+    "bull": {
+     "prob": 0.25,
+     "deltas": {
+      "multiple": 1.5,
+      "eps_pct": 0.03,
+      "ebit_margin": 0.005,
+      "wacc": -0.003
+     },
+     "story": "10y back toward 4.6%, Oct-29 plan adds most of the $10B+ line of sight with ~40% equity, Google Pine Island ESA approved early 2027 and ~1 GW signed in 2026, Colorado wildfire framework passes in the 2027 session: NTM EPS ~$4.92 x ~18.7x."
+    }
+   },
+   "scenario_vol": 0.11,
+   "structure_note": "Regulated utility (playbook primary method: rate-base earnings build priced on forward P/E). P/E leg (weight 0.8): NTM EPS at the horizon $4.78 from avg rate base x 53.7% authorised operating-company equity (rate-case orders) x earned ROE (8.24% calibrated to the 2026 guide midpoint, 8.11% FY2027, 8.15% FY2028 for the CPUC historical test year and NSPM freeze) less holding-company drag, over the 10-Q forward-settlement share path, x 17.2x. Driver DCF (weight 0.2 from the forward-P/E table: 76.68 / FY2027 consensus $4.54 = 16.9x -> 15.0-19.6x band -> 0.2): EBIT entered as NOPAT (net income + interest x 0.79, tax 0), the deck's capex by year plus half the $10B+ line of sight in 2028-29, a steady-state FY2030 (capex = D&A + 3.5% x ~$99B rate base + AFUDC) and a 3.5% Gordon. Net debt and shares at the horizon are stated from the cash bridge and the forward schedule.",
+   "gap_note": "fair_value.value equals the engine base horizon value of this set (75.23). It is a price, ex-dividend (~$2.45/sh of dividends are paid over the year).",
+   "reference": {
+    "guidance": [
+     {
+      "metric": "EPS diluted (ongoing)",
+      "fy": "FY2026",
+      "low": 4.04,
+      "high": 4.16,
+      "basis": "ongoing EPS: excludes Marshall Fire litigation and Prairie Island outage refunds",
+      "as_of": "2026-08-19",
+      "source_ids": [
+       2,
+       4
+      ],
+      "note": "Reaffirmed in the Q2 deck (2026-07-30) and the CPUC 8-K (2026-08-19)."
+     },
+     {
+      "metric": "EPS growth (long-term objective)",
+      "fy": "FY2026-FY2030",
+      "low": 0.06,
+      "high": 0.08,
+      "basis": "ongoing EPS; '6-8+%' objective; CFO on the Q2 call: 'expect to deliver 9-plus percent EPS growth on average through 2030'",
+      "as_of": "2026-07-30",
+      "source_ids": [
+       2,
+       6
+      ],
+      "note": "Base year 2025 ongoing EPS $3.80 [3]."
+     }
+    ],
+    "consensus": []
+   },
+   "inputs_detail": [
+    {
+     "input": "Base revenue FY2025",
+     "value": "$14,669M",
+     "basis": "reported",
+     "source_ids": [
+      3
+     ],
+     "fact_ids": [],
+     "derivation": "Total operating revenues FY2025 (electric 12,160 + gas 2,452 + other 57), Q4 2025 release; not tagged in the fact pack.",
+     "confidence": "high",
+     "variant_view": ""
+    },
+    {
+     "input": "Revenue growth FY2026-30",
+     "value": "+6.5% / +9% / +8% / +7% / +6%",
+     "basis": "estimate",
+     "source_ids": [
+      1,
+      2
+     ],
+     "fact_ids": [],
+     "derivation": "Non-fuel revenue tracks rate base ($56B->$66B->$77B->$86B->$90B->$94B base plan [2]); fuel and purchased power (~$5B, pass-through) roughly flat; H1 2026 revenue $7,140M vs $7,193M [1]. Revenue does not drive value here; margins are set so EBIT reproduces the EPS build.",
+     "confidence": "medium",
+     "variant_view": ""
+    },
+    {
+     "input": "Rate base path",
+     "value": "$56B (2025), $66B, $77B, $86B, $90B, $94B (2030) base plan; +$2B 2029, +$5B 2030 from half the $10B+ line of sight",
+     "basis": "guidance",
+     "source_ids": [
+      2
+     ],
+     "fact_ids": [],
+     "derivation": "Q2 2026 deck 'Strong rate base growth' slide (~11% CAGR; $10B+ line of sight lifts it to ~13+%; every $1B of capital ~+20-25bp of rate-base growth). Half the line of sight is judgment.",
+     "confidence": "high",
+     "variant_view": "Full line of sight adds ~$4-5B more rate base by 2030 (bull)."
+    },
+    {
+     "input": "Authorised equity ratio (blended, operating companies)",
+     "value": "53.7%",
+     "basis": "estimate",
+     "source_ids": [
+      2,
+      3,
+      4
+     ],
+     "fact_ids": [],
+     "derivation": "Authorised operating-company capital structures from rate-case orders, not the consolidated ratio (~41% 2025A-2030E, deck credit metrics [2]): PSCo 54.5% (CPUC decision, 8-K 2026-08-19 [4]), NSPM 52.5% and SPS 54.7% (deck rate-case pages [2]), NSPW 52.5% (PSCW decision for 2026 rates: ROE 9.8%, equity ratio 52.5%, Q4 2025 release [3]); weighted by the 2025 rate-base mix PSCo 43% / NSPM 35% / SPS 16% / NSPW 6% [2]: 0.43x54.5 + 0.35x52.5 + 0.16x54.7 + 0.06x52.5 = 23.435 + 18.375 + 8.752 + 3.150 = 53.71%. Only equity ratio x earned ROE enters EPS and the ROE is calibrated on this ratio, so the 53.6% -> 53.7% correction leaves EPS unchanged.",
+     "confidence": "high",
+     "variant_view": ""
+    },
+    {
+     "input": "Earned ROE on rate-base equity",
+     "value": "8.24% (2026 calibrated), 8.11% (2027), 8.15% (2028)",
+     "basis": "estimate",
+     "source_ids": [
+      2,
+      4,
+      5
+     ],
+     "fact_ids": [
+      "F26"
+     ],
+     "derivation": "2026: (guide midpoint $4.10 x 628M + HoldCo drag $125M) / (avg RB $61B x 53.71% = $32.76B) = 8.24%, vs the deck's 8.43% TTM OpCo ongoing ROE (NSPM 9.59%, NSPW 10.31%, PSCo 7.22%, SPS 8.51%) [2]. 2027: (2,925 + 190) / ($71.5B x 53.71% = $38.40B) = 8.11%; 2028: (3,308 + 260) / ($81.5B x 53.71% = $43.77B) = 8.15%. The dip vs 2026 is the CPUC 13-month historical test year ($157M vs $356M asked, ROE 9.3%, 54.5% equity [4]) and the NSPM 2027-28 base-rate freeze with accelerated battery ITCs as offset [5].",
+     "confidence": "medium",
+     "variant_view": "No lag (2026 ROE held): FY2028 EPS ~$4.94, P/E leg +$1.1/sh."
+    },
+    {
+     "input": "Holding company drag (after tax)",
+     "value": "-$125M (2026), -$190M (2027), -$260M (2028)",
+     "basis": "estimate",
+     "source_ids": [
+      2
+     ],
+     "fact_ids": [],
+     "derivation": "Deck 'Holding company and other' -$0.10/sh in H1 2026 (-$0.17 H1 2025) [2] -> ~-$0.20/sh x 628M = -$125M; grows with HoldCo debt held at 22-24% of a total debt rising ~$12B by the horizon (deck credit table [2]) at ~5.5-5.75% coupons.",
+     "confidence": "medium",
+     "variant_view": "Agent_2's -$370M/-$415M/-$525M (interest-only) with a higher calibrated ROE gives about the same EPS; only the growth matters."
+    },
+    {
+     "input": "EPS path (ongoing)",
+     "value": "FY2026 $4.10, FY2027 $4.48, FY2028 $4.85, FY2029 ~$5.21, FY2030 ~$5.48",
+     "basis": "estimate",
+     "source_ids": [
+      2,
+      3,
+      6
+     ],
+     "fact_ids": [
+      "F26",
+      "F89"
+     ],
+     "derivation": "NI 2,575 / 628M; 2,925 / 653M; 3,308 / 682M; 3,650 / ~700M; 3,900 / ~712M. Cross-check: 9-plus % a year on average through 2030 (CFO, Q2 call [6]) off 2025 ongoing $3.80 [3] needs ~9.3% a year after the 2026 midpoint: $4.48 (2027), $4.90 (2028). FY2028 trimmed ~1% for the post-call lag facts [4][5]. FY2027 $4.48 is ~1.3% under the Alpha Vantage consensus $4.54 cited by all five agents [17].",
+     "confidence": "medium",
+     "variant_view": "Consensus path ($4.54 / ~$4.95): NTM $4.88, P/E leg +$1.7/sh."
+    },
+    {
+     "input": "NTM EPS at the horizon (2027-10-20)",
+     "value": "$4.78",
+     "basis": "estimate",
+     "source_ids": [
+      2,
+      3,
+      6
+     ],
+     "fact_ids": [],
+     "derivation": "0.197 x FY2027 $4.48 + 0.803 x FY2028 $4.85 = $0.883 + $3.895 = $4.78 (agents $4.70-4.85).",
+     "confidence": "medium",
+     "variant_view": "$4.70 (agent_4) to $4.85 (agent_5): P/E leg -$1.4 to +$1.2/sh."
+    },
+    {
+     "input": "Horizon P/E",
+     "value": "17.2x NTM",
+     "basis": "judgment",
+     "source_ids": [
+      8,
+      17,
+      9
+     ],
+     "fact_ids": [
+      "AEP.pe_ntm",
+      "DUK.pe_ntm",
+      "SO.pe_ntm",
+      "ETR.pe_ntm",
+      "WEC.pe_ntm",
+      "CMS.pe_ntm",
+      "AEE.pe_ntm",
+      "LNT.pe_ntm",
+      "PPL.pe_ntm",
+      "CNP.pe_ntm",
+      "EVRG.pe_ntm",
+      "ES.pe_ntm"
+     ],
+     "derivation": "XEL today: $76.68 [9] / (0.197 x $4.1212 + 0.803 x $4.5403 = $4.46) = 17.2x. Peer median on one Oct-2026 NTM basis 18.45x (table 18.85x; WEC 18.35x, CMS 16.69x, AEE 18.48x, LNT 18.78x, PPL 16.60x, CNP 19.59x, EVRG 18.42x, ES 13.45x after re-weighting the FY2026/FY2027 consensus in peers.md to 0.197/0.803; AEP 18.77x, DUK 17.55x, SO 19.05x, ETR 21.49x already on Q4-26 to Q3-27 quarters). XEL at 0.93x, held: the discount is supported by an un-shielded wildfire tail (TX AG suit, ~$80M insurance left [1]), Moody's negative outlooks on the holdco and PSCo [18], MN/CO regulatory lag [4][5] and equity issuance.",
+     "confidence": "medium",
+     "variant_view": "Discount narrows to 0.96x (17.7x) if the CO wildfire framework passes: +$1.9/sh on the P/E leg."
+    },
+    {
+     "input": "Smokehouse Creek / Texas AG adjustment",
+     "value": "-$220M x 50% = -$110M",
+     "basis": "judgment",
+     "source_ids": [
+      1
+     ],
+     "fact_ids": [],
+     "derivation": "See adjustments note.",
+     "confidence": "medium",
+     "variant_view": "-$250M x 50%: -$0.02/sh."
+    },
+    {
+     "input": "D&A % revenue",
+     "value": "19.9% -> 24.0% (FY2030)",
+     "basis": "estimate",
+     "source_ids": [
+      2,
+      3
+     ],
+     "fact_ids": [
+      "F29"
+     ],
+     "derivation": "FY2025 D&A $2,968M (F29) + guided +$140-150M depreciation in 2026 [2] = ~$3.11B = 19.9% of $15.6B; ~5.2% of rate base thereafter -> ~$5.0B in FY2030 (24% of $20.9B).",
+     "confidence": "medium",
+     "variant_view": ""
+    },
+    {
+     "input": "Capex",
+     "value": "$13,790M / $15,130M / $13,650M / $11,020M / $8,870M (FY2030 steady state)",
+     "basis": "estimate",
+     "source_ids": [
+      2
+     ],
+     "fact_ids": [
+      "F50",
+      "F53"
+     ],
+     "derivation": "Estimate built on guidance: FY2026-27 are the deck's base capex ($13,790M / $15,130M) [2]; FY2028-29 are the deck's base $12,650M / $9,020M plus half the $10B+ line of sight (+$1.0B, +$2.0B), which the company has not scheduled by year (phasing is judgment); FY2030 is a steady-state normalisation below the $9,410M plan: D&A ~$5.0B + 3.5% x ~$99B rate base (~$3.47B) + ~$0.4B AFUDC = $8.87B, so reinvestment matches the 3.5% terminal growth.",
+     "confidence": "medium",
+     "variant_view": "Deck base plan only in 2028-29 ($12,650M / $9,020M): lower capex and rate base; full line of sight is the bull case."
+    },
+    {
+     "input": "EBIT (NOPAT form) margin",
+     "value": "25.1% / 26.9% / 28.5% / 29.6% / 30.1%",
+     "basis": "estimate",
+     "source_ids": [
+      1,
+      2
+     ],
+     "fact_ids": [
+      "F67"
+     ],
+     "derivation": "EBIT = build net income + interest x (1-21%): FY2026 2,575 + 0.79 x 1,710 = 3,926 / 15,622; FY2027 2,925 + 0.79 x 2,100 = 4,584 / 17,029; FY2028 3,308 + 0.79 x 2,450 = 5,244 / 18,391; FY2029 3,650 + 0.79 x 2,750; FY2030 3,900 + 0.79 x 3,000. Interest: TTM $1,642M (F67), 2026 +$240-250M net of AFUDC-debt [2], then ~4.6% on rising debt. tax_rate 0 because the after-tax shield is already in EBIT and the WACC.",
+     "confidence": "medium",
+     "variant_view": "Agents 2-4 add back full pre-tax interest with tax 0 AND use an after-tax cost of debt: the shield is counted twice (~$0.4-0.6B a year of FCFF)."
+    },
+    {
+     "input": "WACC",
+     "value": "5.93%",
+     "basis": "estimate",
+     "source_ids": [
+      7,
+      2
+     ],
+     "fact_ids": [
+      "F89",
+      "F91"
+     ],
+     "derivation": "See discount_rate.basis.",
+     "confidence": "medium",
+     "variant_view": "5.8% (embedded ~4.5% debt cost): DCF $55.8, blend $76.8 (+2.1%); 6.1%: DCF $38.9, blend $73.4 (-2.4%)."
+    },
+    {
+     "input": "Terminal growth",
+     "value": "3.5% Gordon on a steady-state FY2030",
+     "basis": "judgment",
+     "source_ids": [
+      2
+     ],
+     "fact_ids": [],
+     "derivation": "Base-plan rate base grows ~4.4% in 2029-30 ($90B->$94B) [2]; 3.5% after, below that, for the stranded-cost tail when 15-year large-load contracts end (MN AG [12]).",
+     "confidence": "medium",
+     "variant_view": ""
+    },
+    {
+     "input": "Net debt now / at horizon",
+     "value": "$37,447M (2026-06-30) / $49,200M (2027-10-20)",
+     "basis": "estimate",
+     "source_ids": [
+      1,
+      2
+     ],
+     "fact_ids": [
+      "F91",
+      "F53",
+      "F46",
+      "F60"
+     ],
+     "derivation": "F91 $37,447M + capex H2-2026 $7,820M ($13,790M plan - $5,970M H1) + 0.803 x 2027 $15,130M = $12,150M; less CFO net of dividends ~$6.1B (H2-2026 ~$1.9B; 0.803 x ~$5.2B in 2027; the 5-year plan's $30.18B CFO net of dividends averages $6.0B [2]); less 2025 forward minimum proceeds $932M + $1,044M = $1,976M [1]; less DRIP ~$170M = $49,171M -> $49,200M.",
+     "confidence": "medium",
+     "variant_view": "$48.5-50.2B (agents): DCF +/-$1.3/sh, blend +/-$0.3/sh."
+    },
+    {
+     "input": "Shares now / at horizon",
+     "value": "627M diluted Q2 2026 (F26) / 658M",
+     "basis": "estimate",
+     "source_ids": [
+      1
+     ],
+     "fact_ids": [
+      "F26",
+      "F89"
+     ],
+     "derivation": "624.6M outstanding 2026-07-28 (F89) + 27.3M 2025 forwards (12.2M Dec-2026 to May-2027; 15.1M collared Dec-2026) [1] = 651.9M + ~3M DRIP/plans + ~3M treasury-method dilution on the 2026 forwards = 658M. The 2026 forwards (21.2M + 21.3M) mature Dec-2027 to Dec-2028 [1], after the horizon, and are in FY2028 average shares (682M).",
+     "confidence": "high",
+     "variant_view": "662M with ~4M of ATM before the horizon: -$0.6/sh on the P/E leg via EPS."
+    },
+    {
+     "input": "Dividends (shareholder_returns)",
+     "value": "$1,490M / $1,630M / $1,790M / $1,940M / $2,080M",
+     "basis": "estimate",
+     "source_ids": [
+      1
+     ],
+     "fact_ids": [
+      "F60"
+     ],
+     "derivation": "TTM dividends paid $1,365M (F60); ~5% DPS growth (4-6% objective [2]) x average shares.",
+     "confidence": "medium",
+     "variant_view": ""
+    },
+    {
+     "input": "DCF weight",
+     "value": "0.2",
+     "basis": "estimate",
+     "source_ids": [
+      19,
+      9,
+      17
+     ],
+     "fact_ids": [],
+     "derivation": "Model parameter set by rule, not a sourced figure: METHOD.md walk-forward DCF weight by forward P/E (15.0-19.6x -> 0.2) [19]; forward P/E = $76.68 [9] / FY2027 consensus $4.5403 (Alpha Vantage EARNINGS_ESTIMATES snapshot, retrieved 2026-10-20T21:17:18Z [17]) = 16.89x -> 0.2. Same as all five agents; no weight moved.",
+     "confidence": "high",
+     "variant_view": ""
+    }
+   ],
+   "dcf_check": "DCF $47.97 is 42% below the P/E leg ($82.05); the multiples imply a ~5.45% WACC vs 5.93%."
+  },
+  "reasoning": "Primary method (playbook): rate-base earnings build priced on forward P/E. Rate base $56B->$66B->$77B->$86B->$90B->$94B (deck) x 53.7% blended authorised operating-company equity (rate-case orders, not the consolidated ~41%) x earned ROE 8.24% (2026, calibrated to the $4.10 guide midpoint) / 8.11% / 8.15% (2027-28, CPUC 13-month historical test year and NSPM freeze) less a HoldCo drag reconciled to the reported segment (-$0.10/sh H1 2026), over the 10-Q forward-settlement share path: EPS $4.10 / $4.48 / $4.85, NTM at the horizon $4.78, 1-2% under the CFO's '9-plus percent on average through 2030' path. Valued at 17.2x, XEL's own current NTM multiple, which is 0.93x a consistent-basis peer median of 18.45x (the table's 18.85x mixes NTM windows). Cross-checks: dividend yield ~3.1% + ~9% EPS growth vs the group; EV at the horizon ~1.33x rate base at the P/E-leg price. Driver DCF (weight 0.2 from the forward-P/E table; no weight moved): EBIT as NOPAT so the shield is counted once, deck capex by year plus half the line of sight, steady-state FY2030, 3.5% Gordon, 5.93% WACC: $48.0, i.e. EV ~1.0x rate base at a CAPM cost of capital. Labelled estimates from non-filing evidence: the CFO's 9-plus % statement (call transcript, high), consensus FY2026/27 $4.12/$4.54 (Alpha Vantage EARNINGS_ESTIMATES snapshot retrieved 2026-10-20T21:17:18Z [17]; the agents' figures match it exactly), half the line of sight (judgment, medium; variant full plan +$4-5B rate base), Smokehouse -$110M (judgment, medium). Judgment calls over 5%: none alone; the WACC choice moves the blend +/-2% per 15bp (5.8%: $76.8; 6.1%: $73.4).",
+  "set_review": [
+   {
+    "agent": "agent_1",
+    "horizon_value": 76.6,
+    "main_issue": "Sound and internally consistent (NOPAT EBIT with after-tax Kd); net debt $50.1B and 662M shares a little high; P/E leg on $4.77 matches.",
+    "driver_review": "Rate base, equity ratio and ROE path built from the deck and 8-Ks (taken); HoldCo drag -$150M to -$480M built from debt (close to mine); capex/D&A from the deck (taken); 662M shares includes ~10M ATM not scheduled (not taken); WACC 5.94% (taken; reconciled 5.93% on exact horizon weights)."
+   },
+   {
+    "agent": "agent_2",
+    "horizon_value": 77.65,
+    "main_issue": "DCF double-counts the interest tax shield (EBIT = NI/1.05 + full interest with after-tax Kd), which lifts its DCF leg to $62.6.",
+    "driver_review": "Revenue as 16.9% x avg rate base + fuel is a good driver build (kept as a cross-check); EPS $4.49/$4.81 from a calibrated 8.70% effective return (close, taken in spirit); HoldCo drag interest-only (-$370M+) with a higher ROE nets to the same EPS; DCF EBIT not taken."
+   },
+   {
+    "agent": "agent_3",
+    "horizon_value": 77.74,
+    "main_issue": "Same double count (EBIT = NI + full interest, tax 0, after-tax Kd 4.27%): on its own years the engine gives $29.8 once EBIT is restated to NOPAT, not $63.7.",
+    "driver_review": "OpCo-by-OpCo ROE lag build and HoldCo drag reconciled to the segment (taken); capex by year matches the deck (taken); revenue/margin path reused with EBIT restated to NOPAT; 17.0x for an equity-heavy plan is a scenario, not the base (not taken)."
+   },
+   {
+    "agent": "agent_4",
+    "horizon_value": 75.03,
+    "main_issue": "Two offsetting errors: shield double count (EBIT = NI/1.10 + interest, tax 0) and an unmeasured beta 0.6 x 5.5% ERP (WACC 6.55%); FY2027 EPS $4.40 is 3% under consensus without a cause beyond the lag facts others also used.",
+    "driver_review": "Share path and net debt from the 10-Q and deck (taken); line-of-sight half-in for 2029-30 (taken); EPS build too low (not taken); WACC not taken."
+   },
+   {
+    "agent": "agent_5",
+    "horizon_value": 75.62,
+    "main_issue": "FY2028 EPS $4.95 above the 9-plus % path; its after-tax Kd 4.8% on a 5.4% pre-tax cost is inconsistent with a 21% shield; cites '9%+' to the deck when it is a call statement.",
+    "driver_review": "Measured beta (0.21 raw, 0.47 Blume) taken as evidence for beta ~0.5; net debt bridge $50.2B (close; not taken); base-rate ladder framing useful; EPS path trimmed to $4.85 FY2028."
+   }
+  ]
+ },
+ "dcf_check": {
+  "flag": "DCF $47.97 is 42% below the P/E leg ($82.05); the multiples imply a ~5.45% WACC vs 5.93%.",
+  "cause": "Cost of capital, not the build: with EBIT as NOPAT, the deck's capex and a steady-state FY2030, the DCF puts EV at the horizon at ~1.0x rate base, which is what a regulated asset earning ~its CAPM WACC is worth; the market pays ~1.33x because allowed (9.3-10.5%) and earned (8.1-8.4%) ROEs exceed a ~7.0-7.3% implied cost of equity. TV is ~105% of EV because FCFF is negative through 2029.",
+  "fix_or_argument": "Argued, not tuned: the build is driver-based and consistent (shield once), so it keeps its 0.2 weight from the forward-P/E table as the rates-risk anchor. Variant: at a 5.8% WACC (embedded ~4.5% debt cost) the DCF is $55.8 and the blend $76.8 (+2.1%)."
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "Peer median is on mixed NTM bases: 8 of 12 rows in peers.md weight FY2026/27 from earlier-2026 windows (WEC, CMS, AEE, ES 0.504/0.496; LNT, PPL, CNP, EVRG 0.753/0.247); on XEL's 0.197/0.803 basis the median is 18.45x and XEL is 0.93x, not 0.91x (peers.json derivations).",
+    "Shares at the horizon: ~10M ATM/DRIP is not scheduled before the horizon; the 10-Q floor is 651.9M and ~658M is better supported."
+   ],
+   "revisit": "Keep the NOPAT DCF (it is the only consistent one). Restate the discount as ~7% and trim horizon shares to ~658M."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "DCF counts the interest tax shield twice: EBIT = NI/1.05 + full net interest with an after-tax cost of debt in the WACC. Enter EBIT as NI + interest x 0.79 (tax 0) or use a pre-tax Kd.",
+    "Peer median mixed bases (18.45x consistent, XEL 0.93x)."
+   ],
+   "revisit": "Rebuild the DCF leg on NOPAT; expect a material fall from $62.6 (agent_3's comparable set drops from $63.7 to $29.8)."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "Same shield double count (EBIT = NI + full interest, tax 0, after-tax Kd 4.27%): re-run on your own years at 6.1% with EBIT = NI + 0.79 x interest, the engine DCF is $29.8, not $63.7.",
+    "17.0x vs 17.2x: an equity-heavy Oct-29 plan belongs in the bear scenario, not the base multiple.",
+    "Peer median mixed bases."
+   ],
+   "revisit": "Restate EBIT as NOPAT and revisit the DCF; keep the OpCo lag build and the HoldCo reconciliation, which I took."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "Shield double count (pretax = NI/1.10, EBIT = pretax + interest, tax 0, after-tax Kd).",
+    "Beta 0.6 x 5.5% ERP is unmeasured; agent_5 measured 0.21 raw / 0.47 Blume (2-year weekly vs SPY).",
+    "FY2027 EPS $4.40 is 3% under consensus and below the CFO's 9-plus % path ('expect to deliver 9-plus percent EPS growth on average through 2030', Q2 call)."
+   ],
+   "revisit": "Rebuild the EPS path to ~$4.48/$4.85 and the DCF on NOPAT with a ~0.5 beta."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "'9%+' is a CFO statement on the Q2 2026 call, not in the deck (which says 6-8+%); cite the transcript.",
+    "FY2028 $4.95 sits above the 9% path after the CPUC/NSPM lag facts; ~$4.85 is supported.",
+    "After-tax Kd 4.8% on 5.4% pre-tax is inconsistent with the 21% shield; your EBIT includes full interest with tax -8% to +5%, so check the shield is counted once."
+   ],
+   "revisit": "Trim FY2028 EPS, fix the Kd/EBIT consistency, and keep the SpaceX base rate (verified: XEL +0.2%, XLU +0.4% that week)."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 21,
+  "repeated_claims": [
+   {
+    "claim": "Rate base $56B->$94B, capex by year, $7B equity 85% contracted",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Q2 2026 earnings presentation"
+   },
+   {
+    "claim": "Forward equity schedule (27.3M before the horizon, 42.5M after)",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "10-Q Q2 2026"
+   },
+   {
+    "claim": "Smokehouse: ~$80M of the $525M policy left",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "10-Q / Q2 2026 release"
+   },
+   {
+    "claim": "FY2026/27 consensus $4.12/$4.54",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Alpha Vantage EARNINGS_ESTIMATES (one feed)"
+   },
+   {
+    "claim": "No verified Anthropic load in Xcel territory (Abernathy = Fluidstack/Google backstop)",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "TeraWulf 8-K Ex.99.3 (round-1 supervisor finding)"
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Filings and company documents; consistent model; Bloomberg (BGOV) for IPO timing."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Trade press and regulatory sources (Utility Dive, Fresh Energy, MPR, Colorado Sun) plus filings; DCF method error."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Skeptic lane kept with filings and lag facts; DCF method error."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Alternative sources (Data Center Watch, Tunguz, Polymarket via CoinGape) used for context only, not numbers; Substack/Compute Atlas Anthropic labels correctly dropped; EPS build low."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Base rates (own Twelve Data return stats, beta), prediction markets for rates/IPO timing (market-implied, low weight); one mis-cited guide ('9%+' to the deck)."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "Anthropic tenancy at Abernathy (SPS) from the Measured AI Substack / Compute Atlas labels",
+    "why": "Contradicted by TeraWulf's 8-K (Fluidstack tenant, Google backstop); no agent uses it in a number."
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "fair value",
+   "from": 76.53,
+   "to": 75.23,
+   "why": "Forecasters' mean vs the engine value of the reconciled set; the DCF leg no longer counts the interest tax shield twice (agents 2-4) and uses a 5.93% WACC."
+  },
+  {
+   "item": "DCF leg (reconciled)",
+   "from": 55.48,
+   "to": 47.97,
+   "why": "Mean of the agents' DCF legs vs a NOPAT-consistent build (EBIT = NI + 0.79 x interest, tax 0, after-tax Kd)."
+  },
+  {
+   "item": "peer median NTM P/E",
+   "from": 18.85,
+   "to": 18.45,
+   "why": "8 of 12 peer rows used earlier-2026 NTM weightings (0.504/0.496 or 0.753/0.247); re-weighted to 0.197/0.803 like XEL (XEL 0.93x relative, not 0.91x)."
+  },
+  {
+   "item": "NTM EPS at the horizon",
+   "from": 4.77,
+   "to": 4.78,
+   "why": "CFO's 9-plus % through 2030 (Q2 call) less a ~1% FY2028 lag trim for the CPUC and NSPM 8-Ks."
+  },
+  {
+   "item": "P(close >= K) for K = 77-92",
+   "from": 0.496,
+   "to": 0.477,
+   "why": "Lower fair value (75.2); K=84 0.304 -> 0.286, K=92 0.143 -> 0.134."
+  },
+  {
+   "item": "P(close >= K) for K = 54-61",
+   "from": 0.878,
+   "to": 0.888,
+   "why": "Slightly thinner left tail than agent_1/agent_4 (thesis break $63 held, EPS path verified); K=54 0.96 -> 0.965."
+  },
+  {
+   "item": "1-month P(close >= K) for K = 73.61-76.68",
+   "from": 0.515,
+   "to": 0.495,
+   "why": "Oct-29 plan is the main in-window risk (equity on incremental capex); K=73.61 0.769 -> 0.75."
+  },
+  {
+   "item": "Colorado wildfire legislation probability",
+   "from": 0.27,
+   "to": 0.2,
+   "why": "2025 bill dropped (KUNC); management only says Colorado is a 2027 focus (Q2 call)."
+  },
+  {
+   "item": "Smokehouse adjustment (expected, $M)",
+   "from": -102,
+   "to": -110,
+   "why": "Agents' mean vs 50% x ~$220M after tax; $56M remaining probable is the low end and ~$80M of cover is left (10-Q)."
+  }
+ ],
+ "catalysts": [
+  {
+   "date": "2026-10-28",
+   "event": "FOMC",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10-29",
+   "event": "Q3 2026 results before the open; 2027-2031 capital, financing and EPS roll-forward (call 9:00 CT)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11-03",
+   "event": "US midterms incl. MN and CO statewide races",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11 to 2026-12",
+   "event": "Anthropic IPO (reported November; no confirmed pricing date found)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01",
+   "event": "MPUC decision requested on the NSPM 2027-28 rate stability plan",
+   "direction": "?"
+  },
+  {
+   "date": "2027-H1",
+   "event": "MPUC decision on the Google Pine Island ESA (MN AG opposes as filed); CO large-load tariff (filed 2026-04-02, pending at the CPUC)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01 to 2027-05",
+   "event": "Colorado legislative session (wildfire framework, p ~0.2)",
+   "direction": "+"
+  },
+  {
+   "date": "2026-12 to 2027-05",
+   "event": "Settlement of 27.3M 2025 forward shares (~$1.98B)",
+   "direction": "-"
+  }
+ ],
+ "ipo_liquidity_view": "Kilian's question: the Anthropic IPO is unlikely to drain XEL specifically. Nearest base rate: in the SpaceX IPO week of 2026-06-08 XEL closed +0.2% ($79.04 -> $79.22) and XLU +0.4% (Twelve Data, verified), while mega-cap tech bore the selling. XEL's holders are income/utility funds and its moves this year track the 10y (5.12% now vs 4.75% end-July; low $68.72 on Sep 25 at the 5.3% peak). The S-1 is a general demand positive through Google (Xcel's ESA counterparty) and a reminder of organised opposition already visible in MN. Plan: a flow-driven dip to ~$70 (14.6x horizon NTM EPS) with the 10y stable and the Oct-29 plan intact (equity ~40% of increments, 2027 guide around $4.45-4.55) is a legitimate buying opportunity (~7% under fair value plus ~3% yield); a dip driven by the 10y moving toward 5.5% is not, and below $63 re-underwrite. Better entry points are after Oct 29 (equity size known) rather than into the IPO week.",
+ "summary": "XEL is fairly priced: the reconciled rate-base build (NTM EPS $4.78 at 17.2x) and a consistent driver DCF give $75.2 (ex-dividend) vs $76.68, a ~2% total return plus a ~3.1% yield. The forecasters agree on the business; my checks fixed a DCF error (interest tax shield counted twice by agents 2-4) and a mixed-basis peer median (XEL trades at 0.93x a consistent 18.45x, not 0.91x). The swing factors are the 10y, the Oct-29 equity plan and MN/CO regulation, not the Anthropic IPO, which has no verified link to Xcel's territory. A rates-neutral dip toward $70 is buyable; $63 is the thesis break.",
+ "sources": [
+  {
+   "title": "Xcel Energy 10-Q for the quarter ended 2026-06-30 (forward sale agreements table; Smokehouse Creek: $460M estimated loss, $404M settled, $56M remaining probable, ~$80M of $525M coverage left; Texas AG suit; 624,634,306 shares at 2026-07-28)",
+   "url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "date": "2026-07-30"
+  },
+  {
+   "title": "Xcel Energy Q2 2026 earnings presentation (2026 guidance $4.04-4.16; EPS by OpCo incl. holding company -$0.10 YTD; TTM OpCo ROE 8.43%; base capex by year $13,790/15,130/12,650/9,020/9,410M; rate base $56B->$94B; $7B equity 85% contracted; 40% equity on incremental capital; 2026 debt issues and coupons; FFO/debt ~16%, HoldCo debt 22-24%; data-centre pipeline ~2 GW contracted, ~4 GW more by YE2027; '6-8+% EPS growth')",
+   "url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "date": "2026-07-30"
+  },
+  {
+   "title": "Xcel Energy 2025 year-end earnings release (FY2025 ongoing EPS $3.80, GAAP $3.42; revenue $14,669M)",
+   "url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000006/xcelearningsreleaseq42025.htm",
+   "date": "2026-02-05"
+  },
+  {
+   "title": "Xcel Energy 8-K Item 8.01: CPUC verbal decision on PSCo electric case ($157M vs $356M requested; 13-month average 2025 historical test year; ROE 9.3%, equity 54.5%; 2026 guidance reaffirmed)",
+   "url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "date": "2026-08-19"
+  },
+  {
+   "title": "Xcel Energy 8-K Item 8.01: NSP-Minnesota Electric Customer Rate Stability Plan (base-rate freeze 2027-28, accelerated battery ITCs as offset, MPUC decision requested by January 2027, else a rate case in early 2027)",
+   "url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000175/xel-20261009.htm",
+   "date": "2026-10-09"
+  },
+  {
+   "title": "Xcel Energy Q2 2026 earnings call transcript (CFO: 'expect to deliver 9-plus percent EPS growth on average through 2030'; 5-year roll-forward in Q3; CEO: 'Colorado will be a focus area for us in 2027'; ~1 GW in operation/under construction + ~1 GW signed ESAs; Texas large-load filing expected Q3)",
+   "url": "https://www.fool.com/earnings/call-transcripts/2026/07/30/xcel-energy-xel-q2-2026-earnings-call-transcript/",
+   "date": "2026-07-30"
+  },
+  {
+   "title": "US Treasury daily par yield curve 2026 (10-year 5.12% on 2026-10-20, 5.31% on 2026-10-05, 4.75% on 2026-07-31; 3-month 4.26%)",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026",
+   "date": "2026-10-20"
+  },
+  {
+   "title": "Run peer comps table peers.md / peers.json (NTM P/E and the consensus FY weights behind each row)",
+   "url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.md",
+   "date": "2026-10-20"
+  },
+  {
+   "title": "Twelve Data quote and daily/weekly series XEL (close $76.68 on 2026-10-20; 52-week range $68.72-84.23; week of 2026-06-08 close $79.22 vs $79.04)",
+   "url": "https://api.twelvedata.com/time_series?symbol=XEL&interval=1week",
+   "date": "2026-10-20"
+  },
+  {
+   "title": "Twelve Data weekly series XLU (week of 2026-06-08 close $44.53 vs $44.35)",
+   "url": "https://api.twelvedata.com/time_series?symbol=XLU&interval=1week",
+   "date": "2026-10-20"
+  },
+  {
+   "title": "Xcel Energy 2026 third quarter earnings conference call notice (Thursday Oct 29, before the open; call 9:00 a.m. CT)",
+   "url": "https://finviz.com/news/400116/xcel-energy-2026-third-quarter-earnings-conference-call",
+   "date": "2026-10-07"
+  },
+  {
+   "title": "Minnesota Attorney General: initial comments urging the MPUC not to approve the Xcel-Google Pine Island ESA unless risks are mitigated (cost shifting, stranded costs after the 15-year term; ~$1B net cost vs Xcel's $1.1B benefit)",
+   "url": "https://ag.state.mn.us/Office/Communications/2026/10/01_XCEL-Energy.asp",
+   "date": "2026-10-01"
+  },
+  {
+   "title": "WSJ 2026-10-20 (A. Gardizy), 'Anthropic S-1 Shows Red-Hot Growth, Risks and Massive Computing Costs' (reporting Anthropic's draft S-1; figures as quoted in the run brief)",
+   "url": "https://www.wsj.com/tech/ai/anthropic-revenue-growth-ipo-accaf0f1",
+   "date": "2026-10-20"
+  },
+  {
+   "title": "KUNC: Colorado ditches plan to reduce utilities' wildfire liability (HB25-1302 amended after utilities balked)",
+   "url": "https://www.kunc.org/politics/2025-04-09/colorado-ditches-plan-to-reduce-utilities-wildfire-liability-homeowners-may-face-fees-instead",
+   "date": "2025-04-09"
+  },
+  {
+   "title": "The Denver Post 2026-04-03, 'Proposed rates meant to make data centers pay own way, Xcel Energy says' (reposted by Coyote Gulch 2026-04-04): Xcel filed a Colorado large-load tariff with the CPUC on 2026-04-02 for loads of 50 MW+: 15-year contracts, financial assurance in cash or credit, substantial exit fees if a data centre shuts early",
+   "url": "https://coyotegulch.blog/2026/04/04/proposed-rates-meant-to-make-data-centers-pay-own-way-xcel-energy-says-utility-submits-proposal-to-regulators-for-large-data-centers-other-big-users-of-electricity-the-denver-post/",
+   "date": "2026-04-03"
+  },
+  {
+   "title": "Xcel Energy Q3 2025 earnings presentation ('Updated long-term EPS growth objective to 6-8+%')",
+   "url": "https://s202.q4cdn.com/586283047/files/doc_financials/2025/q3/Xcel-Earnings-Presentation-2025-Q3.pdf",
+   "date": "2025-10-30"
+  },
+  {
+   "title": "Alpha Vantage EARNINGS_ESTIMATES XEL, saved snapshot (retrieved 2026-10-20T21:17:18Z): FY2026 EPS $4.1212 (17 analysts), FY2027 $4.5403 (19); revenue FY2026 $15,606M (13), FY2027 $17,150M (14)",
+   "url": "/mnt/project-files/valuation/data/estimates/XEL.json",
+   "date": "2026-10-20",
+   "api": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=XEL (needs an API key; the snapshot is the verifiable copy)"
+  },
+  {
+   "title": "Xcel Energy Q2 2026 earnings release (8-K Ex.99): credit ratings as of 2026-07-28 (Moody's Baa1 Negative holdco, A1 Negative PSCo; S&P PSCo Negative); Google ESA: Google pays all costs, ~$1.1B customer benefit claimed",
+   "url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "date": "2026-07-30"
+  },
+  {
+   "title": "Valuation METHOD.md: walk-forward DCF leg weight by forward P/E (price / FY2 consensus EPS): above 26.6x 0; 19.6-26.6x 0.15; 15.0-19.6x 0.2; 10.9-15.0x 0.25; below 10.9x 0.45",
+   "url": "/mnt/project-files/valuation/METHOD.md",
+   "date": "2026-10-19"
+  },
+  {
+   "title": "Federal Reserve FOMC statement 2026-09-16: 'The Committee decided to raise the target range for the federal funds rate by 1/4 percentage point to 3-3/4 to 4 percent' (vote 12-0)",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+   "date": "2026-09-16"
+  }
+ ],
+ "sizing": {
+  "max_weight_pct": 5.0,
+  "confidence": 0.4,
+  "entry": "2 tranches over ~6 weeks: first after the Oct 29 plan (equity size known), second on a dip toward ~$70 with the 10y stable or after the Dec FOMC, whichever comes first",
+  "overlap": "VST (power demand from data centres, rate-sensitive power); GOOGL (Google is Xcel's Pine Island ESA counterparty and Anthropic's largest compute partner). Otherwise a low-beta diversifier against NVDA, AMAT, AMZN, GOOGL.",
+  "reason": "Fair value is at spot, so the case is ~3% yield plus ~9% EPS growth and diversification, not mispricing. With the Fed tightening (25bp hike to 3.75-4.00% on 2026-09-16 [20]) and the 10y at 5.12% and ~19% realised vol, beating SPY on a Sharpe basis is somewhat less likely than not; near-term event risk (Oct-29 equity plan, MPUC freeze ruling, TX AG suit) argues for tranches and a modest cap.",
+  "open_flags": [
+   "Credit: Moody's negative outlook on Xcel Energy Inc. (Baa1) and PSCo (A1), FFO/debt planned flat at ~16% (Q2 release, deck); a heavier equity plan on Oct 29 is the likely response.",
+   "Texas AG Smokehouse Creek suit: penalties the company cannot estimate, ~$80M of insurance left (10-Q)."
+  ]
+ },
+ "citation_audit": {
+  "date": "2026-10-20",
+  "note": "Fix step of the split citation gate (gate/brief_fix.md). Each change below is recorded as {item, from, to, source}; the full list of failures and fixes is in citation_audit.json.",
+  "corrections": [
+   {
+    "item": "inputs_detail Capex (basis)",
+    "from": "guidance (high)",
+    "to": "estimate (medium); 2026-27 deck, 2028-29 deck + half line of sight (judgment), FY2030 steady state",
+    "source": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf"
+   },
+   {
+    "item": "inputs_detail DCF weight (basis/source)",
+    "from": "guidance, cited to the Alpha Vantage API URL",
+    "to": "estimate: METHOD.md rule on 76.68 / 4.5403 = 16.89x -> 0.2 (value unchanged)",
+    "source": "/mnt/project-files/valuation/METHOD.md; /mnt/project-files/valuation/data/estimates/XEL.json"
+   },
+   {
+    "item": "Authorised equity ratio (blended)",
+    "from": "53.6%",
+    "to": "53.71% (arithmetic); NSPW 52.5% re-sourced to the PSCW decision in the Q4 2025 release; labelled authorised OpCo (rate-case orders), not consolidated 41%",
+    "source": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000006/xcelearningsreleaseq42025.htm"
+   },
+   {
+    "item": "Earned ROE (re-expressed on the corrected 53.71%)",
+    "from": "8.26% / 8.13% / 8.17%",
+    "to": "8.24% / 8.11% / 8.15% (same NI; EPS $4.10/$4.48/$4.85 unchanged)",
+    "source": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf"
+   },
+   {
+    "item": "WACC",
+    "from": "5.95% (0.51 x 7.62% + 0.49 x 4.19% 'rounded')",
+    "to": "5.93% (0.5075 x 7.62% + 0.4925 x 4.19% on the stated $50.7B / $49.2B weights)",
+    "source": "derivation (discount_rate.basis); Treasury curve https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026"
+   },
+   {
+    "item": "fair_value.value",
+    "from": 75.01,
+    "to": 75.23,
+    "source": "python3 model_engine.py check supervisor.json (WACC 5.93%)"
+   },
+   {
+    "item": "DCF leg (reconciled)",
+    "from": 46.84,
+    "to": 47.97,
+    "source": "model_engine.py check"
+   },
+   {
+    "item": "scenario values bear/base/bull",
+    "from": "58.32 / 75.01 / 88.10",
+    "to": "58.49 / 75.23 / 88.41",
+    "source": "model_engine.py check"
+   },
+   {
+    "item": "ladder P(close >= K), K = 54 / 61 / 69 / 77 / 84 / 92 / 104",
+    "from": "0.963 / 0.885 / 0.705 / 0.47 / 0.28 / 0.13 / 0.03",
+    "to": "0.965 / 0.888 / 0.71 / 0.477 / 0.286 / 0.134 / 0.031",
+    "source": "shifted by the change in the engine's scenario-mix P(K) between the 5.95% and 5.93% sets"
+   },
+   {
+    "item": "Peer FY-weight description (disagreements, feedback, changes)",
+    "from": "8 rows at 0.504/0.496 except EVRG 0.753/0.247",
+    "to": "WEC, CMS, AEE, ES 0.504/0.496; LNT, PPL, CNP, EVRG 0.753/0.247 (18.45x median unchanged)",
+    "source": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json"
+   },
+   {
+    "item": "Colorado large-load tariff terms",
+    "from": "docket 26V-0048E with deposits, minimum bill, minimum term, collateral, exit fees (CoPIRG, HTTP 403)",
+    "to": "filed 2026-04-02; 15-year contracts, financial assurance in cash or credit, exit fees, 50 MW+ (docket number, deposits and minimum bill removed)",
+    "source": "https://coyotegulch.blog/2026/04/04/proposed-rates-meant-to-make-data-centers-pay-own-way-xcel-energy-says-utility-submits-proposal-to-regulators-for-large-data-centers-other-big-users-of-electricity-the-denver-post/"
+   },
+   {
+    "item": "Fed policy claim (key_drivers, sizing, bear story)",
+    "from": "'the Fed is in a hiking cycle' (no source)",
+    "to": "FOMC raised the target range 25bp to 3.75-4.00% on 2026-09-16",
+    "source": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+   },
+   {
+    "item": "Alpha Vantage consensus source [17]",
+    "from": "API URL (needs a key)",
+    "to": "saved snapshot retrieved 2026-10-20T21:17:18Z (figures match exactly)",
+    "source": "/mnt/project-files/valuation/data/estimates/XEL.json"
+   }
+  ]
+ }
+}

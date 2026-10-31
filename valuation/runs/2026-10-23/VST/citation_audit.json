@@ -1,0 +1,43 @@
+{
+ "date": "2026-10-23",
+ "symbol": "VST",
+ "clean": true,
+ "checked": 18,
+ "ok": 16,
+ "fixed": 2,
+ "method": "update-round gate (name_update.py gate: changed row 'Horizon EV/EBITDA (NTM adjusted)' + new/changed prose); text shard agent, fixes by the thread",
+ "value_changes": "None from the fixes: engine value 147.67 at 9.0x, thesis break 115 unchanged.",
+ "failures": 2,
+ "open_failures": 0,
+ "verified": 18,
+ "base_audit": "runs/2026-10-14/VST/citation_audit.json (clean; unchanged rows keep it)",
+ "failure_detail": [
+  {
+   "origin": "supervisor comps_review + comps_summary",
+   "item": "reconciled_peer_median_pe_ntm / comps_summary.median_pe_ntm",
+   "value": "11.5",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-23/VST/peers.md",
+   "result": "mixed_basis",
+   "page_shows": "CEG P/E NTM 20.0x on Nasdaq.com/Zacks EPS, fiscal-year blend (0.504 x FY26 12.17 + 0.496 x FY27 13.22); TLN 11.5x and NRG 8.5x on Bigdata.com/FMP sums of the next 4 quarters (2026-10-14 snapshots). At 10-14 all three were FMP (CEG 21.8x).",
+   "note": "The median mixes two providers and two NTM constructions, and no basis is stated in comps_review or comps_summary. The value equals TLN's figure, but under the 2026-10-19 rule a median that mixes bases is a correctness failure. It does not feed the 9.0x.",
+   "fix": "null, with pe_note stating the bases and that P/E is not a leg"
+  },
+  {
+   "origin": "supervisor thesis_break_reason",
+   "item": "'~0.9x below NRG (8.9x), the cheapest IPP, and ~1.8x below VST's own ~9.8x today'",
+   "value": "NRG 8.9x; VST 9.8x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-23/VST/peers.md",
+   "result": "wrong",
+   "page_shows": "10-23 peers.md NRG.ev_ebitda_ntm 8.5x; this update's own peer_basis puts VST at ~9.3x at 140.16",
+   "note": "This prose is unchanged from 10-14 and was correct then, but it is stale at as_of 2026-10-23. At $115 the 8.0x break multiple is now ~0.5x below NRG and ~1.3x below VST, not 0.9x / 1.8x. The $115 itself is not re-derived here.",
+   "fix": "~0.5x below NRG (8.5x, NRG.ev_ebitda_ntm 2026-10-23); ~1.3x below VST's ~9.3x NTM standalone (estimate); $115 unchanged"
+  }
+ ],
+ "quarterly_gate": {
+  "checked": 34,
+  "fixes": 3,
+  "file": "driver_models/VST/quarterly/gate.json"
+ }
+}

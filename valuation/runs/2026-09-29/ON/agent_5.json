@@ -1,0 +1,100 @@
+{
+  "symbol": "ON", "agent_id": "agent_5", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 18.99, "p": 0.985}, {"K": 30, "p": 0.96}, {"K": 38, "p": 0.915}, {"K": 46, "p": 0.845},
+    {"K": 53, "p": 0.772}, {"K": 61, "p": 0.686}, {"K": 68, "p": 0.608}, {"K": 76, "p": 0.525},
+    {"K": 84, "p": 0.448}, {"K": 91, "p": 0.388}, {"K": 103, "p": 0.30}, {"K": 114, "p": 0.232},
+    {"K": 133, "p": 0.148}, {"K": 152, "p": 0.095}, {"K": 190, "p": 0.038}
+  ],
+  "ladder_1m": [
+    {"K": 60.76, "p": 0.915}, {"K": 64.56, "p": 0.845}, {"K": 68.36, "p": 0.745}, {"K": 70.63, "p": 0.675},
+    {"K": 72.91, "p": 0.60}, {"K": 75.95, "p": 0.50}, {"K": 78.99, "p": 0.40}, {"K": 81.27, "p": 0.335},
+    {"K": 83.55, "p": 0.275}, {"K": 87.34, "p": 0.19}, {"K": 91.14, "p": 0.127}
+  ],
+  "one_month_reasoning": "Scheduled events in the 2026-09-30 to 2026-10-29 window: the FOMC decision on Oct 28 (meeting Oct 27-28; corrected from Oct 29 per the supervisor), where Kalshi/Polymarket priced ~69% odds of a second consecutive 25bp hike as of Sep 29 (defirate/CNBC; volume not reachable). Because the hike is largely priced, it adds variance more than drift; a hawkish surprise (e.g. signalling more hikes) is the main downside tail, as on Sep 16 when ON fell 9% alongside the analyst day. onsemi's Q3 report is still only estimated for ~Nov 2 (MarketBeat; onsemi's IR site returned 503 when I tried to confirm), i.e. most likely just outside the window, with a small chance it lands earlier or is pre-announced. Peer Q3 prints (TXN, NXPI, STM) in late October will move analog/auto semis. Short-horizon regularities are mixed: strongly negative 3-month momentum (down ~44% from the June 3 high) vs a ~14% bounce off the Sep 16 low. No directional edge, so I center at $75.95 with ~16% monthly sigma (slightly below 64%/3.5 = 18% because the realized figure is inflated by two one-off event days).",
+  "fair_value": {
+    "value": 78.0,
+    "method": "Blend of forward P/E (horizon NTM EPS ~$4.50 x 17.5x = $78.75, weight 0.5), 2027 EPS on a consensus haircut ($4.10 x 19x = $78, weight 0.25) and FCF yield on normalised capex (~$1.7B 2027 FCF = ~$4.30/share at 5.5% = $78, weight 0.25) -> ~$78.",
+    "methods": [
+      {"name": "P/E", "value": 78.75, "weight": 0.5,
+       "inputs": "Horizon (Sep-2027) NTM EPS ~$4.50 x 17.5x",
+       "inputs_detail": [
+         {"input": "Horizon NTM EPS", "value": "$4.50", "basis": "estimate", "source_ids": [2, 5, 6],
+          "derivation": "CY27 consensus $4.53 (30 analysts, stockanalysis; BofA $4.57); NTM at Sep-2027 blends 2027/2028 (~$5.0 standalone) and I haircut ~10% for a Fed hiking cycle and Synaptics dilution (~13.6% more ON shares, partly offset by $200M synergies)."},
+         {"input": "Forward P/E multiple", "value": "17.5x", "basis": "judgment", "source_ids": [6, 9, 11, 14],
+          "derivation": "ON 10-yr median trailing P/E ~22x (GuruFocus); BofA uses 20x 2028 EPS; ON currently ~16.8x CY27. Raised from 17x: the round-1 discount for a stock-merger drag was over-applied, since Savor-Lu find completed stock acquirers outperform failed ones and the drag concentrates in overvalued acquirers, and ON has already de-rated ~44%. Still a discount to history for integration risk and rising rates."}
+       ]},
+      {"name": "P/E", "value": 78.0, "weight": 0.25,
+       "inputs": "2027 EPS $4.10 x 19x",
+       "inputs_detail": [
+         {"input": "2027 EPS", "value": "$4.10", "basis": "estimate", "source_ids": [2, 5, 6],
+          "derivation": "Consensus $4.53 cut ~10%: Q3 guide midpoint $0.87 and Q2 $0.74 imply 2026 ~$3.20; reaching $4.53 needs ~41% growth, and consensus in cyclical recoveries under rate hikes has historically overshot."},
+         {"input": "Multiple on 2027 EPS", "value": "19x", "basis": "judgment", "source_ids": [6, 9],
+          "derivation": "Slight premium to the NTM multiple because it is on a nearer-year EPS; below ON's long-run median ~22x."}
+       ]},
+      {"name": "FCF yield", "value": 78.0, "weight": 0.25,
+       "inputs": "2027 FCF ~$1.7B (normalised capex ~5% of revenue) / ~395M diluted shares = ~$4.30/share, 5.5% yield",
+       "inputs_detail": [
+         {"input": "2027 FCF", "value": "$1.7B", "basis": "estimate", "source_ids": [1, 6],
+          "derivation": "Q2 2026 FCF $425M flattered by trough capex ($34.3M in Q2, $56.2M in H1, ~2% of revenue, per the Q2 8-K and supervisor check). On ~$7.2B 2027 revenue (consensus $7.42B, lightly haircut), ~29% operating cash flow margin less ~5% capex (management model) gives ~24% FCF margin = ~$1.7B, down from my round-1 $1.9B."},
+         {"input": "Diluted shares", "value": "395M", "basis": "guidance", "source_ids": [1], "derivation": "Q3 2026 non-GAAP diluted share guidance (pre-Synaptics; the deal is expected to close mid-2027 and is treated as roughly per-share neutral within the horizon)."},
+         {"input": "Required FCF yield", "value": "5.5%", "basis": "judgment", "source_ids": [8, 15],
+          "derivation": "Fed hiked in September and ~69% odds of another hike Oct 28, so a higher yield than 2021-era levels; cyclical semis at 5%+ FCF yield usually sit at trough-to-mid valuations."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 48.0, "prob": 0.25, "story": "Fed keeps hiking into a slowdown, auto/industrial recovery stalls, Chinese SiC price pressure hits margins, Synaptics integration/dilution weigh; EPS ~$3.5 at ~13-14x; revisits the 2025 lows."},
+    "base": {"price": 79.0, "prob": 0.50, "story": "Recovery continues (AI data center ramp, utilisation and GM up toward 40-42%), EPS ~$4.1-4.5, FCF ~$1.7B once capex normalises, multiple ~17-19x while the market waits for the 2028-2030 payoff; Synaptics closes mid-2027."},
+    "bull": {"price": 122.0, "prob": 0.25, "story": "Cycle upturn plus AI power wins re-rate ON toward 24-25x on ~$5 NTM EPS; rates peak; completed deal is received better than feared (consistent with completed stock acquirers outperforming failed ones) and the stock recovers much of the gap to the June high of $134.92."}
+  },
+  "thesis_break_price": 51.0,
+  "thesis_break_reason": "Below ~$51 the stock would trade at ~11-12x CY27 consensus EPS ($4.53) and ~13x my haircut EPS, and ~8% yield on normalised FCF (~$1.7B), levels ON only reached near the 2025 cycle trough. Getting there would most likely require a real guidance cut (auto/industrial demand relapse, SiC price war hitting device margins, utilisation reversal) or a failed/renegotiated Synaptics deal, not ordinary ~50-60% vol noise.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "FOMC decision (~69% hike odds on Kalshi/Polymarket as of Sep 29)", "direction": "-"},
+    {"date": "2026-10", "event": "Peer Q3 reports (TXN, NXPI, STM) read-through for auto/industrial analog", "direction": "?"},
+    {"date": "2026-11-02", "event": "Q3 2026 results and Q4 guide (estimated, not confirmed by onsemi)", "direction": "?"},
+    {"date": "2026-12", "event": "December FOMC; Synaptics regulatory and shareholder approvals progress", "direction": "?"},
+    {"date": "2027-02", "event": "Q4 2026 results and 2027 outlook (first look at capex normalisation)", "direction": "?"},
+    {"date": "2027-05", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-mid", "event": "Expected Synaptics close (China SAMR risk), ~13.6% more ON shares, synergy plan", "direction": "?"},
+    {"date": "2027-08", "event": "Q2 2027 results", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Path of the Fed hiking cycle and its effect on semis multiples and auto/industrial demand",
+    "Whether CY27 consensus EPS ($4.53) is achievable in a hiking environment with Chinese SiC price pressure",
+    "How far capex normalises from the ~2%-of-revenue trough and what that does to FCF",
+    "Synaptics deal: approval timing, dilution vs synergies, market skepticism about the physical-AI pivot",
+    "AI data center power ramp pace vs SiC/EV competition"
+  ],
+  "reasoning": "Base-rate anchoring: ON is a high-beta cyclical (64% realized vol, 10-yr trailing P/E median ~22x) that has fallen ~44% from its June 3 high of $134.92 on two events: a 24% one-day drop on the ~$7B all-stock Synaptics deal (Jun 25) and a 9% drop on the Sep 16 analyst day coinciding with a Fed hike. Its prior 2023-2025 drawdown was ~-40% and bottomed when expectations reset. Round 2 changes: (1) the supervisor showed my FCF leg capitalised trough capex (Q2 capex $34.3M, ~2% of sales); normalising capex toward ~5% cuts 2027 FCF from $1.9B to ~$1.7B and that leg from $87 to $78. (2) On the supervisor's prompt I re-checked the stock-merger base rate: Savor-Lu (2009) actually find completed stock acquirers outperform failed ones and that the negative effect concentrates in overvalued acquirers; Loughran-Vijh's average drag is real but ON has already de-rated ~44% to ~16.8x CY27, so I judge it largely priced and removed the extra merger discount from the multiple (17x -> 17.5x). Net fair value moves $80 -> ~$78. (3) FOMC decision date corrected to Oct 28; it is inside the 1-month window but ~69% priced. Fundamentals otherwise unchanged: Q2 revenue +9% y/y, non-GAAP GM 39.3% guided to 40-42%, net debt ~$0.6B, CY27 consensus $4.53, mean target ~$104. The two changes offset in the distribution (lower FCF value vs less merger drag), so I keep the median near $78.5 with ~52% lognormal sigma plus slightly fatter tails, giving P(>=76) ~0.525; bear 25% near $48, bull 25% near $122. I disagree with nothing material in the supervisor's file; my EPS haircut (~10%) remains a judgment call it left open. Research was limited: onsemi IR returned 503, so the Q3 date is still an estimate.",
+  "lane": "base-rates",
+  "revisions": [
+    {"item": "a method", "from": "FCF yield $87 ($1.9B 2027 FCF, $4.80/share at 5.5%)", "to": "FCF yield $78 ($1.7B, ~$4.30/share at 5.5%)", "why": "Supervisor: FCF leg used trough capex (Q2 capex $34.3M, ~2% of revenue, Q2 8-K); normalised ~5% capex cuts ~$0.2B/yr."},
+    {"item": "a method", "from": "NTM P/E 17x = $76.5", "to": "NTM P/E 17.5x = $78.75", "why": "Supervisor asked whether the stock-merger drag is already priced; Savor-Lu find the drag concentrates in overvalued acquirers and completed deals beat failed ones, and ON has de-rated ~44%, so I removed part of the merger discount."},
+    {"item": "fair value", "from": "80", "to": "78", "why": "Net of the lower FCF leg and the slightly higher P/E multiple."},
+    {"item": "a fact", "from": "FOMC decision 2026-10-29", "to": "2026-10-28", "why": "Supervisor correction (meeting Oct 27-28, fedratecalc)."},
+    {"item": "a fact", "from": "Savor-Lu cited as evidence that stock acquirers underperform", "to": "Savor-Lu: completed stock acquirers outperform failed ones; drag tied to overvaluation", "why": "Re-read of the paper's findings (Wiley abstract / ResearchGate summary)."},
+    {"item": "a scenario", "from": "base $80, bull $120", "to": "base $79, bull $122", "why": "Base trimmed for normalised FCF; bull slightly higher as completed-deal base rate is less negative than I assumed."},
+    {"item": "P(close >= K)", "from": "P(>=76) 0.52, P(>=190) 0.035", "to": "P(>=76) 0.525, P(>=190) 0.038", "why": "Median nudged from ~$78 to ~$78.5 as the merger-drag removal slightly outweighs the lower FCF value in the distribution's centre and upper tail; low-strike tails kept fat."},
+    {"item": "thesis break", "from": "50", "to": "51", "why": "Recomputed on normalised FCF: ~$51 is ~8% FCF yield and ~11-12x CY27 consensus, trough-level valuations."}
+  ],
+  "sources": [
+    {"title": "onsemi Reports Second Quarter 2026 Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126030989/ef20079200_ex99-1.htm", "date": "2026-08-03", "type": "filing", "in_lane": false},
+    {"title": "ON Semiconductor Stock Fell 9% After Its Analyst Day", "url": "https://finance.yahoo.com/markets/stocks/articles/semiconductor-stock-fell-9-analyst-145422594.html", "date": "2026-09-16", "type": "press", "in_lane": true},
+    {"title": "ON Semiconductor Stock Crashes 24% Following All-Stock Acquisition of Synaptics (TIKR)", "url": "https://www.tikr.com/blog/on-semiconductor-nasdaq-stock-hits-worst-day-since-march-2024-following-massive-all-stock-acquisition-of-synaptics", "date": "2026-06-26", "type": "newsletter", "in_lane": true},
+    {"title": "Fed hike lands as predicted, October 2026 rate odds now trade on Kalshi and Polymarket", "url": "https://predictionnews.com/story/fed-rate-odds-for-october-2026-on-kalshi-and-polymarket-after-september-hike", "date": "2026-09-29", "type": "prediction-market", "in_lane": true},
+    {"title": "27-year-old chip stock sees price target slashed by BofA", "url": "https://www.thestreet.com/investing/stocks/onsemi-price-target-slashed-by-bofa-despite-sales-profit-surge", "date": "2026-09", "type": "sell-side", "in_lane": false},
+    {"title": "ON Semiconductor (ON) Stock Forecast & Analyst Price Targets", "url": "https://stockanalysis.com/stocks/on/forecast/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "ON Semiconductor: Target Price Consensus (MarketScreener)", "url": "https://www.marketscreener.com/quote/stock/ON-SEMICONDUCTOR-CORPORAT-10340/consensus/", "date": "2026-09-29", "type": "data", "in_lane": false},
+    {"title": "Kalshi traders price 66% odds of Fed October rate hike", "url": "https://predictionnews.com/story/kalshi-traders-price-66-odds-of-fed-october-rate-hike", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "ON Semiconductor PE Ratio (TTM) 10-year range", "url": "https://www.gurufocus.com/term/pettm/ON", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Onsemi Stock Confirms Bottom (2023-2025 drawdown history)", "url": "https://www.entrepreneur.com/finance/onsemi-stock-confirms-bottom-but-whats-the-upside/491131", "date": "2025", "type": "press", "in_lane": true},
+    {"title": "Savor & Lu (2009): Do Stock Mergers Create Value for Acquirers? (Journal of Finance)", "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.2009.01459.x", "date": "2009", "type": "expert", "in_lane": true},
+    {"title": "onsemi (ON) Earnings Date (MarketBeat, estimated Nov 2)", "url": "https://www.marketbeat.com/stocks/NASDAQ/ON/earnings/", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Onsemi to Buy Synaptics in $7 Billion All-Stock Deal (US News/Reuters)", "url": "https://money.usnews.com/investing/news/articles/2026-06-25/onsemi-to-buy-synaptics-in-7-billion-all-stock-deal", "date": "2026-06-25", "type": "press", "in_lane": true},
+    {"title": "Do Stock Mergers Create Value for Acquirers? (ResearchGate summary: failed vs completed stock bids)", "url": "https://www.researchgate.net/publication/46538115_Do_Stock_Mergers_Create_Value_for_Acquirers", "date": "2009", "type": "expert", "in_lane": true},
+    {"title": "Fed Rate Decision Odds: Oct. 28 FOMC (defirate)", "url": "https://defirate.com/prediction-markets/fed-decision-odds/", "date": "2026-09-29", "type": "prediction-market", "in_lane": true},
+    {"title": "FOMC Meeting Schedule October 2026", "url": "https://fedratecalc.com/fomc-meeting-schedule/october-2026/", "date": "2026-09-30", "type": "data", "in_lane": true}
+  ]
+}

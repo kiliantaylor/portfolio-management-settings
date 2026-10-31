@@ -1,0 +1,493 @@
+{
+ "symbol": "ON",
+ "agent_id": "agent_1",
+ "as_of": "2026-09-29",
+ "horizon": "2027-09-29",
+ "ladder": [
+  {
+   "K": 18.99,
+   "p": 0.99
+  },
+  {
+   "K": 30,
+   "p": 0.96
+  },
+  {
+   "K": 38,
+   "p": 0.91
+  },
+  {
+   "K": 46,
+   "p": 0.84
+  },
+  {
+   "K": 53,
+   "p": 0.765
+  },
+  {
+   "K": 61,
+   "p": 0.675
+  },
+  {
+   "K": 68,
+   "p": 0.595
+  },
+  {
+   "K": 76,
+   "p": 0.515
+  },
+  {
+   "K": 84,
+   "p": 0.44
+  },
+  {
+   "K": 91,
+   "p": 0.38
+  },
+  {
+   "K": 103,
+   "p": 0.29
+  },
+  {
+   "K": 114,
+   "p": 0.225
+  },
+  {
+   "K": 133,
+   "p": 0.145
+  },
+  {
+   "K": 152,
+   "p": 0.095
+  },
+  {
+   "K": 190,
+   "p": 0.04
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 60.76,
+   "p": 0.905
+  },
+  {
+   "K": 64.56,
+   "p": 0.83
+  },
+  {
+   "K": 68.36,
+   "p": 0.73
+  },
+  {
+   "K": 70.63,
+   "p": 0.665
+  },
+  {
+   "K": 72.91,
+   "p": 0.595
+  },
+  {
+   "K": 75.95,
+   "p": 0.5
+  },
+  {
+   "K": 78.99,
+   "p": 0.405
+  },
+  {
+   "K": 81.27,
+   "p": 0.34
+  },
+  {
+   "K": 83.55,
+   "p": 0.285
+  },
+  {
+   "K": 87.34,
+   "p": 0.2
+  },
+  {
+   "K": 91.14,
+   "p": 0.138
+  }
+ ],
+ "one_month_reasoning": "ON's Q3 2026 report is still only estimated for ~2026-11-02 (Alpha Vantage/MarketBeat; onsemi has not posted a date and its IR site returned 503 when I checked), so it most likely falls just after the 2026-10-29 window, with a small chance of an earlier in-window date. In-window events: the Oct 27-28 FOMC (decision Oct 28, ~69% hike odds on Kalshi/Polymarket per the supervisor's check, which I missed in round 1). A hike is largely priced, so it adds variance more than drift for a high-beta semi. Late-October analog/power peer prints (TXN, NXPI, STM) set auto/industrial sentiment, and merger-arb pressure from the Synaptics deal continues. None of this gives me a directional edge, so I use a symmetric lognormal centred on the $75.95 spot. I widened the monthly sigma slightly to ~17% (64% realized / 3.5 = 18%) to allow for the FOMC and a possible early earnings date.",
+ "fair_value": {
+  "value": 78.0,
+  "method": "Equal blend of forward P/E (NTM EPS at Sep-2027 ~$5.00 x 16x = $80) and FCF yield (NTM FCF ~$2.05B on ~450M post-deal shares = $4.56/share at a 6% yield = $76). Both now use lower inputs than round 1: capex normalises from trough levels and I take a small haircut for SiC pricing pressure.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 80.0,
+    "weight": 0.5,
+    "inputs": "NTM (Q4'27-Q3'28) non-GAAP EPS $5.00 x 16x",
+    "inputs_detail": [
+     {
+      "input": "CY2027 consensus non-GAAP EPS",
+      "value": "$4.53 (30-31 analysts; range $3.98-$5.40)",
+      "basis": "consensus",
+      "source_ids": [
+       7
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "CY2026 consensus non-GAAP EPS",
+      "value": "$3.20",
+      "basis": "consensus",
+      "source_ids": [
+       7
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "Q3 2026 EPS guidance",
+      "value": "$0.81-$0.93 non-GAAP on 395M diluted shares",
+      "basis": "guidance",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "SiC pricing / China auto commentary",
+      "value": "Mgmt: pricing actions offset material cost increases; China auto SiC revenue +60-70% y/y in 2026; SiC AI-DC revenue +~60% in 2026",
+      "basis": "reported",
+      "source_ids": [
+       14
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "NTM EPS at horizon (Sep 2027)",
+      "value": "$5.00",
+      "basis": "estimate",
+      "source_ids": [
+       3,
+       7,
+       2,
+       14,
+       15
+      ],
+      "derivation": "CY27 $4.53 grown ~20% for CY28 (the analyst-day framework says operating income grows more than 2x as fast as revenue), which puts NTM standalone at ~$5.40. Less ~4% for first-year Synaptics dilution (accretive only within ~18 months) = ~$5.20, which was my round-1 figure. Less a further ~4% for SiC device-margin pressure from low-cost Chinese wafers (TrendForce; Czech job cuts). Management says its price increases track material costs and China SiC share is rising, so I take a partial haircut rather than the 7-10% some peers used: ~$5.00."
+     },
+     {
+      "input": "P/E multiple",
+      "value": "16x",
+      "basis": "judgment",
+      "source_ids": [
+       9,
+       7,
+       5
+      ],
+      "derivation": "$75.95 / CY27 consensus $4.53 = 16.8x. At the June $120 VWAP in the S-4 the stock traded ~26x. The deal overhang, a hiking Fed and cyclicality argue for staying near today's de-rated multiple, so 16x NTM."
+     }
+    ]
+   },
+   {
+    "name": "FCF yield",
+    "value": 76.0,
+    "weight": 0.5,
+    "inputs": "NTM FCF/share $4.56 capitalised at 6%",
+    "inputs_detail": [
+     {
+      "input": "Q2 / H1 2026 capex",
+      "value": "$34.3M Q2 (2.1% of revenue); $56.2M H1 (1.8%); Q2 FCF $425.4M",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "Capex and FCF-margin path",
+      "value": "Capex 2.7% of revenue in 2026E rising to ~5% by 2030; FCF margin 24.8% in 2026E, 30-35% target for 2030",
+      "basis": "guidance",
+      "source_ids": [
+       3
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "NTM FCF at horizon",
+      "value": "~$1.95B standalone + ~$0.10B Synaptics = $2.05B",
+      "basis": "estimate",
+      "source_ids": [
+       3,
+       7,
+       1
+      ],
+      "derivation": "CY27 consensus revenue $7.42B x ~25% FCF margin = $1.85B. Operating leverage lifts the margin, but capex steps up from 2.7% toward ~3.5% in 2027 on the analyst-day glide path to 5%, so the margin stays near 2026E's 24.8% rather than my round-1 27%. Rolling forward half a year gives ~$1.95B. Add Synaptics FCF net of integration costs, with synergies back-loaded, ~$0.10B."
+     },
+     {
+      "input": "Diluted share count post-deal",
+      "value": "~450M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       4,
+       3
+      ],
+      "derivation": "395M Q3 diluted guide less ~2%/yr buybacks ($5.3B authorization left; policy is to return 100% of FCF) = ~390M, grossed up ~13.6% for the Synaptics issuance (88/12 pro forma) = ~445-450M."
+     },
+     {
+      "input": "FCF yield",
+      "value": "6%",
+      "basis": "judgment",
+      "source_ids": [
+       1,
+       9
+      ],
+      "derivation": "At $75.95 (~$30B cap) the LTM FCF yield is ~5% on trough capex. I require 6% on NTM for cyclical and merger risk. $2.05B / 450M = $4.56; $4.56 / 0.06 = $76."
+     },
+     {
+      "input": "Net debt",
+      "value": "~$0.595B (cash $3,514.5M + STI $350.0M vs debt $802.1M + $3,657.3M at Jul 3, 2026)",
+      "basis": "reported",
+      "source_ids": [
+       1,
+       13
+      ],
+      "derivation": "~$1.3/share; immaterial and ignored in the yield calc."
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 48.0,
+   "prob": 0.25,
+   "story": "The analog/auto cycle rolls over in 2027 after the pricing and restock bump, and Chinese SiC competition squeezes device margins. Gross margin stalls near 40% and capex normalises, so FCF falls to ~$1.6B. Synaptics integration or regulatory delay keeps arbitrage pressure on. ~12x on ~$4.00 EPS."
+  },
+  "base": {
+   "price": 79.0,
+   "prob": 0.5,
+   "story": "Utilization climbs toward 90%, price increases offset material costs, and GM reaches the mid-40s by mid-2027. CY27 EPS ~$4.5 and NTM ~$5.0 after the SiC haircut. Synaptics closes mid-2027 roughly neutral; the multiple stays ~16x."
+  },
+  "bull": {
+   "price": 120.0,
+   "prob": 0.25,
+   "story": "AI data center roughly doubles again in 2027, 800VDC/SiC wins broaden and book-to-bill stays above 1. GM tracks the 53% 2030 path; NTM EPS ~$5.7 re-rates to ~21x as the Fed pauses and the deal overhang clears."
+  }
+ },
+ "thesis_break_price": 52.0,
+ "thesis_break_reason": "Below ~$52 the stock would trade ~11.5x CY27 consensus EPS ($4.53) and at a ~7-8% yield on normalised (~25% margin) 2027 FCF, levels normally seen only near cycle troughs. Getting there most likely requires a guidance cut (a booking reversal, utilization falling back from 83%, pricing not sticking, or a SiC price war hitting device margins) or a failed or renegotiated Synaptics deal, not ordinary 50-60% volatility. It sits ~20% below the $65.80-66.60 post-analyst-day low.",
+ "catalysts": [
+  {
+   "date": "2026-10-28",
+   "event": "FOMC decision (Oct 27-28 meeting), ~69% hike odds priced",
+   "direction": "-"
+  },
+  {
+   "date": "2026-10 (late)",
+   "event": "TXN/NXPI/STM Q3 prints and auto/industrial read-through",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11-02 (est., unconfirmed)",
+   "event": "Q3 2026 results and Q4 guide (Q3 guide $1.65-1.75B revenue, 40-42% GM, $0.81-0.93 EPS); capex run-rate check",
+   "direction": "?"
+  },
+  {
+   "date": "2026 Q4-2027 Q1",
+   "event": "Synaptics stockholder vote, HSR and foreign (incl. possible China) antitrust approvals",
+   "direction": "?"
+  },
+  {
+   "date": "2027-02 (early)",
+   "event": "Q4 2026 results and 2027 framing, including a check on AI-DC revenue more than doubling",
+   "direction": "+"
+  },
+  {
+   "date": "2027-05 (early)",
+   "event": "Q1 2027 results: pricing flow-through, utilization and SiC margins",
+   "direction": "?"
+  },
+  {
+   "date": "mid-2027",
+   "event": "Synaptics close (~13.6% more ON shares), end of merger-arb short pressure, start of the $200M synergy plan",
+   "direction": "?"
+  },
+  {
+   "date": "2027-08 (early)",
+   "event": "Q2 2027 results, first pro forma guidance",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Is the 2026 demand upturn (book-to-bill >1, lead times 27->32 weeks) durable, or a restock- and pricing-driven bump?",
+  "Gross margin path: 83% utilization, where each 1pt moves GM 25-30bp; 2026E GM 40.3% vs the 53% 2030 target; SiC device margins under Chinese wafer price pressure",
+  "Capex normalisation from trough levels (1.8% of revenue in H1 2026, 2.7% for 2026E) toward 5% by 2030, which cuts FCF conversion",
+  "Synaptics deal: the 1.35x ratio sat above several fairness ranges at ON's $120 VWAP; regulatory timing to mid-2027; accretion only within ~18 months",
+  "Macro: a hiking Fed (Oct 28) is a headwind for high-beta semiconductor multiples",
+  "Convertible-note dilution mechanics (0% notes; warrants dilutive above $74.34 average price)"
+ ],
+ "reasoning": "Round 2. Primary filings frame the setup. Q2 2026 (8-K, Aug 3): revenue $1,604M (+9% y/y), non-GAAP GM 39.3%, EPS $0.74, FCF $425M, but on capex of only $34.3M (2.1% of revenue; H1 1.8%). The supervisor was right that my round-1 27% FCF margin capitalised trough capex. The analyst-day deck shows capex of 2.7% of revenue in 2026E rising to ~5% by 2030, and a 24.8% FCF margin in 2026E. I now use ~25% for 2027, which cuts NTM FCF from $2.2B to ~$2.05B. The supervisor assumed capex jumps to ~5% at once; I think that overstates the 2027 hit, because management's own path is gradual. On EPS I keep consensus as the anchor, since it was revised up over 30-90 days and the Q2 call says price increases offset material costs, with China auto SiC revenue up 60-70%. I still take a ~4% haircut for Chinese SiC wafer price pressure on device margins, which gives NTM EPS $5.00 vs $5.20. Fair value falls from $82 to $78 (16x $5.00 = $80; 6% yield on $4.56 FCF/share = $76), about 3% above spot. Scenarios: bear $48 (25%), base $79 (50%), bull $120 (25%), mean ~$81.5, with a hiking Fed adding to bear risk. The 12-month ladder is roughly lognormal with median ~$77 and sigma ~0.52, a bit below round 1 across the middle strikes. The 1-month ladder stays symmetric around spot with a slightly wider sigma for the in-window Oct 28 FOMC. Research this round: 4 lookups (Q2 8-K cash flow, analyst-day 425 capex path, Q2 call SiC commentary, Q3 date check).",
+ "lane": "primary",
+ "sources": [
+  {
+   "title": "onsemi Reports Second Quarter 2026 Results (8-K Ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126030989/ef20079200_ex99-1.htm",
+   "date": "2026-08-03",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "onsemi to Acquire Synaptics (8-K Ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126026395/ef20076747_ex99-1.htm",
+   "date": "2026-06-25",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "onsemi Analyst Day presentation 'Powering a Smarter World' (Form 425)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126036771/ef20081954_425.htm",
+   "date": "2026-09-16",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Form 10-Q for quarter ended July 3, 2026 (share repurchases, authorization remaining)",
+   "url": "https://investor.onsemi.com/static-files/02f573b1-86c1-4a65-a271-a375fd4aba52",
+   "date": "2026-08-03",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Form S-4 proxy statement/prospectus for Synaptics merger (fairness analyses, HSR)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126033970/ny20076897x1_s4.htm",
+   "date": "2026-08-21",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "onsemi at Deutsche Bank 2026 Technology Conference (management commentary)",
+   "url": "https://www.investing.com/news/transcripts/onsemi-at-deutsche-bank-2026-technology-conference-margin-push-builds-93CH-4879948",
+   "date": "2026-08-27",
+   "type": "company",
+   "in_lane": true
+  },
+  {
+   "title": "Alpha Vantage EARNINGS_ESTIMATES for ON (consensus EPS/revenue, revisions)",
+   "url": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=ON",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Alpha Vantage EARNINGS_CALENDAR for ON (Q3 report 2026-11-02)",
+   "url": "https://www.alphavantage.co/query?function=EARNINGS_CALENDAR&symbol=ON",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Twelve Data weekly price history for ON (Mar-Sep 2026)",
+   "url": "https://api.twelvedata.com/time_series?symbol=ON&interval=1week",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "ON Semiconductor Stock Is Already Half Off Its High (Trefis)",
+   "url": "https://www.trefis.com/stock/on/articles/615701/on-semiconductor-stock-is-already-half-off-its-high-so-how-low-could-a-market-shock-take-it/2026-09-17",
+   "date": "2026-09-17",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "ON Semiconductor Stock Fell 9% After Its Analyst Day (TIKR via Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/semiconductor-stock-fell-9-analyst-145422594.html",
+   "date": "2026-09-17",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "onsemi (NASDAQ:ON) Stock Price Down 9.3% (MarketBeat; consensus target $96.44)",
+   "url": "https://www.marketbeat.com/instant-alerts/price-onsemi-nasdaq-on-stock-price-down-93-time-to-sell-2026-09-16/",
+   "date": "2026-09-16",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "8-K: $1.5B 0% Convertible Senior Notes due 2031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1097864/000114036126020642/ef20072923_8k.htm",
+   "date": "2026-05-12",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "ON Semiconductor (ON) Q2 2026 Earnings Call Transcript (SiC pricing, China auto SiC growth)",
+   "url": "https://www.fool.com/earnings/call-transcripts/2026/08/11/on-semiconductor-on-q2-2026-earnings-call-transcript/",
+   "date": "2026-08-03",
+   "type": "company",
+   "in_lane": true
+  },
+  {
+   "title": "Onsemi reportedly plans up to 300 job cuts in Czech plant as low-cost Chinese SiC competition intensifies (TrendForce)",
+   "url": "https://www.trendforce.com/news/2026/06/08/news-onsemi-reportedly-plans-up-to-300-job-cuts-in-czech-plant-as-low-cost-chinese-sic-competition-intensifies/",
+   "date": "2026-06-08",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "Fed Rate Decision Odds: Oct. 28 FOMC (defirate, Kalshi/Polymarket aggregation)",
+   "url": "https://defirate.com/prediction-markets/fed-decision-odds/",
+   "date": "2026-09-29",
+   "type": "prediction-market",
+   "in_lane": false
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a fact",
+   "from": "LTM FCF $1.5B treated as a normal run-rate; capex ~5% assumed only loosely",
+   "to": "Q2 capex $34.3M (2.1%), H1 1.8%; 2026E capex 2.7% rising to ~5% by 2030",
+   "why": "Supervisor FCF-durability finding, confirmed in the Q2 8-K and the analyst-day 425"
+  },
+  {
+   "item": "a method",
+   "from": "FCF yield $81.7 (NTM FCF $2.2B, ~27% margin)",
+   "to": "FCF yield $76 (NTM FCF $2.05B, ~25% margin)",
+   "why": "Capex normalisation; I trim ~$0.15B rather than the supervisor's ~$0.2B because management's capex glide path reaches 5% only by 2030"
+  },
+  {
+   "item": "a method",
+   "from": "P/E $83 (NTM EPS $5.20 x 16x)",
+   "to": "P/E $80 (NTM EPS $5.00 x 16x)",
+   "why": "Supervisor asked me to justify no haircut given Chinese SiC price pressure; I take a partial ~4% haircut, offset by the Q2 call showing pricing actions and China SiC share gains"
+  },
+  {
+   "item": "fair value",
+   "from": "82",
+   "to": "78",
+   "why": "Both method changes above"
+  },
+  {
+   "item": "a scenario",
+   "from": "bear $50 / base $83 / bull $125",
+   "to": "bear $48 / base $79 / bull $120",
+   "why": "Lower FCF conversion and EPS haircut; a hiking Fed (~69% Oct 28 odds) adds to multiple risk"
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "P(>=76) 0.54, P(>=84) 0.46, P(>=114) 0.245",
+   "to": "P(>=76) 0.515, P(>=84) 0.44, P(>=114) 0.225",
+   "why": "Median lowered from ~$80 to ~$77 to follow the lower fair value"
+  },
+  {
+   "item": "a fact",
+   "from": "No FOMC in the 1-month reasoning",
+   "to": "Oct 28 FOMC in window, ~69% hike odds; 1-month sigma widened slightly, no drift",
+   "why": "Supervisor feedback_for_agents (defirate/Kalshi, FOMC schedule)"
+  },
+  {
+   "item": "thesis break",
+   "from": "52",
+   "to": "52 (unchanged)",
+   "why": "Still ~11.5x CY27 consensus and a ~7-8% yield on normalised FCF; the supervisor's findings do not move the level"
+  }
+ ]
+}

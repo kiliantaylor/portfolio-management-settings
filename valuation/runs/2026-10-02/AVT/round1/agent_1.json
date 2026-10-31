@@ -1,0 +1,85 @@
+{
+  "symbol": "AVT", "agent_id": "agent_1", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 27, "p": 0.997}, {"K": 43, "p": 0.99}, {"K": 53, "p": 0.965}, {"K": 64, "p": 0.91},
+    {"K": 75, "p": 0.835}, {"K": 86, "p": 0.735}, {"K": 96, "p": 0.625}, {"K": 107, "p": 0.505},
+    {"K": 118, "p": 0.388}, {"K": 128, "p": 0.298}, {"K": 144, "p": 0.188}, {"K": 160, "p": 0.113},
+    {"K": 187, "p": 0.045}, {"K": 214, "p": 0.017}, {"K": 267, "p": 0.004}
+  ],
+  "ladder_1m": [
+    {"K": 85.55, "p": 0.978}, {"K": 90.89, "p": 0.932}, {"K": 96.24, "p": 0.838}, {"K": 99.45, "p": 0.755},
+    {"K": 102.66, "p": 0.656}, {"K": 106.94, "p": 0.512}, {"K": 111.21, "p": 0.375}, {"K": 114.42, "p": 0.283},
+    {"K": 117.63, "p": 0.206}, {"K": 122.98, "p": 0.112}, {"K": 128.32, "p": 0.056}
+  ],
+  "one_month_reasoning": "The main scheduled event is the fiscal Q1 2027 report. Avnet's Q1 ends Oct 3, 2026 (a 14-week quarter, a week later than usual). Prior Q1 reports came on Oct 29, 2025 and Oct 30, 2024, and MarketBeat estimates Nov 4, 2026, so the release more likely falls just after the Nov 1 window; I give it about a 35% chance of landing inside. Guidance is already very strong ($9.0-9.3B sales, $2.80-2.90 adj EPS against a $1.84 consensus going into the print), and book-to-bill is above 1 in every region, so a beat-and-raise is the modal outcome. But the stock is up ~105% in a year and sits at its 52-week high, and short-term reversal risk roughly offsets earnings-momentum drift. I use a near-symmetric lognormal centred on today's price with +0.4% drift and sigma 0.11. That is slightly above the 37%/3.5 = 0.106 monthly vol, to allow for a possible earnings print in the window. There are no other company-specific scheduled events; the annual meeting is Nov 20, outside the window.",
+  "fair_value": {
+    "value": 101.0,
+    "method": "Blend of forward P/E (FY28 adj EPS $11.50 x 9.5x = $109, 50%), mid-cycle normalized EPS ($7.00 x 13x = $91, 35%) and P/B ($61 book/share grown to ~$63 x 1.6x = $101, 15%). Gives ~$101, a little below the $106.94 price, because peak-cycle distributor earnings usually get a discount.",
+    "methods": [
+      {"name": "P/E", "value": 109.0, "weight": 0.5,
+       "inputs": "Forward (FY28, Jul-2027 to Jun-2028) adj EPS $11.50 x 9.5x",
+       "inputs_detail": [
+         {"input": "Q1 FY27 adj EPS guidance", "value": "$2.80-$2.90 (mid $2.85), 85M diluted shares", "basis": "guidance", "source_ids": [1, 2], "derivation": ""},
+         {"input": "FY27 adj EPS", "value": "$12.00", "basis": "estimate", "source_ids": [1, 2, 7], "derivation": "Q1 guide $2.85 plus Q2-Q4 at $3.0/$3.1/$3.1. Management calls this the '3rd or 4th inning' of a cycle and says book-to-bill is >1 in every region, but the CFO warned other price increases won't match memory's, so I assume sequential growth slows sharply after Q1."},
+         {"input": "FY28 adj EPS (forward EPS a year from now)", "value": "$11.50", "basis": "estimate", "source_ids": [7, 8, 9], "derivation": "FY27 run-rate trimmed ~4%. Memory pricing drove about half of Q3 FY26's sequential growth (source 8) and should fade, with some risk of double-ordering unwinds (source 7). Partly offset by data-centre exposure rising to 10-15% of sales. Consensus already shows only +7% growth the year after (source 9)."},
+         {"input": "P/E multiple", "value": "9.5x", "basis": "judgment", "source_ids": [9, 3], "derivation": "The stock trades at ~10.3x forward consensus today (source 9). Distributors get lower multiples on peak-cycle earnings: FY26 adj EPS $5.67 grew 65%, and the FY23 peak traded at ~6-7x. Data-centre mix supports a bit more than past peaks, so 9.5x."}
+       ]},
+      {"name": "other", "value": 91.0, "weight": 0.35,
+       "inputs": "Mid-cycle normalized EPS $7.00 x 13x mid-cycle P/E",
+       "inputs_detail": [
+         {"input": "Normalized sales", "value": "$30B", "basis": "estimate", "source_ids": [1, 3], "derivation": "FY26 sales were $27.6B. The Q4 FY26 run-rate is $33B and the Q1 guide implies ~$36B annualized; I take $30B as mid-cycle, between FY26 and the current inflated run-rate."},
+         {"input": "Normalized adj operating margin", "value": "3.3%", "basis": "estimate", "source_ids": [1, 3, 8], "derivation": "FY26 adj op margin was 3.1% and Q4 3.8%. Management's EC target is ~4%; Farnell made 5.9% in FY26. A mid-cycle 3.3% gives ~$990M adj op income."},
+         {"input": "Interest expense", "value": "$240M", "basis": "reported", "source_ids": [3, 4], "derivation": "FY26 interest and financing expense was $250.7M. The $550M 5.65% notes refinance revolver and securitization borrowings, so the total is roughly flat."},
+         {"input": "Tax rate / shares", "value": "23% / 85M", "basis": "guidance", "source_ids": [2], "derivation": "Midpoint of the 21-25% adj tax-rate guide and the 85M diluted-share guide. (990-240)x0.77/85 = $6.8, rounded to $7.00 to allow for some buyback."},
+         {"input": "Mid-cycle P/E", "value": "13x", "basis": "judgment", "source_ids": [9, 10], "derivation": "On trough or normalized earnings the market pays more than ~10x; the stock is at ~27x trailing GAAP EPS (source 9). I use 13x for normalized earnings, in line with analysts' pre-upcycle targets of ~$80 on ~$6-8 EPS (source 10)."}
+       ]},
+      {"name": "other", "value": 101.0, "weight": 0.15,
+       "inputs": "Price/book: equity $5.02B / 82.07M shares = $61.2 book, grown to ~$63 by Oct 2027, x 1.6x",
+       "inputs_detail": [
+         {"input": "Shareholders' equity", "value": "$5,022.5M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Shares outstanding", "value": "82,072,979 (Aug 7, 2026)", "basis": "reported", "source_ids": [3], "derivation": ""},
+         {"input": "P/B multiple", "value": "1.6x", "basis": "judgment", "source_ids": [1, 3], "derivation": "Book grows ~$2/share net of dividends ($1.40/yr) and buybacks ($225.8M authorization left). Projected ROE is ~18% on $12 EPS, which supports 1.5-1.8x book; I use 1.6x to allow for ROE fading back toward the FY26 ~7% GAAP level."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 70.0, "prob": 0.25, "story": "Memory pricing reverses and customers' safety-stock and double orders unwind in 2027. Sales growth turns negative by mid-2027 and the market prices in FY28 EPS of ~$7-8 at ~9x. Working-capital build leaves leverage high; FY26 operating cash flow was -$281M."},
+    "base": {"price": 108.0, "prob": 0.5, "story": "FY27 adj EPS of ~$12 is delivered, but by late 2027 investors look through to a plateau. The P/E compresses from ~10x to ~9.5x on FY28 EPS of ~$11.5, and the stock ends near today's level with dividends on top."},
+    "bull": {"price": 148.0, "prob": 0.25, "story": "The upcycle runs longer ('3rd/4th inning'). Lead-time stretch spreads from memory to analog, IP&E and discretes; data-centre mix rises and EC margin goes above 4.5%. FY28 EPS reaches ~$14 at 10.5x."}
+  },
+  "thesis_break_price": 72.0,
+  "thesis_break_reason": "$72 would be ~9x my FY27 EPS of $12, or about 6x the Q1 guide run-rate. At that level the market would be saying the cycle has already peaked: book-to-bill below 1, a negative guide, or an inventory write-down from a double-ordering unwind. That would be a fundamental break, not normal 37%-vol noise, since a 1-sigma down move over a year is roughly $74-75. A guide implying sequential decline in fiscal Q2/Q3 2027, or EC margin back below 3%, would confirm it.",
+  "catalysts": [
+    {"date": "2026-10-29 to 2026-11-04 (est.)", "event": "Q1 FY27 results and Q2 guidance (14-week quarter ended Oct 3, 2026; guide $9.0-9.3B sales, $2.80-2.90 EPS)", "direction": "+"},
+    {"date": "2026-11-20", "event": "Annual shareholders' meeting", "direction": "?"},
+    {"date": "2027-01 (late)", "event": "Q2 FY27 results: first read on whether memory-driven pricing is fading", "direction": "?"},
+    {"date": "2027-04 (late)", "event": "Q3 FY27 results; book-to-bill and lead-time trend", "direction": "?"},
+    {"date": "2027-08 (early)", "event": "Q4 FY27 results and FY28 Q1 guide: key test of the cycle peak", "direction": "-"},
+    {"date": "rolling", "event": "US tariff and export-control changes (10-K risk factor), and memory contract price moves", "direction": "?"},
+    {"date": "rolling", "event": "Insider selling: many Form 4/144 filings Aug-Sep 2026 after the stock doubled", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "How much of the 48% growth is price (memory) versus volume, and how fast the price part reverses",
+    "Double-ordering or safety-stock build by customers: classic distributor cycle-peak risk (management acknowledged it)",
+    "Working capital: FY26 operating cash flow was -$281M, debt is $3.2B, and the 1.75% convert (conversion price $70.27) is in the money, adding ~3M+ net dilutive shares at current prices",
+    "What multiple the market pays at peak earnings: history says low (6-9x), while AI/data-centre exposure (10-15%) argues higher",
+    "Timing of the Q1 FY27 report relative to the 1-month window"
+  ],
+  "reasoning": "Primary documents show a sharp upcycle. Q4 FY26 sales were $8.3B (+48% y/y, +17% q/q) with adj EPS of $2.28 (+182%), and the Q1 FY27 guide is $9.0-9.3B sales and $2.80-2.90 EPS (85M shares), about 55% above the pre-guide EPS consensus of $1.84. The 10-K and calls add detail the recaps skip. Memory pricing drove about half of Q3's sequential growth, and the CFO said other price increases 'won't be anywhere near' that size. Operating cash flow was -$281M as working capital absorbed $802M, and debt is ~$3.2B with $550M of new 5.65% notes and a larger $700M securitization facility. The $650M 1.75% convert, converting at $70.27, is in the money. Insiders have filed many Form 4/144s since August. At $107 the stock is ~10x forward consensus and ~9x my FY27 EPS of $12, which looks cheap only if this is not near the peak. Distributor history says peak EPS gets ~6-9x, but management says the cycle is in the '3rd/4th inning', with book-to-bill >1 everywhere and lead times lengthening across more than half of categories. My blended fair value is ~$101 (P/E $109, normalized $91, P/B $101). For the distribution I took bear/base/bull = $70/$108/$148 at 25/50/25 (mean ~$109) and averaged that mixture with a single lognormal (median $106, sigma 0.36, close to the 37% realized vol). The resulting median is ~$107, flat versus today, with a fat left tail from cycle-reversal risk and a right tail from a longer upcycle. Research limits: Alpha Vantage and Twelve Data estimate/target endpoints were unavailable (rate limit or plan), and I couldn't get a full Q4 call transcript (a Fool URL 404'd), so I used a call summary plus the Q3 transcript."
+  ,
+  "lane": "primary",
+  "sources": [
+    {"title": "Avnet Reports Fourth Quarter and Fiscal 2026 Financial Results (press release)", "url": "https://news.avnet.com/press-releases/press-release-details/2026/Avnet-Reports-Fourth-Quarter-and-Fiscal-2026-Financial-Results/default.aspx", "date": "2026-08-05", "type": "company", "in_lane": true},
+    {"title": "Avnet Form 8-K (Item 2.02) with Exhibit 99.1 earnings release and Q1 FY27 guidance", "url": "https://www.sec.gov/Archives/edgar/data/0000008858/000000885826000066/avt-20260805xex99d1.htm", "date": "2026-08-05", "type": "filing", "in_lane": true},
+    {"title": "Avnet Form 10-K for fiscal year ended June 27, 2026", "url": "https://www.sec.gov/Archives/edgar/data/8858/000110465926096346/avt-20260627x10k.htm", "date": "2026-08-14", "type": "filing", "in_lane": true},
+    {"title": "Avnet Form 8-K: pricing of $550M 5.650% Notes due 2031", "url": "https://www.sec.gov/Archives/edgar/data/8858/000110465926099682/tm2623221d4_8k.htm", "date": "2026-08-21", "type": "filing", "in_lane": true},
+    {"title": "Avnet Form 8-K: Amendment No. 9 to Receivables Purchase Agreement (limit raised to $700M, extended to 2028)", "url": "https://www.sec.gov/Archives/edgar/data/8858/000000885826000062/avt-20260701x8k.htm", "date": "2026-07-06", "type": "filing", "in_lane": true},
+    {"title": "SEC EDGAR filing index for Avnet (Form 4 / Form 144 filings Aug-Sep 2026, S-3ASR, S-8)", "url": "https://data.sec.gov/submissions/CIK0000008858.json", "date": "2026-09-25", "type": "filing", "in_lane": true},
+    {"title": "AVT Q4 2026 Earnings Call Summary (Stock Taper)", "url": "https://stocktaper.com/earningsCallSummary/AVT/2026/Q4", "date": "2026-08-05", "type": "other", "in_lane": true},
+    {"title": "Avnet (AVT) Q3 2026 Earnings Call Transcript (Motley Fool)", "url": "https://www.fool.com/earnings/call-transcripts/2026/04/29/avnet-avt-q3-2026-earnings-transcript/", "date": "2026-04-29", "type": "company", "in_lane": true},
+    {"title": "Avnet hits new 52-week high on better than expected earnings (MarketBeat; forward P/E, consensus, next earnings date estimate)", "url": "https://www.marketbeat.com/instant-alerts/avnet-nasdaqavt-hits-new-52-week-high-on-better-than-expected-earnings-2026-08-05/", "date": "2026-08-05", "type": "data", "in_lane": false},
+    {"title": "Truist upgrades Avnet to Buy, raises price target to $80 from $65", "url": "https://finder.techleap.nl/news/feed/truist-upgrades-avnet-to-buy-raises-price-target-to-80-from-65", "date": "2026-04", "type": "sell-side", "in_lane": false},
+    {"title": "Avnet to Report First Quarter Fiscal Year 2026 Earnings on October 29", "url": "https://ir.avnet.com/news-releases/news-release-details/avnet-report-first-quarter-fiscal-year-2026-earnings-october-29", "date": "2025-10-15", "type": "company", "in_lane": true},
+    {"title": "Avnet to Report First Quarter Fiscal Year 2025 Earnings on October 30", "url": "https://www.businesswire.com/news/home/20241016383873/en/Avnet-to-Report-First-Quarter-Fiscal-Year-2025-Earnings-on-October-30/", "date": "2024-10-16", "type": "company", "in_lane": true}
+  ]
+}

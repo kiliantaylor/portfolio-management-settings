@@ -1,0 +1,870 @@
+{
+ "date": "2026-10-09",
+ "symbol": "PAYC",
+ "clean": true,
+ "checked": 94,
+ "ok": 79,
+ "failures": [
+  {
+   "item": "2026 FCF guide '>$650M' (agents 1, 3, 4: A7/A8/A14/A15/A17 agent rows; DCF legs; FY28 buyback terms)",
+   "value": ">$650M",
+   "cited": "TipRanks 'Paycom earnings call highlights' (agent_1 src 25, agent_3 src 13, agent_4 src 5); also MarketBeat/Nasdaq recaps",
+   "result": "not_found",
+   "fix": "Not in the Q2 8-K (only Ex.99.1 filed; it says FCF margin may be discussed on the call but gives no figure), the prepared-remarks PDF (Flate-decoded: 'record Free Cash Flow' only) or the 10-Q MD&A (IR PDF decrypted with the empty user password and decoded); Paycom's IR site has no transcript or slides for Q2 2026 (webcast audio only) and the one full-transcript page found (GuruFocus) returns 403. No supervisor or reconciled number uses it (reconciled A7 = primary $572.2M; the round-2 $753M roll-forward reproduces from primary inputs, not the guide). Agent rows in model_assumptions, agent methods and agent inputs_detail carry dated notes with the primary equivalent; agent values are unchanged because the brief allows only sourcing corrections to agent files (effect: DCF legs agent_1 $261 -> ~$259.6, agent_3 $228.4 -> ~$227.0, agent_4 $243.0 -> ~$241.5)."
+  },
+  {
+   "item": "'Capex near 6% of revenue' (agent_1 A9 growth rationale)",
+   "value": "~6%",
+   "cited": "TipRanks recap (agent_1 src 25)",
+   "result": "not_found",
+   "fix": "Not in the 8-K, prepared remarks or 10-Q. Feeds no reconciled number (supervisor uses verified TTM capex $226.4M); agent_1 note added. agent_5's 6% is its own labelled estimate (H1 5.0% + 1pt)."
+  },
+  {
+   "item": "agent_1 source ids for the guide and StockAnalysis statistics",
+   "value": "24 / 25",
+   "cited": "agent_1.json inputs_detail",
+   "result": "wrong",
+   "fix": "Ids corrected to 25 (TipRanks) and 26 (StockAnalysis statistics) in FY2028 EPS, Target P/E, 2026 FCF guide, normalized FCF, unlevered base, growth, WACC and FCF-retained inputs, and 'src 25' -> 'src 26' in the normalized-FCF derivation. model_assumptions already used 25/26."
+  },
+  {
+   "item": "Peer forward P/E (ADP 22.09, PAYX 17.19, PCTY 17.61, WDAY 15.47, INTU 12.64, TNET 15.22, BBSI 16.99, NSP 20.94, ASUR 7.61, BILL 12.06; all agents' comps, supervisor comps_review)",
+   "value": "as listed",
+   "cited": "StockAnalysis statistics 'Forward PE' (aggregator)",
+   "result": "not_found",
+   "fix": "Pages show the figures, but aggregator ratios are not a source for peer multiples and are not reproducible from the pages' own consensus (TNET 15.22x vs 13.33x). Rebuilt as Oct-9 close / time-weighted NTM S&P Global consensus EPS: ADP 21.54, PAYX 17.01, PCTY 17.09, WDAY 14.86, INTU 12.34, TNET 13.33, BBSI 16.21, NSP 18.99, ASUR 7.13 (estimate, arithmetic in supervisor comps_review). Agent comps carry dated notes."
+  },
+  {
+   "item": "Peer median forward P/E (supervisor A4, comps_review, disagreements, fair_value reason, key_drivers; agents 2-5; agent_1 16.99x with ASUR)",
+   "value": "17.09x (16.99x)",
+   "cited": "StockAnalysis statistics; labelled 'verified'",
+   "result": "wrong",
+   "fix": "16.61x (16.21x with ASUR) on the rebuilt multiples. Reconciled multiple recomputed with the same at-the-median judgment: 17.0x -> 16.6x; P/E leg $257.0 -> $251.0; fair value $249 -> $245; disagreements, key_drivers, summary, feedback and changes updated."
+  },
+  {
+   "item": "PAYC forward P/E today",
+   "value": "17.68x",
+   "cited": "StockAnalysis statistics (aggregator)",
+   "result": "mislabelled",
+   "fix": "17.14x NTM, labelled estimate: 232.22 / (0.227 x 12.10 + 0.773 x 13.97)."
+  },
+  {
+   "item": "Lowest core peer multiple in thesis_break and disagreement (INTU)",
+   "value": "12.64x x $13.97 = $177",
+   "cited": "StockAnalysis INTU statistics",
+   "result": "wrong",
+   "fix": "INTU 12.34x NTM rebuilt -> $172. Thesis break $160 unchanged (still clearly below)."
+  },
+  {
+   "item": "Peer TTM EV/EBITDA figures and 15.2x median (supervisor comps_review, A6 reconciled; agent_2 EV/EBITDA leg; agent comps)",
+   "value": "15.2x median; ADP 16.92 ... NSP 63.71",
+   "cited": "StockAnalysis statistics (aggregator)",
+   "result": "not_found",
+   "fix": "Not rebuilt from filings; removed from every reconciled number (A6 reconciled = null, comps_review.reconciled_peer_median_ev_ebitda_ttm = null). The blend never used EV/EBITDA. Agent figures annotated."
+  },
+  {
+   "item": "PAYC TTM EBITDA (agent_2, basis 'reported') and reconciled A5 horizon EBITDA",
+   "value": "$735.1M; $808.6M",
+   "cited": "StockAnalysis statistics",
+   "result": "mislabelled",
+   "fix": "Aggregator definition, not a reported figure; filings TTM GAAP EBITDA is $844.0M (FY25 8-K, 10-Q). A5 reconciled removed (null); agent_2 input annotated."
+  },
+  {
+   "item": "PAYC TTM EV/EBITDA (supervisor payc_now; agents)",
+   "value": "15.06x (~15.3x on 45.07M shares)",
+   "cited": "StockAnalysis statistics",
+   "result": "not_found",
+   "fix": "Replaced in supervisor by a filings estimate: EV $11,251M / TTM GAAP EBITDA $844.0M = 13.3x (context only)."
+  },
+  {
+   "item": "Supervisor levered FCF Jul-26 to Sep-27 and retained FCF (A14, fair_value)",
+   "value": "~$753M; ~$586M",
+   "cited": "supervisor arithmetic (stated as primary-built)",
+   "result": "wrong",
+   "fix": "Not reproducible from the stated inputs and window: $753M = $276.7M + 0.775 x $614.8M (FCF to Oct 9, FY27 without revolver interest) while dividends and SBC run to Sep 30. On the supervisor's own figures: $276.7M + 0.75 x $594.6M = $722.7M; retained $555.8M; horizon net debt $116M -> $146.2M; DCF $237.8 -> $237.1."
+  },
+  {
+   "item": "Unlevered FCF after SBC on TTM revenue (disagreements[2])",
+   "value": "$513M",
+   "cited": "supervisor arithmetic",
+   "result": "wrong",
+   "fix": "$584.3M - 2.86% x $2,140.7M = $523M. Text corrected; feeds no number."
+  },
+  {
+   "item": "Supervisor 12-month ladder median",
+   "value": "~$235 (keeping the mean because fair value $249 = agents' mean)",
+   "cited": "supervisor summary / confidence_reason",
+   "result": "wrong",
+   "fix": "The mean ladder's median was ~$238.3. With the corrected $245.5 fair value the ladder is shifted by 245.47/249.32 in log K (median ~$234.5); combine.py uses the agents' mean at low supervisor confidence, so the result's ladder is not affected."
+  },
+  {
+   "item": "agent_5 TTM free cash flow, basis 'reported'",
+   "value": "$575.1M",
+   "cited": "StockAnalysis statistics (agent_5 src 13)",
+   "result": "mislabelled",
+   "fix": "Relabelled 'estimate' with filings arithmetic (801.5 - 226.4; FY25 8-K src 3, 10-Q R7 src 9) in agent_5.json."
+  },
+  {
+   "item": "Aggregator multiples used as judgment evidence (agent_5 WACC: INTU 12.64x, ADBE 9.02x; agent_3 WACC: StockAnalysis 8.13%)",
+   "value": "12.64x / 9.02x / 8.13%",
+   "cited": "StockAnalysis statistics",
+   "result": "not_found",
+   "fix": "Figures are on the pages but are aggregator ratios; annotated in the agent files (INTU 12.34x rebuilt). The reconciled WACC is built from FRED 5.22%, Damodaran 4.20% and beta 0.83 and does not use them."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "Shares outstanding at Jul 28, 2026 (10-Q cover), incl. 786,338 restricted",
+   "value": "45,071,619",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/payc-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A16, A17, fair_value per-share divisor, A14 dividends"
+  },
+  {
+   "item": "Cash and cash equivalents, Jun 30, 2026",
+   "value": "$198.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R2.htm",
+   "checked": "2026-10-12",
+   "feeds": "A13 net debt, fair_value DCF"
+  },
+  {
+   "item": "Long-term debt (revolver draw), Jun 30, 2026",
+   "value": "$900.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R2.htm",
+   "checked": "2026-10-12",
+   "feeds": "A13 net debt, fair_value DCF, thesis_break leverage check"
+  },
+  {
+   "item": "Operating lease liabilities, current / non-current",
+   "value": "$28.8M / $54.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R2.htm",
+   "checked": "2026-10-12",
+   "feeds": "A13 agent_2 lease-inclusive net debt, PAYC EV on filings"
+  },
+  {
+   "item": "Income tax receivable Dec 31, 2025 -> Jun 30, 2026",
+   "value": "$78.2M -> $3.4M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R2.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7 tax normalization"
+  },
+  {
+   "item": "H1-26 / H1-25 net cash from operations",
+   "value": "$427.6M / $305.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7, A8, fair_value DCF"
+  },
+  {
+   "item": "'Income taxes, net' in operating cash flow H1-26 / H1-25",
+   "value": "+$74.8M / +$5.6M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7 tax swing"
+  },
+  {
+   "item": "Purchases of property and equipment H1-26 / H1-25",
+   "value": "$54.9M / $99.4M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7 TTM capex"
+  },
+  {
+   "item": "Stock-based compensation H1-26",
+   "value": "$31.6M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "A10, A14, fair_value DCF"
+  },
+  {
+   "item": "Dividends paid H1-26",
+   "value": "$35.5M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_4 A14"
+  },
+  {
+   "item": "Repurchases H1-26: cash flow $1,389.7M; equity statement $1,419.8M (10.9M shares); Q2 $349.0M (2.6M shares)",
+   "value": "$1,389.7M / $1,419.8M / $349.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/payc-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "agents 2/3 multiple and FY28 reasoning"
+  },
+  {
+   "item": "Revenue H1-26 / H1-25",
+   "value": "$1,103.1M / $1,014.1M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R4.htm",
+   "checked": "2026-10-12",
+   "feeds": "A10 SBC ratio, TTM revenue"
+  },
+  {
+   "item": "Interest expense Q2-26 / H1-26 / H1-25",
+   "value": "$10.5M / $14.5M / $1.6M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R4.htm",
+   "checked": "2026-10-12",
+   "feeds": "A8 interest add-back, A11 cost of debt, A14 run-rate interest"
+  },
+  {
+   "item": "Q2-26 diluted weighted shares",
+   "value": "45,905k",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R4.htm",
+   "checked": "2026-10-12",
+   "feeds": "context (share count)"
+  },
+  {
+   "item": "Operating income H1-26 / H1-25",
+   "value": "$378.7M / $297.5M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R4.htm",
+   "checked": "2026-10-12",
+   "feeds": "filings TTM EBITDA (PAYC EV/EBITDA estimate)"
+  },
+  {
+   "item": "D&A H1-26 / H1-25 (cash flow)",
+   "value": "$101.2M / $81.9M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "filings TTM EBITDA"
+  },
+  {
+   "item": "Effective tax rate H1-26",
+   "value": "29.3%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R4.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 after-tax interest",
+   "derivation": "provision $109.0M / pre-tax $372.1M = 29.3% (also stated in the 10-Q MD&A)"
+  },
+  {
+   "item": "Buyback authorization available Jun 30, 2026; May 4, 2026 $2.0B plan replaced the prior authorization, no expiration",
+   "value": "$1,655.5M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R11.htm",
+   "checked": "2026-10-12",
+   "feeds": "key_drivers, sizing, agent_5 FY28"
+  },
+  {
+   "item": "H1-26 repurchases: shares and average cost (R33)",
+   "value": "10,945,515 shares at $128.48",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R33.htm",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break reasoning, key_drivers"
+  },
+  {
+   "item": "Server useful lives (R33)",
+   "value": "3 to 6 years",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R33.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 context"
+  },
+  {
+   "item": "10-Q liquidity section: $900.0M drawn on the $2.125B revolver to fund buybacks; no FCF or capex outlook",
+   "value": "no 2026 FCF figure",
+   "basis": "reported",
+   "source_url": "https://d18rn0p25nwr6d.cloudfront.net/CIK-0001590955/69ebcef0-427a-4937-ba24-ea14896880e1.pdf",
+   "checked": "2026-10-12",
+   "feeds": "guide check (A7)"
+  },
+  {
+   "item": "FY25 OCF / PP&E capex / intangible purchases / 'income taxes, net'",
+   "value": "$678.9M / $270.9M / $4.5M / -$66.3M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526046562/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7, A8, fair_value DCF"
+  },
+  {
+   "item": "FY25 revenue / recurring and other revenue (+10.3%) / FY24 recurring",
+   "value": "$2,051.7M / $1,938.7M / $1,758.3M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526046562/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "TTM revenue, agent_1 terminal-growth judgment"
+  },
+  {
+   "item": "FY25 interest expense / operating income / D&A / SBC",
+   "value": "$3.4M / $567.2M / $176.3M / $118.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526046562/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "A8 TTM interest, filings TTM EBITDA"
+  },
+  {
+   "item": "FY25 annual revenue retention",
+   "value": "91%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526046562/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 growth judgment, thesis_break_reason"
+  },
+  {
+   "item": "Q2-26 revenue $531.2M (+9.8%); recurring $505.2M (+11.0%); adj. EBITDA $235M (44%; 44.2% in prepared remarks); non-GAAP EPS $2.78",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526335105/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "A2, A9, agent FY28 derivations"
+  },
+  {
+   "item": "FY26 guidance: revenue $2.197-2.212B (+7-8%), recurring +8-9%, client-fund interest ~$105M, adj. EBITDA $1.007-1.022B (~46%)",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526335105/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "A2, A9, SBC revenue path, thesis_break leverage"
+  },
+  {
+   "item": "Q2 8-K Ex.99.1: FCF margin 'may be discussed on the teleconference call'; forward FCF reconciliations not available; no FCF figure",
+   "value": "no 2026 FCF figure",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526335105/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "guide check (A7)"
+  },
+  {
+   "item": "Prepared remarks: $1.66B remaining authorization; ~44M shares; $900M drawn on $2.1B revolver; client funds ~$2.9B; Q2 buyback ~2.6M shares / $346M; float guide assumes current rates hold; 'record Free Cash Flow' (no figure)",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://s201.q4cdn.com/761236765/files/doc_financials/2026/q2/PAYC-Q2-2026-Earnings-Final.pdf",
+   "checked": "2026-10-12",
+   "feeds": "key_drivers, guide check"
+  },
+  {
+   "item": "8-K May 4, 2026: up to $2.0B repurchase, no expiration; $0.375 quarterly dividend",
+   "value": "$2.0B; $0.375",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526204311/payc-20260504.htm",
+   "checked": "2026-10-12",
+   "feeds": "A14 dividends, sizing"
+  },
+  {
+   "item": "8-K Apr 23, 2026: $2.125B secured revolver to Apr 23, 2031; SOFR + 1.25%-2.00%; leverage <= 3.50x; interest coverage >= 3.00x",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526173704/payc-20260423.htm",
+   "checked": "2026-10-12",
+   "feeds": "A11 cost of debt"
+  },
+  {
+   "item": "Schedule 13D/A No. 21: Ernest Group 10b5-1 plan, up to 1,090,000 shares, from the later of Dec 1, 2026 and the 3rd trading day after Q3-26 10-Q results, to Jun 1, 2027, price restrictions; Richison 13.1%",
+   "value": "1,090,000 shares",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526382289/xslSCHEDULE_13D_X02/primary_doc.xml",
+   "checked": "2026-10-12",
+   "feeds": "sizing.entry, ladder_1m reasoning, key_drivers"
+  },
+  {
+   "item": "Q3-2025 date notice Oct 15, 2025; results after the close Nov 5, 2025",
+   "value": "Oct 15 / Nov 5, 2025",
+   "basis": "reported",
+   "source_url": "https://investors.paycom.com/news/news-details/2025/Paycom-Software-Inc--Announces-Third-Quarter-2025-Earnings-Release-Date-and-Conference-Call/default.aspx",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m, sizing.entry"
+  },
+  {
+   "item": "No Q3-2026 earnings-date notice found (IR site, web search, Oct 12)",
+   "value": "not announced",
+   "basis": "reported",
+   "source_url": "https://investors.paycom.com/",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m, sizing.entry"
+  },
+  {
+   "item": "PAYC close Oct 9, 2026",
+   "value": "$232.22",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/payc/history/",
+   "checked": "2026-10-12",
+   "feeds": "all multiples, sizing, A11 weights"
+  },
+  {
+   "item": "PAYC closes Jul 31 / Aug 3 / Aug 4 / Aug 5 / Aug 6 (+23.55%)",
+   "value": "$163.96 / $168.67 / $175.30 / $174.80 / $215.97",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/payc/history/",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "PAYC 1-year realized volatility, 52-week low/high, 1-year return (252 daily closes to Oct 9, 2026, Twelve Data)",
+   "value": "46.3%; $104.90 / $244.98; +13.2%",
+   "basis": "estimate",
+   "source_url": "Twelve Data time series PAYC 1day 2025-10-08..2026-10-09",
+   "checked": "2026-10-12",
+   "feeds": "A11 judgment, sizing, thesis_break",
+   "derivation": "stdev of daily log returns x sqrt(252)"
+  },
+  {
+   "item": "FY26 / FY27 consensus non-GAAP EPS (S&P Global, 21 analysts)",
+   "value": "$12.10 / $13.97 (+15.45%)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/payc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A1, A3, thesis_break, PAYC NTM P/E"
+  },
+  {
+   "item": "FY26 / FY27 consensus revenue",
+   "value": "$2.21B / $2.37B (+7.44%)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/payc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A9, fair_value NTM revenue, A2"
+  },
+  {
+   "item": "Price targets avg / median / low / high",
+   "value": "$220.24 / $210 / $160 / $286",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/payc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "PAYC beta (5Y)",
+   "value": "0.83",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/payc/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "A11 (aggregator statistic; judgment input)"
+  },
+  {
+   "item": "StockAnalysis WACC (agent_3)",
+   "value": "8.13%",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/payc/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 A11 judgment only (aggregator estimate)"
+  },
+  {
+   "item": "PAYC TTM OCF / capex / FCF on StockAnalysis, equal to filings arithmetic",
+   "value": "$801.5M / $226.4M / $575.1M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526046562/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7",
+   "derivation": "678.9 - 305.0 + 427.6 = 801.5; 270.9 - 99.4 + 54.9 = 226.4; 801.5 - 226.4 = 575.1 (FY25 8-K Ex.99.1, 10-Q R7)"
+  },
+  {
+   "item": "PAYC historical forward P/E FY2025 (agent_5 context)",
+   "value": "16.17x",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/payc/financials/ratios/",
+   "checked": "2026-10-12",
+   "feeds": "agent_5 judgment context only"
+  },
+  {
+   "item": "ADP Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$270.88; EPS FY27 (Jun-27) 12.26, FY28 13.40; next-year growth 9.29%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/adp/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "PAYX Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$103.98; EPS FY27 (May-27) 5.96, FY28 6.39; next-year growth 7.18%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/payx/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "PCTY Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$153.96; EPS FY27 (Jun-27) 8.74, FY28 9.72; next-year growth 11.20%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/pcty/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "WDAY Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$186.59; EPS FY27 (Jan-27) 11.08, FY28 13.23; next-year growth 19.47%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/wday/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "INTU Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$302.75; EPS FY27 (Jul-27) 23.94, FY28 27.08; next-year growth 13.08%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/intu/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "TNET Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$65.45; EPS 2026 4.87, 2027 4.92; next-year growth 1.14%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/tnet/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "BBSI Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$31.72; EPS 2026 1.71, 2027 2.03; next-year growth 18.42%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/bbsi/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "NSP Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$48.73; EPS 2026 2.11, 2027 2.70; next-year growth 27.66%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/nsp/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "ASUR Oct-9 close and S&P Global consensus EPS (this / next fiscal year)",
+   "value": "$7.34; EPS 2026 0.86, 2027 1.08",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/asur/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (rebuilt NTM P/E), A4, thesis_break"
+  },
+  {
+   "item": "Rebuilt peer NTM P/E (Oct-9 close / time-weighted consensus EPS; weight on the current FY = days left from Oct 9, 2026 / 365)",
+   "value": "ADP 21.54, PAYX 17.01, PCTY 17.09, WDAY 14.86, INTU 12.34, TNET 13.33, BBSI 16.21, NSP 18.99, ASUR 7.13; PAYC 17.14",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/adp/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A4, comps_review, thesis_break",
+   "derivation": "e.g. ADP 270.88 / (0.723 x 12.26 + 0.277 x 13.40) = 21.54; PAYC 232.22 / (0.227 x 12.10 + 0.773 x 13.97) = 17.14",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "Rebuilt peer median NTM P/E (8 core) / with ASUR",
+   "value": "16.61x / 16.21x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/adp/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A4 reconciled 16.6x, fair_value P/E leg",
+   "derivation": "median of 12.34, 13.33, 14.86, 16.21, 17.01, 17.09, 18.99, 21.54 = (16.21 + 17.01) / 2",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "Peer 3Y EPS-growth consensus: ADP 9.51, PAYX 7.51, PCTY 10.32, WDAY 18.61, INTU 7.72, TNET 5.29, NSP 45.24, BBSI n/a; median 9.51%",
+   "value": "9.51% median",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/adp/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "A4 judgment (persistence of a discount)"
+  },
+  {
+   "item": "Peer 3Y revenue-growth consensus: ADP 5.74, PAYX 5.33, PCTY 7.33, WDAY 10.91, INTU 8.93, NSP 3.62, TNET -34.01, ASUR 11.51",
+   "value": "as stated",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/pcty/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "agents' comps growth field, A4 judgment"
+  },
+  {
+   "item": "Agent_3 next-year EPS-growth median",
+   "value": "12.15% (12.14% on the pages)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/pcty/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 A4 (rejected as a discount basis)",
+   "derivation": "median of 1.14, 7.18, 9.29, 11.20, 13.08, 18.42, 19.47, 27.66"
+  },
+  {
+   "item": "ASUR / BBSI market cap (size screen only)",
+   "value": "$211.97M / $768.74M",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/asur/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "peer-count exception"
+  },
+  {
+   "item": "Dayforce delisted Feb 4, 2026 (acquired by Thoma Bravo); Paycor delisted Apr 14, 2025 (acquired by Paychex)",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/day/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "peer-count exception"
+  },
+  {
+   "item": "FOMC Sep 16, 2026: target range raised to 3.75-4.00% (12-0)",
+   "value": "3.75-4.00%",
+   "basis": "reported",
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+   "checked": "2026-10-12",
+   "feeds": "one_month_reasoning, agent_5 A11"
+  },
+  {
+   "item": "10-year Treasury (DGS10) on 2026-10-08",
+   "value": "5.22%",
+   "basis": "reported",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+   "checked": "2026-10-12",
+   "feeds": "A11, A12"
+  },
+  {
+   "item": "Damodaran implied ERP, Oct 1, 2026",
+   "value": "4.20%",
+   "basis": "reported",
+   "source_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm",
+   "checked": "2026-10-12",
+   "feeds": "A11"
+  },
+  {
+   "item": "SOFR on 2026-10-08",
+   "value": "3.87%",
+   "basis": "reported",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
+   "checked": "2026-10-12",
+   "feeds": "A11 cost of debt"
+  },
+  {
+   "item": "Fed funds target upper limit (DFEDTARU) from 2026-09-17",
+   "value": "4.00%",
+   "basis": "reported",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU",
+   "checked": "2026-10-12",
+   "feeds": "agent_5 A11"
+  },
+  {
+   "item": "ADP FY27 outlook: revenue +5-6%, US pays per control 0-1%, ES retention -10 to -30bp, adj. EPS +9-11%; FY26 pays per control +1%",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000008670/000000867026000025/q4fy26exhibit99.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_2 A2"
+  },
+  {
+   "item": "Paylocity FY26 revenue $1.771B (+11.0%), adj. EBITDA $654.9M (37.0%); FY27 guide revenue $1.880-1.895B, recurring $1.777-1.792B, adj. EBITDA $690-700M; client-fund interest $120.0M",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://finviz.com/news/377023/paylocity-announces-fourth-quarter-and-fiscal-2026-financial-results",
+   "checked": "2026-10-12",
+   "feeds": "agent_2 A2 (company's GlobeNewswire release reproduced verbatim)"
+  },
+  {
+   "item": "BLS September 2026: payrolls +29K, unemployment 4.2%, Jul-Aug revised -60K",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.bls.gov/news.release/archives/empsit_10022026.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_2 A2"
+  },
+  {
+   "item": "Paychex Small Business Jobs Index Sep 2026 99.15 (+0.02), YTD avg 99.19, hourly earnings +2.78%",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.paychex.com/newsroom/news-releases/small-business-employment-watch-september-2026",
+   "checked": "2026-10-12",
+   "feeds": "agents 2/4 growth judgments"
+  },
+  {
+   "item": "ADP NER September 2026: private +90K; 50-499 +54K; 1-49 +23K; 500+ +14K; Aug revised to +36K; job-stayer pay +3.0%",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://finviz.com/news/397020/adp-national-employment-report-private-sector-employment-increased-by-90000-jobs-in-september",
+   "checked": "2026-10-12",
+   "feeds": "agent_4 A9 judgment (ADP's PR Newswire release reproduced verbatim)"
+  },
+  {
+   "item": "TTM revenue (Jul-25 to Jun-26)",
+   "value": "$2,140.7M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526046562/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "A8, A10",
+   "derivation": "2,051.7 - 1,014.1 + 1,103.1"
+  },
+  {
+   "item": "Net TTM tax swing / normalized TTM levered FCF before SBC",
+   "value": "+$2.9M / $572.2M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7, fair_value DCF",
+   "derivation": "74.8 + (-66.3 - 5.6) = 2.9; 801.5 - 2.9 - 226.4 = 572.2"
+  },
+  {
+   "item": "TTM after-tax interest / unlevered FCF / margin",
+   "value": "$11.9M / $584.3M / 27.3%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R4.htm",
+   "checked": "2026-10-12",
+   "feeds": "A8, fair_value DCF",
+   "derivation": "(3.4 - 1.6 + 14.5) x 0.73 = 11.9; 572.2 + 11.9 = 584.1 (~584.3); / 2,140.7 = 27.3%"
+  },
+  {
+   "item": "SBC ratio",
+   "value": "2.86% of revenue",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "A10, A14",
+   "derivation": "31.6 / 1,103.1"
+  },
+  {
+   "item": "NTM-at-horizon revenue / unlevered FCF after SBC",
+   "value": "$2,494M / $609.5M",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/payc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value DCF",
+   "derivation": "0.25 x 2,370 + 0.75 x 2,370 x 1.07; 27.3% x 2,494 - 2.86% x 2,494"
+  },
+  {
+   "item": "Supervisor DCF EV (9% WACC, 3% terminal, +6/+5/+4.5/+4%)",
+   "value": "$10,834M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value",
+   "derivation": "609.5, 646.1, 678.4, 708.9, 737.3 discounted at 9% + 737.3 x 1.03 / 0.06 discounted 5 years"
+  },
+  {
+   "item": "Run-rate levered FCF / H2-26 / FY27 levered FCF",
+   "value": "$553.4M / $276.7M / $594.6M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R4.htm",
+   "checked": "2026-10-12",
+   "feeds": "A14, A2",
+   "derivation": "572.2 - (4 x 10.5 - 16.3) x 0.73 = 553.4; / 2; x 1.0744",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "Retained FCF Jul-26 to Sep-27 / horizon net debt",
+   "value": "$555.8M / $146.2M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "A14, A15, fair_value",
+   "derivation": "276.7 + 0.75 x 594.6 - 84.5 - 82.3 = 555.8; 702 - 555.8",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "DCF leg / sensitivities",
+   "value": "$237.1 (8.5% $259.1; 9.5% $218.5; 2.5% terminal $222.3)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R7.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value, A11, A12",
+   "derivation": "(10,834 - 146.2) / 45.07",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "P/E leg",
+   "value": "$251.0",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/payc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value",
+   "derivation": "(0.25 x 13.97 + 0.75 x 13.97 x 1.11) x 16.6 = 15.12 x 16.6",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "Reconciled fair value",
+   "value": "$245 (245.5)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/payc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value, sizing",
+   "derivation": "0.6 x 251.0 + 0.4 x 237.1",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "FY28 EPS growth arithmetic",
+   "value": "+11% (1.07 / 0.959 = 1.116)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/payc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A2, A3",
+   "derivation": "(594.6 - 67.6 - 67.8) / ~$250 = 1.84M = 4.1% of 45.07M"
+  },
+  {
+   "item": "Dividends / SBC offset in the roll-forward",
+   "value": "$84.5M / $82.3M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/payc-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A14",
+   "derivation": "5 x 0.375 x 45.07M; 2.86% x (1,101.4 + 0.75 x 2,370)"
+  },
+  {
+   "item": "Net debt Jun 30, 2026 (ex leases) / lease-inclusive",
+   "value": "$702.0M / $784.8M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526338010/R2.htm",
+   "checked": "2026-10-12",
+   "feeds": "A13",
+   "derivation": "900.0 - 198.0; + 28.8 + 54.0"
+  },
+  {
+   "item": "PAYC EV/EBITDA on filings",
+   "value": "13.3x (EV $11,251M / TTM GAAP EBITDA $844.0M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1590955/000119312526046562/payc-ex99_1.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps_review.payc_now (context)",
+   "derivation": "232.22 x 45.0716M + 900.0 + 82.8 - 198.0; (567.2 - 297.5 + 378.7) + (176.3 - 81.9 + 101.2)",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "Thesis break multiple",
+   "value": "$160 = 11.45x FY27 EPS; INTU 12.34x x 13.97 = $172",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/intu/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break",
+   "derivation": "160 / 13.97; rebuilt INTU NTM P/E",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "Shifted 12-month ladder (agents' mean x 245.47/249.32 in log K)",
+   "value": "median ~$234.5 (was ~$238.3)",
+   "basis": "estimate",
+   "source_url": "runs/2026-10-09/PAYC/supervisor.json",
+   "checked": "2026-10-12",
+   "feeds": "ladder",
+   "derivation": "logit-linear interpolation in log K, as combine.py",
+   "note": "figure produced by a gate fix"
+  },
+  {
+   "item": "Agent DCF arithmetic reproduced on their stated inputs",
+   "value": "agent_1 $261.2, agent_3 $228.4, agent_4 $243.0, agent_5 $236.6",
+   "basis": "estimate",
+   "source_url": "runs/2026-10-09/PAYC/agent_*.json",
+   "checked": "2026-10-12",
+   "feeds": "agents' fair values (methods)"
+  },
+  {
+   "item": "WACC arithmetic (agents 1, 4, 5)",
+   "value": "9.01% / 8.30% / 8.58% CAPM before judgment adds",
+   "basis": "estimate",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+   "checked": "2026-10-12",
+   "feeds": "A11"
+  }
+ ],
+ "notes": [
+  "Checked on 2026-10-12 for the 2026-10-09 run. 'checked' counts figure groups opened at a source (each verified entry and each failure; entries produced by a fix are not counted twice).",
+  "sec.gov refused curl with a generic User-Agent (403), so SEC pages were read with WebFetch; the 10-Q PDF and prepared-remarks PDF came from Paycom's IR CDN and were decoded with python zlib (the 10-Q PDF is RC4-encrypted with an empty user password).",
+  "Residual outside the gate's remit: the recap-only '>$650M' guide is out of every supervisor and reconciled number but remains inside agents 1, 3 and 4's own DCF legs (agent fair values $0.5-0.6 higher than on the primary base) and so inside their ladders, which combine.py averages while supervisor confidence is low. The brief allows only sourcing corrections to agent files, so those values carry dated notes but are unchanged; removing them needs an agent revision round.",
+  "Modelling note, not a citation failure: Paycom's own FCF definition also deducts intangible-asset purchases (FY25 $4.5M); the $572.2M base, like StockAnalysis's $575.1M, leaves them out.",
+  "2026-10-12 resolved: the '>$650M' guide was removed from agents 1, 3 and 4 (DCF legs re-set to the filings-based $572.2M base using this gate's recomputed values 259.6/227.0/241.5; fair values 256.6/240.5/249.6; 12-month ladders shifted by the fair-value ratio). No number in any file now rests on it."
+ ],
+ "residual_resolved": "2026-10-12 resolved: the '>$650M' guide was removed from agents 1, 3 and 4 (DCF legs re-set to the filings-based $572.2M base using this gate's recomputed values 259.6/227.0/241.5; fair values 256.6/240.5/249.6; 12-month ladders shifted by the fair-value ratio). No number in any file now rests on it."
+}

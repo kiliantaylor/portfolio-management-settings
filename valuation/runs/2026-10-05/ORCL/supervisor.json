@@ -1,0 +1,769 @@
+{
+ "symbol": "ORCL",
+ "as_of": "2026-10-05",
+ "horizon": "2027-10-05",
+ "round": 2,
+ "round1_to_round2": {
+  "fair_values": {
+   "agent_1": {
+    "r1": 154.0,
+    "r2": 160.0,
+    "sup_r1_corrected_estimate": 158.0
+   },
+   "agent_2": {
+    "r1": 170.0,
+    "r2": 171.0,
+    "sup_r1_corrected_estimate": 173.0
+   },
+   "agent_3": {
+    "r1": 129.0,
+    "r2": 134.0,
+    "sup_r1_corrected_estimate": 136.0
+   },
+   "agent_4": {
+    "r1": 165.0,
+    "r2": 168.0,
+    "sup_r1_corrected_estimate": 167.0
+   },
+   "agent_5": {
+    "r1": 165.0,
+    "r2": 157.0,
+    "sup_r1_corrected_estimate": 160.0
+   }
+  },
+  "agent_mean_fair_value": {
+   "r1": 156.6,
+   "r2": 158.0
+  },
+  "fair_value_span_pct_of_spot": {
+   "r1": 28.6,
+   "r2": 25.8
+  },
+  "agent_mean_P_ge_143": {
+   "r1": 0.546,
+   "r2": 0.553
+  },
+  "agent_mean_ladder_median": {
+   "r1": 150.4,
+   "r2": 151.6
+  },
+  "thesis_breaks": {
+   "r1": [
+    98,
+    105,
+    95,
+    95,
+    105
+   ],
+   "r2": [
+    98,
+    105,
+    95,
+    95,
+    105
+   ]
+  },
+  "convergence_verdict": "Partly anchoring, not independent agreement. Every agent landed within $3 of the corrected value I estimated for it in round 1, and four copied my roll-forward numbers almost exactly: horizon net debt ~$140B (agents 1 and 4; 3 and 5 net out equity to $135B; 2 adds the preferred to get $150B), consensus-implied FY29 ~$15.4 and 8/12 + 4/12 NTM weights. The spread barely narrowed ($41 to $37) because each agent kept its own EPS haircut (NTM 7-15% below consensus) and its own multiple. That is the right place for independence. The anchoring matters because one of my round-1 figures was wrong: the Jupiter framing, copied by agents 1 and 2, is corrected below. The mean ladder moved only ~0.01 at mid strikes. Thesis breaks did not move at all: all five kept their round-1 levels and three explicitly rejected my $100.",
+  "what_moved": "Mechanical corrections: net debt without operating leases, NTM weights, FY29 stated against consensus, SAP/ADBE/CRM multiples and S&P outlook. They raised agents 1-4 by $1-6 and cut agent 5 by $8. No agent changed its core haircut or multiple view."
+ },
+ "disagreements": [
+  {
+   "topic": "How far below the consensus-implied FY29/NTM EPS to go (main driver of the $134-171 spread)",
+   "positions": "NTM EPS at Oct-2027 vs consensus-implied ~$12.48 (8/12 x FY28 $11.00 + 4/12 x FY29 ~$15.45): agent_2 $11.55 (-7%; uses CY28 $12.34 at 14.5x), agent_4 $11.33 (-9%), agent_1 $11.0 (-12%; FY29 $12.6), agent_5 $10.61 (-15%), agent_3 $10.48 (-15%). Multiples 14-15x.",
+   "resolution": "The consensus-implied FY29 rests on only 5 Zacks estimates (GAAP-like basis: mean $12.84, range $10.77-14.63, re-pulled today). Applying the FY29/FY28 ratio range (1.18-1.60) to $11.00 gives non-GAAP FY29 of ~$13.0-17.6, midpoint ~$15.4. A second, independent anchor agrees. Management's FY30 target from the Oct-2025 analyst meeting is $21 non-GAAP EPS (CFO; LSEG consensus then $18.92). The geometric path from FY28 $11.00 to FY30 $21 gives FY29 ~$15.2, or ~$14.8 after ~3-5% of 2026 dilution that the target predates. So ~$15 is not a thin-sample artefact. A 7-12% NTM haircut (agents 1, 2, 4) is defensible on dilution, depreciation and site delays. Agent_1's FY29 of $12.6 is below the lowest Zacks-implied value (~$13.0) and needs a stated thesis. The 15% haircuts (agents 3 and 5) put NTM EPS near the FY28 low estimate ($9.00) rolled forward: a legitimate skeptic or base-rate view, but a bear-leaning base case. My reconciled NTM is ~$11.2 (-10%), which at 14.5-15x gives $162-168.",
+   "evidence": "Nasdaq/Zacks earnings-forecast API (2026-10-05: FY27 6.69 n=17, FY28 9.14 n=13, FY29 12.84 n=5, range 10.77-14.63); Oracle FY30 targets ($225B revenue, $21 EPS) via MarketScreener/Reuters recaps of the 2025-10-16 analyst meeting; Yahoo FY28 $11.00 (39 analysts)."
+  },
+  {
+   "topic": "Net debt at Oct-2027 ($135-150B) and the Series D preferred",
+   "positions": "agent_3 and agent_5 ~$135B (net of assumed 2027 equity); agent_1 and agent_4 ~$140B; agent_2 ~$150B including the $5B Series D mandatory convertible preferred as debt-like.",
+   "resolution": "All five now exclude operating leases and roll forward from the verified $88.2B (notes $7,625M + $117,712M less $37.1B cash and securities). The preferred is equity-classified on the balance sheet ($4,954M, 6.50% Series D mandatory convertible). It can be treated either as debt or as future conversion shares, but not both and not neither. Agent_2 counts it as debt with no conversion shares, and agent_3 counts ~35M conversion shares with no debt; both are consistent. The $15B range is worth ~$2 per share after method weights (EV legs carry 0.2-0.4). It is immaterial, so I do not force one number. ~$140B before any preferred is the central figure.",
+   "evidence": "Oracle 10-Q for the quarter ended 2026-08-31 (notes payable, preferred stock $4,954M, 3,023,736,000 shares at 2026-09-07), read via WebFetch because sec.gov refused the script."
+  },
+  {
+   "topic": "EV/EBITDA basis (agent_4 rolls TTM peer multiples to 'forward' by dividing by 1 + EPS growth; NTM EBITDA $57-86B)",
+   "positions": "agent_1 $77B (consensus $85.6B less 10%) x 10x; agent_5 $72.7B x 8.5x; agent_2 $61.4B (43% margin) x 10.5x; agent_4 $57.3B (43% margin) x 11.5x against a 'forward' peer median of 16.3x, derived as TTM/(1+EPS growth).",
+   "resolution": "agent_4's roll-forward is not a valid forward basis. EBITDA growth is not EPS growth: for the capex-heavy hyperscalers, D&A growth makes EBITDA grow faster than EPS, so dividing by EPS growth overstates their forward multiples. Arbitrary growth rates were also substituted (CRM +5% against -4% consensus; 15% for AMZN and GOOGL). The 16.3x median is context only. The usable anchor is ORCL's own lease-consistent multiple: ~$531B EV (market cap $434B + $88B net notes + ~$9B finance leases) on consensus CY27 EBITDA of ~$65B, about 8.1-8.5x. The agents' EV legs imply 7.2-9.0x consensus NTM EBITDA of $85.6B (EV $618-770B), so low EBITDA (agents 2 and 4) and a high multiple offset. Values are fine; the 43% margin assumption is low against the 57% in consensus and should be labelled as a haircut.",
+   "evidence": "Agents' stated inputs; MarketScreener FY28/FY29 EBITDA consensus $74.6B/$107.5B (June-dated, stale); 10-Q balance sheet. stockanalysis and Twelve Data statistics were blocked or unavailable to me, so peer TTM EV/EBITDA figures were not re-verified."
+  },
+  {
+   "topic": "Jupiter force majeure and the '$18B loan' (my round-1 key driver, copied by agents 1 and 2)",
+   "positions": "Round-1 supervisor: 'The $18B Jupiter project loan is quoted at ~89-91c after the Sep 24 force-majeure notice.' agent_1 thesis break: 'more project loans in force majeure'. agent_2: 'Jupiter (force majeure, $18B loan ~90c)'.",
+   "resolution": "Partly wrong. The notice is verified: on 2026-09-24 Oracle, as tenant, sent a force-majeure notice to the developer (Blue Owl/STACK). It would let Oracle delay lease payments if the campus misses its 2028 online date, after the Energy Transfer gas pipeline slipped to 2027-02-01. Oracle says Jupiter 'remains on our planned schedule' and is not exiting. The $18B loan is the landlord's construction loan, not Oracle's debt, and no Oracle filing shows a guarantee. Its 89-91c quote is dated 2026-09-18, six days before the notice, so 'after the notice' is wrong. No loan is 'in force majeure'. Effect: this is a site-delay (revenue-timing) signal, not an Oracle credit event, so it should not add to the credit tail. FY28 revenue timing risk remains.",
+   "evidence": "TechCrunch / SiliconANGLE / ENR / CNBC, 2026-09-24 (search results); r40.io 'Oracle's landlord borrowed the $18 billion' (quote dated 2026-09-18, borrower STACK/BorderPlex, Blue Owl equity; no Oracle guarantee in filings)."
+  },
+  {
+   "topic": "S&P outlook (one agent saw a conflicting summary)",
+   "positions": "All five now say BBB- stable, Moody's Baa2 negative. agent_5 notes 'one search summary says otherwise'.",
+   "resolution": "Confirmed stable as far as I can check. S&P's own pages (spglobal.com webinar 'Oracle Downgrade Explained') returned 403. Fortune (2026-09-18, after the action) reports BBB- with a stable outlook and quotes S&P: the rating 'could be pressured if Oracle fails to maintain or lower its current level of debt-to-EBITDA or fails to generate positive free cash flow in 2028.' heise and mlq agree, and so does a LiveSquawk relay of the S&P headline ('...Outlook Stable'). The conflicting 'both negative' line comes from a search-engine summary of secondary blogs. It is not credible against Fortune's direct S&P quotes. The S&P trigger matters: management has given no FCF-positive date, and the June-2027 FY28 guide falls inside the horizon. A 'no positive FCF in 2028' signal there could bring an S&P negative outlook before Oct-2027.",
+   "evidence": "Fortune 2026-09-18; heise 2026-07-09; mlq.ai 2026-07-09; S&P webinar page (exists, blocked)."
+  },
+  {
+   "topic": "Scenario means vs fair value",
+   "positions": "agent_1 $160.3 vs $160; agent_5 $157.7 vs $157; agent_4 $164.9 vs $168; agent_2 $163.0 (point prices) vs $171; agent_3 $140.7 vs $134.",
+   "resolution": "agents 1, 4 and 5 reconcile. agent_2 reconciles only because its scenario prices are lognormal medians and its $171 is the mixture mean, so ~$8 of the gap is volatility convexity. That is internally consistent but not like-for-like with the other agents. agent_3 does not reconcile: its scenario mean is $6.7 above its fair value, and its ladder-implied mean (~$147) is $13 above. 'Right skew' is no explanation, because skew is already in the scenario prices and weights. The gap exists because the DCF leg ($115, weight 0.4) is not represented in the scenarios (base $138 sits at its P/E side). Its fair value should be ~$138-141, or its base case ~$130.",
+   "evidence": "Agents' scenarios, weights and ladders (my integration of each ladder: agent_1 mean ~$162, agent_2 ~$172, agent_3 ~$147, agent_4 ~$166, agent_5 ~$162)."
+  },
+  {
+   "topic": "1-month ladder centring",
+   "positions": "All five centre at ~$142.4-143.3 (after the $0.50 ex-dividend) with sigma ~16.5-17%, giving P(>=143.41) of 0.482-0.498, except agent_4 at 0.459.",
+   "resolution": "agent_4 states a median of ~$142.9 and sigma 16.6%, which implies P(>=143.41) ~0.49. Its ladder corresponds to a median of ~$139.5, so it is ~3 points too low across strikes. Investor Day: Oracle has not announced the date. The 2025 meeting was 2025-10-16 at CloudWorld/AI World; the Q1 call says 'October'. In-window events otherwise check out: dividend record Oct 9, Big-4 Q3 calls late October, FOMC Oct 27-28. Q2 FY27 is on Dec 14, outside the window.",
+   "evidence": "Q1 FY27 release and call; Oracle IR (2025 analyst-meeting notice); no 2026 date notice found."
+  }
+ ],
+ "revision_check": [
+  {
+   "agent": "agent_1",
+   "requested": [
+    "net debt ~$140B",
+    "state the FY29/NTM haircut vs consensus",
+    "drop the unverified $3.3B guarantee claim",
+    "add Investor Day"
+   ],
+   "made": "all four",
+   "new_facts": "MarketScreener FY29/FY28 ratio 1.47 (~$16.2), consistent with Zacks",
+   "scenario_mean": 160.3,
+   "fair_value": 160.0,
+   "reconciles": true,
+   "remaining_issues": "FY29 $12.6 sits below the lowest Zacks-implied value (~$13.0) and below the ~$15 path to the $21 FY30 target. The thesis-break trigger 'more project loans in force majeure' inherits my wrong Jupiter framing. EV/EBITDA peer forwards are its own roll-forwards (low weight, acknowledged).",
+   "independence": "Copied my ~$140B and $15.4 directly but kept its own 12% haircut and 15x."
+  },
+  {
+   "agent": "agent_2",
+   "requested": [
+    "S&P stable",
+    "lease-free net debt",
+    "FY27 financing in dilution",
+    "OpenAI revenue second source",
+    "Investor Day"
+   ],
+   "made": "all five. It also fixed its own NTM-EBITDA mislabel",
+   "new_facts": "OpenAI ARR ~$70B (Axios via Bloomberg, 2026-09-29: verified); OpenAI $122B raise (company page, not re-checked); Series D preferred treated as debt (balance sheet shows $4,954M as equity, but the treatment is consistent because no conversion shares are added)",
+   "scenario_mean": 163.0,
+   "fair_value": 171.0,
+   "reconciles": "Only as a lognormal-mixture mean (~$171); the scenario point prices average $163",
+   "remaining_issues": "Highest fair value, driven by CY28 EPS at 14.5x (the P/E leg is $179). The 43% EBITDA margin is below consensus (~57%) and is offset by 10.5x. Keeps the $105 thesis break with a reason.",
+   "independence": "Disagreed with my ~$173 and landed at $171 on its own inputs; good."
+  },
+  {
+   "agent": "agent_3",
+   "requested": [
+    "Q2 guide basis",
+    "S&P stable",
+    "single labelled haircut",
+    "financing amount",
+    "cash incl. securities",
+    "Investor Day",
+    "recheck DCF FCF margin"
+   ],
+   "made": "all seven (margin 15% -> 17% with a segment build)",
+   "new_facts": "Burry note on prepayment financing component (verified: Benzinga/TheStreet, Oct 2026; named expert opinion on a disclosed ASC 606 treatment, not a new fact); FY29 ~$15.0 via an additive GAAP gap (reasonable)",
+   "scenario_mean": 140.7,
+   "fair_value": 134.0,
+   "reconciles": false,
+   "remaining_issues": "The scenario mean is $6.7 above fair value and the ladder mean ~$13 above; the DCF leg is missing from the scenarios. A 15% haircut on top of 14x is a double-conservative stack (multiple at the peer lower quartile and EPS near the FY28 low estimate).",
+   "independence": "Independent: rejected my $135-140 and the $100 thesis break with reasons."
+  },
+  {
+   "agent": "agent_4",
+   "requested": [
+    "drop the $9.13 dispersion argument",
+    "SAP USD",
+    "TTM FCF",
+    "Kalshi ~50%",
+    "lease-free net debt",
+    "CRWV TTM",
+    "Investor Day"
+   ],
+   "made": "all seven; also corrected its own NTM weights and FY29",
+   "new_facts": "Aterio Wisconsin delay (BusinessWire release, alt-data, single source but company-attributed); GPU price trackers flat (two trackers); Bloomberg 'OpenAI targets $30B at $1.4T' (not verified by me); Polymarket IPO ladder",
+   "scenario_mean": 164.9,
+   "fair_value": 168.0,
+   "reconciles": true,
+   "remaining_issues": "EV/EBITDA peer forwards built as TTM/(1+EPS growth) are not a valid basis (see disagreements). The 1-month ladder sits ~3pts below its own stated median.",
+   "independence": "Copied ~$140B net debt; otherwise its own (6% FY28 haircut on site-delay data)."
+  },
+  {
+   "agent": "agent_5",
+   "requested": [
+    "NTM weights",
+    "ADBE/CRM/WDAY",
+    "net debt timing",
+    "S&P stable",
+    "Investor Day",
+    "BBB- to junk base rate"
+   ],
+   "made": "all six",
+   "new_facts": "S&P transition study: one-year downgrade rate from BBB- ~9.4% (search-cited PDF; plausible against S&P's published tables, not re-verified); Kalshi 2027 recession 21% (direct API)",
+   "scenario_mean": 157.7,
+   "fair_value": 157.0,
+   "reconciles": true,
+   "remaining_issues": "Note that the ~9.4% figure is all downgrades from BBB-, of which a move to speculative grade is a subset. The 15% haircut is a judgment call (see disagreement 1).",
+   "independence": "Fair value fell $8, close to my -$5 estimate; the 15% haircut and 8.5x are its own."
+  }
+ ],
+ "ladder": [
+  {
+   "K": 36,
+   "p": 0.9936
+  },
+  {
+   "K": 57,
+   "p": 0.968
+  },
+  {
+   "K": 72,
+   "p": 0.9192
+  },
+  {
+   "K": 86,
+   "p": 0.8618
+  },
+  {
+   "K": 100,
+   "p": 0.7988
+  },
+  {
+   "K": 115,
+   "p": 0.7224
+  },
+  {
+   "K": 129,
+   "p": 0.6408
+  },
+  {
+   "K": 143,
+   "p": 0.5534
+  },
+  {
+   "K": 158,
+   "p": 0.46
+  },
+  {
+   "K": 172,
+   "p": 0.3804
+  },
+  {
+   "K": 194,
+   "p": 0.2752
+  },
+  {
+   "K": 215,
+   "p": 0.1984
+  },
+  {
+   "K": 251,
+   "p": 0.1078
+  },
+  {
+   "K": 287,
+   "p": 0.0548
+  },
+  {
+   "K": 359,
+   "p": 0.0132
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 114.73,
+   "p": 0.902
+  },
+  {
+   "K": 121.9,
+   "p": 0.825
+  },
+  {
+   "K": 129.07,
+   "p": 0.725
+  },
+  {
+   "K": 133.37,
+   "p": 0.657
+  },
+  {
+   "K": 137.67,
+   "p": 0.586
+  },
+  {
+   "K": 143.41,
+   "p": 0.49
+  },
+  {
+   "K": 149.15,
+   "p": 0.398
+  },
+  {
+   "K": 153.45,
+   "p": 0.335
+  },
+  {
+   "K": 157.75,
+   "p": 0.278
+  },
+  {
+   "K": 164.92,
+   "p": 0.197
+  },
+  {
+   "K": 172.09,
+   "p": 0.135
+  }
+ ],
+ "one_month_reasoning": "No earnings in the window (Q2 FY27 on Dec 14). The $0.50 ex-dividend (record Oct 9), an October Investor Day (undated but promised on the Q1 call), Big-4 2027 capex guides and the Oct 27-28 FOMC are two-sided events. I use a lognormal with median ~$142.9 and sigma ~16.9%, which matches four of the five agents. agent_4's ladder sits ~3pts below its own stated centre, so I do not take the plain mean.",
+ "confidence": "low",
+ "confidence_reason": "Round-2 checks settled facts but not the forecast's direction. Jupiter was a tenant-to-landlord notice on a non-Oracle loan, so it is not an Oracle credit event (slightly positive). S&P's outlook is stable, but its explicit 'positive FCF in 2028' trigger could bite at the June-2027 FY28 guide (negative). The FY29 consensus has a second anchor in the $21 FY30 target (slightly positive for the less-haircut agents). Netted, the 12-month mean ladder stands. The 1-month change is a small consistency fix.",
+ "thesis_break_price": 100.0,
+ "thesis_break_reason": "Agents are at $95-105 (mean $99.6) and kept their round-1 levels. $100 is ~10.2x CY27 consensus EPS ($9.81) and ~13% below the $114.50 52-week low. A sustained trade there would mean a fundamental break rather than 56%-vol noise: OpenAI deferring or renegotiating its ~$300B commitment; S&P moving to a negative outlook because no FCF-positive path into FY28 appears (its stated trigger), followed by a Moody's cut; a Jan-May 2027 raise on distressed terms; or power delays (Jupiter pipeline now Feb-2027, Wisconsin transmission refiling) pushing FY28 revenue well below ~$115B. Delete 'project loans in force majeure' as a trigger: the Jupiter loan is the landlord's.",
+ "key_drivers": [
+  "Earnings path: CY27 consensus $9.81 (FY27 $8.14 / FY28 $11.00), so 14.6x at $143.41. Consensus-implied NTM at Oct-2027 is ~$12.5, with FY29 ~$15.4 on 5 Zacks estimates (implied range ~$13.0-17.6). Management's $21 FY30 target independently implies FY29 ~$15. The agents haircut NTM by 7-15%, and that judgment is the whole $134-171 spread.",
+  "Multiple: reconciled 10-peer CY27 median 21.65x. ORCL is 33% below it, and all agents hold 14-15x, justified on persistent negative FCF through FY28, BBB-/Baa2-negative credit, ~half of RPO with OpenAI and a ~23% non-GAAP/GAAP gap.",
+  "Funding and credit: net debt $88.2B now and ~$140B at Oct-2027 (without operating leases). $20-40B more debt or equity is due Jan-May 2027. S&P BBB- stable, but S&P says FCF must turn positive in 2028; Moody's Baa2 negative.",
+  "Delivery risk at the giga-sites: Oracle's Sep-24 force-majeure notice to Jupiter's developer (gas pipeline slipped to Feb-2027; Oracle says on schedule) and the Wisconsin transmission refiling. These are revenue-timing risks, not an Oracle loan problem.",
+  "Catalysts: October Investor Day (FCF date, AI-infrastructure margins), Q2 FY27 on Dec 14, Jan-May 2027 financing, and the June-2027 FY28 guide, which is the event S&P's trigger hangs on."
+ ],
+ "fair_value": {
+  "value": 161.0,
+  "reason": "The round-2 agent mean is $158.0 (160/171/134/168/157). Adjustments: agent_3 to ~$138, the midpoint between its methods-based $134 and a scenario mean of $141 that it fails to reconcile; agent_1 ~+$1 if FY29 is at least the lowest Zacks-implied value (~$13.0). That gives a corrected mean of ~$159. My own consensus-anchored build: NTM EPS ~$11.2 (10% below the consensus-implied $12.48, supported by both the 5-estimate Zacks FY29 and the $21 FY30 target) x 14.5-15x = $162-168; EV/EBITDA at ORCL's current ~8.5x on $77B (consensus NTM less 10%) less ~$140B net debt over ~3.13B shares = ~$164. I set $161 between the corrected agent mean and my build, ~12% above spot, on ~3.10-3.16B diluted shares and with operating leases excluded from net debt."
+ },
+ "comps_review": {
+  "basis": "Forward P/E on calendar-2027 street (non-GAAP where reported so) consensus EPS, fiscal years calendarised (MSFT 1/2 FY27 + 1/2 FY28; CRM and WDAY FY Jan-28; ADBE FY Nov-27; SAP USD EPS). All five agents now use this single basis. ORCL = 5/12 x $8.14 + 7/12 x $11.00 = $9.81, so 14.6x.",
+  "spot_checks": [
+   {
+    "symbol": "AMZN",
+    "agent_value": 24.1,
+    "verified": 23.9,
+    "match": true,
+    "note": "Zacks CY27 $10.58 @ $253.22",
+    "checked_for": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ]
+   },
+   {
+    "symbol": "GOOGL",
+    "agent_value": 23.2,
+    "verified": 23.4,
+    "match": true,
+    "note": "Zacks CY27 $14.82 @ $346.88; CY26 $20.55 is inflated by investment gains, so CY27 is depressed and the multiple overstated",
+    "checked_for": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ]
+   },
+   {
+    "symbol": "MSFT",
+    "agent_value": 24.2,
+    "verified": 24.5,
+    "match": true,
+    "note": "Zacks FY27 $19.62 / FY28 $23.24, avg $21.43 @ $525.11 (Yahoo basis 24.2x)",
+    "checked_for": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ]
+   },
+   {
+    "symbol": "NOW",
+    "agent_value": 27.0,
+    "verified": 27.0,
+    "match": true,
+    "note": "Yahoo CY27 $5.01 (44 analysts) @ $135.42. Zacks shows GAAP $2.84 (47.7x), so the basis is non-GAAP and agents are consistent",
+    "checked_for": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ]
+   },
+   {
+    "symbol": "WDAY",
+    "agent_value": 14.2,
+    "verified": 14.2,
+    "match": true,
+    "note": "Yahoo FY Jan-28 $13.23 (41 analysts) @ $187.96",
+    "checked_for": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ]
+   },
+   {
+    "symbol": "ADBE, CRM, IBM, META, SAP",
+    "agent_value": null,
+    "verified": null,
+    "match": true,
+    "note": "Verified in round 1 (8.5x, 14.3x, 16.7x, 21.6x, 21.5x); all five agents now carry these values",
+    "checked_for": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ]
+   },
+   {
+    "symbol": "EV/EBITDA (all peers)",
+    "agent_value": null,
+    "verified": null,
+    "match": false,
+    "note": "Not verifiable this round (stockanalysis 403, Twelve Data statistics not on plan). The agents' figures mix bases: agent_1/agent_2 own forward roll-forwards, agent_4 TTM/(1+EPS growth), agent_5 TTM; agent_3 left them blank. Context only.",
+    "checked_for": [
+     "agent_1",
+     "agent_2",
+     "agent_4",
+     "agent_5"
+    ]
+   }
+  ],
+  "agent_medians": {
+   "agent_1": 21.5,
+   "agent_2": 21.65,
+   "agent_3": 21.6,
+   "agent_4": 21.7,
+   "agent_5": 21.7
+  },
+  "dropped_peers": [
+   {
+    "symbol": "CRWV",
+    "why": "Loss-making, so P/E is n/m; used only as an OCI EV/sales or EV/EBITDA reference by agents 1 and 2"
+   },
+   {
+    "symbol": "DELL, CSCO, ACN",
+    "why": "Hardware or services economics; already dropped by agents 3 and 5"
+   }
+  ],
+  "reconciled_peer_set": [
+   "MSFT",
+   "AMZN",
+   "GOOGL",
+   "META",
+   "IBM",
+   "SAP",
+   "CRM",
+   "NOW",
+   "ADBE",
+   "WDAY"
+  ],
+  "reconciled_peer_median_fwd_pe_cy27": 21.65,
+  "sub_medians": {
+   "hyperscalers": 23.7,
+   "enterprise_software": 15.5
+  },
+  "orcl_today_vs_median_pct": -33,
+  "reconciled_horizon_multiple": "14.5-15x NTM non-GAAP EPS (about -31% to -33% vs median; at the enterprise-software sub-median); EV/EBITDA ~8.5x consensus-basis NTM EBITDA, anchored on ORCL's own current lease-consistent multiple rather than a peer median",
+  "reconciled_discount_vs_median_pct": -32,
+  "ev_ebitda_note": "No consistent forward peer EV/EBITDA basis exists in any agent file. agent_4's TTM/(1+EPS growth) overstates hyperscaler forwards and uses ad hoc growth rates, and agent_5's TTM median (17.5x) is a different basis. Do not set either against ORCL forward EBITDA. The agents' EV legs imply 7.2-9.0x consensus NTM EBITDA ($85.6B), close to ORCL's ~8.1-8.5x today, so the values are acceptable.",
+  "judgment": "The peer set is sensible and all five agents use the same 10 names and basis. The ~30-33% discount is rigorously justified as persistent through Oct-2027 on checkable company facts: management gives no FCF-positive date for the FY27-28 peak capex; S&P's own trigger is positive FCF in 2028; BBB-/Baa2-negative against A-or-better peers; ~half of RPO is OpenAI (S&P); and the non-GAAP/GAAP gap is ~23%. ORCL's fastest-in-set EPS growth (+35% FY28) argues against a deeper discount. No agent claims a premium, so no correction is needed."
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "Jupiter: the $18B loan belongs to the landlord (STACK/BorderPlex, Blue Owl equity), not Oracle, and its 89-91c quote is dated Sep 18, before the Sep 24 notice (r40.io). The notice is Oracle-as-tenant protection against a missed 2028 online date (TechCrunch/SiliconANGLE 2026-09-24). This was my round-1 error, which you copied.",
+    "FY29 $12.6 is below the lowest Zacks-implied non-GAAP value (~$13.0: low estimate $10.77 / FY28 $9.14 x $11.00) and well below the ~$15 path to the $21 FY30 target."
+   ],
+   "revisit": "Drop 'project loans in force majeure' from the thesis break and the bear story. Either justify FY29 below the whole estimate range or move it to at least ~$13.0, which adds ~$1."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "'$18B loan ~90c' is the landlord's loan, quoted before the notice (see agent_1).",
+    "Your $171 is a lognormal-mixture mean; the scenario point prices average $163. Others report point-price means, so state the basis.",
+    "43% NTM EBITDA margin vs ~57% in consensus (MarketScreener FY28 $74.6B / $131.7B): label it a haircut."
+   ],
+   "revisit": "State the scenario basis; consider whether the CY28 P/E leg at 14.5x ($179) is consistent with the 13x base-case multiple in your own scenarios."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "Your scenario mean ($140.7) and ladder mean (~$147) are well above your $134 fair value. Skew is already in the weights and is not an explanation; the DCF ($115, weight 0.4) is absent from the scenarios.",
+    "The 15% haircut plus 14x stacks two conservative choices (EPS near the FY28 low estimate, multiple at the lower quartile)."
+   ],
+   "revisit": "Make fair value, scenarios and ladder one distribution: either fair value ~$138-141 or a base case near $130."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "TTM/(1+EPS growth) is not a forward EV/EBITDA: hyperscaler EBITDA grows faster than EPS as D&A ramps, and the CRM/AMZN/GOOGL growth rates were substituted. Anchor 11.5x on ORCL's own lease-consistent forward multiple instead.",
+    "Your 1-month ladder implies a median of ~$139.5, not your stated ~$142.9 (P(>=143.41) should be ~0.49, not 0.459).",
+    "'OpenAI targets $30B at $1.4T' (Bloomberg, Sep 29) is single-sourced in your file; I could not confirm it."
+   ],
+   "revisit": "Re-derive the 1-month ladder from your stated parameters, and restate the EV leg against ORCL's own ~8.1-8.5x consensus EBITDA."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "The ~9.4% one-year 'downgrade' rate from BBB- counts all downgrades; a fall to speculative grade is a subset. The S&P-specific trigger (positive FCF in 2028, Fortune 2026-09-18) matters more for Oracle.",
+    "Your 15% NTM haircut sits at the bear edge: the $21 FY30 target independently implies FY29 ~$15, so consensus-implied NTM is not just a 5-estimate artefact."
+   ],
+   "revisit": "Size the credit tail on S&P's stated trigger and the June-2027 FY28 guide, rather than on the generic BBB- transition rate."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 19,
+  "repeated_claims": [
+   {
+    "claim": "Net debt ~$140B at Oct-2027, FY29 ~$15.4, NTM weights 8/12 + 4/12",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Round-1 supervisor roll-forward from the Q1 FY27 8-K/10-Q and the Nasdaq/Zacks API. One source, re-derived by each agent rather than independently found."
+   },
+   {
+    "claim": "Jupiter force majeure with the $18B loan at 89-91c",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4"
+    ],
+    "original_source": "Two separate facts: CNBC/TechCrunch 2026-09-24 (notice) and r40.io 2026-09-18 (landlord loan quote). Agents and the round-1 supervisor conflated them."
+   },
+   {
+    "claim": "S&P BBB- stable",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "S&P action 2026-07-09 via heise/mlq/LiveSquawk, and Fortune 2026-09-18 quoting S&P"
+   },
+   {
+    "claim": "Peer CY27 P/Es (10 names)",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Yahoo/Zacks consensus. Identical numbers across agents after round 1, from one data feed."
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary-led. Round 2 was mostly a re-read; the Nasdaq API was down, so it leaned on my FY29 figure. Inherited the Jupiter framing."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Good industry chain. OpenAI ARR now second-sourced (Axios/Bloomberg, verified). The S&P outlook rests partly on an X relay plus heise."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Skeptic sources include a named expert (Burry, verified as reported) and Reuters ratings analysis. Its numbers are internally inconsistent (scenarios vs fair value)."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Alt-data improved: two GPU trackers replace a single newsletter, Aterio site data, prediction markets. The EV/EBITDA method is weak, and one Bloomberg headline was not verified."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "In-lane base rates (S&P transition study, Kalshi API pull). The transition statistic is search-cited from a PDF and not re-verified."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "'Moody's and S&P both carry negative outlooks' (search-engine summary)",
+    "why": "Contradicted by Fortune's direct S&P quotes (2026-09-18), heise and the S&P headline relay"
+   },
+   {
+    "claim": "$18B Jupiter loan 'in force majeure' / Oracle credit event",
+    "why": "The loan is the landlord's, its quote predates the notice, and no Oracle guarantee is disclosed"
+   },
+   {
+    "claim": "OpenAI targets $30B at $1.4T valuation (agent_4)",
+    "why": "Single headline, not confirmed in my search; it should not move bull weights alone"
+   },
+   {
+    "claim": "Burry 'WorldCom' comparison (agent_3)",
+    "why": "Named-expert opinion on an already-disclosed ASC 606 treatment. A lead, not a new fact"
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "fact: Jupiter force majeure and $18B loan (round-1 supervisor key driver; agents 1 and 2)",
+   "from": "$18B Jupiter project loan quoted at ~89-91c after the Sep 24 force-majeure notice",
+   "to": "Oracle (tenant) sent the notice to the developer on Sep 24 to protect against a missed 2028 online date; the $18B loan is the landlord's (no Oracle guarantee disclosed), quoted at 89-91c on Sep 18, before the notice",
+   "why": "TechCrunch/SiliconANGLE/ENR 2026-09-24 and r40.io (quote dated 2026-09-18, borrower STACK/BorderPlex)."
+  },
+  {
+   "item": "fair value",
+   "from": 158.0,
+   "to": 161.0,
+   "why": "agent_3's unreconciled scenarios and agent_1's below-range FY29 lift the corrected agent mean to ~$159, and a consensus-anchored build (NTM ~$11.2 x 14.5-15x; EV leg ~$164) gives $162-168."
+  },
+  {
+   "item": "P(close on 2026-11-04 >= K) for K = 114.73-137.67",
+   "from": [
+    0.9024,
+    0.8252,
+    0.724,
+    0.6546,
+    0.5816
+   ],
+   "to": [
+    0.902,
+    0.825,
+    0.725,
+    0.657,
+    0.586
+   ],
+   "why": "agent_4's 1-month ladder sits ~3pts below its own stated median; a consistent lognormal at ~$142.9, sigma ~16.9%."
+  },
+  {
+   "item": "P(close on 2026-11-04 >= K) for K = 143.41-172.09",
+   "from": [
+    0.4842,
+    0.3918,
+    0.3278,
+    0.2704,
+    0.1902,
+    0.1294
+   ],
+   "to": [
+    0.49,
+    0.398,
+    0.335,
+    0.278,
+    0.197,
+    0.135
+   ],
+   "why": "Same consistency fix."
+  },
+  {
+   "item": "fact: agent_3 scenario mean vs fair value",
+   "from": 134.0,
+   "to": 140.7,
+   "why": "Its weights (27/50/23) on $85/$138/$212 give $140.7; its ladder integrates to ~$147."
+  },
+  {
+   "item": "fact: agent_1 FY29 EPS",
+   "from": 12.6,
+   "to": 13.0,
+   "why": "$12.6 is below the lowest Zacks-implied non-GAAP FY29 (low estimate $10.77 / $9.14 x $11.00 = $13.0) and below the ~$15 path to the $21 FY30 target."
+  },
+  {
+   "item": "fact: Series D preferred classification (agent_2)",
+   "from": "debt-like $5B",
+   "to": "$4,954M equity-classified mandatory convertible; debt-like treatment acceptable only with no conversion shares (agent_2 complies)",
+   "why": "10-Q balance sheet, 2026-08-31."
+  }
+ ],
+ "summary": "ORCL at $143.41 trades at 14.6x CY27 consensus EPS ($9.81), 33% below a verified 10-peer median of 21.65x, a discount the agents rightly hold through Oct-2027 given negative FCF through the FY27-28 peak-capex years, BBB-/Baa2-negative credit and OpenAI concentration. Round-2 fair values ($134-171, mean $158) moved almost exactly as my round-1 corrections predicted, which is partly anchoring. Independence survives only in the EPS haircut, where the consensus-implied FY29 (~$15.4 from 5 estimates) is backed by management's $21 FY30 target, so the 15% haircuts lean bearish. I corrected my own round-1 Jupiter claim: the force-majeure notice protects Oracle as tenant and the $18B loan is the landlord's, not an Oracle credit event. S&P's stable outlook is confirmed, but S&P ties it to positive FCF in 2028, which makes the June-2027 FY28 guide the key credit event. Reconciled fair value is $161 (~12% upside); I keep the agents' mean 12-month ladder (P(>=143) ~0.55) at low confidence, with the thesis break at $100.",
+ "sizing": {
+  "max_weight_pct": 4.0,
+  "confidence": 0.39,
+  "entry": "2 tranches over ~10 weeks: half after the October Investor Day, half after Q2 FY27 on Dec 14; do not add into the Jan-May 2027 financing window unless it is priced cleanly",
+  "overlap": "NVDA and AVGO (same AI-capex cycle; Oracle is a large GPU buyer and OpenAI is a shared exposure), GOOGL (competing cloud, same capex narrative) and VST (data-center power).",
+  "reason": "A liquid mega-cap with no listing or lock-up issues, but at ~56% vol it needs roughly a 20-25% total return to beat SPY's Sharpe, and the ladder puts that near 0.37-0.40. The fat left tail is credit/OpenAI. Cap it at ~4% (~$400) and stage entry around the two events that should settle the FCF date and margins.",
+  "open_flags": [
+   "Credit: S&P BBB- (one notch above junk) states the rating could be pressured if Oracle fails to generate positive FCF in 2028, management gives no FCF-positive date, Moody's Baa2 is on negative outlook, and $20-40B of new debt or equity is due Jan-May 2027"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Oracle 10-Q for the quarter ended 2026-08-31",
+   "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm",
+   "date": "2026-09"
+  },
+  {
+   "title": "Oracle Q1 FY2027 results (8-K Ex.99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-ex99_1.htm",
+   "date": "2026-09-10"
+  },
+  {
+   "title": "Nasdaq/Zacks earnings forecast API (ORCL, AMZN, GOOGL, MSFT, NOW, WDAY)",
+   "url": "https://api.nasdaq.com/api/analyst/ORCL/earnings-forecast",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "Yahoo Finance NOW analysis (CY27 $5.01)",
+   "url": "https://finance.yahoo.com/quote/NOW/analysis/",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "Yahoo Finance WDAY analysis (FY Jan-28 $13.23)",
+   "url": "https://finance.yahoo.com/quote/WDAY/analysis/",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "TechCrunch: Oracle sends force majeure notice on its New Mexico Stargate data center",
+   "url": "https://techcrunch.com/2026/09/24/oracle-sends-force-majeure-notice-on-its-new-mexico-stargate-data-center/",
+   "date": "2026-09-24"
+  },
+  {
+   "title": "SiliconANGLE: Oracle issues force majeure notice to developer of New Mexico data center over energy delays",
+   "url": "https://siliconangle.com/2026/09/24/oracle-issues-force-majeure-notice-to-developer-of-new-mexico-data-center-over-energy-delays/",
+   "date": "2026-09-24"
+  },
+  {
+   "title": "r40.io: Oracle's landlord borrowed the $18 billion (loan quoted 89-91c on Sep 18)",
+   "url": "https://r40.io/news/orcl-18bn-jupiter-loan-is-the-landlords/",
+   "date": "2026-09-18"
+  },
+  {
+   "title": "Fortune: S&P kept Oracle investment grade. Its own numbers don't support that call",
+   "url": "https://fortune.com/2026/09/18/sp-kept-oracle-investment-grade-its-own-numbers-dont-support-that-call/",
+   "date": "2026-09-18"
+  },
+  {
+   "title": "heise: S&P downgrades Oracle to BBB-",
+   "url": "https://www.heise.de/en/news/S-P-downgrades-Oracle-to-BBB-only-one-notch-above-junk-level-11363472.html",
+   "date": "2026-07-09"
+  },
+  {
+   "title": "S&P Global Ratings webinar: Oracle Downgrade Explained (page exists; 403 to fetch)",
+   "url": "https://www.spglobal.com/ratings/en/events/webinars/oracle-downgrade-explained",
+   "date": "2026-09"
+  },
+  {
+   "title": "MarketScreener: Oracle expects $225 billion in revenue by fiscal 2030 ($21 EPS)",
+   "url": "https://www.marketscreener.com/news/oracle-expects-225-billion-in-revenue-by-fiscal-2030-ce7d5adddb8bf021",
+   "date": "2025-10-16"
+  },
+  {
+   "title": "Axios: OpenAI's annual recurring revenue nears $70B",
+   "url": "https://www.axios.com/2026/09/29/scoop-openais-annual-recurring-revenue-nears-70b",
+   "date": "2026-09-29"
+  },
+  {
+   "title": "Benzinga: Michael Burry raises red flag on Oracle's $664B backlog",
+   "url": "https://www.benzinga.com/markets/equities/26/10/62154739/michael-burry-raises-red-flag-on-oracles-664b-backlog-and-ai-spending-the-customer-is-now-the-lender",
+   "date": "2026-10"
+  },
+  {
+   "title": "Oracle IR: Financial Analyst Meeting held October 16, 2025",
+   "url": "https://investor.oracle.com/investor-news/news-details/2025/ORACLE-FINANCIAL-ANALYST-MEETING-TO-BE-HELD-OCTOBER-16-2025/default.aspx",
+   "date": "2025"
+  }
+ ]
+}

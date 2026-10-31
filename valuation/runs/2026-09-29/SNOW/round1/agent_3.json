@@ -1,0 +1,91 @@
+{
+  "symbol": "SNOW", "agent_id": "agent_3", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 84, "p": 0.99}, {"K": 135, "p": 0.97}, {"K": 169, "p": 0.93}, {"K": 202, "p": 0.865},
+    {"K": 236, "p": 0.78}, {"K": 270, "p": 0.685}, {"K": 304, "p": 0.59}, {"K": 338, "p": 0.495},
+    {"K": 371, "p": 0.415}, {"K": 405, "p": 0.34}, {"K": 456, "p": 0.25}, {"K": 506, "p": 0.18},
+    {"K": 591, "p": 0.105}, {"K": 675, "p": 0.06}, {"K": 844, "p": 0.02}
+  ],
+  "ladder_1m": [
+    {"K": 270.00, "p": 0.92}, {"K": 286.88, "p": 0.845}, {"K": 303.75, "p": 0.745}, {"K": 313.88, "p": 0.675},
+    {"K": 324.00, "p": 0.60}, {"K": 337.50, "p": 0.50}, {"K": 351.00, "p": 0.40}, {"K": 361.12, "p": 0.335},
+    {"K": 371.25, "p": 0.275}, {"K": 388.12, "p": 0.19}, {"K": 405.00, "p": 0.125}
+  ],
+  "one_month_reasoning": "No earnings in the window: Q2 FY27 was reported 2026-09-02 and Q3 FY27 should land around late Nov/early Dec, after 2026-10-30. In-window items are minor: the company's motion to dismiss the securities class action is due 2026-10-13 (a filing, not a ruling); the $3.75B zero-coupon convertible (priced 2026-09-28, conversion prices ~$484/$500, capped calls to $820) is done, so convert-arb short hedging pressure that knocked the stock ~4% should be mostly spent; a Form 144 insider sale notice (2026-09-27) adds modest supply. Post-earnings drift from the +20% Sep-2 gap has already fully reversed (380 -> ~330s), so no drift edge either way. Hyperscaler earnings in late October (cloud consumption read-through) are the main macro swing factor. With no directional edge I centre the distribution on spot $337.50 with ~16% monthly vol (between realized 62%/3.5 = 17.7% and a lower forward vol after the April tariff crash drops out).",
+  "fair_value": {
+    "value": 310.0,
+    "method": "Blend of EV/NTM sales (13x ~$9.4B NTM revenue at Sep-2027 -> ~$322), SBC-aware FCF multiple (45x ~$2.45B NTM adj. FCF -> ~$290) and forward P/E (85x ~$3.70 NTM non-GAAP EPS -> ~$315), plus ~$1.7B net cash, on ~385M diluted shares; blended ~$310, slightly below spot.",
+    "methods": [
+      {"name": "EV/sales", "value": 322.0, "weight": 0.4,
+       "inputs": "NTM revenue at Sep-2027 ~$9.4B x 13x EV/sales = $122B EV + $1.7B net cash, / 385M diluted shares",
+       "inputs_detail": [
+         {"input": "FY28 (Jan-2028) revenue consensus", "value": "$8.11B", "basis": "consensus", "source_ids": [5], "derivation": ""},
+         {"input": "NTM revenue as of Sep-2027", "value": "$9.4B", "basis": "estimate", "source_ids": [1, 5], "derivation": "FY28 consensus $8.11B rolled forward ~2/3 year at ~25% growth (decel from 36% FY27 guide in source 1 toward mid-20s, as in bear/bull framework source 7): 8.11 x 1.25^0.67 ~ 9.4"},
+         {"input": "EV/NTM sales multiple", "value": "13x", "basis": "judgment", "source_ids": [7, 3], "derivation": "Source 7 brackets forward product-revenue multiples between 12.2x (bear) and 20.5x (bull); stock currently ~17x NTM on ~$127B EV. As growth decelerates from 37% toward ~25% and GAAP losses/SBC (~30% of revenue) persist, a skeptic uses the lower-middle, 13x"},
+         {"input": "Net cash", "value": "$1.7B", "basis": "reported", "source_ids": [2, 9], "derivation": "Cash+ST $2.34B + LT investments $1.98B - converts $2.28B = ~$2.0B; new $3.75B converts refinance 2027 notes and add equal cash, less ~$0.38B capped call cost -> ~$1.7B"},
+         {"input": "Diluted shares Sep-2027", "value": "385M", "basis": "estimate", "source_ids": [2], "derivation": "Q2 FY27 diluted weighted shares 377.9M plus ~2% net dilution from SBC ($456M/quarter) partly offset by buybacks ($300M YTD)"}
+       ]},
+      {"name": "FCF yield", "value": 290.0, "weight": 0.3,
+       "inputs": "NTM adj. FCF ~$2.45B (26% margin on $9.4B) x 45x = $110B + $1.7B net cash, / 385M",
+       "inputs_detail": [
+         {"input": "Adj. FCF margin", "value": "26%", "basis": "estimate", "source_ids": [1, 2], "derivation": "FY27 guide 23% adj. FCF margin; assume ~3pt expansion by NTM Sep-2027"},
+         {"input": "FCF multiple", "value": "45x", "basis": "judgment", "source_ids": [4, 6], "derivation": "Bears cite ~40x FCF (55x after SBC/dilution) as already rich in source 4; SBC ~$1.6B in FY26 (source 6) means true owner FCF is far lower, so no premium above ~45x for a ~25% grower"},
+         {"input": "Stock-based compensation", "value": "$456M in Q2 FY27", "basis": "reported", "source_ids": [2], "derivation": ""}
+       ]},
+      {"name": "P/E", "value": 315.0, "weight": 0.3,
+       "inputs": "NTM non-GAAP EPS at Sep-2027 ~$3.70 x 85x = ~$315",
+       "inputs_detail": [
+         {"input": "FY28 non-GAAP EPS consensus", "value": "$3.02", "basis": "consensus", "source_ids": [5], "derivation": ""},
+         {"input": "NTM EPS at Sep-2027", "value": "$3.70", "basis": "estimate", "source_ids": [5, 2], "derivation": "FY28 $3.02 rolled ~2/3 year at ~35% EPS growth (margin expansion from 14.5% op margin guide); Q2 FY27 run-rate $0.62/qtr supports trajectory"},
+         {"input": "P/E multiple", "value": "85x", "basis": "judgment", "source_ids": [4, 8], "derivation": "Bear writeups cite ~109x forward P/E as excessive (source 4); TIKR model assumes exit P/E ~78.5x (source 8). 85x sits between, still pricing mid-20s growth"}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 200.0, "prob": 0.25, "story": "Consumption slows as AI-driven efficiency and Iceberg/open formats reduce storage/compute lock-in, Databricks SQL (>$1B run-rate, >100% growth) takes warehouse share, product growth decelerates toward ~20% by FY28, and the software multiple compresses to ~9-10x NTM sales. SBC dilution and a possible 2027 Databricks IPO providing a cheaper-growth alternative weigh further."},
+    "base": {"price": 340.0, "prob": 0.5, "story": "Growth decelerates from 37% to high-20s as comps harden; margins expand ~2-3 pts; multiple compresses ~20% from ~17x to ~13-14x NTM sales, roughly offsetting ~25-30% revenue growth, leaving the stock near current levels."},
+    "bull": {"price": 500.0, "prob": 0.25, "story": "AI workloads (Cortex, agents, coding) keep product growth in the mid-30s through FY28, NRR climbs past 128%, operating margin guidance steps up, and the multiple holds ~17x; stock approaches the convert conversion prices (~$484-$500) and top sell-side targets ($500-525)."}
+  },
+  "thesis_break_price": 220.0,
+  "thesis_break_reason": "Below ~$220 (about -35%, ~9x NTM sales) the market would be pricing growth falling to ~20% or lower with NRR sliding toward 115%, i.e. the post-Q2 reacceleration was a one-off. That is a fundamental break rather than ordinary 60%-vol noise, though note the stock already visited $118 in the April 2026 tariff crash, so a macro liquidation can reach this level without a fundamental cause.",
+  "catalysts": [
+    {"date": "2026-10-13", "event": "Motion to dismiss due in securities class action over consumption/efficiency disclosures (N.D. Cal.)", "direction": "?"},
+    {"date": "2026-10", "event": "Hyperscaler (AWS/Azure/GCP) Q3 earnings: cloud consumption read-through", "direction": "?"},
+    {"date": "2026-12", "event": "Q3 FY27 earnings (guide $1.588-1.593B product revenue, 37-38%) and first FY28 commentary", "direction": "?"},
+    {"date": "2027-03", "event": "Q4 FY27 earnings and initial FY28 product revenue / margin guidance: key deceleration test", "direction": "-"},
+    {"date": "2027", "event": "Possible Databricks IPO, giving investors a faster-growing alternative and public comps", "direction": "-"},
+    {"date": "2027-06", "event": "Snowflake Summit product launches (agentic AI) and Q1 FY28 results", "direction": "+"},
+    {"date": "2027-09", "event": "Q2 FY28 earnings ahead of horizon", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Durability of the 37% product growth reacceleration versus a tough FY28 comp and optimisation risk",
+    "Databricks share gains in SQL warehousing and a possible 2027 IPO",
+    "Multiple regime for high-growth software after the April 2026 crash (stock went 285 -> 118 -> 384 within a year)",
+    "SBC (~30% of revenue) and dilution; GAAP losses persist (FY26 net loss $1.33B)",
+    "Outcome of the securities class action and 2024 breach MDL (settlements so far small, ~$13.5M)",
+    "Use of convert proceeds for acquisitions (potential value-destructive M&A)"
+  ],
+  "reasoning": "Starting point: SNOW at $337.50 after a violent year (April tariff crash to $118, then Q1 and Q2 beats; Q2 FY27 product revenue +37% with FY27 guide raised to $6.07B/+36%, op margin 14.5%, adj FCF margin 23%, RPO $9.0B +30%, NRR 126%). The stock gapped to ~$380 on Sep 3 and has since given back the entire gap, partly on a $3.75B zero-coupon convert (priced Sep 28) and a Form 144 insider sale notice. Skeptic lane findings: (1) valuation is the core bear point: ~17x NTM sales, ~100x forward non-GAAP EPS, GAAP loss-making with SBC ~30% of revenue and ~$1B of insider selling over the past year; (2) short interest ~5.7% of float, ~$6B notional, near highs; (3) securities class action alleging efficiency gains/Iceberg/tiered storage would hurt consumption is past the amended complaint stage with MTD due Oct 13; the 2024 data-breach MDL has produced only small settlements so far; (4) Databricks is growing 65-80% at a $5-7B run-rate, with its SQL warehouse >$1B and growing >100%, which is the most credible long-run share threat; (5) credit is not a concern: net cash ~$1.7B, the new convert carries a 0% coupon and 47-52% premium, which is a vote of confidence from convert buyers rather than distress. Weighing honestly: the fundamentals just reaccelerated and 43 of 50 analysts are Buy (avg target ~$414-425), so the bear case rests on multiple compression rather than a broken business. My SBC-aware blended fair value is ~$310 (EV/sales 13x, FCF 45x, P/E 85x) versus consensus targets ~$415; I set the 12-month median at roughly spot (~$335-340) because growth of ~25-30% offsets expected multiple compression, and I use a wide distribution (~45-50% effective vol, below the 62% realized that includes the tariff crash) with a modestly fat left tail. Scenario mean (~$345) is near the ladder's implied mean. One-month: no earnings in window; neutral, centred on spot. Research limits: SEC.gov direct downloads were rate-limited (used WebFetch of the 8-K instead), Twelve Data/Alpha Vantage estimate endpoints were unavailable, Seeking Alpha downgrade article was paywalled (403); no X/prediction-market data was used.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "Snowflake: Q2 Fiscal 2027 Revenue Rises 35% To $1.55 Billion As Product Revenue Guidance Is Raised", "url": "https://pulse2.com/snowflake-q2-fiscal-2027-revenue-rises-35-to-1-55-billion-as-product-revenue-guidance-is-raised/amp/", "date": "2026-09-02", "type": "press", "in_lane": false},
+    {"title": "Snowflake Inc. Form 8-K exhibit: Q2 FY2027 earnings release", "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm", "date": "2026-09-02", "type": "filing", "in_lane": false},
+    {"title": "Snowflake (SNOW) Stock Forecast & Analyst Price Targets", "url": "https://stockanalysis.com/stocks/snow/forecast/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Snowflake Stock Downgrade / Bear Case search roundup incl. 'Snowflake Inc. (SNOW): A Bear Case Theory'", "url": "https://finance.yahoo.com/news/snowflake-inc-snow-bear-case-001802253.html", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Snowflake fiscal 2028 consensus EPS and revenue (48 analysts)", "url": "https://finance.yahoo.com/quote/SNOW/analysis/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Snowflake Is Up Nearly 50% in 2026 - What Are Short Sellers Betting On?", "url": "https://finance.yahoo.com/markets/stocks/articles/snowflake-nearly-50-2026-short-134000649.html", "date": "2026-08-30", "type": "press", "in_lane": true},
+    {"title": "Snowflake SNOW stock prediction: $415 bull case vs $232 bear case", "url": "https://financefeeds.com/snow-stock-prediction-415-bull-case-232-bear-case/", "date": "2026-08-28", "type": "newsletter", "in_lane": true},
+    {"title": "Snowflake Stock Crashed 56% and Then Nearly Fully Recovered (TIKR)", "url": "https://www.tikr.com/blog/snowflake-stock-crashed-56-and-then-nearly-fully-recovered-here-is-what-the-ai-data-cloud-is-actually-worth", "date": "2026", "type": "newsletter", "in_lane": false},
+    {"title": "Snowflake Prices Upsized Private Placement of $3.75 Billion of 0.00% Convertible Senior Notes", "url": "https://www.businesswire.com/news/home/20260928854921/en/Snowflake-Prices-Upsized-Private-Placement-of-$3.75-Billion-of-0.00-Convertible-Senior-Notes", "date": "2026-09-28", "type": "company", "in_lane": true},
+    {"title": "Snowflake Shares Fall After $3.5 Billion Convertible Note Offering", "url": "https://finance.yahoo.com/markets/stocks/articles/snowflake-shares-fall-3-5-120618001.html", "date": "2026-09-28", "type": "press", "in_lane": true},
+    {"title": "Why is Snowflake stock sliding today? (Investing.com)", "url": "https://www.investing.com/news/stock-market-news/why-is-snowflake-stock-sliding-today-93CH-4920105", "date": "2026-09-28", "type": "press", "in_lane": true},
+    {"title": "Snowflake CEO Form 4 filings (RSU tax withholding, Sep 2026)", "url": "https://www.sec.gov/Archives/edgar/data/0001640147/000162828026063112/wk-form4_1790118970.xml", "date": "2026-09-21", "type": "filing", "in_lane": true},
+    {"title": "In re Snowflake, Inc., Data Security Breach Litigation (MDL 3126) - Mealey's: Trio of dismissal rulings", "url": "https://www.mealeys.com/mealeys/articles/2406245/trio-of-dismissal-rulings-issued-in-data-breach-snowflake-mdl", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Snowflake Inc. Securities Fraud Class Action (Kessler Topaz)", "url": "https://www.ktmc.com/snow-snowflake-inc-class-action-lawsuit/", "date": "2026", "type": "other", "in_lane": true},
+    {"title": "Snowflake Form 10-Q for quarter ended July 31, 2026 (litigation note: MTD due Oct 13, 2026)", "url": "https://www.sec.gov/Archives/edgar/data/0001640147/000164014726000037/snow-20260731.htm", "date": "2026-09", "type": "filing", "in_lane": true},
+    {"title": "Databricks IPO outlook: $190 billion valuation, 80% growth, and the Snowflake comparison", "url": "https://www.investing.com/news/stock-market-news/databricks-ipo-outlook-190-billion-valuation-80-growth-and-the-snowflake-comparison-93CH-4858817", "date": "2026", "type": "press", "in_lane": true},
+    {"title": "Snowflake vs Databricks 2026 (Databricks SQL >$1B run-rate)", "url": "https://tech-insider.org/snowflake-vs-databricks-2026-2/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Snowflake Stock Is Down 35% in 2026. Here's What's Driving the Pressure (TIKR)", "url": "https://www.tikr.com/blog/snowflake-stock-is-down-35-in-2026-heres-whats-driving-the-pressure", "date": "2026-05", "type": "newsletter", "in_lane": true},
+    {"title": "These Analysts Boost Their Forecasts On Snowflake Following Better-Than-Expected Q2 Earnings", "url": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/09/61597230/these-analysts-boost-their-forecasts-on-snowflake-following-better-than-expected-q2-earnings", "date": "2026-09-03", "type": "sell-side", "in_lane": false}
+  ]
+}

@@ -1,0 +1,1926 @@
+{
+ "symbol": "META",
+ "as_of": "2026-10-30",
+ "research_as_of": "META",
+ "spot": 614.99,
+ "agents": [
+  {
+   "agent": "agent_1",
+   "fair_value": 715.83,
+   "method_text": "Research target (12m) $715.83 per current pre-split share: 6-driver build (ad impressions x price per ad, FoA other revenue, FoA margin, RL loss, capex) valued at the horizon on SOTP (FoA 16.5x NTM EBIT, RL -$25B; w 0.45), 20x NTM P/E (w 0.35) and 10x NTM EBITDA (w 0.20).",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 691.22,
+     "weight": 0.35,
+     "inputs": "NTM EPS at horizon ~$34.56 (driver build: FY28 EBIT $112.7B, 17% tax, 2,587M shares) x 20.0x",
+     "inputs_detail": [
+      {
+       "input": "NTM EPS at horizon",
+       "value": "$34.56",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        6,
+        21
+       ],
+       "fact_ids": [
+        "F33"
+       ],
+       "derivation": "engine: 691.22/20; from the driver build (see model_inputs.inputs_detail)"
+      },
+      {
+       "input": "P/E",
+       "value": "20.0x",
+       "basis": "judgment",
+       "source_ids": [
+        20,
+        19
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm"
+       ],
+       "derivation": "peer median 25.7x; META 18.9x FY27 consensus; discount for capex intensity/negative FCF"
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 680.9,
+     "weight": 0.2,
+     "inputs": "NTM GAAP EBITDA ~$180B (EBIT + D&A of ~21% of revenue) x 10.0x, less net debt at horizon ~$68B and litigation adjustments",
+     "inputs_detail": [
+      {
+       "input": "EV/EBITDA",
+       "value": "10.0x",
+       "basis": "judgment",
+       "source_ids": [
+        20,
+        22
+       ],
+       "fact_ids": [
+        "AMZN.ev_ebitda_ttm",
+        "NFLX.ev_ebitda_ttm"
+       ],
+       "derivation": "trailing peers 15.9-30.3x; D&A share of EBITDA doubles by FY28"
+      },
+      {
+       "input": "net debt at horizon",
+       "value": "~$68.4B",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F104"
+       ],
+       "derivation": "engine bridge: $1.2B + negative FCFF (capex $192B FY27) + dividends"
+      }
+     ]
+    },
+    {
+     "name": "SOTP",
+     "value": 750.49,
+     "weight": 0.45,
+     "inputs": "FoA NTM EBIT ~$122.8B x 16.5x EV/EBIT = $2,026B; Reality Labs -$25B; less net debt and adjustments; / 2,587M shares",
+     "inputs_detail": [
+      {
+       "input": "FoA NTM EBIT",
+       "value": "~$122.8B",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        6,
+        3
+       ],
+       "fact_ids": [],
+       "derivation": "0.25 x FY27 $117.1B + 0.75 x FY28 $124.7B from the driver build"
+      },
+      {
+       "input": "FoA EV/EBIT",
+       "value": "16.5x",
+       "basis": "judgment",
+       "source_ids": [
+        20
+       ],
+       "fact_ids": [],
+       "derivation": "EV/EBIT equivalent of 20x P/E at 17% tax"
+      },
+      {
+       "input": "Reality Labs",
+       "value": "-$25B",
+       "basis": "judgment",
+       "source_ids": [
+        1,
+        3
+       ],
+       "fact_ids": [],
+       "derivation": "scenario value of the venture (see model_inputs)"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 408.93,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 715.83,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 1019.29,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.632,
+   "median": 696.61,
+   "thesis_break": 480.0,
+   "reasoning": "Per-share figures are per CURRENT pre-split share (today's Class A share plus the Class C share it gets in the Jan-2027 dividend; 8-K 2026-10-21); EV is unchanged by the dividend. Evidence, mostly primary: Q3-26 release, 10-Q and call; Q2-26 call; nine prior releases for the guidance record. The core is strong: revenue +26% (impressions +10%, price +14%), Q4 guide $73-76B (+22-27%), and Meta beat the top of its range in 6 of 8 quarters. The debate is cost: FY26 expenses $175-179B (incl. $12.3B legal), capex $135-145B, $454.5B of non-cancelable commitments ($121.4B due 2027), management 'investing aggressively' in 2027, and RL loss ~$15B. Driver build: FY27 revenue $312B (at consensus) from impressions +9% and price +10% plus new AI revenue; FoA margin 51.6% FY25 -> 37.8% FY27 -> 34.5% FY28 as D&A rises with capex that follows the AI capex file ($192B, $236B; above street). FY27 EPS ~$32 (~5% below consensus $33.9). Valuation: SOTP $750 (FoA 16.5x NTM EBIT, RL -$25B), P/E 20x $691, EV/EBITDA 10x $681 -> research target (12m) $715.83, +11% vs $642.62. Scenarios: bear $409 (25%), base $716 (50%), bull $1,019 (25%). Ladder: 75% this scenario mix (within-scenario vol 17-18%) plus 25% a market-anchored lognormal (median $650, sigma 33%, about the stock's 43% realized vol trimmed for non-earnings periods), since price is the best single forecast. That gives a median of ~$697 and P(>= $643) = 0.59. Not driver-linked: the RL venture value (-$25B), the litigation and investment adjustments, and RL revenue. Research limits: the Q3 call transcript was reached at a content_files URL; no option data was used."
+  },
+  {
+   "agent": "agent_2",
+   "fair_value": 690.77,
+   "method_text": "Driver-led 3-year build (impressions x price per ad for Family of Apps, FoA margin, RL loss, capex, D&A) valued at the horizon: SOTP $718 (40%), P/E 19x NTM GAAP EPS ~$35.8 = $669 (35%), EV/EBITDA 10.5x = $677 (25%); research target (12m) $691 per current pre-split share.",
+   "methods": [
+    {
+     "name": "SOTP",
+     "value": 717.93,
+     "weight": 0.4,
+     "inputs": "FoA NTM EBIT $128.0B (0.19 x FY2027 $112.7B + 0.81 x FY2028 $131.6B) x 16x EV/EBIT = $2,048B; RL -$94.1B; net debt at horizon -$67B; accrued legal -$19.9B; litigation -$10.5B; / 2,587M shares",
+     "inputs_detail": [
+      {
+       "input": "driver:imp_idx",
+       "value": "base 100.0; FY2026-28 [113.2, 122.26, 129.6]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        6,
+        5,
+        1,
+        10
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 +13.2% = average of Q1 +19%, Q2 +14%, Q3 +10% and an assumed Q4 +10% (Q3 call: growth from engagement, users and ad load, 'healthy across all regions' [10]). FY2027 +8%: DAP only +3% YoY in Sep-26 [1], so impressions must come from time spent (Reels time +4%, Threads time per user +20% [10]) and new surfaces (Threads, WhatsApp Status) at low ad load; Q3 already decelerated to +10%. FY2028 +6% as DAP growth stays ~2-3% and ad-load gains fade.",
+       "confidence": "medium",
+       "variant_view": "Bull: Threads/WhatsApp Status ad load lifts FY2027 impressions +11% (+3% level, ~+$20/share); bear: +4% (-4% level)."
+      },
+      {
+       "input": "driver:ppa_idx",
+       "value": "base 100.0; FY2026-28 [113.8, 124.04, 132.72]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        6,
+        5,
+        1,
+        10,
+        13,
+        14,
+        18
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 +13.8% so that FoA revenue (impressions x price) = $256.0B, i.e. Q4-26 total revenue ~$76.5B (top of the $73-76B guide, see guidance_check[0]). FY2027 +9%: industry demand still strong (WARC social ad spend +14.6% in 2027 [13]; IAB US social +16.5% in 2026 [14]) and Meta's AI ranking gains raise conversions (GEM +9.6% app-ad conversions, Andromeda +1.4% [10]), but price growth slows as impression growth shifts to lower-monetising surfaces/regions [10] and peers show pricing normalising (Snap CPM +10% with ad revenue +9% [18]). FY2028 +7%.",
+       "confidence": "medium",
+       "variant_view": "Consensus FY2027 revenue $311.3B implies ~+12% price with +8% volume; at that path value rises ~$20/share. Bear: price +3% if AI-driven conversion gains are competed away."
+      },
+      {
+       "input": "driver:foa_margin",
+       "value": "base 0.5155; FY2026-28 [0.389, 0.374, 0.385]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        2,
+        21,
+        22,
+        23
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026: total opex at the $177B midpoint of the $175-179B guide [1] (includes the $9.89B Q3 legal charge, $2.4B Q2 legal charge and $1.18B severance) on $258.1B revenue = EBIT $81.1B; plus RL loss $18.5B = FoA EBIT $99.6B / $256.0B = 38.9% (44.2% ex the $13.5B of one-offs). FY2027 37.4%: opex ex one-offs grows ~26% (vs ~39% in 2026) because D&A rises ~$19B (see driver da_usd), third-party cloud contracts start (CoreWeave $21B through 2032 [21]; Nebius $12B dedicated from early 2027 [22]; $121.4B of non-cancelable commitments due in 2027 vs $45.9B for the rest of 2026 [2]) and memory/component inflation (TrendForce 4Q26 DRAM contract +10-15% QoQ [23]). FY2028 38.5% as revenue growth catches up with a flatter D&A ramp.",
+       "confidence": "medium",
+       "variant_view": "Consensus FY2027 EPS $33.92 implies a total EBIT margin near 34% (FoA ~39%), 2 pts above ours: +~$25/share. A larger D&A or cloud bill could take FoA to ~34% (-$35/share)."
+      },
+      {
+       "input": "driver:rl_loss",
+       "value": "base 19193.0; FY2026-28 [18500.0, 15500.0, 14000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        6,
+        5
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 $18.5B = guide midpoint (YTD loss $12.78B = 4.03 + 4.62 + 4.13 [6][5][1], implying Q4 ~$5.7B, in line with Q4 seasonality: Q4-25 loss $6.0B [4]). FY2027 $15.5B, 3% above the ~$15B indication: no RL loss guide has a measurable record, and RL revenue is shrinking (Q3 $443M vs $470M [1]). FY2028 $14.0B.",
+       "confidence": "medium",
+       "variant_view": "If RL losses stay ~$19B, the P/E leg loses ~$25/share and the SOTP RL part ~$10/share."
+      },
+      {
+       "input": "net debt at horizon",
+       "value": "67,000",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        24
+       ],
+       "fact_ids": [
+        "F104"
+       ],
+       "derivation": "Q4-26: NOPAT ~$22.3B (Q4 EBIT 76.5 - (177 - 127.1 YTD opex) = $26.6B x 0.84) + D&A $8.5B + half of SBC ~$3.7B (rest offset by RSU tax withholding) - capex ~$55B - dividends $1.35B = -$21B; 2027 to Oct-23 (0.81 yr): (NOPAT $81.6B + D&A $47B + SBC net $16B - capex $192B - dividends $5.4B) x 0.81 = -$43B; plus ~$2B interest drag: 1.2 + 21 + 43 + 2 = ~$67B",
+       "confidence": "medium",
+       "variant_view": "If capex follows the AI-capex high case, net debt at the horizon is ~$40B higher (-$15/share)."
+      },
+      {
+       "input": "SOTP: Family of Apps EV/EBIT",
+       "value": "16.0x on NTM FoA EBIT $128.0B",
+       "basis": "judgment",
+       "source_ids": [
+        12,
+        11
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm"
+       ],
+       "derivation": "19x P/E x (1 - 16% tax) = 16.0x EV/EBIT for a near-net-cash company; metric = 0.19 x FY2027 FoA EBIT $112.7B + 0.81 x FY2028 $131.6B",
+       "confidence": "medium",
+       "variant_view": "At 18x (GOOGL-like EV/EBIT incl. growth) the SOTP leg gains ~$100/share."
+      },
+      {
+       "input": "SOTP: Reality Labs value",
+       "value": "-$94.1B",
+       "basis": "judgment",
+       "source_ids": [
+        1,
+        10,
+        4
+       ],
+       "fact_ids": [],
+       "derivation": "-(0.6 x $44.0B PV of narrowing after-tax losses + 0.4 x $15.5B x 0.84 x 13); losses $15B in 2027 'narrowing' [1][10]",
+       "confidence": "low",
+       "variant_view": "Market may give the glasses franchise positive option value (Ray-Ban Meta); RL at 0 adds ~$36/share to the SOTP leg."
+      },
+      {
+       "input": "adjustment: accrued legal liabilities",
+       "value": "-$19,881M",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "Legal-related accruals $11,577M current + $8,304M non-current at 2026-09-30 [2]",
+       "confidence": "high"
+      },
+      {
+       "input": "adjustment: unaccrued youth-litigation exposure",
+       "value": "-$30,000M x 35%",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        27,
+        28
+       ],
+       "fact_ids": [],
+       "derivation": "NM $25B civil penalty + 15% post-judgment interest under appeal, accrual undisclosed [2]; ~1,200 school-district cases left after the Breathitt settlement [27]; LA jury verdict [28]; $30B further cost with 35% probability = -$10.5B",
+       "confidence": "low",
+       "variant_view": "A full NM affirmance plus MDL losses could cost $50B+ (-$12/share more); an appellate reversal makes this ~0 (+$4/share)."
+      }
+     ]
+    },
+    {
+     "name": "P/E",
+     "value": 669.35,
+     "weight": 0.35,
+     "inputs": "NTM GAAP EPS at the horizon ~$35.8 (EBIT ~$113.8B less interest, 16% tax, 2,587M shares; RL losses included) x 19x",
+     "inputs_detail": [
+      {
+       "input": "driver:imp_idx",
+       "value": "base 100.0; FY2026-28 [113.2, 122.26, 129.6]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        6,
+        5,
+        1,
+        10
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 +13.2% = average of Q1 +19%, Q2 +14%, Q3 +10% and an assumed Q4 +10% (Q3 call: growth from engagement, users and ad load, 'healthy across all regions' [10]). FY2027 +8%: DAP only +3% YoY in Sep-26 [1], so impressions must come from time spent (Reels time +4%, Threads time per user +20% [10]) and new surfaces (Threads, WhatsApp Status) at low ad load; Q3 already decelerated to +10%. FY2028 +6% as DAP growth stays ~2-3% and ad-load gains fade.",
+       "confidence": "medium",
+       "variant_view": "Bull: Threads/WhatsApp Status ad load lifts FY2027 impressions +11% (+3% level, ~+$20/share); bear: +4% (-4% level)."
+      },
+      {
+       "input": "driver:ppa_idx",
+       "value": "base 100.0; FY2026-28 [113.8, 124.04, 132.72]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        6,
+        5,
+        1,
+        10,
+        13,
+        14,
+        18
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 +13.8% so that FoA revenue (impressions x price) = $256.0B, i.e. Q4-26 total revenue ~$76.5B (top of the $73-76B guide, see guidance_check[0]). FY2027 +9%: industry demand still strong (WARC social ad spend +14.6% in 2027 [13]; IAB US social +16.5% in 2026 [14]) and Meta's AI ranking gains raise conversions (GEM +9.6% app-ad conversions, Andromeda +1.4% [10]), but price growth slows as impression growth shifts to lower-monetising surfaces/regions [10] and peers show pricing normalising (Snap CPM +10% with ad revenue +9% [18]). FY2028 +7%.",
+       "confidence": "medium",
+       "variant_view": "Consensus FY2027 revenue $311.3B implies ~+12% price with +8% volume; at that path value rises ~$20/share. Bear: price +3% if AI-driven conversion gains are competed away."
+      },
+      {
+       "input": "driver:foa_margin",
+       "value": "base 0.5155; FY2026-28 [0.389, 0.374, 0.385]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        2,
+        21,
+        22,
+        23
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026: total opex at the $177B midpoint of the $175-179B guide [1] (includes the $9.89B Q3 legal charge, $2.4B Q2 legal charge and $1.18B severance) on $258.1B revenue = EBIT $81.1B; plus RL loss $18.5B = FoA EBIT $99.6B / $256.0B = 38.9% (44.2% ex the $13.5B of one-offs). FY2027 37.4%: opex ex one-offs grows ~26% (vs ~39% in 2026) because D&A rises ~$19B (see driver da_usd), third-party cloud contracts start (CoreWeave $21B through 2032 [21]; Nebius $12B dedicated from early 2027 [22]; $121.4B of non-cancelable commitments due in 2027 vs $45.9B for the rest of 2026 [2]) and memory/component inflation (TrendForce 4Q26 DRAM contract +10-15% QoQ [23]). FY2028 38.5% as revenue growth catches up with a flatter D&A ramp.",
+       "confidence": "medium",
+       "variant_view": "Consensus FY2027 EPS $33.92 implies a total EBIT margin near 34% (FoA ~39%), 2 pts above ours: +~$25/share. A larger D&A or cloud bill could take FoA to ~34% (-$35/share)."
+      },
+      {
+       "input": "driver:rl_loss",
+       "value": "base 19193.0; FY2026-28 [18500.0, 15500.0, 14000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        6,
+        5
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 $18.5B = guide midpoint (YTD loss $12.78B = 4.03 + 4.62 + 4.13 [6][5][1], implying Q4 ~$5.7B, in line with Q4 seasonality: Q4-25 loss $6.0B [4]). FY2027 $15.5B, 3% above the ~$15B indication: no RL loss guide has a measurable record, and RL revenue is shrinking (Q3 $443M vs $470M [1]). FY2028 $14.0B.",
+       "confidence": "medium",
+       "variant_view": "If RL losses stay ~$19B, the P/E leg loses ~$25/share and the SOTP RL part ~$10/share."
+      },
+      {
+       "input": "driver:capex_usd",
+       "value": "base 72220.0; FY2026-28 [141000.0, 192000.0, 200000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        6,
+        5,
+        1,
+        24
+       ],
+       "fact_ids": [
+        "F57"
+       ],
+       "derivation": "FY2026 $141B: 9M actual $85.83B (19.84 + 31.08 + 34.91 [6][5][1]) + Q4 ~$55B; guide $135-145B. FY2027 $192B = AI-capex file base case for the Big-4 (consensus +10%) applied to Meta: mean of IO Fund $185.6B and S&P $164.0B consensus = $174.8B x 1.10 [24]. FY2028 $200B (growth slows to ~4%; no guide).",
+       "confidence": "medium",
+       "variant_view": "AI-capex file high case (+39% drift) would put FY2027 near $245B: net debt at the horizon ~$40B higher (-$15/share) and higher 2028 D&A."
+      },
+      {
+       "input": "driver:da_usd",
+       "value": "base 18616.0; FY2026-28 [28000.0, 47000.0, 66000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2
+       ],
+       "fact_ids": [
+        "F36"
+       ],
+       "derivation": "FY2026 $28.0B = 9M $19.5B + Q4 ~$8.5B (Q3 depreciation $6.81B plus the Q3/Q4 capex step-up). FY2027 $47B: ~55% of 2026-27 capex is servers/network at a 5.5-year life (half-year convention): 2027 capex 192 x 0.55 / 5.5 / 2 = $9.6B, full-year effect of 2026 additions ~$8B, buildings ~$1.5B. FY2028 $66B on the same arithmetic (full year of 2027 servers +$9.6B, half year of 2028 +$10B).",
+       "confidence": "medium",
+       "variant_view": "A 6-year average life would cut FY2027 D&A by ~$4B; it changes the EV/EBITDA leg only modestly."
+      },
+      {
+       "input": "tax rate",
+       "value": "6.5% / 16% / 16%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3
+       ],
+       "fact_ids": [
+        "F88",
+        "F95"
+       ],
+       "derivation": "FY2026: 9M tax $1,028M on pretax $53,509M plus Q4 at 16% of ~$25B pretax = ~$5.0B / ~$78.5B; FY2027-28 at the 15-17% Q4 guide midpoint (guidance_check[4])",
+       "confidence": "high"
+      },
+      {
+       "input": "shares diluted now",
+       "value": "2,573M",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [
+        "F33"
+       ],
+       "derivation": "Q3-2026 diluted weighted average; cover shares 2,214.5M Class A + 341.8M Class B = 2,556.2M at 2026-10-16 [2]. All per-share figures are per current pre-split share (the Class C dividend on 2027-01-19 doubles the count; EV unchanged)",
+       "confidence": "high"
+      },
+      {
+       "input": "shares annual change",
+       "value": "+0.5%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2
+       ],
+       "fact_ids": [
+        "F30",
+        "F33"
+       ],
+       "derivation": "Diluted count 2,574M FY2025 (F30) vs 2,573M Q3-26 (F33): flat with zero buybacks, because net share settlement withholds shares for RSU taxes; +0.5% allows for SBC of ~11% of revenue with no buyback",
+       "confidence": "medium"
+      },
+      {
+       "input": "P/E horizon multiple (NTM)",
+       "value": "19.0x",
+       "basis": "judgment",
+       "source_ids": [
+        12,
+        11,
+        25
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm",
+        "AMZN.pe_ntm",
+        "AAPL.pe_ntm",
+        "NFLX.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm",
+        "TTD.pe_ntm",
+        "APP.pe_ntm",
+        "ORCL.pe_ntm"
+       ],
+       "derivation": "Peer NTM P/E median 24.7x ex-SNAP (14.6-37.1x) [12]; META now 642.62 / ~33.1 (0.17 x FY2026 $29.24 + 0.83 x FY2027 $33.92 [11]) = 19.4x. 19x keeps today's discount: FCF negative through 2027, unresolved youth-litigation exposure, RL losses inside consolidated EPS. MS shows META at 0.82x 2028 EV/EBIT/growth vs GOOG 0.73x and MSFT 0.96x [25], i.e. no growth-adjusted case for a re-rating either way",
+       "confidence": "medium",
+       "variant_view": "At GOOGL's 18.0x the P/E leg falls ~$35; at the peer median 24.7x it rises ~$200."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 677.3,
+     "weight": 0.25,
+     "inputs": "NTM GAAP EBITDA ~$176B (EBIT ~$113.8B + D&A ~$62.4B) x 10.5x, less net debt $67B and legal adjustments",
+     "inputs_detail": [
+      {
+       "input": "driver:foa_margin",
+       "value": "base 0.5155; FY2026-28 [0.389, 0.374, 0.385]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        2,
+        21,
+        22,
+        23
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026: total opex at the $177B midpoint of the $175-179B guide [1] (includes the $9.89B Q3 legal charge, $2.4B Q2 legal charge and $1.18B severance) on $258.1B revenue = EBIT $81.1B; plus RL loss $18.5B = FoA EBIT $99.6B / $256.0B = 38.9% (44.2% ex the $13.5B of one-offs). FY2027 37.4%: opex ex one-offs grows ~26% (vs ~39% in 2026) because D&A rises ~$19B (see driver da_usd), third-party cloud contracts start (CoreWeave $21B through 2032 [21]; Nebius $12B dedicated from early 2027 [22]; $121.4B of non-cancelable commitments due in 2027 vs $45.9B for the rest of 2026 [2]) and memory/component inflation (TrendForce 4Q26 DRAM contract +10-15% QoQ [23]). FY2028 38.5% as revenue growth catches up with a flatter D&A ramp.",
+       "confidence": "medium",
+       "variant_view": "Consensus FY2027 EPS $33.92 implies a total EBIT margin near 34% (FoA ~39%), 2 pts above ours: +~$25/share. A larger D&A or cloud bill could take FoA to ~34% (-$35/share)."
+      },
+      {
+       "input": "driver:da_usd",
+       "value": "base 18616.0; FY2026-28 [28000.0, 47000.0, 66000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2
+       ],
+       "fact_ids": [
+        "F36"
+       ],
+       "derivation": "FY2026 $28.0B = 9M $19.5B + Q4 ~$8.5B (Q3 depreciation $6.81B plus the Q3/Q4 capex step-up). FY2027 $47B: ~55% of 2026-27 capex is servers/network at a 5.5-year life (half-year convention): 2027 capex 192 x 0.55 / 5.5 / 2 = $9.6B, full-year effect of 2026 additions ~$8B, buildings ~$1.5B. FY2028 $66B on the same arithmetic (full year of 2027 servers +$9.6B, half year of 2028 +$10B).",
+       "confidence": "medium",
+       "variant_view": "A 6-year average life would cut FY2027 D&A by ~$4B; it changes the EV/EBITDA leg only modestly."
+      },
+      {
+       "input": "net debt at horizon",
+       "value": "67,000",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        24
+       ],
+       "fact_ids": [
+        "F104"
+       ],
+       "derivation": "Q4-26: NOPAT ~$22.3B (Q4 EBIT 76.5 - (177 - 127.1 YTD opex) = $26.6B x 0.84) + D&A $8.5B + half of SBC ~$3.7B (rest offset by RSU tax withholding) - capex ~$55B - dividends $1.35B = -$21B; 2027 to Oct-23 (0.81 yr): (NOPAT $81.6B + D&A $47B + SBC net $16B - capex $192B - dividends $5.4B) x 0.81 = -$43B; plus ~$2B interest drag: 1.2 + 21 + 43 + 2 = ~$67B",
+       "confidence": "medium",
+       "variant_view": "If capex follows the AI-capex high case, net debt at the horizon is ~$40B higher (-$15/share)."
+      },
+      {
+       "input": "EV/EBITDA horizon multiple (NTM)",
+       "value": "10.5x",
+       "basis": "judgment",
+       "source_ids": [
+        12,
+        11
+       ],
+       "fact_ids": [
+        "META.ev_ebitda_ttm",
+        "AMZN.ev_ebitda_ttm",
+        "NFLX.ev_ebitda_ttm",
+        "APP.ev_ebitda_ttm",
+        "AAPL.ev_ebitda_ttm"
+       ],
+       "derivation": "META trailing 15.9x; derived current NTM EV/EBITDA ~10.9x (EV $1,655B / ~$152B: consensus FY2027 EPS $33.92 x 2,580M shares / 0.84 = ~$104B pretax, + ~$1B net interest = ~$105B EBIT, + our ~$47B D&A); 10.5x since D&A climbs to ~19% of revenue",
+       "confidence": "medium",
+       "variant_view": "11.5x adds ~$70/share to this leg."
+      },
+      {
+       "input": "adjustment: accrued legal liabilities",
+       "value": "-$19,881M",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "Legal-related accruals $11,577M current + $8,304M non-current at 2026-09-30 [2]",
+       "confidence": "high"
+      },
+      {
+       "input": "adjustment: unaccrued youth-litigation exposure",
+       "value": "-$30,000M x 35%",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        27,
+        28
+       ],
+       "fact_ids": [],
+       "derivation": "NM $25B civil penalty + 15% post-judgment interest under appeal, accrual undisclosed [2]; ~1,200 school-district cases left after the Breathitt settlement [27]; LA jury verdict [28]; $30B further cost with 35% probability = -$10.5B",
+       "confidence": "low",
+       "variant_view": "A full NM affirmance plus MDL losses could cost $50B+ (-$12/share more); an appellate reversal makes this ~0 (+$4/share)."
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 837.82,
+     "weight": 0.0,
+     "inputs": "Cross-check only: peer-median NTM P/E 24.7x (ex-SNAP) x FY2027 consensus EPS $33.92 = $838; shows the market already discounts META ~23% to peers, which the driver build keeps",
+     "inputs_detail": [
+      {
+       "input": "peer median P/E x consensus EPS",
+       "value": "24.7x x $33.92",
+       "basis": "estimate",
+       "source_ids": [
+        12,
+        11
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm"
+       ],
+       "derivation": "Median of 10 peer NTM P/Es ex-SNAP from peers.md; consensus FY2027 EPS from Alpha Vantage (55 analysts)",
+       "confidence": "medium"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 455.0,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 680.0,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 920.0,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.592,
+   "median": 670.56,
+   "thesis_break": 505.0,
+   "reasoning": "Per-share figures are per CURRENT pre-split share (today's Class A share plus the Class C share it receives on 2027-01-19); EV is unchanged by the dividend. Industry lane: the rest of the ad chain says demand is still strong but slowing. WARC's Q3-26 outlook has social ad spend +21.3% in 2026 and +14.6% in 2027, total +11.9% then +8.4% [13]; IAB US social +16.5% in 2026 [14]; Google Search +17%, YouTube +13%, Amazon ads +26%, Reddit ads +64%, Pinterest +18%, Snap ads only +9% in Q2-26 [16-20]; eMarketer puts Meta's 2026 ad revenue at ~$242B [30]. Meta's own impressions growth fell from +19% (Q1) to +10% (Q3) while price per ad rose to +14% [6][5][1]; an agency newsletter reports large CPM rises [31] (lead only, low weight). On the cost side the supply chain says Meta's bill keeps rising: CoreWeave $21B through 2032 [21], Nebius $12B from early 2027 [22], DRAM contract prices still rising [23], neocloud rental pricing up >50% YTD (MS proprietary index, used only as direction) [25], $454.5B of non-cancelable commitments and $355.7B of leases not yet commenced [2]. So the driver build has FY2027 revenue +17.7% (impressions +8%, price +9%), 2.4% under consensus, and FoA margin falling to 37.4% as D&A rises to $47B; FY2027 EPS ~$31 vs $33.92 consensus. Capex follows the AI-capex file base ($141B in 2026, $192B in 2027) [24]. Guidance record: five straight quarterly revenue guides at or above the range (median +3.4% vs midpoint), expense guides inside, capex guides overshot in 2024-25. Valuation: SOTP (FoA 16x EV/EBIT, RL separately at -$94B), P/E 19x and EV/EBITDA 10.5x give a research target (12m) of $691 after -$19.9B accrued legal and -$10.5B probability-weighted litigation. Ladder: bear $455 / base $680 / bull $920 at 25/50/25 with 25% within-scenario vol (total ~35% log vol vs 43% realized); the centre (~$670 median) sits between the price and the research target because the price is the better one-year predictor. No option data used. Research limited: Q3-26 peer results (Alphabet, Snap, Pinterest, Reddit) are not out yet; X/Twitter not used; no prediction market found on a Meta event that matters (Kalshi lists only headcount contracts). In-lane sources: 19 of 31."
+  },
+  {
+   "agent": "agent_3",
+   "fair_value": 621.73,
+   "method_text": "Driver-led build valued by the engine: SOTP (FoA NTM EBIT ~$114.5B x 15.5x, Reality Labs -$60B; $625, w 0.45), consolidated NTM P/E 20x on model EPS ~$31.2 ($609, w 0.35) and NTM EV/EBITDA 10.5x on ~$166B ($636, w 0.20), less ~$15/share of probability-weighted litigation; per current pre-split share.",
+   "methods": [
+    {
+     "name": "SOTP",
+     "value": 624.99,
+     "weight": 0.45,
+     "inputs": "FoA NTM EBIT at horizon $114.5B (0.189 x FY2027 111.8 + 0.811 x FY2028 115.2) x 15.5x = $1,775B; RL own value -$60B; net debt at horizon $68.8B; adjustments -$38.5B; 2,573M shares",
+     "inputs_detail": [
+      {
+       "input": "driver:ad_impressions",
+       "value": "base 100.0 -> [112.5, 121.5, 130.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        6,
+        2,
+        13,
+        25,
+        21
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026 +12.5%: 2026 quarters +19/+14/+10 and an assumed +8% Q4 (deceleration trend, ad-revenue-weighted). FY2027 +8%, FY2028 +7%: DAP growth only +3% (Sept 2026, src 2), Q3 already at +10%, teen time caps and no school-hours notifications under the Aug 2026 AG settlement (src 13), EU less-personalized-ads option (src 25). Variant: impressions hold +10-12% on Reels/Threads/WhatsApp ad load (bull +3% level).",
+       "confidence": "medium",
+       "variant_view": "Bull: impressions +11%/+10% in 2027/28 (~+$45/share); bear: -3.5% level vs base (scenario)."
+      },
+      {
+       "input": "driver:price_per_ad",
+       "value": "base 100.0 -> [113.5, 122.6, 129.9]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        6,
+        2,
+        21
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026 +13.5% (quarters +12/+12/+14, Q4 ~+13% implied by the $73-76B guide). FY2027 +8%, FY2028 +6%: pricing gains from AI ranking (Advantage+) fade as impressions growth slows less than the 2026 comp and as EU and teen-safety limits cut targeting signal; consensus FY2027 revenue +21% (src 21) implies ~+10% price, we sit below.",
+       "confidence": "medium",
+       "variant_view": "Consensus-like +10%/+8% adds ~$35/share."
+      },
+      {
+       "input": "driver:foa_cash_costs",
+       "value": "base 77674.0 -> [128474.0, 139400.0, 156100.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        2,
+        6,
+        1
+       ],
+       "fact_ids": [
+        "F36"
+       ],
+       "derivation": "Base 77,674 = 96,290 - 18,616 (RL's own D&A stays inside the RL loss driver; base reproduces FoA EBIT exactly). FY2026 128,474 = guide midpoint 177,000 - D&A 27,800 - RL costs (RL revenue 2,227 + loss 18,500); includes ~$13.5B one-offs (legal $2.40B Q2 + $9.89B Q3, severance $1.18B; src 6, 2). FY2027 139,400 = underlying 114,974 x 1.20 + ~$1.4B recurring legal: cloud-capacity contracts and leases commencing (10-Q: $121.4B of non-cancelable commitments due 2027, $355.7B of leases not yet commenced; src 1), AI talent. FY2028 156,100 (+12%).",
+       "confidence": "medium",
+       "variant_view": "Evercore expects ~40% 2027 expense growth (reported in search results, unverified); +10% on this driver costs ~$45/share."
+      },
+      {
+       "input": "driver:da",
+       "value": "base 18616.0 -> [27800.0, 48000.0, 70000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        27,
+        8,
+        31,
+        17,
+        18
+       ],
+       "fact_ids": [
+        "F36",
+        "F39"
+       ],
+       "derivation": "FY2026 27,800 = 9M 19,509 + Q4 ~8,300. FY2027 48,000 and FY2028 70,000: ~60% of 2025-27 capex is servers/network on 5.5-year lives (src 31) plus buildings over ~25 years: 0.6 x (72+140+190+half of 2028)/5.5 + 0.4 x cumulative build/25 + legacy ~= $70B in 2028.",
+       "confidence": "medium",
+       "variant_view": "Burry/Chanos argue AI servers last 2.5-4 years (src 17, 18): a 4-year life would add ~$20B to 2028 D&A (~-$60/share on P/E)."
+      },
+      {
+       "input": "driver:capex",
+       "value": "base 72220.0 -> [140000.0, 190000.0, 205000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        2,
+        5,
+        6,
+        23,
+        19
+       ],
+       "fact_ids": [
+        "F57",
+        "F60"
+       ],
+       "derivation": "FY2026 140,000 = guide midpoint (9M $85.83B: Q1 19.84 + Q2 31.08 + Q3 34.91; Q4 implied ~$54B). FY2027 190,000 = AI capex file base (2027 consensus midpoint ~$175B x 1.10 = ~$192B). FY2028 205,000 (+8%).",
+       "confidence": "medium",
+       "variant_view": "Wells Fargo's $250B (src 19): +$60B 2027 capex, ~-$20/share via net debt and later D&A."
+      },
+      {
+       "input": "FoA EV/EBIT multiple (SOTP)",
+       "value": "15.5x on FoA NTM EBIT ~$114.5B",
+       "basis": "judgment",
+       "source_ids": [
+        26,
+        21
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm"
+       ],
+       "derivation": "Peer median P/E 24.7x x (1 - 17% tax) = ~20.5x EV/EBIT for net-cash peers; market pays ~15x our FoA EBIT today (EV 1,643B + RL ~60B over FoA EBIT ~112B). 15.5x: roughly today's level since FoA EBIT growth is ~1%/yr 2027-28 in our build.",
+       "confidence": "medium",
+       "variant_view": "18x adds ~$110/share to the SOTP leg."
+      },
+      {
+       "input": "Reality Labs own value",
+       "value": "-$60,000M",
+       "basis": "judgment",
+       "source_ids": [
+        2,
+        4,
+        10,
+        24
+       ],
+       "fact_ids": [],
+       "derivation": "After-tax losses fading from $15.5B (2027) to 0 by 2035, PV at 9% ~-$45B; -$25B persistence haircut under founder control (src 24); +$10B option value for glasses/wearables.",
+       "confidence": "low",
+       "variant_view": "Capitalizing $15B losses at 20x would be ~-$250B (consolidated legs)."
+      },
+      {
+       "input": "net debt 2026-09-30",
+       "value": "1,220",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        27
+       ],
+       "fact_ids": [
+        "F103",
+        "F104",
+        "F97",
+        "F98"
+       ],
+       "derivation": "Debt 83,669 - cash 11,222 - marketable securities 71,227."
+      },
+      {
+       "input": "diluted shares",
+       "value": "2,573M, annual change 0%",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        27
+       ],
+       "fact_ids": [
+        "F33",
+        "F102"
+       ],
+       "derivation": "Q3 2026 diluted weighted average. Held flat: no buybacks in 9M 2026 (src 1) and diluted count flat vs FY2025 (2,574, F30) because RSUs are net-settled in cash; SBC is costed in GAAP EBIT, so no extra dilution is added (count once).",
+       "confidence": "high"
+      },
+      {
+       "input": "adjustment: accrued legal liabilities",
+       "value": "-19,880 x 1.0",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "10-Q: accruals $11.58B current + $8.30B non-current (AG agreement installments over 10 years, other settlements and fines, part of New Mexico).",
+       "confidence": "high"
+      },
+      {
+       "input": "adjustment: New Mexico unaccrued part",
+       "value": "-15,000 x 0.4",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        11,
+        12
+       ],
+       "fact_ids": [],
+       "derivation": "Judgment $25B at 15% interest (src 11, 12; 10-Q subsequent event, src 1), accrued amount undisclosed; 40% chance appeal leaves ~$15B more to pay.",
+       "confidence": "low",
+       "variant_view": "Full $25B + interest unaccrued: ~-$6/share more; reversal on appeal: +$2.3/share."
+      },
+      {
+       "input": "adjustment: AG contingent payments",
+       "value": "-5,300 x 0.5",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "10-Q: ~$5.3B payable state by state if two conditions are met; not accrued.",
+       "confidence": "medium"
+      },
+      {
+       "input": "adjustment: further youth/privacy litigation",
+       "value": "-20,000 x 0.5",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        29,
+        13
+       ],
+       "fact_ids": [],
+       "derivation": "10-Q trial calendar: consolidated user trial 2026-10-28, school-district bellwether Feb 2027, PI bellwethers 2027-03-16 and 2027-08-06; ~1,200 school districts (src 29); Florida did not join (src 13).",
+       "confidence": "low",
+       "variant_view": "Settlement across MDL at $10-40B."
+      }
+     ]
+    },
+    {
+     "name": "P/E",
+     "value": 609.39,
+     "weight": 0.35,
+     "inputs": "Model NTM EPS at the horizon ~$31.2 (FY2027 ~$30.0, FY2028 ~$31.5, GAAP after SBC, tax 17%) x 20x, plus adjustments -$15/share",
+     "inputs_detail": [
+      {
+       "input": "P/E horizon multiple",
+       "value": "20.0x NTM (model EPS ~$31.2 at the horizon)",
+       "basis": "judgment",
+       "source_ids": [
+        26,
+        21
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm",
+        "TTD.pe_ntm",
+        "APP.pe_ntm",
+        "MSFT.pe_ntm",
+        "AMZN.pe_ntm",
+        "AAPL.pe_ntm",
+        "NFLX.pe_ntm",
+        "ORCL.pe_ntm"
+       ],
+       "derivation": "Peer median NTM P/E 24.7x ex SNAP (range 14.6-37.1x); ad-platform subset (GOOGL 18.0, PINS 35.8, RDDT 23.7, TTD 25.7, APP 14.6) median 23.7x. META now 22.0x consensus FY2026 EPS 29.24 (src 21). 20x: inside the range, a discount for capex at ~60% of revenue (FCF ~0), legal overhang and non-voting Class C.",
+       "confidence": "medium",
+       "variant_view": "At the ad-peer median 23.7x the P/E leg is ~$115/share higher."
+      },
+      {
+       "input": "driver:rl_loss",
+       "value": "base -19193.0 -> [-18500.0, -15500.0, -14000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        2,
+        10,
+        24
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 -18,500 (guide midpoint; 9M -12.78B, src 2). FY2027 -15,500, $0.5B worse than the 'around $15B' guide: the 2026 first guide was 'similar to 2025' and RL losses have run $13-19B a year; founder control (src 3, 24) makes cuts discretionary. FY2028 -14,000.",
+       "confidence": "medium",
+       "variant_view": "RL losses flat at ~$18B: -$3B EBIT, ~-$20/share on the consolidated legs."
+      },
+      {
+       "input": "tax rate",
+       "value": "16% / 17% / 17%",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        6,
+        4
+       ],
+       "fact_ids": [
+        "F85",
+        "F92"
+       ],
+       "derivation": "Q4 2026 guide 15-17% (src 2); FY2025 13% ex the valuation-allowance charge (src 4); 2027-28 at the top of the guide for Pillar 2 and fewer credits.",
+       "confidence": "medium"
+      },
+      {
+       "input": "diluted shares",
+       "value": "2,573M, annual change 0%",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        27
+       ],
+       "fact_ids": [
+        "F33",
+        "F102"
+       ],
+       "derivation": "Q3 2026 diluted weighted average. Held flat: no buybacks in 9M 2026 (src 1) and diluted count flat vs FY2025 (2,574, F30) because RSUs are net-settled in cash; SBC is costed in GAAP EBIT, so no extra dilution is added (count once).",
+       "confidence": "high"
+      },
+      {
+       "input": "driver:da",
+       "value": "base 18616.0 -> [27800.0, 48000.0, 70000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        27,
+        8,
+        31,
+        17,
+        18
+       ],
+       "fact_ids": [
+        "F36",
+        "F39"
+       ],
+       "derivation": "FY2026 27,800 = 9M 19,509 + Q4 ~8,300. FY2027 48,000 and FY2028 70,000: ~60% of 2025-27 capex is servers/network on 5.5-year lives (src 31) plus buildings over ~25 years: 0.6 x (72+140+190+half of 2028)/5.5 + 0.4 x cumulative build/25 + legacy ~= $70B in 2028.",
+       "confidence": "medium",
+       "variant_view": "Burry/Chanos argue AI servers last 2.5-4 years (src 17, 18): a 4-year life would add ~$20B to 2028 D&A (~-$60/share on P/E)."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 635.99,
+     "weight": 0.2,
+     "inputs": "NTM EBITDA at horizon ~$166B (FY2027 144.3, FY2028 171.2) x 10.5x = $1,743B EV, less net debt $68.8B and adjustments $38.5B",
+     "inputs_detail": [
+      {
+       "input": "EV/EBITDA horizon multiple",
+       "value": "10.5x NTM",
+       "basis": "judgment",
+       "source_ids": [
+        26,
+        27
+       ],
+       "fact_ids": [
+        "AMZN.ev_ebitda_ttm",
+        "NFLX.ev_ebitda_ttm",
+        "APP.ev_ebitda_ttm",
+        "AAPL.ev_ebitda_ttm",
+        "F105"
+       ],
+       "derivation": "Peers trailing 15.9-30.3x (median 16.9x); META trailing 15.8x (EV ~1,643B / F105 104,300) and ~11.4x our FY2027 EBITDA today. 10.5x on two-year-forward EBITDA because capex exceeds EBITDA through 2028.",
+       "confidence": "medium",
+       "variant_view": "12.5x adds ~$130/share to this leg."
+      },
+      {
+       "input": "driver:da",
+       "value": "base 18616.0 -> [27800.0, 48000.0, 70000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        27,
+        8,
+        31,
+        17,
+        18
+       ],
+       "fact_ids": [
+        "F36",
+        "F39"
+       ],
+       "derivation": "FY2026 27,800 = 9M 19,509 + Q4 ~8,300. FY2027 48,000 and FY2028 70,000: ~60% of 2025-27 capex is servers/network on 5.5-year lives (src 31) plus buildings over ~25 years: 0.6 x (72+140+190+half of 2028)/5.5 + 0.4 x cumulative build/25 + legacy ~= $70B in 2028.",
+       "confidence": "medium",
+       "variant_view": "Burry/Chanos argue AI servers last 2.5-4 years (src 17, 18): a 4-year life would add ~$20B to 2028 D&A (~-$60/share on P/E)."
+      },
+      {
+       "input": "driver:capex",
+       "value": "base 72220.0 -> [140000.0, 190000.0, 205000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        2,
+        5,
+        6,
+        23,
+        19
+       ],
+       "fact_ids": [
+        "F57",
+        "F60"
+       ],
+       "derivation": "FY2026 140,000 = guide midpoint (9M $85.83B: Q1 19.84 + Q2 31.08 + Q3 34.91; Q4 implied ~$54B). FY2027 190,000 = AI capex file base (2027 consensus midpoint ~$175B x 1.10 = ~$192B). FY2028 205,000 (+8%).",
+       "confidence": "medium",
+       "variant_view": "Wells Fargo's $250B (src 19): +$60B 2027 capex, ~-$20/share via net debt and later D&A."
+      },
+      {
+       "input": "net debt 2026-09-30",
+       "value": "1,220",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        27
+       ],
+       "fact_ids": [
+        "F103",
+        "F104",
+        "F97",
+        "F98"
+       ],
+       "derivation": "Debt 83,669 - cash 11,222 - marketable securities 71,227."
+      }
+     ]
+    },
+    {
+     "name": "P/E",
+     "value": 838.0,
+     "weight": 0.0,
+     "inputs": "Cross-check only: peer median NTM P/E 24.7x x consensus FY2027 EPS $33.92 = $838. Not used: consensus EPS sits ~12% above our build (D&A wave, slower ads), and the playbook treats peer-median x consensus as a check, not the answer.",
+     "inputs_detail": [
+      {
+       "input": "consensus FY2027 EPS",
+       "value": "$33.92 (55 analysts)",
+       "basis": "consensus",
+       "source_ids": [
+        21
+       ],
+       "fact_ids": [],
+       "derivation": "Alpha Vantage EARNINGS_ESTIMATES 2026-10-25"
+      },
+      {
+       "input": "peer median NTM P/E",
+       "value": "24.7x",
+       "basis": "estimate",
+       "source_ids": [
+        26
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm",
+        "AMZN.pe_ntm",
+        "AAPL.pe_ntm",
+        "NFLX.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm",
+        "TTD.pe_ntm",
+        "APP.pe_ntm",
+        "ORCL.pe_ntm"
+       ],
+       "derivation": "median of 10 peers ex SNAP: (23.7 + 25.7)/2"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 413.0,
+     "prob": 0.28
+    },
+    "base": {
+     "price": 622.0,
+     "prob": 0.47
+    },
+    "bull": {
+     "price": 875.0,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.542,
+   "median": 638.45,
+   "thesis_break": 490.0,
+   "reasoning": "Per-share figures are per current pre-split share (today's Class A share plus the Class C share it receives on ~2027-01-19); EV is unchanged by the dividend. Evidence: Q3 2026 revenue +26% with impressions decelerating (+19%/+14%/+10% through 2026) and price per ad +14%; costs +68%, GAAP margin 20% after a $9.89B AG-settlement charge; FCF -$2.1B; capex guide $135-145B; no buybacks; DAP +3% (src 2, 5, 6). Skeptic findings beyond the earnings recap: a $25B New Mexico privacy judgment at 15% interest (Oct 21, src 11, 12) with an undisclosed accrual; $19.88B of legal accruals and $5.3B unaccrued contingent AG payments; youth bellwethers Oct 2026, Feb/Mar/Aug 2027 (src 1); $454.5B of purchase commitments, $355.7B of leases not commenced and $41.5B of residual value guarantees on off-balance-sheet data-center JVs (src 1, 15, 16); a 5.5-year server life that critics (Burry, Chanos) say flatters EPS (src 17, 18, 31); non-voting Class C that lets the founder sell while keeping >60% voting control (src 3, 24). Credit is not a stress point: Aa3/AA-, 10-year notes at T+90 (src 14). Insider selling is modest (~$235M in 2026, Zuckerberg ~$21M; src 22). Model: ad impressions x price build gives revenue +17.5% in 2027 (consensus +21%, src 21) and D&A rising from $18.6B (2025) to $70B (2028), so GAAP EBIT is ~flat at $96-101B in 2027-28 and our FY2027 EPS (~$30.0) is ~12% below consensus $33.92 (even bullish Wells Fargo is at $32.62, src 19). Valued with SOTP (RL at its own value), P/E 20x and EV/EBITDA 10.5x, less ~$15/share of litigation: research target (12m) $622, ~3% below spot. Weighing honestly: Meta beat 4 of 4 revenue guides by a median 2.9%, the balance sheet is strong and the ad engine is still compounding, so the downside case is a de-rating, not a collapse. Ladder: 55% weight on the scenario mix (bear $413 p0.28, base $622 p0.47, bull $875 p0.25, within-scenario vol 17%) and 45% on a market-centred lognormal ($675 median, 36% vol) because the price is the best single 12-month forecast; median ~$638, P(>= spot) 0.49. Legs not driver-linked: Reality Labs own value (-$60B) and the litigation adjustments. Research used ~20 searches/fetches; prediction markets had no relevant Meta contract."
+  },
+  {
+   "agent": "agent_4",
+   "fair_value": 710.25,
+   "method_text": "Driver-led set valued by the engine: 50% P/E 18.5x on core NTM EPS ex Reality Labs ($39.08) less RL venture value and litigation ($695.57) and 50% SOTP with Family of Apps at 11.0x NTM EBITDA ($182.8B) less net debt at the horizon, RL and litigation ($724.93); research target (12m) $710.25 per current pre-split share.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 695.57,
+     "weight": 0.5,
+     "inputs": "core EPS NTM $39.08 x 18.5x = $723; less RL -$55B and litigation (-$9.89B, -$5.3B x 35%, -$8B x 50%) = -$70.7B / 2,573M = -$27.5",
+     "inputs_detail": [
+      {
+       "input": "diluted shares",
+       "value": "2,573M (pre-split basis), held flat",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F33",
+        "F102"
+       ],
+       "derivation": "Q3-26 diluted weighted average; SBC costed in GAAP EPS and buybacks paused, so no further share change is modelled (count once)",
+       "confidence": "high",
+       "variant_view": "Class C dividend 2027-01-19 doubles the count; all per-share figures here are per current pre-split share"
+      },
+      {
+       "input": "P/E multiple on core EPS",
+       "value": "18.5x",
+       "basis": "judgment",
+       "source_ids": [
+        15,
+        14
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm",
+        "AMZN.pe_ntm",
+        "AAPL.pe_ntm",
+        "NFLX.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm",
+        "TTD.pe_ntm",
+        "APP.pe_ntm",
+        "ORCL.pe_ntm"
+       ],
+       "derivation": "Peer median NTM P/E 24.7x (10 peers ex SNAP, range 14.6-37.1x); META today 642.62 / FY2027 consensus EPS 33.92 = 18.9x (16.6x on core EPS adding back ~$4.8 RL loss). We use 18.5x core: GOOGL (closest: ad-funded, heavy AI capex) 18.0x; discount to median for negative FCF 2026-28 (capex 55-66% of revenue), Class C issuance overhang and the long-dated risks below",
+       "confidence": "medium",
+       "variant_view": "Peer-median 24.7x on core EPS would give ~$935"
+      },
+      {
+       "input": "core EPS NTM at horizon",
+       "value": "$39.08 (driver-linked)",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        4,
+        16,
+        3
+       ],
+       "fact_ids": [
+        "F33"
+       ],
+       "derivation": "0.19 x FY2027 + 0.81 x FY2028 of (FoA ads EBIT before D&A - D&A + FoA other EBIT - net interest $1.5B/$3.5B) x (1 - 17%) / 2,573M; FY2027 core $37.34, FY2028 core $39.49; reported (incl. RL) EPS $32.50 / $35.62",
+       "confidence": "medium",
+       "variant_view": "Consensus FY2027 EPS $33.92 (incl. RL) is 4% above our $32.50 because our D&A follows the higher AI-file capex path"
+      },
+      {
+       "input": "adjustment: Reality Labs venture value",
+       "value": "-$55,000M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        17,
+        26
+       ],
+       "fact_ids": [],
+       "derivation": "60% glide path (after-tax losses 9.96/7.5/5.0/2.5B 2028-31, PV at 9% ~ -$30B including the post-horizon part of 2027) + 40% persistent ~$10B after-tax loss capitalised at 10x (-$100B) = -$58B; rounded -$55B for glasses option value",
+       "confidence": "low",
+       "variant_view": "Running RL losses through the 18.5x P/E instead would cost ~$75/share; Ray-Ban/glasses breakout could make RL worth positive value"
+      },
+      {
+       "input": "adjustment: AG settlement accrued",
+       "value": "-$9,890M",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "$12.7B payable in annual installments over 10 years, accrued at $9.89B",
+       "confidence": "high",
+       "variant_view": ""
+      },
+      {
+       "input": "adjustment: AG contingent tranche",
+       "value": "-$5,300M x 35%",
+       "basis": "estimate",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "payable state by state only if YouTube/TikTok adopt equivalent teen protections; 35% judgment",
+       "confidence": "low",
+       "variant_view": "100% would cost a further $1.3/share"
+      },
+      {
+       "input": "adjustment: other youth litigation",
+       "value": "-$8,000M x 50%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "release flags several youth trials in the coming months; FL/NM/USVI AGs excluded from the settlement; expected value judgment",
+       "confidence": "low",
+       "variant_view": "a second multistate-scale settlement (~$15B) would cost ~$4/share more"
+      }
+     ]
+    },
+    {
+     "name": "SOTP",
+     "value": 724.93,
+     "weight": 0.5,
+     "inputs": "Family of Apps EBITDA NTM $182.8B x 11.0x = EV $2,010B; less engine net debt at horizon (FCF after $141B/$192B capex and dividends), RL -$55B and litigation; / 2,573M",
+     "inputs_detail": [
+      {
+       "input": "driver:capex_musd",
+       "value": "base 72,220; 141,000 / 192,000 / 236,000",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        16,
+        2
+       ],
+       "fact_ids": [
+        "F57",
+        "F60"
+       ],
+       "derivation": "FY2025 $72.22B incl. FL principal. FY2026 inside $135-145B (guidance_check). FY2027 = avg(IO Fund $185.6B, S&P $164.0B) x 1.10 = $192B per the AI capex file base rule; $121.4B of commitments due in 2027 support it. FY2028 = 192 x (Big-4 base 1,330 / 1,080) = $236B",
+       "confidence": "medium",
+       "variant_view": "Buy-side talk of $225-250B for 2027 (secondary) would add ~$40B of capex and ~$3B of 2028 D&A (-$15/share); a digestion year at $165B adds ~+$25/share via net debt and D&A"
+      },
+      {
+       "input": "driver:da_musd",
+       "value": "base 18,616; 27,800 / 43,500 / 62,000",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        16
+       ],
+       "fact_ids": [
+        "F36",
+        "F39"
+       ],
+       "derivation": "FY2026 = 9M $19,509M + Q4 ~$8.3B (Q3 $7,154M rising). FY2027-28 from a vintage model on the capex path: 60% servers/network over 5.5 years, 34% buildings over 25 years, half-year convention, scaled x0.85 (model overstated 2025-26 actuals by ~15% as construction is not yet in service)",
+       "confidence": "medium",
+       "variant_view": "Longer server lives or slower placement in service would cut 2028 D&A by ~$8B (+$25/share via EPS)"
+      },
+      {
+       "input": "net debt",
+       "value": "$1,220M at 2026-09-30 (debt $83,669M less cash and marketable securities $82,449M); leases excluded as for peers",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [
+        "F104",
+        "F103",
+        "F97",
+        "F98"
+       ],
+       "derivation": "F103 - F97 - F98",
+       "confidence": "high",
+       "variant_view": "operating leases $31.2B would add ~$12/share if treated as debt"
+      },
+      {
+       "input": "FoA EBITDA NTM at horizon",
+       "value": "$182,766M (driver-linked)",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        4,
+        16
+       ],
+       "fact_ids": [],
+       "derivation": "0.19 x (301,611 x 0.525 + 2,402) + 0.81 x (345,303 x 0.535 + 3,195)",
+       "confidence": "medium",
+       "variant_view": ""
+      },
+      {
+       "input": "EV/EBITDA multiple on FoA",
+       "value": "11.0x",
+       "basis": "judgment",
+       "source_ids": [
+        15
+       ],
+       "fact_ids": [
+        "AMZN.ev_ebitda_ttm",
+        "AAPL.ev_ebitda_ttm",
+        "NFLX.ev_ebitda_ttm",
+        "APP.ev_ebitda_ttm"
+       ],
+       "derivation": "Peer trailing EV/EBITDA 15.9-30.3x (median 16.8x; no NTM EBITDA consensus in the table). META's D&A will be ~31% of FoA EBITDA in 2028 vs ~10-20% for these peers, so 11.0x EBITDA is ~16x FoA EBIT, consistent with 18.5x core P/E after tax and interest",
+       "confidence": "medium",
+       "variant_view": "13x (bottom of peer range adjusted) adds ~$140/share"
+      },
+      {
+       "input": "adjustment: Reality Labs venture value",
+       "value": "-$55,000M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        17,
+        26
+       ],
+       "fact_ids": [],
+       "derivation": "60% glide path (after-tax losses 9.96/7.5/5.0/2.5B 2028-31, PV at 9% ~ -$30B including the post-horizon part of 2027) + 40% persistent ~$10B after-tax loss capitalised at 10x (-$100B) = -$58B; rounded -$55B for glasses option value",
+       "confidence": "low",
+       "variant_view": "Running RL losses through the 18.5x P/E instead would cost ~$75/share; Ray-Ban/glasses breakout could make RL worth positive value"
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 837.8,
+     "weight": 0.0,
+     "inputs": "Cross-check only: peer median NTM P/E 24.7x x consensus FY2027 EPS $33.92 = $838; not used (playbook: peer-median x consensus is not the valuation; META's capex intensity is far above the median peer)",
+     "inputs_detail": [
+      {
+       "input": "consensus FY2027 EPS",
+       "value": "$33.92",
+       "basis": "consensus",
+       "source_ids": [
+        14
+       ],
+       "fact_ids": [],
+       "derivation": "Alpha Vantage average, 55 analysts, 2026-10-25",
+       "confidence": "high",
+       "variant_view": ""
+      },
+      {
+       "input": "peer median NTM P/E",
+       "value": "24.7x",
+       "basis": "estimate",
+       "source_ids": [
+        15
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm",
+        "AMZN.pe_ntm",
+        "AAPL.pe_ntm",
+        "NFLX.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm",
+        "TTD.pe_ntm",
+        "APP.pe_ntm",
+        "ORCL.pe_ntm"
+       ],
+       "derivation": "median of 10 values (23.655+25.74)/2",
+       "confidence": "high",
+       "variant_view": ""
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 461.25,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 710.25,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 926.0,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.613,
+   "median": 676.66,
+   "thesis_break": 490.0,
+   "reasoning": "Per-share basis: every per-share figure (target, EPS, scenarios, ladder, thesis break) is per CURRENT pre-split share, i.e. today's Class A share plus the Class C share it receives on 2027-01-19; EV is unchanged. Facts: Q3-26 revenue $64.6B (+26%), impressions +10% (slowest in five quarters), price per ad +14%, a $9.89B AG settlement charge, FCF -$2.1B, capex guide $135-145B, Q4 guide $73-76B, RL loss ~$15B in 2027, Class C non-voting share for capital raising; the stock went 697.52 -> 642.62 (-8%) after the print. Alternative-data lane: Sensor Tower via TechCrunch/PPC Land shows Muse at #1 in US app stores, 10.9M downloads in 40 days and 2.5M US DAU, but D1->D14 retention decays ~50 points and Meta is steering 39% of its own ad spend to it; Polymarket prices Meta at 1.4% to hold the best model at end-2026 ($3.0M volume) - Meta is a fast follower, not the frontier leader; Similarweb has Threads ahead of X on mobile DAU; a 230-brand agency network (Common Thread) shows Meta ROAS down 39% since Feb-2024, the counterweight to +14% pricing; Trefis and Deep Research Global (Substack) flag that the summer +37% run was ad-machine driven and that 2027-28 margins are exposed to underutilised capex. Reddit and X were not reachable through search, so social sentiment is not used. Model: driver-led (impressions x price for 97.6% of revenue; FoA cash margin; RL loss; capex from the AI capex file base; D&A from a vintage model). FY2027 revenue $310.0B (consensus $311.3B, -0.4%); EBIT $102.2B (consensus-implied ~$104B); reported EPS $32.50 vs consensus $33.92 (-4%, because our D&A follows the higher AI-file capex). Guidance checked against the record: quarterly revenue beats narrowed to ~2-3%; expense guides land within ~1.5% of midpoint; capex first guides are pro-cyclical (+16-21% in build years). Valuation: P/E 18.5x core EPS ex RL ($695.57) and FoA 11.0x EBITDA SOTP ($724.93), RL valued once as a -$55B venture adjustment, litigation -$15.7B expected; research target (12m) $710.25 (+10.5%). Not driver-linked: none (both legs and the adjustments are computed from drivers or stated inputs). Distribution: engine scenarios bear $461 (25%) / base $710 (50%) / bull $926 (25%). Because today's price beats any blend as a forecast, our ladder centres the base at ~$685 (between price and target), with within-scenario sigmas 0.21-0.24, giving a median ~$677 and log-sd ~0.33 (below the 43% realized vol, in line with the 25-35% large-cap base rate after the post-earnings reset). P(>= $643) 56%, P(>= $771) 34%, P(< $450) 13%."
+  },
+  {
+   "agent": "agent_5",
+   "fair_value": 724.97,
+   "method_text": "Research target (12m) $725 per current pre-split share = engine base value of our driver-led set: 55% sum of the parts (Family of Apps NTM EBIT $123.6B x 16x EV/EBIT, Reality Labs -$41B, investments +$24B, net debt -$72B, 2,599M shares = $727) and 45% 21x NTM GAAP EPS of ~$34.0 plus investments = $723.",
+   "methods": [
+    {
+     "name": "SOTP",
+     "value": 726.68,
+     "weight": 0.55,
+     "inputs": "FoA NTM EBIT $123.6B (0.2 x FY27 $116.3B + 0.8 x FY28 $125.5B) x 16x = $1,978B; Reality Labs -$40.9B (-3.5 x after-tax FY28 loss); non-marketable investments +$24.5B; net debt at horizon -$72B; shares 2,599M",
+     "inputs_detail": [
+      {
+       "input": "driver:ad_impr_idx",
+       "value": "base 100.0; FY2026-28 [112.5, 121.5, 130.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        6,
+        1,
+        8
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026 112.5 = Q1-Q3 growth of 19/14/10% plus ~8% in Q4 (DAP growth slowed to 3%); FY2027 +8% (121.5), FY2028 +7% (130.0): impressions now grow mainly from ad load and engagement rather than users; Meta's 2024-25 annual growth was 11-12%",
+       "confidence": "medium",
+       "variant_view": "Impressions keep growing ~11% (2025-26 pace): 2027 revenue +3%, ~+$22/share; an engagement loss to third-party AI agents takes 2pts a year off: ~-$15/share"
+      },
+      {
+       "input": "driver:price_idx",
+       "value": "base 100.0; FY2026-28 [113.9, 125.29, 134.06]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        6,
+        1,
+        11,
+        12
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026 113.9: Q1-Q3 +12/12/14% plus ~+17% in Q4 against an easy +6% Q4-25 comparison, which sets Q4 revenue at $76.1B, at the top of the guide (see guidance_check); FY2027 +10% (AI ranking/conversion gains continue, management says AI is lifting monetization), FY2028 +7% (fade toward the 2024-25 average of ~9-10%)",
+       "confidence": "medium",
+       "variant_view": "A 2027 ad recession (Kalshi 20% recession odds) repeats a 2022-style price fall: price -6% vs base in every year (bear scenario), ~-$60/share before the multiple change"
+      },
+      {
+       "input": "driver:foa_other",
+       "value": "base 2584.0; FY2026-28 [4150.0, 7500.0, 11500.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        29,
+        16
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026 4,150 = 2,987 + ~1,160 in Q4 (Q3 run-rate $1,097M +6%); FY2027 7,500 = 2026 + ~3.35B, about a third of Jefferies' end-2027 run-rate as a full-year average; FY2028 11,500 (+53%)",
+       "confidence": "low",
+       "variant_view": "Jefferies' run-rate reached a year early: +60% on this line (bull scenario), ~+$25/share incl. margin"
+      },
+      {
+       "input": "driver:foa_margin",
+       "value": "base 0.5155; FY2026-28 [0.388, 0.38, 0.355]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        6,
+        12,
+        31
+       ],
+       "fact_ids": [
+        "F3",
+        "F10"
+       ],
+       "derivation": "FY2026 38.8% = 9M FoA $67.4B + Q4 ~$31.7B (Q4 total opex at guide mid ~$50B, RL Q4 ~-$5.7B from the $18-19B RL guide) on $255.5B; ex-charges ~44%. FY2027 38.0%: D&A rises from ~$28B to ~$47B (+6pts of revenue) plus third-party cloud and token costs, partly offset by 15% lower headcount. FY2028 35.5%: D&A ~$71B from the AI-file capex path, other costs +10%",
+       "confidence": "medium",
+       "variant_view": "Meta defends margins as in 2023 (FoA margin 37% in 2022 to 47% in 2023 after a sharp stock fall): FoA 2028 margin 41% = ~+$75/share; Muse inference costs scale before revenue: -3pts (bear) = ~-$55/share"
+      },
+      {
+       "input": "driver:rl_rev",
+       "value": "base 2207.0; FY2026-28 [2250.0, 2500.0, 2800.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        12
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 2,250 = 1,276 + ~975 in Q4 (Q4-25 $955M); +11%/yr in 2027-28 from AI glasses with Muse integration",
+       "confidence": "low",
+       "variant_view": "Immaterial to value (+/-$1B revenue = <$2/share)"
+      },
+      {
+       "input": "driver:rl_loss",
+       "value": "base -19193.0; FY2026-28 [-18500.0, -15500.0, -14000.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        12,
+        9,
+        8
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 -18,500 = guide midpoint; FY2027 -15,500, $0.5B worse than management's 'around $15B' because RL loss guides have been qualitative and losses rose every year 2022-2025 (see guidance_check); FY2028 -14,000 continuing the reallocation to AI",
+       "confidence": "medium",
+       "variant_view": "Losses stay ~$18B: SOTP part -$53B instead of -$41B (~-$5/share) and P/E leg ~-$25/share"
+      },
+      {
+       "input": "shares",
+       "value": "2,573M diluted (Q3-26), +1.0% a year",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        27,
+        33
+       ],
+       "fact_ids": [
+        "F33",
+        "F67"
+       ],
+       "derivation": "No buybacks in 2026 (F67 = 0); basic shares 2,552M vs 2,517M a year earlier (+1.4%) while diluted stayed flat through ~$12.8B of net-share settlement; the Class C is created explicitly for capital raising, employee pay and acquisitions, so we allow +1.0%/yr. Per CURRENT pre-split share (one Class A plus the Class C share it receives)",
+       "confidence": "medium",
+       "variant_view": "Class C used for a 3% capital raise by 2028: neutral on value if at fair price, -$5 to -$10/share if below"
+      },
+      {
+       "input": "net debt at horizon",
+       "value": "$72,000M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        33
+       ],
+       "fact_ids": [
+        "F104",
+        "F53",
+        "F60"
+       ],
+       "derivation": "Q4-26: CFO ~$38B - capex ~$55B - dividends $1.4B - net share settlement ~$4B -> +$22.6B (YE26 ~$23.8B). Jan-Sep 2027 (0.75 yr): CFO 0.75 x (NI $82B + D&A $47B + SBC $31B) = $120B - capex 0.75 x $205B = $154B -> FCF -$34B; dividends $4.2B; net share settlement ~$12B -> ~$73.5B; rounded to $72B",
+       "confidence": "medium",
+       "variant_view": "If Meta funds part of the gap with Class C equity, net debt is lower and shares higher: roughly value-neutral"
+      },
+      {
+       "input": "FoA EV/EBIT multiple (SOTP)",
+       "value": "16.0x NTM FoA EBIT",
+       "basis": "judgment",
+       "source_ids": [
+        15,
+        21,
+        20
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm",
+        "NFLX.pe_ntm"
+       ],
+       "derivation": "21x P/E x (1 - 16.5% tax) = 17.5x EV/EBIT for an unlevered core; take 16x because the core carries the whole AI D&A wave and today's price implies ~14.5x (EV ~$1,654B + RL $41B - investments $24B over ~$115B NTM FoA EBIT)",
+       "confidence": "medium",
+       "variant_view": "14.5x (today's implied): -$70/share on this leg"
+      },
+      {
+       "input": "FoA NTM EBIT at horizon (SOTP metric)",
+       "value": "$123,629M",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "driver-linked: 0.2 x FY2027 FoA EBIT ($116.3B) + 0.8 x FY2028 ($125.5B); the horizon (2027-10-23) sits ~0.8 into FY2027, so NTM is ~20% FY2027 and ~80% FY2028"
+      },
+      {
+       "input": "Reality Labs value (SOTP part)",
+       "value": "-$40,915M",
+       "basis": "judgment",
+       "source_ids": [
+        1,
+        12,
+        4
+       ],
+       "fact_ids": [],
+       "derivation": "driver-linked: FY2028 RL loss -$14.0B x (1-16.5%) x 3.5 = PV of after-tax losses tapering to zero over ~5 years, net of an option on AI glasses. Not run through the core multiple (playbook loss-making-venture rule)",
+       "confidence": "low",
+       "variant_view": "If the market keeps capitalising RL losses at the full P/E (as the single P/E leg implicitly does), RL is worth ~-$245B, -$79/share"
+      },
+      {
+       "input": "non-marketable equity investments (adjustment)",
+       "value": "+$24,468M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "Carrying value $32,624M at 2026-09-30 (balance sheet) x 0.75 for tax, illiquidity and mark risk; added on every leg",
+       "confidence": "medium",
+       "variant_view": "Marked at zero: -$9/share"
+      }
+     ]
+    },
+    {
+     "name": "P/E",
+     "value": 722.88,
+     "weight": 0.45,
+     "inputs": "NTM (Q4-27 to Q3-28) GAAP EPS ~$34.0 from the build (EBIT ~$109B, interest on $72B net debt at 4.5%, tax 16.5%, 2,599M shares) x 21x = ~$713, plus investments $9.4/share",
+     "inputs_detail": [
+      {
+       "input": "driver:ad_impr_idx",
+       "value": "base 100.0; FY2026-28 [112.5, 121.5, 130.0]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        6,
+        1,
+        8
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026 112.5 = Q1-Q3 growth of 19/14/10% plus ~8% in Q4 (DAP growth slowed to 3%); FY2027 +8% (121.5), FY2028 +7% (130.0): impressions now grow mainly from ad load and engagement rather than users; Meta's 2024-25 annual growth was 11-12%",
+       "confidence": "medium",
+       "variant_view": "Impressions keep growing ~11% (2025-26 pace): 2027 revenue +3%, ~+$22/share; an engagement loss to third-party AI agents takes 2pts a year off: ~-$15/share"
+      },
+      {
+       "input": "driver:price_idx",
+       "value": "base 100.0; FY2026-28 [113.9, 125.29, 134.06]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        6,
+        1,
+        11,
+        12
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2026 113.9: Q1-Q3 +12/12/14% plus ~+17% in Q4 against an easy +6% Q4-25 comparison, which sets Q4 revenue at $76.1B, at the top of the guide (see guidance_check); FY2027 +10% (AI ranking/conversion gains continue, management says AI is lifting monetization), FY2028 +7% (fade toward the 2024-25 average of ~9-10%)",
+       "confidence": "medium",
+       "variant_view": "A 2027 ad recession (Kalshi 20% recession odds) repeats a 2022-style price fall: price -6% vs base in every year (bear scenario), ~-$60/share before the multiple change"
+      },
+      {
+       "input": "driver:foa_margin",
+       "value": "base 0.5155; FY2026-28 [0.388, 0.38, 0.355]",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        6,
+        12,
+        31
+       ],
+       "fact_ids": [
+        "F3",
+        "F10"
+       ],
+       "derivation": "FY2026 38.8% = 9M FoA $67.4B + Q4 ~$31.7B (Q4 total opex at guide mid ~$50B, RL Q4 ~-$5.7B from the $18-19B RL guide) on $255.5B; ex-charges ~44%. FY2027 38.0%: D&A rises from ~$28B to ~$47B (+6pts of revenue) plus third-party cloud and token costs, partly offset by 15% lower headcount. FY2028 35.5%: D&A ~$71B from the AI-file capex path, other costs +10%",
+       "confidence": "medium",
+       "variant_view": "Meta defends margins as in 2023 (FoA margin 37% in 2022 to 47% in 2023 after a sharp stock fall): FoA 2028 margin 41% = ~+$75/share; Muse inference costs scale before revenue: -3pts (bear) = ~-$55/share"
+      },
+      {
+       "input": "tax rate",
+       "value": "FY2026 6.5%; FY2027-28 16.5%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        4,
+        33
+       ],
+       "fact_ids": [
+        "F88",
+        "F95",
+        "F85",
+        "F92"
+       ],
+       "derivation": "FY2026: 9M tax $1,028M on $53,509M pretax (deferred-tax items) plus Q4 at the 15-17% guide on ~$26B pretax = ~6.5%. FY2027-28 at the Q4-26 guide midpoint 16%, +0.5pt for non-deductible items; see guidance_check 'tax rate'",
+       "confidence": "medium"
+      },
+      {
+       "input": "D&A",
+       "value": "FY2026 $28.0B (10.9% of revenue); FY2027 $47.0B (15.2%); FY2028 $71.0B (19.9%)",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        8,
+        31,
+        33
+       ],
+       "fact_ids": [
+        "F39",
+        "F36"
+       ],
+       "derivation": "9M-2026 D&A $19,509M (Q3 $7,154M) + Q4 ~$8.5B; 2027-28 add ~60% of each year's capex as servers over 5.5 years (useful life per the Q4-24 release) and ~40% as buildings over ~25 years, half-year convention: 2026 vintage adds ~+$9B in 2027, 2027 vintage ~+$13B in 2027 and a further ~+$13B in 2028, 2028 vintage ~+$15B, less retirements",
+       "confidence": "medium",
+       "variant_view": "Longer server lives or a capex cut in 2028 would lower 2028 D&A by $5-10B (+$25-50/share via margin)"
+      },
+      {
+       "input": "shares",
+       "value": "2,573M diluted (Q3-26), +1.0% a year",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        27,
+        33
+       ],
+       "fact_ids": [
+        "F33",
+        "F67"
+       ],
+       "derivation": "No buybacks in 2026 (F67 = 0); basic shares 2,552M vs 2,517M a year earlier (+1.4%) while diluted stayed flat through ~$12.8B of net-share settlement; the Class C is created explicitly for capital raising, employee pay and acquisitions, so we allow +1.0%/yr. Per CURRENT pre-split share (one Class A plus the Class C share it receives)",
+       "confidence": "medium",
+       "variant_view": "Class C used for a 3% capital raise by 2028: neutral on value if at fair price, -$5 to -$10/share if below"
+      },
+      {
+       "input": "net debt at horizon",
+       "value": "$72,000M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        33
+       ],
+       "fact_ids": [
+        "F104",
+        "F53",
+        "F60"
+       ],
+       "derivation": "Q4-26: CFO ~$38B - capex ~$55B - dividends $1.4B - net share settlement ~$4B -> +$22.6B (YE26 ~$23.8B). Jan-Sep 2027 (0.75 yr): CFO 0.75 x (NI $82B + D&A $47B + SBC $31B) = $120B - capex 0.75 x $205B = $154B -> FCF -$34B; dividends $4.2B; net share settlement ~$12B -> ~$73.5B; rounded to $72B",
+       "confidence": "medium",
+       "variant_view": "If Meta funds part of the gap with Class C equity, net debt is lower and shares higher: roughly value-neutral"
+      },
+      {
+       "input": "interest rate on net debt",
+       "value": "4.5%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        33
+       ],
+       "fact_ids": [
+        "F82",
+        "F103"
+       ],
+       "derivation": "Q3-26 interest expense $882M x 4 / debt $83.7B = 4.2%; new issues priced higher, so 4.5%"
+      },
+      {
+       "input": "P/E horizon multiple",
+       "value": "21.0x NTM GAAP EPS",
+       "basis": "judgment",
+       "source_ids": [
+        15,
+        20,
+        21,
+        14
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm",
+        "AMZN.pe_ntm",
+        "AAPL.pe_ntm",
+        "NFLX.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm",
+        "TTD.pe_ntm",
+        "APP.pe_ntm",
+        "ORCL.pe_ntm"
+       ],
+       "derivation": "Peer NTM P/E median 24.7x ex-SNAP (range 14.6-37.1x). META traded ~18x forward entering Sept-2026 and ~23x at end-Sept (Motley Fool), ~19.5x today (642.62 / ~$33 NTM consensus EPS), 5-yr average trailing ~23.9x (Wisesheets). 21x = middle of the 2026 range and a 15% discount to peers for capex at 55-70% of revenue (negative FCF through 2028), youth litigation and the non-voting share overhang",
+       "confidence": "medium",
+       "variant_view": "Re-rating to the peer median 24.7x when 2028 capex growth slows (2023 analog): +$125/share on this leg; de-rating to 17x (Q3-26 lows, AI-overbuild fear): -$135/share"
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 838.0,
+     "weight": 0.0,
+     "inputs": "Cross-check only: peer-median NTM P/E 24.7x x consensus FY2027 EPS $33.92 = $838; shows that our 21x discount, not the earnings, is what separates us from a peer-multiple answer",
+     "inputs_detail": [
+      {
+       "input": "consensus FY2027 EPS",
+       "value": "$33.92 (55 analysts)",
+       "basis": "consensus",
+       "source_ids": [
+        13
+       ],
+       "fact_ids": [],
+       "derivation": "Alpha Vantage EARNINGS_ESTIMATES, 2026-10-25"
+      },
+      {
+       "input": "peer median NTM P/E",
+       "value": "24.7x ex-SNAP",
+       "basis": "estimate",
+       "source_ids": [
+        15
+       ],
+       "fact_ids": [
+        "GOOGL.pe_ntm",
+        "MSFT.pe_ntm",
+        "AMZN.pe_ntm",
+        "AAPL.pe_ntm",
+        "NFLX.pe_ntm",
+        "PINS.pe_ntm",
+        "RDDT.pe_ntm",
+        "TTD.pe_ntm",
+        "APP.pe_ntm",
+        "ORCL.pe_ntm"
+       ],
+       "derivation": "median of the 10 peers (23.7x and 25.7x average)"
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 700.0,
+     "weight": 0.0,
+     "inputs": "Base-rate cross-check: price $642.62 x 1.09 (large-cap expected return) = $700; META's own 12-month return history since 2013 has median +29% and P(up) 75% since 2016, but that sample is survivor-biased (a stock that became a mega-cap) and is not used for the centre",
+     "inputs_detail": [
+      {
+       "input": "META 12-month return base rate",
+       "value": "since 2016: mean log return 0.17, s.d. 0.42, P(up) 0.75; after a >15% drawdown (n=23 overlapping months) median +43%, 10th pct -5%",
+       "basis": "estimate",
+       "source_ids": [
+        14
+       ],
+       "fact_ids": [],
+       "derivation": "monthly adjusted closes 2012-06 to 2026-10, rolling 12-month log returns",
+       "confidence": "medium",
+       "variant_view": "Treating the post-drawdown base rate at face value would put the centre near $850"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 476.8,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 724.97,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 939.4,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.65,
+   "median": 701.68,
+   "thesis_break": 470.0,
+   "reasoning": "All per-share figures are per CURRENT pre-split share: today's Class A share plus the one Class C share it receives in the dividend payable after the 2027-01-19 charter date; enterprise value is unchanged by it. Evidence: Q3-26 revenue +26% (impressions +10%, price +14%), Q4 guide $73-76B; Meta has finished 2-4% above the revenue guide midpoint in each of the last four quarters, so we sit at the top ($76.1B). FY2026 expenses land at the $177B guide midpoint (incl. $12.3B legal charges). The stock fell ~8% after a beat on the Class C news and capex fears, the third negative print reaction in a row, after a ~25% September rally on the Muse launch; consensus FY2027 EPS is $33.92. Driver build: ads +19% in 2027 and +14% in 2028; FoA margin falls from ~44% ex-charges to 38% and 35.5% because D&A climbs from $28B to ~$71B on capex of $141B/$205B/$252B (AI-file base, with Meta's record of exceeding first capex guides by 16-21% in up-years); 2027 EPS ~$31.7 is ~6% below consensus for that reason. Valuation: 21x NTM P/E (15% below the peer median, mid of META's 2026 range of 18-23x) and a SOTP with FoA at 16x EBIT and RL on its own give a research target (12m) of $725. Base rates: META's own 12-month return s.d. is ~0.42 and its post-drawdown history is very strong, but survivor-biased; Kalshi prices a 20% chance of a 2027 recession and META's price per ad fell 18% y/y in 2022, which sets the bear weight. Prediction markets on META itself (Polymarket via Polyguana) are short-dated and thin, so they carry no weight. Ladder: three lognormals at the engine's bear ($477, 25%, s.d. 0.27) and bull ($939, 25%, s.d. 0.22) and a base shaded from $725 to $705 toward price-plus-drift ($700) because research targets have overshot; median ~$702, mean ~$725, P(above today) 0.60. Not driver-linked: the investments adjustment (+$24.5B) and the stated net debt at horizon. Research was limited by blocked pages (S&P/Visible Alpha previews, Nasdaq), and no option data was used."
+  }
+ ],
+ "supervisor": {
+  "confidence": "medium",
+  "used": false,
+  "confidence_reason": "The searches settled facts that matter: the $25B NM penalty, $19.9B of accruals, $32.6B of investments and the guidance record. But the 5% gap to the mean comes mostly from judgment on the multiple (GOOGL parity) and the FY2028 margin, not from a decisive fact, so this is not high.",
+  "changes": [
+   {
+    "item": "research target (12m)",
+    "from": 692.71,
+    "to": 659.48,
+    "why": "Engine value of the reconciled driver set: full litigation (NM $25B penalty, $19.9B accruals), RL valued once at -$53B with the P/E on core EPS, capex on the AI file base and GOOGL-anchored multiples; mean of forecasters was 692.71."
+   },
+   {
+    "item": "P(close >= K) for K = 321-1285",
+    "from": [
+     0.981,
+     0.93,
+     0.855,
+     0.769,
+     0.671,
+     0.56,
+     0.449,
+     0.348,
+     0.225,
+     0.139,
+     0.056,
+     0.02
+    ],
+    "to": [
+     0.974,
+     0.917,
+     0.838,
+     0.747,
+     0.644,
+     0.53,
+     0.419,
+     0.322,
+     0.204,
+     0.125,
+     0.049,
+     0.018
+    ],
+    "why": "Distribution shifted ~2.5% lower (median ~$656) to reflect the lower research target and the litigation facts three forecasters missed, while staying anchored near the price."
+   },
+   {
+    "item": "thesis break",
+    "from": 487.0,
+    "to": 490.0,
+    "why": "~24% below spot and under the $520 52-week low; ~13.9x core NTM EPS."
+   },
+   {
+    "item": "fact: New Mexico penalty in agent_1 / agent_4 / agent_5 valuations ($M)",
+    "from": 375.0,
+    "to": 25000.0,
+    "why": "10-Q Note 10: on 2026-10-21 the court imposed a $25B civil penalty at 15% interest in the privacy case; the $375M is the separate youth verdict."
+   },
+   {
+    "item": "fact: accrued legal liabilities deducted by agent_1 / agent_4 ($M)",
+    "from": 9890.0,
+    "to": 19881.0,
+    "why": "10-Q: legal accruals $11,577M current + $8,304M non-current at 2026-09-30 (agent_5 deducted 0)."
+   },
+   {
+    "item": "FY2028 capex for agent_2 / agent_3 ($M)",
+    "from": 202500.0,
+    "to": 236000.0,
+    "why": "AI capex file base (2027 consensus x 1.10 = $192B; Big-4 2028 +23%); no newer primary evidence for a lower path."
+   },
+   {
+    "item": "agent_5 share count annual change",
+    "from": 0.01,
+    "to": 0.0,
+    "why": "Diluted count flat (F30 2,574M vs F33 2,573M) with no buybacks; SBC already costed in EPS."
+   },
+   {
+    "item": "Reality Labs venture value ($M; forecaster median)",
+    "from": -55000.0,
+    "to": -53000.0,
+    "why": "70/30 glide vs persistence scenario PV at 9% plus a $10B glasses option, valued once and outside the core multiple."
+   }
+  ],
+  "changes_derived": false,
+  "median_mean": 676.67,
+  "median_supervisor": 659.7,
+  "thesis_break": 490.0,
+  "summary": "Research target (12m) $659 per current pre-split share (+2.6% vs $642.62), below the forecasters' mean of $693. The core ad engine is sound (ads ~+19% in 2027), but capex of $192B/$236B drives D&A to ~$66B by 2028 and FoA margins from 39% to 34%. Three forecasters missed the $25B New Mexico penalty or most of the $19.9B of legal accruals, and RL is now valued once at -$53B with the P/E on core EPS. The ladder is nudged ~2.5% lower (P >= spot 0.53); the thesis breaks at $490.",
+  "fair_value": {
+   "value": 653.21,
+   "reason": "Model update 2026-10-27 (update): the 10-26 equity raise is put in the set (40M Class A forward shares at $625.00 with $24.9B settlement cash both counted at the horizon; $12.5B 6.50% mandatory convertible preferred deducted as preferred with its cash in net debt), operating drivers unchanged; research target (12m) 659.48 -> 656.07 (-0.5%), the raise priced near the target and the P/E leg credits cash only through 4.5% interest. Research target (12m) per current pre-split share (today's Class A share plus the Class C share from the 2027 dividend). It equals the engine's base horizon value for model.reconciled_inputs (model_engine.py check: P/E 18.5x core NTM EPS $36.9 less adjustments = $652.59 (pre-raise $658.76) at 0.45; SOTP FoA 15.5x NTM EBIT $118.6B less horizon net debt $72.2B and adjustments = $660.08 at 0.55)."
+  }
+ }
+}

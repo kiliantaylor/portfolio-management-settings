@@ -1,0 +1,780 @@
+{
+ "date": "2026-10-21",
+ "symbol": "NEE",
+ "clean": true,
+ "checked": 86,
+ "ok": 75,
+ "fixed": 11,
+ "method": "split gate (run_digest.py gate-update): script check against SEC XBRL + shard agents by source URL; fix step per gate/brief_fix.md (round 2, 2026-10-22)",
+ "scope": "model update after Kilian's 2026-10-22 beat-record EPS decision: reconciled set, guidance_check and supervisor text that quotes it",
+ "base_audit": "gate/round1/citation_audit.json (round 1, checked 78)",
+ "engine_check": "model_engine.py check supervisor.json: base horizon value 85.95 (fair_value 85.95; unchanged by these fixes, which touch text and citations only)",
+ "failures": [
+  {
+   "item": "dividends per share (6%/yr from year-end 2026 through 2028) FY2026: first guide (2025-01-24) / reported actual",
+   "value": "2.4926-2.4926 / 2.4928",
+   "cited": "https://www.sec.gov/Archives/edgar/data/753308/000075330825000003/neeq42024exhibit99.htm",
+   "result": "mislabelled",
+   "fix": "FY2026 DPS first guide is a labelled estimate: period basis 'estimate', first_guide_label estimate, derivation 2024 DPS $2.06 x 1.10^2 = $0.5665 x 1.10 x 4 = $2.4926, confidence high; actual $2.4928 (0.6232 x 4) set to basis reported with actual_source_ids [12] (Q3 2026 10-Q); metric renamed to name both policies (~10%/yr through 2026 off a 2024 base, 6%/yr from year-end 2026). Values unchanged."
+  },
+  {
+   "item": "$61 vs build NTM EPS",
+   "value": "$61 = ~13.3x the build's NTM EPS of $4.60",
+   "cited": "",
+   "result": "wrong",
+   "fix": "thesis_break_reason restated to the current set: $61 = ~12.2x NTM EPS $5.01 (61 / 5.01 = 12.18); 4.3% yield (2.6424 / 61) unchanged; break price kept at $61."
+  },
+  {
+   "item": "governor declined special session; only the General Assembly can extend; deemed approval",
+   "value": "Virginia Business, Sep 4 2026 [4]",
+   "cited": "https://virginiabusiness.com/spanberger-wont-call-special-session-to-extend-dominion-nextera-merger-deadline/",
+   "result": "not_found",
+   "fix": "Re-opened 2026-10-22 (WebFetch): Virginia Business Sep 4 2026 shows 'I will not be calling a second special session', that House and Senate leadership would need to call the General Assembly back, and that failure to rule 'will count as an automatic approval'. Claim kept, now verified."
+  },
+  {
+   "item": "Virginia decision deadline",
+   "value": "Jan 11 2027 / 'mid-January 2027' [4, 30]",
+   "cited": "https://www.wtkr.com/news/local-news/ag-jones-dominion-nextera-merge-review-sept-21-2026",
+   "result": "not_found",
+   "fix": "Virginia Business [4] opened 2026-10-22 and states the SCC 'has until mid-January 2027 to rule'; supervisor text uses mid-January 2027. The agents' 'Jan 11' is now labelled in disagreements[1] and changes[2] as a day no opened source shows; it enters no number."
+  },
+  {
+   "item": "agent_3 Uri exposure range",
+   "value": "~$0.2-1B (~$0.1-0.5/sh) per Oklahoma Watch",
+   "cited": "https://oklahomawatch.org/2026/02/03/oklahomas-winter-storm-uri-lawsuits-coming-out-of-cold-storage/",
+   "result": "not_found",
+   "fix": "Oklahoma Watch still HTTP 429 on 2026-10-22. The range is restated everywhere as agent_3's own judgment with no source (disagreements[3], changes[1], source_review.discounted[0], revision_check.agent_3), the unverified claim that the article 'does not mention NextEra' is removed, and it enters no number. The Uri adjustment (-$300M, -$0.14/sh) is a separate labelled estimate that passed."
+  },
+  {
+   "item": "value of one P/E turn",
+   "value": "~$4.6/sh",
+   "cited": "",
+   "result": "wrong",
+   "fix": "key_drivers[0]: one P/E turn = ~$5.0/sh on NTM EPS $5.01."
+  },
+  {
+   "item": "EPS build cited",
+   "value": "$4.06 / $4.35 / $4.66 for FY2026-28, NTM $4.60",
+   "cited": "",
+   "result": "wrong",
+   "fix": "key_drivers[1]: EPS path $4.06 / $4.70 / $5.08, NTM $5.01 (record-adjusted guide, Kilian 2026-10-22); pre-decision NTM $4.60 named as such. model.reasoning restated the same way."
+  },
+  {
+   "item": "expected total return",
+   "value": "~7.5% (~4.2% to $81.55 from $78.25 + ~$2.61 dividends, 3.3%)",
+   "cited": "",
+   "result": "wrong",
+   "fix": "Recomputed: 85.95 / 78.25 - 1 = 9.84% + 2.61 / 78.25 = 3.34% = ~13.2% (sizing.reason, sizing.confidence_source_note, summary); the 0.45 confidence is flagged as not re-run. Sizing weight and conviction unchanged."
+  },
+  {
+   "item": "Q3 consensus",
+   "value": "$1.1757 [AVN] (+5.5% beat)",
+   "cited": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=NEE",
+   "result": "not_found",
+   "fix": "Removed: the Alpha Vantage feed could not be opened at the gate (rate limit) and other consensus pages disagree ($1.17-1.22), so no Q3 consensus figure is kept; inputs_detail[2], guidance_check[0] and model.reasoning now cite the reported $1.24 vs $1.13 a year earlier (+9.7%) [REL]; source 21's title no longer lists a Q3 figure. It entered no number."
+  },
+  {
+   "item": "FPL ROE held by RSM",
+   "value": "ROE ~11.8% [Q]; RSM ~$1.5B",
+   "cited": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "result": "not_found",
+   "fix": "Verified from the 10-Q MD&A (downloaded with a generic User-Agent): 'FPL earned a regulatory ROE of approximately 11.80% ... trailing thirteen-month average retail rate base as of September 30, 2026' and 'approximately $1.5 billion, after tax, of total RSM reserve remains available'. Citation in inputs_detail[4] now names the MD&A passage; figures unchanged."
+  },
+  {
+   "item": "HoldCo issuance 9M",
+   "value": "$13.1B of HoldCo issuance in 9M [REL cash flow]",
+   "cited": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "result": "wrong",
+   "fix": "Replaced with the release cash-flow figure: Corporate and Other issuances of long-term debt $12,794M in 9M 2026 ($11,488M in 9M 2025) = $12.8B. The +15%/+12% drag path is judgment and unchanged; no number moves."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "FY2025 adjusted earnings by segment",
+   "value": "FPL $5,012M, NEER $3,523M, Corporate -$852M = $7,683M ($3.71/sh on 2,071M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "adjusted EPS FY2026 guide as of 2026-10-21 (adjusted: excludes non-qualifying hedges, XPLR investment gains, unrealized NDF gains/OTTI and merger-related expen…",
+   "value": "3.92-4.02",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS (long-term target: 8%+ CAGR off the 2025 base $3.71 through 2032; FY2027 floor) FY2027 guide as of 2026-10-21 (ESTIMATE derived from guidance, not…",
+   "value": "4.33-4.33",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS (long-term target: 8%+ CAGR off $3.71; FY2028 floor) FY2028 guide as of 2026-10-21 (ESTIMATE derived from guidance, not a company-stated FY2028 fi…",
+   "value": "4.67-4.67",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "dividends per share (6%/yr from year-end 2026 through 2028) FY2027 guide as of 2026-10-21 (ESTIMATE derived from guidance, not a company-stated dollar figure: …",
+   "value": "2.6424-2.6424",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "Q3 / 9M 2026 adjusted earnings by segment",
+   "value": "Q3 $1.24/sh ($2,592M); 9M $3.47/sh ($7,274M): FPL $4,493M, NEER $3,576M, Corporate -$795M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FPL growth driver",
+   "value": "regulatory capital employed +9.2% y/y; regulatory ROE ~11.80% (13-month avg); average rate base +$6.8B in Q3",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Net debt (2026-09-30)",
+   "value": "$108,353M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Minorities",
+   "value": "$12,844M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "adjusted EPS FY2022: first guide (2020-01-24) / reported actual",
+   "value": "2.5-2.6875 / 2.9",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330820000009/neeq42019exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS FY2023: first guide (2021-01-26) / reported actual",
+   "value": "2.77-2.97 / 3.17",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330821000007/neeq42020exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS FY2024: first guide (2022-01-25) / reported actual",
+   "value": "3.13-3.33 / 3.43",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330822000007/neeq42021exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS FY2025: first guide (2022-01-25) / reported actual",
+   "value": "3.35-3.6 / 3.71",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330822000007/neeq42021exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS FY2026 consensus as of 2026-10-21",
+   "value": "4.02",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/nee/forecast/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS (long-term target: 8%+ CAGR off the 2025 base $3.71 through 2032; FY2027 floor) FY2027 consensus as of 2026-10-21",
+   "value": "4.37",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/nee/forecast/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "Base revenue FY2025 (segments)",
+   "value": "$27,412M: FPL $18,262M, NEER $8,760M, Corporate $390M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000007/neeq42025exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "dividends received over the year",
+   "value": "$0.6232 (Dec 2026) + 3 x $0.6606 = ~$2.61",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-20251231.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "base horizon value after beat-record decision",
+   "value": "NTM $5.01 x 17.9x (w0.6) + $2.6424/3.24% (w0.4) - $0.48 = $85.95; was $81.55 on NTM $4.60; +5.4% / +6.5% vs $80.70",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Dominion termination fee per share",
+   "value": "$4.8B / 2,097M shares = ~$2.29/sh",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "SCC staff recommendation date and content",
+   "value": "2026-10-19 staff recommends denial as proposed; would not oppose with conditions (independent DEV board, dividend limits, jobs); governor seeks 6-year residential base-rate freeze",
+   "basis": "estimate",
+   "source_url": "https://www.wtvr.com/news/local-news/dominion-nextera-merger-update-oct-19-2026",
+   "checked": "2026-10-22",
+   "feeds": "supervisor thesis_break_reason / key_drivers"
+  },
+  {
+   "item": "regulatory termination fee and trigger",
+   "value": "$4.83B NEE-paid regulatory termination fee, payable only on termination",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/715957/000110465926087585/tm2621467-2_defm14a.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "merger outside date",
+   "value": "Nov 15 2027, extendable to Aug 15 2028",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/715957/000110465926087585/tm2621467-2_defm14a.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Virginia SCC procedural schedule",
+   "value": "page updated 2026-10-20; Oct 7/9 local hearings, Oct 19 respondents' testimony, Nov 5/9/10 public witness, Nov 17 evidentiary hearing; no mention of AG motion",
+   "basis": "estimate",
+   "source_url": "https://www.scc.virginia.gov/about-the-scc/dominion-nextera-merger-updates/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "AG clock-reset motion effect",
+   "value": "clock resets to Sep 14 2026; evidentiary hearing to ~Jan 19 2027",
+   "basis": "estimate",
+   "source_url": "https://www.wtkr.com/news/local-news/ag-jones-dominion-nextera-merge-review-sept-21-2026",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Virginia statutory clock and deemed approval",
+   "value": "60 days + up to 120 days; deemed approved if the SCC does not act",
+   "basis": "estimate",
+   "source_url": "https://law.lis.virginia.gov/vacode/title56/chapter5/section56-88.1/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "decision date if motion granted",
+   "value": "~Mar 13 2027 (estimate, confidence medium)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "South Carolina PSC schedule",
+   "value": "ORS testimony Oct 28 2026, hearing Dec 8, proposed order Dec 29, final order by Jan 29 2027",
+   "basis": "estimate",
+   "source_url": "https://www.live5news.com/2026/08/04/sc-regulators-set-hearing-schedule-proposed-dominion-energy-nextera-merger/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "customer bill-credit package",
+   "value": "$2.25B total bill credits [9]",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/715957/000110465926087585/tm2621467-2_defm14a.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Oklahoma Uri liability, damages",
+   "value": "liability found Sep 29 2026; damages unquantified; trial undated [7]",
+   "basis": "estimate",
+   "source_url": "https://ktul.com/news/local/ag-drummond-wins-lawsuit-over-excessive-natural-gas-prices-during-winter-storm-uri-09-29-2026",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements / key_drivers"
+  },
+  {
+   "item": "Oklahoma Uri liability, damages",
+   "value": "liability found; damages unquantified; trial undated [8]",
+   "basis": "estimate",
+   "source_url": "https://www.insurancejournal.com/news/southcentral/2026/09/29/887198.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements / key_drivers"
+  },
+  {
+   "item": "Duke multiples",
+   "value": "17.0x NTM ($120.67 / $7.08), 18.0x FY2026 ($120.67 / $6.71)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/duk/forecast/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "10-year Treasury",
+   "value": "5.15% (2026-10-19) vs 5.26% (2026-09-29)",
+   "basis": "estimate",
+   "source_url": "https://fred.stlouisfed.org/series/DGS10",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "NEE price and NTM multiple",
+   "value": "$78.25; 18.2x NTM on consensus $4.30",
+   "basis": "estimate",
+   "source_url": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NEE",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "Q3 and 9M adjusted EPS",
+   "value": "Q3 $1.24 vs $1.13; 9M $3.47 [11]",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "FY2026 guidance and long-term target",
+   "value": "$3.92-4.02 reaffirmed, high end targeted; 8%+ CAGR off $3.71 through 2032 [11]",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "beat record",
+   "value": "4 of 4 first guides beaten, median +8.6% [13-19]",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330822000007/neeq42021exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "dividend and yields",
+   "value": "$0.6232/qtr ($2.49/yr), 6% growth to $2.64 [11]; 3.19% / 3.38% at $78.25",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-20251231.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "fee conditional on regulatory failure",
+   "value": "NEE pays $4.8B only if the deal fails on regulatory grounds [12]",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "Florida rate-agreement appeal",
+   "value": "Florida Supreme Court appeal pending [12]",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "comps median basis",
+   "value": "comps_review and long_dated_review are null; peer set lives in the Horizon P/E row",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor comps_review / long_dated_review"
+  },
+  {
+   "item": "SO consensus and close",
+   "value": "$90.39; FY2026 $4.59, FY2027 $4.92 [28]",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/so/forecast/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model (Horizon P/E)"
+  },
+  {
+   "item": "AEP consensus and close",
+   "value": "$127.39; FY2026 $6.39, FY2027 $6.87 [29]",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/aep/forecast/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model (Horizon P/E)"
+  },
+  {
+   "item": "NEE consensus",
+   "value": "FY2026 $4.02, FY2027 $4.37 [26]",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/nee/forecast/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model (Horizon P/E / Adjusted EPS)"
+  },
+  {
+   "item": "FPL inputs",
+   "value": "9M $4,493M (+10.8%); Q4-25 $958M; regulatory capital employed +9.2%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail FPL"
+  },
+  {
+   "item": "planned capex",
+   "value": "FPL $11.7B (2027), $11.3B (2028), ~$12B (2026); NEER ~$24.8B (2026) -> $17,720M / $11,575M; remaining 2026 $3.64B + $5.71B; 2027 total $29.4B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail FPL / NEER / capex"
+  },
+  {
+   "item": "FY2021 segment adjusted earnings [17]",
+   "value": "FPL $2,935M + Gulf $271M, NEER $2,206M, Corporate -$391M = $5,021M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330822000007/neeq42021exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail FPL/NEER"
+  },
+  {
+   "item": "FY2025 segment adjusted earnings and Q4-25 by segment [13]",
+   "value": "FPL $5,012M, NEER $3,523M, Corp -$852M = $7,683M; Q4-25 FPL $958M, NEER $422M, Corp -$247M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000007/neeq42025exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail FPL/NEER"
+  },
+  {
+   "item": "NEER 9M and new investments",
+   "value": "9M $3,576M (+15.3%); new investments +$457M [Q]",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail NEER"
+  },
+  {
+   "item": "Corporate 9M and growth",
+   "value": "9M -$795M; Q4-25 -$247M; drag +31% y/y",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail Corporate"
+  },
+  {
+   "item": "shares, ATM, equity units, dilutive securities",
+   "value": "2,097.3M outstanding; Q3 diluted 2,097.6M; ATM 11.0M shares for $938M, ~$3.1B left; equity units 0.4348-0.5435 per $50, ~25M shares, settle by Feb 2029; 8.4M dilutive",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail shares"
+  },
+  {
+   "item": "Q4 EPS history [13]",
+   "value": "Q4 2025 $0.54, Q4 2024 $0.53",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000007/neeq42025exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail Adjusted EPS"
+  },
+  {
+   "item": "cash-flow facts",
+   "value": "CFO FY2025 $12,485M, 9M-25 $9,986M, 9M-26 $12,322M; 9M differential membership $1,334M, project minority interests $1,559M, asset sales $665M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail Net debt at horizon"
+  },
+  {
+   "item": "9M-26 and Q4-25 segment revenue and operating income",
+   "value": "9M FPL $14,588M / $5,787M; NEER $7,360M / $1,531M; Corp $377M / -$249M; Q4-25 FPL $4,273M / $1,507M; NEER $2,117M / $192M; Corp $110M / -$113M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000007/neeq42025exhibit99.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail segment revenue/EBIT"
+  },
+  {
+   "item": "D&A, tax, dividends paid",
+   "value": "D&A 9M $4,780M on $22,325M; FY2025 D&A $6,580M; tax 1% 9M-26, -17.7% FY2025; dividends 9M $3,907M; FY2025 $4,680M; DPS $0.5665 -> $0.6232",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000015/nee-20251231.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model inputs_detail D&A/tax/dividends"
+  },
+  {
+   "item": "adjusted EPS FY2026 guidance arithmetic",
+   "value": "4/0/0 beat; median 8.61; adjusted 4.312; ours 4.06 above, gap 2.27",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS FY2027 guidance arithmetic",
+   "value": "guide 4.33 (floor); adjusted 4.70; ours 4.70 above, gap 8.61",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EPS FY2028 guidance arithmetic",
+   "value": "guide 4.67 (floor); adjusted 5.076; ours 5.08 above, gap 8.7",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "DPS FY2027 guidance arithmetic",
+   "value": "1/0/0; median 0.008; adjusted 2.6426; ours 2.6424 inside, gap 0.0",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "FPL adjusted earnings FY2026-28",
+   "value": "$5,537M / $6,438M / $7,033M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "NEER adjusted earnings FY2026-28",
+   "value": "$4,049M / $4,767M / $5,228M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Corporate and Other drag FY2026-28",
+   "value": "-$1,079M / -$1,241M / -$1,390M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Diluted shares (EPS)",
+   "value": "FY2026 ~2,096M; FY2027 2,120M; FY2028 2,140M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Adjusted EPS FY2026-28",
+   "value": "$4.06 / $4.70 / $5.08",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "NTM adjusted EPS at horizon",
+   "value": "$5.01",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Horizon P/E",
+   "value": "17.9x NTM",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Dividend run-rate and growth",
+   "value": "$0.6232/qtr ($2.4928); FY2027 $2.6424",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Horizon dividend yield",
+   "value": "3.24%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Leg weights",
+   "value": "P/E 0.6, yield 0.4",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Dominion termination fee adjustment",
+   "value": "-$4,800M x 15% = -$720M (-$0.34/sh)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Uri damages adjustment",
+   "value": "-$300M (-$0.14/sh)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Net debt at the horizon",
+   "value": "$122,000M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Shares at the horizon",
+   "value": "2,125M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Segment revenue growth and EBIT margins",
+   "value": "FPL +3.4%/+6%/+6% at 39.3%/42.9%/43.7%; NEER +11.1%/+12%/+10% at 17.9%/19.3%/19.9%; Corporate +27.7% at -75%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "D&A, tax, capex, dividends paid",
+   "value": "D&A 22%; tax 10%; capex 126% / 93.6% / 81%; dividends $5,214M / $5,589M / $5,980M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Scenario deltas",
+   "value": "bear -4.4 turns, EPS -4%; bull +3.0 turns, EPS +2%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "dividends per share FY2026: first guide (derived) / actual",
+   "value": "2.4926 (estimate: 2.06 x 1.10^2) / 2.4928 (0.6232 x 4)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330825000003/neeq42024exhibit99.htm; https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "feeds": "supervisor guidance (DPS track record)",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "$61 thesis break vs NTM EPS",
+   "value": "~12.2x NTM EPS $5.01; 4.3% yield on $2.6424",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.inputs_detail (NTM adjusted EPS $5.01)",
+   "feeds": "thesis_break",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "governor declined special session; only the General Assembly can extend; automatic approval",
+   "value": "Virginia Business, Sep 4 2026 [4]",
+   "basis": "reported",
+   "source_url": "https://virginiabusiness.com/spanberger-wont-call-special-session-to-extend-dominion-nextera-merger-deadline/",
+   "feeds": "disagreements / changes (no number)",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "Virginia decision deadline",
+   "value": "mid-January 2027 [4]; ~Mar 13 2027 if the AG motion is granted (estimate: Sep 14 2026 + 180-day statutory maximum [30], confidence medium)",
+   "basis": "reported",
+   "source_url": "https://virginiabusiness.com/spanberger-wont-call-special-session-to-extend-dominion-nextera-merger-deadline/",
+   "feeds": "key_drivers / disagreements / scenarios (timing only)",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "value of one P/E turn",
+   "value": "~$5.0/sh (NTM EPS $5.01)",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.inputs_detail (NTM adjusted EPS $5.01)",
+   "feeds": "key_drivers",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "EPS path cited in key_drivers",
+   "value": "$4.06 / $4.70 / $5.08 FY2026-28, NTM $5.01",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.guidance_check / inputs_detail",
+   "feeds": "key_drivers / fair_value",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "expected total return",
+   "value": "~13.2% (9.8% to $85.95 from $78.25 + $2.61 dividends 3.3%)",
+   "basis": "estimate",
+   "source_url": "model_engine.py check supervisor.json (85.95); close $78.25 (source 23)",
+   "feeds": "sizing / summary",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "Q3 2026 adjusted EPS vs prior year",
+   "value": "$1.24 vs $1.13 (+9.7%)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "feeds": "supervisor model (annotation)",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "FPL regulatory ROE held by RSM",
+   "value": "ROE ~11.80% (13-month average, 2026-09-30); RSM ~$1.5B after tax remaining",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000081/nee-20260930.htm",
+   "feeds": "supervisor model (FPL build)",
+   "checked": "2026-10-22"
+  },
+  {
+   "item": "Corporate and Other long-term debt issuance 9M 2026",
+   "value": "$12.8B ($12,794M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/753308/000075330826000077/neeq32026exhibit99.htm",
+   "feeds": "supervisor model (Corporate drag, context)",
+   "checked": "2026-10-22"
+  }
+ ],
+ "notes": [
+  "run_digest.py labels every guidance_check first_guide figure 'guidance' by script; the derived FY2026 DPS first guide is labelled in first_guide_label / first_guide_derivation / first_guide_confidence and now also period basis 'estimate'.",
+  "The Oklahoma Watch failure is closed by removal: the range is agent_3's unsourced judgment and enters no number.",
+  "Not changed (Kilian's decision): EPS path $4.06 / $4.70 / $5.08, NTM $5.01, the 17.9x and 3.24% multiples, the -$0.48/sh adjustments, the $61 break price, max weight and conviction.",
+  "update.json and explain.json were not edited (outside this step's files); explain.json still quotes the agents' 'Jan 11 2027' in a changes recap."
+ ]
+}

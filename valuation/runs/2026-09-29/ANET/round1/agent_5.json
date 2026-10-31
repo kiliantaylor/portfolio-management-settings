@@ -1,0 +1,83 @@
+{
+  "symbol": "ANET", "agent_id": "agent_5", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 51, "p": 0.99}, {"K": 82, "p": 0.965}, {"K": 102, "p": 0.925}, {"K": 122, "p": 0.87},
+    {"K": 143, "p": 0.795}, {"K": 163, "p": 0.71}, {"K": 184, "p": 0.62}, {"K": 204, "p": 0.535},
+    {"K": 224, "p": 0.455}, {"K": 245, "p": 0.38}, {"K": 275, "p": 0.285}, {"K": 306, "p": 0.21},
+    {"K": 357, "p": 0.125}, {"K": 408, "p": 0.075}, {"K": 510, "p": 0.025}
+  ],
+  "ladder_1m": [
+    {"K": 163.22, "p": 0.935}, {"K": 173.42, "p": 0.865}, {"K": 183.62, "p": 0.765}, {"K": 189.74, "p": 0.695},
+    {"K": 195.86, "p": 0.615}, {"K": 204.02, "p": 0.51}, {"K": 212.18, "p": 0.41}, {"K": 218.30, "p": 0.34},
+    {"K": 224.42, "p": 0.275}, {"K": 234.62, "p": 0.185}, {"K": 244.82, "p": 0.12}
+  ],
+  "one_month_reasoning": "Arista's Q3 2026 report is expected around 2026-11-02 (after the close), so it falls just OUTSIDE the 2026-10-30 window. Inside the window: hyperscaler Q3 earnings and capex updates (Alphabet, Microsoft, Meta, Amazon in the last week of October) which read through to AI networking demand, plus FOMC and macro prints. These are two-sided; hyperscaler capex guidance has been revised up all year (Moody's/Goldman), a mild positive skew offset by the stock sitting ~5% below its 52-week high after a +55% YTD run. I use a near-symmetric lognormal centred at ~$205 (tiny momentum drift) with 1-month sigma of 15% (54% annual realized / 3.5), consistent with the brief's instruction to stay neutral absent a company-specific event.",
+  "fair_value": {
+    "value": 196.0,
+    "method": "Blend of forward P/E (NTM EPS at Sep-2027 of ~$5.80 x 35x, the ~5-year average forward multiple, = $203, weight 0.6) and FCF yield (2028E FCF ~$7.3B at a 3.25% yield plus ~$10.5/share net cash = $185, weight 0.4) gives ~$196.",
+    "methods": [
+      {"name": "P/E", "value": 203.0, "weight": 0.6,
+       "inputs": "NTM EPS as of Sep-2027 ~$5.80 (25% FY27 ~$5.15 + 75% FY28 ~$6.00) x 35x forward P/E",
+       "inputs_detail": [
+         {"input": "FY2026 non-GAAP EPS consensus", "value": "$4.11", "basis": "consensus", "source_ids": [3], "derivation": ""},
+         {"input": "Q3 2026 non-GAAP EPS guidance", "value": "$1.06-$1.08", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY2027 non-GAAP EPS", "value": "$5.15", "basis": "estimate", "source_ids": [3, 4, 5], "derivation": "Consensus FY27 net income ~$6.08B (27 analysts) / ~1.28B diluted shares = ~$4.75 on a GAAP-like basis; adding ~8% non-GAAP uplift (Q2 GAAP $0.95 vs non-GAAP $1.02) gives ~$5.15, i.e. ~25% growth on $4.11, consistent with Morningstar's 25% 2027 revenue growth view."},
+         {"input": "FY2028 non-GAAP EPS", "value": "$6.00", "basis": "estimate", "source_ids": [5, 7], "derivation": "~17% growth: Morningstar models 20% 2028 revenue growth; UBS/Goldman see hyperscaler capex growth decelerating to 6-12% in 2028, so I haircut modestly."},
+         {"input": "Forward P/E", "value": "35x", "basis": "judgment", "source_ids": [6], "derivation": "5-year average forward P/E ~34x; pre-AI 3-5 year range 30-35x; current ~48x. Base rate for re-rating after peak-growth year is mean reversion toward the historical average as growth decelerates from ~40% to ~20%."}
+       ]},
+      {"name": "FCF yield", "value": 185.0, "weight": 0.4,
+       "inputs": "2028E revenue ~$19.1B x 38% FCF margin = ~$7.3B FCF; at 3.25% yield = ~$225B equity ex-cash / 1.28B shares = $175 + ~$10.5/share cash",
+       "inputs_detail": [
+         {"input": "FY2027 revenue", "value": "$16.2B", "basis": "consensus", "source_ids": [4], "derivation": ""},
+         {"input": "FY2028 revenue", "value": "$19.1B", "basis": "estimate", "source_ids": [4, 5], "derivation": "FY27 consensus $16.2B x 1.18 (Morningstar 20% 2028 growth, trimmed)."},
+         {"input": "FCF margin", "value": "38%", "basis": "estimate", "source_ids": [1], "derivation": "H1 2026 operating cash flow $2.78B on ~$5.75B revenue (~48%) is flattered by deferred revenue/working-capital build; normalised to ~38% below the ~46% GAAP operating margin."},
+         {"input": "FCF yield", "value": "3.25%", "basis": "judgment", "source_ids": [6, 7], "derivation": "Equivalent to ~31x FCF, consistent with a ~34-35x historical forward P/E for a company growing ~20% with capex-cycle exposure."},
+         {"input": "Cash and marketable securities", "value": "$13.3B (~$10.5/share), no debt", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Diluted shares", "value": "1.276B", "basis": "reported", "source_ids": [1], "derivation": ""}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 120.0, "prob": 0.2, "story": "AI capex growth decelerates faster than consensus (UBS path: 25% in 2027 falling toward single digits in 2028) or a 2027 recession (Polymarket ~35% by end-2027); gross margin keeps sliding; multiple mean-reverts to ~25x on ~$4.8 EPS. Matches ANET's own history of 40-55% peak-to-trough drawdowns (2018-19, 2022, early 2025)."},
+    "base": {"price": 215.0, "prob": 0.55, "story": "Revenue grows ~25% in 2027 as guided trajectory implies, EPS compounds ~20-25%, but forward multiple compresses from ~48x toward ~37x; price roughly tracks earnings less de-rating, ending modestly above today's level."},
+    "bull": {"price": 310.0, "prob": 0.25, "story": "Goldman path (hyperscaler capex +54% in 2027), scale-across/front-end AI and enterprise campus drive another beat-and-raise year; EPS ~$5.6 in 2027 and multiple holds ~45-50x on NTM ~$6.5."}
+  },
+  "thesis_break_price": 140.0,
+  "thesis_break_reason": "Below ~$140 the stock would trade at ~24x NTM EPS, well under its 30-35x historical forward range; that level would most likely reflect a fundamental break (hyperscaler capex cut or a major cloud customer shifting to white-box/Nvidia Spectrum-X, or a 2027 guide implying growth below ~15%) rather than normal 54%-vol noise. It is also near the Q1 2026 lows ($115-$142) that preceded the latest guidance raises.",
+  "catalysts": [
+    {"date": "2026-10 (last week)", "event": "Hyperscaler Q3 earnings and 2027 capex commentary (MSFT, GOOGL, META, AMZN)", "direction": "?"},
+    {"date": "2026-11-02", "event": "Arista Q3 2026 results and Q4 guide (Q3 guide ~$3.3B revenue, EPS $1.06-1.08)", "direction": "?"},
+    {"date": "2026-11 (mid)", "event": "Arista Analyst Day / initial 2027 revenue outlook (held each November historically)", "direction": "?"},
+    {"date": "2027-02", "event": "Q4 2026 results and full-year 2027 guide", "direction": "?"},
+    {"date": "2027-05", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-08", "event": "Q2 2027 results", "direction": "?"},
+    {"date": "2026-2027", "event": "US recession risk (Polymarket ~35% by end-2027) and tariff/semiconductor trade policy", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Path of hyperscaler capex growth in 2027-28: consensus ~22% vs Goldman ~54% vs UBS 25% then 6%",
+    "Whether ANET's forward multiple (~48x) mean-reverts toward its ~34x 5-year average as growth decelerates",
+    "Gross margin trajectory (63.4% non-GAAP vs 65.6% a year earlier) as cloud/AI mix rises",
+    "Customer concentration (Microsoft, Meta) and competition from Nvidia Spectrum-X and white-box switching",
+    "Macro: recession odds by end-2027 ~35% on Polymarket",
+    "Consensus FY27 EPS figures found vary widely ($3.97-$5.2) depending on source staleness; I used ~$5.15"
+  ],
+  "reasoning": "Base-rate lane. (1) Own history: using monthly closes since Dec-2015 (Twelve Data), ANET's rolling 12-month return had median +46%, P(<0) 14%, 10th pct -10%, 90th pct +110%; conditional on a prior 12-month gain >30% the median was +40% with P(<0) 9%. This is heavily flattered by a secular compounder with survivorship and by starting multiples that were lower, so I give it limited weight. Monthly-return annualised vol is ~39% long run and the realized 1-year vol is 54%; ANET has had 40-55% peak-to-trough drawdowns in 2018-19, 2022 and Jan-Apr 2025 ($133 to $59), so fat left tails are the norm. (2) Valuation base rate: current forward P/E ~48x vs 5-year average ~34x and 30-35x pre-AI; at 2026E EPS $4.11 the stock is ~50x. Growth is set to decelerate from ~40% (2026 guide $12.6B) to ~25% (2027 consensus revenue ~$16.2B), and hyperscaler capex growth is expected to slow from ~76-84% in 2026 to 22-54% in 2027. Historically a peak-growth-year de-rating absorbs much of the EPS growth, so my fair value (~$196) is near today's price. (3) Event odds: Polymarket ~35% recession by end-2027 (Sep 24 2026; volume not retrievable, predictionnews blocked fetch), Kalshi ~38-39% for 2027 (Aug 2026); FutureSearch forecasts only ~15% for an outright AI capex pullback by end-2027. (4) Sell-side: 31 analysts, mean target $242 (range $190-$289), Strong Buy - treated as evidence skewing upside, not the answer. Synthesis: lognormal-ish distribution with median ~$212 (+4%, EPS growth offset by de-rating, nudged up by the stock's momentum base rate and analyst targets) and sigma ~0.46, with a slightly fattened left tail for capex-bust/recession. Scenario-weighted mean ~$220. Research was limited: Alpha Vantage rate-limited, Twelve Data estimates paywalled, several pages (gurufocus, macrotrends, simplywall.st, predictionnews) returned 403, and X was not fetched.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Arista Networks Q2 2026 earnings release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000174/ex991q226-earningsrelease.htm", "date": "2026-08-04", "type": "filing", "in_lane": false},
+    {"title": "Arista Networks Q2 2026 earnings call highlights (FY26 guide raised to $12.6B)", "url": "https://finance.yahoo.com/markets/stocks/articles/arista-networks-inc-anet-q2-050501472.html", "date": "2026-08", "type": "press", "in_lane": false},
+    {"title": "StockAnalysis ANET forecast: 31 analysts, mean target $241.93, FY26 EPS $4.11, FY26 revenue $12.67B", "url": "https://stockanalysis.com/stocks/anet/forecast/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Simply Wall St ANET earnings & revenue (FY2027 consensus revenue ~$16.16B, earnings ~$6.08B, 27 analysts) via search snippet", "url": "https://simplywall.st/stocks/us/tech/nyse-anet/arista-networks/past", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Morningstar: Arista earnings - 30%/25%/20% revenue growth 2026-2028", "url": "https://www.morningstar.com/stocks/arista-earnings-take-opportunity-buy-after-lighter-beat-and-raise-than-usual", "date": "2026", "type": "sell-side", "in_lane": false},
+    {"title": "ANET PE ratio history - 5-year average forward P/E ~34x vs current ~48x (Intellectia / FinanceCharts via search)", "url": "https://intellectia.ai/stock/ANET/valuation", "date": "2026-06", "type": "data", "in_lane": true},
+    {"title": "Hyperscaler capex outlook 2027: Moody's ~$1T; UBS growth 76%->25%->6%; Goldman 54% in 2027", "url": "https://www.datacenterdynamics.com/en/news/moodys-hyperscaler-capex-forecasts-marked-up-by-85bn-to-close-in-on-1trn-by-2027/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Motley Fool: hyperscalers projected $1.3T capex in 2027, only 1 FCF-positive", "url": "https://www.fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow/", "date": "2026-09-06", "type": "press", "in_lane": true},
+    {"title": "Polymarket prices 35% chance of U.S. recession by end of 2027 (market on Polymarket; volume not available, page 403)", "url": "https://predictionnews.com/story/polymarket-prices-35-chance-of-u-s-recession-by-end-of-2027", "date": "2026-09-24", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi recession odds 2026 vs 2027 (2027 contract ~38-39c as of 2026-08-04)", "url": "https://www.oddsshopper.com/articles/prediction-markets/kalshi-recession-odds", "date": "2026-08", "type": "prediction-market", "in_lane": true},
+    {"title": "FutureSearch: Will there be a significant pullback in AI capex by end-2027? (15%)", "url": "https://futuresearch.ai/app/p/a/ai-pullback-2027", "date": "2026", "type": "prediction-market", "in_lane": true},
+    {"title": "Twelve Data ANET monthly OHLC Dec-2015 to Sep-2026 (rolling 12m return and drawdown base rates computed)", "url": "https://twelvedata.com/", "date": "2026-09-30", "type": "data", "in_lane": true},
+    {"title": "TIKR: Arista down 28% from peak in tariff-driven selloff (2025 drawdown context)", "url": "https://www.tikr.com/blog/arista-networks-is-down-28-from-its-peak-it-may-finally-be-time-to-buy-anet-stock", "date": "2025", "type": "press", "in_lane": true},
+    {"title": "GuruFocus: ANET shares fall 1.0%, 21.7% above GF Value $166.70 (2026-09-29)", "url": "https://www.gurufocus.com/news/9102506/arista-networks-inc-anet-shares-fall-10-what-gf-score-of-97-tells-investors", "date": "2026-09-29", "type": "data", "in_lane": true},
+    {"title": "Seeking Alpha ANET earnings dates (next report est. 2026-11-02)", "url": "https://seekingalpha.com/symbol/ANET/earnings", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

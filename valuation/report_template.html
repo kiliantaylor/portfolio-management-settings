@@ -1,0 +1,1116 @@
+<title>Price Targets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f4f5f2; --panel:#ffffff; --line:#d9ddd6; --text:#1b232b; --muted:#66727d;
+  --amber:#a86400; --band:#e9d9bd; --band2:#d8b77f; --pos:#1e7f5c; --neg:#b8322b; --mkt:#3b6ea8; --llm:#8a4fb0; --an:#6b7a3a; --fv:#8a5a2b;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1419; --panel:#151c23; --line:#26313b; --text:#d9e0e6; --muted:#8894a0;
+  --amber:#f0a830; --band:#3a3020; --band2:#6d5528; --pos:#3fb68b; --neg:#ef6a60; --mkt:#6ea2e0; --llm:#c08ae0; --an:#b5c46e; --fv:#d9a26c; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f1419; --panel:#151c23; --line:#26313b; --text:#d9e0e6; --muted:#8894a0;
+  --amber:#f0a830; --band:#3a3020; --band2:#6d5528; --pos:#3fb68b; --neg:#ef6a60; --mkt:#6ea2e0; --llm:#c08ae0; --an:#b5c46e; --fv:#d9a26c; color-scheme:dark;}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif;padding-inline:16px}
+.wrap{max-width:1080px;margin:0 auto;padding-block:24px 48px;display:flex;flex-direction:column;gap:28px}
+.mono,td.n,th.n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--line);padding-bottom:12px}
+h1{font-size:22px;font-weight:600;margin:0;letter-spacing:.01em}
+h1 span{color:var(--amber)}
+.sub{color:var(--muted);font-size:12.5px}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:0 0 10px;font-weight:600}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;min-width:880px;font-size:13px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+th.n,td.n{text-align:right}
+tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:color-mix(in srgb,var(--amber) 7%,transparent)}
+.sym{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--amber)}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+.flag{font-size:10.5px;border:1px solid var(--line);color:var(--muted);border-radius:3px;padding:0 4px;margin-left:6px;font-family:"IBM Plex Sans",sans-serif}
+.cards{display:flex;flex-direction:column;gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:12px}
+.card-h{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+.card-h .sym{font-size:18px}
+.ibars{display:grid;gap:4px;max-width:620px}.ib{display:grid;grid-template-columns:190px 1fr 56px;align-items:center;gap:8px;font-size:13px}
+.ib i{display:block;height:10px;background:var(--amber);opacity:.8}.ib i.at{background:var(--neg)}.ib b{font-family:"IBM Plex Mono",monospace;font-weight:500;text-align:right}
+@media (max-width:560px){.ib{grid-template-columns:120px 1fr 50px}}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:10px 16px}
+.kv div{display:flex;flex-direction:column}
+.kv b{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:15px;font-variant-numeric:tabular-nums}
+.kv small{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.chart{width:100%;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:560px;height:auto}
+.chart text{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:var(--muted)}
+.chart .lab{fill:var(--text)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:720px){.cols{grid-template-columns:1fr}}
+.card p{margin:0;max-width:72ch}
+ul{margin:0;padding-left:18px} li{margin:2px 0}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;color:var(--muted);font-size:12px}
+.legend i{display:inline-block;width:12px;height:3px;vertical-align:middle;margin-right:6px}
+.method{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px 18px;max-width:none}
+.method ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;max-width:80ch}
+.note{color:var(--muted);font-size:12px;max-width:90ch}
+.todaybox{margin:8px 0 10px;padding:8px 12px;border:1px solid var(--line, #ccc);border-radius:8px;font-size:14px}
+.panel-fv{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 16px}
+.panel-fv .note{margin:6px 0 0}
+
+details.fvg{border-top:1px solid var(--line)} details.fvg:first-child{border-top:0}
+details.fvg>summary{cursor:pointer;padding:12px 8px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;color:var(--muted);list-style:none}
+details.fvg>summary::before{content:"▸";display:inline-block;width:14px;font-size:11px} details.fvg[open]>summary::before{content:"▾";color:var(--amber)}
+details.fvg>summary:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
+details.how{border-top:1px solid var(--line);padding-top:10px}
+details.how>summary{cursor:pointer;font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--amber);font-weight:600;list-style:none}
+details.how>summary::before{content:"▸ ";} details.how[open]>summary::before{content:"▾ ";}
+.how .tbl table{min-width:760px}
+.how td.tw{white-space:normal;min-width:180px;max-width:360px;font-size:12.5px;line-height:1.45}
+.how tr.ag{cursor:pointer} .how tr.ag.sel td{background:color-mix(in srgb,var(--amber) 10%,transparent)}
+.how div.more{background:color-mix(in srgb,var(--amber) 4%,transparent);border:1px solid var(--line);border-radius:4px;padding:10px 12px;margin-top:8px;font-size:12.5px;line-height:1.5}
+.how div.more h3{margin-top:0} .how div.more p{max-width:110ch;margin:0 0 6px}
+.how ol.steps{margin:10px 0 6px;padding-left:20px;font-size:13px;line-height:1.5;max-width:120ch} .how ol.steps>li{margin-bottom:9px}
+.how ol.steps ul{margin:4px 0 6px;padding-left:18px;font-size:12.5px} .how p.sub2{margin:8px 0 3px;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted,#888)}
+.how table.mini{min-width:0} .how table.mini td.tw{max-width:520px}
+.how details.rnd{margin-top:10px} .how details.rnd>summary{cursor:pointer;font-size:12.5px;font-weight:600}
+@media (max-width:720px){
+  .how table.chg{min-width:0} .how table.chg thead{display:none}
+  .how table.chg tr{display:block;border-bottom:1px solid var(--line);padding:6px 0}
+  .how table.chg td{display:block;border:0;padding:3px 10px;max-width:none;min-width:0}
+  .how table.chg td::before{content:attr(data-l);display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+}
+.chip{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:10px;padding:0 7px;margin:0 4px 2px 0;color:var(--text)}
+.how p.xl{margin:10px 0 4px;font-size:13px} .how button.dl,.how a.dl{font:inherit;cursor:pointer;background:none;display:inline-block;margin:10px 8px 4px 0;padding:6px 12px;border:1px solid var(--amber);border-radius:4px;color:var(--amber);text-decoration:none;font-weight:600;font-size:13px} .how button.dl:hover,.how a.dl:hover{background:color-mix(in srgb,var(--amber) 10%,transparent)}
+.memo ol,.memo ul{margin:0 0 8px;padding-left:20px;max-width:110ch}.memo li{margin:3px 0}.memo p{max-width:110ch;margin:0 0 8px}a.ref{font-size:11px;margin-left:2px;color:var(--muted);text-decoration:none}
+.how h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px;font-weight:600}
+
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:-12px}
+.tabs button{font:inherit;font-size:13px;font-weight:600;letter-spacing:.02em;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:8px 14px;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--amber)}
+.tabs .cnt{font-family:"IBM Plex Mono",monospace;font-weight:400;color:var(--muted);font-size:12px}
+.tabp{display:flex;flex-direction:column;gap:28px} .tabp[hidden]{display:none}
+tr.nm td:first-child::before{content:"▸";display:inline-block;width:14px;color:var(--muted);font-size:11px}
+tr.nm.open td:first-child::before{content:"▾";color:var(--amber)}
+tr.grp th{text-align:left;padding:12px 8px;font-weight:600;cursor:pointer;border-top:1px solid var(--line)}
+tr.grp th::before{content:"▸";display:inline-block;width:14px;color:var(--muted);font-size:11px}
+tr.grp[aria-expanded="true"] th::before{content:"▾";color:var(--amber)}
+tr.grp:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
+tr.nm.open td{background:color-mix(in srgb,var(--amber) 9%,transparent)}
+tr.det>td{padding:0;background:var(--bg);white-space:normal}
+tr.det .detail{box-sizing:border-box;position:sticky;left:0;padding:14px 16px 18px;display:flex;flex-direction:column;gap:12px;border-left:2px solid var(--amber)}
+tr.det .detail .kv{margin:0} .kv b span{white-space:nowrap}
+tr.det .detail>*{min-width:0;max-width:100%}
+tr.det .detail .cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:720px){tr.det .detail .cols{grid-template-columns:minmax(0,1fr)}}
+.foot{margin:6px 0 0}
+details.mdl>summary{cursor:pointer;color:var(--muted);margin:14px 0 4px}
+
+.stat{font-size:10.5px;border-radius:3px;padding:1px 6px;border:1px solid var(--line);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.stat.pick{color:var(--amber);border-color:var(--amber)} .stat.priced{color:var(--pos);border-color:var(--pos)}
+.idea-sum{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 16px;max-width:none}
+.idea-sum p{margin:0;max-width:95ch}
+.themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.themes>div{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:10px 14px;font-size:12.5px;line-height:1.5}
+.themes li{margin:4px 0}
+.att{color:var(--attn, #b7791f);font-weight:600;margin-left:2px;cursor:help}
+td.lad{min-width:340px;font-size:12px;line-height:1.5}
+.wait,.scard{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 16px}
+.wait{border-left:3px solid var(--amber)} .wait ul{margin:0;padding-left:18px} .wait li{margin:4px 0;max-width:110ch}
+.scard dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;margin:0;font-size:13px}
+.scard dt{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px} .scard dd{margin:0;min-width:0}
+.scard .note{margin:8px 0 0}
+@media (max-width:560px){.scard dl{grid-template-columns:minmax(0,1fr)} .scard dt{padding-top:6px}}
+.fl{display:grid;gap:18px}
+.fl .ticket{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px;display:grid;gap:12px;max-width:640px}
+.fl .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:460px){.fl .row{grid-template-columns:minmax(0,1fr)}}
+.fl label{display:grid;gap:4px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fl input{font:500 15px "IBM Plex Mono",monospace;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px 10px;width:100%;box-sizing:border-box}
+.fl .side{display:flex;gap:8px}
+.fl .side button,.fl .chips button{font:600 13px "IBM Plex Mono",monospace;border:1px solid var(--line);background:var(--bg);color:var(--muted);border-radius:4px;padding:8px;cursor:pointer}
+.fl .side button{flex:1}
+.fl .side button[aria-pressed="true"][data-side="buy"]{border-color:var(--pos);color:var(--pos)}
+.fl .side button[aria-pressed="true"][data-side="sell"]{border-color:var(--neg);color:var(--neg)}
+.fl .chips{display:flex;flex-wrap:wrap;gap:6px}.fl .chips button{font-weight:500;font-size:12px;padding:4px 8px;color:var(--text)}
+.fl .go{font:600 14px "IBM Plex Sans",sans-serif;background:var(--amber);color:var(--panel);border:0;border-radius:4px;padding:10px;cursor:pointer}
+.fl .go:disabled{opacity:.5;cursor:default}
+.fl .warnbox{background:color-mix(in srgb,var(--amber) 14%,transparent);color:var(--amber);border-radius:4px;padding:8px 10px;font-size:13px}
+.fl table{min-width:0}.fl tbody tr{cursor:default}
+.fl .pill{font-size:11px;border:1px solid var(--line);border-radius:3px;padding:1px 6px}
+.fl .pill.logged{color:var(--pos);border-color:var(--pos)}.fl .pill.new{color:var(--amber);border-color:var(--amber)}.fl .pill.live{color:var(--fg);border-color:var(--fg)}.fl .pill.bad{color:var(--neg);border-color:var(--neg)}
+.fl .del{background:none;border:0;color:var(--muted);cursor:pointer;font:12px "IBM Plex Mono",monospace;text-decoration:underline}
+#live-strip{background:var(--panel);border:1px solid var(--amber);border-radius:4px;padding:10px 14px;font-size:13px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div><h1>Price Targets <span>NTM</span></h1>
+    <div class="sub" id="asof"></div></div>
+    <div class="sub">Options market blended with five research agents · <a href="https://claude.ai/artifact/8kFbwWAfTBNuBqtrT8ZUCi" target="_blank" rel="noopener">How it works</a></div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="t-hold" data-t="hold" aria-selected="true">Holdings <span class="cnt" id="n-hold"></span></button>
+    <button role="tab" id="t-watch" data-t="watch" aria-selected="false">Watchlist <span class="cnt" id="n-watch"></span></button>
+    <button role="tab" id="t-fills" data-t="fills" aria-selected="false">Fills</button>
+  </nav>
+  <div id="live-strip" hidden></div>
+  <div class="tabp" id="p-hold" role="tabpanel" aria-labelledby="t-hold"></div>
+  <div class="tabp" id="p-watch" role="tabpanel" aria-labelledby="t-watch" hidden></div>
+  <div class="tabp fl" id="p-fills" role="tabpanel" aria-labelledby="t-fills" hidden>
+    <form class="ticket" id="fl-form" novalidate>
+      <div class="row">
+        <label>Trade date<input id="fl-date" type="date" required></label>
+        <label>Ticker<input id="fl-sym" autocomplete="off" maxlength="6" placeholder="MOD" style="text-transform:uppercase" required></label>
+      </div>
+      <div><div class="chips" id="fl-chips" aria-label="Held names"></div><div class="sub">Held names, from the fills below. Tap one to fill the ticker.</div></div>
+      <div class="side" role="group" aria-label="Side">
+        <button type="button" id="fl-buy" data-side="buy" aria-pressed="true">BUY</button>
+        <button type="button" id="fl-sell" data-side="sell" aria-pressed="false">SELL</button>
+      </div>
+      <div class="row">
+        <label>Shares<input id="fl-qty" type="number" min="1" step="1" inputmode="numeric" placeholder="4" required></label>
+        <label>Fill price ($)<input id="fl-px" type="number" min="0" step="0.0001" inputmode="decimal" placeholder="153.78" required></label>
+      </div>
+      <label>Note (optional)<input id="fl-note" maxlength="140" placeholder="limit 154, partial fill…"></label>
+      <div class="sub" id="fl-total">Notional –</div>
+      <div class="warnbox" id="fl-warn" hidden></div>
+      <button class="go" id="fl-go" type="submit">Add fill</button>
+      <div class="sub" id="fl-msg" role="status"></div>
+    </form>
+    <section><h2>Held now</h2>
+      <div class="tbl"><table><thead><tr><th>Ticker</th><th class="n">Shares</th><th class="n">Avg cost</th><th class="n">Last</th><th class="n">Buy 1 at or below</th><th class="n">Sell 1 at or above</th></tr></thead><tbody id="fl-pos"></tbody></table></div>
+      <p class="note" id="fl-plan-note"></p></section>
+    <section><h2>All fills</h2>
+      <div class="tbl"><table><thead><tr><th>Date</th><th>Side</th><th>Ticker</th><th class="n">Shares</th><th class="n">Price</th><th>Status</th><th></th></tr></thead><tbody id="fl-rows"></tbody></table></div></section>
+  </div>
+
+  <section class="method"><p class="note">How targets, sizes and levels are made, and every routine behind this page: <a href="https://claude.ai/artifact/8kFbwWAfTBNuBqtrT8ZUCi" target="_blank" rel="noopener">How it works</a>. Weekly ideas and screens are Google Docs in the <a href="https://drive.google.com/drive/folders/1CLL6L--BMc-r6cyBS07NUhN2rxpwN2fR" target="_blank" rel="noopener">Weekly Ideas</a> Drive folder (moved off this page 2026-10-09). Inputs to Kilian's decisions, not advice.</p><p class="note">Days-to-cover tilt: ln(1 + 0.048 × (0.5 − percentile)), about ±2%, added to the EPS tilt; quarter Kelly, not scaled by conviction (METHOD.md 2026-10-19).</p></section>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+// Live prices, levels and trades without republishing (2026-10-27, "Automate fills and Price Targets without Claude"):
+// the GitHub Action (repo live/run.py) reruns review.py and build_report.py at live quotes every 30 minutes while the market
+// is open and writes the difference from this page's data to the "live" tab of the Price Targets live Sheet. The page keeps
+// the newest patch for its own data in browser storage and applies it here, before anything renders; a newer one reloads.
+const SHEET = '1eSjig2l4LWcO7YNdXprVNZKend-53uyM8-6PS4aw-0U';
+const LIVE = (() => {
+  const key = [D.as_of, D.generated, (D.live || {}).time_utc].map(v => v == null ? 'None' : String(v)).join('|');
+  const store = { get() { try { return localStorage.getItem('pt-live') || (window.name.startsWith('pt-live:') ? window.name.slice(8) : null); } catch (e) { return null; } },
+    set(t) { let ok = false; try { localStorage.setItem('pt-live', t); ok = localStorage.getItem('pt-live') === t; } catch (e) {}
+      if (!ok) { try { window.name = 'pt-live:' + t; ok = window.name === 'pt-live:' + t; } catch (e) {} } return ok; } };
+  const step = (n, k) => typeof k === 'string' && k[0] === '@' && Array.isArray(n) ? n.find(e => e && e.symbol === k.slice(1)) : n[k];
+  const isSym = (n, k) => Array.isArray(n) && typeof k === 'string' && k[0] === '@';
+  function applyLive(data, p) {  // mirrors apply() in live/patch.py: deletions first, "@SYM" replaces or appends, "#order" reorders
+    const walk = path => { let n = data; path.slice(0, -1).forEach(k => { n = step(n, k); }); return [n, path[path.length - 1]]; };
+    for (const path of p.del) { const [n, k] = walk(path);
+      if (isSym(n, k)) { const i = n.findIndex(e => e && e.symbol === k.slice(1)); if (i >= 0) n.splice(i, 1); } else delete n[k]; }
+    for (const [path, v] of p.set) { const [n, k] = walk(path);
+      if (Array.isArray(n) && k === '#order') { const by = Object.fromEntries(n.map(e => [e.symbol, e])); n.splice(0, n.length, ...v.filter(x => by[x]).map(x => by[x])); }
+      else if (isSym(n, k)) { const i = n.findIndex(e => e && e.symbol === k.slice(1)); if (i >= 0) n[i] = v; else n.push(v); }
+      else n[k] = v; }
+  }
+  let applied = null;
+  try { const p = JSON.parse(store.get() || 'null'); if (p && p.base === key) { applyLive(D, p); applied = p.version; D.live_patch = { version: p.version, quotes_as_of: p.quotes_as_of }; } } catch (e) {}
+  return { key, applied, store };
+})();
+const f2 = (x, s) => x == null || x === '' ? '–' : (typeof x !== 'number' ? (isFinite(+x) ? f2(+x, s) : String(x).replace(/[&<>]/g, '')) : (s < 5 ? x.toFixed(3) : x.toFixed(2)));
+// Kilian 2026-10-22 20:27Z / 10-23 01:06Z: the research leg's number is the "research target (12m)", never "fair value"/"FV".
+// Agent and memo text written before the rename still says it, so every displayed string is renamed here; the accounting
+// sense (at fair value, fair-value gains, fair value of a stake, hierarchy) and URLs are left alone.
+const RT_RE = /(?<!\bat )\b(fair[ -]value|FV)(s?)\b(?![ -]*(?:gains?|loss(?:es)?|changes?|hierarchy|through|adjustments?|measurements?|accounting|option|marks?)\b)(?!\s+of\s+(?:the|its|our|their|a|an)\s+(?:stake|investments?|holdings?|equity|notes?|warrants?|derivatives?|shares|assets?|liabilit))/gi;
+const rtName = t => /^https?:\/\//.test(t) ? t : t.replace(RT_RE, (m, w, s) => (m[0] === 'F' && w !== 'FV' ? 'Research target' : 'research target') + (s ? 's' : '') + ' (12m)');
+const esc = t => rtName(String(t ?? '')).replace(/[&<>]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'}[c]));
+const pct = x => x == null ? '–' : (x * 100).toFixed(0) + '%';
+const sgn = x => (x >= 0 ? '+' : '') + (x * 100).toFixed(1) + '%';
+const usd = x => x == null ? '–' : (x < 0 ? '−$' : '+$') + Math.abs(x).toLocaleString('en-US', {maximumFractionDigits: 0});
+document.getElementById('asof').textContent = `${D.live ? `Last prices live from Yahoo, ${new Date(D.live.time_utc * 1000).toLocaleString('en-US', {timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'})} ET; targets, levels and options as of close ${D.as_of}` : `Prices and options as of close ${D.as_of}`} · agents' research ${(D.research || []).join(', ')} · horizon ${D.horizon} · generated ${D.generated}${D.live_patch ? ` · live update ${new Date(D.live_patch.version).toLocaleString('en-US', {timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit'})} ET` : ''}`;
+const HELD = r => !!r.position;
+const SCRATCH = (D.review_summary || {}).book_mode === 'scratch';  // building from scratch (data/book.json)
+const BUY = r => !!(r.allocation && r.allocation.shares > 0);
+const TABS = SCRATCH ? {hold: D.results.filter(BUY), watch: D.results.filter(r => !BUY(r))}
+                     : {hold: D.results.filter(HELD), watch: D.results.filter(r => !HELD(r))};
+const CAP = {joint: 'joint solve (quarter Kelly)', industry: 'industry risk limit', conviction_below_min: 'conviction rubric below medium', position_limit: 'position limit', sharpe_gate: "Sharpe test (size that raises the book's Sharpe most)", saved_for_later: 'saved for later', staged_wait: 'waits for its print (staged)', limit_order: 'open limit order', excluded: 'excluded by you', cash: 'cash', target_above_last: 'target below last', quarter_kelly: 'quarter Kelly', kelly: 'Kelly (conviction-scaled)', stop_budget: '5% loss budget at stop', ceiling: '20% ceiling', supervisor: "supervisor's cap"};
+const LEGEND = `<div class="legend">
+      <span><i style="background:var(--band)"></i>10th–90th pct</span><span><i style="background:var(--band2)"></i>25th–75th pct</span>
+      <span><i style="background:var(--text)"></i>last</span><span><i style="background:var(--amber)"></i>target</span>
+      <span><i style="background:var(--pos)"></i>take-profit</span><span><i style="background:var(--neg)"></i>stop-loss</span>
+      <span><i style="background:var(--mkt)"></i>options-market median</span><span><i style="background:var(--llm)"></i>agents' median (calibrated)</span>
+      <span><i style="background:var(--an)"></i>analyst median target</span><span><i style="background:var(--fv)"></i>research target (12m)</span></div>`;
+const buyText = a => !a ? '–' : (a.shares > 0 ? a.shares + ' sh · $' + Math.round(a.dollars).toLocaleString() : 'no buy');
+
+function fvChart(rows, bySector) {
+  // Diverging bars: research target (12m, the research leg; data key fair_value) vs last price, whiskers = the five agents' range. Rows alphabetical by ticker (Kilian 2026-10-12).
+  // bySector (Researched tab, Kilian 2026-10-03): one dropdown per sector, all on the same scale.
+  rows = rows.filter(r => r.fair_value_median).slice().sort((a, b) => a.symbol.localeCompare(b.symbol));  // alphabetical (Kilian 2026-10-12)
+  if (!rows.length) return '';
+  const rng = r => r.fair_value_range || [r.fair_value_median, r.fair_value_median];
+  const ext = Math.max(0.1, ...rows.flatMap(r => [Math.abs(r.fair_value_gap), Math.abs(rng(r)[0] / r.spot - 1), Math.abs(rng(r)[1] / r.spot - 1)])) * 1.1;
+  const note = `<p class="note">Bar: the research model's 12-month base-case value vs last price (not the target; the target blends it 33% with the options market). Whisker: lowest to highest agent.${bySector ? ' Every sector uses the same scale.' : ''}</p>`;
+  // Kilian 2026-10-21 21:40Z card "Target only": the research target (12m) is a detail, collapsed by default; the target is the headline
+  const H = `<section><details class="fvwrap"><summary><h2 style="display:inline">Research target (12m) vs last price</h2> <span class="sub">research price 12 months out, not a value today; details</span></summary>`;
+  if (bySector) {
+    const secs = [...new Set(rows.map(r => r.sector || 'Other'))].sort((a, b) => (a === 'Other') - (b === 'Other') || a.localeCompare(b));
+    return `${H}<div class="panel-fv">${secs.map(sec => {
+      const rs = rows.filter(r => (r.sector || 'Other') === sec);
+      return `<details class="fvg"><summary>${esc(sec)} <span class="sub">(${rs.length})</span></summary><div class="chart">${fvSvg(rs, ext, rng)}</div></details>`;
+    }).join('')}${note}</div></details></section>`;
+  }
+  return `${H}<div class="panel-fv"><div class="chart">${fvSvg(rows, ext, rng)}</div>${note}</div></details></section>`;
+}
+function fvSvg(rows, ext, rng) {
+  const W = 900, rh = 30, top = 8, H = top + rows.length * rh + 26, L = 70, R = 70;
+  const x = v => L + (v + ext) / (2 * ext) * (W - L - R);
+  let g = '';
+  const st = ext > 0.3 ? 0.1 : 0.05;
+  for (let t = -Math.floor(ext / st) * st; t <= ext + 1e-9; t += st) {
+    const tt = Math.round(t * 100) / 100;
+    g += `<line x1="${x(tt)}" x2="${x(tt)}" y1="${top}" y2="${H - 22}" stroke="var(--line)" ${tt === 0 ? 'stroke-width="1.5" style="stroke:var(--muted)"' : ''}/>
+          <text x="${x(tt)}" y="${H - 6}" text-anchor="middle">${tt > 0 ? '+' : ''}${(tt * 100).toFixed(0)}%</text>`;
+  }
+  rows.forEach((r, i) => {
+    const y = top + i * rh + rh / 2, v = r.fair_value_gap, lo = rng(r)[0] / r.spot - 1, hi = rng(r)[1] / r.spot - 1;
+    g += `<text class="lab" x="${L - 10}" y="${y + 4}" text-anchor="end" style="font-weight:600;fill:var(--amber)">${r.symbol}</text>
+      <rect x="${Math.min(x(0), x(v))}" y="${y - 7}" width="${Math.max(Math.abs(x(v) - x(0)), 1.5)}" height="14" fill="${v >= 0 ? 'var(--pos)' : 'var(--neg)'}" opacity=".85"/>
+      <line x1="${x(lo)}" x2="${x(hi)}" y1="${y}" y2="${y}" stroke="var(--text)" stroke-width="1"/>
+      <line x1="${x(lo)}" x2="${x(lo)}" y1="${y - 5}" y2="${y + 5}" stroke="var(--text)"/><line x1="${x(hi)}" x2="${x(hi)}" y1="${y - 5}" y2="${y + 5}" stroke="var(--text)"/>
+      <text class="lab" x="${W - R + 8}" y="${y + 4}">${sgn(v)}</text>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Research target (12m) versus last price">${g}</svg>`;
+}
+
+const kf = c => c && c.multiplier != null ? `${c.multiplier.toFixed(2)}×` : '–';
+const kTip = c => c ? `expected return ${(c.mu * 100).toFixed(1)}% = options market ${(c.mu_market * 100).toFixed(1)}% + research ${(c.alpha * 100).toFixed(1)}%; agents vs options ${(c.view * 100).toFixed(1)}%, agents' spread ${(c.disp * 100).toFixed(1)}% (floor 10%), conviction ${c.t.toFixed(2)} vs median ${c.median_t.toFixed(2)}; sized on ${(c.mu_eff * 100).toFixed(1)}%` : '';
+const dLvl = (x, s) => x ? `${f2(x.price, s)}<span class="sub"> → ${x.shares} sh</span>${x.news_check ? '<span class="att" title="A move bigger than the usual one-month swing (from implied vol)">*</span>' : ''}` : '–';
+const dLad = (d, s) => d ? d.ladder.map((l, i) => `<span class="${i === 2 ? '' : 'sub'}">${['−20%', '−10%', 'now', '+10%', '+20%'][i]} ${f2(l.price, s)}: <b>${l.shares}</b>${l.news_check ? '*' : ''}</span>`).join(' · ') : '<span class="sub">n/a</span>';
+function bookPanel(P) {
+  if (!P || P.volatility == null) return '';
+  const p1 = x => (x * 100).toFixed(1) + '%', sg = x => (x >= 0 ? '+' : '−') + (Math.abs(x) * 100).toFixed(1) + '%';
+  const IND = {Index: 'S&P 500 fund', BusEq: 'Tech hardware and chips', Servs: 'Internet and services', Autos: 'Autos', Util: 'Utilities', Hshld: 'Household products', Mines: 'Mining', ElcEq: 'Electrical equipment', Other: 'Other'};
+  const inds = Object.entries(P.industry_risk_share || {}).sort((a, b) => b[1] - a[1]);
+  const bars = inds.map(([g, v]) => `<div class="ib"><span>${esc(IND[g] || g)}</span><i style="width:${Math.max(v * 100, 0.5)}%" class="${P.max_industry_risk_share && v >= P.max_industry_risk_share - 0.005 ? 'at' : ''}"></i><b>${p1(v)}</b></div>`).join('');
+  const c = P.calibration || {};
+  return `<section><h2>The book as one portfolio</h2>
+    <div class="kv">
+      <div><small>Expected return on invested, 1Y</small><b>${sg(P.invested_expected_return ?? P.expected_return)}</b></div>
+      <div><small>Options market alone</small><b>${sg(P.invested_expected_return_market_only ?? P.expected_return_market_only)}</b></div>
+      <div><small>Volatility on invested, 1Y</small><b>${p1(P.invested_volatility ?? P.volatility)}</b></div>
+      <div><small>Sharpe, invested only</small><b>${P.sharpe != null ? P.sharpe.toFixed(2) : '–'}</b></div>
+      <div title="Kilian 2026-10-22 card: invested-only Sharpe once every held name reaches its Sharpe-optimal target (review_summary sizing.sharpe_target, market-value weights). Adds are tested on the whole book, so the invested Sharpe can dip between staged buys and ends here."><small>Sharpe at target</small><b>${((D.review_summary || {}).sizing || {}).sharpe_target != null ? D.review_summary.sizing.sharpe_target.toFixed(2) : '–'}</b></div>
+      <div><small>Beta to S&amp;P 500, held</small><b>${(P.held_beta_mv ?? P.invested_beta ?? P.beta) != null ? (P.held_beta_mv ?? P.invested_beta ?? P.beta).toFixed(2) : '–'}</b></div>
+      <div><small>Invested / Cash</small><b>${p1(P.invested)} / ${p1(P.tbills)}</b></div>
+    </div>
+    ${P.index_fund ? `<p class="note" style="margin-top:12px">S&amp;P 500 fund: <b>${P.index_fund.shares} sh ${P.index_fund.symbol}</b> ($${Math.round(P.index_fund.dollars).toLocaleString()}), expected ${sg(P.index_fund.expected_return)} at ${p1(P.index_fund.vol)} vol, sized in the same solve. It carries the market exposure; the stocks carry the research views.</p>` : ''}
+    <h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px;font-weight:600">Share of risk by industry${P.max_industry_risk_share ? ` (limit ${p1(P.max_industry_risk_share)})` : ''}</h3><div class="ibars">${bars}</div>
+    <p class="note foot">One joint solve: half Kelly on the options part of each return, quarter Kelly on the research part. Sharpe is on invested money at cost; cash is left out. Volatility: Risk Prism scaled ×${(c.k || 1).toFixed(2)} to the options market.</p></section>`;
+}
+
+function noBuyText(a) {  // why a researched name is not in the book
+  const ss = a.supervisor_sizing || {};
+  // 2026-10-15 (Kilian: "price targets still says the rmbs and cdns adds would lower book sharpe"): a suggested buy whose size
+  // the Sharpe test set has binding 'sharpe_gate' too; it raises the book's Sharpe, so say that instead of the no-buy reason.
+  if (a.shares > 0) return `suggested buy: ${a.shares} sh ($${Math.round(a.dollars || 0).toLocaleString()}); ${a.binding === 'sharpe_gate' ? "this is the share count that raises the book's Sharpe most" : 'see New buys'}`;
+  return a.binding === 'target_above_last' ? `target ${f2(a.target, a.spot)} is below the last price ${f2(a.spot, a.spot)}`
+    : a.binding === 'conviction_below_min' ? `conviction rubric says ${esc(ss.conviction || 'not rated')}${ss.rubric ? ` (book ΔP ${(ss.rubric.p >= 0 ? '+' : '−') + Math.abs(ss.rubric.p).toFixed(3)}, upside ${(ss.rubric.upside*100).toFixed(1)}%, reward/risk ${ss.rubric.reward_risk}, research target (12m) ${ss.rubric.fv_upside != null ? (ss.rubric.fv_upside*100).toFixed(1) + '%' : 'n/a'})` : ''}; new names need at least medium (book ΔP ≥ +0.01, upside ≥ 7%, reward/risk ≥ 1.3, research target (12m) ≥ 7% above price)`
+    : a.binding === 'sharpe_gate' ? `it would lower the book's Sharpe (invested money, cost basis); new names must raise it`
+    : a.binding === 'position_limit' ? `the book is full (${esc(String((D.portfolio || {}).max_positions || ''))}-position limit) and it adds less than the names held`
+    : a.binding === 'limit_order' ? 'you have an open limit order for it (see Limit orders); counted as bought in the Sharpe test'
+    : a.binding === 'staged_wait' ? 'approved by you, bought after its next print (see the staged entry)'
+    : a.binding === 'excluded' ? 'excluded from the book at your request'
+    : a.binding === 'below_beta_return' ? `the price is above its Entry below level: the target's 12-month return plus dividends is not above its beta-adjusted return${a.beta_bar != null ? ' of ' + (a.beta_bar * 100).toFixed(1) + '%' : ''} (T-bill + 7.69% × (0.768 + 0.232 × beta)); a buy must beat it`
+    : a.binding === 'saved_for_later' ? 'saved for later'
+    : (a.binding === 'supervisor' || a.binding === 'stop_budget') && !a.shares ? 'size rounds to zero shares' : 'size rounds to zero shares';
+}
+function researched(rows) {  // Kilian 2026-10-03: full analytics, like the held names (was a compact list since 10-01)
+  // Kilian 2026-10-03: grouped by sector, A to Z within each, so short tickers are easy to find
+  rows = rows.filter(r => r.symbol !== 'SPY').sort((x, y) => (x.sector === 'Other') - (y.sector === 'Other')
+    || String(x.sector || 'Other').localeCompare(String(y.sector || 'Other')) || x.symbol.localeCompare(y.symbol));
+  if (!rows.length) return '';
+  return summary(rows, false, true) + fvChart(rows, true);
+  const body = rows.map(r => {
+    const d = r.target / r.spot - 1, a = r.allocation || {}, ss = a.supervisor_sizing || {};
+    return `<tr class="nm" data-s="${r.symbol}" tabindex="0" aria-expanded="false"><td><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}</td>
+      <td class="n">${f2(r.spot, r.spot)}</td><td class="n">${f2(r.target, r.spot)}</td><td class="n ${d >= 0 ? 'pos' : 'neg'}">${sgn(d)}</td>
+      <td class="n">${pct(r.p_gain)}</td><td>${esc(ss.conviction || '–')}</td><td class="sub">${r.allocation ? noBuyText(a) : 'not sized'}</td></tr>
+      <tr class="det" data-s="${r.symbol}" hidden><td colspan="7"></td></tr>`;
+  }).join('');
+  return `<section><h2>Researched, not bought (${rows.length})</h2>
+    <div class="tbl"><table class="sum"><thead><tr><th>Ticker</th><th class="n">Last</th><th class="n">NTM target</th><th class="n">Δ</th><th class="n">P(gain)</th><th>Conviction</th><th>Why not bought</th></tr></thead><tbody>${body}</tbody></table></div>
+    <p class="note foot">Every name the agents have priced that isn't in the book, best upside first. Tap one for its full breakdown.</p></section>`;
+}
+
+function bigMissLine(E) {  // 2026-10-19: big-miss add block (earnings_miss.py -> data/earnings_miss.json)
+  if (!E || typeof E !== 'object') return '';
+  const B = Array.isArray(E.blocked) ? E.blocked : [], F = Array.isArray(E.flagged) ? E.flagged : [];
+  if (E.mode === 'flag' || F.length) return F.length ? `<p class="note">Earnings-miss flag (investigate, adds not blocked): ${F.map(b => `<b>${esc(b.symbol)}</b> ${esc(b.reason || '')}`).join('; ')}</p>`
+    : `<p class="note">Earnings-miss flag: no name missed beyond its usual range${E.written_utc ? ` (checked ${esc(String(E.written_utc).replace('T', ' ').replace(/:\d\dZ$/, 'Z'))})` : ''}</p>`;
+  return B.length ? `<p class="note">Big-miss add block: ${B.map(b => `<b>${esc(b.symbol)}</b> ${esc(b.reason || '')}`).join('; ')}</p>`
+    : `<p class="note">Big-miss add block: no name blocked${E.written_utc ? ` (checked ${esc(String(E.written_utc).replace('T', ' ').replace(/:\d\dZ$/, 'Z'))})` : ''}</p>`;
+}
+function planTable(rows) {  // Kilian 2026-10-05: buys already decided (open limit orders, staged new names); the Sharpe test above counts them as bought
+  if (!rows.length) return '';
+  return `<h2>Planned buys (counted in the Sharpe test)</h2><table class="plan"><thead><tr><th>Name</th><th>Shares</th><th>How</th><th>Price</th><th>Last</th><th>Condition</th></tr></thead><tbody>`
+    + rows.map(r => `<tr><td>${esc(r.symbol)}</td><td>${r.plan.shares}</td><td>${r.plan.kind === 'limit' ? 'Limit order' : 'Staged'}: ${esc(r.plan.when)}</td><td>${r.plan.price ? '$' + r.plan.price.toFixed(2) : 'market'}</td><td>$${r.spot.toFixed(2)}</td><td>${esc(r.plan.condition)}</td></tr>`).join('')
+    + `</tbody></table>`;
+}
+function rubricTable(rows) {  // Kilian 2026-10-05: conviction label computed from four numbers (rubric.py); medium names plus near misses (one test failed)
+  const T = [0.01, 0.07, 1.3, 0.07];  // dP bar since Kilian 2026-10-15 05:33Z (book_dp.py); was P(stock Sharpe beats SPY) 0.42
+  rows = rows.map(r => [r, ((r.allocation || {}).supervisor_sizing || {}).rubric]).filter(([r, k]) => k)
+    .map(([r, k]) => [r, k, [k.p < T[0], k.upside < T[1], k.reward_risk < T[2], k.fv_upside < T[3]]])
+    .filter(([r, k, f]) => k.label !== 'low' || f.filter(Boolean).length === 1).sort((a, b) => a[0].symbol.localeCompare(b[0].symbol));
+  if (!rows.length) return '';
+  const c = (bad, s) => `<td class="n${bad ? ' neg' : ''}">${s}</td>`;
+  return `<h2>Conviction rubric (new names need medium)</h2><table class="plan"><thead><tr><th>Name</th><th class="n" title="Change in the chance the book\'s 12-month Sharpe beats SPY\'s when the name is added at its Sharpe-test size">Book ΔP(beats SPY)</th><th class="n">Target upside</th><th class="n">Reward/risk</th><th class="n">Research target (12m) upside</th><th>Label</th><th>Notes</th></tr></thead><tbody>`
+    + rows.map(([r, k, f]) => `<tr><td>${esc(r.symbol)}</td>${c(f[0], (k.p >= 0 ? '+' : '−') + Math.abs(k.p).toFixed(3))}${c(f[1], (k.upside * 100).toFixed(1) + '%')}${c(f[2], k.reward_risk)}${c(f[3], k.fv_upside != null ? (k.fv_upside * 100).toFixed(1) + '%' : '–')}<td>${esc(k.label)}</td><td class="sub">${esc([...(k.notch_down || []), k.override_reason ? 'supervisor override: ' + k.override_reason : ''].filter(Boolean).join('; '))}</td></tr>`).join('')
+    + `</tbody></table><p class="note foot">Medium: book ΔP ≥ +0.01, upside ≥ 7%, reward/risk ≥ 1.3, research target (12m) ≥ 7% above price (high: +0.03, 15%, 1.5, 15%). ΔP = change in P(book's 12-month Sharpe beats SPY's) when the name joins at its Sharpe-test size. Red = failed test.</p>`;
+}
+function scoreTable(S) {  // Kilian 2026-10-07 "yes": single ensemble score beside the rubric (score.py), shadow only
+  if (!S || !S.names) return '';
+  const rows = Object.entries(S.names).filter(([s, v]) => !v.held && (v.score > 0 || v.rubric === 'medium' || v.rubric === 'high')).sort((a, b) => b[1].score - a[1].score);
+  if (!rows.length) return '';
+  const pc = x => x == null ? '–' : (x * 100).toFixed(1) + '%';
+  return `<h2>Single score (trial beside the rubric until ${/^\d{4}-\d{2}-\d{2}$/.test(String(S.shadow_until)) ? '' : 'there are '}${esc(S.shadow_until)}; does not change buys)</h2><table class="plan"><thead><tr><th>Name</th><th class="n">Market return</th><th class="n">Research alpha</th><th class="n">Expected return</th><th class="n">Score (Sharpe gain)</th><th class="n">Best shares</th><th>Rubric</th><th>Score says</th></tr></thead><tbody>`
+    + rows.map(([s, v]) => `<tr><td>${esc(s)}</td><td class="n">${pc(v.mu_market)}</td><td class="n">${pc(v.alpha)}</td><td class="n">${pc(v.mu_ens)}</td><td class="n">${v.score > 0 ? '+' : ''}${v.score.toFixed(4)}</td><td class="n">${v.best_shares}</td><td>${esc(v.rubric || '–')}</td><td class="sub">${v.blocked ? 'blocked: ' + esc(v.blocked_reason) : v.would_buy ? 'buy ' + v.best_shares : v.score > 0 ? 'buy ' + v.best_shares + ' if a name slot were free' : 'no buy'}</td></tr>`).join('')
+    + `</tbody></table><p class="note foot">Score = rise in book Sharpe at the best share count. Base Sharpe ${S.base_sharpe.toFixed(3)}. Free name slots: ${S.free_name_slots}.</p>`;
+}
+function allocTable(rows, title) {
+  rows = rows.filter(r => r.allocation);
+  if (!rows.length) return '';
+  const body = rows.map(r => {
+    const a = r.allocation, ss = a.supervisor_sizing || {};
+    if (a.gate_passed === false || !a.shares)
+      return `<tr><td><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}</td><td colspan="10" class="sub">No buy: ${noBuyText(a)}</td></tr>`;
+    return `<tr><td><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}</td><td class="n">${a.shares}</td><td class="n">$${Math.round(a.dollars).toLocaleString()}</td>
+      <td class="n">${pct(a.pct_of_new_cash)}</td><td class="n">${(a.dollars / a.total_wealth * 100).toFixed(1)}%</td>
+      <td class="n neg">−$${Math.round(a.loss_at_stop).toLocaleString()}</td><td>${esc(CAP[a.binding] || a.binding)}</td><td class="n" title="${esc(kTip(a.conviction))}">${kf(a.conviction)}</td><td title="${esc(ss.rubric ? `rubric: book ΔP ${(ss.rubric.p >= 0 ? '+' : '−') + Math.abs(ss.rubric.p).toFixed(3)}, upside ${(ss.rubric.upside*100).toFixed(1)}%, reward/risk ${ss.rubric.reward_risk}, research target (12m) ${ss.rubric.fv_upside != null ? (ss.rubric.fv_upside*100).toFixed(1) + '% above price' : 'n/a'}${ss.rubric.notch_down.length ? '; down a notch: ' + ss.rubric.notch_down.join('; ') : ''}${ss.rubric.override_reason ? '; supervisor override: ' + ss.rubric.override_reason : ''}` : '')}">${esc(ss.conviction || '–')}${ss.rubric && ss.rubric.override_reason ? ' *' : ''}${ss.rubric ? ` (ΔP ${(ss.rubric.p >= 0 ? '+' : '−') + Math.abs(ss.rubric.p).toFixed(3)})` : ''}</td><td class="n">${r.decider ? dLvl(r.decider.next_add, a.spot) : '–'}</td><td class="n">${r.decider ? dLvl(r.decider.next_trim, a.spot) : '–'}</td></tr>`;
+  }).join('');
+  const w = rows[0].allocation, left = w.cash_available - rows.reduce((t, r) => t + (r.allocation.dollars || 0), 0);
+  return `<section><h2>${title || 'Suggested buys from the cash to deploy'}</h2>
+    <div class="tbl"><table><thead><tr><th>Ticker</th><th class="n">Shares</th><th class="n">Amount</th><th class="n">Of new cash</th><th class="n">Of total wealth</th>
+      <th class="n">Loss at stop</th><th>Size set by</th><th class="n">Research weight</th><th>Conviction</th><th class="n">Add below</th><th class="n">Trim above</th></tr></thead><tbody>${body}</tbody></table></div>
+    <p class="note foot">Buys need medium conviction and must raise book Sharpe. About $${Math.round(left).toLocaleString()} of the $${Math.round(w.cash_available).toLocaleString()} stays in cash.</p></section>`;
+}
+
+// Tranche plan (Kilian 2026-10-20: "can you make the tranches clearer on price targets?"): staged entries from the research
+// plans, what is bought, when the next tranche is due and how big the model would make it at today's price
+function trancheTable(rows) {
+  const T = D.tranches || []; if (!T.length) return '';
+  const md = d => { const [y, m, dd] = d.split('-').map(Number); return new Date(y, m - 1, dd).toLocaleDateString('en-US', {month: 'short', day: 'numeric'}); };
+  const R = {}; (rows || []).forEach(r => R[r.symbol] = r);
+  const TS = ((D.review_summary || {}).sizing || {}).target_shares || {};
+  const body = T.map(t => {
+    const r = R[t.symbol], m = r && (r.decider || (r.review || {}).decider || {}).marginal, a0 = m && (m.add || [])[0];
+    const bought = t.buys.length ? t.buys.map(b => `${b.shares} on ${md(b.date)} @ ${f2(b.price, b.price)}`).join('<br>') : '<span class="sub">none yet</span>';
+    const due = t.after > D.as_of ? `${md(t.after)}<span class="sub"><br>after ${esc(String(t.event || '').replace(/\s*\(.*$/, ''))}</span>` : `<b>due now</b><span class="sub"><br>${esc(t.event || '')}</span>`;
+    let size;
+    if (t.new_name) size = t.fixed_shares != null ? `${t.fixed_shares} (fixed)` : '<span class="sub">sized by the model after the print (Sharpe test and Entry below)</span>';  // Kilian 2026-10-22 23:09Z 'Model sizes it' (APP)
+    else if (a0 && a0.now) size = `<b class="pos">+${a0.shares}</b><span class="sub"> to ${a0.total_after}${TS[t.symbol] != null ? `, target ${Math.round(TS[t.symbol])}` : ''}</span>`;
+    else if (a0) size = `<span class="sub">none at today's price; +${a0.shares} below</span> ${f2(a0.price, a0.price)}`;
+    else size = `<span class="sub">none (target ${TS[t.symbol] != null ? Math.round(TS[t.symbol]) : '–'}, held ${t.held})</span>`;
+    const plan = t.plan ? `${esc(t.plan.text)}<span class="sub"> (supervisor, ${md(t.plan.run)} run)</span>` : '<span class="sub">no supervisor entry plan on file</span>';
+    return `<tr><td><span class="sym">${t.symbol}</span></td><td class="n">${t.held}</td><td>${bought}</td><td>${due}</td><td>${size}</td><td style="white-space:normal;min-width:260px">${plan}<br><span class="sub">Condition: ${esc(t.condition || '–')}</span></td></tr>`;
+  }).join('');
+  return `<section><h2>Tranche plan</h2><div class="tbl"><table><thead><tr><th>Ticker</th><th class="n">Held</th><th>Bought so far</th><th>Next tranche</th><th>Size at today's price</th><th>Plan and condition</th></tr></thead><tbody>${body}</tbody></table></div>
+    <p class="note foot">Each later tranche waits for its date and condition, then the model sizes it in one order: the share count, up to the Sharpe-optimal target, that raises the book's Sharpe the most (strict test). "Size at today's price" is what that would be if the date were today; it moves with prices and the other names' fills.</p></section>`;
+}
+// Next share (Kilian 2026-10-08: "i should be able to clearly see when to add/trim the next marginal share for each name")
+function nextShareTable(rows) {
+  rows = rows.filter(r => r.review);
+  if (!rows.length) return '';
+  const sg = x => (x >= 0 ? '+' : '−') + (Math.abs(x) * 100).toFixed(1) + '%';
+  const md = d => { const [y, m, dd] = d.split('-').map(Number); return new Date(y, m - 1, dd).toLocaleDateString('en-US', {month: 'short', day: 'numeric'}); };
+  const merge = L => L.reduce((o, x) => { const p = o[o.length - 1]; if (p && p.price === x.price && !x.now && !x.pace_day) { p.shares += x.shares; p.total_after = x.total_after; } else o.push({...x}); return o; }, []);
+  const big = '<span class="att" title="Further than the usual one-month swing (from implied vol): check the news before acting">*</span>';
+  const one = (x, s, buy) => x.held_until ? `<span class="sub" title="${esc(x.held_until.reason)}">sell ${x.shares} on hold until ${md(x.held_until.until)}</span>` : x.held_for_decision ? `<span class="sub" title="${esc(x.held_for_decision)}">sell ${x.shares} on hold until the open sizing card is answered</span>` : x.held_for_rerun ? `<span class="sub" title="${esc(x.held_for_rerun)}">${buy ? 'buy' : 'sell'} ${x.shares} on hold until ${esc(x.held_for_rerun)}</span>` : x.now ? `<b class="${buy ? 'pos' : 'neg'}">${buy ? 'Buy' : 'Sell'} ${x.shares} today</b>`
+    : `${buy ? 'Buy' : 'Sell'} ${x.shares} ${buy ? 'below' : 'above'} <b>${f2(x.price, s)}</b><span class="sub"> (${sg(x.pct_from_last)})</span>${x.big_move ? big : ''}`;
+  let lotNote = false;
+  const due = [], later = [];
+  // 2026-10-20 (Kilian: "i don't see how all planned buys adds up to $24k"): show each held name's Sharpe-optimal target
+  // position, the size the paced adds and trims work toward, and their total against the sizing book
+  const RSn = D.review_summary || {}, TS = (RSn.sizing || {}).target_shares || {};
+  let tgtSum = 0; const usd0 = x => (x < 0 ? '−$' : '$') + Math.abs(Math.round(x)).toLocaleString();
+  const tgtC = (r, A, T) => { const t = TS[r.symbol]; if (t == null) return '<td class="n">–</td>'; const n = Math.round(t); tgtSum += n * r.spot;
+    // 2026-10-27 (Kilian: "the targets and adds don't match up, e.g. VST"): the target is sized at today's price on the expected
+    // return, but a buy also needs the price at or below Entry below; when it is above, show the target at the first add's price too
+    const E = r.target && r.req_return != null ? r.target / (1 + r.req_return) : null, a = (A || [])[0];
+    const wait = E && r.spot > E && a && !a.now && a.total_after !== n;
+    const tip = wait ? `At today's price ${f2(r.spot, r.spot)} the Sharpe-optimal target is ${n} sh, sized on the expected return. A buy also needs the price at or below Entry below (${f2(E, r.spot)}), so nothing is bought at today's price. At ${f2(a.price, r.spot)} the expected return is higher and the target there is ${a.total_after} sh, so the first add buys the whole gap in one order. Trims still follow today's target.` : '';
+    // 2026-10-28 (Kilian: "target and sell for $amat don't line up"): a trim stops where the gain from one more dollar out
+    // no longer beats the tax on selling it (review.py sell band), so today's trim can stop above the rounded target
+    const t0 = (T || [])[0], stop = t0 && t0.now && t0.total_after > n ? t0.total_after : null;
+    const tip2 = stop != null ? `At today's price the Sharpe-optimal target is ${t.toFixed(2)} sh (shown rounded to ${n}). A trim also has to beat the tax on the gain it realizes, which lifts the stopping point a little above the target, so today's trim sells ${t0.shares} and stops at ${stop} sh. Further trims come only if the price rises (see the trim column).` : '';
+    return `<td class="n"${wait ? ` title="${esc((tip + ' ' + tip2).trim())}"` : stop != null ? ` title="${esc(tip2)}"` : ''}>${n}<span class="sub"> (${usd0(n * r.spot)})</span>${wait ? `<br><span class="sub">${a.total_after} at ${f2(a.price, r.spot)}</span>` : ''}${stop != null ? `<br><span class="sub">trim stops at ${stop} (tax)</span>` : ''}</td>`; };
+  const body = rows.map(r => {
+    const v = r.review, s = r.spot, d = r.decider || v.decider, m = d && d.marginal;
+    if (!m) return `<tr><td><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}</td><td class="n">${v.shares}</td>${tgtC(r)}<td class="n">${f2(s, s)}</td><td colspan="3" class="sub">no price levels (deal-driven value)</td></tr>`;
+    const A = merge(m.add || []), T = merge(m.trim || []), tgtCell = tgtC(r, A, T);
+    if ([...A, ...T].some(x => x.shares > 1)) lotNote = true;
+    const ev = String(m.staged_event || '').replace(/\s*\(.*$/, '');
+    const wait = m.staged_after ? `<span class="sub" title="Adds wait for ${esc(m.staged_event)}">from ${md(m.staged_after)}, after ${esc(ev)}</span><br>` : '';
+    const zh = m.zero_target_hold;  // 2026-10-19: target 0 under max-Sharpe, trims wait for the staged date or the next report
+    const bm = m.big_miss_block;  // earnings_miss.py (Kilian 2026-10-19 card "Add flag"): adds paused for 6 months after a big miss
+    // 2026-10-19 (Kilian: show accurately whether anything is due today): a staged add that would be a buy at the last
+    // price is not due today; it is due on the staged date, so say "Buy 1 on <date>" instead of "Buy 1 today".
+    const staged = m.staged_after && m.staged_after > D.as_of;
+    const addDue = A.length && A[0].now && !staged, trimDue = !zh && T.length && T[0].now;
+    if (addDue) due.push(`<b class="pos">buy ${A[0].shares} ${r.symbol}</b>`);
+    if (trimDue) due.push(`<b class="neg">sell ${T[0].shares} ${r.symbol}</b>`);
+    if (A.length && A[0].now && staged) later.push([m.staged_after, `${r.symbol}: buy ${A[0].shares} on ${md(m.staged_after)} (after ${esc(ev)}) if still a buy then`]);
+    if (zh) later.push([zh.until, `${r.symbol}: target 0, sell 1 a day from ${md(zh.until)} if the target is still 0 then`]);
+    const addC = A.length ? (A[0].now && staged ? `<b>Buy ${A[0].shares} on ${md(m.staged_after)}</b><span class="sub"> after ${esc(ev)}, if still a buy then</span>` : wait + one(A[0], s, true)) : (bm && bm.block_until ? `<span class="sub" title="${esc(bm.reason || '')}">adds paused until ${md(bm.block_until)} (big miss)</span>` : `<span class="sub">no add down to the ${f2(m.stop, s)} stop</span>`);
+    const lastT = T.length && T[T.length - 1].total_after === 0;
+    const trimC = zh ? `<span class="sub" title="${esc(zh.note || '')}">held until ${md(zh.until)} (target 0 under max-Sharpe; review after ${esc(zh.event)})</span>` : T.length ? one(T[0], s, false) + (T[0].total_after === 0 ? `<span class="sub"> (${T[0].shares > 1 ? 'all remaining, take-profit' : 'last share'})</span>` : '') : '<span class="sub">none within +60%</span>';
+    const more = [];
+    if (A.length > 1) more.push('then buy ' + A.slice(1).map(x => `${x.shares} below ${f2(x.price, s)}${x.big_move ? '*' : ''}`).join(', '));
+    if (zh) more.push(`then sell 1 a day from ${md(zh.until)} while the target stays 0`);
+    else if (T.length > 1) more.push('then sell ' + T.slice(1).map(x => x.pace_day ? `${x.shares} on day ${x.pace_day}${x.total_after === 0 ? ' (last)' : ''}` : `${x.shares} above ${f2(x.price, s)}${x.big_move ? '*' : ''}${x.total_after === 0 ? ' (last)' : ''}`).join(', '));
+    more.push(`<span class="neg">sell all below ${f2(m.stop, s)}</span>`);
+    const nb = m.noise_band;  // Kilian 2026-10-29 card 'Per-name noise band'
+    return `<tr><td${nb ? ` title="${esc(`Noise band ${(nb.min_trade * 100).toFixed(1)}% of the book (target's day-to-day noise ${(nb.target_noise * 100).toFixed(1)}%, floor 1%): each add or trim is at least ${nb.min_shares_at_last} sh at the last price`)}"` : ''}><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}${nb ? `<br><span class="sub">lot ${nb.min_shares_at_last} sh</span>` : ''}</td><td class="n">${v.shares}</td>${tgtCell}<td class="n">${f2(s, s)}</td><td title="${esc(v.reason)}">${addC}</td><td>${trimC}</td><td class="sub">${more.join('<br>')}</td></tr>`;
+  }).join('');
+  // New names the sizing buys at the last close (portfolio.json shares on names not held)
+  const heldSet = new Set(rows.map(r => r.symbol)), P = (D.portfolio || {}).shares || {};
+  Object.keys(P).filter(x => P[x] > 0 && !heldSet.has(x)).forEach(x => due.push(`<b class="pos">buy ${P[x]} ${x}</b> (new name)`));
+  later.sort((a, b) => a[0] < b[0] ? -1 : 1);
+  const tgtLine = tgtSum ? `<p class="note">Target positions add up to ${usd0(tgtSum)} of held stocks${RSn.total_wealth ? ` on the ${usd0(RSn.total_wealth)} sizing book (stocks plus all cash, including the outside cash${RSn.tax_set_aside ? `, less ${usd0(RSn.tax_set_aside)} set aside for this year's tax on realized gains` : ''})` : ''}${(D.portfolio || {}).rf != null ? `; the rest sits in the risk-free cash sleeve at ${(D.portfolio.rf * 100).toFixed(1)}% a year, the rate every Sharpe here is measured against` : ''}${(RSn.sizing || {}).cash_reserve ? `. Held names stop at ${Math.round((1 - RSn.sizing.cash_reserve) * 100)}% of the book: ${Math.round(RSn.sizing.cash_reserve * 100)}% stays in cash as a reserve for short-term names outside the 10, so they can be bought without trims (Kilian 10-20 '10% reserve')` : ''}. After each name's staged date an add buys, in one order, the share count that raises the whole book's risk-adjusted return the most, counting stocks and the cash sleeve together (Kilian 10-20 'Whole-book test'), so each name goes to its target on its date.</p>` : '';
+  // Kilian 2026-10-23 14:27Z "why is trades due outdated": when the hourly watch re-priced at live quotes, say so with its time
+  const liveAt = RSn.live_quotes_as_of ? new Date(RSn.live_quotes_as_of.replace(/Z$/, ':00Z')) : null;
+  const dueWhen = liveAt && !isNaN(liveAt) ? `at live prices (${liveAt.toLocaleString('en-US', {timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'})} ET; levels from the ${md(D.as_of)} close)` : `at the ${md(D.as_of)} close`;
+  const todayLine = `<p class="todaybox"><b>Trades due ${dueWhen}:</b> ${due.length ? due.join(', ') : 'none. Hold everything as is.'}</p>`
+    + (later.length ? `<p class="note">Coming up: ${later.map(x => x[1]).join('; ')}.</p>` : '') + tgtLine;
+  return `<section><h2>Trim, hold or add: the next lot</h2>${todayLine}
+    <div class="tbl"><table><thead><tr><th>Ticker</th><th class="n">Shares</th><th class="n" title="Sharpe-optimal target position the adds and trims work toward, one lot at a time (at least the name's noise band)">Target</th><th class="n">Last</th><th title="Each add is at least the name's noise band: the larger of 1% of the book and how much its target normally moves day to day (hover a ticker for its band)">Add next</th><th title="Each trim is at least the name's noise band; the take-profit sells every share left">Trim next</th><th>After that</th></tr></thead><tbody>${body}</tbody></table></div>
+    <p class="note foot">Do nothing until the price crosses a level or a date arrives; "today" means due at the last close. Adds wait for the date shown and are re-checked then. * = beyond a normal month's move: check the news first.</p>
+    <p class="note foot">Why the target and the first add can differ: Target is the Sharpe-optimal size at today's price, sized on the expected return (the mean of the 12-month distribution). A buy has a second test: the price must be at or below the name's Entry below, where reaching the target pays at least the market's normal return for its beta. When today's price is above Entry below, nothing is bought now; the first add sits at Entry below and buys to the target at that price, which is larger because the expected return is higher there (second line in the Target cell, e.g. VST 4 today, 8 at Entry below). That test never forces a trim, so trims still work toward today's target.</p></section>`;
+}
+
+function reviewTable(rows) {
+  rows = rows.filter(r => r.review);
+  if (!rows.length) return '';
+  const RS = D.review_summary || {};
+  const ACT = {trim: '<b class="neg">Trim</b>', add: '<b class="pos">Add</b>', exit: '<b class="neg">Exit</b>', hold: 'Hold'};
+  const p1 = x => (x * 100).toFixed(1) + '%', usd0 = x => (x < 0 ? '−$' : '$') + Math.abs(Math.round(x)).toLocaleString();
+  const noTax = ((RS.tax_assumptions || {}).tax || RS.tax_assumptions || {}).ignore_taxes;
+  const body = rows.map(r => {
+    const v = r.review, s = r.spot, x = v.at_90pct_of_target;
+    const trade = v.trade_shares ? `${v.trade_shares > 0 ? '+' : ''}${v.trade_shares} sh` : '–';
+    const w = `${p1(v.weight)}${v.trade_shares ? ' → ' + p1(v.suggested_weight) : ''}`;
+    const dd = r.decider || v.decider;
+    const x90_ = x ? `${ACT[x.action] || esc(x.action)} at ${f2(x.price, s)}${x.shares ? ` (${x.shares > 0 ? '+' : ''}${x.shares} sh${x.tax ? ', tax ' + usd0(x.tax) : ''})` : ''}` : '<span class="sub">n/a</span>';
+    const low = v.add_below ? f2(v.add_below, s) : (v.exit_below ? `<span class="neg">exit ${f2(v.exit_below, s)}</span>` : '–');
+    const band = v.band ? `${(v.gradient * 100).toFixed(1)}%<span class="sub"> vs ${(v.band[0] * 100).toFixed(1)}%</span>` : '–';
+    return `<tr><td><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}</td><td>${ACT[v.action] || esc(v.action)}${v.staged_entry ? `<br><span class="sub">next tranche after ${esc(v.staged_entry.event)}, model-sized then</span>` : ''}</td><td class="n">${trade}</td><td class="n">${w}</td><td class="n" title="${esc(kTip(v.conviction))}">${kf(v.conviction)}</td>
+      ${noTax ? '' : `<td class="n">${v.tax_on_trade ? usd0(v.tax_on_trade) : '–'}</td>`}<td class="n">${band}</td><td class="n">${dd ? dLvl(dd.next_trim, s) : '–'}</td><td class="n">${dd && ((dd.marginal || {}).add || []).length ? dLvl({price: dd.marginal.add[0].price, shares: dd.marginal.add[0].total_after, news_check: dd.marginal.add[0].big_move}, s) : dd ? dLvl(dd.next_add, s) : low}</td>
+      <td class="lad">${dLad(dd, s)}</td><td class="tw sub">${esc(v.reason)}</td></tr>`;
+  }).join('');
+  const t = RS.tax_assumptions || {}, tt = t.tax || t;
+  return `<section><h2>Model detail${tt.ignore_taxes ? '' : ' (after tax)'}</h2>
+    <div class="tbl"><table><thead><tr><th>Ticker</th><th>Now</th><th class="n">Trade</th><th class="n">Weight</th><th class="n">Research weight</th>${noTax ? '' : '<th class="n">Tax now</th>'}
+      <th class="n">$1 more is worth / sell cost</th><th class="n">Trim above</th><th class="n">Add below</th><th title="Sharpe-optimal target at each price on the expected return alone; buys also need the price at or below Entry below, so a higher count here above Entry below is not a buy">Target shares by price, research unchanged</th><th>Why</th></tr></thead><tbody>${body}</tbody></table></div>
+    <p class="note foot">${RS.sizing && RS.sizing.mode === 'max_sharpe' ? `Held names are sized Sharpe-optimal (Kilian 2026-10-19): long-only tangency weights on the expected returns shown, scaled to the ${pct(RS.sizing.invested_total_mv)} of the book the γ = ${RS.gamma} rule would hold (γ* = ${RS.sizing.gamma_star}); trims and adds go to the target in one order (Kilian 2026-10-20 'Buy to size'); an add must raise the whole book's risk-adjusted return, stocks plus cash sleeve (Kilian 2026-10-20 'Whole-book test').` : `γ = ${RS.gamma ?? '–'} (quarter Kelly).`}${tt.ignore_taxes ? '' : ` Tax on the suggested trades: ${usd0(RS.tax_total || 0)} on ${usd0(RS.realized_gain_total || 0)} of gains; marginal rate after them ${((RS.marginal_rate_after_trades || 0) * 100).toFixed(1)}%.`}${Object.keys(RS.gain_harvest || {}).length ? ` Gain harvest: ${Object.entries(RS.gain_harvest).map(([k, h]) => `${k} ${h.shares} sh`).join(', ')}, ${usd0(RS.harvest_tax_total)} tax now, worth ${usd0(RS.harvest_net_benefit)} net.` : ''}</p></section>`;
+}
+
+const ord = n => { const k = Math.round(n), t = k % 100; return k + (t >= 11 && t <= 13 ? 'th' : ({1: 'st', 2: 'nd', 3: 'rd'}[k % 10] || 'th')); };
+const tiltPct = x => (x >= 0 ? '+' : '−') + Math.abs(x * 100).toFixed(1) + '%';
+function tiltLines(r) {  // 12-month return tilts that shift the whole distribution (combine.py): EPS revisions, days to cover (2026-10-19), 12-1 momentum (2026-10-30)
+  const out = [], v = r.revision, q = r.short_interest, mo = r.momentum;
+  if (v && typeof v === 'object' && typeof v.pct === 'number')
+    out.push(`EPS revisions: ${ord(v.pct * 100)} percentile${v.snapshot ? ` (snapshot ${esc(v.snapshot)})` : ''} → 12M tilt ${tiltPct(v.log_shift || 0)}${v.reason ? ` (${esc(v.reason)})` : ''}`);
+  if (q && typeof q === 'object') {
+    if (q.log_shift) out.push(`Short interest: ${typeof q.dtc === 'number' ? q.dtc.toFixed(1) : '–'} days to cover, ${typeof q.pct === 'number' ? ord(q.pct * 100) + ' percentile' : '–'}${D.short_interest_n ? ` of ${D.short_interest_n.toLocaleString('en-US')} US stocks over $1B` : ''} → 12M tilt ${tiltPct(q.log_shift)}${q.settle_date ? ` (FINRA settlement ${esc(q.settle_date)})` : ''}`);
+    else out.push(`Short interest: ${esc(q.reason || 'no tilt')}${typeof q.dtc === 'number' ? ` (${q.dtc.toFixed(1)} days to cover${q.settle_date ? `, FINRA settlement ${esc(q.settle_date)}` : ''})` : ''}`);
+  }
+  if (mo && typeof mo === 'object')
+    out.push(`12-1 momentum: ${typeof mo.mom === 'number' ? sgn(mo.mom) : '–'}${typeof mo.pct === 'number' ? `, ${ord(mo.pct * 100)} percentile of the S&P 500` : ''} → 12M tilt ${mo.log_shift ? tiltPct(mo.log_shift) + ' (bottom fifth)' : '0.0%'}${mo.reason ? ` (${esc(mo.reason)})` : ''}`);
+  return out.length ? `<p class="muted" style="margin-top:12px">${out.join('<br>')}</p>` : '';
+}
+function shortRead(r) {  // Kilian 2026-10-27 card "Short summary + Sheet link": a name with a model Sheet but no memo shows a few lines, not the research text
+  const s = r.spot, eb = r.target && r.req_return != null ? r.target / (1 + r.req_return) : null;
+  const dr = (r.key_drivers || []).map(d => `<li>${esc(d)}</li>`).join('');
+  const nx = (D.catalysts[r.symbol] || []).find(c => String(c.date || '') >= D.as_of);
+  return `<div class="short" style="margin-top:12px">
+    <p>Research target (12m) ${f2(r.fair_value_median, s)} · 12-month target ${f2(r.target, s)} (market ${f2(r.market_only && r.market_only.target, s)}, research ${f2(r.llm_only && r.llm_only.target, s)}) · Entry below ${eb ? f2(eb, s) : '–'} vs last ${f2(s, s)}${r.citation_gate && r.citation_gate.status === 'clean' ? ' · citation gate passed' : ''}${nx ? ` · next: <span class="mono">${esc(nx.date)}</span> ${esc(nx.event)}` : ''}.</p>
+    ${dr ? `<h2 style="margin-top:10px">Model drivers</h2><ul>${dr}</ul>` : ''}
+    <p class="xl"><a class="dl" href="${esc(r.model_gsheet)}" target="_blank" rel="noopener">Model in Google Sheets</a><span class="sub"> The Sheet holds every assumption with its source and the scenarios.</span></p>
+  </div>`;
+}
+function detail(r) {
+  const p = r.position, s = r.spot;
+  const drivers = (r.key_drivers || []).map(d => `<li>${esc(d)}</li>`).join('');
+  const cats = (D.catalysts[r.symbol] || []).slice(0, 6).map(c => `<li><span class="mono">${esc(c.date)}</span> ${esc(c.event)}</li>`).join('');
+  const ss = r.allocation && r.allocation.supervisor_sizing;
+  return `<div class="detail">
+    <div class="card-h"><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}<span class="sub">${esc(D.names[r.symbol] || '')}</span>
+      <span class="sub">stop basis: ${esc(r.stop_basis)}${r.supervisor_used ? ' · supervisor view used' : ' · agents\' average used'}</span></div>
+    <div class="kv">
+      <div><small>Downside / upside (10/90)</small><b>${f2(r.quantiles.q10, s)} / ${f2(r.quantiles.q90, s)}</b></div>
+      <div><small>Market median</small><b style="color:var(--mkt)">${f2(r.market_only.target, s)}</b></div>
+      <div><small>${r.research_leg && r.research_leg.source === 'standard_model' ? 'Research leg (model)' : "Agents' median"}</small><b style="color:var(--llm)">${f2(r.llm_only.target, s)}</b></div>
+      <div><small>Target w/o analysts</small><b>${f2(r.analysts && r.analysts.target_ex_analysts, s)}</b></div>
+      <div><small>Analysts (n, range)</small><b style="color:var(--an)">${r.analysts && r.analysts.median ? r.analysts.n + ' · ' + f2(r.analysts.low, s) + '–' + f2(r.analysts.high, s) : (r.analysts && r.analysts.rating ? esc(r.analysts.rating) + ' · ' + (r.analysts.n ?? '–') : '–')}</b></div>
+      ${r.analysts && r.analysts.method === 'weighted' ? `<div title="${esc((r.analysts.top_firms || []).map(f => `${f.firm} ${f.target} (${f.date}, weight ${(f.weight * 100).toFixed(0)}%)`).join('; '))}"><small>Analysts weighted / flat</small><b style="color:var(--an)">${f2(r.analysts.median, s)} / ${f2(r.analysts.flat_median, s)}</b></div>` : ''}
+      <div><small>Thesis break</small><b>${f2(r.thesis_break.reconciled, s)}</b></div>
+      <div><small>30D / 1Y IV</small><b>${pct(r.iv30)} / ${pct(r.atm_iv_1y)}</b></div>
+      ${p ? `<div><small>Position</small><b>${p.shares} sh · $${Math.round(p.market_value).toLocaleString()}</b></div>
+      <div><small>At TP / at SL</small><b><span class="pos">${usd(p.to_take_profit)}</span> / <span class="neg">${usd(p.to_stop)}</span></b></div>` : ''}
+    </div>
+    <div class="chart">${chart(r)}</div>
+    ${LEGEND}
+    ${r.memo_gdoc ? '' : r.model_gsheet ? shortRead(r) : `<div class="cols">  <!-- Kilian 2026-10-22 23:29Z / 10-23 00:50Z: names with a memo doc drop the text; the memo holds it -->
+      <div><h2>Supervisor's read</h2><p>${esc(r.supervisor_summary || 'No supervisor summary.')}</p>
+        ${drivers ? `<h2 style="margin-top:12px">What drives it</h2><ul>${drivers}</ul>` : ''}
+        ${r.model_trial ? `<p class="muted" style="margin-top:12px">Standard model (trial, not used for levels yet): 12-month target $${(+r.model_trial.target).toFixed(2)}, middle half $${(+r.model_trial.q25).toFixed(2)} to $${(+r.model_trial.q75).toFixed(2)}, base-case value $${(+r.model_trial.base_value).toFixed(2)}${(r.model_trial.agent_values || []).length ? `; forecaster sets ${r.model_trial.agent_values.map(x => `$${(+x).toFixed(0)}`).join(', ')}` : ''}.</p>` : ''}
+        ${tiltLines(r)}
+        ${r.citation_gate ? `<p class="muted" style="margin-top:12px">Citation gate: ${esc(r.citation_gate.status === 'clean' ? 'passed, every cited figure checked at source' : r.citation_gate.status)}${(r.citation_gate.blocked_newer || []).length ? `; newer research from ${esc(r.citation_gate.blocked_newer.join(', '))} held back until its audit is clean` : ''}.</p>` : ''}${r.citation_audit && (r.citation_audit.corrections || []).length ? `<h2 style="margin-top:12px">Citation audit (${esc(r.citation_audit.date || '')})</h2><ul>${r.citation_audit.corrections.map(c => `<li>${esc(typeof c === 'string' ? c : `${c.item}: ${c.from} to ${c.to}${c.source ? ` (${c.source})` : ''}`)}</li>`).join('')}</ul>` : ''}</div>
+      <div>${ss ? `<h2>Entry plan</h2><p>${esc(ss.entry)}</p><p class="note" style="margin-top:6px">Overlap: ${esc(ss.overlap)}</p>` : ''}
+        ${cats ? `<h2 style="margin-top:${ss ? 12 : 0}px">Catalysts</h2><ul>${cats}</ul>` : ''}</div>
+    </div>`}
+    ${memoBlock(r)}${how(r)}${anTable(r)}
+  </div>`;
+}
+
+function entryCells(r) {  // Kilian 2026-10-05: entry price on Positions, kept right through trims and adds (FIFO lots from trades.json)
+  const e = r.entry; if (!e) return '<td class="n">–</td><td class="n">–</td><td class="n">–</td>';
+  const tip = e.lots.map(l => `${l.date}: ${+l.shares.toFixed(4)} @ $${l.price.toFixed(2)}`).join('; ') ;
+  const g = r.spot / e.avg_price - 1;
+  return `<td class="n">${+e.shares.toFixed(4)}</td><td class="n" title="${esc(tip)}">$${e.avg_price.toFixed(2)}${e.lots.length > 1 ? '<sup>' + e.lots.length + '</sup>' : ''}</td><td class="n ${g >= 0 ? 'pos' : 'neg'}">${sgn(g)}</td>`;
+}
+function tgtTip(r) {  // Kilian 2026-10-21 card "Target only": how the one headline number splits
+  const t = ((r.revision || {}).log_shift || 0) + ((r.short_interest || {}).log_shift || 0) + ((r.momentum || {}).log_shift || 0);
+  const w = r.method || {}, f = x => '$' + x.toFixed(2);
+  return `12-month median: ${Math.round((w.w_market ?? 0.67) * 100)}% options market${r.market_only ? ' (' + f(r.market_only.target) + ')' : ''}, ${Math.round((w.w_llm ?? 0.33) * 100)}% research${r.llm_only ? ' (' + f(r.llm_only.target) + ')' : ''}`
+    + (t ? `, then shifted ${t >= 0 ? '+' : '−'}${(Math.abs(t) * 100).toFixed(1)}% by the revision, short-interest and momentum tilts` : '')
+    + (r.fair_value_median ? `. Research target (12m, base case): ${f(r.fair_value_median)}` : '');
+}
+function vtCell(r) {  // entry level = target / (1 + required 12-month price return) (Kilian 2026-10-21 22:08Z: the 22:05Z median-path
+  // version sat above the target for volatile names, AMAT $465.86 vs $456.45); required = T-bill + 7.69% x (0.768 + 0.232 beta) less dividend yield (adjusted CAPM, 22:10Z)
+  if (!r.target || r.req_return == null) return '<td class="n">–</td>';
+  const v = r.target / (1 + r.req_return), g = v / r.spot - 1;
+  return `<td class="n" title="${esc(`Target $${r.target.toFixed(2)} ÷ (1 + ${(r.req_return * 100).toFixed(1)}% required 12-month price return: T-bill + beta-adjusted premium${r.req_beta != null ? ' at beta ' + r.req_beta.toFixed(2) : ''}, less dividends). Bought here, reaching the target earns exactly the market's normal return for this risk`)}">${f2(v, r.spot)} <span class="${g >= 0 ? 'pos' : 'neg'}">${sgn(g)}</span></td>`;
+}
+function summary(rows, held, why) {  // why: Researched tab (Kilian 2026-10-03: same analytics as held names)
+  const COLS = held ? 18 : 14;
+  const HEAD = `<th>Ticker</th>${held ? '<th class="n">Shares</th><th class="n" title="Average price of the shares you still hold (oldest lots leave first on a trim); hover a value for the lots">Avg entry</th><th class="n">Vs entry</th>' : ''}<th class="n">Last</th><th class="n" title="12-month median of the blend. In brackets: the options-market leg (67%) and the research leg (33%) on their own">NTM target (mkt / res)</th><th class="n">Δ</th><th class="n" title="Mean of the blended 12-month distribution">Expected¹</th><th class="n" title="Entry level: target ÷ (1 + required 12-month price return: T-bill + 7.69% × (0.768 + 0.232 × beta), less the dividend yield). Below it, reaching the target earns more than the market\'s normal return for this risk; the % is the entry level vs the last price (Kilian 2026-10-21 22:08Z)">Entry below</th><th class="n">Analyst median</th>
+      <th class="n">P(gain)</th><th class="n">Take-profit</th><th class="n">Stop-loss</th><th class="n">R/R</th>
+      <th class="n">P(touch TP)</th><th class="n">P(touch SL)</th>${held ? '<th class="n" title="Shares × (stop-loss − last): what the position loses from today\'s price if it falls to the stop and is sold there; hover a value for the change vs your entry">Loss at stop</th>' : ''}${why ? '<th>Why not bought</th>' : `<th class="n">${held ? 'Position P&amp;L to target' : 'Suggested buy'}</th>`}`;
+  const body = rows.map((r, i) => {
+    const grp = why && (i === 0 || rows[i - 1].sector !== r.sector)
+      ? `<tr class="grp" data-g="${esc(r.sector || 'Other')}" tabindex="0" aria-expanded="false"><th colspan="${COLS}" scope="colgroup">${esc(r.sector || 'Other')} <span class="sub">(${rows.filter(x => x.sector === r.sector).length})</span></th></tr>
+         <tr class="colh" data-g="${esc(r.sector || 'Other')}" hidden>${HEAD}</tr>` : '';
+    const d = r.target / r.spot - 1, p = r.position;
+    const lsTip = held && r.entry ? `vs avg entry: ${usd(p.shares * (r.stop_loss - r.entry.avg_price))}; ${(Math.abs(p.to_stop) / ((D.portfolio || {}).total_wealth || 1) * 100).toFixed(1)}% of the book` : '';
+    const ls = held ? `<td class="n neg" title="${esc(lsTip)}">${usd(p.to_stop)}</td>` : '';  // Kilian 2026-10-15 04:42Z: loss at stop column for held names
+    const last = held ? `<td class="n ${p.to_target >= 0 ? 'pos' : 'neg'}">${usd(p.to_target)}</td>`
+      : why ? `<td class="sub tw" style="white-space:normal;min-width:200px">${r.allocation ? noBuyText(r.allocation) : 'not sized'}</td>`
+      : `<td class="n">${buyText(r.allocation)}</td>`;
+    return grp + `<tr class="nm" data-s="${r.symbol}"${why ? ` data-g="${esc(r.sector || 'Other')}" hidden` : ''} tabindex="0" aria-expanded="false"><td><span class="sym">${r.symbol}</span>${r.stale_as_of ? `<span class="att" title="No fresh quote at this close; figures from the ${r.stale_as_of} run"> (stale: ${r.stale_as_of})</span>` : ''}${r.low_confidence ? '<span class="flag">low confidence</span>' : ''}</td>${held ? entryCells(r) : ''}
+      <td class="n">${f2(r.spot, r.spot)}</td><td class="n" title="${esc(tgtTip(r))}">${f2(r.target, r.spot)}${r.market_only && r.llm_only ? ` <span class="sub" style="white-space:nowrap">(<span style="color:var(--mkt)">${f2(r.market_only.target, r.spot)}</span> / <span style="color:var(--llm)">${f2(r.llm_only.target, r.spot)}</span>)</span>` : ''}</td>
+      <td class="n ${d >= 0 ? 'pos' : 'neg'}">${sgn(d)}</td><td class="n">${f2(r.expected, r.spot)}</td>
+      ${vtCell(r)}<td class="n" style="color:var(--an)">${r.analysts && r.analysts.median ? f2(r.analysts.median, r.spot) : '–'}</td>
+      <td class="n">${pct(r.p_gain)}</td><td class="n pos" title="${esc(r.take_profit_basis || '75th percentile of the 12-month distribution')}">${f2(r.take_profit, r.spot)}${r.take_profit_basis && (r.take_profit_basis.startsWith('sizing') || r.take_profit_basis.startsWith('expected value')) ? '<sup>x</sup>' : ''}</td><td class="n neg">${f2(r.stop_loss, r.spot)}</td>
+      <td class="n">${r.reward_risk == null ? '–' : r.reward_risk.toFixed(2)}</td>
+      <td class="n">${pct(r.p_touch_tp)}</td><td class="n">${pct(r.p_touch_sl)}</td>${ls}${last}</tr>
+      <tr class="det" data-s="${r.symbol}" hidden><td colspan="${COLS}"></td></tr>`;
+  }).join('');
+  return `<section><h2>${why ? `Researched, not bought (${rows.length})` : held ? 'Positions' : (SCRATCH ? (rows.some(BUY) ? 'Names to buy' : 'Names not bought') : 'Names you don\'t hold')}</h2>
+    <div class="tbl"><table class="sum">${why ? '' : `<thead><tr>${HEAD}</tr></thead>`}<tbody>${body}</tbody></table></div>
+    <p class="note foot">Tap a name for detail. ¹ Expected is the mean; the target is the median.${held ? (() => { const t = rows.reduce((a, r) => a + r.position.to_stop, 0), w = (D.portfolio || {}).total_wealth; return ` If every held name fell to its stop, the book would lose $${Math.round(Math.abs(t)).toLocaleString()} from today's prices${w ? ` (${(Math.abs(t) / w * 100).toFixed(1)}% of the $${Math.round(w).toLocaleString()} book)` : ''}.`; })() : ''}</p></section>`;
+}
+
+const SECN = {materials: 'Materials', industrials: 'Industrials', tech: 'Tech'};
+function ideaDetail(i) {
+  const sc = i.scores || {};
+  const cats = (i.catalysts || []).map(c => `<li><span class="mono">${esc(c.date)}</span> ${esc(c.event)}</li>`).join('');
+  const src = (i.sources || []).slice(0, 8).map(u => `<li class="sub" style="word-break:break-all">${esc(u)}</li>`).join('');
+  return `<div class="detail">
+    <div class="kv">${Object.entries(sc).map(([k, v]) => `<div><small>${esc(k)}</small><b>${v}/5</b></div>`).join('')}</div>
+    <div class="cols">
+      <div><h2>Thesis</h2><p>${esc(i.thesis)}</p>${i.why_now ? `<h2 style="margin-top:12px">Why now</h2><p>${esc(i.why_now)}</p>` : ''}
+        ${i.fact_check ? `<h2 style="margin-top:12px">Ranker's fact-check</h2><p>${esc(i.fact_check)}</p>` : ''}</div>
+      <div>${cats ? `<h2>Catalysts</h2><ul>${cats}</ul>` : ''}
+        ${(i.key_risks || []).length ? `<h2 style="margin-top:12px">Key risks</h2><ul>${i.key_risks.map(r => `<li>${esc(r)}</li>`).join('')}</ul>` : ''}
+        ${src ? `<h2 style="margin-top:12px">Sources</h2><ul>${src}</ul>` : ''}</div>
+    </div></div>`;
+}
+function ideasTab(I) {
+  if (!I) return '<p class="note">No idea round yet. The first runs with the Friday research.</p>';
+  const priced = new Set(I.priced || []);
+  let h = '';
+  if (I.ideas) {
+    const rows = I.ideas.filter(i => i.status !== 'dropped').map((i, k) => {
+      const st = priced.has(i.symbol) ? '<span class="stat priced">on watchlist</span>' : (i.status === 'pick' ? '<span class="stat pick">pick</span>' : '<span class="stat">researched</span>');
+      return `<tr class="nm idea" data-k="${k}" tabindex="0" aria-expanded="false"><td><span class="sym">${esc(i.symbol)}</span></td><td>${esc(i.name || '')}</td><td>${SECN[i.sector] || esc(i.sector)}</td>
+        <td class="n">${i.total ?? '–'}</td><td>${st}</td>${(() => { const r = D.results.find(x => x.symbol === i.symbol); return r ? `<td class="n">${f2(r.spot, r.spot)}</td><td class="n">${f2(r.target, r.spot)}</td><td class="n ${r.target >= r.spot ? 'pos' : 'neg'}">${sgn(r.target / r.spot - 1)}</td>` : '<td class="n sub">–</td><td class="n sub">–</td><td class="n sub">–</td>'; })()}<td class="tw" style="white-space:normal;min-width:280px">${esc(i.why_now || i.thesis || '')}</td></tr>
+        <tr class="det" hidden><td colspan="9"></td></tr>`;
+    }).join('');
+    h += `<section><h2>This week's ideas · ${esc(I.as_of)}</h2>
+      ${I.summary ? `<div class="idea-sum"><p>${esc(I.summary)}</p></div>` : ''}
+      <div class="tbl" style="margin-top:12px"><table class="sum ideas"><thead><tr><th>Ticker</th><th>Name</th><th>Sector</th><th class="n">Score</th><th>Status</th><th class="n">Last</th><th class="n">NTM target</th><th class="n">Δ</th><th>Why now</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
+      <p class="note foot">Scouts and a ranker pick the top ${(I.picks || []).length || 2} each Friday for full runs. Tap an idea for its thesis and sources.</p></section>`;
+  } else {
+    h += `<section><div class="idea-sum"><p>The screen for ${esc(I.as_of)} is in; the scouts and ranker have not finished yet. Ideas appear here when they do.</p></div></section>`;
+  }
+  const th = Object.entries(I.themes || {}).filter(([, v]) => v && v.length);
+  if (th.length) h += `<section><h2>Themes the scouts found</h2><div class="themes">${th.map(([sec, v]) => `<div><b>${SECN[sec] || esc(sec)}</b><ul>${v.filter(t => !/^data note$/i.test(t.theme || '')).map(t => `<li><b>${esc(t.theme)}</b> <span class="stat">${esc(t.stage || '')}</span><br><span class="sub">${esc(t.evidence || '')}</span></li>`).join('')}</ul></div>`).join('')}</div></section>`;
+  const scr = Object.entries(I.screen || {});
+  const srow = n => `<tr><td><span class="sym">${esc(n.symbol)}</span></td><td>${esc((n.name || '').slice(0, 34))}</td><td class="n">$${(n.market_cap / 1e9).toFixed(1)}B</td>
+    <td class="n ${n.mom_12_1 >= 0 ? 'pos' : 'neg'}">${sgn(n.mom_12_1)}</td><td class="n ${(n.mom_6m ?? 0) >= 0 ? 'pos' : 'neg'}">${n.mom_6m == null ? '–' : sgn(n.mom_6m)}</td><td class="n ${n.mom_3m >= 0 ? 'pos' : 'neg'}">${sgn(n.mom_3m)}</td><td class="n">${sgn(n.off_high)}</td><td class="n">${pct(n.vol_1y)}</td><td class="n">${n.score == null ? '–' : (n.score * 100).toFixed(0)}</td></tr>`;
+  if (scr.length) h += `<section><h2>Quant screen · ${I.universe || ''} names</h2>
+    ${scr.map(([sec, v]) => `<details class="how"><summary>${SECN[sec] || esc(sec)}: top ${v.leaders.length} leaders${v.pullbacks.length ? ` and ${v.pullbacks.length} pullbacks` : ''}</summary>
+      <div class="tbl" style="margin-top:8px"><table><thead><tr><th>Ticker</th><th>Name</th><th class="n">Mkt cap</th><th class="n">12-1 mom</th><th class="n">6M</th><th class="n">3M</th><th class="n">Off high</th><th class="n">1Y vol</th><th class="n">Score</th></tr></thead>
+      <tbody>${v.leaders.map(srow).join('')}${v.pullbacks.length ? `<tr><td colspan="9" class="sub">Pullbacks: large caps 20%+ below their 52-week high with positive 12-1 momentum</td></tr>` + v.pullbacks.map(srow).join('') : ''}</tbody></table></div></details>`).join('')}
+    <p class="note foot">A starting list for the scouts, not a recommendation.</p></section>`;
+  return h;
+}
+function fitDetail(td) { const w = td.closest('.tbl').clientWidth; td.firstElementChild && (td.firstElementChild.style.width = (w - 2) + 'px'); }
+function toggle(tr) {
+  const det = tr.nextElementSibling, open = det.hidden;
+  if (open && !det.firstElementChild.innerHTML) det.firstElementChild.innerHTML = tr.classList.contains('idea')
+    ? (i => { const r = D.results.find(x => x.symbol === i.symbol); return r ? `<div>${ideaDetail(i)}${detail(r)}</div>` : ideaDetail(i); })(D.ideas.ideas.filter(i => i.status !== 'dropped')[+tr.dataset.k])
+    : detail(D.results.find(r => r.symbol === tr.dataset.s));
+  det.hidden = !open; tr.classList.toggle('open', open); tr.setAttribute('aria-expanded', open);
+  if (open) fitDetail(det.firstElementChild);
+}
+function chart(r) {
+  const q = r.quantiles, W = 900, H = 118, L = 16, R = 16;
+  const lo = Math.min(q.q5, r.stop_loss) * 0.95, hi = Math.max(q.q95, r.take_profit) * 1.03;
+  const x = v => L + (Math.log(v) - Math.log(lo)) / (Math.log(hi) - Math.log(lo)) * (W - L - R);
+  const y0 = 46, s = r.spot;
+  let g = '';
+  // ticks: ~6 nice values on log scale
+  const step = Math.pow(10, Math.floor(Math.log10((hi - lo) / 5)));
+  const mult = [1, 2, 2.5, 5, 10].find(m => (hi - lo) / (m * step) <= 7) * step;
+  for (let t = Math.ceil(lo / mult) * mult; t <= hi; t += mult) {
+    g += `<line x1="${x(t)}" x2="${x(t)}" y1="${y0 - 26}" y2="${y0 + 26}" stroke="var(--line)"/>
+          <text x="${x(t)}" y="${H - 6}" text-anchor="middle">${s < 5 ? t.toFixed(2) : t.toFixed(0)}</text>`;
+  }
+  g += `<rect x="${x(q.q10)}" y="${y0 - 12}" width="${x(q.q90) - x(q.q10)}" height="24" fill="var(--band)"/>
+        <rect x="${x(q.q25)}" y="${y0 - 12}" width="${x(q.q75) - x(q.q25)}" height="24" fill="var(--band2)"/>`;
+  const mk = (v, c, w, dash, label, above) => {
+    let t = `<line x1="${x(v)}" x2="${x(v)}" y1="${y0 - 20}" y2="${y0 + 20}" stroke="${c}" stroke-width="${w}" ${dash ? 'stroke-dasharray="3 3"' : ''}/>`;
+    if (label) t += `<text class="lab" x="${x(v)}" y="${above ? y0 - 25 : y0 + 34}" text-anchor="middle" style="fill:${c}">${label}</text>`;
+    return t;
+  };
+  g += mk(r.market_only.target, 'var(--mkt)', 2, true, '', false) + mk(r.llm_only.target, 'var(--llm)', 2, true, '', false);
+  if (r.analysts && r.analysts.median && r.analysts.median > lo && r.analysts.median < hi) g += mk(r.analysts.median, 'var(--an)', 2, true, '', false);
+  if (r.fair_value_median && r.fair_value_median > lo && r.fair_value_median < hi) g += mk(r.fair_value_median, 'var(--fv)', 2, true, '', false);
+  g += mk(r.stop_loss, 'var(--neg)', 2.5, false, 'SL ' + f2(r.stop_loss, s), true);
+  g += mk(r.take_profit, 'var(--pos)', 2.5, false, 'TP ' + f2(r.take_profit, s), true);
+  g += mk(s, 'var(--text)', 2, false, 'last ' + f2(s, s), false);
+  g += mk(r.target, 'var(--amber)', 3, false, '', false);
+  // target label sits beside "last"; when the two are close, put it above the bar (unless TP/SL labels are there)
+  const near = Math.abs(x(r.target) - x(s)) < 110, busy = [r.stop_loss, r.take_profit].some(v => Math.abs(x(v) - x(r.target)) < 110);
+  const up = near && !busy;
+  g += `<text class="lab" x="${x(r.target)}" y="${up ? y0 - 25 : (near ? y0 + 48 : y0 + 34)}" dx="${up ? 0 : (r.target >= s ? 4 : -4)}" text-anchor="${up ? 'middle' : (r.target >= s ? 'start' : 'end')}" style="fill:var(--amber)">target ${f2(r.target, s)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${r.symbol} 12-month price distribution">${g}</svg>`;
+}
+function anTable(r) {
+  const A = r.analyst_firms; if (!A || !A.firms || !A.firms.length) return '';
+  const s = r.spot, an = r.analysts || {};
+  const rows = A.firms.map(f => `<tr><td class="tw" data-l="Firm">${f.source ? `<a href="${esc(f.source)}" target="_blank" rel="noopener">${esc(f.firm)}</a>` : esc(f.firm)}${f.analyst ? `<span class="sub"> (${esc(f.analyst)})</span>` : ''}</td>
+    <td class="n" data-l="Target">${f2(f.target, s)}</td><td data-l="Date">${esc(f.date || '–')}</td>
+    <td class="n" data-l="Freshness">${f.fresh == null ? '–' : (f.fresh * 100).toFixed(0) + '%'}</td><td class="n" data-l="Weight">${(f.weight * 100).toFixed(1)}%</td></tr>`).join('');
+  return `<details class="how"><summary>Analyst consensus: weighted ${f2(A.weighted_median, s)} vs flat ${f2(A.flat_median, s)} vs stockanalysis ${f2(an.stockanalysis_median, s)} (${A.n} firms, effective ${A.effective_n})</summary>
+    <p class="note">Weighted by freshness only (120-day half-life). Reference only: 0% of the target.</p>
+    <div class="tbl"><table><thead><tr><th>Firm (analyst)</th><th class="n">Target</th><th>Date</th><th class="n">Freshness</th><th class="n">Weight</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+}
+function memoBlock(r) {
+  const m = r.memo; if (!m) return '';
+  if (r.memo_gdoc)  // Kilian 2026-10-22 23:29Z: the text is redundant where the memo has a Google Doc; keep the links only
+    return `<p class="xl"><b>Pitch memo:</b> ${esc(m.title || '')} <a class="dl" href="${esc(r.memo_gdoc)}" target="_blank" rel="noopener">Open in Google Docs</a> ${r.model_gsheet ? `<a class="dl" href="${esc(r.model_gsheet)}" target="_blank" rel="noopener">Model in Google Sheets</a> ` : ''}<span class="sub"> written from the ${esc(m.as_of)} research</span></p>`;
+  const s = r.spot, src = {}; (m.sources || []).forEach(x => { src[x.id] = x; });
+  const ref = ids => (ids || []).filter(i => src[i]).map(i => `<a class="ref" href="${esc(src[i].url || '#')}" target="_blank" rel="noopener" title="${esc(src[i].title || '')}">[${i}]</a>`).join('');
+  const v = m.valuation || {}, t = m.trade || {}, pc = x => x == null ? '–' : (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(1) + '%';
+  const DIR = {'+': '<b class="pos">+</b>', '-': '<b class="neg">−</b>', '?': '?'};
+  const cats = (m.catalysts || []).map(c => `<tr><td class="tw" data-l="Date">${esc(c.date || '')}${c.date_status === 'estimated' ? '<span class="sub"> est.</span>' : ''}</td>
+      <td class="tw" data-l="Event"><b>${esc(c.event || '')}</b>${ref(c.source_ids)}</td><td class="tw" data-l="Why it moves">${esc(c.why_it_moves || '')}</td>
+      <td data-l="Dir">${DIR[c.direction] || esc(c.direction || '')}</td><td data-l="Size">${esc(c.magnitude || '')}</td><td class="tw" data-l="Watch">${esc(c.watch || '')}</td></tr>`).join('');
+  return `<details class="how memo" open><summary>Pitch memo: ${esc(m.title || '')}</summary>
+    <p class="xl">${r.memo_gdoc ? `<a class="dl" href="${esc(r.memo_gdoc)}" target="_blank" rel="noopener">Open in Google Docs</a> ` : ''}${r.model_gsheet ? `<a class="dl" href="${esc(r.model_gsheet)}" target="_blank" rel="noopener">Model in Google Sheets</a> ` : ''}<span class="sub memonote"> Written from the ${esc(m.as_of)} research${m.as_of !== D.as_of ? '; the table above has today\'s numbers' : ''}</span></p>
+    <p><b class="${m.call === 'Long' ? 'pos' : ''}">${esc(m.call || '')}</b> · ${esc(m.call_reason || '')}</p><p>${esc(m.one_liner || '')}</p>
+    <h3>Thesis</h3><ol>${(m.thesis || []).map(x => `<li><b>${esc(x.point || '')}</b> ${esc(x.evidence || '')}${ref(x.source_ids)}</li>`).join('')}</ol>
+    <h3>Variant view</h3><p>${esc(m.variant_view || '')}</p>
+    <h3>Valuation</h3><p>Target ${f2(v.target, s)} (${pc(v.upside_to_target_pct)}), research target (12m) ${f2(v.fair_value, s)} (${pc(v.upside_to_fair_value_pct)}) vs ${f2(v.price, s)}. ${esc(v.methods || '')}</p>
+    <h3>Catalysts likely to move the stock</h3>
+    <div class="tbl"><table><thead><tr><th>Date</th><th>Event</th><th>Why it moves</th><th>Dir</th><th>Size</th><th>Watch</th></tr></thead><tbody>${cats}</tbody></table></div>
+    <h3>Risks</h3><ul>${(m.risks || []).map(x => `<li><b>${esc(x.risk || '')}</b> Signpost: ${esc(x.signpost || '')}${ref(x.source_ids)}</li>`).join('')}</ul>
+    <h3>Trade</h3><p>${esc(t.position || '')}. Entry: ${esc(t.entry || '')}. Stop ${f2(t.stop, s)}, take-profit ${f2(t.take_profit, s)}${t.take_profit_note ? ` (${esc(t.take_profit_note)})` : ''}. ${esc(t.exit_or_add || '')}</p>
+    <h3>What changes our mind</h3><ul>${(m.what_changes_our_mind || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+  </details>`;
+}
+
+function how(r) {  // 2026-10-29 rewrite (Kilian: "how the agents got there" was outdated): each step from the market leg to the page's numbers
+  const e = r.explain, s = r.spot, M = r.model_how, ml = r.market_leg || {}, rl = r.research_leg || {}, mo = r.market_only || {}, lo = r.llm_only || {};
+  const fv = v => typeof v === 'number' ? f2(v, s) : esc(v ?? '–');
+  const pc1 = x => typeof x === 'number' ? (x * 100).toFixed(1) + '%' : '–';
+  const lg = x => typeof x === 'number' && x ? sgn(Math.exp(x) - 1) : '0%';
+  const sc = x => x && x.price != null ? `${f2(x.price, s)}${x.prob != null ? `<span class="sub"> ${pct(x.prob)}</span>` : ''}` : '–';
+  const val = v => typeof v === 'number' ? (v <= 1 && v >= 0 && !Number.isInteger(v) ? (v * 100).toFixed(1) + '%' : f2(v, s)) : esc(v ?? '–');
+  const std = rl.source === 'standard_model', special = (r.method || {}).special_situation;
+  const wm = (r.method || {}).w_market ?? 0.67, wl = (r.method || {}).w_llm ?? 0.33;
+  // 1. options market
+  const m1 = `<li><b>Options market (${pct(wm)}).</b> 12-month at-the-money implied vol ${pc1(r.atm_iv_1y ?? ml.atm_iv_1y)}${ml.vol_mode && ml.vol_mode !== 'atm' ? ` (${esc(ml.vol_mode)}; 1-year realized ${pc1(ml.realized_vol_1y)})` : ''} from the Cboe chain of ${esc(r.as_of || ml.market_date || '–')}${ml.low_confidence ? ', no usable smile, so the width is the higher of implied and 1-year realized vol' : ''}. The options set the width; the centre is the T-bill ${pc1(ml.rf)} plus 7.69% × (0.768 + 0.232 × beta ${ml.beta != null ? ml.beta.toFixed(2) : '–'}) = ${pc1(ml.premium)} a year. Market leg on its own: median ${fv(mo.target)}, 15th percentile ${fv(mo.q15)}, 75th ${fv(mo.q75)}. A held name that moves past its one-sd implied move during the day is re-marked on a fresh chain; only this step changes.</li>`;
+  // 2. research
+  let m2;
+  if (std && M) {
+    const legs = (M.legs || []).map(l => `<tr><td>${esc(l.name)}${l.multiple != null ? ` <span class="sub">${(+l.multiple).toFixed(1)}x</span>` : ''}</td><td class="n">${fv(l.value)}</td><td class="n">${pct(l.weight)}</td></tr>`).join('');
+    const scn = (M.scenarios || []).map(x => `<tr><td>${esc(x.name)}</td><td class="n">${x.pctl != null ? 'P' + x.pctl : pct(x.prob)}</td><td class="n">${fv(x.value)}</td><td class="tw">${esc(x.story || '')}</td></tr>`).join('');
+    const fin = (M.financing || []).map(f => `<li>${esc(f.name)}${f.kind ? ` (${esc(f.kind)})` : ''}: probability ${pct(f.probability)}${f.by_horizon ? `, booked at that weight: ${f.expected_shares_added ? (+f.expected_shares_added).toFixed(1) + 'M shares' : ''}${f.expected_shares_added && f.expected_net_debt_change ? ', ' : ''}${f.expected_net_debt_change ? (f.expected_net_debt_change < 0 ? '−' : '+') + '$' + Math.abs(f.expected_net_debt_change / 1000).toFixed(1) + 'B net debt' : ''}` : ', expected after the horizon, so weighed in the exit multiple instead'}</li>`).join('');
+    const dr = (r.key_drivers || []).slice(0, 8).map(d => `<li>${esc(d)}</li>`).join('');
+    m2 = `<li><b>Research (${pct(wl)}).</b> A driver-led model built ${M.quarterly ? 'quarter by quarter' : 'by fiscal year'}, ${M.update_round ? `last brought up to date by the ${esc(r.research_as_of)} model update (reported actuals, guidance and consensus rolled into the drivers)` : `from the ${esc(r.research_as_of)} research round`}${r.citation_gate && r.citation_gate.status === 'clean' ? ', citation gate clean' : ''}. A handful of cited drivers set revenue, margins and capex; the model computes the rest from them.
+      ${dr ? `<p class="sub2">Key drivers</p><ul>${dr}</ul>` : ''}
+      <p class="sub2">Valued at ${esc(M.horizon || r.horizon || '')} (methods and weights from the sector playbook; exit multiple = peer median × (own ÷ peer median)<sup>0.8</sup>)</p>
+      <div class="tbl"><table class="mini"><thead><tr><th>Method</th><th class="n">Value</th><th class="n">Weight</th></tr></thead><tbody>${legs}
+        <tr><td><b>Research target (12m)</b>, base case</td><td class="n"><b>${fv(M.value)}</b></td><td></td></tr></tbody></table></div>
+      ${fin ? `<p class="sub2">Probable financing, booked at its probability</p><ul>${fin}</ul>` : ''}
+      <p class="sub2">Base case with downside (10th percentile) and upside (90th percentile) cases; each case moves the drivers and the multiple</p>
+      <div class="tbl"><table class="mini"><thead><tr><th>Case</th><th class="n">Percentile</th><th class="n">Value</th><th>Story</th></tr></thead><tbody>${scn}</tbody></table></div>
+      <p>The base case is the median of the 12-month distribution (${fv(M.mix_median)}); the downside and upside set how wide each side is. A model's target behaves like an expected price, so the leg is moved until its mean, not its median, sits there${rl.mean_centre_log != null ? ` (${lg(rl.mean_centre_log)})` : ''}: research median ${fv(lo.target)}, 15th percentile ${fv(lo.q15)}, 75th ${fv(lo.q75)}.</p></li>`;
+  } else if (special) {
+    m2 = `<li><b>Research (${pct(wl)}).</b> A special situation: the supervisor's target definition rules (${esc((r.method || {}).target_definition || '')}), with no calibration shift. Research median ${fv(lo.target)}.</li>`;
+  } else {
+    const sh = (r.platt || {}).log_shift;
+    const fr = rl.fallback_reason || '', why = /older than/.test(fr) ? `its driver model (${esc(r.research_as_of || '–')}) has not been re-run since the supervisor's last revision`
+      : /gate/.test(fr) ? `its driver model (${esc(r.research_as_of || '–')}) has not passed the citation gate` : `its last research round (${esc(r.research_as_of || '–')}) predates the driver-led models`;
+    m2 = `<li><b>Research (${pct(wl)}).</b> This name's ${why.replace(/^its /, '')}, so the research leg is still ${r.supervisor_used ? "the supervisor's" : "the forecasters' average"} 12-month probability ladder, moved by a calibration shift of ${lg(sh)} (a = √3) fixed once for that round. Research median ${fv(lo.target)}; research target (12m) ${fv(r.fair_value_median)} (${esc(r.fair_value_source || '')}). It moves to a driver-led model at its next model update or full run.</li>`;
+  }
+  // 3. blend and tilts
+  const an = r.analysts || {}, rv = r.revision || {}, si = r.short_interest || {}, mmt = r.momentum || {};
+  const m3 = `<li><b>Blend.</b> The two distributions are mixed ${pct(wm)} / ${pct(wl)} as probabilities at every price (not an average of two prices): blended median ${fv(an.target_ex_analysts)}. Analyst targets carry no weight${an.median ? ` (median ${fv(an.median)}, reference only)` : ''}.</li>
+    <li><b>Tilts.</b> EPS revisions ${rv.pct != null ? `(percentile ${pct(rv.pct)}; only the top 3% of $10B+ names get +3%)` : `(${esc(rv.bucket || 'not in snapshot')})`}: ${lg(rv.log_shift)}. Short interest${si.dtc != null ? ` (${si.dtc.toFixed(1)} days to cover, quintile ${si.quintile})` : ''}: ${lg(si.log_shift)}. 12-1 momentum${mmt.pct != null ? ` (percentile ${pct(mmt.pct)} of the S&P 500; the bottom fifth gets −3%)` : ''}: ${lg(mmt.log_shift)}. All three move the whole blended distribution.</li>`;
+  // 4. outputs
+  const eb = r.target && r.req_return != null ? r.target / (1 + r.req_return) : null;
+  const tpb = r.take_profit_basis || '75th percentile of the blend';
+  const m4 = `<li><b>What the page shows.</b> Target ${fv(r.target)} (the blended, tilted median) · Expected ${fv(r.expected)} (its mean, ${sgn(r.exp_return || 0)} before dividends) · Entry below ${fv(eb)} = (target + a year of dividends) ÷ (1 + T-bill + the same beta premium) · Stop ${fv(r.stop_loss)} (${esc(r.stop_basis || '')}) · Take-profit ${fv(r.take_profit)} (${esc(tpb)}).</li>`;
+  // the research round behind the model: forecasters and supervisor (from explain.json)
+  let rnd = '';
+  if (e && (e.agents || []).length) {
+    const lad = !std;  // ladder columns only where the ladder still is the research leg
+    const r1on = e.agents.some(a => a.round1);
+    const rvv = (a, k, f) => a.round1 && a.round1[k] != null && a[k] != null && f(a.round1[k]) !== f(a[k])
+      ? `<span class="sub">${f(a.round1[k])} → </span>${f(a[k])}` : f(a[k]);
+    const rows = e.agents.map((a, i) => {
+      const gap = a.fair_value ? a.fair_value / s - 1 : null, sn = a.scenarios || {};
+      const chips = (a.methods || []).map(m => `<span class="chip" title="${a.structured ? '' : 'inferred from the agent\'s method text'}">${esc(m.name)}${m.value != null ? ' ' + f2(m.value, s) : ''}${m.weight != null ? ' · ' + pct(m.weight) : ''}</span>`).join('');
+      return `<tr class="ag" data-i="${i}"><td class="mono">${i + 1}</td><td class="n" style="color:var(--fv)">${rvv(a, 'fair_value', fv)}</td>
+        <td class="n ${gap >= 0 ? 'pos' : 'neg'}">${gap == null ? '–' : sgn(gap)}</td><td>${chips || '–'}</td>
+        <td class="n">${sc(sn.downside || sn.bear)}</td><td class="n">${sc(sn.base)}</td><td class="n">${sc(sn.upside || sn.bull)}</td>
+        ${lad ? `<td class="n">${rvv(a, 'p_gain', pct)}</td><td class="n">${rvv(a, 'median', fv)}</td>` : ''}<td class="n">${rvv(a, 'thesis_break', fv)}</td></tr>`;
+    }).join('');
+    const sp = e.supervisor || {}, cr = sp.confidence_reason || '';
+    const chl = [], grp = {};
+    (sp.changes || []).forEach(c => {
+      if (c.K == null) { if (lad || !/^P\(close/.test(c.item || '')) chl.push(c); return; }
+      if (!lad) return;
+      if (typeof c.from === 'number' && typeof c.to === 'number' && Math.abs(c.from - c.to) < 0.0005) return;
+      const k = c.why || '';
+      if (!grp[k]) { grp[k] = {item: '', from: [], to: [], why: c.why, Ks: []}; chl.push(grp[k]); }
+      grp[k].Ks.push(c.K); grp[k].from.push(`${f2(c.K, s)}: ${val(c.from)}`); grp[k].to.push(`${f2(c.K, s)}: ${val(c.to)}`);
+    });
+    chl.forEach(c => { if (c.Ks) { c.item = `P(close ≥ K) at ${c.Ks.length} strike${c.Ks.length > 1 ? 's' : ''}`; c.from = c.from.join(' · '); c.to = c.to.join(' · '); } });
+    const ch = chl.map(c => `<tr><td class="tw" data-l="What">${esc(c.item)}</td><td class="tw" data-l="Agents said">${val(c.from)}</td><td class="tw" data-l="Supervisor">${val(c.to)}</td>
+        <td class="tw" data-l="Evidence">${c.why && c.why !== cr ? esc(c.why) : '<span class="sub">see the supervisor\'s reason above</span>'}</td></tr>`).join('');
+    rnd = `<details class="rnd"><summary>The research round behind it: ${e.agents.length} forecasters and the supervisor (${esc(r.research_as_of || '')})</summary>
+      <p class="note">${std ? "Each forecaster built its own driver model blind to option prices; the supervisor reconciled one set, which is the model above. Their own targets are shown for comparison and do not enter the numbers." : "The forecasters' ladders, averaged (or the supervisor's when it had high confidence), are this name's research leg."}</p>
+      <h3>Forecasters${r1on ? ', round 1 → round 2 after the supervisor\'s feedback' : ''} (tap a row for its valuation and reasoning)</h3>
+      <div class="tbl"><table><thead><tr><th>#</th><th class="n">Research target (12m)</th><th class="n">vs last</th><th>Methods</th>
+        <th class="n">Downside</th><th class="n">Base</th><th class="n">Upside</th>${lad ? '<th class="n">P(gain)</th><th class="n">Median</th>' : ''}<th class="n">Thesis break</th></tr></thead>
+        <tbody>${rows}</tbody></table></div>
+      ${e.agents.map((a, i) => {
+        const fb = ((e.supervisor_round1 || {}).feedback || []).find(f => f.agent === a.agent);
+        const fbh = fb ? `<p><b>Round-1 supervisor feedback.</b> ${(fb.missed || []).map(esc).join(' ')} ${fb.revisit ? '<i>Reconsider:</i> ' + esc(fb.revisit) : ''}</p>` : '';
+        const revs = (a.revisions || []).map(v => typeof v === 'string' ? `<li>${esc(v)}</li>`
+          : `<li><b>${esc(v.item)}</b>: ${val(v.from)} → ${val(v.to)}${v.why ? ' <span class="sub">(' + esc(v.why) + ')</span>' : ''}</li>`).join('');
+        return `<div class="more" data-i="${i}" hidden><h3>Forecaster ${i + 1}</h3>${fbh}${revs ? `<p><b>What it revised in round 2.</b></p><ul>${revs}</ul>` : (a.round1 ? '<p><b>Round 2:</b> no revisions listed.</p>' : '')}
+          <p><b>Valuation${a.round1 ? ' (round 2)' : ''}.</b> ${esc(a.method_text)}</p><p><b>Reasoning.</b> ${esc(a.reasoning)}</p></div>`;
+      }).join('')}
+      ${e.supervisor_round1 ? `<h3>Round 1 supervisor</h3><p style="font-size:13px">${esc(e.supervisor_round1.summary)}</p>
+        ${(e.supervisor_round1.disagreements || []).length ? `<ul style="font-size:12.5px">${e.supervisor_round1.disagreements.map(d => `<li><b>${esc(d.topic)}</b>: ${esc(d.resolution)}</li>`).join('')}</ul>` : ''}` : ''}
+      <h3>${e.supervisor_round1 ? 'Final supervisor' : 'Supervisor'}: ${esc(sp.confidence || '–')} confidence${lad ? (sp.used ? ', its ladder replaced the agents\' average' : ', the agents\' average ladder was kept') : ''}</h3>
+      <p style="font-size:13px">${lad ? `Median ${fv(sp.median_mean)} (agents' average) → ${fv(sp.median_supervisor)} (supervisor) · ` : ''}thesis break ${fv(sp.thesis_break)}. ${esc(cr)}</p>
+      ${ch ? `<div class="tbl" style="margin-top:8px"><table class="chg"><thead><tr><th>What</th><th>Agents said</th><th>Supervisor</th><th>Evidence</th></tr></thead><tbody>${ch}</tbody></table></div>` : ''}
+    </details>`;
+  }
+  const xl = r.model ? `<p class="xl">${r.model_gsheet ? `<a class="dl" href="${esc(r.model_gsheet)}" target="_blank" rel="noopener">Open the model in Google Sheets</a> ` : ''}<button type="button" class="dl" data-model="${esc(r.symbol)}">Download the Excel workbook</button><span class="sub xlnote"> ${r.model_gsheet ? 'The Google Sheet is the driver model behind the research target (12m), every driver a live input. ' : ''}The Excel workbook is the forecasters' assumption table with linked sources, from the research round.</span></p>` : '';
+  return `<details class="how"><summary>How the target was built</summary>${xl}
+    <ol class="steps">${m1}${m2}${m3}${m4}</ol>${rnd}</details>`;
+}
+document.addEventListener('click', ev => {
+  const tr = ev.target.closest('tr.ag'); if (!tr) return;
+  const box = tr.closest('details'), i = tr.dataset.i;
+  box.querySelectorAll('div.more').forEach(d => { d.hidden = d.dataset.i === i ? !d.hidden : true; });
+  box.querySelectorAll('tr.ag').forEach(r => r.classList.toggle('sel', r.dataset.i === i && !box.querySelector(`div.more[data-i="${i}"]`).hidden));
+});
+
+function swapBox(L) {  // 2026-10-30 (Kilian "start testing swapping in researched names if they clear the entry bar"): live/swaps.py
+  if (!L || !L.checked || !Object.keys(L.checked).length) return '';
+  const t = L.time_utc ? new Date(L.time_utc).toLocaleString('en-US', {timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit'}) + ' ET' : '';
+  const n3 = x => typeof x === 'number' ? x.toFixed(3) : '–';
+  const rows = Object.entries(L.checked).sort((a, b) => (b[1].wins - a[1].wins) || ((b[1].swap_sharpe ?? b[1].sharpe ?? -9) - (a[1].swap_sharpe ?? a[1].sharpe ?? -9)));
+  const res = x => x.wins ? '<b>passes</b>' : !x.remarked ? 'no fresh chain this run' : !x.floor_ok ? 'above Entry below after the re-mark' : x.note ? esc(x.note) : (L.slot_free ? 'does not beat the planned adds' : 'swap does not beat the planned adds');
+  const trade = x => L.slot_free ? (x.shares ? `buy ${x.shares}` : '–') : (x.swap_shares ? `sell all ${esc(x.swap_out)}${(L.planned_adds || {})[x.swap_out] ? `, skip its ${L.planned_adds[x.swap_out]}-share add` : ''}, buy ${x.swap_shares}` : '–');
+  const sh = x => L.slot_free ? x.sharpe : x.swap_sharpe;
+  const win = rows.filter(([, x]) => x.wins);
+  const head = win.length ? `${win.map(([s, x]) => `<b>${esc(s)}</b>: ${trade(x)} at about $${x.price.toFixed(2)}, book Sharpe ${n3(sh(x))} vs ${n3(L.sharpe_all_planned)} doing the planned adds`).join('; ')}. Your pick: the next-share table still follows the nightly sizing.`
+    : `No researched name under its Entry below beats the planned adds right now${L.sharpe_all_planned != null ? ` (book Sharpe ${n3(L.sharpe_all_planned)} with them, ${n3(L.base_sharpe)} without)` : ''}.`;
+  return `<section class="wait"><h2>Swap test at live prices${t ? ' · ' + t : ''}</h2><p>${head}</p>`
+    + `<div style="overflow-x:auto"><table class="plan"><thead><tr><th>Name</th><th class="n">Last</th><th class="n" title="Entry below from the fresh option chain (at the close: second figure)">Entry below now / close</th><th class="n">Target now</th><th>Trade tested</th><th class="n">Book Sharpe</th><th>Result</th></tr></thead><tbody>`
+    + rows.map(([s, x]) => `<tr><td>${esc(s)}<span class="sub"> · research ${esc(x.research || '–')}${x.last_report ? ', last print ' + esc(x.last_report) : ''}</span></td><td class="n">$${x.price.toFixed(2)}</td><td class="n">${x.remarked ? '$' + x.entry_below.toFixed(2) : '–'} / $${x.entry_below_close.toFixed(2)}</td><td class="n">${x.remarked ? '$' + x.target.toFixed(2) : '–'}</td><td>${trade(x)}</td><td class="n">${n3(sh(x))}</td><td>${res(x)}</td></tr>`).join('')
+    + `</tbody></table></div><p class="note foot">Every live run, each unheld name whose research passed the citation audit and postdates its last earnings report, and that trades at or below its Entry below, is re-marked on a fresh option chain. If it is still under its re-marked Entry below, it is scored on the nightly whole-book Sharpe test${L.slot_free ? ' with the planned adds\' dollars' : `: sell all of one holding and skip its planned add, put both dollars into the name and keep every other planned add; every holding is tried and the best swap is kept${Object.keys(L.swap_holds || {}).length ? ` (not tried: ${Object.entries(L.swap_holds).map(([k, v]) => esc(k) + ', ' + esc(v)).join('; ')})` : ''}`}. It passes when that beats doing the planned adds instead (${n3(L.sharpe_all_planned)}; planned adds ${esc(Object.entries(L.planned_adds || {}).map(([k, v]) => k + ' ' + v).join(', ') || 'none')}${(L.add_blocks || []).length ? `; left out, on an earnings hold: ${esc(L.add_blocks.join(', '))}` : ''}).</p></section>`;
+}
+function waitingBox(L) {  // 2026-10-19: open questions for Kilian, one line each with the recommended answer (data/decisions.json)
+  L = (Array.isArray(L) ? L : []).filter(d => d && d.status === 'open');
+  if (!L.length) return '';
+  const opt = (d, x) => { const o = Array.isArray(d.options) && typeof x === 'number' ? d.options[x] : x; return o && typeof o === 'object' ? (o.label ?? o.name ?? JSON.stringify(o)) : o; };
+  return `<section class="wait"><h2>Waiting on you (${L.length})</h2><ul>${L.map(d => `<li><b>${esc(d.question || d.id || '')}</b>`
+    + `${d.recommended != null && d.recommended !== '' ? ` · recommended: ${esc(opt(d, d.recommended))}` : ''}`
+    + `${d.opened ? `<span class="sub"> · open since ${esc(String(d.opened).slice(0, 10))}</span>` : ''}</li>`).join('')}</ul></section>`;
+}
+function scoreBox(S) {  // 2026-10-19: scoring/scorecard.py; every key optional, a failed section shows its status line
+  if (!S || typeof S !== 'object') return '';
+  const num = x => typeof x === 'number' && isFinite(x);
+  const P = x => num(x) ? (x >= 0 ? '+' : '−') + Math.abs(x * 100).toFixed(2) + '%' : '–';
+  const U = x => num(x) ? (Math.abs(x) * 100).toFixed(2) + '%' : '–';
+  const rows = [], obj = x => x && typeof x === 'object' ? x : {};
+  const lb = obj(S.live_book), c = obj(lb.cum_return), g = obj(lb.gap_vs);
+  if (lb.status) rows.push(['Live book', esc(lb.status)]);
+  if (num(c.real_book)) {
+    const NM = {hold_first_book: 'first-day book held', spy: 'SPY', equal_weight: 'equal weight'};
+    const vs = Object.keys(NM).filter(k => num(c[k])).map(k => `${NM[k]} ${P(c[k])}${num(obj(g[k]).cum_return_gap) ? ` <span class="sub">(gap ${P(g[k].cum_return_gap)} ± ${U(g[k].rough_se)})</span>` : ''}`);
+    rows.push(['Real book', `${P(c.real_book)}${lb.start_close ? ` since the ${esc(lb.start_close)} close` : ''}${num(lb.n_days) ? ` (${lb.n_days} trading days)` : ''}${vs.length ? '<br>vs ' + vs.join(' · ') : ''}`]);
+  }
+  const at = obj(S.add_trim_value && typeof S.add_trim_value === 'object' ? S.add_trim_value : lb.add_trim_value);
+  if (at.status || num(at.cum_return_gap)) rows.push(['Adds and trims', [num(at.cum_return_gap) ? `${P(at.cum_return_gap)} ± ${U(at.rough_se)} rough s.e.${num(at.dollars) ? ` (${usd(at.dollars)})` : ''}` : '', at.status ? esc(at.status) : ''].filter(Boolean).join(' · ')
+    + (at.meaning ? `<br><span class="sub">${esc(at.meaning)}</span>` : '')]);
+  const F = obj(S.forecasts);
+  for (const k of Object.keys(F)) {
+    const f = obj(F[k]), m = obj(f.mean_crps), d = obj(f.agents_minus_market), bits = [];
+    if (f.status) bits.push(esc(f.status));
+    if (Object.keys(m).length) bits.push('mean CRPS ' + ['market', 'agents', 'blend'].filter(x => num(m[x])).map(x => `${x} ${m[x].toFixed(4)}`).join(', '));
+    if (num(d.mean)) bits.push(`agents − market ${d.mean.toFixed(4)}${num(d.se) ? ` (s.e. ${d.se.toFixed(4)}${num(d.t) ? `, t ${d.t.toFixed(2)}` : ''})` : ''}`);
+    if (bits.length) rows.push([`${esc(k)} forecasts`, bits.join(' · ')]);
+  }
+  const smt = obj(S.standard_model_trial);
+  if (smt.status) rows.push(['Standard model', (/^standard model/i.test(String(smt.status)) ? '' : 'Standard model (trial, weight 0): ') + esc(smt.status)]);
+  if (!rows.length) return '';
+  const note = lb.note || S.note;
+  return `<section class="scard"><h2>Scorecard${S.as_of ? ` <span class="sub">as of ${esc(S.as_of)}</span>` : ''}</h2><dl>${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`
+    + (note ? `<p class="note">${esc(note)}</p>` : '') + '</section>';
+}
+function archiveNote(A) {  // 2026-10-19: names not active (active_names.py) live on the archive page
+  if (!A || !A.n) return '';
+  return `<p class="note">${A.n} more researched names (not held, not planned, research over 21 days old) are on ${A.url ? `<a href="${esc(A.url)}" target="_blank" rel="noopener">the archive page</a>` : 'the archive page'}; they are re-marked on Fridays.</p>`;
+}
+if (D.archive) {  // archive.html: the same Researched layout for every inactive name; no Holdings tab
+  document.querySelector('h1').firstChild.textContent = 'Price Targets archive ';
+  document.getElementById('t-hold').hidden = true;
+}
+if (SCRATCH) {
+  document.getElementById('t-hold').firstChild.textContent = 'Portfolio ';
+  document.getElementById('t-watch').firstChild.textContent = 'Researched ';  // Kilian 2026-10-01: compact list of names priced but not bought
+  document.getElementById('p-hold').innerHTML = `<p class="note">Built from scratch with the $${Math.round((TABS.hold[0] || TABS.watch[0] || {}).allocation?.cash_available || 0).toLocaleString()} to deploy: the brokerage account is treated as if it doesn't exist, so names held there can be bought like any other.</p>`
+    + bookPanel(D.portfolio) + summary(TABS.hold, false) + allocTable(TABS.hold) + fvChart(TABS.hold) ;
+} else {
+  document.getElementById('t-watch').firstChild.textContent = 'Researched ';  // Kilian 2026-10-01: compact list of names priced but not bought
+  document.getElementById('p-hold').innerHTML = waitingBox(D.decisions) + swapBox(D.live_swaps) + scoreBox(D.scorecard) + `<p class="note">Live book from your fills. <sup>x</sup> Take-profit = the price where the 12-month expected value no longer beats the 4% cash sleeve; the model sells every share there.</p>` + summary(TABS.hold, true) + nextShareTable(TABS.hold) + trancheTable(TABS.hold) + `<details class="mdl"><summary>Model detail: weights, research weight and the sizing ladder</summary>${reviewTable(TABS.hold)}</details>`
+    + allocTable(D.results.filter(r => !TABS.hold.includes(r) && r.allocation && r.allocation.shares > 0), "New buys (each raises the book's Sharpe)")  // Kilian 2026-10-03: show the suggested new names on Holdings
+    + planTable(D.results.filter(r => r.plan)) + bigMissLine(D.earnings_miss)
+    + rubricTable(D.results.filter(r => !TABS.hold.includes(r)))
+    + scoreTable(D.score)
+    + bookPanel(D.portfolio) + fvChart(TABS.hold) ;
+}
+document.getElementById('p-watch').innerHTML = (D.archive ? '<p class="note">Archive: researched names that are not held, not planned or a candidate, and whose research is over 21 days old. Re-marked on Fridays; a name moves back to the main page when it qualifies again.</p>' : '')
+  + (TABS.watch.length ? researched(TABS.watch) : '<p class="note">No watchlist names yet.</p>') + archiveNote(D.archive_info);
+document.getElementById('n-hold').textContent = TABS.hold.length;
+document.getElementById('n-watch').textContent = TABS.watch.filter(r => r.symbol !== 'SPY').length;
+function toggleGroup(g) {  // Researched tab: each sector is a dropdown (Kilian 2026-10-03)
+  const open = g.getAttribute('aria-expanded') !== 'true'; g.setAttribute('aria-expanded', open);
+  g.closest('tbody, table').querySelectorAll(`tr.colh[data-g="${CSS.escape(g.dataset.g)}"]`).forEach(r => { r.hidden = !open; });
+  g.closest('tbody, table').querySelectorAll(`tr.nm[data-g="${CSS.escape(g.dataset.g)}"]`).forEach(r => {
+    r.hidden = !open;
+    if (!open && r.classList.contains('open')) toggle(r);
+  });
+}
+document.addEventListener('click', ev => { const g = ev.target.closest('tr.grp'); if (g) return toggleGroup(g); const tr = ev.target.closest('tr.nm'); if (tr) toggle(tr); });
+document.addEventListener('keydown', ev => { const g = ev.target.closest && ev.target.closest('tr.grp'); if (g && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); toggleGroup(g); } });
+document.addEventListener('keydown', ev => { const tr = ev.target.closest && ev.target.closest('tr.nm'); if (tr && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); toggle(tr); } });
+window.addEventListener('resize', () => document.querySelectorAll('tr.det:not([hidden]) > td').forEach(fitDetail));
+function showTab(t) {
+  document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.t === t));
+  ['hold', 'watch', 'fills'].forEach(k => { document.getElementById('p-' + k).hidden = t !== k; });
+  if (window.flLive) window.flLive(t);
+  try { localStorage.setItem('pt-tab', t); } catch (e) {}
+}
+document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => showTab(b.dataset.t)));
+let t0 = {'#watchlist': 'watch'}[location.hash] || null;
+try { t0 = t0 || localStorage.getItem('pt-tab'); } catch (e) {}
+if (t0 === 'watch' && document.getElementById('t-watch').hidden) t0 = 'hold';  // hidden tab never restores
+showTab(t0 === 'watch' ? t0 : 'hold');
+if (D.archive) showTab('watch');
+
+// Excel models: offered through the downloads capability (the viewer confirms each save)
+let _dl = null;
+const dlReady = (async () => { try { _dl = await (window.claude && window.claude.use ? window.claude.use('downloads') : null); } catch (e) { _dl = null; } })();
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest && ev.target.closest('button.dl[data-memo]'); if (!b) return;
+  await dlReady;
+  const r = (D.results || []).find(x => x.symbol === b.dataset.memo); if (!r || !r.memo_md) return;
+  const note = b.parentElement.querySelector('.memonote'), fn = r.symbol + '_memo.md';
+  if (!_dl) { note.textContent = ' Downloads are not available in this view; the memo is in the project\'s files (valuation/runs/' + r.memo.as_of + '/' + r.symbol + '/memo.json).'; return; }
+  try { await _dl.save({filename: fn, data: new Blob([r.memo_md], {type: 'text/markdown'})}); }
+  catch (e) { if (e && e.code === 'rate_limited') note.textContent = ' A save prompt is already open.'; else if (e && e.code !== 'declined') note.textContent = ' Could not save (' + (e && e.code || 'error') + ').'; }
+});
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest && ev.target.closest('button.dl[data-model]'); if (!b) return;
+  await dlReady;
+  const r = (D.results || []).find(x => x.symbol === b.dataset.model); if (!r) return;
+  if (!r.model_b64) { const n = b.parentNode.querySelector('.xlnote'); if (n) n.textContent = ' This workbook is not embedded in the page (low-conviction names are left out to keep it under the size limit); it is in the project\'s files (valuation/models/' + r.model + ').'; return; }
+  const note = b.parentElement.querySelector('.xlnote');
+  if (!_dl) { note.textContent = ' Downloads are not available in this view; the file is in the project\'s files (valuation/models/' + r.model + ').'; return; }
+  const bin = atob(r.model_b64), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+  try { await _dl.save({filename: r.model, data: new Blob([u])}); }
+  catch (e) { if (e && e.code === 'rate_limited') note.textContent = ' A save prompt is already open.'; else if (e && e.code !== 'declined') note.textContent = ' Could not save (' + (e && e.code || 'error') + '); the file is in the project\'s files (valuation/models/' + r.model + ').'; }
+});
+
+// Fills tab (Kilian 2026-10-27: the Fill Log moved onto this page). Fills live in this page's database, so shares held and the
+// next buy and sell level follow a new fill at once, with no sync. The levels come from the model's price ladder embedded in
+// each held name's review (approximate: no tax band); the live job recomputes the exact figures in the Holdings tab.
+(function () {
+  const $ = id => document.getElementById(id);
+  if (D.archive) { $('t-fills').hidden = true; return; }
+  const PLAN = {};
+  (D.results || []).forEach(r => { const d = r.review && r.review.decider; if (d && d.ladder) { const m = d.marginal || {};
+    PLAN[r.symbol] = { spot: r.review.spot, ladder: d.ladder.map(l => [l.price, l.shares]), held: m.held,
+      trim: (m.trim || []).map(x => [x.price, x.total_after]), add: (m.add || []).map(x => [x.price, x.total_after]) }; } });
+  const BUILT = {};
+  (D.results || []).forEach(r => { if (r.review && r.review.shares != null) BUILT[r.symbol] = r.review.shares; });
+  let mcp = null, rows = [], side = 'buy', tab = 'hold';
+  const DONE = s => s === 'in trades.json' || s === 'removed';
+  const nowIso = () => new Date().toISOString().replace(/\.\d+Z$/, 'Z');
+  const newId = () => Array.from(crypto.getRandomValues(new Uint8Array(15)), b => (b % 36).toString(36)).join('');
+  const sheetErr = e => ({ needs_reauth: 'Reconnect Google Sheets in claude.ai settings to load and save fills.',
+    server_not_connected: 'Connect Google Sheets in claude.ai settings to load and save fills.',
+    not_granted: 'Allow this page to use Google Sheets (Permissions in the page menu) to load and save fills.',
+    approval_required: 'Saving fills needs your approval for Google Sheets on this page.' })[e && e.code] || ('Google Sheets: ' + ((e && (e.message || e.code)) || 'unavailable'));
+  const todayET = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });  // YYYY-MM-DD in New York
+  $('fl-date').value = todayET();
+  const cell = (tr, text, cls) => { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); return td; };
+  function positions() {
+    const by = {};
+    rows.filter(r => r.status !== 'removed' && !String(r.status).startsWith('rejected')).slice().sort((a, b) => (a.date + (a.entered_at || '')).localeCompare(b.date + (b.entered_at || ''))).forEach(r => {
+      const p = by[r.symbol] || (by[r.symbol] = { sh: 0, cost: 0 });
+      if (r.side === 'buy') { p.sh += r.shares; p.cost += r.shares * r.price; }
+      else if (p.sh > 0) { const avg = p.cost / p.sh; p.cost -= avg * Math.min(r.shares, p.sh); p.sh -= r.shares; }
+    });
+    return Object.entries(by).filter(([, p]) => p.sh > 0).map(([s, p]) => ({ symbol: s, sh: p.sh, avg: p.cost / p.sh })).sort((a, b) => a.symbol.localeCompare(b.symbol));
+  }
+  // Price at which the ladder (price ascending, target shares descending) calls for exactly `target` shares; null outside it.
+  function levelFor(ladder, target) {
+    const l = ladder.slice().sort((a, b) => a[0] - b[0]);
+    for (let i = 0; i + 1 < l.length; i++) { const [p0, s0] = l[i], [p1, s1] = l[i + 1]; if (s0 >= target && target >= s1 && s0 > s1) return p0 + (s0 - target) / (s0 - s1) * (p1 - p0); }
+    return null;
+  }
+  // The Holdings tab's "next share" levels (they include the noise floor, the add Sharpe test and Entry below) are exact for the
+  // share count the page was built with, and for counts they still cover (a sell is covered below that count, a buy above it);
+  // otherwise fall back to the plain ladder, marked approximate (ab / as).
+  const lv = (n, sh) => {
+    if (!n) return { buy: null, sell: null, ab: false, as: false };
+    const h = n.held != null ? n.held : sh, out = { buy: null, sell: null, ab: false, as: false };
+    const t = (n.trim || []).find(x => x[1] <= sh - 1), a = (n.add || []).find(x => x[1] >= sh + 1);
+    if (sh <= h && (t || sh === h)) out.sell = t ? t[0] : null; else { out.sell = levelFor(n.ladder, sh - 1); out.as = out.sell != null; }
+    if (sh >= h && (a || sh === h)) out.buy = a ? a[0] : null; else { out.buy = levelFor(n.ladder, sh + 1); out.ab = out.buy != null; }
+    return out;
+  };
+  const usd2 = v => v == null ? 'n/a' : '$' + v.toFixed(2);
+  function check() {
+    const sym = $('fl-sym').value.trim().toUpperCase(), q = +$('fl-qty').value, p = +$('fl-px').value, held = positions().map(x => x.symbol), w = [];
+    $('fl-total').textContent = q > 0 && p > 0 ? 'Notional $' + (q * p).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'Notional –';
+    if (rows.length && sym && !held.includes(sym)) w.push(side === 'sell' ? `${sym} is not in the held list. Check the ticker before selling.` : `${sym} would be a new name. Check the ticker spelling.`);
+    if ($('fl-date').value && $('fl-date').value > todayET()) w.push('The trade date is in the future.');
+    $('fl-warn').hidden = !w.length; $('fl-warn').textContent = w.join(' ');
+  }
+  function renderStrip() {
+    const el = $('live-strip'), ps = positions(), diff = [];
+    ps.forEach(p => { if (PLAN[p.symbol] && BUILT[p.symbol] != null && Math.round(BUILT[p.symbol]) !== p.sh) {
+      const l = lv(PLAN[p.symbol], p.sh);
+      diff.push(`<b>${p.symbol}</b> ${p.sh} sh now (${Math.round(BUILT[p.symbol])} when this page was built): buy 1 at or below ${l.ab ? '≈' : ''}${usd2(l.buy)}, sell 1 at or above ${l.as ? '≈' : ''}${usd2(l.sell)}`); } });
+    el.innerHTML = diff.length ? `Fills newer than the Holdings figures below: ${diff.join('; ')}. Levels without ≈ are the Holdings tab's own; ≈ is read from the model price ladder. The live job updates the Holdings tab within about 30 minutes while the market is open, and within a few hours otherwise.` : '';
+    el.hidden = !diff.length || tab !== 'hold';
+  }
+  function render() {
+    const ps = positions(), pb = $('fl-pos'); pb.textContent = '';
+    ps.forEach(p => { const tr = document.createElement('tr'), n = PLAN[p.symbol], l = lv(n, p.sh);
+      cell(tr, p.symbol, 'sym'); cell(tr, p.sh, 'n'); cell(tr, '$' + p.avg.toFixed(2), 'n'); cell(tr, n ? '$' + n.spot.toFixed(2) : '', 'n');
+      cell(tr, (l.ab ? '≈' : '') + usd2(l.buy) + (n && l.buy != null && n.spot <= l.buy ? ' now' : ''), 'n' + (n && l.buy != null && n.spot <= l.buy ? ' pos' : ''));
+      cell(tr, (l.as ? '≈' : '') + usd2(l.sell) + (n && l.sell != null && n.spot >= l.sell ? ' now' : ''), 'n' + (n && l.sell != null && n.spot >= l.sell ? ' neg' : ''));
+      pb.appendChild(tr); });
+    $('fl-plan-note').textContent = 'Buy and sell levels are worked out from the model price ladder for the shares you hold now, so they move as soon as a fill is added. They are approximate (no tax band); Last is the price at the latest build.';
+    $('fl-chips').textContent = '';
+    ps.forEach(p => { const b = document.createElement('button'); b.type = 'button'; b.textContent = p.symbol; b.addEventListener('click', () => { $('fl-sym').value = p.symbol; check(); }); $('fl-chips').appendChild(b); });
+    const tb = $('fl-rows'); tb.textContent = '';
+    rows.filter(r => r.status !== 'removed').sort((a, b) => (b.date + (b.entered_at || '')).localeCompare(a.date + (a.entered_at || ''))).forEach(r => {
+      const tr = document.createElement('tr');
+      cell(tr, r.date); cell(tr, r.side.toUpperCase(), r.side === 'buy' ? 'pos' : 'neg'); cell(tr, r.symbol); cell(tr, r.shares, 'n'); cell(tr, '$' + Number(r.price).toFixed(2), 'n');
+      const st = document.createElement('td'), pill = document.createElement('span'), rej = String(r.status).startsWith('rejected');
+      const [pc, pt] = r.status === 'in trades.json' ? ['logged', 'Logged'] : rej ? ['bad', 'Rejected'] : String(r.status).startsWith('live') ? ['live', 'Live'] : ['new', 'Waiting'];
+      pill.className = 'pill ' + pc; pill.textContent = pt; pill.title = r.status || 'waiting for the live job'; st.appendChild(pill); tr.appendChild(st);
+      const act = document.createElement('td');
+      if (!DONE(r.status) && !rej) { const d = document.createElement('button'); d.className = 'del'; d.textContent = 'Remove';
+        d.addEventListener('click', async () => { d.disabled = true;
+          try { await mcp.callTool('Google Sheets', 'update_values', { spreadsheetId: SHEET, range: `fills!J${r._row}:K${r._row}`, values: [['removed', nowIso()]] }); await refresh(); }
+          catch (e) { $('fl-msg').textContent = 'Could not remove it. ' + sheetErr(e); d.disabled = false; } }); act.appendChild(d); }
+      tr.appendChild(act); tb.appendChild(tr); });
+    renderStrip(); check();
+  }
+  function setSide(v) { side = v; $('fl-buy').setAttribute('aria-pressed', v === 'buy'); $('fl-sell').setAttribute('aria-pressed', v === 'sell'); check(); }
+  $('fl-buy').addEventListener('click', () => setSide('buy')); $('fl-sell').addEventListener('click', () => setSide('sell'));
+  ['fl-sym', 'fl-qty', 'fl-px', 'fl-date'].forEach(id => $(id).addEventListener('input', check));
+  $('fl-form').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const sym = $('fl-sym').value.trim().toUpperCase(), q = Math.round(+$('fl-qty').value), p = +$('fl-px').value, d = $('fl-date').value;
+    if (!d || !/^[A-Z.]{1,6}$/.test(sym) || !(q > 0) || !(p > 0)) { $('fl-msg').textContent = 'Fill in the date, ticker, shares and price.'; return; }
+    if (!mcp) { $('fl-msg').textContent = "Saving isn't available in this view. Open the page signed in to claude.ai."; return; }
+    $('fl-go').disabled = true;
+    const id = newId(), at = nowIso(), note = $('fl-note').value.trim();
+    const doc = { symbol: sym, side, shares: q, price: p, date: d, note, entered_at: at };
+    try { await mcp.callTool('Google Sheets', 'append_values', { spreadsheetId: SHEET, range: 'fills!A1',
+        values: [[at, id, sym, side, q, p, d, note, "'" + JSON.stringify(doc), 'new', at]] });
+      rows.push({ _row: null, id, ...doc, status: 'new' });
+      $('fl-msg').textContent = `Added ${side} ${q} ${sym} @ $${p}. Shares held and the levels above already reflect it; the live job adds it to the trade record and the Holdings tab within about 30 minutes while the market is open, and within a few hours otherwise.`;
+      $('fl-qty').value = ''; $('fl-px').value = ''; $('fl-note').value = ''; render(); refresh();
+    } catch (e) { $('fl-msg').textContent = "Couldn't save the fill. " + sheetErr(e) + ' Check the Fills list before trying again, or send it in chat.'; }
+    $('fl-go').disabled = false;
+  });
+  window.flLive = t => { tab = t; renderStrip(); };
+  function load(res) {
+    const v = (res && res.payload && res.payload.values) || [];
+    rows = v.map((row, i) => { let doc = null; try { doc = JSON.parse(String(row[8] || '').replace(/^'/, '')); } catch (e) {}
+      return doc && row[1] ? { _row: i + 2, id: row[1], ...doc, status: row[9] || 'new' } : null; }).filter(Boolean);
+    render();
+  }
+  async function refresh() { try { await mcp.invalidate('Google Sheets', 'get_values'); } catch (e) {} }
+  (async () => {
+    try { mcp = await claude.use('mcp'); } catch (e) { mcp = null; }
+    if (!mcp) { $('fl-msg').textContent = "Saving isn't available in this view. Open the page signed in to claude.ai."; $('fl-go').disabled = true; return; }
+    mcp.watchTool('Google Sheets', 'get_values', { spreadsheetId: SHEET, range: 'fills!A2:K' }, ev => {
+      if (ev.type === 'data') { load(ev.result); return; }
+      if (['needs_reauth', 'server_not_connected', 'not_granted', 'approval_required', 'blocked_by_policy'].includes(ev.error.code)) { rows = []; render(); }
+      $('fl-msg').textContent = 'Could not load fills. ' + sheetErr(ev.error);
+    }, { refetchInterval: 120000 });
+    // live patch: a newer one than this view applied is kept for this page's data, then the page reloads to apply it
+    mcp.watchTool('Google Sheets', 'get_values', { spreadsheetId: SHEET, range: 'live!A1:A200' }, ev => {
+      if (ev.type !== 'data') return;
+      let p = null; try { p = JSON.parse(((ev.result.payload && ev.result.payload.values) || []).map(r => String(r[0] || '').slice(1)).join('')); } catch (e) { return; }
+      if (!p || p.base !== LIVE.key || p.version === LIVE.applied) return;
+      if (LIVE.store.set(JSON.stringify(p))) location.reload();
+    }, { refetchInterval: 300000 });
+  })();
+  render();
+})();
+</script>

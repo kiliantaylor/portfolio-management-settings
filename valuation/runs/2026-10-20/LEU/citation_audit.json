@@ -1,0 +1,2774 @@
+{
+ "date": "2026-10-20",
+ "symbol": "LEU",
+ "clean": true,
+ "checked": 276,
+ "ok": 275,
+ "failures": [
+  {
+   "item": "common warrants and converts in the bull state",
+   "origin": "agent_2 other",
+   "value": "+6.99M warrant shares (+$1.89B), +3.51M 2032-note shares (805/229.62), +2.12M 2030-note net shares",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm",
+   "result": "wrong",
+   "fix": "agent_2: warrant exercise cash replaced with the 424B5 figure (~$2.0B: four series of ~$500M each); note-share counts relabelled estimate with derivation: 3.51M = $805.0M (10-Q) x 4.3551/1,000 (conversion ~$229.62, 10-Q 2025-09-30), 2.12M = 4.128M x (1 - 97.50/200) (10-K: 10.2564 shares/$1,000); bull state $129.2 -> $130.72, market-share leg $72.20 -> $72.66, agent_2 fair value $46.70 -> $46.82"
+  },
+  {
+   "item": "sell-side average target (evidence, not the answer)",
+   "origin": "agent_2 other",
+   "value": "$252.08 (Moderate Buy, July 2026)",
+   "cited": "https://www.marketbeat.com/instant-alerts/centrus-energy-q4-eps-estimate-decreased-by-hc-wainwright-2026-07-27/",
+   "result": "not_found",
+   "fix": "agent_2: claim removed (inputs_detail entry deleted; source marked not used); no other source shows $252.08 for July 2026; it fed no number"
+  },
+  {
+   "item": "VST fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (no consensus page used)",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001692819.json",
+   "result": "not_found",
+   "fix": "agent_2 comps row VST: no forward multiple claimed; growth_next_yr now states n/a forward (not in peers.md); trailing EV/EBITDA 12.9x, EV/sales 3.67x, P/E 22.7x; sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "OKLO fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (pre-revenue)",
+   "cited": "https://www.neimagazine.com/news/oklo-in-centrus-fuel-deal/",
+   "result": "not_found",
+   "fix": "agent_2 comps row OKLO: no forward multiple claimed; growth_next_yr now states n/a (no revenue tagged; net loss TTM -$152.8M); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "SMR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (loss-making)",
+   "cited": "https://247wallst.com/investing/2026/10/12/nuscale-power-sinks-7-as-nuclear-names-give-back-a-month-of-ground-oklo-falls-6-centrus-energy-drops-4/",
+   "result": "not_found",
+   "fix": "agent_2 comps row SMR: no forward multiple claimed; growth_next_yr now states n/a (net loss TTM -$415.7M; NTM EPS -$0.76); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "VST fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_3 comps",
+   "value": "None / None / n/a",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065059.json",
+   "result": "not_found",
+   "fix": "agent_3 comps row VST: no forward multiple claimed; growth_next_yr now states n/a forward (not in peers.md); trailing EV/EBITDA 12.9x, EV/sales 3.67x, P/E 22.7x; sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "Net debt now",
+   "origin": "agent_3 DCF (engine, core + build rNPV + DOE milestones + net cash)",
+   "value": "-$661M at 2026-06-30",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "result": "mislabelled",
+   "fix": "agent_3: basis set to estimate, confidence high, derivation written: cash $1,868.5M less convert principal $1,207.5M = -$661.0M (10-Q states no net debt)"
+  },
+  {
+   "item": "net debt 2026-06-30",
+   "origin": "agent_5 DCF",
+   "value": "-$661M",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "result": "mislabelled",
+   "fix": "agent_5: basis set to estimate, confidence high, derivation written: cash $1,868.5M less convert principal $1,207.5M = -$661.0M (10-Q states no net debt)"
+  },
+  {
+   "item": "Westerman value",
+   "origin": "agent_4 SOTP",
+   "value": "$116M (cost, 0.73x 2025 sales)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/0001065059/000162828026066212/ex991_101926westermanpr.htm",
+   "result": "not_found",
+   "fix": "agent_4: $116M kept (8-K); 0.73x relabelled as derived: 424B5 Recent Developments ~$160M 2025 revenue (cited) / $116M = 0.73x"
+  },
+  {
+   "item": "VST fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_4 comps",
+   "value": "None / None / n/a",
+   "cited": "https://stockanalysis.com/stocks/leu/statistics/",
+   "result": "not_found",
+   "fix": "agent_4 comps row VST: no forward multiple claimed; growth_next_yr now states n/a forward (not in peers.md); trailing EV/EBITDA 12.9x, EV/sales 3.67x, P/E 22.7x; sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "rNPV launch / ramp / life",
+   "origin": "agent_5 other: milestone rNPV (adjustment on DCF and multiple legs)",
+   "value": "2029-07-01 / 4 yrs / to 2057",
+   "cited": "https://www.ans.org/news/2026-07-06/article-8180/doe-contract-boosts-centruss-haleu-goals-as-urenco-continues-leu-expansion/",
+   "result": "mislabelled",
+   "fix": "agent_5: basis set to estimate; derivation: only 'by 2029' is company guidance (ANS 2026-07-06); 2029-07-01 is a mid-2029 placement, the 4-year ramp and life to 2057 are model assumptions; confidence medium (launch) / low (ramp, life)"
+  },
+  {
+   "item": "UUUU fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "value": "None / None / n/a (loss-making)",
+   "cited": "https://bigdata.com",
+   "result": "not_found",
+   "fix": "agent_5 comps row UUUU: no forward multiple claimed; growth_next_yr now states n/a (net loss TTM -$81.7M; NTM EPS -$0.11); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "OKLO fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "value": "None / None / n/a (pre-revenue)",
+   "cited": "https://bigdata.com",
+   "result": "not_found",
+   "fix": "agent_5 comps row OKLO: no forward multiple claimed; growth_next_yr now states n/a (no revenue tagged; net loss TTM -$152.8M); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "UEC fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "value": "None / None / n/a",
+   "cited": "https://bigdata.com",
+   "result": "not_found",
+   "fix": "agent_5 comps row UEC: no forward multiple claimed; growth_next_yr now states n/a (net loss FY2026 -$137.3M; NTM EPS -$0.08); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "SMR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "value": "None / None / n/a",
+   "cited": "https://bigdata.com",
+   "result": "not_found",
+   "fix": "agent_5 comps row SMR: no forward multiple claimed; growth_next_yr now states n/a (net loss TTM -$415.7M; NTM EPS -$0.76); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "Q3 date unannounced; last year's notice 10-15 for an 11-06 call",
+   "origin": "supervisor disagreements",
+   "value": "2025-10-15 / 2025-11-06",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor disagreements[9]: unsourced '10-15 notice' replaced by what the sources show: date public by 2025-10-21 (ExchangeMonitor) for an 11-06 8:30 ET call; results 8-K filed 2025-11-05 (EDGAR); both added to supervisor sources"
+  },
+  {
+   "item": "forward P/E BWXT 26.9x, CEG 20.4x (peers.md, consensus) in peer_median",
+   "origin": "supervisor comps_review",
+   "value": "26.9x / 20.4x",
+   "cited": "/mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "result": "mixed_basis",
+   "fix": "supervisor comps_review.peer_median rewritten on one basis (trailing GAAP EV/EBITDA 14.0x, EV/sales 3.90x from SEC XBRL); forward P/E removed from the median and from spot_checks (unstated EPS basis; feeds no number); the 6.0x multiple was already on the trailing basis"
+  },
+  {
+   "item": "research value at Orano-like cost",
+   "origin": "supervisor key_drivers / sizing / disagreements",
+   "value": "$59.92",
+   "cited": "supervisor.json model.reconciled_inputs.inputs_detail",
+   "result": "wrong",
+   "fix": "Recomputed with model_engine.py check on the reconciled set with post-horizon capex x 0.65 applied to every leg (rNPV dev costs, tax correction +$81.5M -> +$34.2M, custom (b) $70.28, custom (e) $62.49): $59.92 (+32%). $54.68 left the custom legs unchanged (engine $54.67); inputs_detail now says $59.92, as do key_drivers, sizing, disagreements, judgment calls, gap_note, reverse_dcf_check, reasoning and model_assumptions A9"
+  },
+  {
+   "item": "shares at horizon: '10-Q: may raise through large follow-on offerings; $1.0B ATM'",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$1.0B ATM",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm",
+   "result": "wrong",
+   "fix": "supervisor inputs_detail: \"$1.0B ATM\" corrected to the $1.0B automatic shelf (S-3 333-291305, effective 2025-11-06; 10-K) with 2026 ATM sales $55.0M (10-Q); 25.1M shares unchanged"
+  },
+  {
+   "item": "rNPV peak sales",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "LEU $285M; HALEU $213M",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_1: escalation factor recomputed (PV-weighted mean of 1.02^t over 2033-2050 at 10% = 1.133): LEU 1.15 x 200 x 1.126 x 1.133 = $293M (was $285M), HALEU 0.49 x 350 x 1.126 x 1.133 = $219M (was $213M); engine re-run: DCF $25.72 -> $26.58, EV/EBITDA $27.74 -> $28.60, agent_1 fair value $25.40 -> $25.79 (custom legs model escalation directly and are unchanged)"
+  },
+  {
+   "item": "Phase-2 option (+1.5M SWU)",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "~$0",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_1: labelled estimate from non-filing evidence (Orano GB2 extension EUR1.7bn / 2.5M SWU) with confidence low"
+  },
+  {
+   "item": "UUUU fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (loss-making)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2 comps row UUUU: no forward multiple claimed; growth_next_yr now states n/a (net loss TTM -$81.7M; NTM EPS -$0.11); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "UEC fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (loss-making)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2 comps row UEC: no forward multiple claimed; growth_next_yr now states n/a (net loss FY2026 -$137.3M; NTM EPS -$0.08); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "URG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (loss-making)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2 comps row URG: no forward multiple claimed; growth_next_yr now states n/a (net loss TTM -$88.5M; NTM EPS -$0.09); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "NNE fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (pre-revenue)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2 comps row NNE: no forward multiple claimed; growth_next_yr now states n/a (no forward columns in peers.md; no revenue/net income tagged); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "LTBR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (pre-revenue)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2 comps row LTBR: no forward multiple claimed; growth_next_yr now states n/a (revenue TTM $0; net loss TTM -$23.4M); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "ASPI fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "None / None / n/a (loss-making)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2 comps row ASPI: no forward multiple claimed; growth_next_yr now states n/a (net loss TTM -$117.3M; EBITDA TTM -$93.6M); sourced to the peer's own filing via secfacts.py peers (run 2026-10-21) and peers.md ids in fact_ids; basis estimate with derivation; old citation replaced"
+  },
+  {
+   "item": "Pension/OPEB adjustment",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "-$60M",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_4: -$60M -> -$56.6M (71.7 x 0.79), basis estimate; custom (b) $62.89 -> $63.03, (e) $49.36 -> $49.50, SOTP $22.85 -> $22.99; agent_4 fair value $42.81 -> $42.95"
+  },
+  {
+   "item": "shares annual change",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "+6.5%",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_5: +6.5% -> +6.9% (0.4 x 4.0M / 23.09M = 6.93%); horizon shares 24.59M -> 24.69M; custom (b) $48.03 -> $47.85, (e) $51.11 -> $50.92, DCF $41.55 -> $41.39, EV/EBITDA $42.88 -> $42.72; agent_5 fair value $45.69 -> $45.52 (bear $29.60, bull $62.16)"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "Base revenue FY2025",
+   "origin": "agent_1 DCF",
+   "value": "$448.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF"
+  },
+  {
+   "item": "BWXT fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "26.9 / None / EPS +10.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/BWXT/earnings-forecast; snapshot data/estimates/BWXT.json retrieved 2026-10-21T08:22:12Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "CEG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "20.4 / None / EPS +8.6%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/CEG/earnings-forecast; snapshot data/estimates/CEG.json retrieved 2026-10-21T08:22:36Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "UEC fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UEC",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "UUUU fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/UUUU",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "URG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/URG",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "OKLO fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/OKLO",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "SMR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SMR",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "NNE fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NNE",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "LTBR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/LTBR",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "ASPI fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_1 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ASPI",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "Base revenue FY2025",
+   "origin": "agent_1 model_inputs",
+   "value": "$448.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "BWXT fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "26.9 / None / EPS +10.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/BWXT/earnings-forecast; snapshot data/estimates/BWXT.json retrieved 2026-10-21T08:22:12Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 comps"
+  },
+  {
+   "item": "CEG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "value": "20.4 / None / EPS +8.6%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/CEG/earnings-forecast; snapshot data/estimates/CEG.json retrieved 2026-10-21T08:22:36Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 comps"
+  },
+  {
+   "item": "base revenue FY2025",
+   "origin": "agent_2 model_inputs",
+   "value": "$448.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "Base revenue FY2025",
+   "origin": "agent_3 DCF (engine, core + build rNPV + DOE milestones + net cash)",
+   "value": "$448.7M (LEU 346.2, TS 102.5)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF (engine, core + build rNPV + DOE milestones + net cash)"
+  },
+  {
+   "item": "BWXT fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_3 comps",
+   "value": "26.9 / None / EPS +10.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/BWXT/earnings-forecast; snapshot data/estimates/BWXT.json retrieved 2026-10-21T08:22:12Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "CEG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_3 comps",
+   "value": "20.4 / None / EPS +8.6%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/CEG/earnings-forecast; snapshot data/estimates/CEG.json retrieved 2026-10-21T08:22:36Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "Base revenue FY2025",
+   "origin": "agent_3 model_inputs",
+   "value": "$448.7M (LEU 346.2, TS 102.5)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "BWXT fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_4 comps",
+   "value": "26.9 / None / EPS +10.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/BWXT/earnings-forecast; snapshot data/estimates/BWXT.json retrieved 2026-10-21T08:22:12Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "CEG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_4 comps",
+   "value": "20.4 / None / EPS +8.6%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/CEG/earnings-forecast; snapshot data/estimates/CEG.json retrieved 2026-10-21T08:22:36Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "Base revenue FY2025",
+   "origin": "agent_4 model_inputs",
+   "value": "$448.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "BWXT fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "value": "26.9 / None / EPS +10.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/BWXT/earnings-forecast; snapshot data/estimates/BWXT.json retrieved 2026-10-21T08:22:12Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "CEG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "value": "20.4 / None / EPS +8.6%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/CEG/earnings-forecast; snapshot data/estimates/CEG.json retrieved 2026-10-21T08:22:36Z",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "ASPI fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://bigdata.com",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "base revenue FY2025",
+   "origin": "agent_5 model_inputs",
+   "value": "$448.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "base revenue FY2025",
+   "origin": "supervisor model",
+   "value": "448.7",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Westerman value",
+   "origin": "agent_1 DCF",
+   "value": "$116M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026066212/leu-20261016.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF"
+  },
+  {
+   "item": "Westerman cash",
+   "origin": "agent_5 other: reverse DCF (check)",
+   "value": "-$95M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026066212/leu-20261016.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 other: reverse DCF (check)"
+  },
+  {
+   "item": "Westerman value",
+   "origin": "supervisor model",
+   "value": "116.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026066212/leu-20261016.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "LEU segment base revenue FY2025",
+   "origin": "agent_1 model_inputs",
+   "value": "$346.2M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "SBC last fiscal year ($M)",
+   "origin": "agent_1 sbc",
+   "value": "5.7",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 sbc"
+  },
+  {
+   "item": "SBC last fiscal year ($M)",
+   "origin": "agent_3 sbc",
+   "value": "5.7",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 sbc"
+  },
+  {
+   "item": "SBC last fiscal year ($M)",
+   "origin": "agent_4 sbc",
+   "value": "5.7",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 sbc"
+  },
+  {
+   "item": "SBC last fiscal year ($M)",
+   "origin": "agent_2 sbc",
+   "value": "5.7",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065059.json",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 sbc"
+  },
+  {
+   "item": "Westerman adjustment",
+   "origin": "agent_3 DCF (engine, core + build rNPV + DOE milestones + net cash)",
+   "value": "+$116M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001065059/000162828026066212/ex991_101926westermanpr.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF (engine, core + build rNPV + DOE milestones + net cash)"
+  },
+  {
+   "item": "FY2026 revenue (core)",
+   "origin": "agent_5 DCF",
+   "value": "$475M (+5.9%)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001065059/000162828026053433/ex991-10q2026_08x05.htm",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF"
+  },
+  {
+   "item": "engine blend 0.40x34.31 + 0.25x58.46 + 0.25x53.31 + 0.10x36.90",
+   "origin": "supervisor fair_value",
+   "value": "45.35",
+   "basis": "estimate",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "forecasters' mean fair value",
+   "origin": "supervisor changes",
+   "value": "39.46",
+   "basis": "derived",
+   "source_url": "agent_1..5.json fair_value",
+   "checked": "2026-10-21",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "round-1 supervisor fair value",
+   "origin": "supervisor changes",
+   "value": "46.07",
+   "basis": "reported (prior run)",
+   "source_url": "round1/supervisor.json",
+   "checked": "2026-10-21",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "thesis break from (mean of agents)",
+   "origin": "supervisor changes",
+   "value": "35.2",
+   "basis": "derived",
+   "source_url": "agent_1..5.json thesis_break_price",
+   "checked": "2026-10-21",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "pension benefit liabilities + postretirement obligations (2026-06-30)",
+   "origin": "supervisor changes / disagreements",
+   "value": "$2.9M + $68.8M = $71.7M; after tax $56.6M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor changes / disagreements"
+  },
+  {
+   "item": "IRS Notice 2026-11: 100% bonus depreciation permanently restored for property acquired after 2025-01-19",
+   "origin": "supervisor changes / disagreements",
+   "value": "Notice 2026-11",
+   "basis": "reported",
+   "source_url": "https://www.bdo.com/insights/tax/irs-issues-interim-guidance-on-bonus-depreciation-rules",
+   "checked": "2026-10-21",
+   "feeds": "supervisor changes / disagreements"
+  },
+  {
+   "item": "December 2026 Investor Day at Piketon (no date)",
+   "origin": "supervisor changes / disagreements",
+   "value": "December 2026",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/centrus-energy-leu-q2-2026-earnings-call-transcript/",
+   "checked": "2026-10-21",
+   "feeds": "supervisor changes / disagreements"
+  },
+  {
+   "item": "common warrants 6,992,382 at $226.8625/$272.2350/$317.6075/$362.98, expiring 2028-2031",
+   "origin": "supervisor disagreements / long_dated_review",
+   "value": "6.99M, $227-363",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements / long_dated_review"
+  },
+  {
+   "item": "USEC ACP cost $3.5B",
+   "origin": "supervisor disagreements",
+   "value": "$3.5B",
+   "basis": "reported (outlet)",
+   "source_url": "https://fissilematerials.org/blog/2008/09/usec_american_centrifuge_plant.html",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "ACP ~3.8M SWU; 2007 estimate $2.3B",
+   "origin": "supervisor disagreements",
+   "value": "3.8M SWU, $2.3B",
+   "basis": "reported (outlet)",
+   "source_url": "https://world-nuclear-news.org/articles/usec-revises-costs,-capacity-and-schedule-for-enri",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "~$920/SWU-yr in 2008 dollars, ~$1,390 at ~1.5x CPI",
+   "origin": "supervisor disagreements",
+   "value": "920 / 1,390",
+   "basis": "estimate",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Orano GB2 extension EUR1.7bn for +2.5M SWU = EUR680",
+   "origin": "supervisor disagreements",
+   "value": "EUR1.7bn / 2.5M SWU",
+   "basis": "reported",
+   "source_url": "https://orano.group/en/news/news-group/2023/october/board-of-directors-of-orano-approves-project-to-extend-the-enrichment-capacity-of-the-georges-besse-2-plant",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "cash at 2026-06-30",
+   "origin": "supervisor disagreements",
+   "value": "$1,868.5M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "convert principal $402.5M 2.25% 2030 + $805.0M 0% 2032",
+   "origin": "supervisor disagreements",
+   "value": "$1,207.5M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Sept 2026 offering net proceeds",
+   "origin": "supervisor disagreements",
+   "value": "~$489M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Westerman consideration $95.0M cash + $21.0M shares (~$116M)",
+   "origin": "supervisor disagreements",
+   "value": "$116M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026066212/leu-20261016.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "2.25% 2030 notes conversion ~$97.50, principal in cash",
+   "origin": "supervisor disagreements",
+   "value": "$97.50",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000106505924000096/ex991_x20241105xconvertibl.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "sell-side: Needham Buy $262 -> $206 (2026-10-20); Guggenheim Buy $167 new (2026-10-08); Jefferies Hold $169; average $230.38 (18 analysts)",
+   "origin": "supervisor disagreements / key_drivers",
+   "value": "$230.38",
+   "basis": "consensus (information only)",
+   "source_url": "https://www.investing.com/equities/centrus-energy-consensus-estimates",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements / key_drivers"
+  },
+  {
+   "item": "HALEU options: up to five MTU each at $17.0M/MTU",
+   "origin": "supervisor disagreements",
+   "value": "$17.0M/MTU",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "424B5 dated 2026-09-09 with 60-day lock-up -> ~11-08",
+   "origin": "supervisor disagreements / sizing",
+   "value": "2026-11-08",
+   "basis": "reported + derived",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements / sizing"
+  },
+  {
+   "item": "FOMC meeting 10-28",
+   "origin": "supervisor disagreements",
+   "value": "2026-10-27/28",
+   "basis": "reported",
+   "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "fair value spread across agents",
+   "origin": "supervisor disagreements",
+   "value": "$25.40-$46.70",
+   "basis": "derived",
+   "source_url": "agent_1..5.json",
+   "checked": "2026-10-21",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "peer trailing EV/EBITDA BWXT 25.2x, CEG 14.0x, VST 12.9x; median 14.0x",
+   "origin": "supervisor comps_review",
+   "value": "14.0x",
+   "basis": "derived (SEC XBRL, GAAP op. income + D&A, TTM)",
+   "source_url": "secfacts.py peers BWXT CEG VST (https://data.sec.gov/api/xbrl/companyfacts/CIK0001486957.json)",
+   "checked": "2026-10-21",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "peer trailing EV/sales BWXT 3.90x, CEG 4.67x, VST 3.67x; median 3.90x",
+   "origin": "supervisor comps_review",
+   "value": "3.90x",
+   "basis": "derived (SEC XBRL TTM)",
+   "source_url": "secfacts.py peers BWXT CEG VST",
+   "checked": "2026-10-21",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "trailing P/E BWXT 34.6x, CEG 26.5x, VST 22.7x",
+   "origin": "supervisor comps_review",
+   "value": "34.6x/26.5x/22.7x",
+   "basis": "derived (GAAP TTM)",
+   "source_url": "secfacts.py peers BWXT CEG VST",
+   "checked": "2026-10-21",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "premium/discount -57% (6.0x vs 14.0x)",
+   "origin": "supervisor comps_review",
+   "value": "-57%",
+   "basis": "derived",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "Russian LEU: no waivers after 2027; TENEX contract ends 2028",
+   "origin": "supervisor long_dated_review",
+   "value": "2028-01-01",
+   "basis": "reported",
+   "source_url": "https://world-nuclear.org/information-library/country-profiles/countries-t-z/usa-nuclear-fuel-cycle ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "'well over one-half' of LEU deliveries through 2027 from TENEX; third (2026-27) waiver pending",
+   "origin": "supervisor long_dated_review / key_drivers",
+   "value": "well over one-half",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor long_dated_review / key_drivers"
+  },
+  {
+   "item": "ACP halted 2009 at this site; 1 of 4 US enrichment projects 2004-12 built",
+   "origin": "supervisor long_dated_review",
+   "value": "1 of 4",
+   "basis": "reported (industry) + count",
+   "source_url": "https://world-nuclear.org/information-library/country-profiles/countries-t-z/usa-nuclear-fuel-cycle",
+   "checked": "2026-10-21",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "Orano IKE 7.4M SWU from 2031 (~$5B)",
+   "origin": "supervisor long_dated_review / inputs_detail",
+   "value": "7.4M SWU, 2031, ~$5B",
+   "basis": "reported (outlet)",
+   "source_url": "https://fissilematerials.org/blog/2026/05/nrc_accepted_oranos_licen.html ; https://www.ans.org/news/2026-01-06/article-7652/doe-awards-27b-for-haleu-and-leu-enrichment/",
+   "checked": "2026-10-21",
+   "feeds": "supervisor long_dated_review / inputs_detail"
+  },
+  {
+   "item": "FY2027 budget request does not fund HALEU cascade operation",
+   "origin": "supervisor long_dated_review",
+   "value": "not funded",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "Antares HALEU for Army Janus / Air Force ANPI / Space Force; 'unobligated' national-security output",
+   "origin": "supervisor long_dated_review / sizing",
+   "value": "defense-adjacent",
+   "basis": "management statement",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026062535/ex991_centrusandantaress.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor long_dated_review / sizing"
+  },
+  {
+   "item": "GLE Paducah up to 6M SWU from 2030; Urenco USA +0.7M by 2027 and +2.1M 2032-36",
+   "origin": "supervisor long_dated_review",
+   "value": "Western additions",
+   "basis": "reported (industry)",
+   "source_url": "https://world-nuclear.org/information-library/country-profiles/countries-t-z/usa-nuclear-fuel-cycle",
+   "checked": "2026-10-21",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "pro forma net cash today ~$1.06B",
+   "origin": "supervisor key_drivers",
+   "value": "$1,055M",
+   "basis": "derived",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "DOE task order ~40% in 2028, ~30% on completion of initial phase 2031; PV ~$640M risked, ~$506M after tax",
+   "origin": "supervisor key_drivers",
+   "value": "$640M / $506M",
+   "basis": "reported terms + estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "LEU price $109.88 (2026-10-20 close)",
+   "origin": "supervisor key_drivers",
+   "value": "$109.88",
+   "basis": "reported",
+   "source_url": "https://www.investing.com/equities/centrus-energy-consensus-estimates",
+   "checked": "2026-10-21",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "Q3 results ~11-04/05",
+   "origin": "supervisor sizing",
+   "value": "~2026-11-04/05",
+   "basis": "estimate",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "~89% realised volatility",
+   "origin": "supervisor sizing",
+   "value": "89%",
+   "basis": "estimate",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "base revenue FY2025 = LEU $346.2M + TS $102.5M",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$448.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001065059.json",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "FY2026 revenue guide $450-500M; capital deployment $350-500M",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$450-500M / $350-500M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001065059/000162828026053433/ex991-10q2026_08x05.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "LEU gross profit FY2025 $111.5M on $346.2M; H1 2026 $79.5M on $198.0M",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "32% / 40%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Q2 2026 SWU price +3% vs unit cost +13%",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "+3% / +13%",
+   "basis": "reported (management)",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/13/centrus-energy-leu-q2-2026-earnings-call-transcript/",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "HALEU Operation Contract Option 1b target cost $163.5M; DOE does not intend further options",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$163.5M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "H1 2026 gross profit $81.4M, advanced technology $29.7M, operating income $11.2M; $17.2M RSU-related stock comp",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "SG&A ~$40.5M",
+   "basis": "reported + derived",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "D&A FY2025 $9.9M; SBC FY2025 $5.7M; tax $8.1M on pretax $85.9M",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "2.2% / 9.4%",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065059.json",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Q2 2026 stock comp ~$17.7M (H1 ~$18M)",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "~$18M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001065059/000162828026053433/ex991-10q2026_08x05.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "net debt 2026-06-30: cash $1,868.5M less converts $1,207.5M; carrying $1,177.5M",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "-$661.0M",
+   "basis": "reported + derived",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001065059.json",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "share count: 19,233,908 Class A pre-offering, 500,000 offered, 719,200 Class B, 2,005,513 pre-funded warrants ($0.10)",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "22.62M before Westerman/convert",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Westerman ~$160M 2025 revenue (424B5) and $116M price",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "0.73x sales",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026066212/leu-20261016.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "spot SWU ~$200 end-June 2026 (TradeTech/UxC)",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$200",
+   "basis": "industry data",
+   "source_url": "https://www.urenco.com/news/global/2026/half-year-2026-unaudited-financial-results",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "term SWU ~$180 (Silex Aug 2026)",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "~$180",
+   "basis": "industry data",
+   "source_url": "https://bulletin.webull.com/qbd/announcement/20260827/499501885/41eece7b2cf9ef3eabed7c5fd75cc032.pdf",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "US 2025 average price paid $108.70/SWU; ~13M SWU bought (EIA)",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$108.70 / 13M",
+   "basis": "industry data",
+   "source_url": "https://www.ans.org/news/article-8270/uranium-prices-steady-as-eia-releases-annual-market-report/",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Urenco EBITDA 804.2 / revenue 2,096.2 = 38.4% FY2025; 34.4% H1 2026",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "38.4% / 34.4%",
+   "basis": "reported",
+   "source_url": "https://www.urenco.com/news/global/2026/full-year-2025-audited-results ; https://www.urenco.com/news/global/2026/half-year-2026-unaudited-financial-results",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "$2.4B definitive contingent book (of ~$3.0B LEU and HALEU)",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$2.4B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "12 MTU/yr initial HALEU capacity",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "12 MTU",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001065059/000162828026046801/ex991_haleu900mpr.htm ; https://fissilematerials.org/blog/2026/07/centrus_finalizes_haleu_c.html",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "41 SWU/kgU for 19.75% from natural at 0.25% tails",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "41.0",
+   "basis": "derived",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "multi-billion expansion; Oak Ridge >$560M; first centrifuges online in Ohio 2029",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "multi-billion",
+   "basis": "management statement",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm ; https://www.nucnet.org/news/centrus-plans-multi-billion-dollar-investment-to-expand-enrichment-at-us-plant-9-4-2025",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "ACP licensed for 3.8M SWU (phase-2 option)",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "3.8M SWU",
+   "basis": "reported (industry)",
+   "source_url": "https://world-nuclear.org/information-library/country-profiles/countries-t-z/usa-nuclear-fuel-cycle",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "HALEU cascade delivered 900 kg",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "900 kg",
+   "basis": "reported (outlet)",
+   "source_url": "https://fissilematerials.org/blog/2026/07/centrus_finalizes_haleu_c.html",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "DOE $900M: ~40% 2028, ~30% 2031, 1 MTU by July 2032, options up to $170.0M at $17.0M/MTU",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$900M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "pension $2.9M + postretirement $68.8M",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "$71.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "engine WACC 9.94% (beta 2.31); 10-yr 5.12-5.26%",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "9.94%",
+   "basis": "engine / market data",
+   "source_url": "https://247wallst.com/investing/2026/10/14/nuscale-power-falls-7-as-10-year-treasury-yield-climbs-to-5-26-energy-fuels-drops-9-oklo-slides-5/",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "LEU trading revenue FY2026",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "$395M (+14.1%)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "LEU trading revenue FY2027 / FY2028",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "$280M (-29.1%) / $180M (-35.7%)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "LEU trading segment margin",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "37% / 34% / 30%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Technical Solutions revenue and margin",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "$80M/2%; $30M/5%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Corporate EBIT; core EBIT $67.8M / $36.7M / $10.5M (14.3% / 11.8% / 5.0%)",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "-$80M / -$60M / -$45M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Net debt at horizon",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "-$525M",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Shares at horizon",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "24.83M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Initial build capacity",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "~1.64M SWU",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Price deck",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "LEU $200 real; HALEU $350",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Expansion pre-tax cash margin",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "50%",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Expansion capital still to spend",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "~$2.35B; ~$1,430/SWU-yr",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "DOE HALEU task order milestones (PV at horizon)",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "$597M (unrisked $748M)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "rNPV discount rate",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "HALEU commercial demand probability",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "0.75",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Probability tree for the initial build",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "40% / 35% / 25%",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Market-share leg: market size and states",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "13M SWU; 0/9/20/30% at 25/40/25/10%",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Market-share leg: mature cash margin",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "40%",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "EV/EBITDA horizon multiple",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "6.0x",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "General Matter mark (weight 0)",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "$2.5B, 50% haircut",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Net debt now (2026-10-16)",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "-$915M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Diluted shares now",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "22.62M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Tax rate",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "21%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "D&A / maintenance capex",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "2.0% / 1.5%",
+   "basis": "estimate (filing-based)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "SBC % revenue",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "4% / 3%",
+   "basis": "estimate (filing-based)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "Convertible notes",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "value": "at face ($1,207.5M)",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_1 DCF / other / model_inputs"
+  },
+  {
+   "item": "net debt at horizon",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "-$567M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "diluted shares now",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "23.4M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "shares at horizon",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "25.24M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Piketon LEU peak sales",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$234M/yr",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Piketon LEU margin / tax",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "45% / 21%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Piketon LEU launch / probability",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "p 0.765",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Phase-1 capex remaining after H",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$750M / $380M",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "HALEU peak sales",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$172M/yr",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "HALEU margin / probability",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "50%; p 0.5525",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "DOE $900M milestones after H",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$430/70/70/270M; risked 365.5/57.4/56.0/202.5",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "rNPV discount rate",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "10% / 11%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Expansion option to ~3.5M SWU",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "peak $504M; capex $1.4B",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Legacy trading run-off cash flows",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$45/30/20M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Westerman value",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$116M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Technical Solutions ex-HALEU cascade",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$30M",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Corporate cost not in plant margins",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "-$23.7M/yr; -$297M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "US enrichment demand",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "~13M SWU/yr",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "HALEU demand path",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "up to 50 MT/yr by 2035",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "mature enrichment EBITDA margin",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "47%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "exit EV/EBITDA 2034",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "11x / 13x",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "discount to horizon",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "1.97x",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "Westerman in 2034 EBITDA",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "~$140M at ~10%",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "floor at the horizon",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$500M ($19.83/share)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "option volatility",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "45%",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "FY2026 revenue growth",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "+12.1% (to $503M)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "FY2027 revenue growth",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "+13.9% (to $573M)",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "FY2028 revenue growth",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "-19.7% (to $460M)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "EBIT margin FY2026 / FY2027 / FY2028",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "5.0% / 3.8% / -3.3%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "EV/EBITDA horizon multiple (weight 0)",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "6.0x",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "market EV today",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "$1.64B",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "tax rate",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "15%",
+   "basis": "estimate (filing-based)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "D&A / capex / SBC",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "2.5% / 2.0% / 4.5%",
+   "basis": "estimate (filing-based)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "net debt now (2026-10-16)",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "-$930M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "scenario probabilities / vol",
+   "origin": "agent_2 SOTP / other / EV/EBITDA / model_inputs",
+   "value": "0.30/0.45/0.25; 0.30",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_2 SOTP / other / EV/EBITDA / model_inputs"
+  },
+  {
+   "item": "LEU revenue FY2026",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "$395M (+14.1%)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "LEU revenue FY2027 / FY2028",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "$380M (-3.8%) / $266M (-30%)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "LEU segment EBIT margin",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "35% / 30% / 24%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Technical Solutions revenue / margin",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "$75/35/35M; -3/0/3%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Corporate EBIT",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "-$45M / -$50M / -$50M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Tax, D&A, capex, SBC (core)",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "22%; 3-4%; 3-4%; 2.5%/2.0%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Net debt at horizon",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "-$576M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Diluted shares now",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "23.1M",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Shares at horizon",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "25.1M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "DOE task-order milestones",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "+$596M risked (unrisked 762)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "rNPV LEU phase 1 peak revenue",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "$280M/yr",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "rNPV HALEU peak revenue",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "$86M/yr",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "rNPV cash margin",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "40%",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "rNPV probabilities",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "0.64 / 0.49",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "rNPV dev costs",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "100/510/490/250/75",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "rNPV discount rate",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "EV/EBITDA horizon multiple",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "5.0x, w 0.10",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Custom: market-share scenarios",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "$31.84/share",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "Custom: cash floor + options",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "$52.69/share",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "net cash now",
+   "origin": "agent_3 DCF / EV/EBITDA / other / model_inputs",
+   "value": "~$905M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_3 DCF / EV/EBITDA / other / model_inputs"
+  },
+  {
+   "item": "SWU price deck",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "$200 (2026$), +2%/yr",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Piketon LEU peak revenue",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "$300M",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "HALEU peak revenue",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "$215M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Plant all-in cash margin",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "45%",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Expansion capex",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "~$2.6B",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "DOE HALEU task order cash",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "PV $590M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Phase probabilities",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "LEU 0.748; HALEU 0.524",
+   "basis": "judgment (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "rNPV discount rate",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "9%",
+   "basis": "judgment (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Tax on project cash flows",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "+$46M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Transition burn after H",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "PV -$147M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Net debt at horizon",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "-445",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Shares at horizon",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "24.91M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "0% 2032 convert PV adjustment",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "+$130M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Option-leg volatility",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "45%",
+   "basis": "judgment (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "General Matter mark",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "~$2.0-2.5B",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Net debt 2026-06-30 pro forma",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "-$1,055M",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Diluted shares now",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "23.09M",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Segment split FY2025",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "LEU $345.5M / TS $103.2M",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "FY2026 revenue",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "$492.8M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "LEU FY2027 revenue",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "$360M, GM 33%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "LEU FY2028 revenue",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "$190M, GM 25%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Westerman revenue",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "~$160M; ~$165-170M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "TS FY2027-28",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "~$50M at ~4%",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "Corporate EBIT",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "value": "-$145M / -$150M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_4 SOTP / other / model_inputs"
+  },
+  {
+   "item": "FY2027 revenue (core)",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$380M (-20.0%)",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "FY2028 revenue (core)",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$290M (-23.7%)",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "core EBIT margin FY26/27/28",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "12% / 8% / 4%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "tax rate",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "21%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "D&A and maintenance capex",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "2.5% each",
+   "basis": "estimate (filing-based)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "SBC",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "5% of revenue",
+   "basis": "estimate (filing-based)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "Westerman valued at cost",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "+$116M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "rNPV peak sales (initial build)",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$401.2M/yr",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "HALEU SWU price",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$380/SWU",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "rNPV cash margin",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "45%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "rNPV probability of success",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "0.675",
+   "basis": "judgment (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "rNPV build-out spend",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$2.2B",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "build capex per SWU-yr",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$1,477",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "DOE HALEU task order milestones PV",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$609M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "rNPV discount rate",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "9.5%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "EV/EBITDA horizon multiple",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "5.0x NTM",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "custom (b) market-share states",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$48.03",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "custom (e) cash floor + options",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "$51.11",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "diluted shares now",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "23.09M",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "Sept 2026 offering net proceeds",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "+$489M",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "net interest income to horizon",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "+$60M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "scenario probabilities / vol",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "value": "0.30/0.45/0.25; 0.35",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "agent_5 DCF / other / model_inputs"
+  },
+  {
+   "item": "LEU trading revenue FY2026/27/28",
+   "origin": "supervisor model",
+   "value": "$395M / $350M / $230M (+14.1% / -11.4% / -34.3%)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "LEU trading segment margin",
+   "origin": "supervisor model",
+   "value": "36% / 30% / 24%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Technical Solutions growth / margin",
+   "origin": "supervisor model",
+   "value": "-22% / -56% / 0%",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Corporate EBIT",
+   "origin": "supervisor model",
+   "value": "-$75M / -$60M / -$50M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "tax / D&A / core capex / NWC",
+   "origin": "supervisor model",
+   "value": "21% / 2.2% / 2.0% / 10%",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "SBC",
+   "origin": "supervisor model",
+   "value": "4% / 3.5% (information)",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "net debt 2026-06-30",
+   "origin": "supervisor model",
+   "value": "-661.0",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "net debt at horizon",
+   "origin": "supervisor model",
+   "value": "-550.0",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "diluted shares now",
+   "origin": "supervisor model",
+   "value": "23.1",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "shares at horizon",
+   "origin": "supervisor model",
+   "value": "25.1",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "EV/EBITDA cross-check",
+   "origin": "supervisor model",
+   "value": "6.0x, w 0.10",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "SWU price deck",
+   "origin": "supervisor model",
+   "value": "$200, ~2%/yr (~$230 mid-2030s)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Initial LEU programme peak sales",
+   "origin": "supervisor model",
+   "value": "275.0",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "HALEU programme peak sales",
+   "origin": "supervisor model",
+   "value": "172.0",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Plant cash margin",
+   "origin": "supervisor model",
+   "value": "0.45",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Build-out capital from 2026-07-01",
+   "origin": "supervisor model",
+   "value": "~$2.3B; post-horizon $1.48B",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Probabilities",
+   "origin": "supervisor model",
+   "value": "0.72 / 0.56; phase 2 0.35",
+   "basis": "judgment (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "DOE $900M task order milestones (PV at horizon)",
+   "origin": "supervisor model",
+   "value": "640.0 (unrisked 803)",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "rNPV discount rate / tax",
+   "origin": "supervisor model",
+   "value": "10% / 21%",
+   "basis": "judgment",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Phase-2 option",
+   "origin": "supervisor model",
+   "value": "+1.5M SWU, $350M peak, $1.05B capex",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Pension and postretirement obligations",
+   "origin": "supervisor model",
+   "value": "-56.6",
+   "basis": "estimate (high)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Tax correction to the rNPV",
+   "origin": "supervisor model",
+   "value": "81.5",
+   "basis": "estimate (low)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Common warrants in the bull state",
+   "origin": "supervisor model",
+   "value": "-$42.7M",
+   "basis": "estimate (medium)",
+   "source_url": "derivation",
+   "checked": "2026-10-21",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "common warrants and converts in the bull state",
+   "origin": "agent_2 other",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "+6.99M warrant shares (+~$2.0B), +3.51M 2032-note shares, +2.12M 2030-note net shares",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828025049844/leu-20250930.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm",
+   "feeds": "agent_2 market-share leg (b), fair value"
+  },
+  {
+   "item": "VST fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a forward (not in peers.md); trailing EV/EBITDA 12.9x, EV/sales 3.67x, P/E 22.7x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "OKLO fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (no revenue tagged; net loss TTM -$152.8M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1849056/000162828026054571/oklo-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "SMR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss TTM -$415.7M; NTM EPS -$0.76)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "VST fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_3 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a forward (not in peers.md); trailing EV/EBITDA 12.9x, EV/sales 3.67x, P/E 22.7x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "Net debt now",
+   "origin": "agent_3 DCF (engine, core + build rNPV + DOE milestones + net cash)",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "-$661.0M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "feeds": "agent_3 DCF / net debt"
+  },
+  {
+   "item": "net debt 2026-06-30",
+   "origin": "agent_5 DCF",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "-$661.0M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "feeds": "agent_5 DCF / net debt"
+  },
+  {
+   "item": "Westerman value",
+   "origin": "agent_4 SOTP",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "$116M (cost); 0.73x sales derived",
+   "basis": "reported ($116M) / estimate (0.73x)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001065059/000162828026066212/ex991_101926westermanpr.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm",
+   "feeds": "agent_4 SOTP"
+  },
+  {
+   "item": "VST fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_4 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a forward (not in peers.md); trailing EV/EBITDA 12.9x, EV/sales 3.67x, P/E 22.7x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "rNPV launch / ramp / life",
+   "origin": "agent_5 other: milestone rNPV (adjustment on DCF and multiple legs)",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "2029-07-01 / 4 yrs / to 2057",
+   "basis": "estimate",
+   "source_url": "https://www.ans.org/news/2026-07-06/article-8180/doe-contract-boosts-centruss-haleu-goals-as-urenco-continues-leu-expansion/",
+   "feeds": "agent_5 rNPV adjustment"
+  },
+  {
+   "item": "UUUU fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss TTM -$81.7M; NTM EPS -$0.11)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1385849/000138584926000029/efr-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "OKLO fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (no revenue tagged; net loss TTM -$152.8M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1849056/000162828026054571/oklo-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "UEC fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss FY2026 -$137.3M; NTM EPS -$0.08)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1334933/000143774926031414/uec20260731_10k.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "SMR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_5 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss TTM -$415.7M; NTM EPS -$0.76)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1822966/000182296626000085/smr-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "Q3 date unannounced; last year's notice 10-15 for an 11-06 call",
+   "origin": "supervisor disagreements",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "2025-10-21 / 2025-11-06 call (8-K 2025-11-05)",
+   "basis": "reported",
+   "source_url": "https://www.exchangemonitor.com/centrus-to-report-third-quarter-earnings-nov-6/ ; https://www.sec.gov/Archives/edgar/data/1065059/000162828025049679/leu-20251105.htm",
+   "feeds": "one-month window (no number)"
+  },
+  {
+   "item": "forward P/E BWXT 26.9x, CEG 20.4x (peers.md, consensus) in peer_median",
+   "origin": "supervisor comps_review",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "EV/EBITDA 14.0x trailing (BWXT 25.2x, CEG 14.0x, VST 12.9x)",
+   "basis": "estimate (derived from filings)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1486957/000148695726000044/ ; https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "EV/EBITDA cross-check (6.0x judgment)"
+  },
+  {
+   "item": "research value at Orano-like cost",
+   "origin": "supervisor key_drivers / sizing / disagreements",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "$59.92",
+   "basis": "estimate (engine variant)",
+   "source_url": "supervisor.json model.reconciled_inputs (model_engine.py check)",
+   "feeds": "key_drivers / sizing / judgment call"
+  },
+  {
+   "item": "shares at horizon: '10-Q: may raise through large follow-on offerings; $1.0B ATM'",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "$1.0B automatic shelf",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000162828026007117/leu-20251231.htm",
+   "feeds": "shares at horizon (text only)"
+  },
+  {
+   "item": "rNPV peak sales",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "LEU $293M; HALEU $219M",
+   "basis": "estimate",
+   "source_url": "derivation (inputs: Urenco H1 2026 $200 SWU, DOE $17.0M/MTU)",
+   "feeds": "agent_1 rNPV, fair value"
+  },
+  {
+   "item": "Phase-2 option (+1.5M SWU)",
+   "origin": "agent_1 DCF / other / model_inputs",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "~$0",
+   "basis": "estimate",
+   "source_url": "https://orano.group/en/news/news-group/2023/october/board-of-directors-of-orano-approves-project-to-extend-the-enrichment-capacity-of-its-georges-besse-2-plant",
+   "feeds": "agent_1 tree leg (no value)"
+  },
+  {
+   "item": "UUUU fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss TTM -$81.7M; NTM EPS -$0.11)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1385849/000138584926000029/efr-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "UEC fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss FY2026 -$137.3M; NTM EPS -$0.08)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1334933/000143774926031414/uec20260731_10k.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "URG fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss TTM -$88.5M; NTM EPS -$0.09)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1375205/000110465926093458/urg-20260630x10q.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "NNE fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (no forward columns in peers.md; no revenue/net income tagged)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1923891/000149315226037345/form10-q.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "LTBR fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (revenue TTM $0; net loss TTM -$23.4M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1084554/000147793226004756/ltbr_10q.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "ASPI fwd P/E / fwd EV/EBITDA / growth",
+   "origin": "agent_2 comps",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "n/a (net loss TTM -$117.3M; EBITDA TTM -$93.6M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1921865/000119312526352603/aspi-20260630.htm ; /mnt/attach/project-files/valuation/runs/2026-10-20/LEU/peers.md",
+   "feeds": "comps (information; no number)"
+  },
+  {
+   "item": "Pension/OPEB adjustment",
+   "origin": "agent_4 SOTP / other / model_inputs",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "-$56.6M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm",
+   "feeds": "agent_4 all legs, fair value"
+  },
+  {
+   "item": "shares annual change",
+   "origin": "agent_5 DCF / other / model_inputs",
+   "checked": "2026-10-21",
+   "fixed": true,
+   "value": "+6.9%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065059/000162828026053863/leu-20260630.htm ; https://www.sec.gov/Archives/edgar/data/1065059/000110465926106829/tm2625019d3_424b5.htm",
+   "feeds": "agent_5 shares, fair value"
+  }
+ ],
+ "fair_values": {
+  "supervisor": {
+   "from": 45.35,
+   "to": 45.35
+  },
+  "agent_1": {
+   "from": 25.4,
+   "to": 25.79
+  },
+  "agent_2": {
+   "from": 46.7,
+   "to": 46.82
+  },
+  "agent_3": {
+   "from": 36.71,
+   "to": 36.71
+  },
+  "agent_4": {
+   "from": 42.81,
+   "to": 42.95
+  },
+  "agent_5": {
+   "from": 45.69,
+   "to": 45.52
+  }
+ },
+ "note": "Fix step 2026-10-21: 29 failures fixed (28 corrected and re-checked, 1 removed: agent_2 MarketBeat target). Engine re-run on all five agent files and supervisor.json; supervisor fair value unchanged."
+}

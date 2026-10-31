@@ -1,0 +1,100 @@
+{
+  "symbol": "LAES", "agent_id": "agent_4", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 0.61, "p": 0.98}, {"K": 0.97, "p": 0.94}, {"K": 1.21, "p": 0.88}, {"K": 1.46, "p": 0.79},
+    {"K": 1.70, "p": 0.68}, {"K": 1.94, "p": 0.58}, {"K": 2.18, "p": 0.49}, {"K": 2.42, "p": 0.415},
+    {"K": 2.67, "p": 0.355}, {"K": 2.91, "p": 0.30}, {"K": 3.27, "p": 0.245}, {"K": 3.64, "p": 0.20},
+    {"K": 4.24, "p": 0.145}, {"K": 4.85, "p": 0.105}, {"K": 6.06, "p": 0.06}
+  ],
+  "ladder_1m": [
+    {"K": 1.94, "p": 0.82}, {"K": 2.06, "p": 0.74}, {"K": 2.18, "p": 0.645}, {"K": 2.26, "p": 0.575},
+    {"K": 2.33, "p": 0.52}, {"K": 2.42, "p": 0.455}, {"K": 2.52, "p": 0.39}, {"K": 2.59, "p": 0.345},
+    {"K": 2.67, "p": 0.30}, {"K": 2.79, "p": 0.24}, {"K": 2.91, "p": 0.19}
+  ],
+  "one_month_reasoning": "I centre the ladder on the actual 2026-10-02 close of $2.375 (per the supervisor's Twelve Data check), not $2.425. No earnings fall in the 2026-10-02 to 2026-11-01 window: H1 results were released 2026-09-11 with the call on 09-15. Four things do fall in it. (1) The QS7001 V1 Hardware Common Criteria test report is targeted for October 2026 (Sep 25 6-K). It has slipped twice in six weeks, so it is close to a coin-flip. Delivery would be a small positive, a third slip a modest negative. (2) A preliminary Q3 metrics release is possible: Q1 came Apr 8 and the H1 preliminary Jul 8, so one in roughly mid-October is plausible but not scheduled. (3) SAIQ, the related-party SPAC SEALSQ just funded with $10M, began trading Oct 2. Its first weeks could move sentiment, but the PIPE's price-protection date (~Nov 30) is outside the window. (4) Quantum-basket sentiment swings. My alternative-lane signals are neutral: short interest has fallen to ~11M shares, the squeeze setup is low, and insiders are small net sellers. So I use a near-symmetric lognormal with median ~$2.36 and monthly sigma ~0.24. That is between the 100%/3.5 rule (0.29) and the recent 30-session range of $2.19-2.61, which points lower. I add a little mass above $1.94-2.18 because current cash is about $2.0 per share (~$466M / ~233M).",
+  "fair_value": {
+    "value": 2.20,
+    "method": "50/50 blend of two methods. (a) Cash-adjusted EV/sales: 4x an estimated FY2027 revenue of $40M = $160M, plus ~$360M of Oct-2027 net cash, plus ~$90M of strategic stakes at 50% = $45M, over ~233M economic shares = $2.42. (b) A haircut SOTP: cash at 85%, operations at 3x, stakes at 40% = $1.98. The forward cash figure was cut from ~$430M to ~$360M after the supervisor's cash-flow-based roll-forward, which I verified against the H1 statements.",
+    "methods": [
+      {"name": "EV/sales", "value": 2.42, "weight": 0.5,
+       "inputs": "FY2027 revenue $40M x 4.0x = $160M; plus Oct-2027 net cash ~$360M; plus strategic stakes ~$90M at 50% = $45M; total ~$565M / ~233M economic shares",
+       "inputs_detail": [
+         {"input": "FY2026 revenue guidance", "value": "$27-36M (H1 actual $11.2M, ~48% GM)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY2027 revenue", "value": "$40M", "basis": "estimate", "source_ids": [1, 3, 4], "derivation": "Take the FY2026 midpoint of ~$31M and grow it ~30%. The growth comes from the IC'Alps ASIC and PKI businesses plus first QS7001/QVault revenue. That revenue now lands later in 2027 because the Sep 25 6-K moved TPM-183 TCG to Feb-2027 and TPM-185 to May-2027, so I cut my round-1 estimate of $45M by about $5M."},
+         {"input": "EV/sales multiple", "value": "4.0x", "basis": "judgment", "source_ids": [1, 8, 10], "derivation": "The company is a sub-scale, loss-making secure-chip maker with ~48% gross margin, and 3-5x sales is typical for that profile. The market currently prices operations at roughly $90M EV, about 3x 2026 sales. I use the midpoint, 4x, which assumes certifications finally land in H1 2027."},
+         {"input": "Cash + restricted at 2026-06-30", "value": "$486.1M (plus $2.4M current investments); H1 operating cash flow -$23.7M; investing -$22.3M; interest income $6.2M", "basis": "reported", "source_ids": [2], "derivation": ""},
+         {"input": "SAIQ PIPE paid", "value": "$10.0M for 926,784 shares at $10.79, closed 2026-10-01", "basis": "reported", "source_ids": [5], "derivation": ""},
+         {"input": "Net cash at Oct-2027", "value": "~$360M", "basis": "estimate", "source_ids": [2, 5, 1], "derivation": "Start from $488.5M. Subtract ~$12M Q3 operating burn and the $10M SAIQ PIPE to get ~$466M in Oct-2026. Then subtract ~$50M of 12-month operating cash burn: the H1 run-rate is $23.7M per half, and interest income falls as cash is spent. Finally subtract ~$55M of further SEALQuantum/related-party deployments, inside the supervisor's $40-80M range. Result: ~$360M. This is slightly above the supervisor's ~$350M because I count the deployed money as stakes (valued separately below) rather than as lost."},
+         {"input": "Strategic stakes", "value": "~$90M carrying value at 50%", "basis": "estimate", "source_ids": [2, 5, 1], "derivation": "The stakes are Quobly (~$17.5M paid in H1), the SAIQ PIPE ($10M) plus 1.04M ordinary + 1.04M Class F SAIQ shares, other SEALQuantum/Quantix commitments, and ~$55M of new deployments. I value them at 50% for illiquidity, venture risk and related-party pricing."},
+         {"input": "Economic share count", "value": "~233M", "basis": "estimate", "source_ids": [2], "derivation": "223.43M ordinary shares plus 1.4998M F shares at ~5x economics (H1 EPS table), giving ~231M. I add ~2M for 12 months of equity compensation. The 60.8M Class E warrants at $5.50 are out of the money, and the $28.9M ATM is unused."}
+       ]},
+      {"name": "SOTP", "value": 1.98, "weight": 0.5,
+       "inputs": "Net cash $360M x 85% = $306M; operations 3x FY2027 sales of $40M = $120M; stakes $90M x 40% = $36M; total $462M / 233M",
+       "inputs_detail": [
+         {"input": "Net cash at Oct-2027", "value": "~$360M", "basis": "estimate", "source_ids": [2, 5], "derivation": "Same roll-forward as method 1"},
+         {"input": "Cash haircut", "value": "15%", "basis": "judgment", "source_ids": [2, 5, 6, 9], "derivation": "The company is controlled by WISeKey (now WISeQey) through the F shares. Cash is flowing into related-party vehicles: the SAIQ PIPE, the Quantisimo/GigCapital8 LOI, and $16.67M of related-party receivables, up from $8.66M. Insiders are net sellers. The stock already traded below cash per share at its 52-week low of $1.99."},
+         {"input": "Operating business EV/sales", "value": "3x FY2027 sales of $40M", "basis": "judgment", "source_ids": [1, 4], "derivation": "The low end of the 3-5x range, chosen for a conservative SOTP given two certification slips in six weeks."},
+         {"input": "Stakes value", "value": "~$90M at 40%", "basis": "judgment", "source_ids": [2, 5, 6], "derivation": "A deeper haircut than in method 1, for related-party SPAC pricing and lock-ups."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 1.45, "prob": 0.32, "story": "Certifications slip a third time into H2 2027, and FY2026 lands at the low end (~$27M). Burn plus more SEALQuantum/SPAC deployments push Oct-2027 net cash toward ~$300M (~$1.30/share). Quantum sentiment fades and the market applies a control discount, so the stock trades near or slightly above shrinking cash."},
+    "base": {"price": 2.25, "prob": 0.45, "story": "QS7001 V1/V2 reports arrive Oct-2026 and Jan-2027, and the TPM TCG certifications in Feb and May 2027. FY2026 comes in ~$30M and FY2027 ~$40M, with first PQC production revenue in H2 2027. Net cash falls to ~$360M. The stock trades around cash plus ~3x sales for operations."},
+    "bull": {"price": 4.80, "prob": 0.23, "story": "Certifications land on the revised dates, named TPM/IoT/defense design wins convert pipeline, and FY2027 revenue clearly exceeds $50M. A quantum/PQC narrative rally re-rates the name toward prior highs (52-week high $8.71). Supply from the 60.8M Class E warrants at $5.50 and the ATM caps follow-through above ~$5.5."}
+  },
+  "thesis_break_price": 1.35,
+  "thesis_break_reason": "$1.35 x ~233M = ~$315M, below my ~$360M Oct-2027 net cash with zero value given to operations or stakes. Trading there would most likely mean something fundamental: a large related-party transfer or acquisition draining cash, write-downs of the quantum/SPAC stakes, a dilutive raise at depressed prices, or abandonment of the PQC roadmap. Ordinary volatility would not explain it. I lowered this from $1.40 because I use slightly more shares and the price stays consistent with zero value for operations.",
+  "catalysts": [
+    {"date": "2026-10", "event": "QS7001 V1 Hardware Common Criteria test report (target already slipped twice)", "direction": "?"},
+    {"date": "2026-10", "event": "Possible preliminary Q3 revenue/metrics release (Q1 came Apr 8, H1 preliminary Jul 8)", "direction": "?"},
+    {"date": "2026-11-30", "event": "Day-60 SAIQ PIPE price protection; SAIQ trading shows how related-party stakes are valued", "direction": "?"},
+    {"date": "2027-01", "event": "QS7001 V2 full-PQC test report; preliminary FY2026 revenue vs the $27-36M guide; FY2027 guidance", "direction": "?"},
+    {"date": "2027-02", "event": "QVault TPM-183 TCG certification target", "direction": "+"},
+    {"date": "2027-Q1", "event": "Quantisimo/GigCapital8 targeted close (non-binding LOI; SEALQuantum assets contributed)", "direction": "-"},
+    {"date": "2027-03/04", "event": "FY2026 20-F and full-year call", "direction": "?"},
+    {"date": "2027-05", "event": "QVault TPM-185 TCG certification target", "direction": "+"},
+    {"date": "2027-09", "event": "H1 2027 results; first meaningful PQC revenue and cash update", "direction": "?"},
+    {"date": "ongoing", "event": "Equity raises via the $28.9M ATM, SEALQuantum deployments, quantum-sector sentiment swings", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether certifications hold the revised dates (V1 Oct-2026 through TPM-185 May-2027) after two slips in six weeks",
+    "How much cash leaks into WISeKey-group vehicles (SAIQ, Quantisimo, related-party receivables of $16.67M) rather than staying as shareholder value",
+    "Operating cash burn as interest income falls with the cash balance",
+    "Quantum-basket beta: it can move the stock 2-3x either way regardless of fundamentals, with Class E warrants and the ATM capping rallies",
+    "Dilution: ordinary shares rose from 191.5M to 223.4M in H1 2026"
+  ],
+  "reasoning": "In round 2 I accept the supervisor's main corrections and checked three of them against primary SEC filings. (1) Forward cash was too high in my round 1. The H1 statements show operating cash flow of -$23.7M and investing of -$22.3M, including Quobly. The $10M SAIQ PIPE closed Oct 1 (Oct 2 6-K). My roll-forward now gives ~$360M of net cash by Oct-2027, not ~$430M. I hold slightly above the supervisor's ~$350M because I count SEALQuantum deployments as stakes at a haircut instead of as lost. (2) Certifications slipped again: the Sep 25 6-K sets V1 Oct-2026, V2 Jan-2027, TPM-183 Feb-2027 and TPM-185 May-2027, so I cut FY2027 revenue from $45M to $40M and removed the Q4-2026 first-revenue catalyst. (3) The actual Oct 2 close was $2.375. I also dropped the Kalshi snippet and the Stocktwits/Benzinga sentiment polls as inputs, per source_review. The re-run gives $2.42 on EV/sales and $1.98 on the SOTP, so fair value falls to ~$2.20 from $2.45, slightly below spot. Distribution: the median is ~$2.17, a bit below spot for burn, leakage and dilution. The left tail is compressed relative to a pure 100%-vol lognormal by cash per share falling from ~$2.0 to ~$1.55, giving ~21% below $1.46 and ~6% below $0.97. The right tail is fat (~10.5% at $4.85, 6% at $6.06) because the name re-rates violently on quantum news, but it is trimmed by Class E warrant and ATM supply above ~$5.5. The scenario-weighted mean is ~$2.58. Alternative-lane evidence stays neutral: short interest is falling (~11M shares, ~2 days to cover), insider selling is small with no buys, and Manifold puts an RSA break by 2030 at 15% (thin market), so there is no Q-day catalyst inside the horizon. A re-fetch of short-interest data returned nothing, so I relied on the round-1 readings. Research this round was limited to verifying the supervisor's facts.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "SEALSQ Corp Form 6-K Ex.99.1: H1 2026 results press release", "url": "https://www.sec.gov/Archives/edgar/data/1951222/000121390026099027/ea030520701ex99-1.htm", "date": "2026-09-11", "type": "filing", "in_lane": false},
+    {"title": "SEALSQ 6-K Ex.99.1: Condensed consolidated financial statements as of June 30, 2026 (cash flow, Note 10 related parties, EPS table)", "url": "https://www.sec.gov/Archives/edgar/data/1951222/000121390026099476/ea030513901ex99-1.htm", "date": "2026-09-14", "type": "filing", "in_lane": false},
+    {"title": "Transcript: SEALSQ H1 earnings call highlights", "url": "https://www.marketbeat.com/instant-alerts/transcript-sealsq-h1-earnings-call-highlights-2026-09-15/", "date": "2026-09-15", "type": "press", "in_lane": false},
+    {"title": "SEALSQ 6-K: post-quantum certification timeline update (second revision)", "url": "https://www.sec.gov/Archives/edgar/data/1951222/000121390026103268/ea030658602-6k_sealsq.htm", "date": "2026-09-25", "type": "filing", "in_lane": false},
+    {"title": "SEALSQ 6-K: completion of WISeSat.Space (SAIQ) business combination and SEALSQ PIPE", "url": "https://www.sec.gov/Archives/edgar/data/1951222/000121390026106547/ea0307605-6k_sealsq.htm", "date": "2026-10-02", "type": "filing", "in_lane": false},
+    {"title": "SEALSQ 6-K: Quantisimo / GigCapital8 non-binding LOI", "url": "https://www.sec.gov/Archives/edgar/data/1951222/000121390026073396/ea029638701-6k_sealsq.htm", "date": "2026-06-30", "type": "filing", "in_lane": false},
+    {"title": "LAES borrow fee, short interest and squeeze model (Curved Trading)", "url": "https://curvedtrading.com/stocks/laes/", "date": "2026-10-02", "type": "alt-data", "in_lane": true},
+    {"title": "LAES short interest history (Equibles)", "url": "https://equibles.com/stocks/laes/shortinterest", "date": "2026-09-15", "type": "alt-data", "in_lane": true},
+    {"title": "MarketBeat: SEALSQ VP sells shares; insider transactions summary", "url": "https://www.marketbeat.com/instant-alerts/sealsq-nasdaqlaes-vp-sells-15000-shares-2026-08-05/", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Is LAES a Buy or a Sell? The Bull and Bear Case (Walnut Invest)", "url": "https://walnutinvest.com/stocks/laes/is-it-a-buy-or-sell", "date": "2026-07", "type": "newsletter", "in_lane": true},
+    {"title": "Manifold: Will a quantum computer use Shor's algorithm to break a public-key cryptosystem by 2030? (15%, 16 trades, 10 holders)", "url": "https://manifold.markets/event/will-a-quantum-computer-successfull", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Manifold: Will quantum computing break RSA (related market cluster)", "url": "https://manifold.markets/event/will-quantum-computing-break-rsa-en", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Guest Post: The Polymarket Bet Quantum Could Break (The Quantum Insider)", "url": "https://thequantuminsider.com/2026/07/09/guest-post-the-polymarket-bet-quantum-could-break/", "date": "2026-07-09", "type": "newsletter", "in_lane": true},
+    {"title": "IONQ, RGTI, QBTS Stocks Lag In 2026, But Retail Traders Continue To Buy The Quantum Vision (Stocktwits; context only, not used for numbers)", "url": "https://stocktwits.com/news-articles/markets/equity/ionq-rgti-qbts-stocks-lag-in-2026-but-retail-traders-continue-to-buy-the-quantum-vision/cZo4LFeRJ4z", "date": "2026", "type": "social", "in_lane": true},
+    {"title": "SEALSQ Q4 earnings call highlights (QS7001/QVault pipeline ~$60M, ~115 prospects)", "url": "https://www.marketbeat.com/instant-alerts/sealsq-q4-earnings-call-highlights-2026-04-01/", "date": "2026-04-01", "type": "press", "in_lane": false}
+  ],
+  "revisions": [
+    {"item": "a fact", "from": "Forward net cash + investments ~$430M (mid-2027)", "to": "Net cash ~$360M at Oct-2027, plus ~$90M stakes valued separately", "why": "Supervisor's cash roll-forward, which I verified in the H1 cash-flow statement (op -$23.7M, investing -$22.3M) and the Oct 2 6-K ($10M SAIQ PIPE). I hold ~$10M above the supervisor's $350M because deployments are kept as haircut stakes."},
+    {"item": "a fact", "from": "PQC certifications 'through Q4 2026', first production revenue Q4 2026", "to": "V1 Oct-2026, V2 Jan-2027, TPM-183 TCG Feb-2027, TPM-185 TCG May-2027", "why": "Sep 25 6-K (verified on sec.gov)"},
+    {"item": "a fact", "from": "Last close $2.425; H1 results 2026-09-15", "to": "Close $2.375; H1 release 2026-09-11 (call 09-15)", "why": "Supervisor's Twelve Data check and filing dates"},
+    {"item": "a fact", "from": "Share-equivalents ~235M", "to": "~233M (231M economic + ~2M equity comp)", "why": "Supervisor's share count from the H1 EPS table"},
+    {"item": "a method", "from": "EV/sales $2.60 (4x $45M + $430M cash, /235M)", "to": "$2.42 (4x $40M + $360M cash + $45M stakes, /233M)", "why": "Lower forward cash and the FY2027 revenue cut for certification slips"},
+    {"item": "a method", "from": "SOTP $2.30", "to": "$1.98", "why": "Lower forward cash, $40M FY2027 revenue, deeper stake haircut for related-party SPAC pricing (SAIQ, Quantisimo LOI)"},
+    {"item": "fair value", "from": "$2.45", "to": "$2.20", "why": "Both methods re-run with the corrected cash, revenue and share count; this matches the supervisor's estimate of ~$2.20 for my framework"},
+    {"item": "a scenario", "from": "bear $1.50/0.30, base $2.40/0.45, bull $5.00/0.25", "to": "bear $1.45/0.32, base $2.25/0.45, bull $4.80/0.23", "why": "Lower cash floor, certification slips and Class E warrant/ATM supply above $5.5"},
+    {"item": "P(close >= K)", "from": "1.94: 0.61, 2.42: 0.45, 2.91: 0.32, 4.85: 0.11, 6.06: 0.06", "to": "1.94: 0.58, 2.42: 0.415, 2.91: 0.30, 4.85: 0.105, 6.06: 0.06", "why": "Lower spot ($2.375), lower fair value, cash per share falling to ~$1.55 by Oct-2027, and warrant/ATM supply trimming the right tail. I keep 6% at $6.06 because the 52-week high of $8.71 shows how far spikes can run."},
+    {"item": "P(close >= K)", "from": "1-month ladder centred on $2.41, sigma ~0.28", "to": "Centred on ~$2.36, sigma ~0.24", "why": "Actual $2.375 close and lower recent realized range; the in-window events are the QS7001 V1 report and a possible Q3 preliminary, not an earnings print"},
+    {"item": "thesis break", "from": "$1.40", "to": "$1.35", "why": "Re-based to ~$360M forward net cash and ~233M shares, so it still implies zero value for operations"},
+    {"item": "a fact", "from": "Kalshi ~7% useful quantum computer before 2027; Stocktwits/Benzinga sentiment cited as evidence", "to": "Removed as inputs", "why": "Supervisor source_review discounted them as an unverified snippet (HTTP 429) and anonymous sentiment"}
+  ]
+}

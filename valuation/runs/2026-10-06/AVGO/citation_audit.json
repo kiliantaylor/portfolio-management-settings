@@ -1,0 +1,778 @@
+{
+ "date": "2026-10-06",
+ "symbol": "AVGO",
+ "clean": true,
+ "checked": 100,
+ "ok": 86,
+ "failures": [
+  {
+   "item": "Damodaran ERP basis label (supervisor disagreements[0])",
+   "value": "4.20%",
+   "cited": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm",
+   "result": "mislabelled",
+   "fix": "Label read 'trailing-12-month cash yield with adjusted payout'; the page gives 4.20% for 'Trailing 12 month, with adjusted payout' (the cash-yield variant is 3.92%). Label and quoted evidence corrected; value unchanged."
+  },
+  {
+   "item": "CSCO/COHR/CRDO FY28/FY27 ratios said to match Finviz EPS next Y",
+   "value": "+8.75% / +49.93% / +53.19%",
+   "cited": "Finviz; StockAnalysis",
+   "result": "wrong",
+   "fix": "Actual ratios are +7.7% / +50.3% / +52.9%; text corrected (CSCO at Finviz FY27 base ~$5.10 would be 21.9x, median unchanged)."
+  },
+  {
+   "item": "House low case 'gives ~$110B' FY28 AI (bear)",
+   "value": "~$110B",
+   "cited": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "mislabelled",
+   "fix": "Mechanical value is 115 x 1,265/1,390 = $104.7B; $110B relabelled as a judgment with that arithmetic. Bear unchanged."
+  },
+  {
+   "item": "Mean of agent ladder medians r2",
+   "value": "395.8",
+   "cited": "arithmetic",
+   "result": "wrong",
+   "fix": "(417.1 + 407.7 + 397.9 + 381.6 + 376.2)/5 = 396.1; corrected."
+  },
+  {
+   "item": "1-month sigma ~13.4% = 47.0% / sqrt 12",
+   "value": "13.4%",
+   "cited": "/mnt/project-files/valuation/data/daily_AVGO.csv",
+   "result": "mislabelled",
+   "fix": "47.0%/sqrt(12) = 13.6%; 13.4% relabelled as the agents' figure with the arithmetic shown. ladder_1m unchanged (agents' mean)."
+  },
+  {
+   "item": "Agent 4 weighted debt coupon 4.0% marked not verified",
+   "value": "4.0%",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "mislabelled",
+   "fix": "The Q3 call states it (CFO: 4% weighted average coupon on $59.6B gross fixed-rate principal); supervisor revision_check and source_review corrected. Not used in any supervisor number."
+  },
+  {
+   "item": "Agent 4 FV at the common 11.5% rate and agents mean at 11.5%",
+   "value": "$409.4; mean $402",
+   "cited": "arithmetic",
+   "result": "wrong",
+   "fix": "Agent 4 at 11.5% without net debt: DCF 291.2, FV 0.65 x 469.1 + 0.35 x 291.2 = $406.8 (409.4 was at 11.3%); mean of 408.8/414.4/386.9/406.8/389.1 = $401.2. Corrected in disagreements, revision_check, feedback, changes, confidence_reason. Supervisor FV unaffected."
+  },
+  {
+   "item": "Sizing overlap list",
+   "value": "GOOGL; VST",
+   "cited": "/mnt/project-files/valuation/data/trades.json",
+   "result": "wrong",
+   "fix": "Book also holds 1 NVDA share (bought 2026-10-05); NVDA added to sizing.overlap. Confidence unchanged (overlap never lowers it)."
+  },
+  {
+   "item": "Net debt sourced to StockAnalysis (aggregator) in supervisor fair_value",
+   "value": "$59.42B / $23.98B / $35.44B",
+   "cited": "https://stockanalysis.com/stocks/avgo/statistics/",
+   "result": "mislabelled",
+   "fix": "Re-cited to the Q3 8-K balance sheet: $2,252M + $57,167M - $23,975M = $35.44B. Value unchanged; it enters no number."
+  },
+  {
+   "item": "Agents 1 and 4 peer basis '~CY2027 for every peer'",
+   "value": "23.64x / 23.62x median",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "mislabelled",
+   "fix": "Basis note corrected in agent files (CSCO, COHR, CRDO next FY is FY28); values and agents' medians left as their next-FY reads."
+  },
+  {
+   "item": "Agent 3 CSCO/COHR fiscal-year labels",
+   "value": "FY27 to Jul-2027 / Jun-2027",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "mislabelled",
+   "fix": "Relabelled FY28 to Jul-2028 / Jun-2028 in agent_3.json; basis note added."
+  },
+  {
+   "item": "Agent 5 CSCO/COHR fiscal-year labels and ~CY2027 basis",
+   "value": "FY to Jul-2027 / Jun-2027",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "mislabelled",
+   "fix": "Relabelled FY28 to Jul-2028 / Jun-2028 and basis note corrected in agent_5.json."
+  },
+  {
+   "item": "Agent 4 WACC debt weight sourced only to StockAnalysis",
+   "value": "$59.42B",
+   "cited": "https://stockanalysis.com/stocks/avgo/statistics/",
+   "result": "mislabelled",
+   "fix": "Debt re-cited to the 8-K balance sheet [1] in agent_4.json; market cap stays on StockAnalysis. Not used in the supervisor rate."
+  },
+  {
+   "item": "Agent 5 'interest income not separately verified'",
+   "value": "other income $98M",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "not_found",
+   "fix": "The 8-K non-GAAP reconciliation shows other income, net $98M; sourcing note corrected in agent_5.json. Leaving it out remains agent 5's choice (its number unchanged)."
+  }
+ ],
+ "open_failures": [],
+ "notes": [
+  "Every failure was fixed in place and re-checked; no fix changed fair_value (400), the scenarios, the ladder (median ~388), the thesis break (260) or sizing confidence.",
+  "Finviz forward P/Es are live delayed quotes; the gate re-read the page at 16:38 UTC on 2026-10-06 and accepted a cited value when the gap was a price move only ('EPS next Y' unchanged, implied forward EPS identical for the three restated peers). Snapshot median on CY2027: 25.9x (CRDO). Forward P/E on consensus EPS cannot come from filings, so Finviz/StockAnalysis/Yahoo are used for consensus only; leverage is cited to the 8-K.",
+  "Management FY27/FY28/EPS statements checked verbatim in three full transcripts (Benzinga/Webull, Motley Fool, Platform Aeronaut); the Broadcom IR site returned 403.",
+  "Treasury 10-year read from the raw par-yield CSV, not a summary.",
+  "Observation outside the writable files: data/review_settings.json staged_entries.AVGO gives the Q4 event as Dec 10 (after 2026-12-11); the Q3 call says Wed 2026-12-09 after the close."
+ ],
+ "finviz_snapshot_utc": "2026-10-06T16:38Z",
+ "finviz_snapshot": {
+  "AVGO": [
+   19.62,
+   378.59
+  ],
+  "NVDA": [
+   15.26,
+   240.6
+  ],
+  "QCOM": [
+   17.87,
+   180.89
+  ],
+  "CSCO": [
+   20.95,
+   116.17
+  ],
+  "TSM": [
+   21.84,
+   484.48
+  ],
+  "ADI": [
+   25.24,
+   420.37
+  ],
+  "CRDO": [
+   22.91,
+   220.99
+  ],
+  "COHR": [
+   23.66,
+   335.09
+  ],
+  "ANET": [
+   40.84,
+   214.02
+  ],
+  "AMD": [
+   40.94,
+   656.22
+  ],
+  "MRVL": [
+   42.42,
+   286.83
+  ],
+  "ALAB": [
+   60.07,
+   388.97
+  ],
+  "ARM": [
+   99.17,
+   303.85
+  ],
+  "MU": [
+   5.13,
+   1067.7
+  ]
+ },
+ "checked_items": [
+  {
+   "item": "FY27 AI revenue ~$115B, supply secured",
+   "value": "~$115B",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": "Tan: 'In 2027 we have secured the supply to again double AI revenue to approximately $115 billion.' Same wording in all three full transcripts (Benzinga/Webull, Motley Fool, Platform Aeronaut); CFO repeats 'approximately $115 billion in fiscal 2027'. investors.broadcom.com returned 403."
+  },
+  {
+   "item": "FY28 AI revenue line of sight $230B, supply secured",
+   "value": "$230B",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": "'We have line of sight for fiscal 2028 AI semiconductor revenue growth to again double to $230 billion. Here again, we have secured the supply to meet this outlook.' (all three transcripts)"
+  },
+  {
+   "item": "FY28 EPS >$30 (management)",
+   "value": ">$30",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": "'we are very much on target to exceed $30 in earnings per share in fiscal 2028' (all three transcripts)"
+  },
+  {
+   "item": "Q2 call FY27 AI guide in excess of $100B",
+   "value": ">$100B",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/06/03/broadcom-avgo-q2-2026-earnings-transcript/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q2 call 'some diversity of sources' (Google)",
+   "value": "quote",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/06/03/broadcom-avgo-q2-2026-earnings-transcript/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "GW roadmap: Anthropic +5 GW 2027, +10 GW 2028; OpenAI 1.3 GW 2027, >5 GW 2028; Meta 3 GW through 2028",
+   "value": "GW",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "~30 GW over FY27-28, 'judge it conservatively'; $115B + $230B ~ $350B",
+   "value": "30 GW",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Six XPU customers, 'four of them are just simply going to be huge'",
+   "value": "6 / 4",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "XPV platform >20 GW by end-2028; first tranche $35B; financing deal-by-deal",
+   "value": ">20 GW",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Google demand 'in 28 and 29'",
+   "value": "quote",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 segment operating margins: semis 61%, software ~84%",
+   "value": "61% / ~84%",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript ; https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+   "result": "ok",
+   "note": "10-Q segment table: 12,770/20,839 = 61.3%, 7,325/8,752 = 83.7%"
+  },
+  {
+   "item": "Non-GAAP tax rate ~16% (Q4/FY26, global minimum tax)",
+   "value": "16%",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q4 non-GAAP diluted shares ~4.94B ex-buybacks",
+   "value": "4.94B",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q4 guide: non-AI semis ~$4.3B, software ~$8.7B, semis ~$26.1B, AI $21.7B, GM ~73% (78% a year ago), op margin ~66%",
+   "value": "guide",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript ; https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q4 capex $1.4B; Q3 capex $532M",
+   "value": "1.4B / 532M",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript ; https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q4 FY26 report Wed 2026-12-09 after close",
+   "value": "2026-12-09",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Non-AI semis Q3 +5% y/y; software ARR +15%",
+   "value": "5% / 15%",
+   "cited": "https://www.webull.com/news/15511095937917952 ; https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/ ; https://transcripts.platformaeronaut.com/transcripts/AVGO-3Q26-transcript",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 revenue $29,591M; segments semis $20,839M, software $8,752M (+29%)",
+   "value": "29,591",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 non-GAAP operating income $20,095M (67.9%)",
+   "value": "20,095",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 non-GAAP interest expense $(703)M; GAAP $(778)M",
+   "value": "703 / 778",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 other income, net $98M (GAAP and non-GAAP)",
+   "value": "98",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 non-GAAP net income $16,372M; reproduces (20,095 - 703 + 98) x 0.84 = 16,372",
+   "value": "16,372",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 FCF $13,665M; cash conversion 13,665/16,372 = 0.835 (estimate)",
+   "value": "0.835",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "9M FY26 FCF $31,937M / non-GAAP NI $38,631M = 0.827",
+   "value": "31,937 / 38,631",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 non-GAAP gross margin $22,191M (75.0%)",
+   "value": "22,191",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 non-GAAP tax $3,118M (16.0%)",
+   "value": "3,118",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 non-GAAP diluted shares 4,937M",
+   "value": "4,937",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 non-GAAP opex $2,096M (7.1%)",
+   "value": "2,096",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q3 AI revenue $16.7B; Q4 AI guide $21.7B; Q4 revenue ~$34.8B, op margin ~66%",
+   "value": "guide",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Debt carrying $2,252M + $57,167M = $59,419M; LTD $61,984M at 2025-11-02",
+   "value": "59,419",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Cash $23,975M; net debt $35,444M",
+   "value": "23,975",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Q2 revenue $22,187M, non-GAAP GM $17,109M (77.1%)",
+   "value": "17,109 / 22,187",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Backstop maximum potential liability ~$29B undiscounted; 85%; 5-year leases; fair value not material; nothing paid",
+   "value": "~$29B",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R17.htm ; https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R54.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Convertible-note facility up to $42B (XBRL: uncommitted), none issued / $0 drawn",
+   "value": "$42B",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R17.htm ; https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R54.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Purchase commitments FY27 $52,674M, FY28 $72,952M, total $126,821M (2026-08-02)",
+   "value": "52,674 / 72,952",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R53.htm ; https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R17.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Purchase commitments at 2026-05-03: FY27 $55,214M, FY28 $72,870M, total $128,110M",
+   "value": "55,214 / 72,870",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/R52.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Purchase commitments a year earlier total $235M",
+   "value": "235",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000098/R59.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "RPO ~$179.2B, ~25% in 12 months",
+   "value": "179.2B",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "$10.1B buyback authorization remaining (program to 2026-12-31)",
+   "value": "10.1B",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Debt principal $61,079M",
+   "value": "61,079",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "10-year Treasury 5.31% on 2026-10-05 (also 3M 4.22, 2Y 4.84, 7Y 5.19)",
+   "value": "5.31%",
+   "cited": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv",
+   "result": "ok",
+   "note": "raw CSV row: 10/05/2026,...,10 Yr 5.31"
+  },
+  {
+   "item": "5-year beta 1.48",
+   "value": "1.48",
+   "cited": "https://stockanalysis.com/stocks/avgo/statistics/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Cost of equity 5.31% + 1.48 x 4.20% = 11.53% (estimate)",
+   "value": "11.5%",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "StockAnalysis: market cap $1.81T, EV/EBITDA TTM 33.79 (cross-check, in no number)",
+   "value": "1.81T / 33.79",
+   "cited": "https://stockanalysis.com/stocks/avgo/statistics/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "FY27 consensus EPS $19.39 (48 analysts, low 17.47, high 22.44); FY27 revenue $173.93B; 30d ago 19.57; 27 down / 12 up",
+   "value": "19.39",
+   "cited": "https://finance.yahoo.com/quote/AVGO/analysis/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Four straight EPS beats",
+   "value": "4/4",
+   "cited": "https://finance.yahoo.com/quote/AVGO/analysis/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "AVGO 19.46x = 377.32 / 19.39 (estimate); Finviz 19.59x at $378.14",
+   "value": "19.46x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 19.62x at $378.59, same implied EPS 19.30"
+  },
+  {
+   "item": "NVDA forward P/E (Finviz next FY, as is)",
+   "value": "15.29x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 15.26x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "QCOM forward P/E (Finviz next FY, as is)",
+   "value": "17.81x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 17.87x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "TSM forward P/E (Finviz next FY, as is)",
+   "value": "21.81x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 21.84x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "ADI forward P/E (Finviz next FY, as is)",
+   "value": "25.21x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 25.24x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "ANET forward P/E (Finviz next FY, as is)",
+   "value": "40.88x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 40.84x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "AMD forward P/E (Finviz next FY, as is)",
+   "value": "41.0x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 40.94x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "MRVL forward P/E (Finviz next FY, as is)",
+   "value": "41.96x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 42.42x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "ALAB forward P/E (Finviz next FY, as is)",
+   "value": "59.27x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 60.07x (price move only; EPS next Y unchanged)"
+  },
+  {
+   "item": "CSCO Finviz Fwd P/E 20.89x at $115.82 (FY28 to Jul-2028)",
+   "value": "20.89x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 20.95x at $116.17; implied FY28 EPS 5.544 vs 5.545"
+  },
+  {
+   "item": "COHR Finviz Fwd P/E 23.62x at $334.45 (FY28 to Jun-2028)",
+   "value": "23.62x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 23.66x at $335.09; implied FY28 EPS 14.160 vs 14.163"
+  },
+  {
+   "item": "CRDO Finviz Fwd P/E 22.84x at $220.31 (FY28 to Apr-2028)",
+   "value": "22.84x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "gate snapshot 22.91x at $220.99; implied FY28 EPS 9.646 vs 9.646"
+  },
+  {
+   "item": "CSCO FY27 EPS $5.15, FY ends Jul-31-2027",
+   "value": "5.15",
+   "cited": "https://stockanalysis.com/stocks/csco/forecast/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "COHR FY27 EPS $9.42, FY ends Jun-30-2027",
+   "value": "9.42",
+   "cited": "https://stockanalysis.com/stocks/cohr/forecast/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "CRDO FY27 EPS $6.31, FY ends Apr-30-2027",
+   "value": "6.31",
+   "cited": "https://stockanalysis.com/stocks/crdo/forecast/",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "CSCO CY2027 21.79x = 115.82 / (7/12 x 5.15 + 5/12 x 5.544) (estimate)",
+   "value": "21.79x",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "CRDO CY2027 25.82x = 220.31 / (4/12 x 6.31 + 8/12 x 9.646) (estimate)",
+   "value": "25.82x",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "COHR CY2027 28.37x = 334.45 / (0.5 x 9.42 + 0.5 x 14.160) (estimate)",
+   "value": "28.37x",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Peer median 25.8x (CRDO, 6th of 11) on CY2027; 25.9x on the gate snapshot",
+   "value": "25.8x",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Large-cap (>$400B) cohort median 21.8x (NVDA, CSCO, TSM, AMD); caps from Finviz",
+   "value": "21.8x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Peer median 'EPS next Y' +49.9%; NVDA +70%, TSM +31%, ADI +29%, ANET +28%",
+   "value": "49.93%",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "ARM 98.6x and MU 5.1x (exclusions, in no number)",
+   "value": "98.6x / 5.1x",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": "snapshot 99.17x / 5.13x"
+  },
+  {
+   "item": "House capex 2027 low/base/high 1,390 / 1,841 / 2,434",
+   "value": "1,841",
+   "cited": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "House capex 2028 low/base/high 1,265 / 2,255 / 3,160",
+   "value": "2,255",
+   "cited": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "House file: Meta 2023 revision -23%; Q3 hyperscaler calls late Oct bring first numeric 2027 guides; NVDA DC $89.0B; Alphabet $195-205B",
+   "value": "context",
+   "cited": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Capex share arithmetic: 115/1,841 = 6.25%; x 2,255 = $141B; 180/2,255 = 8.0%; 230/2,255 = 10.2%; 230/3,160 = 7.3% (estimates)",
+   "value": "ratios",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Commitment ratio 72,952/52,674 = 1.385; x $115B = $159B; semis-only $166B (estimates)",
+   "value": "1.385",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "52-week low $289.96 intraday / $293.41 close on 2026-03-30; Oct 1 close $343.64",
+   "value": "289.96 / 293.41",
+   "cited": "/mnt/project-files/valuation/data/daily_AVGO.csv",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "1-year realized vol 47.0%",
+   "value": "46.9%",
+   "cited": "/mnt/project-files/valuation/data/daily_AVGO.csv",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "TSMC Q3 2026 conference Thu 2026-10-15; quiet period Oct 5-14",
+   "value": "2026-10-15",
+   "cited": "https://investor.tsmc.com/english/quarterly-results",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Book: 1 AVGO share, ~$10,000 starting cash (3.8%)",
+   "value": "1 share",
+   "cited": "/mnt/project-files/valuation/data/book.json ; /mnt/project-files/valuation/data/trades.json",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "FV build: EPS (234 x 0.615 - 2.42) x 0.84 / 4.94 = 24.06; P/E 457.1; DCF 292.6; FV 399.5 -> 400 (estimate)",
+   "value": "400",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": "recomputed: 24.059, 457.12, 292.59, 399.54"
+  },
+  {
+   "item": "Scenarios: bear 228.3 (EPS 17.16, DCF 174.4), bull 529.1 (EPS 29.05, DCF 378.8), weighted 389.1 (estimates)",
+   "value": "389.1",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Ladder: bear/base/bull lognormal mixture reproduces every K (94: 0.998 vs 0.996); median 387.5 -> 388",
+   "value": "388",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Thesis break 13.4 x 19.39 = 259.8; 11% below $293.41",
+   "value": "260",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Agent FV s.d. 21.5 -> 15.5 and spans 15.2% / 11.7%",
+   "value": "15.5",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Macquarie (sell-side via press): Google TPU share ~95%/80%/65% 2026-28, FY28 EPS -21%, PT $437; labelled sell-side estimate, reasoning only (agent 3)",
+   "value": "95/80/65",
+   "cited": "https://www.investing.com/news/stock-market-news/broadcom-downgraded-as-google-moves-to-reduce-reliance-on-chip-supplier-4726762",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Agent peer comps (agents 1-5, 11 peers each): values within 1.8% of the gate snapshot (price moves; EPS next Y identical); agent 2 calendarization arithmetic correct",
+   "value": "comps",
+   "cited": "https://finviz.com/screener.ashx?v=121&t=AVGO,NVDA,AMD,MRVL,TSM,ANET,ALAB,CRDO,QCOM,COHR,CSCO,ADI,ARM,MU",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Agent inputs_detail arithmetic (EPS builds, DCFs, segment margins, incremental margin 55.2%) recomputed",
+   "value": "estimates",
+   "cited": "arithmetic",
+   "result": "ok",
+   "note": ""
+  },
+  {
+   "item": "Removed claims (Anthropic S-1 figures, $60B bank financing, Marvell targets, $125.2B/$161.2B, BofA $370B) feed no number in supervisor.json or any agent file",
+   "value": "removed",
+   "cited": "text search of all six files",
+   "result": "ok",
+   "note": "only mentioned as removed / context"
+  }
+ ]
+}

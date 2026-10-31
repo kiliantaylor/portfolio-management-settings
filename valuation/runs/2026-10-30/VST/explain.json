@@ -1,0 +1,1479 @@
+{
+ "symbol": "VST",
+ "as_of": "2026-10-30",
+ "research_as_of": "VST",
+ "spot": 138.37,
+ "agents": [
+  {
+   "agent": "agent_1",
+   "fair_value": 161.96,
+   "method_text": "Blend of 9.5x NTM adjusted (pre-SBC) EBITDA at the horizon ($8.41B, after Cogentrix and the Meta PPAs) = $171.0 (70%) and a DCF at 9.15% WACC with 2.0% Gordon growth = $140.9 (30%). Equals the standard engine's base horizon value of $161.96.",
+   "methods": [
+    {
+     "name": "EV/EBITDA",
+     "value": 170.97,
+     "weight": 0.7,
+     "inputs": "NTM adj. EBITDA at horizon $8,414M x 9.5x = EV $79.9B - net debt $20.9B - preferred/NCI $2.49B + Cogentrix tax NPV $0.63B = $57.2B / 334.3M shares (incl. ~1.1M SBC shares) = $171.0",
+     "inputs_detail": [
+      {
+       "input": "Net debt 2026-06-30",
+       "value": "$19,160M",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F105",
+        "F98",
+        "F97"
+       ],
+       "derivation": "Estimate derived from reported 10-Q lines at 2026-06-30 (no net-debt figure is reported): long-term debt due currently 1,876 + long-term debt less current 17,719 = 19,595, less cash and cash equivalents 435 = 19,160. Excludes AR financing 300, the forward repurchase obligation 613 and restricted cash 46. [citation gate 2026-10-14]"
+      },
+      {
+       "input": "Preferred stock + noncontrolling interests",
+       "value": "$2,488M",
+       "basis": "estimate",
+       "source_ids": [
+        13
+       ],
+       "fact_ids": [],
+       "derivation": "Estimate: sum of two reported XBRL facts at 2026-06-30 (10-Q accn 0001692819-26-000019): PreferredStockValue 2,476 + MinorityInterest 12 = 2,488. Treated as debt-like claims ahead of common equity. [citation gate 2026-10-14]"
+      },
+      {
+       "input": "Net debt at horizon (2027-10-14)",
+       "value": "$20,900M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        25
+       ],
+       "fact_ids": [
+        "F105"
+       ],
+       "derivation": "19,160 + Cogentrix cash 2,300 and assumed debt 1,500 (src 5) - ~15 months of Adj. FCFbG at ~4,300/yr = ~5,400 (2026 guidance midpoint, src 3) + growth spend ex-Cogentrix ~1,500 (part of the $4.5-5B 2026-27 growth allocation, src 4) + buybacks ~1,250 (remaining ~$1.2B authorization by YE2027, src 3) + common and preferred dividends ~580 = ~20,900. The $1.5B junior subordinated notes (src 9) raise debt and cash equally, so they are left out of the net figure. The notes' prospectus says proceeds may redeem the 8.0% Series A and 7.0% Series B preferred after their Oct/Dec 2026 resets (src 25); if so, ~$1.5B shifts from preferred to net debt and total claims ahead of common (~$23.4B) are unchanged, so the bridge keeps that total."
+      },
+      {
+       "input": "Diluted shares at horizon",
+       "value": "334.3M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        5
+       ],
+       "fact_ids": [
+        "F103",
+        "F33",
+        "F46"
+       ],
+       "derivation": "335.6M outstanding (2026-08-03, F103) - ~7.4M repurchased with ~$1.15B at ~$155 (remaining authorization, src 3) + 5.0M Cogentrix consideration shares (src 5) + ~1.1M stock-comp shares (SBC dilution: TTM SBC $134M (F46) / ~$150 x 1.25 years) = 335.6 - 7.42 + 5.0 + 1.12 = ~334.3M (corrected from 334.6M, an addition error, citation gate 2026-10-14). SBC is counted here, not in FCFF."
+      },
+      {
+       "input": "NTM adjusted EBITDA at horizon (Q4-2027 to Q3-2028)",
+       "value": "$8,414M",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        6,
+        7,
+        8
+       ],
+       "fact_ids": [
+        "F6"
+       ],
+       "derivation": "Model rows: FY2027 8,104 (= low end of the $7.4-7.8B 2027 midpoint opportunity, which management said is trending to the lower end, src 4, plus ~$700M from Cogentrix (~$4.0B / 7.25x = ~$550M, Vistra release src 6) and the Meta PPA premium (src 4, 7)); FY2028 8,497 (+~5%: full Meta operating delivery by YE2027 (src 7), PJM capacity flat at $325 vs $333 (src 8), ERCOT soft, only ~72% hedged (src 3)). NTM = 0.21 x FY2027 + 0.79 x FY2028. Pre-SBC, the same basis as peer consensus adjusted EBITDA (src 27). The thin FMP consensus for the window (~$9,370M, 1-4 analysts, src 19) is not used; this sits ~10% below it."
+      },
+      {
+       "input": "EV/EBITDA NTM multiple",
+       "value": "9.5x",
+       "basis": "judgment",
+       "source_ids": [
+        20,
+        27
+       ],
+       "fact_ids": [
+        "CEG.ev_ebitda_ntm",
+        "TLN.ev_ebitda_ntm",
+        "NRG.ev_ebitda_ntm",
+        "NEE.ev_ebitda_ntm",
+        "EXC.ev_ebitda_ntm"
+       ],
+       "derivation": "Peer NTM EV/EBITDA median 10.6x, range 8.9x (NRG) to 11.8x (CEG), on consensus adjusted (pre-SBC) EBITDA (src 20, 27). VST trades ~9.5-9.8x today: EV ~$72.7B (152.2 x 335.6M = $51.1B + $19.16B net debt + $2.49B preferred/NCI) on ~$7.4-7.6B NTM EBITDA before the deals. 9.5x is about where it trades now, ~1.1x below the median, between NRG and TLN. The discount reflects merchant ERCOT exposure (2028 only ~72% hedged, src 3), the undecided PJM 2030/31+ design with a consumer push to cap existing generation (src 23, 24), and the gas-heavy fleet vs CEG. No premium is claimed."
+      },
+      {
+       "input": "Cogentrix tax-benefit adjustment",
+       "value": "+$700M x 0.9",
+       "basis": "estimate",
+       "source_ids": [
+        6,
+        5,
+        3
+       ],
+       "fact_ids": [],
+       "derivation": "$700M = '~$0.7 billion of net present value of expected tax benefits' in Vistra's release (src 6) x 0.9 closing probability = $630M (~$1.9/share)."
+      }
+     ]
+    },
+    {
+     "name": "DCF",
+     "value": 140.93,
+     "weight": 0.3,
+     "inputs": "FY2026-29 FCFF (adj. EBITDA ~37% of revenue, capex 14%->9.5%, 20% tax, SBC as dilution not cost) discounted at 9.15%; Gordon terminal growth 2.0% after FY2029 (~86% of DCF value); exit-9.0x cross-check $153",
+     "inputs_detail": [
+      {
+       "input": "Revenue base FY2025 and growth",
+       "value": "$17,586M; +11.5% FY26, +12% FY27, +4% FY28, +3% FY29",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        5,
+        6
+       ],
+       "fact_ids": [
+        "F3",
+        "F6"
+       ],
+       "derivation": "FY2025 revenue 17,586 (F3); TTM to 2026-06-30 18,985 (F6) supports ~19,600 for FY2026; FY2027 adds Cogentrix's 5,500 MW (src 5,6) and Meta deliveries; later years grow with load at 3-4%."
+      },
+      {
+       "input": "Adjusted EBITDA margin (EBIT margin + D&A)",
+       "value": "~37% (EBIT 27.3-27.8% + D&A 9.4-9.7%)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4
+       ],
+       "fact_ids": [
+        "F36",
+        "F39"
+       ],
+       "derivation": "FY2026 7,300 on ~19,600 revenue (2026 guidance $6.8-7.6B, 'at or above the midpoint', src 3/4); FY2027 8,104; FY2028 8,497; FY2029 ~8,700. D&A 1,986 FY2025 (F36), TTM 1,852 (F39)."
+      },
+      {
+       "input": "Capex % revenue",
+       "value": "14% FY26 -> 9.5% FY29",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F57",
+        "F60"
+       ],
+       "derivation": "Capex FY2025 2,752 (F57), TTM 2,866 (F60, ~15% of TTM revenue, includes growth projects); declines as the Permian peakers and other growth projects are completed."
+      },
+      {
+       "input": "Cash tax rate",
+       "value": "20%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F88",
+        "F95",
+        "F85",
+        "F92"
+       ],
+       "derivation": "TTM tax 584 / pretax 2,803 = 20.8% (F88/F95); FY2025 179 / 1,123 = 16% (F85/F92)."
+      },
+      {
+       "input": "SBC % revenue",
+       "value": "0.7% (dilution basis, not deducted from FCFF)",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F43",
+        "F3",
+        "F46"
+       ],
+       "derivation": "FY2025 SBC 113 / revenue 17,586 = 0.64% (F43, F3); TTM 134 (F46) on ~19,600 FY2026 revenue = ~0.7%. Under sbc_treatment 'dilution' it is carried as ~1.1M extra shares by the horizon instead of a cash cost."
+      },
+      {
+       "input": "WACC",
+       "value": "9.15%",
+       "basis": "judgment",
+       "source_ids": [
+        21,
+        1,
+        9,
+        25
+       ],
+       "fact_ids": [
+        "F81",
+        "F98"
+       ],
+       "derivation": "Cost of equity 10.71% = 10-yr UST 5.21% on 2026-10-13 (src 21) + beta ~1.1 (judgment for a merchant IPP) x 5% ERP. Pre-tax marginal debt cost 6.5%: TTM average 5.8% (interest 1,132 / debt 19,595, F81/F98) is below today's marginal cost, shown by the 7.000%/7.250% junior notes issued 2026-09-24 (src 9); x (1 - 20%) = 5.2%. Preferred ~7.5% (8.0%/7.0% series, src 25). Weights on EV $72.7B: 70.3% equity, 26.4% net debt, 3.4% preferred -> 9.16%, used as 9.15% (round 1: 8.5% with 5.24% rf and 5.8% debt cost)."
+      },
+      {
+       "input": "Terminal value: Gordon growth after FY2029",
+       "value": "2.0%",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        23,
+        24,
+        26
+       ],
+       "fact_ids": [],
+       "derivation": "Nominal FCFF growth of 2.0% after FY2029, below long-run inflation of ~2.5%, to price post-horizon risks: PJM's 2030/31+ design is undecided (src 23) with a consumer proposal to keep the cap on existing generation (src 24); ERCOT oversupply as 2028+ hedges roll off (src 3); AI capex low case (src 26). Cross-check: the round-1 9.0x exit on FY2029 EBITDA gives a DCF of $153 at 9.15%, which is equivalent to ~2.35% perpetual growth; I prefer the Gordon form so the DCF does not reuse peer multiples."
+      },
+      {
+       "input": "Net debt 2026-06-30",
+       "value": "$19,160M",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F105",
+        "F98",
+        "F97"
+       ],
+       "derivation": "Estimate derived from reported 10-Q lines at 2026-06-30 (no net-debt figure is reported): long-term debt due currently 1,876 + long-term debt less current 17,719 = 19,595, less cash and cash equivalents 435 = 19,160. Excludes AR financing 300, the forward repurchase obligation 613 and restricted cash 46. [citation gate 2026-10-14]"
+      },
+      {
+       "input": "Preferred stock + noncontrolling interests",
+       "value": "$2,488M",
+       "basis": "estimate",
+       "source_ids": [
+        13
+       ],
+       "fact_ids": [],
+       "derivation": "Estimate: sum of two reported XBRL facts at 2026-06-30 (10-Q accn 0001692819-26-000019): PreferredStockValue 2,476 + MinorityInterest 12 = 2,488. Treated as debt-like claims ahead of common equity. [citation gate 2026-10-14]"
+      },
+      {
+       "input": "Net debt at horizon (2027-10-14)",
+       "value": "$20,900M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        25
+       ],
+       "fact_ids": [
+        "F105"
+       ],
+       "derivation": "19,160 + Cogentrix cash 2,300 and assumed debt 1,500 (src 5) - ~15 months of Adj. FCFbG at ~4,300/yr = ~5,400 (2026 guidance midpoint, src 3) + growth spend ex-Cogentrix ~1,500 (part of the $4.5-5B 2026-27 growth allocation, src 4) + buybacks ~1,250 (remaining ~$1.2B authorization by YE2027, src 3) + common and preferred dividends ~580 = ~20,900. The $1.5B junior subordinated notes (src 9) raise debt and cash equally, so they are left out of the net figure. The notes' prospectus says proceeds may redeem the 8.0% Series A and 7.0% Series B preferred after their Oct/Dec 2026 resets (src 25); if so, ~$1.5B shifts from preferred to net debt and total claims ahead of common (~$23.4B) are unchanged, so the bridge keeps that total."
+      },
+      {
+       "input": "Diluted shares at horizon",
+       "value": "334.3M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        5
+       ],
+       "fact_ids": [
+        "F103",
+        "F33",
+        "F46"
+       ],
+       "derivation": "335.6M outstanding (2026-08-03, F103) - ~7.4M repurchased with ~$1.15B at ~$155 (remaining authorization, src 3) + 5.0M Cogentrix consideration shares (src 5) + ~1.1M stock-comp shares (SBC dilution: TTM SBC $134M (F46) / ~$150 x 1.25 years) = 335.6 - 7.42 + 5.0 + 1.12 = ~334.3M (corrected from 334.6M, an addition error, citation gate 2026-10-14). SBC is counted here, not in FCFF."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 110.61,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 161.96,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 212.35,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.636,
+   "median": 158.63,
+   "thesis_break": 115.0,
+   "reasoning": "Round 2. Cause of the drop, now pinned: September CPI was released 2026-10-14 08:30 ET at +0.6% m/m and +3.7% y/y (core +0.3% m/m, +2.6% y/y; energy +5.2% m/m) (BLS, src 22), with the 10-yr at 5.21% (src 21). VST closed -6.5% with CEG -5.5%, TLN -6.2% and NRG -5.9%, against SPY -1.1% and XLU -0.3% (src 18). Vistra filed nothing (latest 8-K 2026-10-05, src 11). The move is sector-wide, a rates/AI-power factor sell-off, not company news, so fair value does not move because of it. Changes from round 1 (supervisor feedback, verified at the primaries): (1) SBC is now counted once, as dilution, on pre-SBC EBITDA like the peers; round 1 deducted it in FCFF and also added the shares. (2) WACC is 8.5% -> 9.15%, on rf 5.21% and a 6.5% marginal debt cost (new 7.0-7.25% junior notes). (3) The DCF terminal is now Gordon 2.0% instead of a 9.0x exit, which was equivalent to ~2.35% growth and reused peer multiples: DCF $155 -> $141. (4) The P/E leg is dropped. (5) The Cogentrix tax NPV now cites Vistra's own release (src 6), not The Fly. (6) The AI-capex low case (src 26) is added to the bear case and long-dated risks. New in-lane evidence: the 424B5 shows the junior notes may fund redemption of the 8.0%/7.0% preferred (claims-neutral, src 25); a 2026-07-15 PJM workshop presentation by the Ohio Energy Group proposes keeping the cap and floor on existing generation beyond 2029/30 (src 24). PJM's own answer leaves the 2030/31+ path to after its end-2026 stakeholder review (src 23), so I raise the PJM-cap probability from 0.35 to 0.4. Valuation: 9.5x NTM adjusted EBITDA of $8.41B = $171.0 (70%), DCF $140.9 (30%), fair value $162.0 (round 1 $165.0). Scenarios $110.6 / $162.0 / $212.4 at 25/50/25, lognormal mix with 30% within-scenario vol (~39% total), so the 12-month median is ~$158.7, ~4% above spot. Thesis break moves from $120 to $115, ~8.0x pro forma 2027 EBITDA. The sell-side median target of $210 (src 19) is near my bull case and was not used. About 8 follow-up searches/fetches; www.sec.gov pages were read via WebFetch, data.sec.gov JSON directly."
+  },
+  {
+   "agent": "agent_2",
+   "fair_value": 162.84,
+   "method_text": "Engine base horizon value: 9.5x horizon NTM pre-SBC adjusted EBITDA $8.41B (0.21 x FY27 $8.1B + 0.79 x FY28 $8.5B) less $22.96B net debt incl. preferred, plus $0.63B Cogentrix tax NPV, over 334.6M shares = $172.11 (80%); DCF at 9.5% WACC / 2.0% g = $125.75 (20%). Blend $162.84.",
+   "methods": [
+    {
+     "name": "EV/EBITDA",
+     "value": 172.11,
+     "weight": 0.8,
+     "inputs": "NTM adj. EBITDA at 2027-10-14 $8.41B x 9.5x = EV $79.9B; - net debt incl. preferred $22.96B - minorities $0.01B + Cogentrix tax NPV $0.63B = equity $57.6B / 334.6M shares",
+     "inputs_detail": [
+      {
+       "input": "Adjusted EBITDA FY2027",
+       "value": "$8.1B (EBIT margin 27.2%)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        34
+       ],
+       "fact_ids": [],
+       "derivation": "Low end of the $7.4-7.8B midpoint opportunity ($7.4B; CFO: 'trending towards the lower end') + ~$0.7B Cogentrix and Meta PPAs ('add roughly $700 million ... absent any other impacts') = $8.1B. Round-1 $0.2B ERCOT haircut removed: it had no sourced curve figure behind it. $8.1B / $21,272M = 38.1% less 10.9% D&A = 27.2%."
+      },
+      {
+       "input": "Adjusted EBITDA FY2028",
+       "value": "$8.5B (EBIT margin 27.5%)",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        4,
+        7,
+        34,
+        36
+       ],
+       "fact_ids": [],
+       "derivation": "No management 2028 figure. $8.1B + full-year Cogentrix (~$4.0B net price / 7.25x = ~$0.55B/yr, so ~+$0.1B for the part of 2027 before close) + Meta uprate PPAs and Comanche Peak AWS load from end-2027 (+~$0.3B) - ERCOT: 2028 only ~72% hedged with forwards 'meaningfully lower' and 2028/29 PJM capacity at $325 vs $333 (2027/28) (-~$0.0-0.1B) = ~$8.5B (+5%). Replaces round-1 $9.0B, which leaned on a 1-2 analyst FMP consensus."
+      },
+      {
+       "input": "Net debt incl. preferred at horizon 2027-10-14",
+       "value": "$22,960M",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        34,
+        1,
+        25
+       ],
+       "fact_ids": [
+        "F105",
+        "F74"
+       ],
+       "derivation": "19,160 - 2,160 (H2-2026 Adj. FCFbG: half of guidance midpoint $4,325M) - 3,840 (2027 FCFbG ~$4,860M = 8.1B x 60% conversion (2026 guide 4,325/7,200), x 0.79 yr to Oct-14) + 3,800 (Cogentrix $2.3B cash + $1.5B assumed debt, fully counted) + 1,800 (other growth: $4.5-5B 2026-27 program less $2.3B Cogentrix cash = $2.2-2.7B, ~75% spent after 2026-06-30 by the horizon, incl. Helix calls) + 1,725 (buybacks ~$1.1B + common dividends $308M/yr (F74) x 1.29 = $0.40B + preferred dividends ~7% x $2.48B x 1.29 = $0.22B) = 20,485 + preferred 2,476 = 22,961. The Sept-2026 $1.5B junior notes are neutral to total claims (cash held or preferred refinanced)."
+      },
+      {
+       "input": "Shares at horizon",
+       "value": "334.6M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        3,
+        34
+       ],
+       "fact_ids": [
+        "F103",
+        "F43"
+       ],
+       "derivation": "335.6M + 5.0M Cogentrix consideration shares - ~6.9M repurchased (~$1.1B of the $1.2B authorization by Oct-2027 at ~$160) + ~0.9M SBC issuance ($113M/yr / ~$155 x 1.2 yr) = 334.6M."
+      },
+      {
+       "input": "Horizon EV/EBITDA (NTM, pre-SBC adjusted)",
+       "value": "9.5x on ~$8.41B",
+       "basis": "judgment",
+       "source_ids": [
+        6,
+        35,
+        3
+       ],
+       "fact_ids": [
+        "CEG.ev_ebitda_ntm",
+        "TLN.ev_ebitda_ntm",
+        "NRG.ev_ebitda_ntm",
+        "PEG.ev_ebitda_ntm",
+        "NEE.ev_ebitda_ntm",
+        "ETR.ev_ebitda_ntm",
+        "D.ev_ebitda_ntm",
+        "AEP.ev_ebitda_ntm",
+        "SO.ev_ebitda_ntm",
+        "DUK.ev_ebitda_ntm",
+        "EXC.ev_ebitda_ntm"
+       ],
+       "derivation": "NTM at 2027-10-14 = 0.21 x FY27 $8.1B + 0.79 x FY28 $8.5B = $8.41B. IPP median (CEG 11.8x, TLN 10.6x, NRG 8.9x) 10.6x and 11-peer median 10.6x, on consensus adjusted (pre-SBC) EBITDA (Talen adds back stock comp). VST today ~9.9x (EV $72.7B = 152.2 x 335.6M + 19,160 + 2,476 + 12, over ~$7.37B NTM = 0.21 x 7.25 + 0.79 x 7.4, ex-deals). 9.5x = 1.1x under the IPP median and ~0.4x under today: the horizon NTM is mostly 2028, only ~72% hedged into lower ERCOT forwards, and the PJM 2030/31+ design will be closer to decision."
+      },
+      {
+       "input": "Cogentrix tax-benefit NPV",
+       "value": "+$700M x 0.9 = +$630M",
+       "basis": "estimate",
+       "source_ids": [
+        34
+       ],
+       "fact_ids": [],
+       "derivation": "Release: net price ~$4.0B after '~$0.7 billion of net present value of expected tax benefits'; not captured by the EV/EBITDA multiple or the flat 21% tax rate. x 0.9 probability the deal closes (not closed as of 2026-10-14; release expected mid-to-late 2026)."
+      }
+     ]
+    },
+    {
+     "name": "DCF",
+     "value": 125.75,
+     "weight": 0.2,
+     "inputs": "FY26-29 FCFF (adj. EBITDA $7.25B/$8.1B/$8.5B/$8.85B, D&A 10.9%, capex 13.5%->11% of revenue, tax 21%, SBC as dilution), WACC 9.5%, Gordon g 2.0%, same bridge",
+     "inputs_detail": [
+      {
+       "input": "Adjusted EBITDA FY2029",
+       "value": "$8.85B (EBIT margin 27.9%)",
+       "basis": "judgment",
+       "source_ids": [
+        7,
+        8,
+        36
+       ],
+       "fact_ids": [],
+       "derivation": "+4%: AWS Comanche Peak ramp (full by 2032), 2029/30 capacity under the same ~$325 collar, ERCOT soft; no consensus used."
+      },
+      {
+       "input": "D&A % revenue",
+       "value": "10.9%",
+       "basis": "estimate",
+       "source_ids": [
+        3
+       ],
+       "fact_ids": [
+        "F39",
+        "F6"
+       ],
+       "derivation": "Estimate (no revenue guidance exists): 2026 D&A guidance $2,150M (incl. $423M nuclear fuel amortization, Q2 release reconciliation) / ~$19.7B estimated FY2026 revenue = 10.9%; TTM $1,852M / $18,985M = 9.8% (excl. nuclear fuel). [citation gate 2026-10-14]"
+      },
+      {
+       "input": "Capex % revenue",
+       "value": "13.5% / 12.5% / 11.5% / 11.0%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        4
+       ],
+       "fact_ids": [
+        "F57",
+        "F60",
+        "F6"
+       ],
+       "derivation": "TTM capex $2,866M / $18,985M = 15.1% incl. growth (peakers, uprates); stepping down as the $4.5-5B 2026-27 growth program completes."
+      },
+      {
+       "input": "Tax rate",
+       "value": "21%",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F88",
+        "F95"
+       ],
+       "derivation": "TTM income tax $584M / pretax $2,803M = 20.8%."
+      },
+      {
+       "input": "WACC",
+       "value": "9.5%",
+       "basis": "estimate",
+       "source_ids": [
+        26,
+        24,
+        1
+       ],
+       "fact_ids": [
+        "F98",
+        "F103"
+       ],
+       "derivation": "Ke = 5.25% (10-yr ~5.28% on 2026-10-14) + beta 1.2 (judgment for a merchant IPP trading as an AI-factor stock) x ERP 5.0% = 11.25%; Kd 6.75% pre-tax (junior notes 7.0-7.25%, TTM 5.8%) x 0.79 = 5.33%; weights 70% equity ($152.2 x 335.6M = $51.1B) / 30% debt + preferred ($19.6B + $2.5B) -> 0.70 x 11.25 + 0.30 x 5.33 = 9.47% ~ 9.5%."
+      },
+      {
+       "input": "Terminal growth",
+       "value": "2.0%",
+       "basis": "judgment",
+       "source_ids": [
+        33,
+        37,
+        30
+       ],
+       "fact_ids": [],
+       "derivation": "Load growth (ERCOT reserve margin falling, PJM shortfall) offset by new supply and the open PJM 2030/31+ design (PJM answer, ER26-1556)."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 98.74,
+     "prob": 0.28
+    },
+    "base": {
+     "price": 162.84,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 213.23,
+     "prob": 0.22
+    }
+   },
+   "p_gain": 0.632,
+   "median": 157.46,
+   "thesis_break": 118.0,
+   "reasoning": "Cause of today's drop (verified): BLS released September CPI at 08:30 ET 2026-10-14 (+0.6% m/m, +3.7% y/y; core +0.3% m/m, +2.6% y/y); Reuters reported an AI-infrastructure rout; the IPPs fell together (VST -6.7%, CEG -5.6%, TLN -6.2%, NRG -5.9%) while SPY fell ~1.2% and XLU ~0.4%; EDGAR shows no Vistra 8-K since 2026-10-05. So the move is sector-wide (AI-power factor) triggered by a market-wide macro print, not company news, and does not change fair value. PJM thesis-break flag: open, not tripped; I read PJM's ER26-1556 answer myself: a 'limited extension' through 2029/30, with the 2030/31+ path to be set after an end-2026 stakeholder evaluation; no filing to extend or lower the cap. Round-2 changes after the supervisor's review: Cogentrix's $3.8B now fully in the horizon bridge (net debt incl. preferred $22.96B, built from FCFbG guidance and the call's capital-allocation plan); FY2028 EBITDA cut from $9.0B (thin FMP consensus) to $8.5B; FY2027 raised to the sourced $8.1B (unsourced $0.2B haircut dropped); multiple 10.0x -> 9.5x (below VST's ~9.9x today, 1.1x under the IPP median); P/E leg dropped; shares from the 335.6M cover count; SBC counted once as dilution; Cogentrix ~$0.7B tax NPV added (x0.9). Fair value $162.84 (EV/EBITDA $172.11 80%, DCF $125.75 20%). Scenarios: bear $98.74 (28%), base $162.84 (50%), bull $213.23 (22%), within-scenario sigma 17%; mixture median $157.7. Ladder = 80% that mixture + 20% a lognormal at the 50% realized vol around the same median, to keep fat tails. P(>= $152) = 0.542. I keep the PJM-cap probability at 0.35 (supervisor 0.4): PJM itself framed the collar as limited and has not proposed anything for 2030/31; the risk is state pressure, which is real but undecided. Industry evidence: PJM short of capacity (2028/29 BRA at the cap, 6,831 MW short; Max Gen alerts and >$1,000/MWh prices this week), FERC's 2026-10-09 rejection of IRAS/BYONC keeps capacity tight, hyperscalers keep contracting existing nuclear (Google-CEG), while ERCOT is soft (~$30/MWh; VST and NRG both flagged lower Texas prices; ~20.9 GW batteries)."
+  },
+  {
+   "agent": "agent_3",
+   "fair_value": 153.87,
+   "method_text": "Blend of EV/EBITDA 9.25x on horizon-NTM pre-SBC adjusted EBITDA of ~$8.42B (peer basis) less $23.0B net debt incl. preferred and Cogentrix, plus $0.63B probability-weighted Cogentrix tax NPV, over 335.1M shares (SBC as dilution) = $165 (w 0.55); P/E 13.5x on the model's own NTM EPS of ~$11.43 = $156 (w 0.15); 9.25% WACC / 2% growth DCF = $131 (w 0.30): $153.9.",
+   "methods": [
+    {
+     "name": "EV/EBITDA",
+     "value": 165.46,
+     "weight": 0.55,
+     "inputs": "Horizon NTM pre-SBC adjusted EBITDA ~$8,416M (0.21 x FY27 $8,100M + 0.79 x FY28 $8,500M) x 9.25x = $77.85B EV; less net debt incl. preferred $23.0B and minorities $12M; plus Cogentrix tax NPV $700M x 0.9; / 335.1M shares = $165.5",
+     "inputs_detail": [
+      {
+       "input": "FY2027 adjusted EBITDA (pre-SBC)",
+       "value": "$8.1B pre-SBC (engine EBITDA $8,100M; EBIT margin 28.47% with D&A 10.3%)",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        21,
+        29
+       ],
+       "fact_ids": [],
+       "derivation": "2027 midpoint opportunity $7.4-7.8B excludes Cogentrix and the Meta PPA premium (Q2 release); CFO: 'trending towards the lower end' = $7.4B, and the two deals 'add roughly $700 million ... absent any other impacts' (Q2 call) = $8.1B. Round-1 extra $0.1B haircut dropped: it was a judgment with no new evidence (supervisor). Cogentrix ~7.25x 2027 contribution confirmed in Vistra's release (src 29)."
+      },
+      {
+       "input": "FY2028 adjusted EBITDA (pre-SBC)",
+       "value": "$8.5B pre-SBC (engine EBITDA $8,500M; EBIT margin 29.02% with D&A 10.1%)",
+       "basis": "judgment",
+       "source_ids": [
+        20,
+        21,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "No management 2028 figure and the FMP 2028 consensus (1-2 analysts) is no longer used. Built from 2027 $8.1B: + full-year Meta PPAs and Comanche Peak data-center supply targeted to energize end-2027 (Q2 call), offset by only ~72% of 2028 hedged with ERCOT forwards 'meaningfully lower' (Q2 release/call) and PJM 2028/29 capacity at the ~$325/MW-day cap (src 1): ~+5% = $8.5B."
+      },
+      {
+       "input": "SBC",
+       "value": "$113M FY2025 (TTM $134M); ~0.7% of revenue, counted once as share dilution",
+       "basis": "reported",
+       "source_ids": [
+        18,
+        30,
+        20
+       ],
+       "fact_ids": [
+        "F43",
+        "F46"
+       ],
+       "derivation": "FY2025 $113M (F43), TTM $134M (F46). EBITDA is pre-SBC like the peers' adjusted EBITDA (Talen and Vistra add stock comp back, src 30, 20); SBC enters only the share count: ~$140M/yr x ~1.2 yr / ~$155 = ~1.0M shares."
+      },
+      {
+       "input": "Net debt at horizon",
+       "value": "$23,000M",
+       "basis": "estimate",
+       "source_ids": [
+        18,
+        19,
+        20,
+        21
+       ],
+       "fact_ids": [
+        "F105",
+        "F71"
+       ],
+       "derivation": "$21,636M + Cogentrix ~$3,800M ($2.3B cash + $1.5B assumed debt, 10-K) = $25,436M; less retained cash 2026-07-01 to 2027-10-14 (~1.29 yr): FCFbG guidance midpoint $4,325M x 1.29 = ~$5,580M, minus growth capex ex-Cogentrix ~$1,200M, Helix ~$500M (up to $1.0B committed), common dividends ~$400M ($306M/yr), buybacks ~$1,000M of the $1.2B remaining authorization -> ~$2,480M; = ~$22,960M, rounded $23,000M. Includes the full $3.8B Cogentrix outlay (not prorated), and $2,476M preferred."
+      },
+      {
+       "input": "Shares at horizon",
+       "value": "335.1M",
+       "basis": "estimate",
+       "source_ids": [
+        19,
+        29,
+        20
+       ],
+       "fact_ids": [
+        "F103"
+       ],
+       "derivation": "335.6M (cover, 2026-08-03) + 5.0M Cogentrix consideration shares (src 29) - ~6.5M repurchased (~$1.0B at ~$155) + ~1.0M SBC issuance (~$140M/yr x 1.2 yr / $155) = 335.1M."
+      },
+      {
+       "input": "Horizon EV/EBITDA multiple",
+       "value": "9.25x NTM pre-SBC adjusted EBITDA",
+       "basis": "judgment",
+       "source_ids": [
+        27,
+        30,
+        20,
+        21
+       ],
+       "fact_ids": [
+        "CEG.ev_ebitda_ntm",
+        "TLN.ev_ebitda_ntm",
+        "NRG.ev_ebitda_ntm",
+        "PEG.ev_ebitda_ntm",
+        "NEE.ev_ebitda_ntm",
+        "ETR.ev_ebitda_ntm",
+        "D.ev_ebitda_ntm",
+        "AEP.ev_ebitda_ntm",
+        "SO.ev_ebitda_ntm",
+        "DUK.ev_ebitda_ntm",
+        "EXC.ev_ebitda_ntm"
+       ],
+       "derivation": "Peer median 10.6x (range 8.9x NRG to 11.8x CEG), on consensus adjusted EBITDA which adds back stock comp (Talen reconciliation, src 30). Round 1 applied 9.25x to after-SBC EBITDA (~9.1x on this basis); now on the peers' basis. VST trades ~9.8x NTM today (EV $72.7B = 152.2 x 335.6M + $21.6B, over ~$7.4B ex-deal NTM). I hold 9.25x, ~0.55x below today's multiple, because the horizon NTM is ~79% FY2028, only ~72% hedged with lower ERCOT forwards, and sits closer to the undecided 2030/31 PJM design; 9.25x is inside the peer range, above NRG (8.9x), the closest business mix."
+      },
+      {
+       "input": "Cogentrix tax-benefit NPV",
+       "value": "$700M x 0.9 = $630M ($1.88/share)",
+       "basis": "estimate",
+       "source_ids": [
+        29
+       ],
+       "fact_ids": [],
+       "derivation": "Vistra release: net price ~$4.0B is after '~$0.7 billion of net present value of expected tax benefits'; x 0.9 judged probability the deal closes; / 335.1M shares."
+      }
+     ]
+    },
+    {
+     "name": "P/E",
+     "value": 156.19,
+     "weight": 0.15,
+     "inputs": "Model's own horizon NTM EPS ~$11.43 (NOPAT ~$4.92B less after-tax interest 6% x 0.79 x $23.0B = $1.09B, / 335.1M) x 13.5x = $154.3, plus $1.88 Cogentrix tax NPV = $156.2",
+     "inputs_detail": [
+      {
+       "input": "Horizon NTM EPS for P/E leg",
+       "value": "$11.43",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        21,
+        19
+       ],
+       "fact_ids": [
+        "F105"
+       ],
+       "derivation": "Replaces the FMP-consensus EPS ($12.32 with a 10% haircut), which rests on 1-2 analysts. Engine: NTM EBIT ~$6,231M (0.21 x $5,948M + 0.79 x $6,305M) x (1 - 21%) = $4,922M; less interest 6% x (1-21%) x $23,000M = $1,090M; = $3,832M / 335.1M = $11.43, pre-SBC with SBC in the share count, like peers' adjusted EPS."
+      },
+      {
+       "input": "Horizon P/E",
+       "value": "13.5x",
+       "basis": "judgment",
+       "source_ids": [
+        27,
+        26
+       ],
+       "fact_ids": [
+        "CEG.pe_ntm",
+        "TLN.pe_ntm",
+        "NRG.pe_ntm",
+        "EXC.pe_ntm"
+       ],
+       "derivation": "Peer median 17.3x (range 9.3-21.8x) is lifted by regulated utilities; merchant IPP median 12.5x (CEG 21.8, TLN 12.5, NRG 9.3); VST ~14.8x NTM consensus ($152.2 / $10.27); 13.5x inside the range, between the IPP median and VST's current multiple."
+      }
+     ]
+    },
+    {
+     "name": "DCF",
+     "value": 131.46,
+     "weight": 0.3,
+     "inputs": "FCFF FY2026-29 $3.28B, $4.05B, $4.87B, $4.94B (pre-SBC, SBC in share count); WACC 9.25%; Gordon g 2.0% (TV 86% of EV); net debt at horizon $23.0B; Cogentrix tax NPV $0.63B; 335.1M shares",
+     "inputs_detail": [
+      {
+       "input": "Base revenue FY2025",
+       "value": "$17,586M",
+       "basis": "reported",
+       "source_ids": [
+        18
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "FY2026 revenue growth",
+       "value": "+10%",
+       "basis": "estimate",
+       "source_ids": [
+        18,
+        19
+       ],
+       "fact_ids": [
+        "F3",
+        "F6"
+       ],
+       "derivation": "TTM revenue to 2026-06-30 is $18,985M (+8% vs FY2025); H1 2026 $9,402M vs $8,003M prior-year (+17%); H2 seasonally strong but ERCOT prices softer -> ~$19.3B, +10%."
+      },
+      {
+       "input": "FY2027-29 revenue growth",
+       "value": "+8%, +4%, +2%",
+       "basis": "judgment",
+       "source_ids": [
+        18,
+        20,
+        21
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY2027 adds Cogentrix (10 gas plants, ~5,500 MW, 10-K) for most of the year and Meta PPAs; FY2028 adds Comanche Peak data-center supply (energize end-2027 per call); FY2029 inflation-like. Revenue barely drives value since margins are set from EBITDA."
+      },
+      {
+       "input": "FY2026 adjusted EBITDA (pre-SBC)",
+       "value": "$7.3B pre-SBC (engine EBITDA $7,301M; EBIT margin 27.64% with D&A 10.1%)",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        21
+       ],
+       "fact_ids": [],
+       "derivation": "Estimate, not a company figure (model output inside the guidance range; guided midpoint $7.2B, already pre-SBC: adds back $137M non-cash comp). Guidance $6.8-7.6B (midpoint $7.2B); CFO on Q2 call: 'at or above the midpoint' -> $7.3B, pre-SBC (Vistra's Ongoing Operations Adjusted EBITDA adds back non-cash compensation, src 20). $7,300M / $19,345M revenue = 37.74% less D&A 10.1% = 27.64%. [citation gate 2026-10-14]"
+      },
+      {
+       "input": "FY2029 EBIT margin",
+       "value": "28.6% (EBITDA $8.6B, 38.8% of revenue, pre-SBC)",
+       "basis": "judgment",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "EBITDA margin slightly below FY2028's 39.1%, reflecting the risk that PJM keeps a capacity cap or redesigns RPM from 2030/31 (PJM answer, ER26-1556); less D&A 10.2%."
+      },
+      {
+       "input": "D&A % revenue",
+       "value": "10.1-10.3%",
+       "basis": "estimate",
+       "source_ids": [
+        18,
+        19
+       ],
+       "fact_ids": [
+        "F36",
+        "F39"
+       ],
+       "derivation": "FY2025 D&A $1,986M (11.3% of revenue), TTM $1,852M (9.8%); Cogentrix adds D&A in 2027."
+      },
+      {
+       "input": "Capex % revenue",
+       "value": "15.0%, 13.4%, 10.6%, 10.5%",
+       "basis": "estimate",
+       "source_ids": [
+        18,
+        19,
+        20,
+        21
+       ],
+       "fact_ids": [
+        "F57",
+        "F60"
+       ],
+       "derivation": "FY2025 capex $2,752M, TTM $2,866M; 2026 guided capex ex-growth $1,536M plus growth (Permian peakers, Meta uprates, solar) -> ~$2.9B in 2026, ~$2.8B 2027, ~$2.3B thereafter. Cogentrix purchase price handled in net debt."
+      },
+      {
+       "input": "Tax rate",
+       "value": "21%",
+       "basis": "estimate",
+       "source_ids": [
+        18,
+        19
+       ],
+       "fact_ids": [
+        "F84",
+        "F91",
+        "F88",
+        "F95"
+       ],
+       "derivation": "Effective rate FY2024 655/3,467 = 18.9%; TTM 584/2,803 = 20.8%."
+      },
+      {
+       "input": "WACC",
+       "value": "9.25%",
+       "basis": "estimate",
+       "source_ids": [
+        24,
+        25,
+        8
+       ],
+       "fact_ids": [],
+       "derivation": "Risk-free 5.19% (US 10-year, Treasury, 2026-10-14) + beta 1.3 x ERP 4.5% = cost of equity ~11.0%. Beta: 2-year weekly regression vs SPY = 1.55 (1-year 0.52, low correlation), Blume-adjusted 2-year 1.37, judgment 1.3. Pre-tax cost of debt 6.5% (new junior subordinated notes priced at 7.00%/7.25%, senior debt lower; judgment) x (1-21%) = 5.1%. Weights: equity $51.1B (152.2 x 335.6M) vs net debt plus preferred $21.6B -> 70/30. WACC = 0.70x11.0% + 0.30x5.1% = 9.25%."
+      },
+      {
+       "input": "Terminal growth",
+       "value": "2.0%",
+       "basis": "judgment",
+       "source_ids": [
+        1,
+        2,
+        7
+       ],
+       "fact_ids": [],
+       "derivation": "Merchant generation with coal retirements, PJM cap/redesign risk after 2029/30 and ERCOT oversupply; nominal growth at or below inflation."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 106.11,
+     "prob": 0.3
+    },
+    "base": {
+     "price": 153.87,
+     "prob": 0.45
+    },
+    "bull": {
+     "price": 201.9,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.581,
+   "median": 151.17,
+   "thesis_break": 112.0,
+   "reasoning": "Round 2. Cause of the 2026-10-14 drop (verified, unchanged): VST -6.3% to $152.2 with no 8-K or release since 2026-10-05 (EDGAR); the AI-power/AI-infrastructure group sold off on the hot September CPI (BLS: +0.6% m/m, +3.7% y/y; core +0.3% m/m), 10-year ~5.2%: sector/market-wide, not company-specific, so it does not move fair value. PJM cap status (the thesis-break trigger), as of 2026-10-14: FERC accepted the ~$175 floor / ~$325 cap collar for 2028/29 and 2029/30 on 2026-04-28 (ER26-1556); PJM's answer limits it to auctions through 2029/30 and commits to a stakeholder evaluation by end-2026 before setting the 2030/31+ path; the 2026-09-29 FERC order (ER26-3380/EL26-108) accepted and suspended the Reliability Backstop to 2027-02-28 and opened a section 206 proceeding. No filing to extend the cap exists: flag open, not tripped. What changed after the supervisor's review: (1) SBC was counted twice (after-SBC EBITDA against pre-SBC peer multiples, plus SBC shares); I confirmed at source that Talen's and Vistra's adjusted EBITDA add back stock comp, and moved to pre-SBC EBITDA with SBC as dilution only. (2) Dropped the unsupported $0.1B 2027 haircut and the thin FMP 2028 consensus; 2027 $8.1B, 2028 $8.5B by my own build. (3) Added the Cogentrix ~$0.7B tax NPV, confirmed in Vistra's release, at 0.9 probability. (4) P/E leg now on the model's own EPS. (5) PJM post-2030 cap probability 0.5 -> 0.45; I stay above the supervisor's 0.4 (see revisions). Fair value $153.9 (EV/EBITDA $165, P/E $156, DCF $131); scenarios $106/$154/$202 at 30/45/25; engine median $149.5. Skeptic findings still stand: 2027 is trending to the low end; 2028 is only ~72% hedged into lower ERCOT forwards; the balance sheet absorbs $3.8B of Cogentrix plus $1.5B of 7%+ hybrids at BBB-; BMO cut its target to $210 from $231 on Oct 5 (TIKR, context only). No short-seller report or sell rating found. Ladder: centred ~$151.7 (between the engine median and fair value, leaning to the 30% bear weight) with ~42-45% effective vol and fat tails, P(>=152) 0.495. Round-2 follow-ups: 3 web searches/fetches plus 4 primary-document checks (Cogentrix release, Talen and Vistra Q2 reconciliations, Q3 date release, Fed calendar); PJM's 2029/30 parameters PDF could not be text-extracted here, so the December BRA date stays unconfirmed."
+  },
+  {
+   "agent": "agent_4",
+   "fair_value": 154.44,
+   "method_text": "Blend of 9.5x NTM adjusted (pre-SBC) EV/EBITDA at the horizon ($8.26B = 0.21 x FY27 $8.12B + 0.79 x FY28 $8.29B) = $165.3 (60%) and a 5-year DCF at 9.0% WACC, 2.5% g = $138.22 (40%). Equity bridge: horizon net debt $21.21B (full Cogentrix outlay), preferred $2.48B, +$0.63B Cogentrix tax NPV, 335.1M shares (SBC as dilution).",
+   "methods": [
+    {
+     "name": "EV/EBITDA",
+     "value": 165.26,
+     "weight": 0.6,
+     "inputs": "NTM adjusted EBITDA at 2027-10-14 $8,257M x 9.5x = EV $78.44B - net debt $21.21B - preferred $2.48B + tax NPV $0.63B = $55.39B / 335.1M sh = $165.3",
+     "inputs_detail": [
+      {
+       "input": "2027 standalone Adj EBITDA",
+       "value": "$7,400M (low end of $7.4-7.8B midpoint opportunity)",
+       "basis": "guidance",
+       "source_ids": [
+        21,
+        23
+       ],
+       "fact_ids": [],
+       "derivation": "Q2 release range (a 'midpoint opportunity', not formal guidance); CFO: 2027 'trending towards the lower end'. Low end used."
+      },
+      {
+       "input": "Cogentrix + Meta PPA premium, 2027",
+       "value": "+$700M",
+       "basis": "guidance",
+       "source_ids": [
+        23,
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "CFO: the two transactions 'add roughly $700 million to our midpoint opportunity'; Cogentrix release: ~7.25x 2027 expected Adj. EBITDA on a ~$4.0B net price (~$0.55B of the $0.7B)."
+      },
+      {
+       "input": "NTM adjusted EBITDA at horizon (Q4-27 to Q3-28), pre-SBC",
+       "value": "$8,257M",
+       "basis": "estimate",
+       "source_ids": [
+        21,
+        23
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "Engine: revenue FY2025 $17,586M (F3) grown 11%/8%/3%; adjusted EBIT margin 26.0%/27.5%/27.2% + D&A 11% -> FY2026 $7,223M, FY2027 $8,117M (= $7.4B + $0.7B), FY2028 $8,295M (+2.2%); NTM = 0.21 x FY27 + 0.79 x FY28."
+      },
+      {
+       "input": "EV/EBITDA multiple (NTM, at horizon)",
+       "value": "9.5x",
+       "basis": "judgment",
+       "source_ids": [
+        30,
+        21,
+        23,
+        32
+       ],
+       "fact_ids": [
+        "NRG.ev_ebitda_ntm",
+        "TLN.ev_ebitda_ntm",
+        "CEG.ev_ebitda_ntm"
+       ],
+       "derivation": "Peer median 10.6x on consensus adjusted EBITDA (range 8.9-11.8x; IPPs NRG 8.9x, TLN 10.6x, CEG 11.8x). VST today ~9.8x NTM ($72.7B EV / ~$7.4B). Less ~0.3x for in-multiple long-dated risks net of nuclear upside (-$7.1/share, long_dated_risks) -> 9.5x."
+      },
+      {
+       "input": "Net debt at horizon",
+       "value": "$21,212M",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        21,
+        31
+       ],
+       "fact_ids": [
+        "F105"
+       ],
+       "derivation": "$19,160M at 2026-06-30 (F105) - pre-SBC FCFF to 2027-10-14 $4,623M + after-tax interest drag $1,133M + returns $1,742M + Cogentrix $3,800M (full; round 1 lost half of it to the engine's proration) = $21,212M (19,160 - 4,623 + 1,133 + 1,742 + 3,800; corrected from $21,232M, an addition error, citation gate 2026-10-14)."
+      },
+      {
+       "input": "Preferred stock (debt-like claim, as 'minorities')",
+       "value": "$2,476M",
+       "basis": "reported",
+       "source_ids": [
+        20,
+        24
+       ],
+       "fact_ids": [],
+       "derivation": "2,476,066 preferred shares x $1,000 liquidation preference (10-Q). The 424B2 says the $1.5B junior notes are for general corporate purposes including funding redemption of 'some or all' of Series A/B at their Oct/Dec 2026 resets; claims ahead of common are carried at face either way."
+      },
+      {
+       "input": "Cogentrix tax-benefit NPV",
+       "value": "+$630M ($700M x 0.9)",
+       "basis": "estimate",
+       "source_ids": [
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "Release: net price ~$4.0B after ~$0.7B NPV of expected tax benefits; 0.9 judged closing probability. +$1.9/share."
+      },
+      {
+       "input": "Diluted shares at horizon",
+       "value": "335.1M",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        21,
+        31
+       ],
+       "fact_ids": [
+        "F103"
+       ],
+       "derivation": "335.6M (2026-08-03, F103) + 5.0M Cogentrix + ~1.1M SBC dilution - ~6.6M buybacks ($850M/yr x 1.2 yrs at ~$155) = 335.1M."
+      }
+     ]
+    },
+    {
+     "name": "DCF",
+     "value": 138.22,
+     "weight": 0.4,
+     "inputs": "Pre-SBC FCFF FY26-30 $3.13B/$3.87B/$4.42B/$4.56B/$4.78B; WACC 9.0%; Gordon g 2.5%; same equity bridge",
+     "inputs_detail": [
+      {
+       "input": "WACC",
+       "value": "9.0%",
+       "basis": "estimate",
+       "source_ids": [
+        29,
+        24,
+        20
+       ],
+       "fact_ids": [
+        "F81",
+        "F98"
+       ],
+       "derivation": "CoE 10.6% = 5.19% 10-yr UST (2026-10-14) + beta ~1.2 x 4.5% ERP; marginal pre-tax debt ~6.4% (TTM $1,132M / $19,595M = 5.8%, F81/F98; new junior notes 7.0-7.25%, 424B2) -> 5.1% after tax; 70/30 -> 8.95% ~ 9.0%."
+      },
+      {
+       "input": "Terminal growth",
+       "value": "2.5%",
+       "basis": "judgment",
+       "source_ids": [
+        18,
+        23
+       ],
+       "fact_ids": [],
+       "derivation": "Nominal; load growth offsets merchant price mean-reversion and battery build; capped near long-run inflation. PJM/ERCOT long-dated risks are priced in the multiple and scenarios, not here."
+      },
+      {
+       "input": "Capex % revenue",
+       "value": "15%/14%/12%/11.5%/11% FY26-30",
+       "basis": "estimate",
+       "source_ids": [
+        21,
+        20,
+        19
+       ],
+       "fact_ids": [
+        "F57",
+        "F60"
+       ],
+       "derivation": "Capex $2,752M FY2025 (F57), $2,866M TTM (F60) plus nuclear fuel and growth projects; Workday shows Beaver Valley uprate hiring."
+      },
+      {
+       "input": "D&A % revenue",
+       "value": "11%",
+       "basis": "estimate",
+       "source_ids": [
+        21
+       ],
+       "fact_ids": [
+        "F36"
+       ],
+       "derivation": "Estimate (no revenue guidance exists): 2026 guided D&A $2,150M incl. nuclear fuel amortization / ~$19.5B estimated revenue = 11%; FY2025 D&A $1,986M (F36). [citation gate 2026-10-14]"
+      },
+      {
+       "input": "Tax rate",
+       "value": "21%",
+       "basis": "estimate",
+       "source_ids": [
+        20
+       ],
+       "fact_ids": [
+        "F88",
+        "F95"
+       ],
+       "derivation": "TTM income tax $584M / pretax $2,803M = 20.8% (F88/F95)."
+      },
+      {
+       "input": "Net debt at horizon",
+       "value": "$21,212M",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        21,
+        31
+       ],
+       "fact_ids": [
+        "F105"
+       ],
+       "derivation": "$19,160M at 2026-06-30 (F105) - pre-SBC FCFF to 2027-10-14 $4,623M + after-tax interest drag $1,133M + returns $1,742M + Cogentrix $3,800M (full; round 1 lost half of it to the engine's proration) = $21,212M (19,160 - 4,623 + 1,133 + 1,742 + 3,800; corrected from $21,232M, an addition error, citation gate 2026-10-14)."
+      },
+      {
+       "input": "Preferred stock (debt-like claim, as 'minorities')",
+       "value": "$2,476M",
+       "basis": "reported",
+       "source_ids": [
+        20,
+        24
+       ],
+       "fact_ids": [],
+       "derivation": "2,476,066 preferred shares x $1,000 liquidation preference (10-Q). The 424B2 says the $1.5B junior notes are for general corporate purposes including funding redemption of 'some or all' of Series A/B at their Oct/Dec 2026 resets; claims ahead of common are carried at face either way."
+      },
+      {
+       "input": "Cogentrix tax-benefit NPV",
+       "value": "+$630M ($700M x 0.9)",
+       "basis": "estimate",
+       "source_ids": [
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "Release: net price ~$4.0B after ~$0.7B NPV of expected tax benefits; 0.9 judged closing probability. +$1.9/share."
+      },
+      {
+       "input": "Diluted shares at horizon",
+       "value": "335.1M",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        21,
+        31
+       ],
+       "fact_ids": [
+        "F103"
+       ],
+       "derivation": "335.6M (2026-08-03, F103) + 5.0M Cogentrix + ~1.1M SBC dilution - ~6.6M buybacks ($850M/yr x 1.2 yrs at ~$155) = 335.1M."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 95.67,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 154.44,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 216.57,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.581,
+   "median": 151.33,
+   "thesis_break": 116.0,
+   "reasoning": "Round 2. Cause of the 2026-10-14 drop (unchanged, confirmed by the supervisor at BLS): VST -6.51% to $151.79 with CEG -5.45% and TLN -6.22% against SPY -1.07% and XLU -0.31% (Twelve Data), no Vistra news (EDGAR: the last 8-K, filed 2026-10-05, only extends the commodity-linked revolver to 2027-09-29). The trigger was the September CPI (BLS: +0.6% m/m, +3.7% y/y; core +0.3% m/m, +2.6% y/y), an AI-power/IPP sector move set off by a market-wide print, not company-specific. It followed a -6.35% day on Oct 8 after a +20.5% run (TIKR). PJM thesis-break flag: open, not tripped. The collar covers only the 2028/29 and 2029/30 BRAs and PJM will set the 2030/31+ path after an end-2026 stakeholder evaluation (PJM ER26-1556 answer, read at source); FERC's Oct 9 order rejected PJM's curtail-first large-load plan, keeping a 50 MW definition and a registry (MGRID, which relies on trade press; context only). I put 0.4 on a post-2030 cap or administrative design. Corrections from the supervisor, verified: (a) my engine bridge counted only half of the $3.8B Cogentrix outlay, so horizon net debt rises from $19.48B to $21.21B (stated directly; -$5.6/share); (b) the peer multiple now applies to pre-SBC adjusted EBITDA like the peers' consensus, with SBC counted once as dilution (+~$3/share); (c) the ~$0.7B Cogentrix tax-benefit NPV, confirmed in Vistra's release, is added at 90% (+$1.9/share); (d) the junior notes' use of proceeds is now quoted from the 424B2 ('some or all' of Series A/B), with claims carried at face; (e) WACC 9.0% from a marginal debt cost of ~6.4% (DCF -$4.1). I keep my own FY2028 at $8.29B (+2%), below the supervisor's ~$8.5B, because 2028 is only ~72% hedged into lower ERCOT forwards and no management figure exists. Fair value: 9.5x on $8.26B NTM = $165.3 (60%) and DCF $138.2 (40%) = $154.4 (round 1 $155.3). Polymarket odds, newsletter targets and the Zero Hedge uncapped-price figure are now context only and set no number. Long-dated risks now include the AI-capex low case (bear 8.0x) and nuclear-contracting upside. Ladder: engine mixture of lognormals at bear $95.7 / base $154.4 / bull $216.6 (25/50/25), 30% within-scenario vol; median ~$151.3, near today's $152.2. Thesis break $116 (~8.0x pro forma). Research limits: sec.gov refused the scripted fetch, so filings were read with WebFetch; X and Reddit were unreachable in round 1 and not retried."
+  },
+  {
+   "agent": "agent_5",
+   "fair_value": 160.48,
+   "method_text": "Blend of 9.25x horizon NTM adjusted (pre-SBC) EBITDA of ~$8.41B (0.21 x FY2027 $8.1B + 0.79 x FY2028 $8.5B) less $22.25B net debt incl. preferred and $12M NCI plus $0.63B Cogentrix tax NPV, over 333.9M shares = $168.3 (70%), and a 9.37% WACC / 2.5% growth DCF on pre-SBC FCFF with SBC as dilution = $142.2 (30%); engine base horizon value $160.48.",
+   "methods": [
+    {
+     "name": "EV/EBITDA",
+     "value": 168.3,
+     "weight": 0.7,
+     "inputs": "Horizon NTM adjusted EBITDA ~$8,414M x 9.25x = EV ~$77.8B; less net claims $22,250M and NCI $12M; plus $630M Cogentrix tax NPV; / 333.9M shares = $168.3",
+     "inputs_detail": [
+      {
+       "input": "Adjusted (pre-SBC) EBITDA path FY2026 / FY2027 / FY2028",
+       "value": "$7.2B / $8.1B / $8.5B (EBITDA margins 37.2% / 37.7% / 37.7%; EBIT margins 26.22% / 27.22% / 27.20% with D&A 11% / 10.5% / 10.5% of revenue)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        5,
+        30
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 = midpoint of the $6.8-7.6B guide (mgmt 'at or above the midpoint', sources 3, 5) = $7.2B; FY2027 = low end $7.4B (CFO 'trending towards the lower end') + ~$0.7B Cogentrix/Meta ('roughly $700 million', source 5) = $8.1B; FY2028 $8.5B = judgment: +5% on FY2027 for full-year Cogentrix/Meta and PJM, held below consensus because only ~72% of 2028 is hedged and ERCOT forwards are 'meaningfully lower' (sources 3, 5). Pre-SBC, matching Vistra's Ongoing Ops Adjusted EBITDA and the peers' consensus basis. Arithmetic: 7,200/19,345 = 37.2%; 8,100/21,473 = 37.7%; 8,500/22,546 = 37.7%."
+      },
+      {
+       "input": "SBC (dilution basis)",
+       "value": "~0.7% of revenue; ~1.0M shares to the horizon",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F43",
+        "F46",
+        "F3"
+       ],
+       "derivation": "FY2025 SBC $113M (F43) / $17,586M = 0.64%; TTM $134M (F46). Counted once as dilution: $134M / ~$155 per share x ~1.2 years (2026-08-03 to 2027-10-14) = ~1.0M shares added to the horizon count; EBITDA and EBIT are pre-SBC like the peers' consensus."
+      },
+      {
+       "input": "Net claims now (net debt + preferred)",
+       "value": "$21,636M",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F105"
+       ],
+       "derivation": "Net debt $19,160M (F105) + preferred stock $2,476M (10-Q balance sheet, source 1); NCI $12M carried separately as minorities."
+      },
+      {
+       "input": "Net claims at horizon (net debt + preferred)",
+       "value": "$22,250M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        5,
+        30
+       ],
+       "fact_ids": [
+        "F105",
+        "F67",
+        "F74"
+       ],
+       "derivation": "Management capital plan (source 5) prorated over 2026-07-01 to 2027-10-14 (15.5 of 24 months = 0.646): available cash $10,000M ('more than $10 billion', taken at $10B) x 0.646 = -$6,460M; equity holders: $3,000M less H1-2026 buybacks $709M and dividends $154M (F67, F74 derivations) = $2,137M for H2-26 + 2027, x 15.5/18 = +$1,840M; growth other than Cogentrix and Helix: ($4,750M midpoint - $2,300M Cogentrix cash - $1,000M Helix) x 0.646 = +$937M; Helix capital calls +$500M (judgment: only the first $500M is unconditional and management 'cannot predict the amount or timing', source 5); Cogentrix cash $2,300M + assumed debt $1,500M = +$3,800M (sources 1, 30). 21,636 - 6,460 + 1,840 + 937 + 500 + 3,800 = 22,253 -> $22,250M. Whether the $1.5B junior notes replace Series A/B preferred (424B2 use of proceeds, source 6) does not change total claims."
+      },
+      {
+       "input": "Shares now / at horizon",
+       "value": "335.6M / 333.9M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        5,
+        30
+       ],
+       "fact_ids": [
+        "F103",
+        "F46"
+       ],
+       "derivation": "335.6M cover count (F103) + 5.0M Cogentrix consideration shares (source 30) - $1.2B remaining authorization (to be exhausted no later than end-2027, running ahead of pro-rata, source 5) / ~$155 = -7.7M + SBC dilution ~1.0M = 333.9M."
+      },
+      {
+       "input": "Cogentrix tax-benefit NPV (adjustment)",
+       "value": "+$700M x 0.9 = +$630M",
+       "basis": "estimate",
+       "source_ids": [
+        30
+       ],
+       "fact_ids": [],
+       "derivation": "Vistra release: net price ~$4.0B after '~$0.7 billion of net present value of expected tax benefits'; 0.9 probability of close (deal approvals in progress; close expected mid-to-late 2026)."
+      },
+      {
+       "input": "Horizon EV/EBITDA",
+       "value": "9.25x NTM adjusted (pre-SBC) EBITDA",
+       "basis": "judgment",
+       "source_ids": [
+        22,
+        3,
+        5,
+        31
+       ],
+       "fact_ids": [
+        "NRG.ev_ebitda_ntm",
+        "CEG.ev_ebitda_ntm",
+        "TLN.ev_ebitda_ntm",
+        "EXC.ev_ebitda_ntm",
+        "DUK.ev_ebitda_ntm"
+       ],
+       "derivation": "Inside the peer range 8.9-11.8x (IPP and all-peer median 10.6x), on the same pre-SBC consensus basis as peers. VST today ~9.8x NTM (EV $72.7B = 152.2 x 335.6M + 19,160 + 2,488 over ~$7.36B NTM = 0.2 x 7.2 + 0.8 x 7.4; ~9.5x pro forma for Cogentrix on $8.1B). 0.25x below today's pro forma level because the horizon NTM (Q4-27 to Q3-28) is ~79% FY2028, which is only ~72% hedged vs ~94% for 2027 with ERCOT forwards lower (source 3, 5), and the post-2029/30 PJM design (source 31) is 1-2 years nearer. Each 0.25x = ~$6.3/share."
+      }
+     ]
+    },
+    {
+     "name": "DCF",
+     "value": 142.22,
+     "weight": 0.3,
+     "inputs": "FY2026-30 FCFF from revenue growth 10/11/5/4/3%, pre-SBC EBIT margin 26.2-27.2%, tax 21%, D&A 11-10.5%, capex 14% -> 11%; WACC 9.37%, g 2.5%; TV 82% of DCF; same equity bridge",
+     "inputs_detail": [
+      {
+       "input": "Base revenue FY2025",
+       "value": "$17,586M",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "Revenue growth FY2026 / FY2027 / FY2028-30",
+       "value": "+10% / +11% / +5%, +4%, +3%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        30
+       ],
+       "fact_ids": [
+        "F6",
+        "F7"
+       ],
+       "derivation": "TTM revenue $18,985M (F6) is already +8% on FY2025; FY2027 adds Cogentrix (~5,500 MW, source 30) and Meta PPA volumes; slower growth after 2027. Revenue is mostly commodity pass-through, so margins are set to hit the EBITDA path below."
+      },
+      {
+       "input": "Adjusted (pre-SBC) EBITDA path FY2026 / FY2027 / FY2028",
+       "value": "$7.2B / $8.1B / $8.5B (EBITDA margins 37.2% / 37.7% / 37.7%; EBIT margins 26.22% / 27.22% / 27.20% with D&A 11% / 10.5% / 10.5% of revenue)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        5,
+        30
+       ],
+       "fact_ids": [],
+       "derivation": "FY2026 = midpoint of the $6.8-7.6B guide (mgmt 'at or above the midpoint', sources 3, 5) = $7.2B; FY2027 = low end $7.4B (CFO 'trending towards the lower end') + ~$0.7B Cogentrix/Meta ('roughly $700 million', source 5) = $8.1B; FY2028 $8.5B = judgment: +5% on FY2027 for full-year Cogentrix/Meta and PJM, held below consensus because only ~72% of 2028 is hedged and ERCOT forwards are 'meaningfully lower' (sources 3, 5). Pre-SBC, matching Vistra's Ongoing Ops Adjusted EBITDA and the peers' consensus basis. Arithmetic: 7,200/19,345 = 37.2%; 8,100/21,473 = 37.7%; 8,500/22,546 = 37.7%."
+      },
+      {
+       "input": "D&A % revenue",
+       "value": "11% FY2026, 10.5% thereafter",
+       "basis": "estimate",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [
+        "F36",
+        "F3"
+       ],
+       "derivation": "FY2025 D&A $1,986M / revenue $17,586M = 11.3%; drifts down as revenue grows faster than the asset base, with Cogentrix adding assets in 2027."
+      },
+      {
+       "input": "Tax rate",
+       "value": "21%",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F85",
+        "F92",
+        "F88",
+        "F95"
+       ],
+       "derivation": "Federal statutory 21%; TTM tax/pretax = 584/2,803 = 20.8%."
+      },
+      {
+       "input": "Capex % revenue",
+       "value": "14% FY2026, 13% FY2027, 11% thereafter",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        5
+       ],
+       "fact_ids": [
+        "F57",
+        "F60"
+       ],
+       "derivation": "FY2025 capex $2,752M = 15.6% of revenue, TTM $2,866M; growth capex (Permian peakers, nuclear uprates, Oak Hill 2 solar) tapers after 2027."
+      },
+      {
+       "input": "Net claims at horizon (net debt + preferred)",
+       "value": "$22,250M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        5,
+        30
+       ],
+       "fact_ids": [
+        "F105",
+        "F67",
+        "F74"
+       ],
+       "derivation": "Management capital plan (source 5) prorated over 2026-07-01 to 2027-10-14 (15.5 of 24 months = 0.646): available cash $10,000M ('more than $10 billion', taken at $10B) x 0.646 = -$6,460M; equity holders: $3,000M less H1-2026 buybacks $709M and dividends $154M (F67, F74 derivations) = $2,137M for H2-26 + 2027, x 15.5/18 = +$1,840M; growth other than Cogentrix and Helix: ($4,750M midpoint - $2,300M Cogentrix cash - $1,000M Helix) x 0.646 = +$937M; Helix capital calls +$500M (judgment: only the first $500M is unconditional and management 'cannot predict the amount or timing', source 5); Cogentrix cash $2,300M + assumed debt $1,500M = +$3,800M (sources 1, 30). 21,636 - 6,460 + 1,840 + 937 + 500 + 3,800 = 22,253 -> $22,250M. Whether the $1.5B junior notes replace Series A/B preferred (424B2 use of proceeds, source 6) does not change total claims."
+      },
+      {
+       "input": "Shares now / at horizon",
+       "value": "335.6M / 333.9M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        5,
+        30
+       ],
+       "fact_ids": [
+        "F103",
+        "F46"
+       ],
+       "derivation": "335.6M cover count (F103) + 5.0M Cogentrix consideration shares (source 30) - $1.2B remaining authorization (to be exhausted no later than end-2027, running ahead of pro-rata, source 5) / ~$155 = -7.7M + SBC dilution ~1.0M = 333.9M."
+      },
+      {
+       "input": "WACC",
+       "value": "9.37%",
+       "basis": "estimate",
+       "source_ids": [
+        23,
+        26,
+        6
+       ],
+       "fact_ids": [],
+       "derivation": "Estimate: cost of equity 5.19% (10y, source 23) + beta 1.2 (judgment vs ~1.5x market sensitivity, source 26) x ERP 5% = 11.19%; after-tax cost of debt 6.5% (anchored on the 7.0-7.25% junior notes, source 6) x (1 - 21%) = 5.135%; market weights mcap ~$51B / claims ~$22B = 70/30; 0.70 x 11.19% + 0.30 x 5.135% = 9.37% (corrected from 9.25%, which used ~68/32 weights). [citation gate 2026-10-14]"
+      },
+      {
+       "input": "Terminal growth",
+       "value": "2.5%",
+       "basis": "judgment",
+       "source_ids": [
+        20,
+        25,
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "Nominal long-run power demand growth: EIA commercial demand +2.8% in 2027 (source 20); AI capex base case rising through 2028 (source 25); held at 2.5% rather than higher because PJM's 2030/31+ capacity design is open and PJM cites retail-bill concerns (source 31)."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 107.24,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 160.48,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 209.29,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.638,
+   "median": 158.01,
+   "thesis_break": 112.0,
+   "reasoning": "Round 2. Anchor: 1y realized vol 50%, beta ~1.5; VST has traded from ~4-5x forward adj. EBITDA (pre-2024) to ~10-11x (2024-25 peaks) and ~9.8x NTM standalone today - base rates are context, not inputs. Fundamentals (company sources): 2026 adj. EBITDA guide $6.8-7.6B (at/above mid), 2027 trending to the $7.4B low end plus ~$0.7B Cogentrix/Meta = $8.1B; ~94% of 2027 and ~72% of 2028 hedged with ERCOT forwards lower; >$10B available cash 2026-27, ~$3B to equity holders, $4.5-5B growth incl. Cogentrix and Helix. Changes after the supervisor's review: (1) SBC counted once - pre-SBC adjusted EBITDA like the peers, SBC as ~1M shares of dilution; (2) multiple 9.0x -> 9.25x, now on the peers' basis; I stay 0.25x under VST's ~9.5x pro forma level because the horizon NTM is mostly the 72%-hedged 2028 and the post-2029/30 PJM design is nearer; (3) horizon claims $24.0B -> $22.25B, rebuilt from management's prorated capital plan with only $0.5B of Helix calls (timing unpredictable per the CFO); (4) shares 333.1M -> 333.9M; (5) +$0.63B Cogentrix tax-benefit NPV confirmed in Vistra's release; (6) P/E leg dropped because it rested on thin (1-2 analyst) FY2028 consensus. The preferred-refinancing claim is kept: the 424B2 use-of-proceeds section states it (the supervisor checked the 8-K, which does not), and total claims are unchanged either way. Fair value $160.5 (EV/EBITDA $168.3 x 0.7, DCF $142.2 x 0.3). PJM thesis-break status confirmed at PJM's ER26-1556 answer: collar through 2029/30 only, 2030/31+ path to be set after the end-2026 stakeholder review; not tripped. Today's -6.5% was macro/sector (hot CPI) and does not change value. Ladder: 25/50/25 lognormal mixture at the engine scenario values $108/$162/$211 with 27% within-scenario vol (total log-sd ~0.36, below the 50% realized vol because part of that is mean-reverting factor noise); median $158.1, P(>=152) = 0.54."
+  }
+ ],
+ "supervisor": {
+  "confidence": "medium",
+  "used": false,
+  "confidence_reason": "Round 2 settled the two remaining number-moving disagreements: the horizon claims bridge (now $22.9B, from the call's own allocation of the $10B), and the DCF gap. Every agent's DCF sits 15-27% below its multiple leg because three use 2.0% terminal growth that re-prices the PJM risk already in the multiple; fixing it lifts my fair value to $166.0 vs the $158.7 mean. That points the update up, but it is a method correction of ~2 points of probability at the centre, not a new fact about the business, so it is not 'high'.",
+  "changes": [
+   {
+    "item": "exit multiple (k=0.8 rule)",
+    "from": "EV/EBITDA 9.0x",
+    "to": "EV/EBITDA 9.0x (kept)",
+    "why": "Exit k=0.8 rule (2026-10-26 12:16Z) not applied to VST: Kilian card 2026-10-26 15:02Z 'Keep the argued 9.0x' (alternatives were 9.21x on standalone EBITDA, own 9.01x, and 8.32x on FMP consensus, own 7.93x). The ERCOT/PJM discount case stands in for the rule. Rejected version kept as *.exitk-rejected."
+   },
+   {
+    "item": "fair value",
+    "from": 158.7,
+    "to": 166.03,
+    "why": "Reconciled set: 9.5x on pre-SBC EBITDA ($172.5, 0.7) and a DCF at 9.0% / 2.5% ($150.9, 0.3) with horizon claims of $22.9B; the forecaster mean carries DCFs 15-27% below their own multiples."
+   },
+   {
+    "item": "P(close >= K) for K = 91-304",
+    "from": [
+     0.9,
+     0.811,
+     0.719,
+     0.623,
+     0.524,
+     0.424,
+     0.328,
+     0.223,
+     0.144,
+     0.066,
+     0.03
+    ],
+    "to": [
+     0.905,
+     0.825,
+     0.737,
+     0.643,
+     0.545,
+     0.445,
+     0.347,
+     0.238,
+     0.155,
+     0.071,
+     0.032
+    ],
+    "why": "Centre moved up ~$3 (median ~$154.5 -> ~$156.5), part of the way to the reconciled set's $162.5, for the DCF-terminal and claims-bridge corrections; the mean's left tail is kept."
+   },
+   {
+    "item": "terminal growth in the reconciled DCF (agents 1, 2, 3 at 2.0%)",
+    "from": 0.02,
+    "to": 0.025,
+    "why": "DCF check: 2.0% re-priced the post-2029/30 PJM risk already in the multiple discount, the flat FY2029-30 EBITDA and the bear case."
+   },
+   {
+    "item": "horizon net claims (net debt + preferred), $B",
+    "from": [
+     22.25,
+     22.96,
+     23.0,
+     23.39,
+     23.69
+    ],
+    "to": 22.89,
+    "why": "Built from FCFbG guidance (~$6.0B to the horizon) and the call's capital plan (~$3B equity incl. H1 paid, $4.5-5B growth, $2-2.5B unallocated)."
+   },
+   {
+    "item": "a fact agent_5 got wrong: 'more than $10 billion of available cash' prorated as cash generated",
+    "from": -6460,
+    "to": -6000,
+    "why": "The call allocates the $10B to equity, growth and ~$2-2.5B unallocated; FCFbG is ~$9.2B over 2026-27 (2026 guidance midpoint $4,325M + 2027 estimate ~$4,860M = 8,100 x 4,325/7,200) (cash generated to the horizon, $M)."
+   },
+   {
+    "item": "horizon EV/EBITDA for agents 3 and 5",
+    "from": 9.25,
+    "to": 9.5,
+    "why": "The extra 0.25x restates the hedge/PJM reasons already in the 1.1x discount to the 10.6x IPP median."
+   },
+   {
+    "item": "thesis break",
+    "from": 114.6,
+    "to": 115.0,
+    "why": "~8.0x the $8.1B 2027 base on pro forma claims, ~0.9x below NRG; with a fundamental trigger attached."
+   }
+  ],
+  "changes_derived": false,
+  "median_mean": 155.45,
+  "median_supervisor": 158.58,
+  "thesis_break": 115.0,
+  "summary": "Round 2 converged: all five now use the $8.1B 2027 base, pre-SBC EBITDA like the peers, the full Cogentrix cost and the verified tax NPV, with fair values of $154-163 (mean $158.7). Two corrections remain: horizon claims are ~$22.9B when built from FCFbG guidance and the call's capital plan, and the DCFs sit 15-27% below the multiples mainly because 2.0% terminal growth re-prices the PJM risk the 9.5x multiple already carries. With 2.5% terminal growth my reconciled fair value is $166.0 (DCF $150.9, -12.5% vs the multiple; WACC 9.0% vs 8.4% implied), so I nudge the ladder up ~2 points at the centre with medium confidence. The PJM post-2029/30 cap flag is open, not tripped; thesis break $115.",
+  "fair_value": {
+   "value": 147.67,
+   "reason": "Model update 2026-10-23 (update): peer set refresh (Kilian 2026-10-26 06:07Z); the IPP-only peer median fell from 10.6x to 10.06x NTM EV/EBITDA on the 10-23 close, so the horizon multiple moves 9.5x -> 9.0x with the same 1.1x discount, and the engine value of the set goes from $159.66 to $147.67 (-7.5%). Nothing else in the set changed. No-DCF rule (Kilian 2026-10-21 13:50Z: no DCF leg for any researched name except the neoclouds), applied 2026-10-22: the engine re-run of the reconciled set without its 0.3 DCF leg gives $172.53 (runs/2026-10-14/VST/model_engine.json model_fair_value; was $166.03 with the DCF at $150.9). Original reason: Engine base horizon value of the reconciled set: 9.5x horizon NTM pre-SBC adjusted EBITDA ($8.42B = 0.21 x FY2027 $8.1B + 0.79 x FY2028 $8.5B) less $20.4B net debt and $2.49B preferred/NCI, plus $0.63B Cogentrix tax NPV, over 334.6M shares = $172.5 (weight 0.7); DCF at 9.0% WACC and 2.5% terminal growth = $150.9 (0.3). Changes from round 1 ($160.8): horizon net debt $20.8B -> $20.4B (FCFbG to the horizon ~$6.0B, distributions ~$1.84B from the call's $3B plan) and terminal growth 2.0% -> 2.5% (the DCF check; PJM risk counted once). Forecaster mean fair value $158.7 (range $153.9-162.8).",
+   "value_with_dcf": 166.03
+  }
+ }
+}

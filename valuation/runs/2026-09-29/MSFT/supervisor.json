@@ -1,0 +1,458 @@
+{
+  "symbol": "MSFT",
+  "as_of": "2026-09-30",
+  "horizon": "2027-09-30",
+  "round": 2,
+  "round1_to_round2": {
+    "mean_fair_value": {
+      "round1": 544.4,
+      "round2": 546.8
+    },
+    "fair_value_range": {
+      "round1": [
+        485,
+        570
+      ],
+      "round2": [
+        520,
+        563
+      ]
+    },
+    "agent_fair_values": {
+      "agent_1": [
+        540,
+        541
+      ],
+      "agent_2": [
+        565,
+        559
+      ],
+      "agent_3": [
+        485,
+        520
+      ],
+      "agent_4": [
+        570,
+        563
+      ],
+      "agent_5": [
+        562,
+        551
+      ]
+    },
+    "mean_ladder_shift": "The mean ladder barely moved: P(>=518) went from 0.550 to 0.551, P(>=466) from 0.681 to 0.682 and P(>=700) from 0.195 to 0.192. Agent 3 rose by about 5pt around the money after dropping its unsupported 9% EPS cut. Agents 2, 4 and 5 fell by 1-2pt after putting the stake in explicitly, lowering their multiples and recognising that FY27 capex keeps growing. The dispersion roughly halved, but the center stayed where it was.",
+    "mean_ladder_1m_shift": "Unchanged: P(>=518.28) is 0.516 in both rounds.",
+    "convergence_note": "Source overlap rose sharply (mean Jaccard 0.034 to 0.11, distinct share 0.91 to 0.77, and 9 URLs cited by 3+ agents against 2). The new common URLs are the ones the round-1 supervisor cited: the 10-K, the Apr-27 blog, the TIKR capex piece and the Bloomberg $1.4T report. That is expected in a revision round, but it means the tighter agreement in round 2 is not independent confirmation. It reflects one set of corrections that all five adopted."
+  },
+  "revision_check": [
+    {
+      "agent": "agent_1",
+      "addressed_feedback": true,
+      "points": [
+        "Capex period: fixed (CY26 ~$175B; FY26 about $140B including $24.6B of finance-lease additions)",
+        "Net debt: fixed (+$30.7B net cash changed to about -$33B including finance leases), applied only in the DCF, which is correct",
+        "OpenAI stake: added at $27 on a 24x core multiple, cut 1 turn from 25x, so there is no double count",
+        "Concentration: uses about 40% of RPO"
+      ],
+      "residual_issues": "The DCF ($470, 35% weight) is the lowest leg in the set and alone accounts for most of the gap between agent 1 and the others. Its 'lease-adjusted' margin cut of 2-3pt is not tied to a disclosed lease flow. The 10-K gives $24.6B of finance-lease ROU additions against only $3.1B of finance-lease principal paid, which supports a cut, but agent 1 should show the arithmetic."
+    },
+    {
+      "agent": "agent_2",
+      "addressed_feedback": true,
+      "points": [
+        "Bottom-up FY28 build: Azure +35%, D&C flat at about $60B, revenue about $461B (1.3% below consensus), EPS about $23.0",
+        "OpenAI stake: $27 added to a 22-23x core multiple derived from spot less the stake; no net debt is subtracted, which is correct for a P/E",
+        "OpenAI's any-cloud right quantified: about 3-4pt off FY28 Azure growth; Azure's $250B is about a third of OpenAI's ~$750B compute plan",
+        "Acknowledged that the consensus figures come from a single source"
+      ],
+      "residual_issues": "The $750B OpenAI compute plan rests on a Yahoo report; it is fine as colour. Nothing material."
+    },
+    {
+      "agent": "agent_3",
+      "addressed_feedback": true,
+      "points": [
+        "FY28 EPS cut reduced from 9% to 4.5% ($22.60), the top of the defensible range",
+        "FCF leg: the round-1 double count of the operating-lease reclassification is removed",
+        "Stake at 25% and $28 net; RPO share about 38-41%"
+      ],
+      "residual_issues": "(1) The P/E leg subtracts $4.5/share of net debt from a P/E-based equity value. P/E already capitalises the interest income on the $76.8B of cash and the interest on debt and finance leases ($2.5B of finance-lease interest in FY26), so this is a small double count, about -$3 on its blend. (2) The FCF leg (OCF less cash PP&E) leaves out new finance-lease capex: $24.6B of additions in FY26 against $3.1B of principal paid. Deducting the $66.6B stock covers existing leases but not the flow still to come, so the $489 leg is optimistic by tens of dollars at a 2.75% yield. The two errors roughly offset in its $520."
+    },
+    {
+      "agent": "agent_4",
+      "addressed_feedback": true,
+      "points": [
+        "Stake at 25% (10-K) and about $1.1T; prediction-market IPO odds dropped",
+        "TD Cowen cancellations traced to Feb-Mar 2025 and dropped as stale: a good follow-up",
+        "Whole-company 24x P/E leg with no stake added, and a 23x core SOTP leg plus the stake, so the stake is not double counted"
+      ],
+      "residual_issues": "(1) The SOTP subtracts $4 of net debt from a P/E-derived value, a small double count. (2) The FCF leg adds about $15B a year of operating-lease-equivalent spend to capex, while the rent on those same leases already reduces OCF. That counts part of it twice, although it may stand in for the omitted finance-lease additions. The leg has 15% weight and a generous 2.0% yield. Net effect about \u00b1$3."
+    },
+    {
+      "agent": "agent_5",
+      "addressed_feedback": true,
+      "points": [
+        "Macro odds updated (swaps about 36% for October; CME about 52% for another 25bp by year-end)",
+        "OpenAI RPO share, stake and debt figures replaced with primary ones",
+        "Found and fixed its own NTM-window error (it was one fiscal year early)"
+      ],
+      "residual_issues": "(1) The SOTP subtracts $4.4 of net debt from a P/E-based value, a small double count. (2) Its headline 23.5x against 22x core implies the stake is worth 1.5 turns, or about $36, while it values the stake at $28, which puts about $8 more into the P/E leg than into the SOTP. Both issues are under $3 on the blend."
+    }
+  ],
+  "disagreements": [
+    {
+      "topic": "Is the OpenAI stake double counted against the core multiple?",
+      "positions": "Agents 1, 2 and 3 value the core on a cut 'ex-stake' multiple of 22-24x and add $27-28. Agents 4 and 5 run a whole-company P/E leg with no stake beside a core-multiple-plus-stake SOTP leg. Fair values are $520-563 against $518.28 spot.",
+      "resolution": "No double count in any agent. Each ex-stake multiple is derived from spot less the same ~$27 stake: ($518.28 - 27) / NTM EPS $20.74 is about 23.7x. Core EPS is non-GAAP, which excludes the OpenAI equity-method result (FY26 net gains of $6.53B, or $0.67/share, excluded). No agent adds the stake on top of a whole-company multiple. The one inconsistency is agent 5: its headline 23.5x against 22x core implies $36 for the stake while it values it at $28, which is under $3 on the blend. The stake mark itself ($1.1T, midway between the closed $852B post-money and the unclosed ~$1.4T talks, less 25-30%) is the real soft spot. At $852B it is about $21 net; at a closed $1.4T, after about 2% dilution from the $30B raise, about $35. That is \u00b1$7/share, or about 1.4% of price.",
+      "evidence": "10-K FY26 equity-method note (~25% as-converted) and non-GAAP reconciliation (net gains from OpenAI investments of $6.53B excluded); Yahoo/Bloomberg 2026-09-29 ($30B at ~$1.4T, IPO slipped to 2027)"
+    },
+    {
+      "topic": "Net debt including finance leases: level and where it is applied",
+      "positions": "All five now use about $33B (cash and short-term investments $76.8B, less debt of $40.3B book or $46.1B face, less $66.6B of finance leases). Agent 1 subtracts it only in its DCF. Agent 2 never subtracts it. Agents 3, 4 and 5 subtract $4-4.5/share from P/E-based SOTP values, and agents 3 and 4 also subtract it in FCF-yield legs.",
+      "resolution": "The level is consistent and correct. The application is not. Subtracting net debt belongs in the DCF (enterprise value) and, partly, in the FCF-yield legs, because finance-lease principal is a financing outflow that FCF never sees. It does not belong in P/E legs, because EPS already includes the interest income on the $76.8B of cash and the interest on debt and finance leases, so the market multiple already reflects the balance sheet. Agents 3, 4 and 5 are therefore about $1.3-3.2/share too low on their blends. The larger lease issue is the flow, not the stock: FY26 finance-lease ROU additions were $24.6B while only $3.1B of finance-lease principal was paid. The roughly $21.5B gap is capex that 'OCF minus additions to PP&E' never deducts, about 1/3 of FY26 FCF of $67.0B. Agent 3's FCF leg misses it (optimistic). Agent 4 instead adds operating-lease spend whose rent is already in OCF (partial double count). Agent 1's DCF cuts margins 2-3pt for it, without showing the arithmetic. Operating leases ($21.9B, plus $329B not yet commenced) correctly stay out of net debt because their rent runs through OCF.",
+      "evidence": "10-K FY26 balance sheet; Note 10 (debt $40.3B book, $46.1B face, fair value $36.5B); Note 13 lease tables (finance lease liabilities $66.6B; FY26 cash paid: operating leases $6.44B, finance-lease interest $2.55B, finance-lease principal $3.10B; ROU additions: finance $24.6B, operating $4.6B); cash flow statement (OCF $182.9B, PP&E additions $115.9B)"
+    },
+    {
+      "topic": "Level of the core multiple one year out",
+      "positions": "Core multiples of 22x (agents 2 on FY28, 3 and 5), 23x (agents 2 NTM and 4) and 24x (agent 1, on FY28 rather than NTM). Headline multiples are 23.5-24x.",
+      "resolution": "Not settleable by search. Today's core NTM multiple is about 23.7x. The agents assume 0 to 1.7 turns of compression because capex keeps growing and FCF yield stays below 2%. The spread is worth about \u00b1$25/share and is the main remaining source of dispersion. It sits inside the ladder's width and does not move the center.",
+      "evidence": "Arithmetic from the confirmed consensus ($19.76 / $23.68)"
+    },
+    {
+      "topic": "FY28 EPS haircut",
+      "positions": "$22.60 (agent 3, -4.5%); $22.97-23.0 (agents 1, 2, 4 and 5, about -3%).",
+      "resolution": "Agents now sit within the 2-5% range supported by guidance (FY27 operating margin down less than 1pt; minimal benefit from the useful-life change). The remaining $0.40 gap is worth about $9/share at 22x, which is noise.",
+      "evidence": "Q4 FY26 call; confirmed consensus"
+    },
+    {
+      "topic": "Q1 FY27 report date",
+      "positions": "All five say Oct 28 or 29, unconfirmed.",
+      "resolution": "Still no Microsoft date announcement as of Sep 30 (last year's came around Oct 8). Calendar services list Wed Oct 28 after the close as unconfirmed. The print almost certainly falls before the Oct 30 scoring close, and the FOMC is Oct 27-28.",
+      "evidence": "Wall Street Horizon calendar; Microsoft 2025-10-08 date announcement (pattern)"
+    }
+  ],
+  "ladder": [
+    {
+      "K": 130,
+      "p": 0.998
+    },
+    {
+      "K": 207,
+      "p": 0.996
+    },
+    {
+      "K": 259,
+      "p": 0.987
+    },
+    {
+      "K": 311,
+      "p": 0.958
+    },
+    {
+      "K": 363,
+      "p": 0.897
+    },
+    {
+      "K": 415,
+      "p": 0.802
+    },
+    {
+      "K": 466,
+      "p": 0.682
+    },
+    {
+      "K": 518,
+      "p": 0.551
+    },
+    {
+      "K": 570,
+      "p": 0.425
+    },
+    {
+      "K": 622,
+      "p": 0.316
+    },
+    {
+      "K": 700,
+      "p": 0.192
+    },
+    {
+      "K": 777,
+      "p": 0.112
+    },
+    {
+      "K": 907,
+      "p": 0.043
+    },
+    {
+      "K": 1037,
+      "p": 0.016
+    },
+    {
+      "K": 1296,
+      "p": 0.003
+    }
+  ],
+  "ladder_1m": [
+    {
+      "K": 414.62,
+      "p": 0.988
+    },
+    {
+      "K": 440.54,
+      "p": 0.957
+    },
+    {
+      "K": 466.45,
+      "p": 0.873
+    },
+    {
+      "K": 482.0,
+      "p": 0.788
+    },
+    {
+      "K": 497.55,
+      "p": 0.681
+    },
+    {
+      "K": 518.28,
+      "p": 0.516
+    },
+    {
+      "K": 539.01,
+      "p": 0.356
+    },
+    {
+      "K": 554.56,
+      "p": 0.254
+    },
+    {
+      "K": 570.11,
+      "p": 0.171
+    },
+    {
+      "K": 596.02,
+      "p": 0.08
+    },
+    {
+      "K": 621.94,
+      "p": 0.034
+    }
+  ],
+  "one_month_reasoning": "The window holds the Q1 FY27 print (likely Wed Oct 28 after the close; guide: revenue $89.85-90.95B, Azure +44-45% cc, capex over $50B) and the Oct 27-28 FOMC (swaps about 36% for a hike after PCE). All five agents are close to neutral and their 1-month ladders are almost identical, so I keep the mean (P(>=518.28) 0.516).",
+  "confidence": "low",
+  "confidence_reason": "Round 2 turned up only consistency errors that largely offset. Net debt subtracted from P/E values makes agents 3, 4 and 5 about $1-3 too low. Finance-lease capex missing from FCF legs makes agent 3 too high and agent 1's DCF possibly about right. Agent 5's stake-versus-multiple mismatch is under $3. None moves the center by more than about 0.5pt, so I keep the mean ladder.",
+  "thesis_break_price": 400.0,
+  "thesis_break_reason": "Agents give $390-410 (mean about $399), so $400 is unchanged. At $400 the core, after the ~$27 stake, is about $373: about 16x core FY28 EPS of about $23 and roughly 19x FY27. That level implies estimate cuts (Azure below ~30%, OpenAI shifting or repricing its ~$270-280B of RPO), not just multiple noise. The stock touched $349 in 2026 with earnings intact, so judge a break on estimates, not on price alone.",
+  "key_drivers": [
+    "Azure against capacity: Q1 FY27 guide +44-45% cc (new definition; FY26 Azure $101.9B, +40%); the print is likely Oct 28",
+    "Capital intensity and lease flow: FY27 capex grows beyond the CY26 ~$175B; FY26 finance-lease additions of $24.6B are not in reported FCF; $329B of datacenter leases not yet commenced",
+    "OpenAI concentration: $24.1B (7.3%) of FY26 revenue, about 40% of the $678B RPO, and any-cloud rights since Apr 2026",
+    "OpenAI stake of about 25% as-converted, worth about $21-35/share net depending on whether the ~$1.4T round closes",
+    "Core multiple: about 23.7x NTM today ex-stake; agents assume 22-24x a year out, with each turn worth about $24/share"
+  ],
+  "fair_value": {
+    "value": 551.0,
+    "reason": "Core NTM EPS at Sep-2027 is about $23.65 (0.75 x FY28 $23.0, which is consensus $23.68 less 3%, plus 0.25 x FY29 about $25.9). At 22.5x core that is $532. Add the OpenAI stake of about $27/share (25% of about $1.1T less 25%, over 7.43B diluted shares), for $559. Net debt is not subtracted, because the P/E already carries its interest. This corrects my round-1 figure, which subtracted about $5 twice. Weighted 90/10 with a lease-adjusted FCF-yield cross-check of about $480 (FY28 OCF about $240B, less cash capex of about $145B, less about $15B of new finance leases, at about 2.5%, less $33B net debt, plus the stake), the result is about $551. The agents' mean is $546.8."
+  },
+  "feedback_for_agents": [
+    {
+      "agent": "agent_1",
+      "missed": [
+        "The DCF 'lease-adjusted' margin cut is not shown. The 10-K gives FY26 finance-lease ROU additions of $24.6B against $3.1B of finance-lease principal paid, so about $21.5B of capex never reached FCF. Show that flow explicitly and project it, since more new leases will be operating."
+      ],
+      "revisit": "Your DCF leg ($470, 35% weight) is the single biggest drag in the set; make its lease assumptions explicit and check its sensitivity to WACC and terminal growth before relying on that weight."
+    },
+    {
+      "agent": "agent_2",
+      "missed": [
+        "Nothing material. The ~$750B OpenAI compute-plan figure rests on one press report."
+      ],
+      "revisit": "Keep the bottom-up build. After the Q1 print (likely Oct 28), recheck the FY28 Azure +35% and flat D&C assumptions against the reported Azure growth and Windows OEM."
+    },
+    {
+      "agent": "agent_3",
+      "missed": [
+        "The P/E leg subtracts $4.5/share of net debt. EPS already includes interest income on the $76.8B of cash and interest on debt and finance leases, so this is a double count (10-K income statement and Note 13).",
+        "The FCF leg leaves out new finance-lease capex. FY26 additions were $24.6B against $3.1B of principal paid (10-K Note 13). Deducting the $66.6B stock covers existing leases only."
+      ],
+      "revisit": "Drop the net-debt deduction from the P/E leg, and deduct projected finance-lease additions in the FCF leg. The two roughly offset, but your method should be internally consistent."
+    },
+    {
+      "agent": "agent_4",
+      "missed": [
+        "The SOTP subtracts net debt from a P/E-based value (double count, about $4).",
+        "The FCF leg adds about $15B of operating-lease-equivalent spend to capex, while the rent on those leases already reduces OCF ($6.4B of operating-lease cash paid in FY26). What FCF actually omits is finance-lease additions ($24.6B in FY26)."
+      ],
+      "revisit": "Rebuild the FCF leg on OCF less PP&E less finance-lease additions, and drop net debt from the SOTP. Good work retiring the stale TD Cowen checks."
+    },
+    {
+      "agent": "agent_5",
+      "missed": [
+        "The SOTP subtracts net debt from a P/E-based value (double count, about $4).",
+        "The headline 23.5x against 22x core implies a stake worth about $36/share, while your SOTP uses $28."
+      ],
+      "revisit": "Make the headline and core multiples consistent with the stake value you use, and drop the net-debt deduction from the SOTP."
+    }
+  ],
+  "source_review": {
+    "independent_originals": 22,
+    "repeated_claims": [
+      {
+        "claim": "OpenAI stake ~25% as-converted; $24.1B revenue from OpenAI",
+        "agents": [
+          "agent_1",
+          "agent_2",
+          "agent_3",
+          "agent_4",
+          "agent_5"
+        ],
+        "original_source": "FY26 10-K equity-method and related-party note (via the round-1 supervisor)"
+      },
+      {
+        "claim": "~$175B is CY2026 capex after ~$15B moved to operating leases; FY27 capex grows",
+        "agents": [
+          "agent_1",
+          "agent_2",
+          "agent_3",
+          "agent_4",
+          "agent_5"
+        ],
+        "original_source": "Q4 FY26 call, via the TIKR/Yahoo 2026-09-29 write-up"
+      },
+      {
+        "claim": "OpenAI raising ~$30B at ~$1.4T",
+        "agents": [
+          "agent_1",
+          "agent_2",
+          "agent_3",
+          "agent_4",
+          "agent_5"
+        ],
+        "original_source": "Bloomberg 2026-09-29 (single report; recaps in Yahoo and others)"
+      },
+      {
+        "claim": "OpenAI ~38-41% of RPO",
+        "agents": [
+          "agent_1",
+          "agent_2",
+          "agent_3",
+          "agent_4",
+          "agent_5"
+        ],
+        "original_source": "Round-1 supervisor estimate from the Dec-2025 45% disclosure and Hood's Q4 comment; not a company disclosure"
+      },
+      {
+        "claim": "FY27/FY28 consensus EPS $19.76/$23.68",
+        "agents": [
+          "agent_1",
+          "agent_2",
+          "agent_3",
+          "agent_4",
+          "agent_5"
+        ],
+        "original_source": "StockAnalysis aggregator (one source)"
+      }
+    ],
+    "quality": [
+      {
+        "agent": "agent_1",
+        "lane_kept": true,
+        "grade": "high",
+        "note": "Primary filings plus the call. Its revisions are sourced to the 10-K lease tables."
+      },
+      {
+        "agent": "agent_2",
+        "lane_kept": true,
+        "grade": "medium",
+        "note": "Distinctive value-chain evidence (IDC, Gartner, peer backlogs) now drives an explicit bottom-up EPS. Some trade press is secondhand."
+      },
+      {
+        "agent": "agent_3",
+        "lane_kept": true,
+        "grade": "medium",
+        "note": "Dropped the single-source sec-api depreciation path. EPS is now anchored on guidance. Method inconsistencies remain (see revision_check)."
+      },
+      {
+        "agent": "agent_4",
+        "lane_kept": true,
+        "grade": "medium",
+        "note": "Up from low. It retired the stale TD Cowen checks and the thin prediction markets and now uses primary stake data. Alternative data remains colour."
+      },
+      {
+        "agent": "agent_5",
+        "lane_kept": true,
+        "grade": "medium",
+        "note": "Base rates from P/E-history data sites. Macro and debt inputs are now current or primary. It caught its own NTM error."
+      }
+    ],
+    "discounted": [
+      {
+        "claim": "OpenAI worth ~$1.4T",
+        "why": "A single report of early-stage talks. The only closed round is $852B post-money, so a midpoint mark is appropriate and $1.4T should be treated as upside, not the base."
+      },
+      {
+        "claim": "OpenAI share of RPO ~38-41%",
+        "why": "A derived estimate, not disclosed. Useful for sizing, but not a fact to carry with precision."
+      }
+    ]
+  },
+  "changes": [
+    {
+      "item": "fair value",
+      "from": 546.8,
+      "to": 551.0,
+      "why": "Removing the net-debt deduction that agents 3, 4 and 5 (and my round-1 figure) applied to P/E-based values adds about $4, while charging the $24.6B-a-year finance-lease capex flow in the FCF cross-check subtracts a little."
+    },
+    {
+      "item": "Fact/method: net debt should not be subtracted from P/E-based values (agents 3, 4, 5; round-1 supervisor)",
+      "from": -4.5,
+      "to": 0.0,
+      "why": "EPS already includes interest income on the $76.8B of cash and interest on debt and finance leases ($2.55B of finance-lease interest in FY26), so the multiple already prices the balance sheet (10-K)."
+    },
+    {
+      "item": "Fact: finance-lease capex missing from FCF (agents 3, 4; agent 1 implicit)",
+      "from": 0.0,
+      "to": 21.5,
+      "why": "FY26 finance-lease ROU additions were $24.6B against only $3.1B of finance-lease principal paid (10-K Note 13), so 'OCF less PP&E additions' of $67.0B overstates the owner cash flow by about $21.5B (units: $B per year)."
+    }
+  ],
+  "summary": "Round 2 narrowed the fair values from $485-570 to $520-563 (mean $547) without moving the center: the mean P(close >= $518 on 2027-09-30) is 0.551, against 0.550 in round 1. The OpenAI stake (~25%, about $27-28/share net) is not double counted anywhere: every ex-stake multiple is derived from spot less the same stake, and core EPS excludes the OpenAI equity-method result. Net debt including finance leases (~$33B) is the right level in every agent, but agents 3, 4 and 5 wrongly subtract it from P/E values (about -$1 to -3 each), and FCF legs still miss about $21.5B a year of finance-lease capex; the two errors roughly offset. I keep the mean ladder, put fair value at $551 and the thesis break at $400, with low confidence; the next real information is the Q1 FY27 print, likely Oct 28.",
+  "sizing": {
+    "max_weight_pct": 15.0,
+    "conviction": "low",
+    "entry": "2 tranches over about 5 weeks: half now, half after the Q1 FY27 print (likely Oct 28) and the Oct 27-28 FOMC",
+    "overlap": "None. The portfolio is all cash ($10,000, which already includes the new money). MSFT is large-cap AI-capex and Nasdaq-beta exposure that future tech or AI holdings would share.",
+    "reason": "The reconciled fair value (~$551) is only about 6% above spot plus a 0.7% dividend, against about 30% vol and about 40% of RPO concentrated in OpenAI, so conviction stays low. Liquidity and credit are best-in-class, but a single name should not exceed about 15% (~$1,500) of a $10k portfolio, and the second half should wait for the earnings and FOMC week.",
+    "conviction_label_before": "low",
+    "confidence": 0.41,
+    "confidence_source": "confidence pass 2026-10-01 (beats S&P 500 12M Sharpe): The edge is thin: the reconciled fair value (~$551) is about 6% above $518 spot plus a 0.7% dividend, which after a ~4-5% T-bill leaves little excess return against ~30% realized vol, so MSFT needs to beat SPY by nearly twice the index's excess return to win on Sharpe. Upside rests on Azure growth and the OpenAI stake mark; the main risks are capex and finance-lease intensity compressing the multi",
+    "confidence_event": "P(12M Sharpe beats S&P 500 / SPY)"
+  },
+  "sources": [
+    {
+      "title": "Microsoft FY2026 Form 10-K (lease Note 13, debt Note 10, OpenAI equity-method note, non-GAAP reconciliation)",
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+      "date": "2026-07-29"
+    },
+    {
+      "title": "OpenAI reportedly in talks to raise $30B round at $1.4T valuation",
+      "url": "https://finance.yahoo.com/technology/ai/articles/openai-repotedly-talks-raise-30b-195237004.html",
+      "date": "2026-09-29"
+    },
+    {
+      "title": "Microsoft Earnings Date (calendar, unconfirmed Oct 28 2026)",
+      "url": "https://www.wallstreethorizon.com/microsoft-earnings-calendar",
+      "date": "2026-09-30"
+    },
+    {
+      "title": "Microsoft announces quarterly earnings release date (2025 pattern)",
+      "url": "https://news.microsoft.com/source/2025/10/08/microsoft-announces-quarterly-earnings-release-date-65/",
+      "date": "2025-10-08"
+    },
+    {
+      "title": "Microsoft 8-K Ex. 99.1 (Q1 FY27 outlook restated)",
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965dex991.htm",
+      "date": "2026-09-02"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "symbol": "VRT", "agent_id": "agent_2", "as_of": "2026-09-28", "horizon": "2027-09-28",
+  "ladder": [
+    {"K": 61, "p": 0.99}, {"K": 98, "p": 0.955}, {"K": 122, "p": 0.91}, {"K": 146, "p": 0.855},
+    {"K": 171, "p": 0.78}, {"K": 195, "p": 0.70}, {"K": 220, "p": 0.615}, {"K": 244, "p": 0.535},
+    {"K": 268, "p": 0.46}, {"K": 293, "p": 0.39}, {"K": 329, "p": 0.30}, {"K": 366, "p": 0.23},
+    {"K": 427, "p": 0.145}, {"K": 488, "p": 0.09}, {"K": 610, "p": 0.035}
+  ],
+  "fair_value": {
+    "value": 262.0,
+    "method": "Blend of forward P/E (70%): ~$10.40 NTM EPS at Sept 2027 (consensus-derived, 4% execution haircut) x 25x = $260, and FCF yield (30%): ~$10.70/share NTM FCF at a 4% yield = $267. Blended ~$262, about 7% above the $244.04 close.",
+    "methods": [
+      {"name": "P/E", "value": 260.0, "weight": 0.7,
+       "inputs": "NTM EPS at 2027-09-28 = 0.25 x FY27 $9.16 + 0.75 x FY28 est. $11.45 = $10.88, haircut ~4% to $10.40; x 25x",
+       "inputs_detail": [
+         {"input": "FY2026 adjusted EPS", "value": "$6.65-$6.75 guidance; consensus $6.73", "basis": "guidance", "source_ids": [1, 3], "derivation": ""},
+         {"input": "FY2027 EPS consensus", "value": "$9.16 (29 analysts, range $8.28-$10.94, up from $8.80 90 days ago)", "basis": "consensus", "source_ids": [3], "derivation": ""},
+         {"input": "FY2028 EPS", "value": "$11.45 (+25%)", "basis": "estimate", "source_ids": [3, 5, 7, 8, 2], "derivation": "Consensus FY27 revenue $18.2B implies ~30% growth after 2026's ~31% organic; I step down to ~25% EPS growth in 2028, in line with Dell'Oro's low-20s% DCPI market growth into 2027 plus modest margin gains, supported by a $15B backlog (+~109%) and orders +152% organic in Q2, Nvidia guiding ~70% FY28 revenue growth, and third-party hyperscaler capex forecasts of ~$1T in 2027."},
+         {"input": "Execution haircut", "value": "-4% to NTM EPS ($10.88 -> $10.40)", "basis": "judgment", "source_ids": [4, 6, 10], "derivation": "The Q2 revenue miss came from supply-chain congestion and project execution. Modine had the same supply constraints in its data center business, with 450-550bp of margin drag, so conversion friction looks industry-wide and may persist into 2027."},
+         {"input": "Target P/E", "value": "25x NTM", "basis": "judgment", "source_ids": [3, 11, 12, 13], "derivation": "VRT trades ~26.6x FY27 consensus ($244.04/$9.16). Eaton trades ~26.8x FY27 ($431.41/$16.12) with slower growth, and nVent ~32x its 2026 EPS guide midpoint ($160.5/$5.05). A year from now, growth will be decelerating from ~30% toward the mid-20s and competition in liquid cooling is intensifying (Schneider/Motivair, Eaton/Boyd, Delta), so I apply a small discount to Eaton's forward multiple: 25x."}
+       ]},
+      {"name": "FCF yield", "value": 267.0, "weight": 0.3,
+       "inputs": "NTM FCF at Sept 2027 ~$4.2B / 392.7M diluted shares = ~$10.70/share; 4.0% FCF yield",
+       "inputs_detail": [
+         {"input": "FY2026 adjusted FCF", "value": "$2.4-$2.6B guidance", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "Diluted share count", "value": "392.7M (Q2 2026)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "NTM FCF at horizon", "value": "~$4.2B", "basis": "estimate", "source_ids": [1, 3], "derivation": "Assumes FCF tracks adjusted EPS at ~100% conversion (2026: $2.5B FCF vs ~$2.64B adj. net income = $6.73 x 392.7M). Scaled with the NTM EPS path in method 1 (~$10.7/share), before the execution haircut."},
+         {"input": "FCF yield", "value": "4.0%", "basis": "judgment", "source_ids": [11, 12], "derivation": "The reciprocal of the 25x P/E used in method 1, consistent with the electrical-equipment peer multiples (Eaton ~27x FY27) and with ~100% cash conversion."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 140.0, "prob": 0.22, "story": "AI capex digestion: hyperscalers guide 2027/28 capex flat or lower after investor pushback (as in the July 2026 Alphabet sell-off), order growth turns negative against tough comps, and the supply-chain friction seen at Vertiv and Modine hurts margins. NTM EPS gets cut to ~$8.50 and the multiple compresses to ~16-17x, as in cyclical capital-goods de-ratings. In 2022 VRT fell ~65% peak to trough."},
+    "base": {"price": 265.0, "prob": 0.50, "story": "Backlog of ~$15B converts as new Malaysia and Americas capacity comes online, Q3 guidance of 34-36% organic growth is met, and FY27 EPS lands near the $9.16 consensus. The DCPI market keeps growing in the low 20s% (Dell'Oro), but the multiple drifts to ~25x NTM as growth decelerates and liquid-cooling competition grows (Schneider/Motivair, Eaton/Boyd, Delta, nVent)."},
+    "bull": {"price": 380.0, "prob": 0.28, "story": "Rubin/Kyber ramps (Nvidia guiding ~70% FY28 growth, $279B in supply commitments) and 2027 hyperscaler capex near $1T push orders and pricing higher. Execution normalizes, UIG adds grid-to-chip content, EPS beats (FY28 ~$13), and the stock re-rates to ~30x, back toward its 52-week high of ~$380."}
+  },
+  "thesis_break_price": 150.0,
+  "thesis_break_reason": "At ~$150 VRT would trade at ~16x FY27 consensus, below 60% of Eaton's multiple and near the 52-week low of ~$134-138. Given backlog of ~$15B and peers still reporting record data center orders, that level would most likely mean the market sees a real break: hyperscaler/neocloud order cancellations or deferrals, a sharp 2027 capex cut, a lasting loss of thermal share to Schneider/Eaton/Taiwan CDU vendors, or a recurring margin problem from execution failures. Ordinary 66%-vol noise would not explain it.",
+  "catalysts": [
+    {"date": "2026-10 (late)", "event": "Vertiv Q3 2026 results; must deliver the $3.65-3.85B sales / 34-36% organic guide to show the Q2 timing slip was temporary", "direction": "?"},
+    {"date": "2026-10 (late)", "event": "Alphabet, Microsoft, Meta, Amazon Q3 results with first 2027 capex commentary", "direction": "?"},
+    {"date": "2026-11", "event": "Nvidia Q3 FY27 results (guided ~$108B); Rubin ramp read-through for liquid cooling and power", "direction": "+"},
+    {"date": "2026-Q4", "event": "Close of the UtilityInnovation Group acquisition ($1.45B cash plus up to $1.15B earnout)", "direction": "?"},
+    {"date": "2027-01", "event": "Dell'Oro 3Q26 DCPI report; Modine FQ3 and Schneider FY results as thermal demand and pricing read-throughs", "direction": "?"},
+    {"date": "2027-02", "event": "Vertiv Q4 2026 results and first FY2027 guidance (consensus EPS $9.16, revenue $18.2B)", "direction": "?"},
+    {"date": "2027-03", "event": "Nvidia GTC 2027: next-generation rack power/cooling reference designs and qualified CDU vendors", "direction": "?"},
+    {"date": "2027-04/05", "event": "Vertiv Q1 2027 results; hyperscaler Q1 capex updates", "direction": "?"},
+    {"date": "2027-07", "event": "Vertiv Q2 2027 results; lapping +152% organic orders compare", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Durability of hyperscaler and neocloud capex into 2028. Third-party forecasts are ~$1T for 2027, but management teams have not guided and investors pushed back on capex in July 2026.",
+    "Whether the Q2 supply-chain and project-execution slip is transient. Modine showed similar industry-wide constraints.",
+    "Share in liquid cooling as Schneider (Motivair), Eaton (Boyd Thermal), nVent, Delta and other Taiwan ODM suppliers scale CDU capacity and Nvidia standardizes specs.",
+    "Order comparisons: organic orders +152% in Q2 2026 make 2027 order growth optically negative even if demand stays healthy.",
+    "Integration and earnout economics of the UIG acquisition.",
+    "Multiple: VRT trades at parity with Eaton on FY27 despite faster growth. Sentiment on AI infrastructure names can swing the multiple ±30%."
+  ],
+  "reasoning": "The company-reported base: 2026 guide of $14.0B sales (+31% organic), adj. EPS $6.70, FCF ~$2.5B, backlog ~$15B, Q2 organic orders +152%. The stock fell ~35% from its high after a Q2 revenue miss blamed on supply chain and project execution. My lane is the value chain, and it mostly confirms demand. Dell'Oro has the DCPI market +28% in 1Q26 with thermal ~+50%, and expects low-20s% growth into early 2027. Eaton's Electrical Global backlog is +103%. Schneider raised guidance on data center strength, with Motivair growing fast and pricing up ~4 points. nVent more than doubled data center sales to ~$2B and is adding liquid-cooling capacity. Modine's data center sales are +90%. Nvidia printed $89B in data center revenue (+117%) and guided to ~70% FY28 growth. The chain also flags risks. Modine had the same supply-chain constraints and 450-550bp of margin drag, so execution friction is industry-wide. Competition in liquid cooling is intensifying: Schneider/Motivair launched a new CDU on 2026-09-23, Eaton bought Boyd Thermal, and Delta and other Taiwan suppliers sit on Nvidia's reference lists. Capex skepticism is also rising. On valuation, VRT at $244 is ~26.6x FY27 consensus of $9.16, roughly level with Eaton (~26.8x). A 25x multiple on ~$10.40 NTM EPS at the horizon gives ~$260, and FCF yield gives ~$267, for a blended fair value of ~$262 (+7%). My scenarios (bear $140 at 22%, base $265 at 50%, bull $380 at 28%) give a mean of ~$268 and a median near $250-255. For the ladder I used a lognormal centered at ~$255 with ~50% forward volatility, below the 66% realized figure, which was inflated by the drawdown after the Q2 miss. I then fattened the left tail slightly for an AI-capex digestion scenario, since VRT fell ~65% peak to trough in 2022. P(>=244) is ~0.535: a modest positive drift from strong value-chain demand, offset by decelerating growth, competition and multiple risk. No option data was used. The Manifold market on 2027 hyperscaler capex was checked but resolved N/A, so it adds no probability information. CNBC and the Eaton IR page blocked fetching, so I relied on search snippets and secondary coverage for those.",
+  "lane": "industry",
+  "sources": [
+    {"title": "Vertiv Reports Strong Second Quarter 2026 ... Raises Full Year 2026 Guidance (press release)", "url": "https://www.prnewswire.com/news-releases/vertiv-reports-strong-second-quarter-2026-with-diluted-eps-growth-of-53-adjusted-diluted-eps-growth-of-60-raises-full-year-2026-guidance-across-all-key-metrics-302837598.html", "date": "2026-07-29", "type": "company", "in_lane": false},
+    {"title": "Vertiv Q2 2026 earnings call coverage: organic orders +152%, backlog ~$15B (Investing.com transcript / search summary)", "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-vertiv-tops-q2-2026-eps-forecast-shares-rise-premarket-93CH-4824087", "date": "2026-07-29", "type": "press", "in_lane": false},
+    {"title": "Alpha Vantage earnings estimates for VRT (FY26 $6.73, FY27 $9.16, FY27 revenue $18.24B)", "url": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=VRT", "date": "2026-09-29", "type": "data", "in_lane": false},
+    {"title": "Vertiv Q2 2026: Guidance Raised, EPS Beat - Stock Falls on a Revenue Timing Miss (R40)", "url": "https://r40.io/news/vrt-q2-2026-earnings-analysis/", "date": "2026-07", "type": "press", "in_lane": false},
+    {"title": "Dell'Oro: Data Center Physical Infrastructure Market Expands 28 Percent Y/Y in 1Q 2026", "url": "https://www.delloro.com/news/data-center-physical-infrastructure-market-expands-28-percent-y-y-in-1q-2026/", "date": "2026-07-07", "type": "trade", "in_lane": true},
+    {"title": "Modine Q1 FY27 slides: data center sales surge 90% amid margin pressure (Investing.com)", "url": "https://www.investing.com/news/company-news/modine-q1-fy27-slides-data-center-sales-surge-90-amid-margin-pressure-93CH-4825716", "date": "2026-07-29", "type": "press", "in_lane": true},
+    {"title": "Nvidia earnings takeaways: Huang forecasts 70% fiscal 2028 revenue growth (CNBC) / Nvidia Q2 FY27 8-K", "url": "https://www.cnbc.com/2026/08/26/nvidia-nvda-earnings-report-q2-2027-live-updates.html", "date": "2026-08-26", "type": "press", "in_lane": true},
+    {"title": "2026 hyperscaler capex tops US$700bn; 2027 forecasts ~$1T (TMT Finance / Futurum / Goldman summary)", "url": "https://www.tmtfinance.com/intel/2026-hyperscaler-capex-tops-us700bn-analysis", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Schneider Electric H1 2026 earnings call transcript (Investing.com)", "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-schneider-electric-lifts-2026-outlook-after-strong-h1-93CH-4822615", "date": "2026-07-30", "type": "press", "in_lane": true},
+    {"title": "Trefis: How Much Further Could Vertiv Stock Fall?", "url": "https://www.trefis.com/stock/vrt/articles/616600/how-much-further-could-vertiv-stock-fall/2026-09-25", "date": "2026-09-25", "type": "newsletter", "in_lane": false},
+    {"title": "Twelve Data quote: ETN close $431.41 and NVT close $160.50 on 2026-09-28; Alpha Vantage ETN FY27 EPS consensus $16.12", "url": "https://twelvedata.com/", "date": "2026-09-28", "type": "data", "in_lane": true},
+    {"title": "Eaton Q2 2026: Electrical Global backlog more than doubles as orders rise 33% (Pulse 2.0)", "url": "https://pulse2.com/eaton-electrical-global-backlog-more-than-doubles-as-orders-rise-33/", "date": "2026-08-02", "type": "press", "in_lane": true},
+    {"title": "nVent raises 2026 outlook as liquid cooling demand accelerates (Benzinga)", "url": "https://www.benzinga.com/markets/earnings/26/07/60845239/nvent-raises-2026-outlook-as-liquid-cooling-demand-accelerates", "date": "2026-07", "type": "press", "in_lane": true},
+    {"title": "Schneider Electric launches new Motivair coolant distribution unit (GlobeNewswire)", "url": "https://www.globenewswire.com/news-release/2026/09/23/3367288/0/en/schneider-electric-launches-new-motivair-coolant-distribution-unit-integrating-liquid-and-air-cooling-for-more-flexible-data-center-deployments.html", "date": "2026-09-23", "type": "company", "in_lane": true},
+    {"title": "Leading CDU Manufacturers for AI Data Centers in 2026 (DATAAD) / Nvidia Rubin liquid cooling standard (The Cooling Report)", "url": "https://dataad.com/post/ai-data-center-cdu-manufacturers", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Vertiv Announces Agreement to Acquire UtilityInnovation Group", "url": "https://investors.vertiv.com/news/news-details/2026/Vertiv-Announces-Agreement-to-Acquire-UtilityInnovation-Group-to-Accelerate-Time-to-Power-for-AI-Data-Centers/default.aspx", "date": "2026-09-02", "type": "company", "in_lane": false},
+    {"title": "Manifold: Google, Amazon, Meta & Microsoft Total Capex for 2027 (resolved N/A; last showed 48% >$800B, 6 holders, 39 trades)", "url": "https://manifold.markets/Mad2live/google-amazon-meta-microsoft-total", "date": "2026-05-21", "type": "prediction-market", "in_lane": true},
+    {"title": "Hyperscalers face higher capex scrutiny after Alphabet report panned (CNBC; fetch blocked, search snippet only)", "url": "https://www.cnbc.com/2026/07/28/hyperscalers-face-higher-capex-scrutiny-after-alphabet-report-panned.html", "date": "2026-07-28", "type": "press", "in_lane": true}
+  ]
+}

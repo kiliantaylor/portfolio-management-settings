@@ -1,0 +1,81 @@
+{
+  "symbol": "NXPI", "agent_id": "agent_5", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 59, "p": 0.995}, {"K": 95, "p": 0.985}, {"K": 118, "p": 0.97}, {"K": 142, "p": 0.935},
+    {"K": 166, "p": 0.865}, {"K": 189, "p": 0.77}, {"K": 213, "p": 0.66}, {"K": 236, "p": 0.555},
+    {"K": 260, "p": 0.45}, {"K": 284, "p": 0.355}, {"K": 319, "p": 0.25}, {"K": 355, "p": 0.17},
+    {"K": 414, "p": 0.09}, {"K": 473, "p": 0.045}, {"K": 591, "p": 0.015}
+  ],
+  "ladder_1m": [
+    {"K": 189.18, "p": 0.95}, {"K": 201.00, "p": 0.89}, {"K": 212.82, "p": 0.79}, {"K": 219.92, "p": 0.715},
+    {"K": 227.01, "p": 0.63}, {"K": 236.47, "p": 0.51}, {"K": 245.93, "p": 0.395}, {"K": 253.02, "p": 0.315},
+    {"K": 260.12, "p": 0.245}, {"K": 271.94, "p": 0.155}, {"K": 283.76, "p": 0.095}
+  ],
+  "one_month_reasoning": "Two scheduled events fall inside the window: NXP's Q3 2026 results on 2026-10-27 (guide $3.75B revenue, $4.11 non-GAAP EPS midpoint) and the FOMC decision on 2026-10-28, where Polymarket (26 Sep 2026, ~$1.3M 24h volume) priced a 25bp hike at ~67% after the 16 Sep hike. NXP has beaten EPS consensus in recent quarters, but the stock reacted +20% after Q1 and -6% to -8% after Q2 even with a beat, so the sign of the earnings reaction is close to a coin flip. The October guide (visibility is said to reach into Q1 2027) is the swing factor. A hike is mostly priced in, and a hold would be a mild positive. I use a near-symmetric lognormal with a median of about $237.5 (a slight tilt for cheap valuation and backlog commentary) and a 1-month sigma of about 12.5%, a little below the 13.7% from 48%/3.5, because the 48% realized figure is inflated by the April and July earnings gaps. One of those gaps sits inside this window, so I add a mild fat tail.",
+  "fair_value": {
+    "value": 263,
+    "method": "Blend of forward P/E (NTM EPS at Sep-2027 of ~$19.0 x 14x = $266, weight 0.6) and FCF yield (2027E FCF ~$3.6B at a 5.5% yield, less nothing extra because net debt is already in equity FCF = $259/share after buyback-adjusted ~250M shares, weight 0.4), giving ~$263.",
+    "methods": [
+      {"name": "P/E", "value": 266, "weight": 0.6,
+       "inputs": "NTM EPS as of Sep-2027 ~$19.0 (2027 consensus $18.10 rolled forward 3 quarters at ~7% growth, haircut ~4% for cycle and consensus-drift base rate) x 14.0x forward P/E",
+       "inputs_detail": [
+         {"input": "2026 EPS consensus", "value": "$15.06", "basis": "consensus", "source_ids": [4], "derivation": ""},
+         {"input": "2027 EPS consensus", "value": "$18.10 (range $16.26-$20.38, 26 analysts)", "basis": "consensus", "source_ids": [5], "derivation": ""},
+         {"input": "Q3 2026 EPS guide", "value": "$4.11 midpoint", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "NTM EPS at horizon", "value": "$19.0", "basis": "estimate", "source_ids": [1, 3, 5], "derivation": "Rolling 2027 consensus $18.10 forward three quarters into 2028 at the low end of management's 6-10% revenue CAGR with op-margin leverage gives ~$19.8. I haircut ~4% because semi consensus two years out has historically been cut more often than raised, and 2027 recession odds are 35% on Polymarket."},
+         {"input": "Forward P/E multiple", "value": "14.0x", "basis": "judgment", "source_ids": [6, 7, 8], "derivation": "NXP's typical forward range is 14-18x, and it trades at 14.1x now. The 10-year median trailing P/E is ~24x, which is ~16x forward in normal-growth years. I use the low end because the Fed is hiking (policy rate 3.75-4.00% with more priced in) and NXP has held a persistent discount to TXN/ADI (22-30x)."}
+       ]},
+      {"name": "FCF yield", "value": 259, "weight": 0.4,
+       "inputs": "2027E FCF $3.6B / 5.5% target yield = $65.5B equity; ~252M shares -> ~$259",
+       "inputs_detail": [
+         {"input": "TTM FCF", "value": "$2.81B", "basis": "reported", "source_ids": [3], "derivation": ""},
+         {"input": "Q2 2026 FCF", "value": "$791M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "2027E FCF", "value": "$3.6B", "basis": "estimate", "source_ids": [1, 2, 4], "derivation": "2027 revenue ~$15.9B (2026E $14.24B plus management's 'double-digit growth in 2027', trimmed to ~11.5%) x ~23% FCF margin. The margin is Q2's 22.6% (791/3496) plus modest leverage."},
+         {"input": "Target FCF yield", "value": "5.5%", "basis": "judgment", "source_ids": [3, 7], "derivation": "The current TTM FCF yield is 4.7% ($2.81B / $59.6B mkt cap) at a trough-ish multiple. Historically NXP has traded at a 4.5-6.5% FCF yield, and a higher-rate backdrop argues for the middle of that range."},
+         {"input": "Diluted shares", "value": "~252M", "basis": "reported", "source_ids": [1, 3], "derivation": ""},
+         {"input": "Net debt", "value": "$7.75B", "basis": "reported", "source_ids": [1], "derivation": "Already reflected, since FCF is after interest (equity FCF)."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 165, "prob": 0.25, "story": "The cycle rolls over under a Fed hiking into strong PMIs, with 2027 recession odds of 35% (Polymarket). Auto and industrial orders pause, 2027 EPS is cut to ~$15, and the multiple sits at 11x. That repeats the 2022 pattern, when NXPI fell ~30% peak to trough while EPS still grew."},
+    "base": {"price": 255, "prob": 0.5, "story": "The upcycle continues. 2027 EPS lands near $17.5-18 and the forward multiple stays ~14x, a modest recovery toward fair value within the 5-year range of $150-$340. That matches the stock's median 12-month return (~+5%) plus dividends."},
+    "bull": {"price": 335, "prob": 0.25, "story": "Management delivers double-digit 2027 growth and ~60% gross margin, and EPS estimates rise toward $20. Physical-AI and auto content re-rate the stock to 17-18x, back to the May 2026 high of ~$340."}
+  },
+  "thesis_break_price": 175,
+  "thesis_break_reason": "Below the 52-week low of ~$183 and at under 10x consensus 2027 EPS. A trade there would most likely mean the analog/auto upcycle has broken (estimates cut 15%+, a recession, or tariff or China shocks to auto demand), not just sentiment. NXPI has spent little time below ~$180 since 2023, except the April 2025 tariff panic.",
+  "catalysts": [
+    {"date": "2026-10-27", "event": "Q3 2026 results and Q4 guide (visibility into Q1 2027)", "direction": "?"},
+    {"date": "2026-10-28", "event": "FOMC decision; ~67% odds of a 25bp hike (Polymarket)", "direction": "-"},
+    {"date": "2026-12", "event": "FOMC; Polymarket ~72% odds of a December hike", "direction": "-"},
+    {"date": "2027-02", "event": "Q4 2026 results and Q1 2027 guide, the seasonal low quarter", "direction": "?"},
+    {"date": "2026-2027", "event": "Section 232 semiconductor tariff phase 2 (higher rates plus offset program)", "direction": "-"},
+    {"date": "2027-04", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-07", "event": "Q2 2027 results; check on the 2027 double-digit growth claim", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "Whether the Fed hiking cycle (policy rate 3.75-4.00% and rising) ends the cyclical upturn in 2027 (Polymarket: 35% odds of a recession by end-2027)",
+    "The durability of auto semis demand and pricing, since auto is ~55% of revenue",
+    "Sector-wide de-rating from AI-spending doubts that spills onto NXP despite its low AI exposure",
+    "Section 232 tariff phase 2 and China exposure",
+    "The 48% realized vol reflects big earnings gaps (+20% after Q1, -8% after Q2), and the tails are fat"
+  ],
+  "reasoning": "Base rates first. Over 48 rolling 12-month windows from monthly closes Oct-2021 to Sep-2026, NXPI's price return had a median of +5%. 58% of windows were positive, 25% were above +25%, and 8% were below -25%. The range was -31% to +68%, and the stock has oscillated between ~$150 and ~$340 for five years with no durable trend. That anchors a median close to today's price with wide, right-skewed tails. Fundamentals tilt it modestly up. Q2 2026 revenue was +19% YoY, Q3 is guided at +18%, and 2027 consensus EPS is $18.10 vs $15.06 in 2026, yet the stock trades at 14.1x forward. That is the low end of its own 14-18x band and far below TXN/ADI, after a ~31% drawdown from the May high driven by a beat-and-weak-guide reaction and sector-wide AI-spending fear rather than NXP-specific estimate cuts. Macro tilts it down. The Fed hiked on 16 Sep and Polymarket prices ~67% for another hike in October, 97% for no cuts in 2026, and 35% for a recession by end-2027. Hiking into a strong-PMI upcycle historically precedes analog semis tops (2018, 2022). I set fair value at ~$263 (P/E 14x on ~$19 NTM EPS plus a 5.5% FCF yield) and a ladder median of ~$248. That is below fair value, because the ~$255 base case is weighed against a 25% bear case at ~$165 and a 25% bull case at ~$335, and base rates for consensus drift are negative. I used a lognormal with sigma ~36% (below the 48% realized, which is inflated by two earnings gaps) with a 15% fat-tail mixture. Research was focused and limited to about 15 queries. Twelve Data estimate and statistics endpoints were unavailable on this plan, and no Kalshi or Polymarket market specific to semiconductor tariffs was found. No option data was consulted.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "NXP Semiconductors Reports Second Quarter 2026 Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0001413447/000141344726000044/nxp2q26exhibit991.htm", "date": "2026-07-28", "type": "filing", "in_lane": false},
+    {"title": "NXP Q2 2026 slides: record results, ambitious 2030 targets (Investing.com)", "url": "https://www.investing.com/news/company-news/nxp-q2-2026-slides-record-results-ambitious-2030-targets-93CH-4818254", "date": "2026-07-28", "type": "press", "in_lane": false},
+    {"title": "NXPI Statistics & Valuation (StockAnalysis)", "url": "https://stockanalysis.com/stocks/nxpi/statistics/", "date": "2026-09-29", "type": "data", "in_lane": true},
+    {"title": "NXPI Forecast & Analyst Price Targets (StockAnalysis / S&P Global)", "url": "https://stockanalysis.com/stocks/nxpi/forecast/", "date": "2026-09-21", "type": "data", "in_lane": true},
+    {"title": "NXP Semiconductors Earnings & Estimates (MarketBeat), 2027 EPS consensus $18.10 per search snippet", "url": "https://www.marketbeat.com/stocks/NASDAQ/NXPI/earnings/", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "NXPI PE ratio history, 10-year median (GuruFocus)", "url": "https://www.gurufocus.com/term/pettm/NXPI", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "NXPI monthly price history Oct-2021 to Sep-2026 (Twelve Data time series)", "url": "https://twelvedata.com/", "date": "2026-09-29", "type": "data", "in_lane": true},
+    {"title": "Analog Devices Competitors: ADI Peer Comparison 2026 (Hudson Labs), peer forward P/E ranges", "url": "https://www.hudson-labs.com/research/analog-devices-competitors-adi-peer-comparison-2026", "date": "2026", "type": "other", "in_lane": true},
+    {"title": "Polymarket puts an October Fed hike at 67% and a 2026 rate cut at 3% (FinanceFeeds)", "url": "https://financefeeds.com/polymarket-puts-an-october-fed-hike-at-67-and-a-2026-rate-cut-at-3/", "date": "2026-09-26", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket prices 35% chance of U.S. recession by end of 2027 (PredictionNews)", "url": "https://predictionnews.com/story/polymarket-prices-35-chance-of-u-s-recession-by-end-of-2027", "date": "2026-09-24", "type": "prediction-market", "in_lane": true},
+    {"title": "Why NXP Semiconductors Stock Dropped 18.5% in July (Motley Fool)", "url": "https://www.fool.com/investing/2026/08/10/why-nxp-semiconductors-stock-dropped-185-in-july/", "date": "2026-08-10", "type": "press", "in_lane": true},
+    {"title": "Why NXP Semiconductors stock is sliding today (WealthAwesome)", "url": "https://wealthawesome.com/why-nxp-semiconductors-stock-is-sliding-today-09242026", "date": "2026-09-24", "type": "press", "in_lane": false},
+    {"title": "US Section 232 proclamation imposes 25% tariff on certain semiconductors (EY)", "url": "https://taxnews.ey.com/news/2026-0209-us-section-232-proclamation-imposes-25-percent-tariff-on-certain-semiconductors", "date": "2026-02-09", "type": "expert", "in_lane": true},
+    {"title": "NXP Semiconductors stock falls as AI slowdown fears hit chip sector (ad-hoc-news)", "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/nxp-semiconductors-stock-falls-as-ai-slowdown-fears-hit-chip-sector/70101229", "date": "2026-09-14", "type": "press", "in_lane": false}
+  ]
+}

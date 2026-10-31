@@ -1,0 +1,3656 @@
+{
+ "date": "2026-10-22",
+ "symbol": "SPCX",
+ "clean": true,
+ "checked": 365,
+ "ok": 359,
+ "removed": 6,
+ "failures_fixed": 51,
+ "summary": "54 of 365 cited figures failed the gate; 48 fixed, re-cited or relabelled and 6 removed (no value kept without a source); 3 more found on re-check and relabelled. Supervisor fair value 88.12 -> 84.31 (-4.3%) from rebuilding the horizon multiples on one trailing filing basis (10x / 17x); leg weights unchanged. 10 verified rows were recomputed downstream of the fixes and carry their new values.",
+ "failures": [
+  {
+   "item": "agent_4: model_inputs: 2026 quarterly revenue",
+   "value": "Q1 4,694 (Space 619, Conn 3,257, AI 818); Q2 7,814 (962/4,291/2,561); Q3 14,575 (1,767/5,248/7,560)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "result": "not_found",
+   "fix": "Re-cited Q2/Q3 to the Q3-26 8-K Ex. 99.1 (agent_4 sources [1, 2]); Q1 stays on the 424B4 and also equals 9M less Q2 and Q3.",
+   "status": "re-cited",
+   "now": "Q1 4,694 (424B4); Q2 7,814 and Q3 14,575 with segments (Q3-26 8-K Ex. 99.1, accession 0001628280-26-066482)"
+  },
+  {
+   "item": "agent_5: SOTP: Leases cancellable, so valued at spot",
+   "value": "Anthropic $1.25B/month through May 2029, terminable by either party on 90 days notice after the initial three months; Google $920M/month Oct-26 to Jun-29",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "result": "not_found",
+   "fix": "Google terms re-cited to the SpaceX free writing prospectus (Google Cloud Services Agreement), fetched and confirmed; added as agent_5 source 28; lease derivation now cites it.",
+   "status": "re-cited",
+   "now": "Anthropic $1.25B/month to May 2029 (424B4); Google $920M/month Oct-26 to Jun-29, ~110,000 GPUs, 90-day termination after 2026-12-31 (SpaceX FWP)"
+  },
+  {
+   "item": "agent_5: model_inputs: Nameplate compute history",
+   "value": "YE24 0.3, YE25 0.8, Q1-26 1.0, Q2-26 1.4, Q3-26 1.7 GW; 'nearly 2.2 GW' end Oct 2026",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "result": "not_found",
+   "fix": "Q2/Q3 re-cited to Ex. 99.1; 2.2 GW relabelled as the CFO's expectation on the Q3 call, not a reported figure.",
+   "status": "re-cited",
+   "now": "YE24 0.3, YE25 0.8, Q1-26 1.0 GW (424B4); Q2-26 1.4, Q3-26 1.7 GW (Q3 Ex. 99.1); \"nearly 2.2 GW\" end-Oct labelled as the CFO expectation (Q3 call)"
+  },
+  {
+   "item": "agent_2: comps: CRWV fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / 10.0 / 2027 EBITDA consensus $12.7B (Sep-25 vintage)",
+   "cited": "https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "result": "wrong",
+   "fix": "ev_ebitda_fwd 10 -> null; the 10x kept only in the growth note as Loop's Sep-2025 target, not a trading multiple.",
+   "status": "removed",
+   "now": "CRWV fwd EV/EBITDA n/a; Loop Capital $165 target implies 10x 2027 EBITDA (Sep-2025), stated as a target"
+  },
+  {
+   "item": "agent_5: comps: CRWV fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / 10.0 / n/a",
+   "cited": "https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "result": "wrong",
+   "fix": "ev_ebitda_fwd 10 -> null; agent_5 multiples rebuilt without CRWV (see failures 48, 50).",
+   "status": "removed",
+   "now": "CRWV fwd EV/EBITDA n/a"
+  },
+  {
+   "item": "agent_1: guidance: YE2026 nameplate compute (latest expectation, not yet reported): first guide / reported actual",
+   "value": "2.0-2.0 / 2.9",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "result": "mislabelled",
+   "fix": "Reported-actual slot cleared (2.9 is the agent's own estimate; Q3 call range 2.5-3.0 GW in the note); track record recomputed: 1 beat, median 0.0666, record-adjusted YE27 guide 13.9 GW. The YE26 2.9 derivation now says the stated pace gives ~3.1 GW and takes a ~0.35 GW/month haircut (failure 36).",
+   "status": "relabelled",
+   "now": "YE26 first guide 2.0 GW; actual null (expectation, not reported)"
+  },
+  {
+   "item": "agent_1: guidance (filed under nameplate compute GW): Starlink V3 satellites in orbit by ~Q2-2027 (latest expectation): first guide / reported actual",
+   "value": "1000.0-1000.0 / 300.0",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "result": "mislabelled",
+   "fix": "Row was filed under nameplate GW with a derived 300 as actual; removed from the periods and moved into the guidance note.",
+   "status": "removed",
+   "now": "Starlink V3 row removed from the compute track record; \"~1,000 by ~Q2-27\" (Q2 call) and \"a few hundred by mid-next year\" (Q3 call) kept as text in the note"
+  },
+  {
+   "item": "agent_1: guidance (filed under nameplate compute GW): Starship cadence ~a year after Aug-2026, flights/yr (latest expectation): first guide / reported actual",
+   "value": "365.0-365.0 / 104.0",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "result": "mislabelled",
+   "fix": "Row was filed under nameplate GW with a derived 104 as actual; removed from the periods and moved into the guidance note.",
+   "status": "removed",
+   "now": "Starship cadence row removed from the compute track record; \"at least one flight a day\" a year out (Q2 call) vs \"twice weekly or more\" by end-2027 (Q3 call) kept as text"
+  },
+  {
+   "item": "agent_1: guidance: capex (quarter) Q4-2026 (first guide Q2 call ~$18.4B; current guide $35-40B, actual pending): first guide / reported actual",
+   "value": "18369.0-18369.0 / 37500.0",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "result": "mislabelled",
+   "fix": "Midpoint 37,500 removed from the reported-actual slot (pending); guide stays in the note.",
+   "status": "relabelled",
+   "now": "Q4-26 capex first guide ~$18.4B; actual null (pending); current guide $35-40B"
+  },
+  {
+   "item": "agent_5: guidance: YE2026 nameplate (first guide 'over 2 gigawatts'; 2.2 GW reached by end-October, partial): first guide / reported actual",
+   "value": "2.0-2.0 / 2.2",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "result": "mislabelled",
+   "fix": "Actual 2.2 cleared and relabelled as an expectation; the record-adjusted figures recomputed.",
+   "status": "relabelled",
+   "now": "YE26 first guide over 2 GW; actual null; \"nearly 2.2 GW\" end-Oct labelled as the CFO expectation"
+  },
+  {
+   "item": "supervisor: guidance: YE2026 compute (first guide 'over 2 gigawatts'): first guide / reported actual",
+   "value": "2.0-2.0 / 2.75",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "result": "mislabelled",
+   "fix": "Supervisor: actual 2.75 cleared; YE27 record-adjusted guide recomputed 10.27 -> 13.0 GW.",
+   "status": "relabelled",
+   "now": "YE26 first guide over 2 GW; actual null (2.5-3.0 GW is the Q3-call expectation)"
+  },
+  {
+   "item": "supervisor: guidance: Starship cadence ('at least one flight a day' a year out): first guide / reported actual",
+   "value": "365.0-365.0 / 75.0",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "result": "mislabelled",
+   "fix": "Supervisor: 75 flights/yr cleared from the actual slot; record recomputed with the YE26 row (13.0 GW).",
+   "status": "relabelled",
+   "now": "Starship cadence: actual null (estimate, not reported)"
+  },
+  {
+   "item": "agent_2: comps: AMZN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / 16.1 / n/a in table (no price in peers.md)",
+   "cited": "valuation/secfacts.py",
+   "result": "not_found",
+   "fix": "ev_ebitda_fwd 16.1 -> null (it was META's figure); trailing 16.2x / 20.2x from secfacts.py peers AMZN cited to the AMZN companyfacts file (new agent_2 source 41).",
+   "status": "re-cited",
+   "now": "AMZN fwd EV/EBITDA n/a; trailing EV/EBITDA 16.2x, P/E 20.2x (SEC XBRL via secfacts.py peers, $253.03 close 2026-10-22)"
+  },
+  {
+   "item": "agent_3 comps: CRWV fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / 6.1 / 2027 EBITDA consensus $12.7B (Loop: $165 target ~10x)",
+   "cited": "https://www.insidermonkey.com/news/what-is-coreweave-worth-after-the-cost-of-replacing-its-gpus-1847272/",
+   "result": "not_found",
+   "fix": "6.1 -> null; the \"~6x\" text corrected to ~7.4x from the page's lease-adjusted EV and the cited $12.7B 2027 EBITDA consensus (Finviz).",
+   "status": "fixed",
+   "now": "CRWV fwd EV/EBITDA n/a; lease-adjusted EV $94.1B / 2027 EBITDA $12.7B = ~7.4x (Insider Monkey; Finviz/Loop for the $12.7B)"
+  },
+  {
+   "item": "agent_3 comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in run table",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "Source 26 re-pointed from the Alpha Vantage homepage to the run's peers.md.",
+   "status": "re-cited",
+   "now": "NBIS n/a (no ratios in the run table)"
+  },
+  {
+   "item": "agent_3 comps: IREN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in run table",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "Source 26 re-pointed to peers.md.",
+   "status": "re-cited",
+   "now": "IREN n/a (no ratios in the run table)"
+  },
+  {
+   "item": "agent_3 comps: AMZN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / EV/EBITDA ttm 16.1x, P/E ttm 20.1x (secfacts run 2026-10-22)",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "Re-cited to the AMZN companyfacts file (new agent_3 source 51); 16.1x/20.1x corrected to the secfacts figures 16.2x/20.2x.",
+   "status": "re-cited",
+   "now": "AMZN fwd n/a; trailing EV/EBITDA 16.2x, P/E 20.2x (SEC XBRL via secfacts.py peers, $253.03 close)"
+  },
+  {
+   "item": "agent_3 comps: ASTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / pre-profit",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "Source 26 re-pointed to peers.md.",
+   "status": "re-cited",
+   "now": "ASTS pre-profit (no ratios)"
+  },
+  {
+   "item": "agent_3 model_inputs: Base revenue FY2025",
+   "value": "$18,670M (Connectivity 11,387; Space 4,086; SI/AI 3,200)",
+   "cited": "https://finance.yahoo.com/markets/article/spacex-files-ipo-prospectus-offering-a-peek-into-its-finances-205406189.html",
+   "result": "not_found",
+   "fix": "Re-cited to the 424B4 (sources [41, 29]); total and AI corrected to the filing figures $18,674M / $3,201M.",
+   "status": "re-cited",
+   "now": "$18,674M (Connectivity 11,387; Space 4,086; AI 3,201)"
+  },
+  {
+   "item": "agent_3 guidance: nameplate compute capacity (GW) FY2027 (year-end) consensus as of 2026-08-07",
+   "value": "10.0",
+   "cited": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real",
+   "result": "mislabelled",
+   "fix": "consensus 10.0 -> null; labelled as a SemiAnalysis estimate, not consensus.",
+   "status": "relabelled",
+   "now": "Consensus slot cleared; SemiAnalysis ~10 GW by YE27 kept as one research firm's estimate in drivers_note"
+  },
+  {
+   "item": "agent_3 guidance: nameplate compute capacity (GW) FY2026 (year-end) consensus as of 2026-10-19",
+   "value": "2.0",
+   "cited": "https://keeptrack.space/x-report/spacex-brief-2026-10-19",
+   "result": "mislabelled",
+   "fix": "consensus 2.0 -> null; noted as a management target.",
+   "status": "relabelled",
+   "now": "Consensus slot cleared; \"over 2 GW by year end\" is a management target (KeepTrack relaying Evercore ISI)"
+  },
+  {
+   "item": "agent_3 guidance: capex (quarter) Q4 2026 consensus as of 2026-10-19",
+   "value": "19610.0",
+   "cited": "https://keeptrack.space/x-report/spacex-brief-2026-10-19",
+   "result": "wrong",
+   "fix": "consensus 19,610 -> null with a note that the figure was the Q3 preview consensus.",
+   "status": "removed",
+   "now": "Q4-26 capex consensus null ($19.6B on the page is the Q3-26 consensus)"
+  },
+  {
+   "item": "agent_4 comps: CRWV fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / EPS NTM -$4.07 (loss)",
+   "cited": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "result": "not_found",
+   "fix": "Re-cited to peers.json, fact id CRWV.eps_ntm (new agent_4 source 29).",
+   "status": "re-cited",
+   "now": "CRWV EPS NTM -$4.07 (0.504 x FY26 -$4.95 + 0.496 x FY27 -$3.18, Nasdaq.com/Zacks)"
+  },
+  {
+   "item": "agent_4 comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / EPS NTM -$3.48 (loss)",
+   "cited": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "result": "not_found",
+   "fix": "Re-cited to peers.json, fact id NBIS.eps_ntm, with the FY2026 basis noted.",
+   "status": "re-cited",
+   "now": "NBIS EPS NTM -$3.48 (effectively FY2026 consensus; last filed quarter 2025-12-31)"
+  },
+  {
+   "item": "agent_4 guidance: nameplate compute capacity YE (GW) Colossus 2 at launch (Jan 2026): first guide (2026-01-15) / reported actual",
+   "value": "1.0-1.0 / 0.35",
+   "cited": "https://datacenterdynamics.com/en/news/xai-deploys-19-natural-gas-turbines-at-colossus-2-data-center-in-southaven-mississippi-report/",
+   "result": "not_found",
+   "fix": "Period removed; agent_4 YE27 record recomputed (no scorable periods; record-adjusted guide 13.0).",
+   "status": "removed",
+   "now": "Colossus 2 track-record period removed (source returns 403; no accessible replacement found)"
+  },
+  {
+   "item": "agent_5 comps: AMZN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/",
+   "result": "not_found",
+   "fix": "Base companyfacts URL replaced by the AMZN CIK file (new agent_5 source 29).",
+   "status": "re-cited",
+   "now": "AMZN fwd n/a; trailing EV/EBITDA 16.2x, P/E 20.2x"
+  },
+  {
+   "item": "agent_5 comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/",
+   "result": "not_found",
+   "fix": "Source re-pointed to the run's peers.md (source 24).",
+   "status": "re-cited",
+   "now": "NBIS n/a"
+  },
+  {
+   "item": "agent_5 guidance: ARR (December revenue x 12) FY2026 consensus as of 2026-10-22",
+   "value": "48250.0",
+   "cited": "https://finance.yahoo.com/quote/SPCX/analysis/",
+   "result": "mislabelled",
+   "fix": "Moved out of the ARR consensus slot and labelled as FY2026 revenue consensus in the note.",
+   "status": "relabelled",
+   "now": "ARR consensus null; $48.25B is FY2026 revenue consensus (Yahoo analysis), noted as such"
+  },
+  {
+   "item": "agent_5 guidance: ARR (end-2027) FY2027 consensus as of 2026-10-22",
+   "value": "171500.0",
+   "cited": "https://finance.yahoo.com/quote/SPCX/analysis/",
+   "result": "mislabelled",
+   "fix": "Moved out of the ARR consensus slot and labelled as FY2027 revenue consensus in the note.",
+   "status": "relabelled",
+   "now": "ARR consensus null; $171.5B is FY2027 revenue consensus (range $59.4-290.1B), noted as such"
+  },
+  {
+   "item": "supervisor disagreements: Anthropic contract $/W-yr",
+   "value": "~$24-30/W-yr",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Range corrected to ~$24-33/W-yr in all 8 places (disagreements, key_drivers, inputs_detail, guidance, judgment call, set_review).",
+   "status": "fixed",
+   "now": "~$24-33/W-yr ($15B/yr over 325,000 GPUs x 1.4-1.94 kW = 0.455-0.63 GW)"
+  },
+  {
+   "item": "supervisor disagreements: 2027 hyperscaler capex",
+   "value": "~$1T (Moody's)",
+   "cited": "https://datacenterdynamics.com/en/news/moodys-hyperscaler-capex-forecasts-marked-up-by-85bn-to-close-in-on-1trn-by-2027/",
+   "result": "not_found",
+   "fix": "Moody's ~$1T (page 403) replaced by the S&P Global $1.3T figure from an accessible source.",
+   "status": "re-cited",
+   "now": "~$1.3T of 2027 capex at six major hyperscalers (S&P Global via Motley Fool, 2026-09-06)"
+  },
+  {
+   "item": "supervisor comps_review: reconciled_peer_median and premium_discount",
+   "value": "pe_ntm_ex_tsla 18.3; ev_ebitda_megacap_ttm 16.2; capacity sellers \"MU 8.7x ttm; CRWV ~5-6x 2027\"; P/E 16x vs 18.3x NTM and +38% vs MU 11.6x trailing",
+   "cited": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "result": "mixed_basis",
+   "fix": "comps_review rebuilt on trailing filing multiples; CRWV dropped from the set; MU NTM P/E ~4.9x shown as context only (Nasdaq/Zacks).",
+   "status": "fixed",
+   "now": "Peer set on one trailing filing basis: MU 8.7x / 11.6x ttm, META/AMZN 16.2x, ORCL 20.3x, ex-TSLA trailing P/E median 20.3x; premium/discount recomputed"
+  },
+  {
+   "item": "supervisor thesis_break_reason: post-IPO low",
+   "value": "$104.83",
+   "cited": "(none cited)",
+   "result": "not_found",
+   "fix": "Cited to the Twelve Data SPCX daily series (supervisor source 21).",
+   "status": "re-cited",
+   "now": "$104.83 intraday low on 2026-08-03"
+  },
+  {
+   "item": "supervisor sizing: realised volatility",
+   "value": "~80%",
+   "cited": "(none cited)",
+   "result": "not_found",
+   "fix": "Computed from the Twelve Data daily closes and labelled as an estimate with its derivation.",
+   "status": "fixed",
+   "now": "~82% annualised realised volatility since listing (90 daily log returns 2026-06-12 to 2026-10-21; ~70% last 3 months), labelled estimate"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Flight 14 slipped a month",
+   "value": "slip of ~1 month",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q2-2026 ; https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "result": "not_found",
+   "fix": "Rewritten as a labelled estimate with the two transcript statements.",
+   "status": "relabelled",
+   "now": "~1 month slip, labelled estimate: Q2 call \"end of this month\" (Aug) vs Q3 call flight in the final week of Q3"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Manifold Flight 15 ship catch",
+   "value": "~36%",
+   "cited": "https://manifold.markets/Terminator2/starship-flight-15-what-happens-to",
+   "result": "wrong",
+   "fix": "36% -> 51%; Space-tree probabilities unchanged (judgment, stated).",
+   "status": "fixed",
+   "now": "Manifold ship catch 51% (2026-10-22)"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: Nameplate compute capacity path",
+   "value": "YE26 2.9 GW; YE27 8.75 GW; YE28 14.75 GW (base)",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Derivation now states the ~3.1 GW pace result and the haircut to 2.9 GW; confidence medium.",
+   "status": "fixed",
+   "now": "YE26 2.9 GW (stated pace gives ~3.1 GW; ~0.35 GW/month for Nov-Dec taken as a haircut); YE27 8.75; YE28 14.75"
+  },
+  {
+   "item": "agent_1 SOTP: X (advertising and subscriptions)",
+   "value": "$12B EV",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "X part 12,000 -> 9,200; agent_1 SOTP leg 60.63 -> 60.44, FV 119.29 -> 119.21.",
+   "status": "fixed",
+   "now": "$9.2B EV (5 x FY25 advertising $1,844M)"
+  },
+  {
+   "item": "agent_1 P/E: Ongoing SBC",
+   "value": "FY2026 $4.4B, FY2027 $5.5B, FY2028 $7.0B (costed in EBIT)",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "FY26 SBC 4.4 -> 3.8B (sbc 7.63% of revenue), derivation added, confidence medium.",
+   "status": "fixed",
+   "now": "FY2026 ongoing SBC $3.8B (9M $2,616M + Q4 at Q3 rate $1,146M)"
+  },
+  {
+   "item": "agent_2 SOTP: Cursor",
+   "value": "$55B",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Cursor 55,000 -> 54,000 in the SOTP and inputs; agent_2 SOTP 52.42 -> 52.35, FV 93.12 -> 93.09.",
+   "status": "fixed",
+   "now": "$54B ($60B x 0.9)"
+  },
+  {
+   "item": "agent_2 model_inputs: FY2026 revenue",
+   "value": "$49.4B",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "FY26 growth re-set to give $50.2B; FY27 left unchanged; FY26 %-of-revenue fields rescaled; guidance note updated.",
+   "status": "fixed",
+   "now": "FY2026 revenue $50.2B (Q4 $23.1B from the stated components)"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: Build cost per watt",
+   "value": "$39 (2026), $40 (2027), $41 (2028), $40 window",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Derivation corrected to the 424B4 0.8 GW base.",
+   "status": "fixed",
+   "now": "Build cost: company-implied ~$37.8/W on YE25 0.8 GW (424B4); $39/$40/$41 kept as the agent's view above it"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: Net debt at horizon (2027-10-22)",
+   "value": "$77,173M",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Figure was right; the description mislabelled 97,115 as the full-year burn. Derivation clarified.",
+   "status": "fixed",
+   "now": "$77,173M = -51,011 + 23,069 + 294/365 x FY27 burn 120,568 (= 97,115) + 8,000"
+  },
+  {
+   "item": "agent_3 guidance: ARR (annualised revenue run-rate) December 2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 100000.0, ours 105000.0 inside 0.051",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Recomputed: 105,000 / 100,000 - 1 = 0.05, above the range.",
+   "status": "fixed",
+   "now": "Position above, gap 0.05"
+  },
+  {
+   "item": "agent_4 model_inputs: Cursor revenue",
+   "value": "$4.9B run-rate Q3; FY27 $7.5B; FY28 $10B; cost ratio 75%",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Run-rate corrected 4.9 -> 4.6B with derivation.",
+   "status": "fixed",
+   "now": "$4.6B run-rate ($608M over 48 days = ~$385M/month)"
+  },
+  {
+   "item": "agent_4 model_inputs: Starlink subscribers and ARPU",
+   "value": "13.6M Q3-26 (+1.6M q/q), ARPU $69 (-17% y/y); YE27 20.5M, ARPU $66; YE35 47M, $60",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Agent_4 model rerun on $10.4B: Starlink $258B -> $269B, knock-on -$19.4B -> -$20.7B, NTM EBITDA ~$155B -> ~$156B, net debt at H $92.8B -> $92.5B; FV 91.76 -> 92.52.",
+   "status": "fixed",
+   "now": "Non-consumer Starlink base $10.4B ((Q3 Conn 5,248 - consumer 2,650) x 4)"
+  },
+  {
+   "item": "agent_4 guidance: new-compute price ($/W-yr) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 50.0, ours 50.0 inside 0.25",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Recomputed: midpoint 40 x (1 + 0) = 40.",
+   "status": "fixed",
+   "now": "Record-adjusted guide 40.0"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: Shares at horizon",
+   "value": "13,206.9M",
+   "cited": "derived (arithmetic check)",
+   "result": "mislabelled",
+   "fix": "Horizon shares recomputed on the corrected base and given a confidence.",
+   "status": "fixed",
+   "now": "13,171.9M (12,845 + 261.8 + 65.1), confidence medium"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: EV/EBITDA horizon multiple",
+   "value": "11.0x NTM GAAP EBITDA (after SBC)",
+   "cited": "derived (arithmetic check)",
+   "result": "mixed_basis",
+   "fix": "EV/EBITDA rebuilt on one stated trailing basis; 11x -> 10x.",
+   "status": "fixed",
+   "now": "10x: one trailing filing basis, 0.85 x MU 8.7x + 0.15 x META/AMZN 16.1-16.2x = 9.8x -> 10x; CRWV left out"
+  },
+  {
+   "item": "agent_5 P/E: Diluted shares now (economic)",
+   "value": "12,880M",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Diluted now 12,880 -> 12,845M.",
+   "status": "fixed",
+   "now": "12,845M (12,277 + 533 + ~34 Cursor top-up)"
+  },
+  {
+   "item": "agent_5 P/E: P/E horizon multiple",
+   "value": "16.0x NTM GAAP EPS",
+   "cited": "derived (arithmetic check)",
+   "result": "mixed_basis",
+   "fix": "P/E rebuilt on one stated trailing basis; 16x -> 17x. Agent_5 FV 85.83 -> 82.45; thesis break 82 -> 79.",
+   "status": "fixed",
+   "now": "17x: one trailing filing basis, 0.86 x 15.95x (MU 11.6x, ORCL 20.3x) + 0.14 x 20.3x = 16.6x -> 17x"
+  },
+  {
+   "item": "supervisor model: EV/EBITDA horizon multiple",
+   "value": "11.0",
+   "cited": "derived (arithmetic check)",
+   "result": "mixed_basis",
+   "fix": "Reconciled multiple rebuilt; supervisor FV 88.12 -> 84.31 (-4.3%); weights unchanged.",
+   "status": "fixed",
+   "now": "10x: trailing GAAP EV/EBITDA from filings, 0.85 x MU 8.7x + 0.15 x META/AMZN 16.2x = 9.8x -> 10x (CRWV out)"
+  },
+  {
+   "item": "supervisor model: P/E horizon multiple",
+   "value": "16.0",
+   "cited": "derived (arithmetic check)",
+   "result": "mixed_basis",
+   "fix": "Reconciled multiple rebuilt (see 51); MU ~4.9x on NTM consensus shown as context only.",
+   "status": "fixed",
+   "now": "17x: trailing GAAP P/E from filings, 0.85 x ~16x (MU 11.6x, ORCL 20.3x) + 0.15 x 20.3x = 16.6x -> 17x"
+  },
+  {
+   "item": "supervisor model: External share of compute in reported revenue",
+   "value": "2026 48%; 2027 55%; 2028 50%",
+   "cited": "derived (arithmetic check)",
+   "result": "arithmetic",
+   "fix": "Same correction as 29 in the External share row.",
+   "status": "fixed",
+   "now": "Anthropic contract ~$24-33/W-yr; external share 48% / 55% / 50% unchanged"
+  },
+  {
+   "item": "agent_4 guidance: YE2026 nameplate compute, reported actual",
+   "value": "2.9",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "result": "mislabelled",
+   "fix": "Found on re-check: an expectation in the reported-actual slot; cleared (Q3 call 2.5-3.0 GW range in the note).",
+   "status": "relabelled",
+   "now": "first guide 2.0; actual null",
+   "found_on": "re-check"
+  },
+  {
+   "item": "supervisor guidance: YE2026 nameplate compute, reported actual",
+   "value": "2.2",
+   "cited": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "result": "mislabelled",
+   "fix": "Found on re-check: \"nearly 2.2 GW\" end-October is the CFO's expectation; cleared, record-adjusted YE26 guide 3.03 -> 2.75.",
+   "status": "relabelled",
+   "now": "first guide 2.0; actual null",
+   "found_on": "re-check"
+  },
+  {
+   "item": "agent_4 guidance: nameplate compute FY2027 consensus as of 2026-08-07",
+   "value": "10.0",
+   "cited": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real",
+   "result": "mislabelled",
+   "fix": "Found on re-check (same defect as agent_3, failure 19): a SemiAnalysis estimate in the consensus slot; cleared and labelled in drivers_note.",
+   "status": "relabelled",
+   "now": "consensus null; SemiAnalysis ~10 GW noted as one firm's estimate",
+   "found_on": "re-check"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "agent_4: model_inputs: 2026 quarterly revenue",
+   "value": "Q1 4,694 (424B4); Q2 7,814 and Q3 14,575 with segments (Q3-26 8-K Ex. 99.1, accession 0001628280-26-066482)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_5: SOTP: Leases cancellable, so valued at spot",
+   "value": "Anthropic $1.25B/month to May 2029 (424B4); Google $920M/month Oct-26 to Jun-29, ~110,000 GPUs, 90-day termination after 2026-12-31 (SpaceX FWP)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_5: model_inputs: Nameplate compute history",
+   "value": "YE24 0.3, YE25 0.8, Q1-26 1.0 GW (424B4); Q2-26 1.4, Q3-26 1.7 GW (Q3 Ex. 99.1); \"nearly 2.2 GW\" end-Oct labelled as the CFO expectation (Q3 call)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_1: guidance: YE2026 nameplate compute (latest expectation, not yet reported): first guide / reported actual",
+   "value": "YE26 first guide 2.0 GW; actual null (expectation, not reported)",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "agent_1: guidance: capex (quarter) Q4-2026 (first guide Q2 call ~$18.4B; current guide $35-40B, actual pending): first guide / reported actual",
+   "value": "Q4-26 capex first guide ~$18.4B; actual null (pending); current guide $35-40B",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "agent_5: guidance: YE2026 nameplate (first guide 'over 2 gigawatts'; 2.2 GW reached by end-October, partial): first guide / reported actual",
+   "value": "YE26 first guide over 2 GW; actual null; \"nearly 2.2 GW\" end-Oct labelled as the CFO expectation",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "supervisor: guidance: YE2026 compute (first guide 'over 2 gigawatts'): first guide / reported actual",
+   "value": "YE26 first guide over 2 GW; actual null (2.5-3.0 GW is the Q3-call expectation)",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "supervisor: guidance: Starship cadence ('at least one flight a day' a year out): first guide / reported actual",
+   "value": "Starship cadence: actual null (estimate, not reported)",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "agent_2: comps: AMZN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "AMZN fwd EV/EBITDA n/a; trailing EV/EBITDA 16.2x, P/E 20.2x (SEC XBRL via secfacts.py peers, $253.03 close 2026-10-22)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_3 comps: CRWV fwd P/E / fwd EV/EBITDA / growth",
+   "value": "CRWV fwd EV/EBITDA n/a; lease-adjusted EV $94.1B / 2027 EBITDA $12.7B = ~7.4x (Insider Monkey; Finviz/Loop for the $12.7B)",
+   "basis": "estimate",
+   "source_url": "https://www.insidermonkey.com/news/what-is-coreweave-worth-after-the-cost-of-replacing-its-gpus-1847272/",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> fixed)"
+  },
+  {
+   "item": "agent_3 comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "NBIS n/a (no ratios in the run table)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_3 comps: IREN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "IREN n/a (no ratios in the run table)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_3 comps: AMZN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "AMZN fwd n/a; trailing EV/EBITDA 16.2x, P/E 20.2x (SEC XBRL via secfacts.py peers, $253.03 close)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_3 comps: ASTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "ASTS pre-profit (no ratios)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_3 model_inputs: Base revenue FY2025",
+   "value": "$18,674M (Connectivity 11,387; Space 4,086; AI 3,201)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_3 guidance: nameplate compute capacity (GW) FY2027 (year-end) consensus as of 2026-08-07",
+   "value": "Consensus slot cleared; SemiAnalysis ~10 GW by YE27 kept as one research firm's estimate in drivers_note",
+   "basis": "estimate",
+   "source_url": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "agent_3 guidance: nameplate compute capacity (GW) FY2026 (year-end) consensus as of 2026-10-19",
+   "value": "Consensus slot cleared; \"over 2 GW by year end\" is a management target (KeepTrack relaying Evercore ISI)",
+   "basis": "guidance",
+   "source_url": "https://keeptrack.space/x-report/spacex-brief-2026-10-19",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "agent_4 comps: CRWV fwd P/E / fwd EV/EBITDA / growth",
+   "value": "CRWV EPS NTM -$4.07 (0.504 x FY26 -$4.95 + 0.496 x FY27 -$3.18, Nasdaq.com/Zacks)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.json",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_4 comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "NBIS EPS NTM -$3.48 (effectively FY2026 consensus; last filed quarter 2025-12-31)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.json",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_5 comps: AMZN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "AMZN fwd n/a; trailing EV/EBITDA 16.2x, P/E 20.2x",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_5 comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "NBIS n/a",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "agent_5 guidance: ARR (December revenue x 12) FY2026 consensus as of 2026-10-22",
+   "value": "ARR consensus null; $48.25B is FY2026 revenue consensus (Yahoo analysis), noted as such",
+   "basis": "consensus",
+   "source_url": "https://finance.yahoo.com/quote/SPCX/analysis/",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "agent_5 guidance: ARR (end-2027) FY2027 consensus as of 2026-10-22",
+   "value": "ARR consensus null; $171.5B is FY2027 revenue consensus (range $59.4-290.1B), noted as such",
+   "basis": "consensus",
+   "source_url": "https://finance.yahoo.com/quote/SPCX/analysis/",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (mislabelled -> relabelled)"
+  },
+  {
+   "item": "supervisor disagreements: Anthropic contract $/W-yr",
+   "value": "~$24-33/W-yr ($15B/yr over 325,000 GPUs x 1.4-1.94 kW = 0.455-0.63 GW)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "supervisor disagreements: 2027 hyperscaler capex",
+   "value": "~$1.3T of 2027 capex at six major hyperscalers (S&P Global via Motley Fool, 2026-09-06)",
+   "basis": "estimate",
+   "source_url": "https://fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow",
+   "checked": "2026-10-22",
+   "feeds": "reasoning",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "supervisor comps_review: reconciled_peer_median and premium_discount",
+   "value": "Peer set on one trailing filing basis: MU 8.7x / 11.6x ttm, META/AMZN 16.2x, ORCL 20.3x, ex-TSLA trailing P/E median 20.3x; premium/discount recomputed",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "note": "gate fix (mixed_basis -> fixed)"
+  },
+  {
+   "item": "supervisor thesis_break_reason: post-IPO low",
+   "value": "$104.83 intraday low on 2026-08-03",
+   "basis": "reported",
+   "source_url": "Twelve Data time_series SPCX 1day (2026-06-11 to 2026-10-21)",
+   "checked": "2026-10-22",
+   "feeds": "thesis_break",
+   "note": "gate fix (not_found -> re-cited)"
+  },
+  {
+   "item": "supervisor sizing: realised volatility",
+   "value": "~82% annualised realised volatility since listing (90 daily log returns 2026-06-12 to 2026-10-21; ~70% last 3 months), labelled estimate",
+   "basis": "estimate",
+   "source_url": "Twelve Data time_series SPCX 1day (2026-06-11 to 2026-10-21)",
+   "checked": "2026-10-22",
+   "feeds": "sizing",
+   "note": "gate fix (not_found -> fixed)"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Flight 14 slipped a month",
+   "value": "~1 month slip, labelled estimate: Q2 call \"end of this month\" (Aug) vs Q3 call flight in the final week of Q3",
+   "basis": "estimate",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (not_found -> relabelled)"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Manifold Flight 15 ship catch",
+   "value": "Manifold ship catch 51% (2026-10-22)",
+   "basis": "consensus",
+   "source_url": "https://manifold.markets/Terminator2/starship-flight-15-what-happens-to",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (wrong -> fixed)"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: Nameplate compute capacity path",
+   "value": "YE26 2.9 GW (stated pace gives ~3.1 GW; ~0.35 GW/month for Nov-Dec taken as a haircut); YE27 8.75; YE28 14.75",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic shown)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_1 SOTP: X (advertising and subscriptions)",
+   "value": "$9.2B EV (5 x FY25 advertising $1,844M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_1 P/E: Ongoing SBC",
+   "value": "FY2026 ongoing SBC $3.8B (9M $2,616M + Q4 at Q3 rate $1,146M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_2 SOTP: Cursor",
+   "value": "$54B ($60B x 0.9)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_2 model_inputs: FY2026 revenue",
+   "value": "FY2026 revenue $50.2B (Q4 $23.1B from the stated components)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic shown)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: Build cost per watt",
+   "value": "Build cost: company-implied ~$37.8/W on YE25 0.8 GW (424B4); $39/$40/$41 kept as the agent's view above it",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: Net debt at horizon (2027-10-22)",
+   "value": "$77,173M = -51,011 + 23,069 + 294/365 x FY27 burn 120,568 (= 97,115) + 8,000",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic shown)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_3 guidance: ARR (annualised revenue run-rate) December 2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "Position above, gap 0.05",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic shown)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_4 model_inputs: Cursor revenue",
+   "value": "$4.6B run-rate ($608M over 48 days = ~$385M/month)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_4 model_inputs: Starlink subscribers and ARPU",
+   "value": "Non-consumer Starlink base $10.4B ((Q3 Conn 5,248 - consumer 2,650) x 4)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_4 guidance: new-compute price ($/W-yr) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "Record-adjusted guide 40.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic shown)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: Shares at horizon",
+   "value": "13,171.9M (12,845 + 261.8 + 65.1), confidence medium",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mislabelled -> fixed)"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: EV/EBITDA horizon multiple",
+   "value": "10x: one trailing filing basis, 0.85 x MU 8.7x + 0.15 x META/AMZN 16.1-16.2x = 9.8x -> 10x; CRWV left out",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mixed_basis -> fixed)"
+  },
+  {
+   "item": "agent_5 P/E: Diluted shares now (economic)",
+   "value": "12,845M (12,277 + 533 + ~34 Cursor top-up)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_5 P/E: P/E horizon multiple",
+   "value": "17x: one trailing filing basis, 0.86 x 15.95x (MU 11.6x, ORCL 20.3x) + 0.14 x 20.3x = 16.6x -> 17x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mixed_basis -> fixed)"
+  },
+  {
+   "item": "supervisor model: EV/EBITDA horizon multiple",
+   "value": "10x: trailing GAAP EV/EBITDA from filings, 0.85 x MU 8.7x + 0.15 x META/AMZN 16.2x = 9.8x -> 10x (CRWV out)",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mixed_basis -> fixed)"
+  },
+  {
+   "item": "supervisor model: P/E horizon multiple",
+   "value": "17x: trailing GAAP P/E from filings, 0.85 x ~16x (MU 11.6x, ORCL 20.3x) + 0.15 x 20.3x = 16.6x -> 17x",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (mixed_basis -> fixed)"
+  },
+  {
+   "item": "supervisor model: External share of compute in reported revenue",
+   "value": "Anthropic contract ~$24-33/W-yr; external share 48% / 55% / 50% unchanged",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "gate fix (arithmetic -> fixed)"
+  },
+  {
+   "item": "agent_4 guidance: YE2026 nameplate compute, reported actual",
+   "value": "first guide 2.0; actual null",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (re-check)"
+  },
+  {
+   "item": "supervisor guidance: YE2026 nameplate compute, reported actual",
+   "value": "first guide 2.0; actual null",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (re-check)"
+  },
+  {
+   "item": "agent_4 guidance: nameplate compute FY2027 consensus as of 2026-08-07",
+   "value": "consensus null; SemiAnalysis ~10 GW noted as one firm's estimate",
+   "basis": "estimate",
+   "source_url": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "gate fix (re-check)"
+  },
+  {
+   "item": "agent_1 comps: ORCL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.3 / None / EPS +36.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/ORCL/earnings-forecast; snapshot data/estimates/ORCL.json retrieved 2026-10-22T14:30:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "ORCL.pe_ntm",
+    "ORCL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_1 comps: MSFT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "26.6 / None / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/MSFT/earnings-forecast; snapshot data/estimates/MSFT.json retrieved 2026-10-22T14:02:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "MSFT.pe_ntm",
+    "MSFT.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_1 comps: GOOGL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.3 / None / EPS -27.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast; snapshot data/estimates/GOOGL.json retrieved 2026-10-22T14:03:04Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "GOOGL.pe_ntm",
+    "GOOGL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_1 comps: META fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.4 / None / EPS +28.7%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/META/earnings-forecast; snapshot data/estimates/META.json retrieved 2026-10-22T14:03:13Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "META.pe_ntm",
+    "META.eps_growth_fwd",
+    "META.ev_ebitda_ttm"
+   ]
+  },
+  {
+   "item": "agent_1 comps: TSLA fwd P/E / fwd EV/EBITDA / growth",
+   "value": "367.2 / None / EPS +64.8%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TSLA/earnings-forecast; snapshot data/estimates/TSLA.json retrieved 2026-10-22T14:30:31Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TSLA.pe_ntm",
+    "TSLA.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_1 comps: TMUS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "12.9 / None / EPS +20.5%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TMUS/earnings-forecast; snapshot data/estimates/TMUS.json retrieved 2026-10-22T14:30:34Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TMUS.pe_ntm",
+    "TMUS.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_2 comps: MSFT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "26.6 / None / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/MSFT/earnings-forecast; snapshot data/estimates/MSFT.json retrieved 2026-10-22T14:02:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "MSFT.pe_ntm",
+    "MSFT.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_2 comps: GOOGL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.3 / None / EPS -27.1% (fiscal-year blend artefact)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast; snapshot data/estimates/GOOGL.json retrieved 2026-10-22T14:03:04Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "GOOGL.pe_ntm",
+    "GOOGL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_2 comps: META fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.4 / 16.1 / EPS +28.7%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/META/earnings-forecast; snapshot data/estimates/META.json retrieved 2026-10-22T14:03:13Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "META.pe_ntm",
+    "META.eps_growth_fwd",
+    "META.ev_ebitda_ttm"
+   ]
+  },
+  {
+   "item": "agent_2 comps: ORCL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.3 / None / EPS +36.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/ORCL/earnings-forecast; snapshot data/estimates/ORCL.json retrieved 2026-10-22T14:30:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "ORCL.pe_ntm",
+    "ORCL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_2 comps: TMUS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "12.9 / None / EPS +20.5%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TMUS/earnings-forecast; snapshot data/estimates/TMUS.json retrieved 2026-10-22T14:30:34Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TMUS.pe_ntm",
+    "TMUS.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_2 comps: TSLA fwd P/E / fwd EV/EBITDA / growth",
+   "value": "367.2 / None / EPS +64.8%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TSLA/earnings-forecast; snapshot data/estimates/TSLA.json retrieved 2026-10-22T14:30:31Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TSLA.pe_ntm",
+    "TSLA.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_3 comps: ORCL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.3 / None / EPS +36.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/ORCL/earnings-forecast; snapshot data/estimates/ORCL.json retrieved 2026-10-22T14:30:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "ORCL.pe_ntm",
+    "ORCL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_3 comps: MSFT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "26.6 / None / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/MSFT/earnings-forecast; snapshot data/estimates/MSFT.json retrieved 2026-10-22T14:02:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "MSFT.pe_ntm",
+    "MSFT.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_3 comps: GOOGL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.3 / None / EPS -27.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast; snapshot data/estimates/GOOGL.json retrieved 2026-10-22T14:03:04Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "GOOGL.pe_ntm",
+    "GOOGL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_3 comps: META fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.4 / None / EPS +28.7% (EV/EBITDA ttm 16.1x)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/META/earnings-forecast; snapshot data/estimates/META.json retrieved 2026-10-22T14:03:13Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "META.pe_ntm",
+    "META.eps_growth_fwd",
+    "META.ev_ebitda_ttm"
+   ]
+  },
+  {
+   "item": "agent_3 comps: TSLA fwd P/E / fwd EV/EBITDA / growth",
+   "value": "367.2 / None / EPS +64.8%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TSLA/earnings-forecast; snapshot data/estimates/TSLA.json retrieved 2026-10-22T14:30:31Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TSLA.pe_ntm",
+    "TSLA.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_3 comps: TMUS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "12.9 / None / EPS +20.5%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TMUS/earnings-forecast; snapshot data/estimates/TMUS.json retrieved 2026-10-22T14:30:34Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TMUS.pe_ntm",
+    "TMUS.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_4 comps: IREN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / EV/sales ttm 15.2x; EPS NTM -$0.24",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "IREN.ev_sales_ttm",
+    "IREN.eps_ntm"
+   ]
+  },
+  {
+   "item": "agent_4 comps: ORCL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.3 / None / EPS +36.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/ORCL/earnings-forecast; snapshot data/estimates/ORCL.json retrieved 2026-10-22T14:30:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "ORCL.pe_ntm",
+    "ORCL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_4 comps: MSFT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "26.6 / None / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/MSFT/earnings-forecast; snapshot data/estimates/MSFT.json retrieved 2026-10-22T14:02:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "MSFT.pe_ntm",
+    "MSFT.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_4 comps: GOOGL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.3 / None / EPS -27.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast; snapshot data/estimates/GOOGL.json retrieved 2026-10-22T14:03:04Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "GOOGL.pe_ntm",
+    "GOOGL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_4 comps: META fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.4 / None / EPS +28.7%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/META/earnings-forecast; snapshot data/estimates/META.json retrieved 2026-10-22T14:03:13Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "META.pe_ntm",
+    "META.eps_growth_fwd",
+    "META.ev_ebitda_ttm"
+   ]
+  },
+  {
+   "item": "agent_4 comps: TSLA fwd P/E / fwd EV/EBITDA / growth",
+   "value": "367.2 / None / EPS +64.8%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TSLA/earnings-forecast; snapshot data/estimates/TSLA.json retrieved 2026-10-22T14:30:31Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TSLA.pe_ntm",
+    "TSLA.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_4 comps: TMUS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "12.9 / None / EPS +20.5%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TMUS/earnings-forecast; snapshot data/estimates/TMUS.json retrieved 2026-10-22T14:30:34Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TMUS.pe_ntm",
+    "TMUS.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_4 comps: ASTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / EV/sales ttm 87.4x; EPS NTM -$1.55",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "ASTS.ev_sales_ttm",
+    "ASTS.eps_ntm"
+   ]
+  },
+  {
+   "item": "agent_5 comps: ORCL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.3 / None / EPS +36.1%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/ORCL/earnings-forecast; snapshot data/estimates/ORCL.json retrieved 2026-10-22T14:30:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "ORCL.pe_ntm",
+    "ORCL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_5 comps: MSFT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "26.6 / None / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/MSFT/earnings-forecast; snapshot data/estimates/MSFT.json retrieved 2026-10-22T14:02:28Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "MSFT.pe_ntm",
+    "MSFT.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_5 comps: GOOGL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.3 / None / EPS -27.1% (fiscal blend)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast; snapshot data/estimates/GOOGL.json retrieved 2026-10-22T14:03:04Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "GOOGL.pe_ntm",
+    "GOOGL.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_5 comps: META fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.4 / None / EPS +28.7%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/META/earnings-forecast; snapshot data/estimates/META.json retrieved 2026-10-22T14:03:13Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "META.pe_ntm",
+    "META.eps_growth_fwd",
+    "META.ev_ebitda_ttm"
+   ]
+  },
+  {
+   "item": "agent_5 comps: TSLA fwd P/E / fwd EV/EBITDA / growth",
+   "value": "367.2 / None / EPS +64.8%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TSLA/earnings-forecast; snapshot data/estimates/TSLA.json retrieved 2026-10-22T14:30:31Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TSLA.pe_ntm",
+    "TSLA.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_5 comps: TMUS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "12.9 / None / EPS +20.5%",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/TMUS/earnings-forecast; snapshot data/estimates/TMUS.json retrieved 2026-10-22T14:30:34Z",
+   "checked": "2026-10-22",
+   "feeds": "comps",
+   "checked_by": "peers.py / secfacts.py table (script)",
+   "fact_ids": [
+    "TMUS.pe_ntm",
+    "TMUS.eps_growth_fwd"
+   ]
+  },
+  {
+   "item": "agent_1: EV/EBITDA: EchoStar spectrum",
+   "value": "261.8M shares + up to $8.5B debt payoff/cash at closing (~2027-11-30)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: model_inputs: FY2025 revenue by segment",
+   "value": "Space $4,086M; Connectivity $11,387M; SI (AI) $3,201M; total $18,674M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: sbc: SBC last fiscal year ($M)",
+   "value": "1947.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: SOTP: EchoStar spectrum",
+   "value": "261.8M shares + up to $8.5B cash",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: model_inputs: Base revenue FY2025",
+   "value": "$18,674M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: SOTP: EchoStar spectrum (adjustment + shares)",
+   "value": "-$11,500M cash at p=1.0, plus 261.8M shares in the horizon count",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4: model_inputs: Base revenue FY2025",
+   "value": "$18,674M (Space 4,086; Connectivity 11,387; AI 3,201)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: SOTP: EchoStar spectrum cash",
+   "value": "-$8,500M x 1.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: sbc: SBC last fiscal year ($M)",
+   "value": "1947.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor: model: EchoStar spectrum",
+   "value": "261.8M shares + up to $8.5B + ~$3.0B debt-service loans",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: other: reverse DCF (information): Balance sheet 2026-09-30",
+   "value": "cash $51,294M + marketable securities $38,561M - debt & finance leases $38,844M ($2,698M current + $36,146M non-current) = net cash $51,011M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: model_inputs: 9M-2026 actuals",
+   "value": "revenue $27,083M; op. income $705M (incl. $1,217M Cursor acquisition SBC); D&A $8,934M; capex $48,069M; SBC $2,616M ex acquisition",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: model_inputs: Net debt now (2026-09-30)",
+   "value": "-$51,011M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: other: Net debt at 2026-09-30",
+   "value": "-$51,011M (net cash)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4: EV/EBITDA: Net debt now",
+   "value": "-$51,011M at 2026-09-30 (cash 51,294 + securities 38,561 - debt and finance leases 38,844)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: SOTP: Cursor",
+   "value": "$60B equity at the transaction mark",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: model_inputs: 9M 2026 actuals",
+   "value": "Revenue $27,083M; EBIT $705M incl. $1,217M Cursor acquisition SBC; capex $48,069M (SI $39,995M); segment EBIT SI -3,295 / Conn 5,211 / Space -1,211",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: model_inputs: Net debt now",
+   "value": "-$51,011M at 2026-09-30 (debt incl. finance leases $38,844M; cash $51,294M; marketable securities $38,561M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor: model: Net debt 2026-09-30",
+   "value": "-51011.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: comps: AMZN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in table",
+   "basis": "reported",
+   "source_url": "/mnt/attach/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in table",
+   "basis": "estimate",
+   "source_url": "/mnt/attach/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: comps: CRWV fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / 5.3 / 2027 EBITDA consensus $12.7B",
+   "basis": "estimate",
+   "source_url": "https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: guidance: nameplate compute at year-end (GW) FY2027",
+   "value": "13.0-13.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: guidance: capex (quarter) Q4-2026",
+   "value": "35000.0-40000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: guidance: revenue (quarter) Q1-2027",
+   "value": "33000.0-37000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: guidance: annualised revenue run-rate FY2026 (December x 12)",
+   "value": "100000.0-100000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: nameplate compute capacity (GW, year-end) FY2027",
+   "value": "13.0-13.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: capex (total company, quarterly) Q4-2026",
+   "value": "35000.0-40000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: revenue Q1-2027",
+   "value": "33000.0-37000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: nameplate compute capacity (GW) FY2026 year-end",
+   "value": "2.5-3.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: capex (quarter) Q4 2026",
+   "value": "35000.0-40000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: ARR December 2027",
+   "value": "500000.0-1000000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4: guidance: ARR (December annualised revenue) FY2026",
+   "value": "100000.0-100000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4: guidance: new-compute price ($/W-yr) FY2027",
+   "value": "30.0-50.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: guidance (filed under nameplate compute GW): Q3-2026 capex vs 'very similar to the current quarter' ($18,369M Q2): first guide / reported actual",
+   "value": "18.369-18.369 / 19.593",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1: guidance: capex (quarter) Q3-2026: first guide / reported actual",
+   "value": "18369.0-18369.0 / 19593.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: YE2027 nameplate compute target, first stated: first guide / reported actual",
+   "value": "5.0-10.0 / None",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: YE2026 nameplate compute target, first stated: first guide / reported actual",
+   "value": "2.0-2.0 / None",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: capex (quarter) Q3 2026: first guide / reported actual",
+   "value": "18369.0-18369.0 / 19593.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: capex (quarter) Q4 2026 (first guide vs current guide): first guide / reported actual",
+   "value": "18369.0-18369.0 / None",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3: guidance: ARR December 2026 guide as of 2026-08-04 ('achievable doing nothing')",
+   "value": "100000.0-100000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4: guidance: capex (quarter) Q3 2026: first guide / reported actual",
+   "value": "18400.0-18400.0 / 19593.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: guidance: YE2027 nameplate (first guide 'closer to 10 gigawatts of compute than five'): first guide / reported actual",
+   "value": "7.5-10.0 / None",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: guidance: capex (quarter) Q3 2026: first guide / reported actual",
+   "value": "18369.0-18369.0 / 19593.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: guidance (filed under revenue (quarter)): Dec-2026 ARR target $100B: first guide / reported actual",
+   "value": "100000.0-100000.0 / None",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5: guidance: ARR (December revenue x 12) FY2026 guide as of 2026-08-04",
+   "value": "100000.0-100000.0",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: comps: NBIS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: comps: IREN fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: comps: ASTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a (pre-profit)",
+   "basis": "estimate",
+   "source_url": "valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: YE2027 nameplate target (first statement): first guide / reported actual",
+   "value": "7.5-10.0 / None",
+   "basis": "guidance",
+   "source_url": "https://s21.q4cdn.com/184289198/files/doc_financials/2026/q2/SpaceX-Q2-2026-Earnings_Transcript-FINAL.pdf",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: YE2026 nameplate: first guide / reported actual",
+   "value": "2.0-2.0 / None",
+   "basis": "guidance",
+   "source_url": "https://s21.q4cdn.com/184289198/files/doc_financials/2026/q2/SpaceX-Q2-2026-Earnings_Transcript-FINAL.pdf",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: capex (total company, quarterly) Q3-2026: first guide / reported actual",
+   "value": "18369.0-18369.0 / 19593.0",
+   "basis": "guidance",
+   "source_url": "https://s21.q4cdn.com/184289198/files/doc_financials/2026/q2/SpaceX-Q2-2026-Earnings_Transcript-FINAL.pdf",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: capex Q4-2026 (first guide Aug-26 vs current guide): first guide / reported actual",
+   "value": "18369.0-18369.0 / None",
+   "basis": "guidance",
+   "source_url": "https://s21.q4cdn.com/184289198/files/doc_financials/2026/q2/SpaceX-Q2-2026-Earnings_Transcript-FINAL.pdf",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: ARR exit rate Dec-2026: first guide / reported actual",
+   "value": "100000.0-100000.0 / None",
+   "basis": "guidance",
+   "source_url": "https://s21.q4cdn.com/184289198/files/doc_financials/2026/q2/SpaceX-Q2-2026-Earnings_Transcript-FINAL.pdf",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2: guidance: ARR exit rate FY2027 guide as of 2026-10-20",
+   "value": "500000.0-1000000.0",
+   "basis": "guidance",
+   "source_url": "https://www.techflowpost.com/en-US/article/34779",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor disagreements: Musk internal/external split quote",
+   "value": "\"our goal is to kind of split it 50-50 ... could shift 60-40\"",
+   "basis": "management statement",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Q1-2027 revenue guide",
+   "value": "$33-37B",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Anthropic contract terms",
+   "value": "$1.25B/month to May 2029, ~325,000 GPUs, terminable by either party on 90 days notice after 3 months",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Loop Capital CRWV target basis",
+   "value": "$165 target = 10x 2027 EV/EBITDA; Loop 2027 EBITDA $12.8B; published 2025-09-24, initiation 2025-09-19",
+   "basis": "analyst estimate",
+   "source_url": "https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: CRWV market cap",
+   "value": "$31.3B at $56.87",
+   "basis": "derived (secfacts)",
+   "source_url": "secfacts.py peers CRWV",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: MU EV/EBITDA ttm and P/E ttm",
+   "value": "8.7x / 11.6x",
+   "basis": "derived (secfacts)",
+   "source_url": "secfacts.py peers MU",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: META EV/EBITDA ttm",
+   "value": "16.2x",
+   "basis": "derived (secfacts)",
+   "source_url": "secfacts.py peers META",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: GB300 pace and Rubin mix quotes",
+   "value": "\"roughly 200,000 GB300s online per month\", \"220,000 GB300s a month\", \"next year being primarily ... Rubin\"; Musk 13 GW",
+   "basis": "management statement",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Nameplate definition",
+   "value": "GPUs installed x all-in power draw",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Rack power GB300 / VR200 NVL72",
+   "value": "~140 kW / ~190 kW Max Q / ~230 kW Max P (1.94 vs 2.64-3.19 kW per GPU)",
+   "basis": "industry data",
+   "source_url": "https://www.ctee.com.tw/news/20260107701081-430704",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Q3-2026 capex",
+   "value": "$19,593M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Q4-2026 capex guide",
+   "value": "$35-40B",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Bernstein cost per GW",
+   "value": "$36.5-39.5B/GW (GB200 / Vera Rubin)",
+   "basis": "analyst estimate",
+   "source_url": "https://hao.cnyes.com/post/271235",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: EchoStar consideration",
+   "value": "~$19.6B = ~261.8M Class A at fixed $42.40 (~$11.1B) + up to $8.5B debt payoff",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: EchoStar debt-service loans",
+   "value": "loans through at least 2027-11-30, ~$3,000M through 2028-11-30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Musk restricted shares",
+   "value": "1,302,072,285; 1,000,000,000 on 15 tranches + Mars colony of 1M; 302,072,285 on 12 tranches + 100 TW non-Earth compute; improbable, no expense",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: No Google agreement in 424B4 or Q3 Ex. 99.1",
+   "value": "absence claim",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Q3 share counts",
+   "value": "basic weighted 11,942M; diluted 12,475M; 13,579M outstanding (A 8,240 + B 5,339)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: 424B4 options",
+   "value": "133.8M Class A at $27.65 + 358.2M Class B at $8.22 -> ~448M treasury",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Polymarket Tesla-SpaceX merger odds",
+   "value": "42.5% by 2027-06-30, 62.5% by 2027-12-31",
+   "basis": "prediction market",
+   "source_url": "https://247wallst.com/investing/2026/10/05/tesla-is-down-16-this-year-and-bettors-now-favor-a-musk-merger-with-spacex/",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Musk on Tesla terms",
+   "value": "\"have not reached agreement on the terms\"; 50% vote of all shares",
+   "basis": "management statement",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: Compute pricing and renewals quotes",
+   "value": "\"slightly above the high end of the $30 to $50 per watt range\"; renewals \"at higher dollars per watt\"",
+   "basis": "management statement",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor disagreements: H100 on-demand decline",
+   "value": "fell 56-64% within ~1 year once supply caught up",
+   "basis": "industry data",
+   "source_url": "https://introl.com/blog/gpu-cloud-price-collapse-h100-64-percent-drop-2025",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor changes: CRWV comparable source date",
+   "value": "2025-09-24, Loop estimate $12.8B, initiation 2025-09-19",
+   "basis": "analyst estimate",
+   "source_url": "https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor comps_review: spot checks MSFT / GOOGL / ORCL / TMUS P/E ttm",
+   "value": "29.2 / 16.5 / 20.2 / 15.9",
+   "basis": "derived (secfacts)",
+   "source_url": "secfacts.py peers MSFT GOOGL ORCL TMUS",
+   "checked": "2026-10-22",
+   "feeds": "comps"
+  },
+  {
+   "item": "supervisor comps_review: spot checks META 16.2 EV/EBITDA, MU 8.7 / 11.6, CRWV 10x Loop basis",
+   "value": "as listed",
+   "basis": "derived (secfacts) / analyst estimate",
+   "source_url": "secfacts.py peers; https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "checked": "2026-10-22",
+   "feeds": "comps"
+  },
+  {
+   "item": "supervisor comps_review: ex-TSLA NTM P/E median",
+   "value": "18.3x (ORCL 17.3, GOOGL 18.3, META 20.4, MSFT 26.6, TMUS 12.9)",
+   "basis": "consensus estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps"
+  },
+  {
+   "item": "supervisor comps_review: dropped peers",
+   "value": "AMZN no price (HTTP 429); ASTS/IREN/NBIS no multiples",
+   "basis": "run table",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/peers.md",
+   "checked": "2026-10-22",
+   "feeds": "comps"
+  },
+  {
+   "item": "supervisor sizing: lock-up releases",
+   "value": "2026-12-08 and June 2027",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "sizing"
+  },
+  {
+   "item": "supervisor key_drivers: economic vs headline share count",
+   "value": "per-share value ~9% above the headline count",
+   "basis": "derived",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "reasoning"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Net debt 2026-09-30",
+   "value": "cash 51,294 + securities 38,561 - debt and finance leases 38,844 = -51,011",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: SEC XBRL fact pack F1-F8",
+   "value": "2026-06-30 balances",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001181412.json",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Cursor merger share issuance and awards",
+   "value": "389.3M shares + 29.1M RSUs + 44.4M options; $60.0B implied equity; 2026-08-14",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026056945/spcx-20260814.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Cursor awards and GAAP consideration",
+   "value": "$23.4B post-acquisition awards; GAAP consideration $42.5B; $60B implied equity",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: SBC",
+   "value": "9M-26 ex-acquisition $2,616M; Q3 $1,146M (acquisition SBC $1,217M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Nameplate compute now and near-term",
+   "value": "1.7 GW at Q3-26; \"nearly 2.2 gigawatts ... at the end of this month\"; 2.5-3 GW at YE",
+   "basis": "reported / management statement",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm ; https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Q2-2026 capex and capacity",
+   "value": "Q2 capex $18,369M; 1.4 GW",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Rental indices",
+   "value": "Uvik 7-Oct-26: H100 $4.20/hr, B300 $9.50/hr, Nebius H100 +17%, H200 +20% on 1-Oct; SemiAnalysis H100 1-yr +38% Oct-25 to Mar-26",
+   "basis": "industry data",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: MS B300 1-yr rental index",
+   "value": "+50% YTD",
+   "basis": "broker research",
+   "source_url": "valuation/broker/digests/upload_8498b606.json",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: SI capex 9M-26",
+   "value": "$39,995M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: SemiAnalysis capacity and cost",
+   "value": "~10 GW by YE27; ~$50B/GW all-in incl. on-site gas generation (upper bound)",
+   "basis": "industry research",
+   "source_url": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: SI cash costs Q3",
+   "value": "revenue 7,560 - SI adj. EBITDA 4,953 = 2,607",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: 424B4 useful lives",
+   "value": "servers/networking 5-6 yrs; data-centre infrastructure 20-25 yrs; broadband satellites 5 yrs",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Starlink Q3 metrics",
+   "value": "13.6M subs (+1.6M q/q); ARPU $69 Q3 / $67 9M; E&G $2,127M (+91% y/y); Conn adj. EBITDA 3,499 / revenue 5,248 = 66.7%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Space 2025 base",
+   "value": "2025 Space adj. EBITDA $653M; Starship R&D $3,004M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Starship cadence record",
+   "value": "\"one flight a day a year from now\" (Q2 call) -> weekly in H1-27 (Q3 call)",
+   "basis": "management statement",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026 ; https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: xAI award re-cut",
+   "value": "xAI award cancelled and re-granted Mar-26",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: EchoStar closing",
+   "value": "FCC approved 2026-05-12; closing assumed 2027-11-30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: 800 MHz spectrum cash",
+   "value": "$8B cash, paid Q2-27",
+   "basis": "named outlet",
+   "source_url": "https://broadbandbreakfast.com/earthquake-in-the-sky-spacex-pays-8-billion-for-grain-management-airwaves-to-advance-starlink-mobile/",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.inputs_detail: Holding-company discount literature",
+   "value": "Berger-Ofek 13-15%; Hund-Monk-Tice: largely a matching artefact",
+   "basis": "academic",
+   "source_url": "https://cfr.ivo-welch.info/published/papers/hund-monk-tice.pdf",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: Diluted shares now",
+   "value": "12,810M economic (14,112M headline)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: Shares at horizon",
+   "value": "13136.9M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: Net debt at horizon",
+   "value": "$53,103M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: New-chip compute price path ($/W-yr)",
+   "value": "2026 50; 2027 48; 2028 44; 2029 34; 2030 27; 2031 23; 2032+ 19 (NPV-0 price 19.13-19.65)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: Build cost per W and opex",
+   "value": "capex $38/W (IT $25.5 + facilities $12.5) for 2026-27 vintages, $39.5/W (IT $27) for 2028+ Rubin vintages; cash opex $4.5/W-yr; utilisation 95%; salvage $8/W shell at retirement",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: External share of compute (reported revenue)",
+   "value": "2026 70%; 2027 65%; 2028 55%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: EV/EBITDA horizon multiple",
+   "value": "11.0x NTM GAAP EBITDA",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 EV/EBITDA: Tesla combination (equity adjustment)",
+   "value": "-$30,000M x 0.6 = -$18,000M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Age curve (share of new-chip $/W-yr)",
+   "value": "age 0:1.00, 1:0.82, 2:0.66, 3:0.52, 4:0.40, 5:0.30; retire after 6 years",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Discount rate for cash-flow parts",
+   "value": "9.19%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Taxes",
+   "value": "21% book; IT capex expensed (100% bonus depreciation)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Starlink subscribers and ARPU",
+   "value": "consumer subs YE26 15.2M, YE27 21M, YE28 26.5M, YE30 35M, YE35 45M; ARPU $67/month flat",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Starlink enterprise & government and mobile",
+   "value": "E&G $7.3B 2026 growing 45%/35%/25%/20% then 15%-6%; mobile revenue $1B 2028 to $17B 2035",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Starlink margins and capex",
+   "value": "EBITDA after SBC 62%; capex 30% of revenue 2027 falling to 22% by 2031; satellites 5-yr life (D&A ~ capex)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Space (launch + Starship) scenarios",
+   "value": "launch franchise $32,310M + Starship tree 0.50 x $26B / 0.40 x $7B / 0.10 x -$7B = $47,410M; Starlink knock-on $-15,996M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Cursor",
+   "value": "$60B EV",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 SOTP: Holding-company discount",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 P/E: P/E horizon multiple",
+   "value": "18.0x NTM",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 P/E: Musk restricted shares (economic share basis)",
+   "value": "1,302M excluded; 5% re-cut probability (65.1M expected shares)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_1 guidance: nameplate compute at year-end (GW) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "1/0/0 beat/inside/miss, median 0.0666, adjusted 13.9, ours 8.75 below -0.3269",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "recomputed after gate fixes (was: 2/0/2 beat/inside/miss, median -0.3167, adjusted 8.88, ours 8.75 below -0.3269); inputs as verified"
+  },
+  {
+   "item": "agent_1 guidance: capex (quarter) Q4-2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "1/0/0 beat/inside/miss, median 0.0666, adjusted 39998, ours 38500.0 inside 0.0267",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_1 guidance: revenue (quarter) Q1-2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 35000.0, ours 36138.0 inside 0.0325",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_1 guidance: annualised revenue run-rate (December revenue x 12) FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, posi\u2026",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 100000.0, ours 110000.0 above 0.1",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: FY2027 revenue",
+   "value": "$191.6B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: FY2028 revenue",
+   "value": "$276.0B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: EBIT margins FY26/27/28",
+   "value": "16.1% / 47.8% / 41.5%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: Net debt at horizon",
+   "value": "$69600M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: Economic diluted shares now",
+   "value": "12,839 M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: Shares at horizon",
+   "value": "13,166 M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: New-chip spot price path ($/W-yr nameplate)",
+   "value": "52/52/48/40/31/25/21/18.8 (2026/H1-27/H2-27/2028/2029/2030/2031/2032+)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: Capacity YE2027 (nameplate)",
+   "value": "8.6 GW",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 EV/EBITDA: Horizon EV/EBITDA",
+   "value": "10x NTM GAAP EBITDA",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Discount rate for cash-flow parts",
+   "value": "9.19%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Age curve",
+   "value": "0.82^age (1.00/0.82/0.67/0.55/0.45/0.37)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Capex per watt",
+   "value": "$38/W (2026-27 vintages), $39.5/W (2028, Vera Rubin)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Opex",
+   "value": "$4/W-yr",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Utilisation",
+   "value": "92% of nameplate earning spot",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Starlink drivers",
+   "value": "subs 15.3M YE26 -> 55M 2035; ARPU $67 -> $60; E&G +55% 2027 fading; Mobile to $25B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Space tree",
+   "value": "launch $39.6B; Starship success 55%/delay 35%/failure 10%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Grain Management 800 MHz spectrum",
+   "value": "-$8.0B cash, probability 0.9",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Tesla combination",
+   "value": "-$45B x 0.55",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 SOTP: Holding-company discount",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 P/E: SBC (ongoing)",
+   "value": "$4.8B (FY26, incl. $1.2B Cursor reported) / $5.0B / $5.6B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 P/E: Horizon P/E",
+   "value": "18x NTM GAAP EPS",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 model_inputs: Capex FY26/27/28",
+   "value": "$86.6B / $230.4B / $173.5B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_2 guidance: nameplate compute capacity (GW, year-end) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 13.0, ours 8.6 below -33.8",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_2 guidance: capex (total company, quarterly) Q4-2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "1/0/0 beat/inside/miss, median 6.7, adjusted 40012.0, ours 38500.0 inside 2.7",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_2 guidance: revenue Q1-2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 35000.0, ours 34540 inside -1.3",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_2 guidance: ARR exit rate (long-term target) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 750000.0, ours 242560 below -67.7",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: SI revenue FY2027 / FY2028",
+   "value": "$161,264M / $210,162M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: SI EBIT margin FY2027 / FY2028",
+   "value": "56.0% / 42.2%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: Economic diluted shares now",
+   "value": "12,810M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: Shares at horizon",
+   "value": "13,136.9M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: EV/EBITDA horizon multiple (NTM, GAAP after ongoing SBC)",
+   "value": "10.0x",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: Nameplate compute YE2026 / YE2027 / YE2028",
+   "value": "2.8 / 8.5 / 12.9 GW",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 EV/EBITDA: New-chip price path ($/W-yr, calendar avg)",
+   "value": "2026 52; 2027 51; 2028 42; 2029 32; 2030 26; 2031 22; 2032+ 18.7",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Holding-company discount",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Discount rate for cash-flow parts",
+   "value": "9.19%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Age curve (per-watt price vs new chip by age 0-5)",
+   "value": "1.00, 0.86, 0.70, 0.55, 0.43, 0.34",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Fleet economics",
+   "value": "life 6 yrs; util 90%; opex $1.9/W-yr + 4% of revenue; salvage 15%; build $39-41/W",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Break-even new-chip price (NPV 0 at 9.19%)",
+   "value": "$17.7/W-yr ($21.3 at $50/W)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Compute fleet part (PV at horizon)",
+   "value": "$550,932M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Build window 2029-30 part",
+   "value": "$46,237M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Starlink subscribers / ARPU",
+   "value": "15.2M YE26, 20.0M YE27, 30.5M 2030, 40.8M 2036; ARPU $68 (2026), $66, $64, $62, $61 then +1%/yr",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Starlink DCF part",
+   "value": "$197,117M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Space probability tree",
+   "value": "success 50% $72B; delay 35% $42B; failure 15% $24B -> $54.3B",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Cursor part",
+   "value": "$52,800M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 SOTP: Ongoing SBC not in parts",
+   "value": "$-22,040M",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 P/E: Tax rate",
+   "value": "21%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 P/E: SBC % revenue (ongoing only)",
+   "value": "FY26 7.6%, FY27 2.9%, FY28 2.6%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 P/E: Interest rate on net debt",
+   "value": "6.0%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 P/E: P/E horizon multiple (NTM)",
+   "value": "17.0x",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 P/E: Tesla combination (adjustment)",
+   "value": "-59,500M at p=0.50",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 other: Skeptic valuation cross-checks (not inputs)",
+   "value": "Morningstar fair value $62/share; Damodaran ~$1.22T; Phillip Securities Sell; lowest of 46 targets $75; Chanos: 'largest global neocloud'",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 other: Starlink knock-on",
+   "value": "$-9,363M",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: FY2026 revenue",
+   "value": "$50,542M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: FY2026 EBIT (GAAP ex acquisition SBC)",
+   "value": "$11,731M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: Connectivity revenue / EBIT",
+   "value": "FY26 $18,396M; FY27 $24,539M / 39.3%; FY28 $31,396M / 37.5%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: Space revenue / EBIT",
+   "value": "FY26 $5,248M / -$1,511M; FY27 $6,040M / -$1,240M; FY28 $6,950M / -$520M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: D&A % revenue",
+   "value": "FY26 28.3%, FY27 22.6%, FY28 32.2%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: Capex % revenue",
+   "value": "FY26 169.3%, FY27 125.6%, FY28 78.2%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: Starlink enterprise/government and Mobile revenue",
+   "value": "E&G $7.3B 2026 -> $18B 2030 (+7%/yr after); Mobile $0.4B 2027 -> $4.5B 2030",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: Starlink margins and capex",
+   "value": "EBITDA 64% (2026-27), 62% after; capex 30% of rev 2026-27 -> 20% from 2031; 2% of revenue NWC/fees",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 model_inputs: X advertising part",
+   "value": "$6,456M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_3 guidance: nameplate compute capacity (GW) FY2027 (year-end) guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 13.0, ours 8.5 below -0.3462",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_3 guidance: nameplate compute capacity (GW) FY2026 (year-end) guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 2.75, ours 2.8 inside 0.0182",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_3 guidance: capex (quarter) Q4 2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "1/0/0 beat/inside/miss, median 0.0666, adjusted 39999, ours 37500.0 inside 0.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_3 guidance: revenue Q1 2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 35000.0, ours 32927 below -0.0592",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_3 guidance: ARR (annualised revenue run-rate) December 2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 750000.0, ours 249000.0 below -0.6687",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_4 EV/EBITDA: NTM EBITDA at horizon (GAAP, after ongoing SBC)",
+   "value": "~$156B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "recomputed after gate fixes (was: ~$155B); inputs as verified"
+  },
+  {
+   "item": "agent_4 EV/EBITDA: EV/EBITDA multiple",
+   "value": "12.0x",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 EV/EBITDA: Nameplate compute GW",
+   "value": "0.6 Q3-25, 1.4 Q2-26, 1.7 Q3-26 reported; ~2.2 end-Oct-26 (CFO); YE26 2.9; YE27 8.8 (quarter averages 3.6/5.05/6.55/8.05); YE28 12.3",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 EV/EBITDA: New-chip spot price path ($/W-yr)",
+   "value": "2026 52; 2027 50 (Q1 55, Q2 52, Q3 49, Q4 45); 2028 42; 2029 33; 2030 27; 2031 23; 2032 22; 2033+ 21 (break-even 19.9)",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 EV/EBITDA: Net debt at horizon",
+   "value": "$92500M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "recomputed after gate fixes (was: $92800M); inputs as verified"
+  },
+  {
+   "item": "agent_4 EV/EBITDA: Diluted shares (economic)",
+   "value": "13,004M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Compute fleet PV",
+   "value": "$513B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Build window 2029-30",
+   "value": "$67B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Starlink DCF",
+   "value": "base $269B; delay $242B; failure $194B; prob-weighted $248B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "recomputed after gate fixes (was: base $258B; delay $232B; failure $188B; prob-weighted $239B); inputs as verified"
+  },
+  {
+   "item": "agent_4 SOTP: Space (launch + Starship) tree",
+   "value": "$66.0B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Cursor",
+   "value": "$60B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: X",
+   "value": "$15B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Holding-company discount",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: EchoStar spectrum charge",
+   "value": "-$48.2B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Tesla combination",
+   "value": "-$42.5B x 0.35",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Grain 800 MHz spectrum",
+   "value": "$8B cash, H1-2027 close",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Age curve (per watt vs new chip)",
+   "value": "0.82^age (1.00/0.82/0.67/0.55/0.45/0.37), all years",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Economic life / salvage",
+   "value": "6 years; salvage $5.8/W",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Capex per watt",
+   "value": "$38/W 2024-27 (IT 68%), $39.5/W 2028-30 (Rubin)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Fleet cash opex / utilisation / tax",
+   "value": "$2.5/W-yr +2%/yr; 92% sellable; 21% tax with 100% bonus depreciation on post-horizon IT",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Break-even new-chip price",
+   "value": "$19.87/W-yr for a $39.5/W vintage at 9.19%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: Internal / external split",
+   "value": "55% external FY27, 50% FY28 (consolidated revenue only; SOTP values all watts at spot)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 SOTP: External-pool vintage mix",
+   "value": "0.96 FY27, 0.88 FY28 (consolidated revenue only)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 P/E: NTM EPS at horizon (GAAP)",
+   "value": "~$5.3",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 P/E: P/E multiple",
+   "value": "18x",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 P/E: SBC (ongoing, costed in EBIT)",
+   "value": "FY2025 $1,947M; FY26 $3.8B; FY27 $5.2B; FY28 $6.0B; Cursor acquisition awards excluded",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 P/E: D&A and capex totals",
+   "value": "D&A FY27 $41B, FY28 $67B; capex FY26 $86B, FY27 $258B, FY28 $163B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "recomputed after gate fixes (was: D&A FY27 $40B, FY28 $67B; capex FY26 $86B, FY27 $258B, FY28 $163B); inputs as verified"
+  },
+  {
+   "item": "agent_4 model_inputs: FY2026 revenue (my estimate)",
+   "value": "$47.6B: Q4 ~$20.5B (Conn 5.8, Space 1.4, SI 13.4)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 model_inputs: X ads / Grok subs / xAI R&D",
+   "value": "X ads $2.3B FY27; Grok $2B FY27, $3B FY28; xAI R&D (non-compute) $12B FY27, $15B FY28",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 model_inputs: Connectivity margins / capex",
+   "value": "Adj. EBITDA margin 66.5% rising to 70%, less SBC 2.8% of revenue; capex 28% of revenue FY27 to 20% by 2033; D&A 20%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 model_inputs: WACC for cash-flow parts",
+   "value": "9.19%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_4 guidance: nameplate compute capacity YE (GW) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 13.0, ours 8.8 below -0.3231",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "recomputed after gate fixes (was: 1/0/1 beat/inside/miss, median -0.1, adjusted 11.7, ours 8.8 below -0.323); inputs as verified"
+  },
+  {
+   "item": "agent_4 guidance: capex (quarter) Q4 2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "1/0/0 beat/inside/miss, median 0.0648, adjusted 39930.0, ours 38500.0 inside 0.0267",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_4 guidance: revenue (quarter) Q1 2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 35000.0, ours 33800.0 inside -0.0343",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_4 guidance: ARR (December annualised revenue) FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 100000.0, ours 100000.0 inside 0.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: Nameplate GW YE2026 / at horizon / YE2027 / YE2028",
+   "value": "3.0 / 7.0 / 8.6 / 12.6 GW",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: New-chip price path ($/W-yr of nameplate, annual avg)",
+   "value": "2026 52, 2027 50, 2028 42, 2029 34, 2030 28, 2031 25, 2032+ 22.3 (break-even)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: External share of fleet (GAAP revenue)",
+   "value": "50% 2026, 60% 2027-28",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: Net debt at horizon",
+   "value": "$77,896M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 EV/EBITDA: Consolidated FY2026-28 build",
+   "value": "Revenue $49.9B / $177.8B / $253.4B; GAAP EBIT after SBC $9.2B / $81.1B / $96.2B; EBITDA $22.7B / $118.5B / $163.3B (FY26/27/28)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Age curve for older vintages",
+   "value": "f(age) = 0.83^age (0.69 at 2y, 0.57 at 3y, 0.39 at 5y); bull 0.86, bear 0.78",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Economic life and salvage",
+   "value": "6 years; salvage 15% of vintage capex",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Capex per watt",
+   "value": "$36/W 2026 vintages, $38 2027, $39.5 2028-30",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Utilization and cash opex",
+   "value": "90% of nameplate sold or used; $4/W-yr cash opex",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Break-even new-chip price",
+   "value": "$21.7/W-yr at $38/W capex ($22.3 at $39.5/W)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Compute fleet part cash flows after horizon ($M, 12-month periods from 2027Q4)",
+   "value": "[62723, 104407, 75563, 163952, 114851, 100313, 66815, 39520, 24594, 0]",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Starlink drivers",
+   "value": "Consumer subs YE26 15.5M, YE27 21M, YE28 26M, YE30 33.5M, YE35 45M at $68 ARPU; E&G $7.3B 2026 growing 45%/30%/22%/18% then to 5%; EBITDA 63% after SBC; capex 28% of revenue; D&A 19%",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Starlink part cash flows after horizon ($M)",
+   "value": "[8004, 9779, 11385, 12748, 13935, 14954, 15819, 16611, 16908]",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Space (launch + Starship) scenarios",
+   "value": "success 0.45 (EV $95B), delay 2-3 yrs 0.43 ($42B), failure 0.12 ($22B); expected $63.5B; Starlink knock-on -5% (delay) / -25% (failure) = -$10.1B",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: X advertising",
+   "value": "EV $8B",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Holding-company discount",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Discount rate for cash-flow parts",
+   "value": "9.19%",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 SOTP: Tesla combination",
+   "value": "-$30,000M x 0.5",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 P/E: Tax rates",
+   "value": "12% FY26, 15% FY27, 19% FY28 (engine); 21% on part cash flows",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 other: Multiples sensitivity",
+   "value": "15x/27x $116.83; 12x/18x $92.93; 10x/17x $82.45 (pre-gate 11x/16x $86.06)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value",
+   "note": "recomputed after gate fixes (was: 15x/27x $116.52; 12x/18x $92.69; 11x/16x $85.83); inputs as verified"
+  },
+  {
+   "item": "agent_5 other: Market cap and EV",
+   "value": "$1.95T / $1.90T",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "agent_5 guidance: nameplate compute GW (year-end) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "1/0/0 beat/inside/miss, median 0.1, adjusted 14.3, ours 8.6 below -0.3385",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_5 guidance: capex (quarter) Q4 2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "1/0/0 beat/inside/miss, median 0.0666, adjusted 39999.0, ours 40000.0 inside 0.0667",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_5 guidance: revenue (quarter) Q1 2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 35000.0, ours 32750.0 below -0.0643",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_5 guidance: ARR (December revenue x 12) FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 100000.0, ours 93000.0 below -0.07",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "agent_5 guidance: ARR (end-2027) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 750000.0, ours 244000.0 below -0.6747",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "recomputed after gate fixes (was: 1/0/0 beat/inside/miss, median 0.1, adjusted 825000.0, ours 244000.0 below -0.6747); inputs as verified"
+  },
+  {
+   "item": "supervisor guidance: nameplate compute capacity (GW, year-end) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 13.0, ours 9.0 below -30.8",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "recomputed after gate fixes (was: 1/0/1 beat/inside/miss, median -21.0, adjusted 10.27, ours 9.0 below -30.8); inputs as verified"
+  },
+  {
+   "item": "supervisor guidance: nameplate compute capacity (GW, year-end) FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 2.75, ours 2.85 inside 3.6",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check",
+   "note": "recomputed after gate fixes (was: 1/0/0 beat/inside/miss, median 10.0, adjusted 3.03, ours 2.85 inside 3.6); inputs as verified"
+  },
+  {
+   "item": "supervisor guidance: capex (quarter, total company, GAAP purchases of PP&E) Q4-2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, \u2026",
+   "value": "1/0/0 beat/inside/miss, median 6.66, adjusted 39997.0, ours 39000.0 inside 4.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "supervisor guidance: revenue (quarter, total company, GAAP) Q1-2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 35000.0, ours 34603.0 inside -1.13",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "supervisor guidance: annualised revenue run-rate (December revenue x 12) FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, posi\u2026",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 100000.0, ours 97000.0 below -3.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "supervisor guidance: annualised revenue run-rate (end-2027) FY2027 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "0/0/0 beat/inside/miss, median 0.0, adjusted 750000.0, ours 242000.0 below -67.7",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "supervisor model: Economic diluted shares now",
+   "value": "12835.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Shares at horizon",
+   "value": "13161.9",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Cursor acquisition SBC",
+   "value": "excluded from EBIT",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Ongoing SBC",
+   "value": "FY26 $3,900M / FY27 $5,500M / FY28 $6,500M",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Nameplate compute YE26 / YE27 / YE28",
+   "value": "2.85 / 9.0 / 13.5 GW",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: New-chip compute price ($/W-yr, nameplate)",
+   "value": "2026 52; 2027 Q1-Q4 52/51/50/47; 2028 avg 42; 2029 33; 2030 27; 2031 23.5; 2032+ 18.5 (NPV-0)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Age curve (price vs new chip by age)",
+   "value": "0.82^age (1.00/0.82/0.67/0.55/0.45/0.37)",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Capex per watt (all-in)",
+   "value": "2026 $36; 2027 $38; 2028 $39.5; window $38",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Fleet opex / utilisation / life / salvage",
+   "value": "$3.5/W-yr; 92%; 6 years; $8/W",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Break-even (NPV-0) new-chip price",
+   "value": "18.54",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Compute fleet part (PV at H)",
+   "value": "530654",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Build window 2029-30",
+   "value": "62446",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Starlink DCF",
+   "value": "210145",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Space part",
+   "value": "64340.0",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Cursor",
+   "value": "60000.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Net debt at horizon",
+   "value": "74362.0",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Tesla combination",
+   "value": "-$30B x 0.5",
+   "basis": "estimate",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Holding-company discount",
+   "value": "0.1",
+   "basis": "judgment",
+   "source_url": "derived (arithmetic check)",
+   "checked": "2026-10-22",
+   "feeds": "fair_value"
+  }
+ ],
+ "post_gate_notes": [
+  "2026-10-22 17:15Z: supervisor horizon multiples set to Kilian's 15x / 27x (decision, basis judgment; no new citation). Engine check OK 118.49."
+ ]
+}

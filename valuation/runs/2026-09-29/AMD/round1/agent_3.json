@@ -1,0 +1,80 @@
+{
+  "symbol": "AMD", "agent_id": "agent_3", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 151, "p": 0.985}, {"K": 242, "p": 0.93}, {"K": 302, "p": 0.88}, {"K": 362, "p": 0.805},
+    {"K": 423, "p": 0.715}, {"K": 483, "p": 0.625}, {"K": 544, "p": 0.535}, {"K": 604, "p": 0.455},
+    {"K": 664, "p": 0.385}, {"K": 725, "p": 0.32}, {"K": 816, "p": 0.245}, {"K": 906, "p": 0.185},
+    {"K": 1057, "p": 0.115}, {"K": 1208, "p": 0.072}, {"K": 1510, "p": 0.03}
+  ],
+  "ladder_1m": [
+    {"K": 483.27, "p": 0.87}, {"K": 513.47, "p": 0.79}, {"K": 543.68, "p": 0.695}, {"K": 561.80, "p": 0.635},
+    {"K": 579.92, "p": 0.57}, {"K": 604.09, "p": 0.485}, {"K": 628.25, "p": 0.405}, {"K": 646.37, "p": 0.35},
+    {"K": 664.49, "p": 0.295}, {"K": 694.70, "p": 0.22}, {"K": 724.90, "p": 0.16}
+  ],
+  "one_month_reasoning": "AMD's own Q3 print is expected around 2026-11-03 (unconfirmed, based on last year's timing), i.e. just AFTER the 2026-10-30 window, so the stock's own earnings are not in the window. Inside the window: hyperscaler Q3 reports and capex guides (Microsoft, Alphabet, Meta, Amazon typically the last week of October) and peer semis prints; these move AI-GPU names but direction is unknown. The stock ran ~32% in 15 sessions into late September (to $630 on Sep 25) and has pulled back to $604; short-horizon reversal after a sharp run vs. momentum roughly cancel, with a slight tilt toward mean reversion given valuation-driven downgrades and CEO 10b5-1 sales. Pre-earnings run-ups are common for AMD. Net: near-symmetric lognormal centred ~$600 (tiny negative drift) with sigma ~19% (72% annual vol / 3.5, trimmed slightly because the earnings event itself falls outside).",
+  "fair_value": {
+    "value": 550.0,
+    "method": "Blend of (a) P/E on FY2028 EPS ~$21 x 28x less ~5% expected warrant dilution = ~$560 (60%) and (b) P/E on skeptic-haircut FY2027 EPS $14 x 38x = ~$532 (40%); blended ~$550, about 9% below spot.",
+    "methods": [
+      {"name": "P/E", "value": 560.0, "weight": 0.6,
+       "inputs": "Forward (FY2028) EPS $21 x 28x = $588, less ~5% expected dilution from OpenAI/Meta penny warrants partially vesting by late 2027 = ~$560",
+       "inputs_detail": [
+         {"input": "FY2027 consensus EPS", "value": "$15.58 (range of published consensus $11-$15.6)", "basis": "consensus", "source_ids": [7, 4], "derivation": ""},
+         {"input": "FY2028 EPS (NTM EPS as of Sept 2027)", "value": "$21", "basis": "estimate", "source_ids": [7, 1, 2], "derivation": "Consensus 2027 $15.58 grown ~35%: below 2026-27 consensus growth (~105%) and below the 41% YoY Q3 revenue guide, reflecting deceleration as the base grows and Nvidia competition."},
+         {"input": "Target P/E", "value": "28x forward", "basis": "judgment", "source_ids": [4, 11, 12], "derivation": "Premium to the ~23x semis sector average cited in bear cases for >30% EPS growth, but a discount to today's ~80x forward multiple that downgrades (SA Sept 22) call unsustainable relative to Nvidia/Marvell."},
+         {"input": "Warrant dilution haircut", "value": "~5% (out of max ~19.6%)", "basis": "judgment", "source_ids": [8, 9, 10], "derivation": "320M penny warrants vs 1.632B shares = 19.6% max; none vested at June 27 2026; tranches need GW deployment milestones and price hurdles up to $600, so only early tranches are plausibly vested by Sept 2027 as MI450/Helios ramps."}
+       ]},
+      {"name": "P/E", "value": 532.0, "weight": 0.4,
+       "inputs": "Skeptic FY2027 EPS $14 x 38x = $532",
+       "inputs_detail": [
+         {"input": "FY2027 EPS (skeptic)", "value": "$14", "basis": "estimate", "source_ids": [7, 4, 13], "derivation": "~10% haircut to $15.58 consensus for a slower Helios/MI455X rack ramp (SemiAnalysis-reported backplane/retimer issues and mass-production slip into 2027, denied by AMD)."},
+         {"input": "Trailing-style multiple on current-year EPS", "value": "38x", "basis": "judgment", "source_ids": [4, 11], "derivation": "Roughly 28x forward multiple applied to a year earlier EPS with ~35% growth (28 x 1.35)."},
+         {"input": "Net cash", "value": "~$1.9B pro forma (cash $9.8B vs debt $8.0B at June 27 2026, adj.) - immaterial per share (~$1)", "basis": "reported", "source_ids": [14], "derivation": ""}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 330.0, "prob": 0.25, "story": "AI capex digestion in 2027 and/or Helios rack ramp slips (backplane reliability, UALink-over-Ethernet), MI450 volumes land in 2H27 not 1H27; FY27 EPS ~$11-12 vs $15.6 consensus; multiple compresses toward ~25-28x forward as the 'equity-for-demand' warrant model is read as a sign of weak organic demand. Stock ~$330 (back near the level of the August 2026 run-up start)."},
+    "base": {"price": 580.0, "prob": 0.5, "story": "Q3 lands near $13B guide, MI450 ramps through 1H27 with modest slippage, FY27 EPS ~$14-15.5; strong earnings growth is offset by multiple compression from ~80x to ~28x forward and partial warrant dilution, so the stock goes roughly sideways ('dead money' downgrade thesis)."},
+    "bull": {"price": 900.0, "prob": 0.25, "story": "Helios ships on time, OpenAI/Meta/Oracle/Anthropic deployments scale, data center GPU revenue compounds >80%, FY28 EPS path toward $28+, market keeps a 30-35x forward multiple; warrant dilution is accepted as cheap customer acquisition."}
+  },
+  "thesis_break_price": 400.0,
+  "thesis_break_reason": "A close below ~$400 (-34%) would most likely mean a fundamental event rather than volatility: a confirmed Helios/MI450 volume slip into late 2027, a hyperscaler capex cut, or a guide-down that pulls FY27 EPS toward ~$11. At that price the stock would sit ~25x the consensus FY28 path, so only a lower earnings path explains it.",
+  "catalysts": [
+    {"date": "late 2026-10", "event": "Hyperscaler Q3 earnings and 2027 capex guides (MSFT, GOOGL, META, AMZN)", "direction": "?"},
+    {"date": "2026-11-03", "event": "AMD Q3 2026 results (guide ~$13B +/-$0.3B, 56% GM) and Q4 guide; first Helios/MI450 revenue commentary (date estimated)", "direction": "?"},
+    {"date": "2026-Q4 to 2027-Q2", "event": "Helios/MI455X rack production ramp; evidence of first volume deployments at OpenAI/Meta (warrant tranche vesting disclosures in 10-Q/10-K)", "direction": "?"},
+    {"date": "2026-12 to 2027-03", "event": "Scheduled CEO/insider 10b5-1 sales continue (Mar, Jun, Sep 2026 pattern)", "direction": "-"},
+    {"date": "2027-02", "event": "Q4 2026 results and FY2027 outlook", "direction": "?"},
+    {"date": "2027-03", "event": "Nvidia GTC; Vera Rubin competitive positioning vs MI450", "direction": "-"},
+    {"date": "2027-05 and 2027-08", "event": "Q1 and Q2 2027 results; MI500 roadmap", "direction": "?"},
+    {"date": "ongoing", "event": "US export-control changes on China AI chips (prior $800M MI308 charge)", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Timing and yield of the Helios/MI455X rack-scale ramp (AMD says on track for 2H26; SemiAnalysis reported mass production slipping to Q2 2027 and backplane/retimer reliability issues)",
+    "Whether 2027 AI capex holds; AMD customer concentration in OpenAI/Meta, whose deals are tied to equity warrants",
+    "How much of the 320M penny-warrant pool (~19.6% dilution) vests by late 2027 and how the market treats it",
+    "Sustainability of a ~80x forward multiple; multiple compression can outweigh 50%+ EPS growth",
+    "Nvidia pricing response and Rubin timing"
+  ],
+  "reasoning": "Starting facts: $604 close, ~$985B market cap on 1.632B shares, trailing P/E ~200x, ~80-90x 2026 EPS ($7-7.6), ~39x consensus 2027 EPS ($15.58), up 281% in a year. Fundamentals are strong and not in dispute: Q2 revenue +50% to $11.5B, data center +107%, Q3 guide $13B (+41%), 56% non-GAAP GM, investment-grade balance sheet with essentially net-neutral cash after a $4.75B August bond deal at 4.6-5.5% (no credit stress). The skeptic case therefore rests not on solvency or accounting but on (1) valuation: at 39x NTM+1 EPS the stock already discounts the 2027 consensus; to rise it needs estimates to keep climbing; (2) execution: credible trade reporting of Helios rack ramp problems and a mass-production slip into 2027, which AMD denies; (3) the warrant model: 320M $0.01 warrants (19.6% dilution) granted to OpenAI and Meta; critics (RightClick Research, Enertuition, SA 'circular financing') argue it signals weak organic demand and transfers wealth; SemiAnalysis shows the warrants push customers' effective GPU cost toward zero at $600-700 share prices, which also means AMD's reported margins overstate economic margins; (4) CEO 10b5-1 sales ($17M Mar, $58M Jun, $48M Sep) - routine, weak signal; (5) no sell ratings among 55 analysts, and the average target ($568-619) is at or below spot, so sell-side offers little upside. No short-seller report or securities class action found. Weighing honestly: consensus is not obviously wrong on earnings, but the price embeds it. Fair value ~$550 (-9%). Distribution: lognormal median ~$570 with sigma ~0.52 (below the 72% realized vol, which was inflated by a one-way 280% run, but above the 25-35% large-cap base rate), fat left tail added for an AI-capex bust. Scenario mean ~$597, i.e. flat vs spot. P(>= spot) ~45%. Research limits: Twelve Data estimates/insider endpoints unavailable on plan; no prediction markets or X posts checked; the 2027 consensus figure comes from aggregators with inconsistent values ($11-15.6).",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "AMD Reports Second Quarter 2026 Financial Results", "url": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results", "date": "2026-08-04", "type": "company", "in_lane": false},
+    {"title": "AMD Form 8-K Q2 2026 earnings release exhibit", "url": "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000121/q22026991.htm", "date": "2026-08-04", "type": "filing", "in_lane": false},
+    {"title": "Seeking Alpha: AMD - Bull Case Intact, But The Easy Upside Is Gone (Rating Downgrade)", "url": "https://seekingalpha.com/article/4945607-amd-bull-case-intact-but-the-easy-upside-is-gone-rating-downgrade", "date": "2026-09", "type": "newsletter", "in_lane": true},
+    {"title": "AMD Stock Price Prediction: $780 Bull, $430 Bear at $1trn (FinanceFeeds)", "url": "https://financefeeds.com/amd-stock-price-prediction-780-bull-430-bear/", "date": "2026-09-26", "type": "press", "in_lane": true},
+    {"title": "Seeking Alpha: AMD - Likely Dead Money From Here (Rating Downgrade)", "url": "https://seekingalpha.com/article/4948743-amd-likely-dead-money-from-here-rating-downgrade", "date": "2026-09-22", "type": "newsletter", "in_lane": true},
+    {"title": "AMD CEO Lisa Su Form 4 (10b5-1 sales Sept 10, 2026) and earlier sales coverage", "url": "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000178/wk-form4_1789417189.xml", "date": "2026-09-11", "type": "filing", "in_lane": true},
+    {"title": "Stock Analysis: AMD forecast (55 analysts, targets, EPS estimates)", "url": "https://stockanalysis.com/stocks/amd/forecast/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "AMD Form 10-Q for quarter ended June 27, 2026 (warrants, share count)", "url": "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000123/amd-20260627.htm", "date": "2026-08-05", "type": "filing", "in_lane": true},
+    {"title": "RightClick Research: AMD - The Advanced Money Destroyer", "url": "https://rightclickresearch.substack.com/p/amd-the-advanced-money-destroyer", "date": "2026-03-26", "type": "newsletter", "in_lane": true},
+    {"title": "SemiAnalysis via KuCoin: AMD Meta/OpenAI warrant deals could slash GPU costs near zero", "url": "https://www.kucoin.com/blog/semi-analysis-amd-meta-openai-warrant-deals-could-slash-gpu-costs-near-zero", "date": "2026-08", "type": "expert", "in_lane": true},
+    {"title": "Seeking Alpha: Sell AMD - Circular Financing Through Warrants", "url": "https://seekingalpha.com/article/4912153-sell-amd-circular-financing-through-warrants", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "TIKR: AMD stock drops 5% following HSBC downgrade over 2026 semiconductor capacity worries", "url": "https://www.tikr.com/blog/amd-nasdaq-stock-drops-5-following-hsbc-downgrade-over-2026-semiconductor-capacity-worries", "date": "2026", "type": "sell-side", "in_lane": true},
+    {"title": "Tom's Hardware: AMD denies report of MI455X delays (SemiAnalysis report of Helios mass production slipping to Q2 2027)", "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/amd-denies-report-of-mi455x-delays-as-nvidia-vr200-systems-are-rumored-to-arrive-early-company-says-helios-systems-on-target-for-2h-2026", "date": "2026-02", "type": "trade", "in_lane": true},
+    {"title": "AMD Form 424B5 prospectus supplement, $4.75B senior notes", "url": "https://www.sec.gov/Archives/edgar/data/0000002488/000119312526352628/d173126d424b5.htm", "date": "2026-08-13", "type": "filing", "in_lane": true},
+    {"title": "CNBC: AMD expects $800 million hit from U.S. chip restrictions on China", "url": "https://www.cnbc.com/2025/04/16/amd-800-million-export-us-chip-restrictions-china.html", "date": "2025-04-16", "type": "press", "in_lane": true},
+    {"title": "MarketBeat: AMD earnings date (estimated Nov 3, 2026)", "url": "https://www.marketbeat.com/stocks/NASDAQ/AMD/earnings/", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "symbol": "MP", "agent_id": "agent_2", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 11.82, "p": 0.98}, {"K": 18.92, "p": 0.92}, {"K": 24, "p": 0.85}, {"K": 28, "p": 0.79},
+    {"K": 33, "p": 0.71}, {"K": 38, "p": 0.635}, {"K": 43, "p": 0.565}, {"K": 47, "p": 0.515},
+    {"K": 52, "p": 0.455}, {"K": 57, "p": 0.40}, {"K": 64, "p": 0.335}, {"K": 71, "p": 0.28},
+    {"K": 83, "p": 0.205}, {"K": 95, "p": 0.15}, {"K": 118, "p": 0.085}
+  ],
+  "ladder_1m": [
+    {"K": 37.83, "p": 0.88}, {"K": 40.20, "p": 0.80}, {"K": 42.56, "p": 0.71}, {"K": 43.98, "p": 0.65},
+    {"K": 45.40, "p": 0.585}, {"K": 47.29, "p": 0.50}, {"K": 49.18, "p": 0.42}, {"K": 50.60, "p": 0.36},
+    {"K": 52.02, "p": 0.31}, {"K": 54.38, "p": 0.23}, {"K": 56.75, "p": 0.17}
+  ],
+  "one_month_reasoning": "No scheduled MP earnings in the window: Q2 was reported 2026-08-06, and Q3 is expected in early November, after 2026-10-30. The big policy dates also fall outside it. The expiry of China's suspension of its October 2025 export controls (2026-11-10) has effectively been pushed back: the US-China truce was extended to 2027-01-10 at the late-September Xi state visit, and the APEC meeting in Shenzhen is in November. Inside the window there is headline risk in both directions: thaw headlines have knocked rare-earth equities down 4-7% on single days; there are the Shenghe/China Rare Earth Group talks over a roughly 3% MP holder; and there are SMM NdPr price prints (about $97/kg, below the $110 DoD floor). The stock bounced 5.8% on 9/30 off a $44.75 low after falling from above $58. I see no edge on direction, so the ladder is a symmetric lognormal centered on $47.29 with about 19% monthly sigma (74%/3.5 = 21%, trimmed slightly because there is no earnings event).",
+  "fair_value": {
+    "value": 47.5,
+    "method": "Blend of EV/EBITDA on forward EBITDA at the horizon (about 2028E $560M x 17x, less about $0.4B net debt, over about 200M fully diluted shares = $45.5) and forward P/E (NTM EPS at Sept 2027 about $1.40 x 35x = $49), weighted 50/50, gives about $47.5.",
+    "methods": [
+      {"name": "EV/EBITDA", "value": 45.5, "weight": 0.5,
+       "inputs": "NTM EBITDA at Sept 2027 (about 2028E) $560M x 17x = $9.5B EV; less est. net debt about $0.4B at Sept 2027 (today net cash about $0.5B: $1.45B cash/ST inv less $0.93B LTD, minus about $0.9B capex/10X burn); / about 200M fully diluted shares (178M basic + DoD preferred/warrants)",
+       "inputs_detail": [
+         {"input": "2027E EBITDA consensus", "value": "$451.5M", "basis": "consensus", "source_ids": [12], "derivation": ""},
+         {"input": "NTM EBITDA at horizon (2028E)", "value": "$560M", "basis": "estimate", "source_ids": [1, 12, 14, 3], "derivation": "2027 consensus $451.5M plus 10X/Fort Worth magnet ramp (commercial magnet shipments begin Q4 2026, guaranteed 10X offtake) and NdPr volumes above 1,000t/qtr; the $110/kg DoD floor (PPA income $17.6M in Q2) supports the Materials segment while spot sits at about $97/kg"},
+         {"input": "EV/EBITDA multiple", "value": "17x", "basis": "judgment", "source_ids": [12, 4, 9], "derivation": "Current 2027 multiple about 18.4x; trimmed for fading scarcity premium during the US-China thaw (sector-wide derating) and the large capex left to spend. Still a premium to Lynas, which earned A$386M EBITDA with no Western price floor"},
+         {"input": "Cash + short-term investments", "value": "$1.45B", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Long-term debt", "value": "$934.6M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Capex burn to Sept 2027", "value": "about $0.9B", "basis": "estimate", "source_ids": [16, 1], "derivation": "Latest quarter FCF about -$224M annualized, with 10X campus spending of over $1.25B planned"},
+         {"input": "Fully diluted shares", "value": "about 200M", "basis": "estimate", "source_ids": [1, 14], "derivation": "178.1M basic plus DoD $400M convertible preferred and warrants (about 20-25M shares)"}
+       ]},
+      {"name": "P/E", "value": 49.0, "weight": 0.5,
+       "inputs": "NTM EPS at Sept 2027 about $1.40 x 35x",
+       "inputs_detail": [
+         {"input": "2027E EPS consensus", "value": "$0.87", "basis": "consensus", "source_ids": [13], "derivation": ""},
+         {"input": "NTM EPS at Sept 2027", "value": "$1.40", "basis": "estimate", "source_ids": [13, 12, 1], "derivation": "Interpolates 2027 consensus $0.87 toward a 2028 figure of about $1.6-1.8, implied by EBITDA growth to about $560M and stable D&A and interest"},
+         {"input": "P/E multiple", "value": "35x", "basis": "judgment", "source_ids": [4, 5, 9], "derivation": "High-growth strategic-asset multiple, below the 2025-26 peaks: Lynas earned A$222M net profit and its shares fell even on record results, and the sector has derated on thaw headlines"}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 26.0, "prob": 0.25, "story": "A durable US-China deal at APEC/January extends or abolishes China's export controls, NdPr spot drifts to $70-80/kg and the scarcity premium collapses. The DoD floor protects Materials revenue, but the multiple compresses to 10-12x EBITDA, 10X slips, and Western magnet competitors (Vulcan 10kt, eVAC, Noveon, USAR) bid down the premium."},
+    "base": {"price": 50.0, "prob": 0.50, "story": "Truce rolls on with April 2025 heavy-RE licensing still in force. NdPr at $95-115/kg with the floor topping up, NdPr above 1,000t/qtr, magnet shipments ramp through 2027, and EBITDA moves toward $450-560M at a 16-18x multiple."},
+    "bull": {"price": 88.0, "prob": 0.25, "story": "Talks break down after 2027-01-10, China reimposes the expanded controls and the extraterritorial 0.1% rule, and NdPr goes above $130/kg (as in July 2026). Heavy RE separation and the gadolinium/defense offtake add value, the market pays for Western scarcity again, and the stock retests the $80-100 range."}
+  },
+  "thesis_break_price": 30.0,
+  "thesis_break_reason": "Below about $30 the market would be pricing MP near its floor-protected Materials value alone. That would most likely mean the 10X/magnet ramp has slipped badly or customer qualification failed, the DoD/Apple economics have been renegotiated, or a US-China settlement has durably erased the Western premium. Each of these breaks the integrated mine-to-magnet premium thesis, rather than reflecting ordinary 74%-vol noise.",
+  "catalysts": [
+    {"date": "2026-11 (early)", "event": "Q3 2026 results: NdPr production above 1,000t guided; first commercial magnet shipments in Q4", "direction": "?"},
+    {"date": "2026-11", "event": "APEC Shenzhen, possible Trump-Xi rare-earth deal", "direction": "-"},
+    {"date": "2026-11-10", "event": "Original expiry of China's suspension of the Oct-2025 export controls (truce now extended to 2027-01-10)", "direction": "?"},
+    {"date": "2027-01-10", "event": "Extended US-China truce expires; reimposition risk for the expanded controls", "direction": "+"},
+    {"date": "2027-02", "event": "Q4/FY2026 results and 2027 outlook, magnet ramp metrics", "direction": "?"},
+    {"date": "2027 (ongoing)", "event": "Monthly SMM/Fastmarkets NdPr prints vs the $110/kg DoD floor", "direction": "?"},
+    {"date": "2027 (H1)", "event": "Competitor capacity: eVAC phase 2 alloy (early 2027), Vulcan Elements Army SkyFoundry supply, Lynas heavy-RE expansion", "direction": "-"},
+    {"date": "2027-05 / 2027-08", "event": "Q1 and Q2 2027 results; 10X construction progress", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether a US-China deal permanently removes the export-control threat that underpins the Western scarcity premium",
+    "NdPr price path: spot about $97/kg is below the $110 floor; it was $53 in Jan 2026 and above $120 in Jul 2026",
+    "Execution and timing of Fort Worth magnet qualification and the 10X campus ramp",
+    "Western magnet competition (Vulcan, eVAC, Noveon, USAR) and its effect on magnet pricing premiums",
+    "Share overhang: Shenghe stake possibly moving under China Rare Earth Group; DoD preferred/warrant dilution",
+    "Rate sensitivity of capital-intensive buildouts (30-year yield at a 19-year high)"
+  ],
+  "reasoning": "Industry evidence is mixed. Pricing: SMM NdPr oxide rose from about $53/kg in Jan 2026 to above $120 in July and fell back to about $97 in early September, so MP sits below its $110 DoD floor and is collecting PPA income ($17.6M in Q2). Competitor Lynas posted record FY26 results (revenue A$978M, NdPr about $101/kg by June) and signed a $110 floor with JARE, which confirms that Western floors are becoming standard; its shares still fell on the results, which signals a de-rating of the group. Policy: the sector sold off about 17-23% in a month on US-China thaw headlines, and the truce was extended to 2027-01-10 with rare earths unresolved; APEC Shenzhen in November is the next binary event. Competition: Vulcan Elements won the Army drone magnet supply and is building 10kt, and eVAC and Noveon are scaling. So MP's magnet scarcity premium is real but contested. On valuation, consensus 2027 EBITDA is $451.5M and EPS $0.87; rolled forward to horizon multiples, both methods give $45-49, close to the current $47.29, while sell-side targets average about $74 (anchor not used). Scenarios ($26/$50/$88 at 25/50/25) have a mean of about $53 and a median of about $48. I fitted a lognormal with a median of $48 and sigma 0.66, a little below the 74% realized vol because realized vol was inflated by the 2025-26 spike. Research was limited to about 12 queries/fetches; X/Twitter and prediction markets were not consulted.",
+  "lane": "industry",
+  "sources": [
+    {"title": "MP Materials Reports Second Quarter 2026 Results", "url": "https://investors.mpmaterials.com/investor-news/news-details/2026/MP-Materials-Reports-Second-Quarter-2026-Results/default.aspx", "date": "2026-08-06", "type": "company", "in_lane": false},
+    {"title": "MP Materials Form 8-K Q2 2026 earnings release", "url": "https://www.sec.gov/Archives/edgar/data/0001801368/000180136826000047/mpmcq22026er.htm", "date": "2026-08-06", "type": "filing", "in_lane": false},
+    {"title": "Rare Earth Element Prices September 2026: NdPr Oxide, Dysprosium and Terbium (SMM benchmark data)", "url": "https://www.openpr.com/news/4643067/rare-earth-element-prices-september-2026-ndpr-oxide", "date": "2026-09", "type": "trade", "in_lane": true},
+    {"title": "Lynas FY26 slides: profit surges 27x as rare earth prices climb", "url": "https://www.investing.com/news/company-news/lynas-fy26-slides-profit-surges-27x-as-rare-earth-prices-climb-93CH-4876205", "date": "2026-08-26", "type": "press", "in_lane": true},
+    {"title": "Lynas Rare Earths posts record FY26 profit and revenue", "url": "https://www.fool.com.au/2026/08/26/lynas-rare-earths-posts-record-fy26-profit-and-revenue-as-growth-ramps-up/", "date": "2026-08-26", "type": "press", "in_lane": true},
+    {"title": "China rare earth export pause nears expiry amid persistent supply concentration", "url": "https://finance.yahoo.com/markets/commodities/articles/china-rare-earth-export-pause-123614106.html", "date": "2026", "type": "press", "in_lane": true},
+    {"title": "China Rare Earth Export Controls November 2026 Deadline Explained", "url": "https://rareearthexchanges.com/news/china-rare-earth-controls-trump-xi-deadline/", "date": "2026-09-17", "type": "trade", "in_lane": true},
+    {"title": "U.S.-China trade truce extended for two months, Bessent says, as Xi begins state visit", "url": "https://www.cnbc.com/2026/09/24/us-china-trade-truce-bessent-trump-xi.html", "date": "2026-09-24", "type": "press", "in_lane": true},
+    {"title": "Rare Earth Stocks Tumble on U.S.-China Thaw Hopes", "url": "https://247wallst.com/investing/2026/09/10/rare-earth-stocks-tumble-on-u-s-china-thaw-hopes-usa-rare-earth-sinks-4-mp-materials-drops-5-critical-metals-slips/", "date": "2026-09-10", "type": "press", "in_lane": true},
+    {"title": "U.S. Army Competitively Selects Vulcan Elements to Supply Rare Earth Magnets for SkyFoundry", "url": "https://www.prnewswire.com/news-releases/us-army-competitively-selects-vulcan-elements-to-supply-high-performance-rare-earth-magnets-for-skyfoundry-drone-initiative-302886553.html", "date": "2026-09-23", "type": "trade", "in_lane": true},
+    {"title": "eVAC ships first rare-earth magnets from South Carolina facility", "url": "https://www.metal-powder.tech/evac-ships-first-rare-earth-magnets-from-south-carolina-facility/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "MP Materials Corp. valuation ratios and forecasts (MarketScreener)", "url": "https://www.marketscreener.com/quote/stock/MP-MATERIALS-CORP-132629464/valuation/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "MP Materials Stock Forecast & Analyst Price Targets (StockAnalysis)", "url": "https://stockanalysis.com/stocks/mp/forecast/", "date": "2026-09-30", "type": "sell-side", "in_lane": false},
+    {"title": "MP Materials lands multi-billion Pentagon deal", "url": "https://www.mining.com/mp-materials-lands-multi-billion-pentagon-deal/", "date": "2025-07-10", "type": "trade", "in_lane": true},
+    {"title": "Apple expands U.S. supply chain with $500 million commitment", "url": "https://www.apple.com/newsroom/2025/07/apple-expands-us-supply-chain-with-500-million-usd-commitment/", "date": "2025-07-15", "type": "company", "in_lane": true},
+    {"title": "MP Materials Extends Mine-To-Magnet Push As Stock Grinds Higher", "url": "https://stockstotrade.com/news/mp-materials-corp-mp-news-2026_09_30/", "date": "2026-09-30", "type": "press", "in_lane": false},
+    {"title": "Rare Earth Magnets Prices, NdFeB (SMM)", "url": "https://www.metal.com/Rare-Earth-Magnets", "date": "2026-09", "type": "trade", "in_lane": true}
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "symbol": "INTU", "agent_id": "agent_4", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 67, "p": 0.995}, {"K": 107, "p": 0.985}, {"K": 134, "p": 0.955}, {"K": 161, "p": 0.905},
+    {"K": 188, "p": 0.83}, {"K": 214, "p": 0.75}, {"K": 241, "p": 0.66}, {"K": 268, "p": 0.57},
+    {"K": 295, "p": 0.485}, {"K": 322, "p": 0.41}, {"K": 362, "p": 0.31}, {"K": 402, "p": 0.23},
+    {"K": 469, "p": 0.14}, {"K": 536, "p": 0.085}, {"K": 670, "p": 0.03}
+  ],
+  "ladder_1m": [
+    {"K": 214.42, "p": 0.94}, {"K": 227.83, "p": 0.87}, {"K": 241.23, "p": 0.77}, {"K": 249.27, "p": 0.69},
+    {"K": 257.31, "p": 0.61}, {"K": 268.03, "p": 0.50}, {"K": 278.75, "p": 0.39}, {"K": 286.79, "p": 0.32},
+    {"K": 294.83, "p": 0.25}, {"K": 308.23, "p": 0.165}, {"K": 321.64, "p": 0.10}
+  ],
+  "one_month_reasoning": "No company-scheduled event falls inside 2026-09-30 to 2026-10-29: FY27 Q1 earnings historically land in the second half of November, and Investor Day (Sep 17) already reaffirmed Q1 and FY27 guidance. Minor in-window items: Xero's US price increase on Oct 1 (narrows the QuickBooks price gap slightly, marginal), QuickBooks renewals at the new August price points, and continuing news flow on AI tax/bookkeeping agents. Short-horizon regularities conflict: the stock fell ~23% in the past month to near its 52-week low (momentum negative, but sharp-drop reversal is also common). With no scheduled catalyst I stay close to a symmetric lognormal centred on $268 using monthly vol ~14% (50%/3.5).",
+  "fair_value": {
+    "value": 336.0,
+    "method": "Blend of FY28E EPS $25.8 x 12.5x = $322 (60%) and SBC-adjusted FCF yield: FY28E $8.0B at 8.5% required yield less $0.5B net debt over 262M shares = $357 (40%); blended ~$336.",
+    "methods": [
+      {"name": "P/E", "value": 322.0, "weight": 0.6,
+       "inputs": "FY28E non-GAAP EPS (now including SBC) $25.8 x 12.5x",
+       "inputs_detail": [
+         {"input": "FY27 non-GAAP EPS guidance (SBC now included)", "value": "$22.88-$23.12, midpoint $23.00", "basis": "guidance", "source_ids": [1, 2, 3], "derivation": "Company guidance, reaffirmed at Sep 17 Investor Day."},
+         {"input": "FY28E EPS", "value": "$25.8", "basis": "estimate", "source_ids": [1, 3], "derivation": "$23.00 x 1.12: revenue growth ~9-10% (FY27 guide) with modest further margin leverage, plus ~3-4% share count reduction from the $7.9B remaining authorization at ~$270/share (FY26 buyback was $5.5B); haircut for weaker TurboTax (2-3% growth guide)."},
+         {"input": "Target P/E", "value": "12.5x", "basis": "judgment", "source_ids": [1, 15, 4], "derivation": "Stock trades at ~11.7x FY27 guide ($268/$23) and ~13x forward per press; Substack bull case frames ~10x forward as mispriced. I assume only a slight re-rate because AI-disruption fear is unlikely to fully clear before the April 2027 tax season data."}
+       ]},
+      {"name": "FCF yield", "value": 357.0, "weight": 0.4,
+       "inputs": "FY26 OCF $8.84B - capex $0.22B - SBC ~$2.0B = $6.6B; +10%/yr to FY28E $8.0B; 8.5% required yield = $94B; less net debt $0.5B; / 262M shares",
+       "inputs_detail": [
+         {"input": "FY26 operating cash flow / capex", "value": "$8.838B / $0.221B", "basis": "reported", "source_ids": [1, 2], "derivation": ""},
+         {"input": "Annual SBC", "value": "~$2.0B", "basis": "reported", "source_ids": [4], "derivation": "Newsletter figure from company filings; subtracted to get owner FCF since non-GAAP now includes SBC."},
+         {"input": "FCF growth to FY28", "value": "10% per year", "basis": "estimate", "source_ids": [1], "derivation": "FY27 revenue guide +9-10% and non-GAAP operating income guide +17-18%; I take revenue-like growth for cash to stay conservative."},
+         {"input": "Required FCF yield", "value": "8.5%", "basis": "judgment", "source_ids": [1, 4], "derivation": "Current SBC-adjusted yield is ~9% ($6.6B on ~$74B cap at 277M x $268); set slightly below as mature 9-10% grower with elevated disruption risk."},
+         {"input": "Net debt", "value": "$0.5B", "basis": "reported", "source_ids": [1], "derivation": "Debt $7.7B less cash and investments $7.2B."},
+         {"input": "Diluted shares FY28E", "value": "262M", "basis": "estimate", "source_ids": [1], "derivation": "FY26 diluted 277M less ~5% from buybacks over ~2 years at current prices."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 180.0, "prob": 0.25, "story": "Tax season 2027 (TY2026) shows TurboTax unit share loss to FreeTaxUSA/AI agents (Perplexity, TaxGPT, Instead), QuickBooks price hikes of 20-40% trigger visible churn, FY28 guide implies high-single-digit growth at best; multiple compresses to ~8x ~$22-23 EPS."},
+    "base": {"price": 300.0, "prob": 0.50, "story": "FY27 delivered roughly to guide (~$23 EPS), TurboTax flat-ish units with Live/assisted growth, QBO pricing sticks with modest churn, big buybacks shrink share count; AI-disruption discount persists and stock trades ~11.5-12x FY28 EPS ~$26."},
+    "bull": {"price": 430.0, "prob": 0.25, "story": "Tax season proves resilient (agents integrate with rather than replace TurboTax; Direct File stays suspended), Intuit Enterprise Suite and mid-market scale, customer growth re-accelerates; multiple recovers to ~16-17x FY28 EPS."}
+  },
+  "thesis_break_price": 190.0,
+  "thesis_break_reason": "Below ~$190 the stock would sit near 8x guided FY27 EPS and ~12%+ SBC-adjusted FCF yield, a level that only makes sense if the market is pricing an actual earnings decline (lost TurboTax units in the 2027 season, QuickBooks churn after price hikes, or a guide cut), not just sentiment. It is also ~25% below the current 52-week low of $252.84, beyond ordinary volatility after a 60% drawdown.",
+  "catalysts": [
+    {"date": "2026-10-01", "event": "Xero US price increase (7-8%) narrows QuickBooks price gap", "direction": "+"},
+    {"date": "2026-11", "event": "FY27 Q1 earnings (guide rev $4.29-4.31B, non-GAAP EPS $2.44-2.48)", "direction": "?"},
+    {"date": "2027-01 to 2027-04", "event": "TY2026 tax season: TurboTax units vs FreeTaxUSA and AI tax agents; app ranking and traffic data", "direction": "?"},
+    {"date": "2027-02", "event": "FY27 Q2 earnings, early tax-season read", "direction": "?"},
+    {"date": "2027-05", "event": "FY27 Q3 earnings with full tax-season results", "direction": "?"},
+    {"date": "2027-08", "event": "FY27 Q4 earnings and FY28 guidance", "direction": "?"},
+    {"date": "2027-09", "event": "Annual Investor Day", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether consumer AI agents (Perplexity Computer for Taxes, TaxGPT, Instead) take meaningful DIY tax share in the 2027 season",
+    "Customer churn from QuickBooks Online price increases (Plus/Advanced up ~20-25% in August 2026, larger cumulative since 2020); no hard churn data found",
+    "Management admitted price is now the top reason customers leave TurboTax; TurboTax growth guided 2-3%",
+    "Policy: IRS Direct File was suspended in Nov 2025; any revival would be negative",
+    "Magnitude of software-sector AI de-rating, which drove a 23% fall in the past month without new company news"
+  ],
+  "reasoning": "Facts: FY26 revenue $21.4B (+14%), non-GAAP EPS $24.27, FCF ~$8.6B; FY27 guide revenue +9-10%, non-GAAP EPS $22.88-23.12 now including SBC; guidance reaffirmed at the Sep 17 Investor Day; $7.9B buyback authorization left [1-3]. The stock ($268) trades at ~11.7x FY27 EPS and ~9% SBC-adjusted FCF yield after a 62% one-year fall and a further ~23% drop in the past month [13,15]. Alternative-lane evidence is mixed. Negative: forum posters (Bogleheads) report switching to FreeTaxUSA on price [10], management's own admission that price is the top churn reason [14,15], several 2026 AI tax-agent launches [11,12], and the TurboTax app falling off the charts after the deadline (normal seasonality; that article is now gone (410) so I rely on the search snippet only) [9]. Similarweb shows September traffic down 11% m/m, which is off-season noise and does not move numbers [8]. Positive: Intuit is pushing through large QuickBooks price increases (Plus/Advanced ~+20-25% in Aug 2026 after a May wave) [5,6] while Xero is also raising prices from Oct 1 [7], which points to pricing power. Bookkeeper blogs note no documented migration wave and advise against switching on price alone [5,6]. The independent Substack case (~10x forward, $2B SBC, heavy buybacks) is plausible [4]. I found no prediction market relevant to INTU. X was not searched directly. Valuation: P/E $322 and FCF-yield $357 blend to ~$336. But I set the 12-month median at ~$290, below that fair value, because the disruption discount is unlikely to clear before real 2027 tax-season data and momentum is sharply negative. Distribution: lognormal around ~$290 with sigma ~0.45 (a little below the 50% realized vol, which was inflated by the crash), consistent with scenarios $180/$300/$430 at 25/50/25 (mean ~$303). Research was limited to ~15 queries; several claims from social or forum posts come from search snippets and are treated as sentiment only.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "Intuit Reports Fourth Quarter and Full Year Fiscal 2026 Results; Sets Fiscal 2027 Guidance", "url": "https://investors.intuit.com/news-events/press-releases/detail/1320/intuit-reports-fourth-quarter-and-full-year-fiscal-2026-results-sets-fiscal-2027-guidance", "date": "2026-08-25", "type": "company", "in_lane": false},
+    {"title": "Intuit Form 8-K Q4 FY2026 earnings press release", "url": "https://www.sec.gov/Archives/edgar/data/0000896878/000089687826000029/fy26q4earningspressrelease.htm", "date": "2026-08-25", "type": "filing", "in_lane": false},
+    {"title": "Intuit Hosts Investor Day, Reaffirms First-Quarter and Fiscal 2027 Guidance", "url": "https://investors.intuit.com/news-events/press-releases/detail/1323/intuit-hosts-investor-day-reaffirms-first-quarter-and-fiscal-2027-guidance", "date": "2026-09-17", "type": "company", "in_lane": false},
+    {"title": "Intuit - the market is not that INTU* (The Oak Bloke Substack)", "url": "https://theoakbloke.substack.com/p/intuit-the-market-is-not-that-intu", "date": "2026-06-01", "type": "newsletter", "in_lane": true},
+    {"title": "QuickBooks Online Raised Prices 13-70% for 2026 (beancount.io)", "url": "https://beancount.io/blog/2026/08/17/quickbooks-online-price-hike-2026-migrate-before-renewal-guide", "date": "2026-08-17", "type": "alt-data", "in_lane": true},
+    {"title": "QuickBooks Price Increase: What Changes August 2026 (Books LA)", "url": "https://www.booksla.com/quickbooks-price-increase/", "date": "2026-08", "type": "alt-data", "in_lane": true},
+    {"title": "Xero Price Hike Oct 2026: Prices & QuickBooks Comparison (Books LA)", "url": "https://www.booksla.com/xero-price-increase/", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "turbotax.intuit.com traffic analytics (Similarweb)", "url": "https://www.similarweb.com/website/turbotax.intuit.com/", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "TurboTax App Store Rankings Fall 190 Spots Following April Tax Deadline (mwm.ai; page now 410, snippet only)", "url": "https://mwm.ai/articles/turbotax-app-store-rankings-fall-190-spots-following-april-2026-tax-deadline", "date": "2026-04", "type": "alt-data", "in_lane": true},
+    {"title": "TurboTax vs FreeTaxUSA (Bogleheads forum; fetch blocked, search snippet only)", "url": "https://www.bogleheads.org/forum/viewtopic.php?t=466202", "date": "2026", "type": "forum", "in_lane": true},
+    {"title": "Perplexity Launches AI Agent That Drafts Tax Returns (PYMNTS)", "url": "https://www.pymnts.com/taxes/2026/perplexity-launches-ai-agent-that-drafts-tax-returns/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "TaxGPT Releases Autonomous Tax Workflow Agent (CPA Practice Advisor)", "url": "https://www.cpapracticeadvisor.com/2026/03/24/taxgpt-releases-autonomous-tax-workflow-agent/180159/", "date": "2026-03-24", "type": "trade", "in_lane": true},
+    {"title": "Intuit (INTU) Falls More Steeply Than Broader Market (Yahoo Finance/Zacks)", "url": "https://finance.yahoo.com/markets/stocks/articles/intuit-intu-falls-more-steeply-205002132.html", "date": "2026-09-28", "type": "press", "in_lane": false},
+    {"title": "Intuit Sinks 12% as AI Disruption Fears Spread From TurboTax to QuickBooks (24/7 Wall St)", "url": "https://247wallst.com/investing/2026/08/26/intuit-sinks-12-as-ai-disruption-fears-spread-from-turbotax-to-quickbooks-adobe-and-servicenow-drop-3/", "date": "2026-08-26", "type": "press", "in_lane": false},
+    {"title": "Intuit Crashed Over Agentic AI Fears in 2026: One Wall Street Analyst... (Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/intuit-crashed-over-agentic-ai-132427512.html", "date": "2026-09-23", "type": "press", "in_lane": false}
+  ]
+}

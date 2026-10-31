@@ -1,0 +1,751 @@
+{
+ "date": "2026-10-09",
+ "symbol": "GLW",
+ "clean": true,
+ "checked": 89,
+ "ok": 87,
+ "failures": [
+  {
+   "item": "CIEN with-SBC NTM P/E (supervisor comps_review, disagreements[1]; model_assumptions A7)",
+   "value": "44.2x",
+   "cited": "https://www.sec.gov/Archives/edgar/data/0000936395/000162828026060245/ex9912026q3earningspressre.htm",
+   "result": "wrong",
+   "fix": "Recomputed 449.77 / (11.44 - 1.253) = 44.15 -> 44.1x. Median unaffected (CIEN above it); no other number changes."
+  },
+  {
+   "item": "Supervisor statement that VRT's SBC basis is unverified and could lift the median to ~28.7x",
+   "value": "unverified",
+   "cited": "supervisor.json comps_review.unverified_sbc",
+   "result": "not_found",
+   "fix": "Opened Vertiv's Q2 2026 Ex.99.1: adjusted EPS excludes only amortization, contingent consideration, restructuring and M&A costs, so SBC stays in (Corning basis). VRT stays 28.3x; the 28.3x median now rests on verified names. Source added to supervisor.json and model_assumptions A7."
+  },
+  {
+   "item": "Supervisor thesis-break context: Jan 28, 2026 close $104.28 called the 'pre-Meta-deal level'",
+   "value": "$104.28",
+   "cited": "https://api.twelvedata.com/time_series?symbol=GLW&interval=1day",
+   "result": "mislabelled",
+   "fix": "Value correct, label wrong: the Meta deal was reported Jan 27 (close 109.74, +15.6%); the last pre-deal close was $94.95 (Jan 26). Text corrected; the $100 judgment is unchanged."
+  },
+  {
+   "item": "agent_1 comps_summary and agent_3 Target-P/E inputs: '~47% of Q2 core sales' attributed to Glass Innovations, Automotive, Solar and Life Sciences (agent_3: $2,666M of $4,738M)",
+   "value": "47%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "result": "wrong",
+   "fix": "$2,666M is 56.3%; 47.0% is $2,228M (GI, Auto, LS without Solar). Text corrected in both agent files (sourcing only); it backs a judgment, not a number, so no value changes."
+  },
+  {
+   "item": "AJ Bell listing of the Q3 2026 call on Oct 28 (agent_1 one_month_reasoning; agent_5 one_month_reasoning and source 11)",
+   "value": "Oct 28",
+   "cited": "https://www.ajbell.co.uk/market-research/sub/NYSE:GLW/company-info",
+   "result": "wrong",
+   "fix": "Page now lists Oct 27, 2026 08:30, as Corning IR confirms. Dated notes added; no number uses the date (the supervisor's confirmed Oct 27 drives one_month and sizing)."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "Q2 2026 core sales (Q2 2025)",
+   "value": "$4,738M ($4,045M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A26/A27 margins, segment shares, scenarios"
+  },
+  {
+   "item": "Q2 2026 core EPS / GAAP EPS",
+   "value": "$0.78 / $0.64",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "SBC basis check, growth judgments"
+  },
+  {
+   "item": "Q3 2026 guide",
+   "value": "core sales $4.9-5.0B (~+16%), core EPS $0.85-0.89 (~+28%)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A2 growth judgment, one_month, key_drivers"
+  },
+  {
+   "item": "Springboard targets",
+   "value": "$20B/$30B/$40B annualized run-rate end-2026/2028/2030; 19% sales CAGR Q4'26-Q4'30; earnings to grow faster than sales",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A2, A15, A26 (agent_2 Springboard leg, agent_5 Springboard leg)"
+  },
+  {
+   "item": "Segment Q2 2026 sales/growth",
+   "value": "Optical $2,072M +32%; Glass Innovations $1,463M +1%; Automotive $471M +2%; Solar $438M +90%; Life Sciences $294M -15%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "long-dated risks (Optical ~44% of sales), A14, comps justification"
+  },
+  {
+   "item": "Segment Q2 2026 net income",
+   "value": "Optical $438M (+77%); Glass Innovations $354M; Automotive $82M; Solar ($7M); Life Sciences ($21M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_4 A9 optical-margin derivation (21.1% vs 15.8%, 52% of segment NI)"
+  },
+  {
+   "item": "Core net income Q2 / H1 2026; Q1 2026",
+   "value": "$680M / $1,292M; Q1 $612M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm ; https://www.sec.gov/Archives/edgar/data/24741/000002474126000198/glw-20260328xex991xq12026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A22 FCF conversion"
+  },
+  {
+   "item": "Core diluted shares Q2 2026 (13M dilutive securities)",
+   "value": "875M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm ; https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A3, A25, A27"
+  },
+  {
+   "item": "Core operating margin Q2 2026 (Q2 2025)",
+   "value": "20.9% (19.0%)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "reverse DCF checks"
+  },
+  {
+   "item": "Adjusted FCF Q2 / H1; customer deposits & incentives Q2 / H1",
+   "value": "$1,423M / $1,611M; $880M / $709M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A22 (ex-deposit conversion 80% Q2, 70% H1)"
+  },
+  {
+   "item": "Capex Q2 / H1 2026 (H1 2025)",
+   "value": "$422M / $754M ($516M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm ; https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A22, agent_5 FCF conversion, A11"
+  },
+  {
+   "item": "Share-based compensation Q2 / H1 2026 (2025)",
+   "value": "$135M / $250M ($63M / $117M); no SBC line in GAAP-to-core reconciliation",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm ; https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7 SBC basis, fair_value SBC consistency"
+  },
+  {
+   "item": "Hedged-exposure adjustment / translated-earnings-contract gain Q2",
+   "value": "+$0.18 / -$0.08 per share",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 comparability note"
+  },
+  {
+   "item": "Total debt / cash, Jun 30, 2026",
+   "value": "$8,424M / $2,504M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm ; https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A24 net debt $5.9B"
+  },
+  {
+   "item": "Net debt",
+   "value": "$5.92B = 8,424 - 2,504",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A24, agent_1 DCF"
+  },
+  {
+   "item": "$1.0B customer deposit LTA term; $296M warrant offset",
+   "value": "through Dec 31, 2029; $296M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A10, A12, long_dated_review"
+  },
+  {
+   "item": "Contract liabilities (current/non-current); deposit agreements term",
+   "value": "$2.7B ($465M / $2,244M, 83% non-current); 'typically over periods of up to 10 years'",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A10, key_drivers"
+  },
+  {
+   "item": "Traditional Warrant / Pre-Funded Warrant",
+   "value": "15M @ $180, 3-year term from May 6, 2026; 3M @ $0.0001; $500M aggregate",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm ; https://www.sec.gov/Archives/edgar/data/24741/000120677426000273/glw4631061-8k.htm",
+   "checked": "2026-10-12",
+   "feeds": "A12"
+  },
+  {
+   "item": "Share repurchases H1 2026; remaining authorization",
+   "value": "none; ~$3.0B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "A11 context"
+  },
+  {
+   "item": "Environmental accrual; Korea tax charge",
+   "value": "$85M; $92M (Q1 2026)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 context"
+  },
+  {
+   "item": "ATM program",
+   "value": "up to $2.0B, Goldman Sachs, Sep 11, 2026",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000119312526389321/d154232d8k.htm ; https://www.sec.gov/Archives/edgar/data/24741/000119312526389313/d34258d424b5.htm",
+   "checked": "2026-10-12",
+   "feeds": "A3, A11, A25"
+  },
+  {
+   "item": "ATM dilution",
+   "value": "1.46% = $2.0B / $156.68 = 12.8M on 875M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000119312526389321/d154232d8k.htm",
+   "checked": "2026-10-12",
+   "feeds": "A3, A4, A5, A25"
+  },
+  {
+   "item": "Shares outstanding Jul 24, 2026",
+   "value": "861,388,331",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000119312526389313/d34258d424b5.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 context"
+  },
+  {
+   "item": "FY2025 Optical sales / segment NI; two largest Optical customers",
+   "value": "$6,274M / $1,048M; 28% of segment sales",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000124/glw-20251231.htm",
+   "checked": "2026-10-12",
+   "feeds": "A10 (agent_1)"
+  },
+  {
+   "item": "10-K risk factor: fluctuations in telecom and hyperscale data center capex",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000124/glw-20251231.htm",
+   "checked": "2026-10-12",
+   "feeds": "A16 (agent_1)"
+  },
+  {
+   "item": "Form 144 officer proposed sale",
+   "value": "9,874 shares, $1.50M, Sep 4, 2026",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000196922326000996/0001969223-26-000996.txt",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 context"
+  },
+  {
+   "item": "Q2 call: capex run-rate rising in Q3/Q4, ~$2B 2026 investment mainly optical",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://earningswhispers.com/transcript/GLW/Q22026",
+   "checked": "2026-10-12",
+   "feeds": "A2 (agent_1 leverage fade), A9 (agent_1)"
+  },
+  {
+   "item": "Q2 call: 'The price is higher, but that really isn't how we're driving that profitability improvement'",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://earningswhispers.com/transcript/GLW/Q22026",
+   "checked": "2026-10-12",
+   "feeds": "A9 (agent_1 cap on fibre-price effect)"
+  },
+  {
+   "item": "Q2 call: $10B photonics revenue stream by 2030 (internal plan); high-confidence plan $27B end-2028 / $35B end-2030",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://earningswhispers.com/transcript/GLW/Q22026",
+   "checked": "2026-10-12",
+   "feeds": "A15 (agent_1 +5.0; reconciled +3.0)"
+  },
+  {
+   "item": "Q2 call: 'run at or above 20% operating margin'; optical scale-up 'exponential adoption curve'",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://earningswhispers.com/transcript/GLW/Q22026",
+   "checked": "2026-10-12",
+   "feeds": "agent_1 reverse DCF, A15"
+  },
+  {
+   "item": "GLW consensus EPS FY26 / FY27; revenue FY26 / FY27",
+   "value": "$3.29 / $4.37 (+33.0%); $19.31B / $23.10B (+19.6%)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/glw/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A1, A2, A4, A5, A27, fair_value, thesis_break"
+  },
+  {
+   "item": "GLW analyst targets",
+   "value": "mean $187.71, median $182, low $129, high $238, 18 analysts",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/glw/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "context"
+  },
+  {
+   "item": "GLW NTM consensus EPS and current multiple",
+   "value": "$4.10 = 0.25 x 3.29 + 0.75 x 4.37; 156.68 / 4.0975 = 38.2x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/glw/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "key_drivers, comps"
+  },
+  {
+   "item": "GLW statistics",
+   "value": "beta (5Y) 1.12; fwd P/E 42.26; EV $141.84B; mkt cap $134.96B; net cash -$6.88B; 861.39M shares; short 2.23% of float; TTM FCF $2.40B, capex -$1.52B, D&A $1.44B; next confirmed earnings Oct 27, 2026",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/glw/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "A20/A21 (beta), agent_5 A22, context"
+  },
+  {
+   "item": "APH consensus EPS",
+   "value": "FY26 2.68 / FY27 3.33 (Dec FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/aph/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "TEL consensus EPS",
+   "value": "FY26 11.46 / FY27 12.97 (Sep FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/tel/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "COHR consensus EPS",
+   "value": "FY27 9.42 / FY28 14.05 (Jun FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/cohr/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "LITE consensus EPS",
+   "value": "FY27 21.78 / FY28 35.60 (Jun FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/lite/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "CIEN consensus EPS",
+   "value": "FY26 7.17 / FY27 11.83 (Oct FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/cien/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "FN consensus EPS",
+   "value": "FY27 18.20 / FY28 21.79 (Jun FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/fn/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "ANET consensus EPS",
+   "value": "FY26 4.12 / FY27 5.22 (Dec FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/anet/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "CLS consensus EPS",
+   "value": "FY26 11.21 / FY27 19.65 (Dec FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/cls/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "CRDO consensus EPS",
+   "value": "FY27 6.31 / FY28 9.69 (Apr FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/crdo/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "VRT consensus EPS",
+   "value": "FY26 6.74 / FY27 9.18 (Dec FY)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/vrt/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "BDC consensus EPS",
+   "value": "FY26 8.65 / FY27 10.03 (Dec FY; agent_3 only)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/bdc/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "PRY.MI consensus EPS",
+   "value": "FY26 EUR 4.78 / FY27 EUR 6.14; price EUR 123.20",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/quote/bit/PRY/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "Fujikura / Sumitomo Electric page forward P/E (excluded from median)",
+   "value": "28.12x / 19.95x; Fujikura FY3/27 net income +111% (157.16B to 331.88B JPY)",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/quote/tyo/5803/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "context only"
+  },
+  {
+   "item": "Peer closes Oct 9, 2026",
+   "value": "APH 87.24, TEL 218.29, COHR 312.62, LITE 1103.355, CIEN 449.77, FN 486.28, ANET 216.74, CLS 362.16, CRDO 216.55, VRT 242.78 (also implied by StockAnalysis targets/upside; BDC 109.15)",
+   "basis": "reported",
+   "source_url": "https://api.twelvedata.com/time_series?interval=1day&end_date=2026-10-10",
+   "checked": "2026-10-12",
+   "feeds": "A6 peer median, comps"
+  },
+  {
+   "item": "Peer consistent-basis NTM P/E (price / calendarised Oct-26..Sep-27 EPS)",
+   "value": "APH 27.5, TEL 16.8, COHR 29.6, LITE 43.7, CIEN 39.3, FN 25.5, ANET 43.8, CLS 20.6, CRDO 28.1, VRT 28.3, PRY 21.2, BDC 11.3; medians 28.1x (11 kept), 28.2x (10, no PRY), 27.5x (agent_3 set)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/aph/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A6, A8, A18, fair_value"
+  },
+  {
+   "item": "COHR FQ4'26 SBC add-back; diluted shares",
+   "value": "$53.9M; 202.2M (GAAP and non-GAAP)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7"
+  },
+  {
+   "item": "ANET Q2'26 SBC excluded from non-GAAP; diluted shares",
+   "value": "$120.4M; 1,276.0M",
+   "basis": "reported",
+   "source_url": "https://s21.q4cdn.com/861911615/files/doc_news/Arista-Networks-Inc--Reports-Second-Quarter-2026-Financial-Results-2026.pdf",
+   "checked": "2026-10-12",
+   "feeds": "A7"
+  },
+  {
+   "item": "CIEN FQ3'26 SBC lines in adjusted reconciliation; diluted shares",
+   "value": "$57.878M total; 145.967M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000936395/000162828026060245/ex9912026q3earningspressre.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7"
+  },
+  {
+   "item": "CRDO FQ1'27 SBC add-back; non-GAAP diluted shares",
+   "value": "$87.979M; 197.505M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7"
+  },
+  {
+   "item": "APH Q2'26 SBC kept in Adjusted Diluted EPS; only excess tax benefits excluded; book-to-bill",
+   "value": "SBC $45.4M; excess tax benefit $80.5M ($0.06); 1.23:1",
+   "basis": "reported",
+   "source_url": "https://s21.q4cdn.com/564806605/files/doc_financials/2026/q2/2026_07_29-PR-2Q-2026-Results.pdf",
+   "checked": "2026-10-12",
+   "feeds": "A7, agent_2 context"
+  },
+  {
+   "item": "LITE FQ4'26 'Stock-based compensation and related payroll taxes' added back",
+   "value": "$50.1M (includes $9.3M payroll taxes)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001633978/000162828026055726/lite_ex991xq4fy26.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7 (direction only; LITE not recomputed)"
+  },
+  {
+   "item": "VRT Q2'26 adjusted EPS keeps SBC (adjustments: amortization, contingent consideration, restructuring, M&A); diluted shares",
+   "value": "no SBC line; 392.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1674101/000162828026050323/q22026exhibit991vrt07292026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A7 (median name on Corning basis)"
+  },
+  {
+   "item": "With-SBC peer multiples",
+   "value": "COHR 32.1x, ANET 46.6x, CIEN 44.1x, CRDO 34.3x (after-tax 21% annualised latest-quarter SBC per diluted share); median VRT 28.3x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000820318/000119312526346860/d128030dex991.htm ; https://s21.q4cdn.com/861911615/files/doc_news/Arista-Networks-Inc--Reports-Second-Quarter-2026-Financial-Results-2026.pdf ; https://www.sec.gov/Archives/edgar/data/0000936395/000162828026060245/ex9912026q3earningspressre.htm ; https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm ; https://www.sec.gov/Archives/edgar/data/1674101/000162828026050323/q22026exhibit991vrt07292026.htm",
+   "checked": "2026-10-12",
+   "feeds": "A6+A7 = 28.3x, A8, fair_value"
+  },
+  {
+   "item": "TTM SBC (StockAnalysis cash-flow, trailing)",
+   "value": "GLW $419M, APH $157.1M, TEL $174M, COHR $186.5M, LITE $170.2M, CIEN $212.0M, FN $34.6M, CRDO $235.2M, CLS $78.4M, VRT $52.2M, ANET $502.3M",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/glw/financials/cash-flow-statement/?p=trailing",
+   "checked": "2026-10-12",
+   "feeds": "agent_5 upper-bound note (not used in a number)"
+  },
+  {
+   "item": "10Y Treasury par yield 10/09/2026 (3 Mo)",
+   "value": "5.24% (4.25%)",
+   "basis": "reported",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv ; https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610",
+   "checked": "2026-10-12",
+   "feeds": "A19, A20, DCF legs"
+  },
+  {
+   "item": "10Y Treasury close 10/09/2026",
+   "value": "5.243%",
+   "basis": "reported",
+   "source_url": "https://www.mortgagenewsdaily.com/treasury/10yr",
+   "checked": "2026-10-12",
+   "feeds": "A19 (agent_5)"
+  },
+  {
+   "item": "Damodaran implied ERP Oct 1, 2026 (trailing 12m, adjusted payout)",
+   "value": "4.20%",
+   "basis": "reported",
+   "source_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm",
+   "checked": "2026-10-12",
+   "feeds": "A21, A20 (agent_1 WACC 9.6%)"
+  },
+  {
+   "item": "agent_1 WACC",
+   "value": "9.6% = 0.94 x (5.24% + 1.12 x 4.20%) + 0.06 x 4.1%",
+   "basis": "estimate",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv ; https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm ; https://stockanalysis.com/stocks/glw/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "agent_1 DCF"
+  },
+  {
+   "item": "agent_5 cost of equity",
+   "value": "10.3% = 5.24% + 1.12 x 4.5% (ERP judgment)",
+   "basis": "estimate",
+   "source_url": "https://www.mortgagenewsdaily.com/treasury/10yr ; https://stockanalysis.com/stocks/glw/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "agent_5 DCF/reverse DCF"
+  },
+  {
+   "item": "GLW release-day moves",
+   "value": "Oct 28 2025 -3.3% (89.37->86.43); Jan 28 -5.0% (109.74->104.28); Apr 28 -8.9% (168.01->153.05); Jul 28 -12.1% (143.36->126.01)",
+   "basis": "reported",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=GLW&interval=1day",
+   "checked": "2026-10-12",
+   "feeds": "one_month (all agents, supervisor)"
+  },
+  {
+   "item": "GLW price levels",
+   "value": "Oct 9 close 156.68; Jul 28 low 114.50; Jun 29 record close 255.69; Jun 30 intraday high 271.78; Nov 20 2025 close 78.03; Jan 26 close 94.95; Jan 28 close 104.28; Sep 14 close 143.60",
+   "basis": "reported",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=GLW&interval=1day",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break, scenarios, ladders"
+  },
+  {
+   "item": "GLW realized vol",
+   "value": "20/40/60/63-day 76.5/67.6/74.3/76.5% to Oct 9 (68.7/76.7% for 40/63-day to Oct 8)",
+   "basis": "estimate",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=GLW&interval=1day",
+   "checked": "2026-10-12",
+   "feeds": "ladders, one_month sigma"
+  },
+  {
+   "item": "GLW monthly closes",
+   "value": "Aug 2000 $109.33; Sep 2002 $1.60",
+   "basis": "reported",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=GLW&interval=1month",
+   "checked": "2026-10-12",
+   "feeds": "agent_5 bear scenario precedent"
+  },
+  {
+   "item": "Q3 2026 earnings call date",
+   "value": "Oct 27, 2026, 08:30 ET; release posts Oct 27",
+   "basis": "reported",
+   "source_url": "https://investor.corning.com/news-and-events/events-and-presentations/event-details/2026/Corning-Incorporated-Quarter-3-2026-Earnings-Call-2026-PqCAFWCqa4/default.aspx",
+   "checked": "2026-10-12",
+   "feeds": "one_month, catalysts, sizing entry"
+  },
+  {
+   "item": "CRU: Chinese bare-fibre prices +80% Nov 2025-Jan 2026; preform additions 'months rather than weeks'; how long tightness persists is open",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://www.crugroup.com/en/communities/thought-leadership/2026/optical-fibre-prices-rise-as-preform-availability-tightens/",
+   "checked": "2026-10-12",
+   "feeds": "A9, long_dated_review"
+  },
+  {
+   "item": "CRU OFC 2026: Fujikura JPY300bn up to 3x capacity; relief 'quarters away'; HCF 'too niche'; CPO demand picks up 2029-2030",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://www.crugroup.com/en/communities/thought-leadership/2026/Key-takeaways-and-trends-from-the-ofc-2026-conference/",
+   "checked": "2026-10-12",
+   "feeds": "A9, A13, A15"
+  },
+  {
+   "item": "Prysmian >$1.2B U.S. expansion, more than doubles U.S. output; $1.02B Claremont incl. new preform facility; groundbreaking mid-September; Molex deal up to $6.3B",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://broadbandbreakfast.com/prysmian-doubles-down-on-u-s-fiber-with-1-2b-expansion",
+   "checked": "2026-10-12",
+   "feeds": "A9, long_dated_review"
+  },
+  {
+   "item": "Microsoft HCF production with Corning and Heraeus Covantis",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://fiberbroadband.org/2026/04/02/microsoft-scales-up-hollow-core-fiber-production/",
+   "checked": "2026-10-12",
+   "feeds": "A13"
+  },
+  {
+   "item": "Meta agreement: multiyear, up to $6B, term not stated",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://www.optica-opn.org/home/industry/2026/february/corning_and_meta_make_fiber_deal_for_up_to_us$6_billion/",
+   "checked": "2026-10-12",
+   "feeds": "A10 (agent_3)"
+  },
+  {
+   "item": "Meta agreement 'through 2030' (The Standard citing CNBC; secondary)",
+   "value": "through 2030",
+   "basis": "reported",
+   "source_url": "https://www.thestandard.com.hk/innovation/article/322829/Meta-signs-deal-to-pay-Corning-up-to-6-billion-for-fiber-optic-cables-CNBC-reports",
+   "checked": "2026-10-12",
+   "feeds": "agent_4 A10 (-0.9, own leg); not used in reconciled A10"
+  },
+  {
+   "item": "Verizon: >80M fiber miles, 2027-2032, terms not disclosed",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://www.lightreading.com/data-centers/verizon-loads-up-on-corning-s-fiber-for-network-expansion-and-ai-infrastructure",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 A9/A10 context"
+  },
+  {
+   "item": "Hengtong: Corning >50% U.S. fiber capacity, Prysmian >2x; data centers ~5% of 2025 optical cable demand (CRU); new capacity 'may moderate price pressure over time'",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://www.hengtongglobal.com/info/why-optical-fiber-prices-are-rising-103607867.html",
+   "checked": "2026-10-12",
+   "feeds": "agent_2 A9 context"
+  },
+  {
+   "item": "Corning OFC 2026: CPO fiber-to-chip system; multicore fiber 4x capacity per fiber",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://www.lightwaveonline.com/home/product/55365384/corning-unveils-fiber-cable-and-connectivity-solutions-targeting-ai-data-center-networks",
+   "checked": "2026-10-12",
+   "feeds": "agent_2 A13/A15"
+  },
+  {
+   "item": "S&P Global via Motley Fool: hyperscaler capex $470B (2025) / $870B (2026E) / $1.3T (2027E); models assume capex flattening in 2028",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow",
+   "checked": "2026-10-12",
+   "feeds": "agent_5 A16, A2"
+  },
+  {
+   "item": "Prediction markets (context): Kalshi 2027 recession 20% (Sep 26); Polymarket AI bubble 6.1% by Dec 31 2026, 18.5% by Jun 30 2027",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://cryptoslate.com/predictions/market/ai-bubble-burst-in-2026/",
+   "checked": "2026-10-12",
+   "feeds": "agent_5 context only"
+  },
+  {
+   "item": "Sell-side context: JPMorgan downgrade to Neutral at >50x NTM, PT $175; Bernstein Market Perform $140; Citi $220 (Oct 9)",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://stocks.observer-reporter.com/observerreporter/article/stockstory-2026-4-16-why-corning-glw-stock-is-down-today",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 context only"
+  },
+  {
+   "item": "Value-chain context: Fujikura Q1 FY27 profit +156.8%; YOFC H1 profit alert +711-914%; Prysmian best quarter, guidance raised",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://quartr.com/events/fujikura-ltd-5803-q1-2027_FY0ZICoj",
+   "checked": "2026-10-12",
+   "feeds": "agent_2 context only"
+  },
+  {
+   "item": "Horizon NTM EPS (reconciled)",
+   "value": "$5.13 = 0.25 x 4.37 + 0.75 x (4.37 x 1.25 x 0.985 = 5.38)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/glw/forecast/ ; https://www.sec.gov/Archives/edgar/data/24741/000119312526389321/d154232d8k.htm",
+   "checked": "2026-10-12",
+   "feeds": "A4, A5, fair_value"
+  },
+  {
+   "item": "Relative value",
+   "value": "28.3 x 5.13 = 145.2; less 5.85 (A9-A15) = 139.3 (27.1x)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/glw/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Fair value",
+   "value": "0.75 x 139.3 + 0.25 x 111.2 (DCF-family midpoint ~116 x 0.959) = 132.3 -> $132",
+   "basis": "estimate",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv",
+   "checked": "2026-10-12",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Thesis break",
+   "value": "$100 = 19.5x $5.13 = 22.9x $4.37; 12.7% below $114.50",
+   "basis": "estimate",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=GLW&interval=1day ; https://stockanalysis.com/stocks/glw/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "agent_5 DCF without AI-capex double count",
+   "value": "141.1 - 9.95 + 4.6 = 135.8; fair value 0.55 x 130.8 + 0.25 x 127.8 + 0.2 x 135.8 = 131",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000255/glw-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "Segment shares of Q2 core sales",
+   "value": "Optical 43.7% (2,072/4,738); GI+Auto+LS 47.0% ($2,228M); non-optical incl. Solar 56.3% ($2,666M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000024741/000002474126000253/glw-20260728xex99xq22026.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps justifications"
+  }
+ ],
+ "notes": [
+  "Checked on 2026-10-12 for the 2026-10-09 run. 'checked' counts figure groups opened at a source (each verified entry, plus the two failures not re-listed in verified: the pre-deal label and the AJ Bell date). 'ok' counts verified entries, including labelled estimates whose inputs are verified.",
+  "sec.gov pages were read with WebFetch. Other pages used curl with a generic User-Agent; Cloudflare-gated pages (fiberbroadband.org, investor.corning.com) were read with WebFetch. The ANET and APH release PDFs were converted with pdftotext.",
+  "Management statements (capex ramp, price not the main driver, $10B photonics plan, $27B/$35B high-confidence plan, >=20% margin) were confirmed in the Q2 2026 call transcript; none was marked not_found.",
+  "REFRESH.md step 1d (post-gate): no figure ended not_found inside any forecaster's own leg, so no agent leg, fair value or ladder was re-set and no supervisor post_gate_decisions follow-up is needed. The with-SBC peer median (28.3x) was confirmed rather than undone.",
+  "Context-only claims that feed no number (MarketBeat/TipRanks calendar dates in agent_1, 36Kr/PhotonCap/China Galaxy/Epistrophy alt-data in agent_4, TIKR in agent_5, Seeking Alpha in agent_3) were not treated as figures. The reachable ones were opened and match where they could be read.",
+  "Reuse: consensus EPS, prices, treasury yields and the AJ Bell calendar can change and must be re-opened on reuse; filing figures can be reused for 21 days."
+ ]
+}

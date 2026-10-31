@@ -1,0 +1,75 @@
+{
+  "symbol": "LITE", "agent_id": "agent_1", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 271, "p": 0.975}, {"K": 434, "p": 0.91}, {"K": 543, "p": 0.845}, {"K": 651, "p": 0.77},
+    {"K": 760, "p": 0.69}, {"K": 868, "p": 0.615}, {"K": 977, "p": 0.545}, {"K": 1085, "p": 0.48},
+    {"K": 1194, "p": 0.425}, {"K": 1303, "p": 0.375}, {"K": 1465, "p": 0.31}, {"K": 1628, "p": 0.255},
+    {"K": 1899, "p": 0.185}, {"K": 2171, "p": 0.135}, {"K": 2714, "p": 0.075}
+  ],
+  "ladder_1m": [
+    {"K": 868.34, "p": 0.84}, {"K": 922.61, "p": 0.765}, {"K": 976.88, "p": 0.68}, {"K": 1009.44, "p": 0.625},
+    {"K": 1042.00, "p": 0.57}, {"K": 1085.42, "p": 0.5}, {"K": 1128.84, "p": 0.43}, {"K": 1161.40, "p": 0.38},
+    {"K": 1193.96, "p": 0.335}, {"K": 1248.23, "p": 0.265}, {"K": 1302.50, "p": 0.205}
+  ],
+  "one_month_reasoning": "Lumentum's fiscal Q1 FY27 ended in late September; last year it reported fiscal Q1 on Nov 4 (8-K 2025-11-04), so the Q1 FY27 print most likely lands just after the 2026-11-01 window and is not counted. Inside the window: late-October hyperscaler earnings and capex guidance (Alphabet, Microsoft, Meta, Amazon), which drive AI-optics sentiment and lately have mostly been supportive, plus NVIDIA-related newsflow. Against that, the stock closed within 0.6% of its 52-week high after a +533% year, and insiders are selling almost daily (a string of Form 144s and Form 4s in Sept-Oct 2026, e.g. an officer's 24,542-share Form 144 on 2026-10-01). Short-horizon momentum and reversal roughly offset, so I use a symmetric lognormal centred on $1085 with a one-month log-sd of about 0.22, a little below 97%/3.5 = 28% because no earnings fall in the window.",
+  "fair_value": {
+    "value": 1000.0,
+    "method": "Forward P/E as of Oct 2027. My NTM EPS then (FQ2 FY28 to FQ1 FY29) is about $32, built by extending the Q1 FY27 guide ($4.05-4.35) at slowing sequential growth. At 30x that gives ~$960, and FY28 EPS of about $29.5 at 35x gives ~$1,030. Blended FV is ~$1,000, roughly flat against today's $1,085.",
+    "methods": [
+      {"name": "P/E", "value": 960.0, "weight": 0.6,
+       "inputs": "NTM EPS at Oct 2027 ~$32 x 30x forward P/E; ~$11/share net cash after assumed share-settlement of converts is small and left out",
+       "inputs_detail": [
+         {"input": "Q1 FY27 non-GAAP EPS guidance", "value": "$4.05-$4.35 (mid $4.20) on revenue $1.225-1.275B, op margin 39.5-40.5%", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "Recent sequential growth", "value": "Revenue +24.5% Q/Q in Q4 FY26 ($808M to $1,006M); Q1 guide +24% Q/Q; non-GAAP EPS $2.37 -> $3.23 -> $4.20 guide", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Quarterly EPS path", "value": "FY27: 4.2/4.9/5.6/6.2 (= ~$20.9); FY28: 6.8/7.3/7.8/8.2; FQ1 FY29 8.6", "basis": "estimate", "source_ids": [1, 5, 6], "derivation": "Sequential growth fades from ~17% to ~5% a quarter. Management says demand exceeds supply (capacity-capped, behind on high-power lasers), CPO/NPO adoption comes late 2027-2028, and OCS is ramping to a $400M half-year. Op margin is held near 40%. FY27 ~$21 is close to the ~$20 CY27 figure Morgan Stanley called priced in when the stock was far lower"},
+         {"input": "NTM EPS at Oct 2027", "value": "$31.9", "basis": "estimate", "source_ids": [1, 5], "derivation": "Sum of FQ2 FY28 to FQ1 FY29 from the path above (7.3+7.8+8.2+8.6)"},
+         {"input": "Diluted share count", "value": "~101-105M non-GAAP diluted (Q4 FY26 101.1M; 89.7M common at 2026-08-14 + 2.9M NVIDIA preferred convertible 1:1 + ~13-14M from convertible notes)", "basis": "reported", "source_ids": [1, 2], "derivation": "EPS guidance is already on the non-GAAP diluted basis, so no extra adjustment"},
+         {"input": "Forward P/E multiple", "value": "30x", "basis": "judgment", "source_ids": [2, 6, 7], "derivation": "Today's price is ~52x my FY27 EPS and ~37x FY28. By Oct 2027 growth should be slowing from triple digits, and customer concentration is high (Customer A 26.6% and Customer B 15.0% of FY26 revenue per the 10-K), so I compress toward 30x, a premium to optical peers' typical high-20s at cycle highs. Analysts at Morgan Stanley and BofA flagged the stock as pricing in out-year EPS"}
+       ]},
+      {"name": "P/E", "value": 1030.0, "weight": 0.4,
+       "inputs": "FY28 (Jun-2028) EPS ~$29.5 x 35x, a growth-premium multiple on the full fiscal year rather than NTM",
+       "inputs_detail": [
+         {"input": "FY28 EPS", "value": "$29.5", "basis": "estimate", "source_ids": [1, 8], "derivation": "Sum of FY28 quarters in the path above (6.8+7.3+7.8+8.2 = 30.1), trimmed slightly for tax and dilution. Earlier in 2026 TD Cowen put FY28 EPS above $30, consistent with this"},
+         {"input": "Multiple", "value": "35x", "basis": "judgment", "source_ids": [5, 6], "derivation": "Premium kept for supply-constrained AI optics with CPO/OCS optionality; still compresses from today's ~52x FY27"}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 450.0, "prob": 0.25, "story": "AI capex digestion or a hyperscaler pause in 2027, combined with competitors' and Chinese transceiver/EML capacity catching up, cuts pricing and margins. Customer A or B moves share. EPS plateaus near $20 and the multiple derates to ~22x, so the stock gives back most of the 2026 rally, as optical stocks have done in past cycle tops."},
+    "base": {"price": 1050.0, "prob": 0.5, "story": "Lumentum executes the guided ramp, revenue passes ~$1.6-1.8B a quarter by mid-2027, and margins hold ~40%. Earnings roughly double, but the multiple compresses from ~52x to ~30-35x forward, so the price stays roughly flat."},
+    "bull": {"price": 1900.0, "prob": 0.25, "story": "Capacity adds keep the ramp near +20% Q/Q, scale-out CPO and ELS lasers ship from 2H CY2027, OCS keeps growing, and NTM EPS reaches $45-50 by late 2027 on a sustained ~40x multiple."}
+  },
+  "thesis_break_price": 600.0,
+  "thesis_break_reason": "$600 is ~19x my Oct-2027 NTM EPS and ~45% below today. Ordinary volatility (~65-95%/yr) could get there, but only together with a derating that implies the market expects EPS to stall. That would most likely mean sequential guidance cuts, lost share at Customer A/B, or an AI capex pullback, not just noise. It is also below NVIDIA's $695 preferred entry price.",
+  "catalysts": [
+    {"date": "2026-10 (late)", "event": "Hyperscaler Q3 earnings and 2027 capex guidance (Alphabet, Microsoft, Meta, Amazon)", "direction": "?"},
+    {"date": "2026-11 (early)", "event": "Lumentum Q1 FY27 results vs $1.225-1.275B / $4.05-4.35 guide; Q2 guide", "direction": "+"},
+    {"date": "2026-11", "event": "Annual stockholders meeting (proxy expected Oct 2026)", "direction": "?"},
+    {"date": "2027-02", "event": "Q2 FY27 results", "direction": "?"},
+    {"date": "2027-03", "event": "OFC 2027: CPO/NPO, 1.6T/3.2T, OCS announcements", "direction": "+"},
+    {"date": "2027-05", "event": "Q3 FY27 results", "direction": "?"},
+    {"date": "2027-08", "event": "Q4 FY27 results and FY28 framing; scale-out CPO shipments due to start 2H CY2027", "direction": "?"},
+    {"date": "rolling", "event": "Remaining convertible note conversions/exchanges (dilution) and steady insider 10b5-1 selling", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "How long the AI datacenter optical capex upcycle lasts and how sharp any 2027 digestion is",
+    "Customer concentration: two end customers are 41.6% of FY26 revenue",
+    "Capacity ramp: InP laser supply (AXT substrate deal, Greensboro fab) vs demand; shortfalls cap upside, overbuild risks margins",
+    "Multiple compression from ~50x FY27 EPS as growth decelerates",
+    "Competition and pricing in EML/CW lasers and 1.6T transceivers, incl. China supply and export controls (Hong Kong/China ~27% of ship-to revenue)",
+    "Timing of CPO/NPO adoption (management: significant adoption late 2027-2028)"
+  ],
+  "reasoning": "Primary-document lane. The Q4 FY26 8-K release shows revenue up 109% Y/Y to $1.006B, non-GAAP GM 50.4%, op margin 36.6%, and EPS $3.23. Q1 FY27 guidance is $1.25B at the midpoint (+24% Q/Q), op margin ~40%, and EPS $4.20, reaching the target model a quarter early. The 10-K adds detail the recaps skip. Customer A grew to 26.6% of revenue and Customer B is 15.0%. NVIDIA bought $2.0B of 1:1 convertible preferred at $695.31 in March 2026. Exchanges of $1.12B of converts for 10.6M shares created the $7.8B non-cash loss. $1.55B of convertible principal is still outstanding (2032 notes convert at $187.77). FY26 capex was $451M against operating cash flow of $751M. Demand exceeds supply, and the company is allocating product. EDGAR also shows near-daily insider Form 144/Form 4 filings in Sept-Oct 2026. To value it, I extend the guide at fading sequential growth and get FY27 EPS of ~$21 and Oct-2027 NTM EPS of ~$32. At 30-35x that gives ~$1,000, roughly today's price: strong earnings growth offset by multiple compression from ~52x FY27. So my median is a little below spot (~$1,050). Spread: realized vol is 97%. I use a forward log-sd of ~0.66 because some of the past move was a one-off rerating. The left tail is fat because AI optical names have a history of 60-75% cycle drawdowns, and the right tail stays open for a sustained shortage plus CPO. Research limits: the Q4 deck PDF was image-only and could not be read. Full transcripts were paywalled, so I used a call summary. Twelve Data and Alpha Vantage estimate endpoints were unavailable (plan limits), so there is no fresh consensus. Analyst figures I cite are from earlier in 2026 and serve only as anchors.",
+  "lane": "primary",
+  "sources": [
+    {"title": "Lumentum 8-K Ex.99.1: Fourth Quarter and Full Fiscal Year 2026 Results", "url": "https://www.sec.gov/Archives/edgar/data/1633978/000162828026055726/lite_ex991xq4fy26.htm", "date": "2026-08-11", "type": "filing", "in_lane": true},
+    {"title": "Lumentum Form 10-K for fiscal year ended June 27, 2026 (customer concentration, NVIDIA preferred, convertible notes, cash flow)", "url": "https://www.sec.gov/Archives/edgar/data/1633978/000162828026057358/lite-20260627.htm", "date": "2026-08-17", "type": "filing", "in_lane": true},
+    {"title": "SEC EDGAR filing index for Lumentum (CIK 1633978): Form 144/Form 4 sequence Sept-Oct 2026, 8-K 2025-11-04 fiscal Q1 timing", "url": "https://data.sec.gov/submissions/CIK0001633978.json", "date": "2026-10-02", "type": "filing", "in_lane": true},
+    {"title": "Form 144, officer proposed sale of 24,542 shares", "url": "https://www.sec.gov/Archives/edgar/data/1633978/000195004726009928/primary_doc.xml", "date": "2026-10-01", "type": "filing", "in_lane": true},
+    {"title": "LITE Q4 FY2026 earnings call summary (management commentary: OCS $400M 2H target, AXT InP deal, capacity caps, CPO timing)", "url": "https://www.stocktaper.com/earningsCallSummary/LITE/2026/Q4", "date": "2026-08-11", "type": "company", "in_lane": true},
+    {"title": "Morgan Stanley reviews Lumentum earnings: CPO order; stock prices in ~$20 CY27 EPS", "url": "https://www-web.itiger.com/news/1102520191", "date": "2026 (earlier in year)", "type": "sell-side", "in_lane": false},
+    {"title": "Lumentum set to hit revenue, margin targets earlier than expected, BofA says", "url": "https://www.itiger.com/news/2559698817", "date": "2026 (earlier in year)", "type": "sell-side", "in_lane": false},
+    {"title": "Lumentum stock surges after results; TD Cowen FY28 EPS above $30", "url": "https://www.webull.com/news/15393147060691968", "date": "2026 (earlier in year)", "type": "press", "in_lane": false},
+    {"title": "Lumentum investor relations: Q4 FY2026 results release", "url": "https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-Fourth-Quarter-and-Full-Fiscal-Year-2026-Results/default.aspx", "date": "2026-08-11", "type": "company", "in_lane": true}
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "symbol": "RDDT", "agent_id": "agent_4", "as_of": "2026-10-05", "horizon": "2027-10-05",
+  "ladder": [
+    {"K": 38, "p": 0.99}, {"K": 61, "p": 0.97}, {"K": 76, "p": 0.93}, {"K": 91, "p": 0.875},
+    {"K": 106, "p": 0.81}, {"K": 121, "p": 0.735}, {"K": 137, "p": 0.645}, {"K": 152, "p": 0.56},
+    {"K": 167, "p": 0.48}, {"K": 182, "p": 0.405}, {"K": 205, "p": 0.305}, {"K": 228, "p": 0.225},
+    {"K": 265, "p": 0.135}, {"K": 303, "p": 0.075}, {"K": 379, "p": 0.022}
+  ],
+  "ladder_1m": [
+    {"K": 121.35, "p": 0.89}, {"K": 128.94, "p": 0.82}, {"K": 136.52, "p": 0.73}, {"K": 141.07, "p": 0.665},
+    {"K": 145.62, "p": 0.595}, {"K": 151.69, "p": 0.50}, {"K": 157.76, "p": 0.41}, {"K": 162.31, "p": 0.345},
+    {"K": 166.86, "p": 0.29}, {"K": 174.44, "p": 0.21}, {"K": 182.03, "p": 0.15}
+  ],
+  "one_month_reasoning": "The key scheduled event is Q3 2026 earnings. The date is not settled: TipRanks lists 4 Nov 2026 after the close as 'confirmed' (that would put the reaction outside the window, since the 4 Nov close comes before the release), while MarketChameleon says it is unconfirmed and estimates 29-30 Oct. That fits Reddit's pattern of reporting around the 30th (Q1 on 30 Apr, Q2 on 30 Jul, Q3 2025 on 30 Oct), which would put the reaction inside the window. I put about 60% on the reaction landing by 4 Nov. Reddit's earnings moves are large (-21% the day after Q2 despite a beat and a raise), so I modelled a mixture: without earnings, a 13% one-month sigma (the 70% annual vol includes the event spikes); with earnings, a further 17% jump sigma. I see no directional edge. Guidance of $860-870M is easy to beat, but the market is trading on traffic. Alt data leans negative: Similarweb shows August visits down 3.2% month on month and 57% of traffic coming from organic search; ChatGPT citations of Reddit reportedly collapsed after OpenAI changed its search in August; and Q3 is the first quarter without the logged-in/logged-out split. The stock has already de-rated to about 21x 2027 GAAP EPS, so I keep the ladder symmetric around $151.69, with wide tails.",
+  "fair_value": {
+    "value": 164.0,
+    "method": "50/50 blend at the 12-month horizon. P/E: estimated CY2028 GAAP EPS of $8.90 x 18x (the peer median CY2027 P/E is 17.6x) = $160. EV/EBITDA: estimated 2028 adjusted EBITDA of $2.59B x 12x plus $3.7B of net cash, over 207M diluted shares = $168.",
+    "methods": [
+      {"name": "P/E", "value": 160.0, "weight": 0.5,
+       "inputs": "CY2028 GAAP EPS est $8.90 x 18x forward multiple",
+       "inputs_detail": [
+         {"input": "CY2027 GAAP EPS consensus", "value": "$7.07 (29 analysts, range $4.35-8.59)", "basis": "consensus", "source_ids": [12], "derivation": ""},
+         {"input": "CY2028 GAAP EPS", "value": "$8.90", "basis": "estimate", "source_ids": [12, 13, 14], "derivation": "$7.07 x 1.26. The 26% is the street's 2027 EPS growth rate, carried into 2028. That is consistent with the 2028 revenue consensus of about $5.5B (+23% on 2027's $4.46B) plus modest margin expansion."},
+         {"input": "Forward P/E", "value": "18x", "basis": "judgment", "source_ids": [16, 17, 18, 19, 20, 21, 23, 24, 26, 28], "derivation": "The peer median CY2027 P/E is 17.6x (range 7.3-31.3x). I use 18x, inside the range and essentially at the median. Reddit's higher growth (26% EPS, 32% revenue, against a peer median of about 15-20%) is offset by evidence that its traffic depends on Google and AI-search distribution: Similarweb puts 57% of visits on organic search, ChatGPT citations collapsed, and U.S. DAUq is flat. On that evidence a premium that persists through the horizon is not established."}
+       ]},
+      {"name": "EV/EBITDA", "value": 168.0, "weight": 0.5,
+       "inputs": "2028 adj EBITDA est $2.59B (rev $5.5B x 47%) x 12x = $31.0B EV + $3.7B net cash = $34.7B / 207M shares",
+       "inputs_detail": [
+         {"input": "2028 revenue", "value": "$5.5B", "basis": "consensus", "source_ids": [14], "derivation": ""},
+         {"input": "Adjusted EBITDA margin", "value": "47%", "basis": "estimate", "source_ids": [1], "derivation": "The Q2 2026 margin was 42.6% and Q3 guidance implies about 45% at the midpoint. I assume incremental expansion of about 1 point a year as operating leverage continues."},
+         {"input": "EV/EBITDA multiple", "value": "12x", "basis": "judgment", "source_ids": [14], "derivation": "Meta trades at about 12x forward EV/EBITDA and RDDT at about 15x today. Adjusted EBITDA excludes Reddit's large stock-based compensation, so I use Meta's level rather than RDDT's current one."},
+         {"input": "Net cash at horizon", "value": "$3.7B", "basis": "estimate", "source_ids": [1], "derivation": "$2.8B of cash and securities with no debt at Q2 2026, plus about $0.9B of free cash flow after buybacks over the next year (Q2 FCF was $261M a quarter, and $235M a quarter went to buybacks)."},
+         {"input": "Diluted shares", "value": "207.0M", "basis": "reported", "source_ids": [1], "derivation": ""}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 95.0, "prob": 0.25, "story": "AI search (Google AI Overviews, ChatGPT) keeps cutting logged-out referral traffic, U.S. DAUq declines, and the Google data deal is renewed at worse terms or lapses in 1H27. Revenue growth slows to about 15-20% in 2027 and the market pays about 15x a reduced 2028 EPS of about $6.3."},
+    "base": {"price": 165.0, "prob": 0.50, "story": "Revenue grows about 30% in 2027 on ARPU and international gains while traffic stays choppy, and Google/OpenAI licensing renews at flat to modestly higher terms. The stock rerates to about 18x 2028 EPS of about $8.9, in line with peers."},
+    "bull": {"price": 250.0, "prob": 0.25, "story": "Licensing renegotiations reach the Wells Fargo case of about $550M a year, international logged-out users convert, and search traffic stabilizes. EPS beats (about $10.5 in 2028) and the multiple expands to about 24x as the S&P 500 holder base and buybacks support it."}
+  },
+  "comps": [
+    {"symbol": "META", "name": "Meta Platforms", "why_comparable": "Social and community ad platform; the closest business model", "fwd_pe": 21.8, "ev_ebitda_fwd": 12.0, "growth_next_yr": "EPS +9% (31.17->34.07), revenue +21%", "as_of": "2026-10-05", "source_ids": [16, 17, 14]},
+    {"symbol": "GOOGL", "name": "Alphabet", "why_comparable": "Search and YouTube ads; competes for the same ad budgets and controls Reddit's referral traffic", "fwd_pe": 23.0, "ev_ebitda_fwd": null, "growth_next_yr": "EPS +28% (11.81->15.07)", "as_of": "2026-10-05", "source_ids": [18]},
+    {"symbol": "PINS", "name": "Pinterest", "why_comparable": "Intent-driven, ad-supported UGC platform with a large logged-out/SEO traffic share", "fwd_pe": 8.2, "ev_ebitda_fwd": null, "growth_next_yr": "EPS +19% (2.02->2.40)", "as_of": "2026-10-05", "source_ids": [19]},
+    {"symbol": "SNAP", "name": "Snap", "why_comparable": "Ad-supported social platform of similar revenue scale", "fwd_pe": 7.3, "ev_ebitda_fwd": null, "growth_next_yr": "EPS +28% (0.61->0.78, adjusted)", "as_of": "2026-10-05", "source_ids": [20]},
+    {"symbol": "APP", "name": "AppLovin", "why_comparable": "High-growth, high-margin ad platform", "fwd_pe": 14.2, "ev_ebitda_fwd": null, "growth_next_yr": "EPS +28% (15.66->20.00), revenue +27%", "as_of": "2026-10-05", "source_ids": [21, 22]},
+    {"symbol": "SPOT", "name": "Spotify", "why_comparable": "Consumer internet platform with a growing ad business and a scaling margin story", "fwd_pe": 31.3, "ev_ebitda_fwd": null, "growth_next_yr": "EPS +26% (12.25->15.41), revenue +14%", "as_of": "2026-10-05", "source_ids": [23]},
+    {"symbol": "NFLX", "name": "Netflix", "why_comparable": "Consumer attention platform with a growing ad tier", "fwd_pe": 17.6, "ev_ebitda_fwd": null, "growth_next_yr": "EPS +6% (3.58->3.80), revenue +11%", "as_of": "2026-10-05", "source_ids": [24, 25]},
+    {"symbol": "DUOL", "name": "Duolingo", "why_comparable": "Community-driven consumer internet platform with DAU-based KPIs", "fwd_pe": 19.1, "ev_ebitda_fwd": null, "growth_next_yr": "EPS +16% (6.61->7.64), revenue +13%", "as_of": "2026-10-05", "source_ids": [26]},
+    {"symbol": "TTD", "name": "The Trade Desk", "why_comparable": "Digital ad tech exposed to the same ad cycle; estimates distressed and being cut", "fwd_pe": 12.0, "ev_ebitda_fwd": null, "growth_next_yr": "EPS -14% (1.16->1.00; estimates falling)", "as_of": "2026-10-05", "source_ids": [27, 28]}
+  ],
+  "comps_summary": {
+    "peer_median_fwd_pe": 17.6,
+    "peer_median_ev_ebitda": 12.0,
+    "peer_range": "CY2027 P/E 7.3x (SNAP) to 31.3x (SPOT), median 17.6x across 9 peers. Basis: price on 2026-10-05 divided by street CY2027 EPS (all peers have December fiscal years). Forward EV/EBITDA was found only for META (about 12x), so that median rests on one peer.",
+    "our_multiple_vs_peers": "18x CY2028 EPS, at the peer median. RDDT itself trades at 21.5x CY2027 GAAP consensus ($151.69/$7.07), or 15.7x the normalized $9.69 that excludes stock-based compensation.",
+    "premium_discount_justification": "No premium. Reddit's growth is higher than the peers' (2027 revenue +32%, EPS +26%), but the durability of its traffic is in question: 57% of visits come from organic search (Similarweb), ChatGPT citations reportedly collapsed in August 2026, U.S. DAUq slipped from 53.5M to 53.2M, and the logged-in/out split is no longer disclosed. That is not enough evidence for a premium that lasts through the horizon, so I use the median. Only 9 genuine listed ad-supported consumer-internet comparables had usable CY2027 estimates; TTD is kept but flagged because its estimates are distressed."
+  },
+  "thesis_break_price": 110.0,
+  "thesis_break_reason": "$110 is below the 52-week low of $119.27 and equals about 15.5x CY2027 GAAP consensus EPS, or about 12x estimated 2028 EPS. A price there would most likely mean the market sees a structural loss of traffic: total DAUq falling year on year, guidance implying growth under 20%, or Google cutting off or repricing the data deal. Ordinary volatility would not explain it.",
+  "catalysts": [
+    {"date": "2026-10-29 to 2026-11-04", "event": "Q3 2026 earnings (guide $860-870M revenue, $385-395M adjusted EBITDA); first quarter without the logged-in/out DAUq split; Q4 guidance", "direction": "?"},
+    {"date": "2026-11 to 2026-12", "event": "Monthly Similarweb and Sistrix traffic prints, plus any Google core update affecting Reddit's ranking", "direction": "?"},
+    {"date": "2027-02", "event": "Q4 2026 results and 2027 outlook", "direction": "?"},
+    {"date": "1H 2027", "event": "Google AI data-licensing renewal (current deal about $60M a year); outcomes range from repricing to cutoff", "direction": "?"},
+    {"date": "2027-04/05", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-07/08", "event": "Q2 2027 results", "direction": "?"},
+    {"date": "ongoing", "event": "Share buybacks ($235M in Q2 2026) and S&P 500 membership (since 2026-08-18) supporting demand", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "Whether Google AI Overviews and ChatGPT search keep eroding logged-out referral traffic (57% of web visits come from organic search)",
+    "The terms of the Google data-licensing renewal in 1H27 (from a cutoff up to the Wells Fargo case of about $550M a year for Google plus OpenAI)",
+    "Weak U.S. user growth (US DAUq +6% YoY and down sequentially) set against international growth of 28%",
+    "Less transparency now that the logged-in/out split is no longer disclosed",
+    "The Q3 earnings date: whether the reaction falls inside the 1-month window"
+  ],
+  "reasoning": "Fundamentals are strong. Q2 2026 revenue was $805M (+61%), adjusted EBITDA margin 42.6%, FCF $261M, $2.8B of cash and no debt, and Q3 guidance calls for +47-49%. Street CY2027 revenue is $4.46B (+32%) and GAAP EPS is $7.07. The stock still fell 21% after Q2 and is down about 35% YTD, because the market prices it on the durability of its traffic rather than on earnings. My lane's evidence mostly confirms that risk rather than contradicting it. Similarweb shows August 2026 visits down 3.2% month on month, with 57% from organic search. Sistrix shows Reddit's Google visibility peaked in August 2025 and has been volatile since, including losses in the March 2026 core update. Forbes (paywalled to my fetch) reported Reddit's share of ChatGPT citations falling from 3.8% to 0.5% after OpenAI's August search change. Independent citation studies (Search Engine Land, MaxAEO) still show Reddit as the most-cited UGC domain across AI engines, so the data asset stays valuable even if referral traffic is not. Dropping the logged-in/out disclosure is a mild negative signal. I found no prediction market on Reddit or the Google deal, and X was not used. Positives are S&P 500 inclusion, buybacks, a cheapening multiple (21.5x 2027 GAAP EPS against a 17.6x peer median, while growing faster than peers), and licensing upside. Fair value is $164 (blended P/E and EV/EBITDA, peer-median multiples). The scenarios are bear $95 / base $165 / bull $250 at 25/50/25%, each modelled as a lognormal with 30-35% sigma, giving a mean of about $169 and a median near $160. That is fatter-tailed than the ±25-35% typical large-cap band, consistent with 70% realized vol. The 1-month ladder is a symmetric mixture that puts about 60% on the earnings reaction falling inside the window. Limitations: Twelve Data endpoints were paywalled. The peer EPS mixes adjusted (PINS, SNAP) and GAAP-like bases because that is what consensus reports, and peer EV/EBITDA was mostly unavailable. Fewer than 60% of sources are in-lane, because the required peer table needs data-provider pages.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "Reddit Q2 2026 shareholder letter (8-K Ex. 99.2)", "url": "https://www.sec.gov/Archives/edgar/data/0001713445/000171344526000098/exhibit992q226.htm", "date": "2026-07-30", "type": "filing", "in_lane": false},
+    {"title": "reddit.com Traffic Analytics (August 2026)", "url": "https://www.similarweb.com/website/reddit.com/", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "reddit.com SEO analysis (SISTRIX)", "url": "https://www.sistrix.com/blog/reddit-domain-analysis/", "date": "2026", "type": "alt-data", "in_lane": true},
+    {"title": "Reddit Nearly Vanishes From ChatGPT Citations After OpenAI Search Change (fetch blocked, 403; search snippet only)", "url": "https://www.forbes.com/sites/gabrielalinzainescu/2026/08/20/reddit-nearly-vanishes-from-chatgpt-citations-after-openai-search-change/", "date": "2026-08-20", "type": "alt-data", "in_lane": true},
+    {"title": "AI search engines cite Reddit, YouTube, and LinkedIn most: Study", "url": "https://searchengineland.com/ai-search-engines-cite-reddit-youtube-and-linkedin-most-study-473138", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "How Reddit Shapes ChatGPT Recommendations (1.2M-citation study)", "url": "https://maxaeo.ai/blog/reddit-chatgpt-recommendations/", "date": "2026", "type": "alt-data", "in_lane": true},
+    {"title": "Reddit plans to stop disclosing logged-in and logged-out user numbers", "url": "https://www.shacknews.com/article/147764/reddit-rddt-logged-in-vs-logged-out-users-discontinued", "date": "2026", "type": "press", "in_lane": false},
+    {"title": "RDDT earnings date (TipRanks)", "url": "https://www.tipranks.com/stocks/rddt/earnings", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "RDDT earnings dates (MarketChameleon)", "url": "https://marketchameleon.com/Overview/RDDT/Earnings/Earnings-Dates/", "date": "2026-10", "type": "data", "in_lane": false},
+    {"title": "Reddit stock sinks on report it may not renew Google AI content deal", "url": "https://www.cnbc.com/2026/07/22/reddit-stock-google-ai-content-deal.html", "date": "2026-07-22", "type": "press", "in_lane": false},
+    {"title": "Reddit Fell 6% as Its $550M AI Deal Renewal Looms (TIKR blog)", "url": "https://www.tikr.com/blog/reddit-fell-6-as-its-550m-ai-deal-renewal-looms-heres-where-the-stock-could-go-in-2026", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Reddit (RDDT) analyst estimates (Yahoo Finance)", "url": "https://finance.yahoo.com/quote/RDDT/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Reddit (RDDT) forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/rddt/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Reddit Stock Is Down Nearly 35% in 2026, Yet Wall Street Sees Revenue Topping $5 Billion by 2028", "url": "https://finance.yahoo.com/markets/stocks/articles/reddit-stock-down-nearly-35-131446547.html", "date": "2026-09-26", "type": "press", "in_lane": false},
+    {"title": "Reddit Shares Jump 15% As It Joins The S&P 500 Next Week", "url": "https://www.forbes.com/sites/tylerroush/2026/08/14/reddit-joins-the-sp-500-next-week-heres-what-that-means-for-shares/", "date": "2026-08-14", "type": "press", "in_lane": false},
+    {"title": "META forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/meta/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "META analysis (Yahoo Finance)", "url": "https://finance.yahoo.com/quote/META/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "GOOGL forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/googl/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "PINS forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/pins/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "SNAP forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/snap/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "APP analysis (Yahoo Finance)", "url": "https://finance.yahoo.com/quote/APP/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "APP forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/app/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "SPOT forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/spot/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "NFLX analysis (Yahoo Finance)", "url": "https://finance.yahoo.com/quote/NFLX/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "NFLX forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/nflx/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "DUOL forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/duol/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "TTD forecast (StockAnalysis)", "url": "https://stockanalysis.com/stocks/ttd/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "The Trade Desk (TTD) is Attracting Investor Attention (2027 EPS consensus $1.00)", "url": "https://finance.yahoo.com/markets/stocks/articles/trade-desk-ttd-attracting-investor-130004774.html", "date": "2026", "type": "press", "in_lane": false},
+    {"title": "Is Reddit's Google Deal Life or Death? Analysts Weigh In", "url": "https://www.tipranks.com/news/is-reddits-google-deal-life-or-death-analysts-weigh-in-as-rddt-stock-sinks-on-exit-rumors", "date": "2026-09", "type": "sell-side", "in_lane": false},
+    {"title": "Reddit Not Ranking As Well In Google Suddenly? (Search Engine Roundtable)", "url": "https://www.seroundtable.com/reddit-not-ranking-google-38710.html", "date": "2025", "type": "trade", "in_lane": true},
+    {"title": "Google traffic wobble sends major signal for sinking Reddit stock", "url": "https://www.thestreet.com/investing/stocks/rddt-google-search-referrals-reddit-stock-drop-q2-2026", "date": "2026-07-31", "type": "press", "in_lane": false}
+  ]
+}

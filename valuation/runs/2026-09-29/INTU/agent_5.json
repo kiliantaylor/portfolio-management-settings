@@ -1,0 +1,100 @@
+{
+  "symbol": "INTU", "agent_id": "agent_5", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 67, "p": 0.995}, {"K": 107, "p": 0.975}, {"K": 134, "p": 0.94}, {"K": 161, "p": 0.875},
+    {"K": 188, "p": 0.795}, {"K": 214, "p": 0.71}, {"K": 241, "p": 0.62}, {"K": 268, "p": 0.535},
+    {"K": 295, "p": 0.45}, {"K": 322, "p": 0.375}, {"K": 362, "p": 0.28}, {"K": 402, "p": 0.205},
+    {"K": 469, "p": 0.115}, {"K": 536, "p": 0.063}, {"K": 670, "p": 0.02}
+  ],
+  "ladder_1m": [
+    {"K": 214.42, "p": 0.94}, {"K": 227.83, "p": 0.87}, {"K": 241.23, "p": 0.765}, {"K": 249.27, "p": 0.688},
+    {"K": 257.31, "p": 0.604}, {"K": 268.03, "p": 0.49}, {"K": 278.75, "p": 0.38}, {"K": 286.79, "p": 0.305},
+    {"K": 294.83, "p": 0.24}, {"K": 308.23, "p": 0.153}, {"K": 321.64, "p": 0.092}
+  ],
+  "one_month_reasoning": "No company-scheduled event falls inside 2026-09-30 to 2026-10-29: Q1 FY27 results come after the fiscal quarter ends Oct 31 (Q1 FY26 was reported Nov 20, 2025; an unconfirmed report points to about Dec 1, 2026), and the Sep 17 investor day already reaffirmed guidance. The stock slid from ~$303 after the investor day to $268, ~6% above its 52-week low, so negative momentum and oversold reversal roughly offset. I use a near-symmetric lognormal around $268 at ~14% monthly sigma (50%/3.5) with a very slight negative drift (P(>=268) = 0.49). Mid-October macro prints (CPI, jobs) and software-sector AI headlines are the swing factors. The supervisor's review did not change this; the 1-month ladder moves only marginally.",
+  "fair_value": {
+    "value": 315,
+    "method": "Blend of P/E (FY28E SBC-inclusive EPS $25.5 x 12.5x = $319, weight 0.6) and normalized SBC-burdened FCF yield (FY28E ~$24.4/share at 8% plus ~$3/share of remaining OBBBA cash-tax benefit = $308, weight 0.4) gives ~$315 per share 12 months out (round 1: $334).",
+    "methods": [
+      {"name": "P/E", "value": 319, "weight": 0.6,
+       "inputs": "FY28E non-GAAP EPS (SBC-inclusive definition) $25.5 x 12.5x forward P/E",
+       "inputs_detail": [
+         {"input": "FY27 non-GAAP EPS guidance (now incl. ~$2.0B pre-tax SBC)", "value": "$22.88-$23.12", "basis": "guidance", "source_ids": [1, 2], "derivation": ""},
+         {"input": "FY27 revenue guidance", "value": "$23.28-$23.51B (+9-10%)", "basis": "guidance", "source_ids": [1, 2], "derivation": ""},
+         {"input": "Shares outstanding", "value": "267.2M (Aug 31, 2026)", "basis": "reported", "source_ids": [16], "derivation": ""},
+         {"input": "FY28E EPS (NTM EPS in Sept 2027)", "value": "$25.5", "basis": "estimate", "source_ids": [1, 4, 16, 17],
+          "derivation": "FY27 midpoint $23.0 grown ~11%: ~9% revenue growth (Business 10-15% / Consumer 4-8% 3-year CAGR frame) plus ~4% net share reduction (at $268, $5B+/yr buybacks retire ~6-7% gross less ~2.5-3% SBC issuance; raised from my round-1 2%), offset by little further margin gain after the FY27 restructuring boost and by TurboTax share loss (units -2% vs IRS self-prepared e-file +1.7%). The higher buyback accretion and the share-loss drag net out, so I keep $25.5."},
+         {"input": "Forward P/E multiple", "value": "12.5x", "basis": "judgment", "source_ids": [6, 9, 18, 5],
+          "derivation": "INTU trades ~11.6x FY27 guided EPS; its 10-yr TTM P/E floor is ~16x (median ~48x). The ex-growth tax comparable H&R Block trades at ~6.6x forward ($40.58 on 2026-09-29 vs FY27 adj EPS guide $6.04-6.24), not the 8-9x I used in round 1, so the comparable anchor is lower; I trim to 12.5x (from 13x): modest re-rating from today, still well below history, reflecting share loss in the core consumer product."}
+       ]},
+      {"name": "FCF yield", "value": 308, "weight": 0.4,
+       "inputs": "FY26 OCF $8.84B less one-off $1.28B OBBBA deferred-tax add-back less ~$0.22B capex less ~$2.06B SBC = ~$5.3B normalized SBC-burdened FCF; grown ~8%/yr to ~$6.3B in FY28 on ~258M shares = ~$24.4/share; 8% yield = $305, plus ~$3/share for the remaining ~$0.7B cash-tax benefit expected in FY27",
+       "inputs_detail": [
+         {"input": "FY26 operating cash flow", "value": "$8.84B", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "One-off deferred income tax add-back (OBBBA R&D expensing)", "value": "$1.28B (vs -$0.435B in FY25); cash taxes paid $281M vs $1,408M", "basis": "reported", "source_ids": [1, 16], "derivation": "Removed from the FCF base; capitalized-R&D DTA fell from $1,895M to $673M, so ~$0.7B more benefit may land in FY27 then fade; treated as a one-time ~$3/share cash add rather than recurring."},
+         {"input": "Capex and SBC", "value": "capex ~$0.22B; SBC $2.06B", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY28 normalized FCF per share", "value": "~$24.4", "basis": "estimate", "source_ids": [1, 16, 17],
+          "derivation": "~$5.3B grown ~8%/yr (revenue +9-10% with modest margin gain) = ~$6.3B; divided by ~258M shares (267.2M less ~4%/yr net buyback reduction). Round 1 used ~$27 built on tax-flattered OCF and 15% growth."},
+         {"input": "Required FCF yield", "value": "8%", "basis": "judgment", "source_ids": [9, 18, 6],
+          "derivation": "Between H&R Block's ~15% earnings yield (6.6x) and a high-quality compounder's ~5%; roughly INTU's current normalized yield (~7.5%), so no re-rating is assumed in this leg."},
+         {"input": "Net debt", "value": "~$0.5B (cash $7.2B, debt $7.7B)", "basis": "reported", "source_ids": [2], "derivation": "Immaterial (~$2/share)."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 160, "prob": 0.25, "story": "TY2026 season repeats share loss (TurboTax units down again against a growing self-prepared category) as free entry points and AI agents compress price; FY27 EPS misses and FY28 guide is flat at ~$22; the stock de-rates toward an H&R Block-like 7x (~$155-165). A recession (Polymarket ~35% by end-2027, second-hand, thin evidence) would hit QBO/Mailchimp/Credit Karma too."},
+    "base": {"price": 295, "prob": 0.50, "story": "Intuit roughly delivers the guide (~$23 EPS, revenue +9-10%), the tax season is 'fine not great' (TurboTax +2-3%), buybacks retire ~4%/yr net, and the multiple recovers only slightly to ~11.5-12x on ~$25.5 NTM EPS."},
+    "bull": {"price": 420, "prob": 0.25, "story": "Tax season shows TurboTax units stabilizing with AI-assisted 'done-for-you' lifting ARPU, GBS/Big Bets keep growing mid-teens, and the software sector re-rates as in 2023 after the 2022 crash; multiple returns to ~16x on ~$26."}
+  },
+  "thesis_break_price": 195,
+  "thesis_break_reason": "Below ~$195 (~8.5x FY27 guided SBC-inclusive EPS and ~11% normalized SBC-burdened FCF yield) the market would be pricing an earnings decline, not just a de-rating: most likely a failed 2027 tax season (TurboTax units down again vs a growing category), a guide cut at Q2/Q3 FY27, or QuickBooks customer growth turning negative. Lowered from $200 because the H&R Block comparable sits at ~6.6x, so a pure de-rating floor could be ~$150-160; $195 remains the level where fundamentals, not multiple noise, are the likely explanation.",
+  "catalysts": [
+    {"date": "2026-10 (mid-month)", "event": "Sept CPI and jobs reports; software-sector AI sentiment", "direction": "?"},
+    {"date": "2026-11/2026-12-01", "event": "Q1 FY27 results (guided ~11% revenue growth); date unconfirmed", "direction": "?"},
+    {"date": "2027-01 to 2027-04", "event": "TY2026 US tax season: TurboTax units vs IRS self-prepared e-file statistics; pricing and free entry points (Credit Karma Tax)", "direction": "?"},
+    {"date": "2027-02", "event": "Q2 FY27 results and early tax-season read", "direction": "?"},
+    {"date": "2027-05", "event": "Q3 FY27 results: full tax-season outcome, FY27 guide confirm", "direction": "?"},
+    {"date": "2027-08", "event": "Q4 FY27 results and FY28 guidance", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether TurboTax's FY26 share loss (units -2% vs category +1.7%) continues in the 2027 season, which is what separates the 2022-rebound analog from the Chegg-type branch",
+    "How much of FY27's 23-24% EPS growth is one-time restructuring (17% workforce cut) vs durable",
+    "Whether the 2026 software de-rating reverses or persists",
+    "US recession odds and small-business health for QBO/Mailchimp/Credit Karma (small input)",
+    "Size and timing of the remaining ~$0.7B OBBBA cash-tax benefit"
+  ],
+  "reasoning": "Round 2 applies the supervisor's evidence-backed corrections, which I verified: (1) the FY26 8-K cash flow statement shows a +$1.28B deferred income tax add-back (vs -$435M in FY25), so my FCF leg built on $8.8B OCF was overstated; normalized SBC-burdened FCF is ~$5.3B and my FCF leg falls from $338 to $308. (2) H&R Block closed $40.58 on 2026-09-29 (Twelve Data) vs FY27 adj EPS guide $6.04-6.24, i.e. ~6.6x, not 8-9x; my 'practical floor' near $185-205 was too high, and an ex-growth multiple on flat EPS gives ~$150-160, so I cut the bear price to $160 and the P/E multiple to 12.5x. (3) Net buyback accretion is ~4%/yr, not 2%, which I net against the TurboTax share-loss drag to keep FY28 EPS at $25.5. (4) TurboTax units -2% while IRS self-prepared e-file rose 1.7% is share loss in a growing category, which weakens my META/CRM/ADBE 2022 rebound analog and strengthens the Chegg-type branch; I give that branch ~20% weight as a separate low component (median ~$180) in a mixture with a main lognormal (median ~$302, sigma 0.40). (5) The 'missed consensus ($23.72B)' guide miss was the Aug 25, 2026 guide, not a May article; the date is corrected and the claim no longer drives anything. Result: fair value $334 -> $315, P(>=268) 0.565 -> 0.535, and a fatter left tail (P(>=188) 0.825 -> 0.795) with a trimmed upper tail (P(>=469) 0.135 -> 0.115). Scenario-weighted mean ~$293; mixture mean ~$300. I remain slightly above 50% at $268 because the stock trades ~11.6x SBC-inclusive earnings with ~7.5% normalized FCF yield and heavy buybacks, and large-cap growers de-rated this hard have more often recovered than not; but the decisive evidence (the Jan-May 2027 tax season) is not yet in. Polymarket's recession figure is second-hand with volume unverified, so it is only a small left-tail input. Research in round 2 was limited to verifying the 8-K cash flow and the HRB close.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Intuit 8-K: Q4 FY2026 earnings press release (FY27 guidance, cash flow statement, non-GAAP change)", "url": "https://www.sec.gov/Archives/edgar/data/0000896878/000089687826000029/fy26q4earningspressrelease.htm", "date": "2026-08-25", "type": "filing", "in_lane": false},
+    {"title": "Intuit Reports Fourth Quarter and Full Year Fiscal 2026 Results; Sets Fiscal 2027 Guidance", "url": "https://investors.intuit.com/news-events/press-releases/detail/1320/intuit-reports-fourth-quarter-and-full-year-fiscal-2026-results-sets-fiscal-2027-guidance", "date": "2026-08-25", "type": "company", "in_lane": false},
+    {"title": "Why Intuit Stock Dropped Today (Motley Fool)", "url": "https://www.fool.com/investing/2026/08/26/why-intuit-stock-dropped-today/", "date": "2026-08-26", "type": "press", "in_lane": false},
+    {"title": "Intuit Stock Analysis: Why Street Sees 34% Upside (investor day, target cuts)", "url": "https://finance.yahoo.com/markets/stocks/articles/intuit-stock-analysis-why-street-134844647.html", "date": "2026-09-18", "type": "press", "in_lane": true},
+    {"title": "Intuit shares plunge as cautious guidance falls short / TurboTax slowdown, workforce cut", "url": "https://finance.yahoo.com/markets/stocks/articles/intuit-shares-plunge-cautious-fiscal-104320782.html", "date": "2026-05", "type": "press", "in_lane": true},
+    {"title": "GuruFocus: INTUIT PE Ratio 10-year range (min 16.17, median ~48)", "url": "https://www.gurufocus.com/term/pe-ratio/INTU", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "The 2026 Software Stock Sell-Off: AI Disruption Fear, Broken Logic, or Something Else", "url": "https://www.fool.com/investing/2026/02/18/the-2026-software-stock-sell-off-ai-disruption-fea/", "date": "2026-02-18", "type": "press", "in_lane": true},
+    {"title": "Chegg Is On Its Last Legs After ChatGPT Sent Its Stock Down 99% (AI-disruption analog)", "url": "https://gizmodo.com/chegg-is-on-its-last-legs-after-chatgpt-sent-its-stock-down-99-2000522585", "date": "2024-11", "type": "press", "in_lane": true},
+    {"title": "H&R Block outlines fiscal 2027 outlook ($6.04-6.24 adj EPS)", "url": "https://seekingalpha.com/news/4631178-h-and-r-block-outlines-fiscal-2027-outlook-of-4_11b-4_16b-revenue-and-6_04-6_24-adjusted-eps", "date": "2026-08", "type": "press", "in_lane": true},
+    {"title": "H&R Block (HRB) Stock Price & Overview", "url": "https://stockanalysis.com/stocks/hrb/", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Polymarket prices 35% chance of U.S. recession by end of 2027 (second-hand; volume unverified)", "url": "https://predictionnews.com/story/polymarket-prices-35-chance-of-u-s-recession-by-end-of-2027", "date": "2026-09-24", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi: Recession this year? (KXRECSSNBER-26)", "url": "https://kalshi.com/markets/kxrecssnber/recession/kxrecssnber-26", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "IRS Direct File (status: suspended, no future launch date)", "url": "https://en.wikipedia.org/wiki/IRS_Direct_File", "date": "2026", "type": "other", "in_lane": true},
+    {"title": "Trefis: 121 Stocks Hit 52-Week Lows On Monday (market context)", "url": "https://www.trefis.com/stock/spy/articles/616907/121-stocks-hit-52-week-lows-on-monday/2026-09-29", "date": "2026-09-29", "type": "data", "in_lane": true},
+    {"title": "Intuit reiterates fiscal 2027 revenue, earnings guidance (investor day)", "url": "https://uk.investing.com/news/stock-market-news/intuit-reiterates-fiscal-2027-revenue-earnings-guidance-93CH-4873344", "date": "2026-09-17", "type": "press", "in_lane": false},
+    {"title": "Intuit Form 10-K FY2026 (cash taxes paid, capitalized R&D DTA, shares outstanding 267.2M) - via supervisor review", "url": "https://www.sec.gov/Archives/edgar/data/896878/000089687826000037/intu-20260731.htm", "date": "2026-09-09", "type": "filing", "in_lane": false},
+    {"title": "IRS Filing Season Statistics, week ending May 8, 2026 (self-prepared e-file 65.73M, +1.7%) - via supervisor review", "url": "https://www.irs.gov/newsroom/filing-season-statistics-for-week-ending-may-8-2026", "date": "2026-05", "type": "data", "in_lane": true},
+    {"title": "HRB daily close $40.58 on 2026-09-29 (Twelve Data time series)", "url": "https://twelvedata.com", "date": "2026-09-29", "type": "data", "in_lane": true}
+  ],
+  "revisions": [
+    {"item": "a fact", "from": "H&R Block trades ~8-9x forward; practical floor ~$185-205", "to": "HRB ~6.6x forward ($40.58 vs $6.04-6.24); ex-growth floor ~$150-160", "why": "Supervisor disagreement 3; verified HRB close via Twelve Data."},
+    {"item": "a fact", "from": "FY26 SBC-burdened FCF ~$6.5B", "to": "~$5.3B normalized (removing $1.28B one-off OBBBA deferred-tax add-back)", "why": "Supervisor disagreement 1; verified deferred tax line in the 8-K cash flow statement."},
+    {"item": "a method", "from": "FCF yield leg $338 (~$27/share NTM at 8%)", "to": "$308 (~$24.4/share FY28 at 8% plus ~$3 remaining tax benefit)", "why": "Normalized cash taxes and ~8%/yr growth instead of 15%."},
+    {"item": "a method", "from": "P/E leg 13x on $25.5 = $331", "to": "12.5x on $25.5 = $319", "why": "Lower HRB anchor and TurboTax share loss vs a growing category (supervisor disagreements 3, 4); higher buyback accretion (4% vs 2%) offsets share-loss drag so FY28 EPS unchanged."},
+    {"item": "fair value", "from": "334", "to": "315", "why": "The two method changes above."},
+    {"item": "a scenario", "from": "bear $170 at 25%; base $300; bull $430", "to": "bear $160 at 25%; base $295; bull $420", "why": "Lower HRB-like floor, share-loss evidence weakens the 2022-rebound analog, lower fair value."},
+    {"item": "P(close >= K)", "from": "188: 0.825, 214: 0.745, 268: 0.565, 469: 0.135, 536: 0.08", "to": "188: 0.795, 214: 0.71, 268: 0.535, 469: 0.115, 536: 0.063", "why": "Mixture with a ~20% Chegg-type branch (median ~$180) plus main lognormal median ~$302; fatter left tail per HRB multiple and share-loss evidence, trimmed upper tail per corrected FCF."},
+    {"item": "thesis break", "from": "200", "to": "195", "why": "HRB at 6.6x shows a pure de-rating can go lower; $195 (~8.5x FY27 EPS) still marks priced earnings decline."},
+    {"item": "a fact", "from": "FY27 guide 'missed consensus' cited to a May 2026 article", "to": "FY27 guide issued Aug 25, 2026 (8-K)", "why": "Supervisor feedback on source date; claim no longer drives any number."},
+    {"item": "P(close >= K)", "from": "1-month P(>=268.03) 0.47", "to": "0.49", "why": "No scheduled catalyst in window confirmed; moved closer to neutral symmetric spread."}
+  ]
+}

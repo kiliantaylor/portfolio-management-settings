@@ -1,0 +1,128 @@
+{
+ "date": "2026-10-23",
+ "symbol": "NFLX",
+ "clean": true,
+ "checked": 11,
+ "ok": 10,
+ "fixed": 1,
+ "failures": [
+  {
+   "item": "Horizon P/E: SPOT FY1 basis",
+   "value": "SPOT FY1 13.58",
+   "cited": "Spotify Q1 2026 6-K",
+   "result": "mixed_basis",
+   "fix": "Q1 less EUR 184M Exchangeable Notes fair-value gain after 23% tax: FY1 12.79, SPOT 36.28x; SONY yearly basis stated; median/exit unchanged"
+  },
+  {
+   "item": "Horizon P/E: NFLX own FY2026 (round 2)",
+   "value": "3.59",
+   "cited": "Nasdaq.com",
+   "result": "mixed_basis",
+   "fix": "rebuilt 3.04; all names on rebuilt FY1; exit rule applied 19.07x"
+  },
+  {
+   "item": "Peer median GOOGL/DIS basis (round 1)",
+   "value": "20.56x",
+   "cited": "peers.md",
+   "result": "mixed_basis",
+   "fix": "GOOGL ex stake gains, DIS less acquisition amortization"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "NFLX rebuilt FY1 inputs: Zacks actuals Q1-Q3 2026 + Q4 consensus",
+   "value": "0.70 / 0.80 / 0.87 + Q4 0.67",
+   "basis": "reported (aggregator) + estimate",
+   "source_url": "https://api.nasdaq.com/api/company/NFLX/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "META rebuilt FY1 inputs",
+   "value": "7.31 / 6.18 / 7.40 + Q4 8.25",
+   "basis": "reported (aggregator) + estimate",
+   "source_url": "https://api.nasdaq.com/api/company/META/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "AMZN rebuilt FY1 inputs",
+   "value": "1.56 / 1.88 + Q3 2.01 + Q4 2.55",
+   "basis": "reported (aggregator) + estimate",
+   "source_url": "https://api.nasdaq.com/api/company/AMZN/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "SPOT rebuilt FY1 inputs (USD)",
+   "value": "4.04 / 3.03 / 2.85 + Q4 3.66",
+   "basis": "reported (aggregator) + estimate",
+   "source_url": "https://api.nasdaq.com/api/company/SPOT/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "DIS rebuilt FY1 inputs (adjusted EPS)",
+   "value": "1.63 / 1.57 / 2.06 + Q4 1.68",
+   "basis": "reported (aggregator) + estimate",
+   "source_url": "https://api.nasdaq.com/api/company/DIS/earnings-surprise",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "SONY FY1 kept on yearly consensus (quarterly covers only 2 quarters, 1 estimate each)",
+   "value": "1.45",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/SONY/earnings-forecast",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "Horizon P/E: rebuilt FY1s, NTM blends and six peer P/Es",
+   "value": "DIS 16.50, SONY 17.86, META 19.64, GOOGL 24.00, AMZN 26.63, SPOT 35.84",
+   "basis": "judgment",
+   "source_url": "runs/2026-10-23/NFLX/peers.md",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "Horizon P/E: peer median and NFLX own NTM P/E",
+   "value": "median 21.82x; NFLX 18.44x",
+   "basis": "judgment",
+   "source_url": "runs/2026-10-23/NFLX/peers.md",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "Horizon P/E: exit multiple and k variants",
+   "value": "19.07x (k 0.8); k 0.7 19.39x ($77.50); k 0.9 18.75x ($74.94); median $87.24; own $73.70; base $76.22",
+   "basis": "judgment",
+   "source_url": "METHOD.md",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "Horizon P/E: derivation and labels vs METHOD.md default exit rule",
+   "value": "19.07x, basis judgment, confidence medium; comps_summary own_multiple 18.44, exit_k 0.8, multiple_used 19.07",
+   "basis": "judgment",
+   "source_url": "METHOD.md",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (horizon P/E)"
+  },
+  {
+   "item": "SPOT FY1 rebuilt",
+   "value": 12.79,
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1639920/000162828026027951/spot-20260331x6xk.htm",
+   "checked": "2026-10-26",
+   "feeds": "comps"
+  }
+ ],
+ "notes": "Update round (name_update.py), changed row: Horizon P/E (NTM GAAP). Three checker rounds (gate/shard_text.round1.json, round2.json, shard_text.json); fixes recorded in supervisor.json citation_audit.corrections. Engine check after fixes: 76.22.",
+ "quarterly_gate": {
+  "checked": 38,
+  "fixes": 2,
+  "file": "driver_models/NFLX/quarterly/gate.json"
+ }
+}

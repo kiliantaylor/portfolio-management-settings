@@ -1,0 +1,83 @@
+{
+  "symbol": "AMD", "agent_id": "agent_2", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 151, "p": 0.99}, {"K": 242, "p": 0.94}, {"K": 302, "p": 0.88}, {"K": 362, "p": 0.81},
+    {"K": 423, "p": 0.73}, {"K": 483, "p": 0.65}, {"K": 544, "p": 0.565}, {"K": 604, "p": 0.49},
+    {"K": 664, "p": 0.42}, {"K": 725, "p": 0.36}, {"K": 816, "p": 0.28}, {"K": 906, "p": 0.22},
+    {"K": 1057, "p": 0.145}, {"K": 1208, "p": 0.095}, {"K": 1510, "p": 0.04}
+  ],
+  "ladder_1m": [
+    {"K": 483.27, "p": 0.86}, {"K": 513.47, "p": 0.785}, {"K": 543.68, "p": 0.70}, {"K": 561.80, "p": 0.64},
+    {"K": 579.92, "p": 0.585}, {"K": 604.09, "p": 0.505}, {"K": 628.25, "p": 0.43}, {"K": 646.37, "p": 0.375},
+    {"K": 664.49, "p": 0.33}, {"K": 694.70, "p": 0.255}, {"K": 724.90, "p": 0.195}
+  ],
+  "one_month_reasoning": "AMD's Q3 2026 report is expected around 2026-11-03 (unconfirmed, per historical pattern), i.e. just after the 2026-10-30 window, so no company earnings fall inside it. In-window chain events: TSMC Q3 results and September/October monthly sales (mid-October), Intel Q3 results (late October), hyperscaler Q3 results with capex updates (Alphabet/Microsoft/Meta/Amazon typically last week of October), SK Hynix/Samsung Q3 (late October). These are read-through events that have mostly been positive (TSMC raised 2026 growth to >40%, Intel and Nvidia both say CPU/GPU demand exceeds supply), but the stock is up ~280% in a year and trading near its $639 high, so positioning risk is two-sided. With no company-specific scheduled catalyst, I stay close to a symmetric lognormal centred on spot (~$606 median) with monthly vol of about 72%/sqrt(12) = 21%, i.e. slightly wider than the brief's annual/3.5 rule because realized vol is elevated and the hyperscaler capex prints land inside the window.",
+  "fair_value": {
+    "value": 580,
+    "method": "Blend of P/E on estimated NTM EPS at Sep-2027 (~$19.5 x 30x = $585) and EV/sales on CY2028 revenue (~$100B x 10x EV/S, plus ~$10B net cash, over ~1.75B diluted shares incl. partial warrant dilution = $577).",
+    "methods": [
+      {"name": "P/E", "value": 585, "weight": 0.6,
+       "inputs": "NTM (Q4'27-Q3'28) non-GAAP EPS ~$19.5 x 30x forward P/E; diluted shares ~1.75B (1.66B + partial vesting of OpenAI/Meta warrants)",
+       "inputs_detail": [
+         {"input": "FY2027 consensus EPS", "value": "$15.57", "basis": "consensus", "source_ids": [3], "derivation": ""},
+         {"input": "Management long-term EPS target", "value": ">$20 ('significantly exceed')", "basis": "guidance", "source_ids": [3], "derivation": ""},
+         {"input": "NTM EPS at 2027-09-30", "value": "$19.5", "basis": "estimate", "source_ids": [1, 3, 4, 7, 8], "derivation": "Consensus FY2027 $15.57 rising fast (33 up vs 3 down revisions); DC revenue guided to more than double in 2027 as MI450/Helios ramps for OpenAI (6GW), Meta (6GW), Anthropic (2GW, from 1H27) and Oracle; hyperscaler 2027 capex consensus >$1T (+~40%). Rolling forward one year at ~30-35% EPS growth from FY2027 gives ~$19-21; I take $19.5 net of warrant dilution."},
+         {"input": "Diluted shares", "value": "1.659B reported; ~1.75B assumed", "basis": "estimate", "source_ids": [1, 11], "derivation": "Q2 2026 diluted count 1.659B plus roughly 90M of the up to 320M penny warrants (160M OpenAI, 160M Meta) assumed to vest by late 2027 on deployment milestones; final OpenAI tranche needs ~$600 price."},
+         {"input": "Forward P/E", "value": "30x", "basis": "judgment", "source_ids": [3, 5], "derivation": "Stock currently ~39x FY2027 consensus ($604/$15.57); by Sep-2027 growth decelerates from ~80-100% DC growth toward 30-40%, so multiple compresses toward high-growth semi peers; Nvidia with 75% gross margin and ~$108B quarterly guide is the ceiling comparable. 30x is a modest premium to large-cap semi averages for >30% EPS growth."}
+       ]},
+      {"name": "EV/sales", "value": 577, "weight": 0.4,
+       "inputs": "CY2028 revenue ~$100B x 10x EV/sales = $1.0T EV + ~$10B net cash, / 1.75B shares",
+       "inputs_detail": [
+         {"input": "Q2 2026 revenue / Q3 guide", "value": "$11.5B / $13.0B +/- $0.3B", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Net cash", "value": "~$9.9B ($13.1B cash less $3.2B debt)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "CY2028 revenue", "value": "~$100B", "basis": "estimate", "source_ids": [1, 4, 7, 9], "derivation": "2026 ~ $50B (Q1-Q4 run-rate from $11.5B Q2, $13B Q3 guide, Q4 Helios shipments); 2027 ~ $78B with DC >2x per management; 2028 ~ +25% as OpenAI/Meta later gigawatt tranches deploy, partly offset by weak PC units (IDC: memory shortage persists through 2027)."},
+         {"input": "EV/sales multiple", "value": "10x", "basis": "judgment", "source_ids": [1, 5], "derivation": "Implies ~27x earnings at ~38% op margin; AMD gross margin 56% vs Nvidia 75% justifies a discount to Nvidia's sales multiple."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 320, "prob": 0.25, "story": "AI capex digestion in 2027 (hyperscalers funding capex with debt per FactSet, investor skepticism already visible after Alphabet's July print), MI450/Helios ramp slips on HBM4 or rack integration, PC units fall ~10-20% on memory costs, and warrants dilute ~15-19%; EPS ~$14 at 22x."},
+    "base": {"price": 610, "prob": 0.50, "story": "Helios ships from late Q3 2026 and ramps through 2027 across OpenAI, Meta, Oracle and Anthropic; DC revenue roughly doubles in 2027; EPYC keeps taking server share (34.5% units, 46% vs Xeon SP); NTM EPS ~$19.5 at ~31x with partial warrant dilution."},
+    "bull": {"price": 1000, "prob": 0.25, "story": "AI compute scarcity persists (TSMC CoWoS sold out, Nebius raising EPYC pricing, Intel/Nvidia supply-limited), AMD becomes a clear second GPU source with >$25 NTM EPS and the market keeps ~38-40x."}
+  },
+  "thesis_break_price": 360,
+  "thesis_break_reason": "Below ~$360 (-40%) the stock would be pricing either a material MI450/Helios slip or cut to the OpenAI/Meta gigawatt deployments, or a broad hyperscaler capex cut for 2027 - i.e. FY2027 EPS falling back toward ~$12-13 at a low-20s multiple. With 72% realized vol a 25-30% drawdown is ordinary; a 40% one would most likely be fundamental.",
+  "catalysts": [
+    {"date": "2026-10 (mid)", "event": "TSMC Q3 2026 results and CoWoS/2027 capacity commentary", "direction": "?"},
+    {"date": "2026-10 (late)", "event": "Hyperscaler Q3 results and 2027 capex guidance (MSFT, GOOGL, META, AMZN)", "direction": "?"},
+    {"date": "2026-10 (late)", "event": "Intel Q3 2026 results - server CPU share read-through", "direction": "?"},
+    {"date": "2026-11-03", "event": "AMD Q3 2026 results (estimated date) and Q4 guide incl. Helios revenue", "direction": "?"},
+    {"date": "2026-Q4", "event": "OpenAI brings first Helios systems online; first 1GW tranche and warrant vesting", "direction": "+"},
+    {"date": "2027-02", "event": "AMD Q4 2026 results and 2027 outlook", "direction": "?"},
+    {"date": "2027-1H", "event": "Anthropic first gigawatt of MI450 deployment begins", "direction": "+"},
+    {"date": "2027-06", "event": "AMD Advancing AI event (MI500 roadmap)", "direction": "?"},
+    {"date": "2027-08", "event": "AMD Q2 2027 results", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Timing and scale of MI450/Helios revenue recognition across OpenAI, Meta, Oracle, Anthropic",
+    "Durability of hyperscaler capex growth into 2027-2028 and financing strain",
+    "Dilution from up to 320M penny warrants held by OpenAI and Meta",
+    "HBM4 and CoWoS supply allocation vs Nvidia",
+    "PC unit decline from memory price inflation (IDC -11% 2026, Q4 -20% YoY)",
+    "Multiple compression after a ~280% one-year move"
+  ],
+  "reasoning": "Industry lane read: the whole chain says AI compute demand still exceeds supply - Nvidia guided FQ3 to $108B (+~12% q/q) with DC up 117% y/y; TSMC raised 2026 growth to >40% with CoWoS sold out; Intel says Xeon demand outpaces supply; Nebius raised EPYC pricing; hyperscaler 2026 capex ~$725B with 2027 consensus >$1T. AMD specifically is gaining server CPU share (Mercury: 34.5% units, 46.4% vs Xeon SP) and client share (mobile ~29%), while memory shortages depress PC units (IDC -11.3% 2026) - a manageable drag since Client+Gaming is now <35% of revenue. Samsung HBM4 is the primary MI450 memory source and is sold out for 2026. Against that, at $604 AMD is ~$1T market cap, ~39x FY2027 consensus EPS of $15.57, and warrants for up to 320M shares (~19%) vest as deployments and price milestones are hit, so much of the good news is priced; consensus target is ~$617. My fair value ~$580 (P/E and EV/sales) is near spot. Scenarios 25/50/25 at $320/$610/$1000 give a mean ~$635 and a median near spot. I translate this into a lognormal with median ~$595 and sigma ~0.55 (below 72% realized, since realized vol is inflated by the rerating year, but still wide given binary AI-capex exposure), giving P(>=604) ~0.49. One-month: no AMD earnings in window; symmetric around spot.",
+  "lane": "industry",
+  "sources": [
+    {"title": "AMD Reports Second Quarter 2026 Financial Results", "url": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results", "date": "2026-08-04", "type": "company", "in_lane": false},
+    {"title": "AMD Advancing AI 2026 highlights: Helios launch, OpenAI deal and Meta/Anthropic", "url": "https://techwireasia.com/2026/07/amd-advancing-ai-2026-helios-openai-meta-anthropic/", "date": "2026-07", "type": "trade", "in_lane": true},
+    {"title": "My AMD Price Prediction Comes Down to One Crucial Growth Opportunity (consensus EPS, targets)", "url": "https://247wallst.com/investing/2026/09/21/my-amd-price-prediction-comes-down-to-one-crucial-growth-opportunity/", "date": "2026-09-21", "type": "press", "in_lane": false},
+    {"title": "AMD hits $1 trillion market cap for the first time", "url": "https://www.cnbc.com/2026/09/21/amd-stock-1-trillion-value.html", "date": "2026-09-21", "type": "press", "in_lane": false},
+    {"title": "NVIDIA Announces Financial Results for Second Quarter Fiscal 2027", "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/default.aspx", "date": "2026-08", "type": "filing", "in_lane": true},
+    {"title": "Earnings call transcript: TSMC lifts 2026 outlook as AI demand stays hot in Q2 2026", "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-tsmc-lifts-2026-outlook-as-ai-demand-stays-hot-in-q2-2026-93CH-4794777", "date": "2026-07", "type": "press", "in_lane": true},
+    {"title": "Amazon, Microsoft, Alphabet, Meta Plan $725B AI Capex in 2026 (2027 consensus)", "url": "https://aiweekly.co/alerts/amazon-microsoft-alphabet-meta-plan-725b-ai-capex-in-2026", "date": "2026-08", "type": "newsletter", "in_lane": true},
+    {"title": "AMD and OpenAI announce strategic partnership to deploy 6 gigawatts of AMD GPUs", "url": "https://openai.com/index/openai-amd-strategic-partnership/", "date": "2025-10-06", "type": "company", "in_lane": true},
+    {"title": "IDC - PC market enters volatile territory as memory shortage persists through 2027", "url": "https://www.idc.com/resource-center/blog/pc-market-enters-volatile-territory-as-memory-shortage-persists-through-2027/", "date": "2026", "type": "data", "in_lane": true},
+    {"title": "AMD grabs more CPU share while pricier PCs punish desktop demand (Mercury Research Q2 2026)", "url": "https://www.theregister.com/systems/2026/08/21/amd-grabs-more-cpu-share-while-pricier-pcs-punish-desktop-demand/5291053", "date": "2026-08-21", "type": "trade", "in_lane": true},
+    {"title": "OpenAI Can Buy 160 Million AMD Shares at 1 Cent Each (warrant terms)", "url": "https://vestedfinance.com/blog/us-stocks/openai-can-buy-160-million-shares-of-trillion-dollar-amd-at-just-1-cent-each-how/", "date": "2026", "type": "press", "in_lane": false},
+    {"title": "Memory Giants Split on HBM4 Strategy: Samsung HBM4 sales tops $1B, SK hynix slows ramp", "url": "https://www.trendforce.com/news/2026/06/23/news-memory-giants-split-on-hbm4-strategy-samsung-hbm4-sales-reportedly-tops-1b-sk-hynix-slows-ramp/", "date": "2026-06-23", "type": "trade", "in_lane": true},
+    {"title": "Intel Q2 FY2026: Hyperscaler server demand drives 59% DCAI growth", "url": "https://futurumgroup.com/insights/intel-q2-fy-2026-hyperscaler-server-demand-drives-59-dcai-growth/", "date": "2026-07", "type": "expert", "in_lane": true},
+    {"title": "Hyperscalers tap external financing as AI capex outruns cash flow", "url": "https://insight.factset.com/hyperscalers-tap-external-financing-as-ai-capex-outruns-cash-flow", "date": "2026", "type": "data", "in_lane": true},
+    {"title": "AMD Earnings Date (estimated Nov 3, 2026)", "url": "https://www.marketbeat.com/stocks/NASDAQ/AMD/earnings/", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

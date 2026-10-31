@@ -1,0 +1,99 @@
+{
+  "symbol": "SNOW", "agent_id": "agent_5", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 84, "p": 0.99}, {"K": 135, "p": 0.952}, {"K": 169, "p": 0.905}, {"K": 202, "p": 0.848},
+    {"K": 236, "p": 0.775}, {"K": 270, "p": 0.69}, {"K": 304, "p": 0.588}, {"K": 338, "p": 0.482},
+    {"K": 371, "p": 0.393}, {"K": 405, "p": 0.31}, {"K": 456, "p": 0.207}, {"K": 506, "p": 0.14},
+    {"K": 591, "p": 0.068}, {"K": 675, "p": 0.029}, {"K": 844, "p": 0.006}
+  ],
+  "ladder_1m": [
+    {"K": 270.00, "p": 0.918}, {"K": 286.88, "p": 0.845}, {"K": 303.75, "p": 0.745}, {"K": 313.88, "p": 0.675},
+    {"K": 324.00, "p": 0.601}, {"K": 337.50, "p": 0.50}, {"K": 351.00, "p": 0.403}, {"K": 361.12, "p": 0.336},
+    {"K": 371.25, "p": 0.276}, {"K": 388.12, "p": 0.191}, {"K": 405.00, "p": 0.127}
+  ],
+  "one_month_reasoning": "No Snowflake earnings in the window: Q3 FY27 is expected early December (Dec 2 is a data-vendor estimate, not a company announcement; Q3 FY26 was reported Dec 3, 2025). In-window items: (1) the $3.75B 0% convertible closes Oct 1; the pricing and convert-arb hedging hit the tape Sep 28-29 and are in the price; (2) the Oct 13 motion-to-dismiss filing in the newer class action (a filing, not a ruling) and a possible ruling on the older action's MTD, both small valuation items; (3) the Oct 28-29 FOMC. My round-1 1-month ladder leaned slightly down on 67-69% prediction-market hike odds, but those readings (Kalshi 69.5c / Polymarket 68.5c on Sep 29) pre-date the Sep 30 August PCE print (core 3.0% vs 3.3% expected, headline 3.4% vs 3.7%), after which traders cut October hike odds (swaps ~36% per the supervisor's Bloomberg cite) and pushed the next hike to December. With rate risk now two-sided, I remove the tilt: symmetric lognormal centred on spot $337.50 with ~16% monthly sigma (a bit under the 62%/3.5 = 17.7% rule because realized vol is inflated by the April 2026 crash and the Sep 3 +21% gap). Post-earnings drift (mildly up) and past-winner reversal / 5% short interest (chop) roughly cancel.",
+  "fair_value": {
+    "value": 313.0,
+    "method": "Blend of EV/NTM revenue (12.5x on ~$9.6B NTM revenue at Sep-2027 = $120B EV + ~$1.9B Sep-2027 net cash, / 388M diluted shares = $314) and forward P/E (FY29E non-GAAP EPS ~$4.15 x 75x = $311), weighted 60/40. Down from $320 in round 1 because net cash after the new $3.75B convert, capped calls and in-the-money 2027-note repurchase is ~$1B lower and share count ~3M higher.",
+    "methods": [
+      {"name": "EV/sales", "value": 314.0, "weight": 0.6,
+       "inputs": "NTM revenue at Sep-2027 ~$9.6B x 12.5x = $120B EV + ~$1.9B net cash = $121.9B / 388M diluted shares",
+       "inputs_detail": [
+         {"input": "FY2027 revenue (Jan-27)", "value": "~$6.35B total (product $6.07B guided)", "basis": "guidance", "source_ids": [1], "derivation": "Product revenue guide $6,070M; total revenue ~4.5% above product per Q2 mix ($1.55B total vs $1.49B product)."},
+         {"input": "FY2028 revenue consensus", "value": "$8.11B (+28%)", "basis": "consensus", "source_ids": [5]},
+         {"input": "NTM revenue as of 2027-09-30", "value": "~$9.6B", "basis": "estimate", "source_ids": [1, 5], "derivation": "Remaining ~4 months of FY28 at consensus run-rate plus 8 months of FY29 at ~24% growth off $8.11B (~$10.05B); time-weighted ~$9.6B. Supervisor's check agrees (~$9.5-9.8B)."},
+         {"input": "EV/NTM revenue multiple", "value": "12.5x", "basis": "judgment", "source_ids": [6, 7, 8, 9, 19], "derivation": "Today ~16x forward (TIKR, top of 3-yr range); LTM EV/rev compressed 32.9x (2024) -> 25x (2025) -> 20.3x LTM, a steady ~20%/yr de-rating; peer line (DDOG 10.6x at 20%, PLTR 44.9x at 63%) implies ~12-13x for mid-20s growth. I stay at 12.5x rather than the supervisor's 13x centre: the base rate of annual compression plus Databricks (company-reported >$7B run-rate, >80% y/y, now larger and growing >2x faster) argues against the upper half of the band."},
+         {"input": "Net cash at Sep-2027", "value": "~$1.9B", "basis": "estimate", "source_ids": [16, 17], "derivation": "Jul-31-2026 cash+ST+LT investments $4.33B + ~$3.71B net convert proceeds - $0.38B capped calls - $0.55B 2027-note repurchase = ~$7.1B, vs ~$5.8B face debt ($2.30B old notes less ~$0.26B face repurchased, since they convert at $157.50 and are ~2.1x in the money, plus $3.75B new) = ~$1.3B pro forma; plus ~$1.6B NTM adj. FCF less ~$0.65B RSU tax withholding and ~$0.35B buybacks = ~$1.9B."},
+         {"input": "Diluted shares", "value": "388M", "basis": "estimate", "source_ids": [1, 17], "derivation": "Q3 guide 382M non-GAAP diluted; ~5M net excess shares from the in-the-money 2024 notes after capped calls ($157.50-$225) that are not all in the guide; ~1% net SBC dilution partly offset by buybacks. New notes ($484/$500 conversion) are out of the money."}
+       ]},
+      {"name": "P/E", "value": 311.0, "weight": 0.4,
+       "inputs": "FY2029E non-GAAP EPS ~$4.15 x 75x",
+       "inputs_detail": [
+         {"input": "FY2028 EPS consensus", "value": "$3.02", "basis": "consensus", "source_ids": [5]},
+         {"input": "FY2029 EPS", "value": "~$4.15", "basis": "estimate", "source_ids": [1, 5, 17], "derivation": "Consensus $3.02 grown ~39% (~24% revenue growth plus ~2pt non-GAAP margin expansion per year; guide raised 13.5%->14.5%, Q3 15.5%) = $4.20, trimmed ~1% for the higher 388M share count; 0% coupons add no interest cost, but lower interest income on cash used for capped calls/repurchase."},
+         {"input": "Forward P/E", "value": "75x", "basis": "judgment", "source_ids": [6, 7], "derivation": "Stock trades ~132x NTM EPS today (TIKR); margins are still ramping so P/E compresses as EPS grows faster than price; 75x ~ 3x a ~25% growth rate, typical for top-decile growth software."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 185.0, "prob": 0.22, "story": "Growth decelerates back to ~20% as the AI consumption tailwind normalises, share loss to Databricks (>$7B run-rate, >80% growth) shows up in NRR, or AI-disintermediation fears return (as in the Apr-2026 56% drawdown); with a 10-year near 5% the multiple resets to ~8x NTM sales, near the early-2026 trough. SNOW has done this twice: -70% after the Nov-2021 peak and -56% into Apr-2026. (Round 1's 'Fed hikes in Oct/Dec' element dropped: October hike odds fell after the Sep 30 PCE print.)"},
+    "base": {"price": 325.0, "prob": 0.53, "story": "Product growth holds mid/high-30s near term, fading to mid-20s by FY29; revenue compounds ~28% but the multiple compresses from ~16x to ~12.5-13x, and net cash is only ~$2B after the new converts, so price is roughly flat to slightly down; fair value ~$313-330."},
+    "bull": {"price": 475.0, "prob": 0.25, "story": "Further acceleration, AI products (Cortex, agents) become a visible revenue line, FY28 guide at 30%+; multiple holds ~15-16x on ~$10B NTM revenue; the new convert cash funds buybacks/M&A; approaches the $484/$500 conversion prices and the upper half of analyst targets ($414 mean / $525 high)."}
+  },
+  "thesis_break_price": 210.0,
+  "thesis_break_reason": "Below ~$210 (about -38%, ~8.5x NTM sales, back under the pre-Q2-earnings breakout zone) the market would be saying the reacceleration was a one-off: product growth sliding back toward 20%, NRR falling from 126% toward 115-120%, or visible share loss to Databricks/AI agents. That is beyond ordinary 1-sigma volatility over a few months and should coincide with a guide-down at the Q3 (Dec) or Q4 (Feb/Mar) print. Caveat from the base rates: a macro software liquidation took the stock to $118 in April 2026 without a fundamental break, so confirm with the fundamentals. Lowered $5 from round 1 in line with the ~$7 lower fair value.",
+  "catalysts": [
+    {"date": "2026-10-01", "event": "Closing of $3.75B 0% convertible (2029 at $500.38, 2031 at $483.98); partial repurchase of 2027 notes", "direction": "?"},
+    {"date": "2026-10-13", "event": "Motion to dismiss due in newer consolidated securities class action; ruling on older action's MTD pending", "direction": "?"},
+    {"date": "2026-10-28", "event": "FOMC decision; hike odds fell after the cool Aug PCE print (swaps ~36%), December hike still favoured", "direction": "?"},
+    {"date": "2026-12 (early)", "event": "Q3 FY27 results (date not yet announced); guide $1,588-1,593M product revenue (+37-38%)", "direction": "?"},
+    {"date": "2026-12-09", "event": "FOMC; hike more likely than in October", "direction": "-"},
+    {"date": "2027-02/03", "event": "Q4 FY27 results and initial FY28 product revenue guide (key: >=28%?)", "direction": "?"},
+    {"date": "2027-05 (late)", "event": "Q1 FY28 results", "direction": "?"},
+    {"date": "2027-06", "event": "Snowflake Summit and Databricks Data+AI Summit: AI roadmap, competitive run-rate disclosures", "direction": "?"},
+    {"date": "2027-08/09", "event": "Q2 FY28 results just before horizon", "direction": "?"},
+    {"date": "2027 (Oct)", "event": "Remaining 0% 2027 convertible notes mature (conversion $157.50, deep in the money; settlement/dilution mechanics)", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Durability of the AI-driven consumption acceleration (three straight quarters of acceleration; base rates say consumption spurts mean-revert)",
+    "Competition: Databricks (>$7B run-rate, >80% y/y, company-reported) is now larger than Snowflake (~$6.2B annualized) and growing >2x faster",
+    "Rate path: October hike odds fell after the Sep 30 PCE print but December is still tilted to a hike; 10-year ~5% weighs on long-duration software multiples",
+    "Multiple compression pace: at ~16x forward sales SNOW is at the top of its 3-year range",
+    "Dilution and capital structure: GAAP SBC ~27% of revenue; net cash only ~$1.3B pro forma after the new converts; elevated short interest (~5% of float) amplifies moves"
+  ],
+  "reasoning": "Round 2. Anchor unchanged: SNOW's own history has extreme two-way base rates (-70% after the Nov-2021 peak, -56% into Apr-2026, then a round-trip to new highs with a +21% gap on Q2 FY27: product +37%, FY guide $6.07B/+36%, NRR 126%). Realized vol 62% is inflated by those shocks; I use ~40-50% effective forward vol via a three-component mixture. Valuation base rate: LTM EV/rev compressed every year (32.9x, 25x, ~20x; ~16x forward now), so ~28% revenue growth is mostly eaten by de-rating to ~12.5x. Supervisor corrections I accept after checking the pricing release: the $3.75B 0% convert (conversion $484/$500, $383.5M capped calls capped at $820, $548M to repurchase in-the-money 2027 notes) leaves pro forma net cash ~$1.3B, ~$1.9B by Sep-2027, not ~$3B; with ~388M shares that cuts fair value from $320 to $313. I keep 12.5x rather than the supervisor's 13x (base-rate compression plus Databricks' >80% growth at larger scale). The Oct FOMC hike odds I cited (Kalshi 69.5c/Polymarket 68.5c, Sep 29, via aggregator) were stale after the cooler Sep 30 PCE (core 3.0% vs 3.3% expected), so I removed the downward rate tilt from the 1-month ladder and the Fed-hike element from the bear story; the 12-month rate headwind is smaller but not gone (December hike still favoured). Scenario mix: bear $185 (22%), base $325 (53%), bull $475 (25%); mean ~$332, median ~$333, so P(>=338) slips to 0.48 from 0.495 and the ladder shifts down ~1-1.5 points through the middle. Research this round was 4 queries (convert pricing, prediction-market odds, PCE reaction); I could not reach a live Polymarket/Kalshi quote after the PCE print, so the post-PCE October odds rest on the supervisor's Bloomberg swaps figure plus CNBC's report that traders cut October hike odds.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Snowflake Q2 FY2027 earnings press release (8-K Ex.99)", "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm", "date": "2026-09-02", "type": "filing", "in_lane": false},
+    {"title": "What Did Snowflake Stock Investors Miss Before The Run? (Trefis)", "url": "https://www.trefis.com/stock/snow/articles/616926/what-did-snowflake-stock-investors-miss-before-the-run/2026-09-29", "date": "2026-09-29", "type": "press", "in_lane": false},
+    {"title": "Snowflake Is Up Nearly 50% in 2026 - What Are Short Sellers Betting Against", "url": "https://finance.yahoo.com/markets/stocks/articles/snowflake-nearly-50-2026-short-134000649.html", "date": "2026-08-30", "type": "press", "in_lane": true},
+    {"title": "Snowflake 6-year stock price history (Macrotrends)", "url": "https://www.macrotrends.net/stocks/charts/SNOW/snowflake/stock-price-history", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Snowflake consensus price target $414.24; FY2028 estimates (MarketBeat / StockAnalysis)", "url": "https://www.marketbeat.com/instant-alerts/consensus-snowflake-inc-nyse-snow-stock-has-average-price-target-of-41424-according-to-analysts-2026-09-26/", "date": "2026-09-26", "type": "data", "in_lane": false},
+    {"title": "Snowflake Broke Out / Snowflake Stock Erased a 56% Drawdown (TIKR) - 132x NTM P/E, 16x fwd EV/rev, top of 3-yr range", "url": "https://www.tikr.com/blog/snowflake-stock-erased-a-56-drawdown-a-coding-agent-could-be-why", "date": "2026-07-21", "type": "newsletter", "in_lane": true},
+    {"title": "Snowflake valuation multiples history (Multiples.vc): 32.9x 2024, 25.0x 2025, 20.3x LTM", "url": "https://multiples.vc/public-comps/snowflake-valuation-multiples", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Snowflake EV-to-Revenue historical range, median 20.9x (GuruFocus)", "url": "https://www.gurufocus.com/term/ev2rev/SNOW/EV-to-Revenue/SNOW", "date": "2026-08", "type": "data", "in_lane": true},
+    {"title": "Public Software Valuation Multiples - September 2026 and peer EV/NTM (PLTR 44.9x, DDOG 10.6x, MDB 6.2x)", "url": "https://multiples.vc/insights/software-saas-valuation-multiples", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Polymarket Puts an October Fed Hike at 67% as Cut Odds Fade (FinanceFeeds) - pre-PCE reading", "url": "https://financefeeds.com/polymarket-puts-an-october-fed-hike-at-67-and-a-2026-rate-cut-at-3/", "date": "2026-09-26", "type": "prediction-market", "in_lane": true},
+    {"title": "Fed Rate Odds for October 2026: Kalshi 69.5c, Polymarket 68.5c as of Sep 29 - pre-PCE reading", "url": "https://predictionmarketspicks.com/articles/fed-rate-october-2026-odds-warsh-kalshi-polymarket-futures", "date": "2026-09-29", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi / Polymarket 2026 US recession odds (Seeking Alpha summary; Kalshi page blocked 429)", "url": "https://seekingalpha.com/news/4575878-prediction-markets-slash-2026-us-recession-odds-to-28", "date": "2026", "type": "prediction-market", "in_lane": true},
+    {"title": "Mind the Gap: The Non-Fundamental Role of Earnings Days (Ben-Rephael et al.)", "url": "https://haslam.utk.edu/wp-content/uploads/2024/11/Ben-Rephael-Paper.pdf", "date": "2024-11", "type": "expert", "in_lane": true},
+    {"title": "Limited Attention and the Earnings Announcement Returns of Past Stock Market Winners (UCLA)", "url": "https://www.anderson.ucla.edu/documents/areas/fac/accounting/earnings_paper08.pdf", "date": "2008", "type": "expert", "in_lane": true},
+    {"title": "Snowflake Q3 FY27 earnings date estimate Dec 2, 2026 (MarketBeat calendar; vendor estimate, not company-confirmed)", "url": "https://www.marketbeat.com/stocks/NYSE/SNOW/earnings/", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Snowflake Prices Upsized Private Placement of $3.75 Billion of 0.00% Convertible Senior Notes (company release)", "url": "https://www.snowflake.com/en/news/press-releases/snowflake-prices-upsized-private-placement-3-75-billion-convertible-senior-notes/", "date": "2026-09-28", "type": "company", "in_lane": false},
+    {"title": "Snowflake Form 10-Q for the quarter ended July 31, 2026 (balance sheet, Note 10 convertible notes and capped calls, Note 12 SBC)", "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000037/snow-20260731.htm", "date": "2026-09-04", "type": "filing", "in_lane": false},
+    {"title": "Fed's preferred gauge showed core inflation at 3.0% in August, much lighter than expected (CNBC)", "url": "https://www.cnbc.com/2026/09/30/feds-preferred-gauge-showed-core-inflation-at-3point0percent-in-august-much-lighter-than-expected.html", "date": "2026-09-30", "type": "press", "in_lane": true},
+    {"title": "Databricks Grows >80% YoY, Surpasses $7B Revenue Run-Rate (company release)", "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-80-yoy-surpasses-7b-revenue-run-rate-scales", "date": "2026-08", "type": "company", "in_lane": false},
+    {"title": "Fed October Rate Odds Swing as Traders Bet Warsh Holds (Polymarket ~52% hold, CME ~50.9% hike, Sep 17)", "url": "https://tech-insider.org/fed-october-2026-rate-hold-odds-polymarket-swing/", "date": "2026-09-17", "type": "prediction-market", "in_lane": true}
+  ],
+  "revisions": [
+    {"item": "fair value", "from": "320", "to": "313", "why": "Supervisor net-cash finding (verified against the Sep 28 pricing release): after the $3.75B convert, $383.5M capped calls and $548M repurchase of in-the-money 2027 notes, pro forma net cash ~$1.3B, ~$1.9B by Sep-2027 (not ~$3B); shares 388M not 385M."},
+    {"item": "a method", "from": "EV/sales $322 (12.5x, $3.0B net cash, 385M shares)", "to": "EV/sales $314 (12.5x, $1.9B net cash, 388M shares)", "why": "Same net cash and share-count correction; I keep 12.5x rather than the supervisor's 13x because of the multiple-compression base rate and Databricks' >80% growth at >$7B run-rate."},
+    {"item": "a method", "from": "P/E $315 (FY29 EPS $4.20 x 75x)", "to": "P/E $311 (FY29 EPS $4.15 x 75x)", "why": "Higher diluted share count (~5M excess shares from in-the-money 2024 notes after capped calls) and lost interest income on cash used for capped calls/repurchase."},
+    {"item": "a scenario", "from": "bear $190 / base $335 / bull $480", "to": "bear $185 / base $325 / bull $475", "why": "Lower net cash (~-$3/share) and Databricks' confirmed scale/growth added to the bear story; 'Fed hikes Oct/Dec' removed from the bear story after the Sep 30 PCE print cut October hike odds."},
+    {"item": "P(close >= K)", "from": "P(>=338) 0.495, P(>=405) 0.32, P(>=270) 0.70", "to": "P(>=338) 0.482, P(>=405) 0.31, P(>=270) 0.69", "why": "Median moves ~$4 lower with the ~$7 lower fair value; tails essentially unchanged."},
+    {"item": "P(close >= K)", "from": "1-month ladder centred ~$336 with a slight rate-driven down tilt (P(>=337.5) 0.49)", "to": "symmetric lognormal centred on $337.50, 16% sigma (P(>=337.5) 0.50)", "why": "Supervisor finding that my 67-69% October hike odds were pre-PCE and stale; the cooler Aug PCE (core 3.0% vs 3.3% expected, CNBC Sep 30) cut October hike odds (~36% in swaps per Bloomberg), so rate risk in the window is two-sided."},
+    {"item": "thesis break", "from": "215", "to": "210", "why": "Moved in line with the lower fair value; still ~8.5x NTM sales, beyond ordinary volatility."},
+    {"item": "a fact", "from": "Q3 FY27 report scheduled Dec 2", "to": "early December, date not yet announced (Dec 2 is a vendor estimate)", "why": "Supervisor: no date 8-K on EDGAR; Q3 FY26 was Dec 3, 2025."},
+    {"item": "a fact", "from": "new convertible not mentioned", "to": "$3.75B 0% notes ($2.0B 2029 at $500.38, $1.75B 2031 at $483.98), capped calls to $820.30, closing Oct 1", "why": "Supervisor disagreement resolution, verified against the company pricing release."}
+  ]
+}

@@ -1,0 +1,451 @@
+{
+ "symbol": "ALAB",
+ "as_of": "2026-09-29",
+ "horizon": "2027-09-29",
+ "round": 2,
+ "disagreements": [
+  {
+   "topic": "Did the revisions take up the round-1 findings (and is the convergence real)?",
+   "positions": "All four revised toward round-1 findings. Fair values went from $324-370 to $338-356, thesis breaks from $200-215 to $205-212, and P(>=358) from 0.49-0.52 to 0.495-0.502. The round-2 mean ladder is within 0.5 pt of the round-1 supervisor ladder at every strike.",
+   "resolution": "Each agent took up every feedback item (see revision_check). But the narrowing is mostly the agents adopting the same supervisor inputs. Mean source Jaccard doubled from 0.064 to 0.141, and CNBC Fed, Yahoo OpenAI, the Amazon 8-K and the Q2 8-K are now cited by 3+ agents. So the tighter spread is not new independent confirmation and should not be read as more certainty.",
+   "evidence": "source_overlap.json (round1 vs final); agents' revisions lists."
+  },
+  {
+   "topic": "Residual fair-value spread ($338 agent_2 vs $356 agent_4)",
+   "positions": "agent_2 uses 40x on CY28 EPS $8.63 with a residual competition haircut. Agents 1, 4 and 5 use 44-45x on NTM EPS $8.0-8.5. Net cash is now $2.0-2.1B in all four.",
+   "resolution": "Not settleable by search: it is a multiple judgment (about 4 turns = about $35/share on the P/E leg). The factual inputs (Q3 guide, cash, warrant terms, the Trainium4 timeline) now agree across agents. I keep fair value at the forecaster mean, about $349, just under spot.",
+   "evidence": "Q2 2026 8-K Ex. 99.1 and 10-Q; agents' method inputs."
+  },
+  {
+   "topic": "Left tail (skeptic lane still missing)",
+   "positions": "P(>=89) ranges 0.96 (agent_5) to 0.975 (agents 2, 4); P(>=143) ranges 0.895 to 0.925. agent_4's bear is $170 but its far tail is the thinnest.",
+   "resolution": "I lean to agent_5, the base-rate lane. ALAB fell 68% in Jan-Apr 2025 and about 40% in Jun-Jul 2026, and Credo fell 52% in 2026. A one-year close below $143 (-60%) at about 3% (agents 2, 4) is light for a 99%-vol, 56x-P/E name with 69% top-3 concentration. Recent bear commentary is valuation-only: a Seeking Alpha 'I'd short it but there's no catalyst' piece, and short interest of about 5.8% of float at Aug 31. There is no new fundamental negative, and the Sep 28 -4.3% move was sector-wide. So I fatten only the far tail, not the median.",
+   "evidence": "agent_5 base-rate sources; Seeking Alpha 4913220; MarketBeat short interest; QuiverQuant Sep 28 move note."
+  },
+  {
+   "topic": "1-month window events",
+   "positions": "All four now put the Q3 print (unannounced) after Oct 29, the Oct 28 FOMC (~70% hike odds) inside the window, late-October hyperscaler capex prints and the OpenAI pause. Medians are $354-356.",
+   "resolution": "Confirmed. No Q3 2026 conference-call announcement had appeared as of Sep 30 (the Q2 call was announced about 2 weeks ahead of Aug 4), so the print most likely falls Nov 3-5, outside the window. The ladders agree within about 1.5 pt, and I keep the mean.",
+   "evidence": "ALAB IR news releases page; Q2 call announcement."
+  }
+ ],
+ "revision_check": {
+  "agent_1": "Took up all three items: Oct 28 FOMC and OpenAI pause added to the 1-month view, net cash cut $2.5B->$2.1B (re-verified in the 10-Q: AR +$109M, inventory +$53M), P>=626 trimmed 0.22->0.20. Fair value $360->$352. Stayed in the primary lane.",
+  "agent_2": "Took up all three: Trainium4 haircut removed (2028 growth 30%->35%), $6.5B re-described as a warrant ceiling, net cash $1.5B->$2.0B. Fair value $324->$338; kept a 40x multiple (its own judgment, reasoned). Kept the Broadcom/Marvell competition read as its lane contribution.",
+  "agent_4": "Took up all three: stale Polymarket lean dropped, FOMC added, Substack/TIKR target leg removed from fair value. Fair value $370->$356. Still some newsletter/TIKR material inside the 2027 revenue derivation (AWS $2-3B content) - colour only.",
+  "agent_5": "Took up all three: net cash $2.5B->$2.0B, AWS warrant used in bear/bull and the multiple, Polymarket 'AI bubble' demoted to colour. It checked its 5th percentile against the drawdown base rates and fattened it (P>=89 0.965->0.96)."
+ },
+ "round1_to_round2": [
+  {
+   "agent": "agent_1",
+   "fair_value": {
+    "from": 360.0,
+    "to": 352.0
+   },
+   "thesis_break": {
+    "from": 215.0,
+    "to": 210.0
+   },
+   "p_358": {
+    "from": 0.52,
+    "to": 0.502
+   },
+   "p_626": {
+    "from": 0.22,
+    "to": 0.2
+   },
+   "p_1m_357.84": {
+    "from": 0.505,
+    "to": 0.483
+   }
+  },
+  {
+   "agent": "agent_2",
+   "fair_value": {
+    "from": 324.0,
+    "to": 338.0
+   },
+   "thesis_break": {
+    "from": 200.0,
+    "to": 205.0
+   },
+   "p_358": {
+    "from": 0.49,
+    "to": 0.5
+   },
+   "p_626": {
+    "from": 0.19,
+    "to": 0.2
+   },
+   "p_1m_357.84": {
+    "from": 0.495,
+    "to": 0.49
+   }
+  },
+  {
+   "agent": "agent_4",
+   "fair_value": {
+    "from": 370.0,
+    "to": 356.0
+   },
+   "thesis_break": {
+    "from": 200.0,
+    "to": 205.0
+   },
+   "p_358": {
+    "from": 0.51,
+    "to": 0.495
+   },
+   "p_626": {
+    "from": 0.19,
+    "to": 0.185
+   },
+   "p_1m_357.84": {
+    "from": 0.495,
+    "to": 0.485
+   }
+  },
+  {
+   "agent": "agent_5",
+   "fair_value": {
+    "from": 352,
+    "to": 349
+   },
+   "thesis_break": {
+    "from": 215,
+    "to": 212
+   },
+   "p_358": {
+    "from": 0.51,
+    "to": 0.5
+   },
+   "p_626": {
+    "from": 0.215,
+    "to": 0.205
+   },
+   "p_1m_357.84": {
+    "from": 0.505,
+    "to": 0.495
+   }
+  }
+ ],
+ "ladder": [
+  {
+   "K": 89,
+   "p": 0.965
+  },
+  {
+   "K": 143,
+   "p": 0.905
+  },
+  {
+   "K": 179,
+   "p": 0.843
+  },
+  {
+   "K": 215,
+   "p": 0.7755
+  },
+  {
+   "K": 250,
+   "p": 0.7037
+  },
+  {
+   "K": 286,
+   "p": 0.6307
+  },
+  {
+   "K": 322,
+   "p": 0.5637
+  },
+  {
+   "K": 358,
+   "p": 0.4992
+  },
+  {
+   "K": 394,
+   "p": 0.4425
+  },
+  {
+   "K": 429,
+   "p": 0.3928
+  },
+  {
+   "K": 483,
+   "p": 0.3263
+  },
+  {
+   "K": 537,
+   "p": 0.2698
+  },
+  {
+   "K": 626,
+   "p": 0.1975
+  },
+  {
+   "K": 716,
+   "p": 0.1432
+  },
+  {
+   "K": 895,
+   "p": 0.079
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 286.27,
+   "p": 0.8038
+  },
+  {
+   "K": 304.16,
+   "p": 0.7308
+  },
+  {
+   "K": 322.06,
+   "p": 0.6518
+  },
+  {
+   "K": 332.79,
+   "p": 0.6015
+  },
+  {
+   "K": 343.53,
+   "p": 0.551
+  },
+  {
+   "K": 357.84,
+   "p": 0.4882
+  },
+  {
+   "K": 372.15,
+   "p": 0.427
+  },
+  {
+   "K": 382.89,
+   "p": 0.384
+  },
+  {
+   "K": 393.62,
+   "p": 0.3417
+  },
+  {
+   "K": 411.52,
+   "p": 0.281
+  },
+  {
+   "K": 429.41,
+   "p": 0.2272
+  }
+ ],
+ "one_month_reasoning": "No ALAB print before Oct 29 (Q3 call not yet announced; likely Nov 3-5). The window holds the Oct 28 FOMC (~70% hike priced), late-October hyperscaler capex prints and the OpenAI pause overhang, so I keep the four agents' converged mean: median about $355, monthly sigma about 25%.",
+ "confidence": "low",
+ "confidence_reason": "Round 2 settled no new disagreement that matters. The revisions converged on the round-1 findings, and the remaining spread is a multiple judgment that search cannot resolve. My only change is a 0.5-0.6 pt fattening of the far-left tail for the missing skeptic lane, so the mean stays the anchor.",
+ "thesis_break_price": 208.0,
+ "thesis_break_reason": "The four agents give $205-212, all at about 32-33x 2027 consensus EPS of $6.39. Below about $208 the market would be pricing the loss of the ~$3B 2027 revenue path: a lost or double-sourced AWS scale-up socket, a Q4 guide at or below the ~$550M Q3 level, or real hyperscaler capex cuts rather than Fed or AI-sentiment swings.",
+ "key_drivers": [
+  "Q3 2026 guide $540-560M (+40% q/q) and EPS $1.16-1.21; the Q3 print and Q4 guide (~Nov 3-5, Q4 consensus about $655M) are the first hard test of the Scorpio X ramp.",
+  "Valuation: about 56x 2027 consensus EPS $6.39. The one-year outcome hinges on whether the multiple compresses to about 40x (agent_2) or 44-45x (others) as growth slows toward 30%.",
+  "Concentration: top-3 customers are 69% of Q2 revenue. AWS ties are formalised by a warrant vesting on up to $6.5B of cumulative purchases through 2033, which is a ceiling, not a backlog.",
+  "Scale-up fabric competition: UALink (native Trainium4 racks, an ALAB opportunity) versus NVLink Fusion hybrid racks and Broadcom scale-up Ethernet.",
+  "Macro and sentiment: a Fed hike about 70% priced for Oct 28 and OpenAI's widened training pause, against no hyperscaler capex cuts so far."
+ ],
+ "fair_value": {
+  "value": 349.0,
+  "reason": "All agents now use net cash of $2.0-2.1B and the corrected Trainium4 and warrant facts, so no factual correction remains. Revised fair values are $338 / $352 / $356 / $349 and differ only on the multiple (40-45x NTM EPS of $8.0-8.6). I keep their mean, about $349, about 2% below spot."
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "Nothing material. Your ~$2.1B cash is a reasonable, documented departure from ~$2.0B."
+   ],
+   "revisit": "None needed; no third round."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "Your 40x multiple is the main reason your fair value sits $11-18 below the others. It is a judgment, not an error, but you do not show a peer-multiple base rate for 30%-growth semis to justify it."
+   ],
+   "revisit": "No third round; noted for future runs."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "Your far-left tail (P>=89 0.975, P>=143 0.925) is the thinnest in the set despite a $170 bear case and the -68% 2025 drawdown you cite. Your 2027 revenue derivation still leans on a TIKR blog's '$2-3B AWS content' figure."
+   ],
+   "revisit": "No third round; keep tails consistent with your own bear scenario."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "Nothing material. Your base-rate tail check was the most useful round-2 change, and I adopted its direction."
+   ],
+   "revisit": "None needed."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 14,
+  "repeated_claims": [
+   {
+    "claim": "Q2 2026 revenue $392.4M, Q3 guide $540-560M, $1.25B cash, H1 OCF $162.3M",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "ALAB 8-K Ex. 99.1 / 10-Q, Aug 2026"
+   },
+   {
+    "claim": "~70% odds of a 25bp Fed hike on Oct 28",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "CNBC 2026-09-23 (introduced by round-1 supervisor); Kalshi"
+   },
+   {
+    "claim": "OpenAI second training pause widened, no restart date",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Yahoo Finance 2026-09-28 (introduced by round-1 supervisor) - one source"
+   },
+   {
+    "claim": "Amazon warrant 3.26M shares vesting on up to $6.5B purchases through 2033",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "ALAB 8-K Feb 2026"
+   },
+   {
+    "claim": "2027 consensus EPS $6.39 / revenue $2.97B",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_5"
+    ],
+    "original_source": "Sell-side consensus via aggregators - one source"
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary documents; re-verified the cash finding in the 10-Q rather than just accepting it."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Corrected its Trainium4 error against The Register and Jefferies; industry peer chain intact."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Dropped the discounted Substack/Polymarket inputs. The alt-data remains colour, and the forecast now rests mostly on the same 8-K as the others."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Base rates (ALAB -68%, Credo -52%, SOX -29%) plus verified Kalshi odds; demoted a loosely defined Polymarket contract."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "Round-2 convergence as extra confirmation",
+    "why": "Agents adopted the same supervisor-supplied sources (overlap doubled); agreement is not independent"
+   },
+   {
+    "claim": "AWS $2-3B content potential (TIKR blog via agent_4)",
+    "why": "Unattributed analyst claim in a blog; colour only"
+   },
+   {
+    "claim": "$352.50 price / 'fair value estimate $500' from Simply Wall St snippet",
+    "why": "Aggregator figures, unclear date; not used"
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "P(close >= K) for K = 89-179",
+   "from": [
+    0.97,
+    0.9113,
+    0.8482
+   ],
+   "to": [
+    0.965,
+    0.905,
+    0.843
+   ],
+   "why": "The skeptic lane is still missing and agents 2/4 put only ~3% on a -60% year, which is light against ALAB's own -68% (2025) and -40% (2026) drawdowns and Credo's -52%; I lean to the base-rate lane (agent_5)."
+  }
+ ],
+ "summary": "The four revised forecasts took up every round-1 finding and converged: fair values $338-356 (mean ~$349, just under the $357.84 spot), thesis breaks $205-212, and a median at about spot. That convergence largely reflects shared supervisor inputs rather than new independent evidence. The remaining gap is a 40x-vs-45x multiple judgment that search cannot settle. I keep the mean ladder except for a slightly fatter far-left tail to cover the missing skeptic lane; confidence is low. The next real information is the Q3 print and Q4 guide around Nov 3-5, just after the one-month window.",
+ "sizing": {
+  "max_weight_pct": 5.0,
+  "conviction": "low",
+  "entry": "2 tranches: half now, half after the Q3 2026 report (~Nov 3-5) if the Q4 guide confirms the Scorpio X ramp",
+  "overlap": "None; the portfolio is all cash. This would be the first AI-infrastructure/semis position, so any later NVDA/AVGO/MRVL/CRDO-type buys would share its drivers.",
+  "reason": "Fair value is about spot, so there is no margin of safety. On top of that: ~99% realized vol, 56x forward EPS, 69% top-3 concentration, and a Fed decision, hyperscaler capex prints and ALAB's own earnings within about five weeks; a 40-60% drawdown is a base-rate event. Liquidity is ample and the listing (Mar 2024) is past lock-ups, but a single name like this should not exceed 5% of a $10k portfolio."
+ },
+ "sources": [
+  {
+   "title": "Astera Labs Q2 2026 results, 8-K Exhibit 99.1",
+   "url": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000033/q226exhibit991.htm",
+   "date": "2026-08-04"
+  },
+  {
+   "title": "Astera Labs 10-Q for quarter ended June 30, 2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001736297/000173629726000035/alab-20260630.htm",
+   "date": "2026-08"
+  },
+  {
+   "title": "Astera Labs 8-K: Amazon Transaction and Warrant Agreement",
+   "url": "https://www.sec.gov/Archives/edgar/data/1736297/000110465926012606/tm265461d1_8k.htm",
+   "date": "2026-02"
+  },
+  {
+   "title": "Astera Labs IR news releases (no Q3 2026 call announcement as of Sep 30)",
+   "url": "https://ir.asteralabs.com/news-events/news-releases",
+   "date": "2026-09-30"
+  },
+  {
+   "title": "Astera Labs: I'd Short It, But There's No Catalyst (Seeking Alpha)",
+   "url": "https://seekingalpha.com/article/4913220-astera-labs-id-short-it-but-theres-no-catalyst-longs-beware",
+   "date": "2026"
+  },
+  {
+   "title": "ALAB short interest (MarketBeat)",
+   "url": "https://www.marketbeat.com/stocks/NASDAQ/ALAB/short-interest/",
+   "date": "2026-08-31"
+  },
+  {
+   "title": "Why Astera Labs (ALAB) Stock Is Down Today (QuiverQuant)",
+   "url": "https://www.quiverquant.com/news/Why+Astera+Labs+(ALAB)+Stock+Is+Down+Today",
+   "date": "2026-09-28"
+  },
+  {
+   "title": "Market sees next Fed hike in October (CNBC)",
+   "url": "https://www.cnbc.com/2026/09/23/market-sees-next-fed-hike-in-october-following-barr-comments-hot-inflation.html",
+   "date": "2026-09-23"
+  },
+  {
+   "title": "OpenAI paused training again, and Washington's in the middle of it",
+   "url": "https://finance.yahoo.com/technology/ai/articles/openai-paused-training-again-washington-161700276.html",
+   "date": "2026-09-28"
+  }
+ ]
+}

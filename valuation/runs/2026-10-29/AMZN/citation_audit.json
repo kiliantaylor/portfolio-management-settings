@@ -1,0 +1,391 @@
+{
+ "date": "2026-10-29",
+ "symbol": "AMZN",
+ "clean": true,
+ "checked": 41,
+ "ok": 34,
+ "fixed": 7,
+ "pass": "10-Q pass (update round), citation gate fix 2026-10-30",
+ "failures": [
+  {
+   "item": "driver:aws_ppe Q3 AWS net additions / 9M ratio",
+   "value": "Q3 net additions 58.49 (= 313.01 - 263.75 + 9.23); 9M ratio 0.846",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "result": "wrong",
+   "fix": "Q3 AWS net additions = 10-Q segment note $57,116M (9M $147,236M = H1 90,120 + 57,116); ratio 147,236 / 175,670 = 0.8381; YE2026 = 313.01 + 44.33 x 0.8381 - 10.13 = 340.03, Q4 average 326.52; quarterly 2027-28 roll YE 508.10 / 669.14 (re-checked: 10-Q figures and roll reproduce)."
+  },
+  {
+   "item": "driver:aws_ppe years (and key_drivers[0] prose)",
+   "value": "271.46 / 441.38 / 603.83",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "aws_ppe years = mean of the re-rolled quarters 266.21 / 425.90 / 590.38 (merged.json's 266.26 / 426.23 / 590.66 were on the interim quarters); key_drivers[0] '146.8 -> 266.2/425.9/590.4' (re-checked)."
+  },
+  {
+   "item": "driver:aws_ppe / aws_turn / aws_ebitda_m labels (derivation, quarter_sources)",
+   "value": "Q3 source = 'Q3 FY2026 release, 8-K Ex.99.1 ...; release; re-check at 10-Q'",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "quarter_sources and derivations of aws_ppe / aws_turn / aws_ebitda_m now cite the Q3 10-Q accn 0001018724-26-000040 (release text marked superseded); quarter_derivation carries the 10-Q values (AWS PP&E 313,009 at 9/30, AWS depreciation 9,230, OI 17,773, sales 45,984: all on the 10-Q)."
+  },
+  {
+   "item": "driver:aws_turn years (and key_drivers[1] prose)",
+   "value": "0.6464 / 0.5486 / 0.5021",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "aws_turn years = AWS revenue 175.47 / 242.14 / 303.16 over mean PP&E 266.21 / 425.90 / 590.38 = 0.6591 / 0.5685 / 0.5135; key_drivers[1] updated (re-checked)."
+  },
+  {
+   "item": "driver:aws_ebitda_m years (and key_drivers[2] prose)",
+   "value": "0.5779 / 0.585 / 0.60",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "aws_ebitda_m FY2026 = 0.5830 (Q3 (17,773 + 9,230) / 45,984 = 0.5872 from the 10-Q; revenue-weighted with Q1 0.5704, Q2 0.5848, Q4 0.5872); FY2027-28 0.585 / 0.600; key_drivers[2] updated (re-checked)."
+  },
+  {
+   "item": "horizon_multiples P/E eps_interest_adj: 6/30 face debt and rate",
+   "value": "6/30 face 150,250 (= 180,887 - 25,000 - 5,637); rate 4.09%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+   "result": "wrong",
+   "fix": "6/30 face debt = $132,995M (Q2 10-Q Debt note); 9/30 $180,887M incl. the $17.5B 2026 Term Loan drawn in September (Q3 10-Q); rate = 1,691 x 4 / 156,941 = 4.31%; cut = 76,570 x 4.31% x 0.79 / 11,035 = $0.2363 a share, in driver_build.set as '- 0.2363'. Gate fix 2026-10-30: the derivation text still said '- 0.2239'; corrected to '- 0.2363' (label only)."
+  },
+  {
+   "item": "horizon_multiples[metric=P/E].eps stored value",
+   "value": "12.5275",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "eps = 11.4054, the driver_build.set formula on the stored driver years (engine resolves the same value). merged.json's ~12.47-12.49 divided the P/E leg ($285.46) by 22.88, but the leg adds equity adjustments / horizon shares, so that ratio is not EPS; 11.4054 kept. fair_value refreshed $269.44 -> $269.55 to match model_engine check (P/E $285.46, SOTP $253.64, P10 $177.50, P90 $332.74)."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "capex FY2025: first guide (2025-02-06) / reported actual",
+   "value": "105200.0-105200.0 / 131819.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q4 FY2026 guide as of 2026-10-29",
+   "value": "240000.0-247000.0",
+   "basis": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000038/amzn-20260930xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q4 FY2026 guide as of 2026-10-29",
+   "value": "28500.0-33500.0",
+   "basis": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000038/amzn-20260930xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex FY2026 guide as of 2026-10-29",
+   "value": "220000.0-220000.0",
+   "basis": "cash capital expenditures, approximate ($M; purchases of property and equipment)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000038/amzn-20260930xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q3 FY2024: first guide (2024-08-01) / reported actual",
+   "value": "154000.0-158500.0 / 158900.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000128/amzn-20240630xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q3 FY2024: first guide (2024-08-01) / reported actual",
+   "value": "11500.0-15000.0 / 17400.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000128/amzn-20240630xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "181500.0-188500.0 / 187800.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000158/amzn-20240930xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "16000.0-20000.0 / 21200.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000158/amzn-20240930xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q1 FY2025: first guide (2025-02-06) / reported actual",
+   "value": "151000.0-155500.0 / 155700.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000002/amzn-20241231xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q1 FY2025: first guide (2025-02-06) / reported actual",
+   "value": "14000.0-18000.0 / 18400.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000002/amzn-20241231xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q2 FY2025: first guide (2025-05-01) / reported actual",
+   "value": "159000.0-164000.0 / 167700.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000034/amzn-20250331xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q2 FY2025: first guide (2025-05-01) / reported actual",
+   "value": "13000.0-17500.0 / 19200.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000034/amzn-20250331xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q3 FY2025: first guide (2025-07-31) / reported actual",
+   "value": "174000.0-179500.0 / 180200.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000084/amzn-20250630xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q3 FY2025: first guide (2025-07-31) / reported actual",
+   "value": "15500.0-20500.0 / 17400.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000084/amzn-20250630xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q4 FY2025: first guide (2025-10-30) / reported actual",
+   "value": "206000.0-213000.0 / 213400.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q4 FY2025: first guide (2025-10-30) / reported actual",
+   "value": "21000.0-26000.0 / 25000.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q1 FY2026: first guide (2026-02-05) / reported actual",
+   "value": "173500.0-178500.0 / 181500.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20251231xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q1 FY2026: first guide (2026-02-05) / reported actual",
+   "value": "16500.0-21500.0 / 23900.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20251231xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q2 FY2026: first guide (2026-04-29) / reported actual",
+   "value": "194000.0-199000.0 / 200600.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000012/amzn-20260331xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q2 FY2026: first guide (2026-04-29) / reported actual",
+   "value": "20000.0-24000.0 / 27500.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000012/amzn-20260331xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q3 FY2026: first guide (2026-07-30) / reported actual",
+   "value": "197000.0-202000.0 / 201944.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q3 FY2026: first guide (2026-07-30) / reported actual",
+   "value": "22500.0-26500.0 / 28076.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "net sales Q4 FY2026 consensus as of 2026-10-29",
+   "value": 244500.0,
+   "basis": "consensus",
+   "source_url": "https://finance.yahoo.com/markets/stocks/live/amazon-earnings-live-q3-earnings-miss-sends-stock-lower-203345870.html",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "operating income Q4 FY2026 consensus as of 2026-10-29",
+   "value": 32990.0,
+   "basis": "consensus",
+   "source_url": "https://finance.yahoo.com/markets/stocks/live/amazon-earnings-live-q3-earnings-miss-sends-stock-lower-203345870.html",
+   "checked": "2026-10-30",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "driver:aws_ppe Q3 FY2026 AWS net PP&E 9/30",
+   "value": "313.01 ($B)",
+   "basis": "10-Q fact",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:aws_ppe Q3 FY2026 quarter average",
+   "value": "288.38 = (263.75 + 313.01) / 2",
+   "basis": "estimate (derivation)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:aws_ppe Q4 FY2026 and FY2027-28 quarterly roll",
+   "value": "YE2026 340.38, avg 326.69; YE2027 508.40, YE2028 669.40; quarters 362.50 ... 650.32",
+   "basis": "estimate (derivation)",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:aws_turn Q3 / Q4 FY2026",
+   "value": "Q3 0.6378 = 4 x 45.984 / 288.38; Q4 0.6081 = 4 x 49.663 / 326.69",
+   "basis": "estimate (derivation)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:aws_ebitda_m Q3 FY2026",
+   "value": "58.72% = (17,773 + 9,230) / 45,984",
+   "basis": "estimate (derivation from 10-Q facts)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver_build.quarters.constants.aws_dep Q3 / Q4 FY2026",
+   "value": "0.032006 = 9.230 / 288.38; 0.031008 = 10.13 / 326.69",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples P/E eps_interest_adj: Q3 interest expense",
+   "value": "$1,691M",
+   "basis": "10-Q fact",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples P/E eps_interest_adj: cut arithmetic",
+   "value": "($98,870M - $22,300M) x 4.085% x 0.79 / 11,035M = 0.2239",
+   "basis": "estimate (derivation)",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "quarters.note",
+   "value": "Q3 rows re-checked vs the 10-Q; ads, stores revenue, stores margin matched; accn 0001018724-26-000040",
+   "basis": "10-Q",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "gap_note 10-Q pass entries (a) and (b)",
+   "value": "(a) interest cut -$0.224 a share; (b) Q3 AWS PP&E and D&A from the 10-Q",
+   "basis": "label",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:aws_ppe Q3 9/30 AWS net PP&E / Q3 net additions / 9M ratio",
+   "value": "313,009 / 57,116 (9M 147,236) / 0.8381",
+   "basis": "reported (ratio estimate)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value, scenarios"
+  },
+  {
+   "item": "driver:aws_ppe years",
+   "value": "266.21 / 425.90 / 590.38",
+   "basis": "estimate (mean of quarters; confidence in derivation)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value, scenarios"
+  },
+  {
+   "item": "driver:aws_ppe / aws_turn / aws_ebitda_m Q3 labels",
+   "value": "Q3 from 10-Q accn 0001018724-26-000040",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:aws_turn years",
+   "value": "0.6591 / 0.5685 / 0.5135",
+   "basis": "estimate (wmean:aws_ppe)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value, scenarios"
+  },
+  {
+   "item": "driver:aws_ebitda_m years (Q3 AWS depreciation 9,230, OI 17,773, sales 45,984)",
+   "value": "0.5830 / 0.585 / 0.600",
+   "basis": "estimate (wmean:aws_ppe*aws_turn)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value, scenarios"
+  },
+  {
+   "item": "horizon_multiples P/E eps_interest_adj (6/30 face 132,995; 9/30 face 180,887; Q3 interest 1,691)",
+   "value": "rate 4.31%; cut $0.2363 a share",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm ; https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value (P/E leg)"
+  },
+  {
+   "item": "horizon_multiples[metric=P/E].eps",
+   "value": "11.4054",
+   "basis": "estimate (driver_build.set formula)",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "fair_value (P/E leg)"
+  }
+ ]
+}

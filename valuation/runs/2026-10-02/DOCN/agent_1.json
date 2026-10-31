@@ -1,0 +1,723 @@
+{
+ "symbol": "DOCN",
+ "agent_id": "agent_1",
+ "as_of": "2026-10-02",
+ "horizon": "2027-10-02",
+ "ladder": [
+  {
+   "K": 35,
+   "p": 0.978
+  },
+  {
+   "K": 56,
+   "p": 0.885
+  },
+  {
+   "K": 70,
+   "p": 0.805
+  },
+  {
+   "K": 84,
+   "p": 0.725
+  },
+  {
+   "K": 98,
+   "p": 0.645
+  },
+  {
+   "K": 112,
+   "p": 0.565
+  },
+  {
+   "K": 126,
+   "p": 0.488
+  },
+  {
+   "K": 140,
+   "p": 0.417
+  },
+  {
+   "K": 154,
+   "p": 0.356
+  },
+  {
+   "K": 168,
+   "p": 0.304
+  },
+  {
+   "K": 189,
+   "p": 0.24
+  },
+  {
+   "K": 210,
+   "p": 0.189
+  },
+  {
+   "K": 245,
+   "p": 0.127
+  },
+  {
+   "K": 280,
+   "p": 0.084
+  },
+  {
+   "K": 350,
+   "p": 0.038
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 112.06,
+   "p": 0.833
+  },
+  {
+   "K": 119.06,
+   "p": 0.757
+  },
+  {
+   "K": 126.06,
+   "p": 0.671
+  },
+  {
+   "K": 130.27,
+   "p": 0.617
+  },
+  {
+   "K": 134.47,
+   "p": 0.562
+  },
+  {
+   "K": 140.07,
+   "p": 0.49
+  },
+  {
+   "K": 145.67,
+   "p": 0.421
+  },
+  {
+   "K": 149.87,
+   "p": 0.373
+  },
+  {
+   "K": 154.08,
+   "p": 0.327
+  },
+  {
+   "K": 161.08,
+   "p": 0.259
+  },
+  {
+   "K": 168.08,
+   "p": 0.202
+  }
+ ],
+ "one_month_reasoning": "The last close in the window is Fri 2026-10-30, since 11/01 is a Sunday. No Q3 date 8-K had been filed by 10/02 (EDGAR index, source 19), and DOCN's past Q3 prints came on Nov 2-7, so the Q3 report (guide $304-307M, $0.28-0.30 EPS) almost certainly falls after the window. The filings inside the window so far are routine: the Oct 2 Form 4s are a director's fee taken in stock at $127.17 and an officer's tax-withholding (code F) disposal at $135.01 (source 20). That is not a signal. The remaining risks are a pre-announcement tied to a capital-markets action (as on July 7), MUFG lease draws, hyperscaler capex prints in late October, and neocloud sentiment. With no scheduled company catalyst I use a near-symmetric lognormal with a median of about $139 (a tiny negative drift) and sigma ≈ 82% x sqrt(20/252) ≈ 22.5%.",
+ "fair_value": {
+  "value": 100.0,
+  "method": "Value as of October 2027 on CY2028 as a proxy for NTM, using 125M diluted shares and ~$1.1B of horizon net debt (finance leases included, operating leases excluded). Weights: 40% P/E (40x x CY28E EPS $2.50 = $100), 40% EV/EBITDA (18x x CY28E GAAP-basis EBITDA $790M = $14.2B EV, less $1.1B = $105) and 20% DCF (11% WACC, 4% terminal growth = $85). The blend is about $100. If CY28 revenue reaches the thinly populated $2.69B MarketScreener consensus, fair value rises to about $110.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 100.0,
+    "weight": 0.4,
+    "inputs": "CY2028E non-GAAP EPS $2.50 x 40x",
+    "inputs_detail": [
+     {
+      "input": "FY2026 EPS guide (growth base)",
+      "value": "$1.35-1.40 (midpoint $1.375); consensus $1.46 already prices a beat",
+      "basis": "guidance",
+      "source_ids": [
+       1,
+       11
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "CY2027 street non-GAAP EPS",
+      "value": "~$1.80 (Finviz $1.79, stockanalysis $1.84); +31% vs guide midpoint",
+      "basis": "consensus",
+      "source_ids": [
+       11,
+       16
+      ],
+      "derivation": "Midpoint of the two providers."
+     },
+     {
+      "input": "CY2028E EPS",
+      "value": "$2.50 (+39%)",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       7,
+       11,
+       18
+      ],
+      "derivation": "CY28 revenue of $2.55B (+41%) sits between my round-1 +35% and MarketScreener's +48% ($2.69B) consensus, which is thinly populated. Capacity caps the upside: 155MW committed, about 60MW online mainly in 2027 and 20MW in late 2027/early 2028 (sources 6, 10). EPS grows a little slower than revenue because D&A is running +56% y/y in H1 2026 (source 1)."
+     },
+     {
+      "input": "P/E multiple",
+      "value": "40x",
+      "basis": "judgment",
+      "source_ids": [
+       12,
+       14,
+       16,
+       17
+      ],
+      "derivation": "The infrastructure peer CY2027 street P/E median is 23.4x (n=7; range 14.5x-209x; one basis, see comps_summary). The premium is growth-adjusted and limited to contracted growth. A peer PEG of about 1.3 times DOCN's ~30% EPS growth beyond the horizon (CY29, decaying from +39% in CY28) gives about 39-40x, about 1.7x the median and inside the range. I cut it from 45x because 45x applied growth that is not yet contracted beyond the horizon."
+     }
+    ]
+   },
+   {
+    "name": "EV/EBITDA",
+    "value": 105.0,
+    "weight": 0.4,
+    "inputs": "CY2028E GAAP-basis EBITDA $790M x 18x = EV $14.2B; less net debt $1.1B; 125M diluted shares",
+    "inputs_detail": [
+     {
+      "input": "CY2027 consensus revenue",
+      "value": "$1.81B (+53%)",
+      "basis": "consensus",
+      "source_ids": [
+       11,
+       18
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "CY2028E revenue",
+      "value": "$2.55B (+41%)",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       6,
+       18
+      ],
+      "derivation": "$1.81B x 1.41, as in the P/E method. RPO is $894M, with $366M recognised within 12 months."
+     },
+     {
+      "input": "GAAP-basis EBITDA margin",
+      "value": "31%",
+      "basis": "estimate",
+      "source_ids": [
+       11,
+       13
+      ],
+      "derivation": "TTM EBITDA of $308.6M on TTM revenue of $1.01B, held flat. Peers use the same basis (TTM GAAP EBITDA margin x consensus CY revenue)."
+     },
+     {
+      "input": "EV/EBITDA multiple",
+      "value": "18x",
+      "basis": "judgment",
+      "source_ids": [
+       12,
+       13,
+       17,
+       18
+      ],
+      "derivation": "On my consistent basis the peer CY2027 median is 15.6x (n=8, range 7.3x-67.1x). The supervisor's consensus-basis infrastructure/neocloud median is about 14x. I cut my multiple from 22x to 18x, a 15% premium inside the range, sized only on the contracted RPO (3.7-year weighted life). That contract cover runs past the Oct-2027 horizon, so the premium can persist through it."
+     },
+     {
+      "input": "Net debt at horizon (incl. finance leases, excl. operating leases)",
+      "value": "~$1.1B",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       3,
+       5
+      ],
+      "derivation": "At 6/30/26 pro forma for the 7/23 repurchase: cash $767M, converts $465.5M ($312.3M 2026 notes + $153.2M 2030 notes), finance-lease and equipment-financing liabilities $578M; net ≈ $0.28B. I add MUFG lease draws net of FCF: $0.7-1.0B. I moved from $1.0B to the middle of the supervisor's $1.0-1.3B range."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "125M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       4
+      ],
+      "derivation": "117.58M basic at 7/30/26; FY26 diluted guide 122-123M (Q3 126-127M). The 2026 notes ($178.51 conversion) are out of the money, and the 2030 capped calls offset the remaining 2030 notes. Confirmed by the supervisor."
+     }
+    ]
+   },
+   {
+    "name": "DCF",
+    "value": 85.0,
+    "weight": 0.2,
+    "inputs": "Revenue 2028-32: 2.55/3.27/3.99/4.66/5.27B; unlevered FCF after all capex (incl. leased equipment) 7%->20% of revenue; WACC 11%; terminal growth 4%; EV $11.7B less $1.1B / 125M shares",
+    "inputs_detail": [
+     {
+      "input": "Revenue path",
+      "value": "+41%/+28%/+22%/+17%/+13%",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       7,
+       11,
+       18
+      ],
+      "derivation": "Starts from the $1.81B 2027 consensus and decays toward mature cloud growth. 2028 is raised from +35% to address the $2.69B MarketScreener figure."
+     },
+     {
+      "input": "FCF margin ramp",
+      "value": "7% in 2028 to 20% in 2032",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       3
+      ],
+      "derivation": "FY26 adjusted FCF margin guide is 11-13%, which excludes lease-financed equipment ($415M of finance-lease ROU assets in 1H26; the MUFG facility is also leases), so all-in FCF starts lower."
+     },
+     {
+      "input": "WACC",
+      "value": "11%",
+      "basis": "judgment",
+      "source_ids": [
+       2,
+       11
+      ],
+      "derivation": "High-beta (82% realised vol) equity-funded business with modest net debt."
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 62.0,
+   "prob": 0.3,
+   "story": "AI GPU capacity loosens or a nine-figure inference customer downsizes. 2027 growth lands at 35-40% instead of >50%, gross margin keeps falling (55% in Q2 vs 60%) as depreciation and lease interest build, and more lease or equity funding is needed. CY28E EPS comes in around $2.0 and the multiple settles near 30x."
+  },
+  "base": {
+   "price": 128.0,
+   "prob": 0.45,
+   "story": "2027 growth beats 50% (about $1.8B), capacity comes online on schedule and CY28E EPS is about $2.5. The multiple compresses from 78x CY27 to about 51x CY28, so the stock ends slightly below today as delivery only partly offsets the de-rating."
+  },
+  "bull": {
+   "price": 225.0,
+   "prob": 0.25,
+   "story": "More nine-figure commitments, RPO above $2B, and CY28 revenue at or above the $2.69B MarketScreener consensus. CY28E EPS of about $3.0 at about 75x as the market keeps valuing DOCN as an AI-inference platform."
+  }
+ },
+ "comps": [
+  {
+   "symbol": "CRWV",
+   "name": "CoreWeave",
+   "why_comparable": "GPU/AI neocloud; closest product overlap on AI infrastructure, heavy lease-funded capex",
+   "fwd_pe": null,
+   "ev_ebitda_fwd": 7.3,
+   "growth_next_yr": "Rev +104% (CY27); EPS -$1.90 (Finviz), P/E n/m",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13,
+    17
+   ]
+  },
+  {
+   "symbol": "NBIS",
+   "name": "Nebius Group",
+   "why_comparable": "AI neocloud with a full-stack cloud software layer, close to DOCN's 'AI-native cloud' positioning",
+   "fwd_pe": null,
+   "ev_ebitda_fwd": 29.4,
+   "growth_next_yr": "Rev +268% (CY27); EPS negative, P/E n/m",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13
+   ]
+  },
+  {
+   "symbol": "IREN",
+   "name": "IREN Ltd",
+   "why_comparable": "AI cloud/GPU capacity provider (FY Jun; calendarised 50/50 FY27/FY28)",
+   "fwd_pe": null,
+   "ev_ebitda_fwd": 67.1,
+   "growth_next_yr": "Rev to ~$5.1B CY27; EPS negative, P/E n/m",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13
+   ]
+  },
+  {
+   "symbol": "ORCL",
+   "name": "Oracle",
+   "why_comparable": "OCI cloud infrastructure with a large AI backlog. FY May, calendarised 5/12 FY27 + 7/12 FY28: Finviz FY28 $11.02, FY27 ≈ $8.14 → CY27 ≈ $9.82",
+   "fwd_pe": 14.5,
+   "ev_ebitda_fwd": 10.3,
+   "growth_next_yr": "EPS +35% (FY28 vs FY27)",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13,
+    17
+   ]
+  },
+  {
+   "symbol": "AKAM",
+   "name": "Akamai",
+   "why_comparable": "Edge/cloud computing (Linode) competitor in developer cloud and inference cloud",
+   "fwd_pe": 15.8,
+   "ev_ebitda_fwd": 15.6,
+   "growth_next_yr": "EPS +3%",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13,
+    17
+   ]
+  },
+  {
+   "symbol": "NET",
+   "name": "Cloudflare",
+   "why_comparable": "Developer platform and edge inference (Workers AI); developer cloud from SMB to enterprise",
+   "fwd_pe": 209.0,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +33% (CY27 $1.67 Finviz)",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    13,
+    17
+   ]
+  },
+  {
+   "symbol": "FSLY",
+   "name": "Fastly",
+   "why_comparable": "Edge cloud/CDN, developer-focused mid-cap infrastructure",
+   "fwd_pe": 41.9,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +19%",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13,
+    17
+   ]
+  },
+  {
+   "symbol": "AMZN",
+   "name": "Amazon (AWS)",
+   "why_comparable": "Hyperscale cloud competitor (AWS)",
+   "fwd_pe": 23.4,
+   "ev_ebitda_fwd": 13.8,
+   "growth_next_yr": "Rev +14% (2026 EPS inflated by investment gains)",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13,
+    17
+   ]
+  },
+  {
+   "symbol": "GOOGL",
+   "name": "Alphabet (Google Cloud)",
+   "why_comparable": "Hyperscale cloud competitor (GCP)",
+   "fwd_pe": 22.3,
+   "ev_ebitda_fwd": 17.1,
+   "growth_next_yr": "Rev +23% (2026 EPS inflated by investment gains)",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13,
+    17
+   ]
+  },
+  {
+   "symbol": "MSFT",
+   "name": "Microsoft (Azure)",
+   "why_comparable": "Hyperscale cloud competitor (Azure). FY Jun, calendarised 50/50: Finviz FY28 $23.48, FY27 ≈ $19.73 → CY27 ≈ $21.6",
+   "fwd_pe": 24.0,
+   "ev_ebitda_fwd": 15.5,
+   "growth_next_yr": "EPS +19%",
+   "as_of": "2026-10-02",
+   "source_ids": [
+    12,
+    13,
+    17
+   ]
+  }
+ ],
+ "comps_summary": {
+  "peer_median_fwd_pe": 23.4,
+  "peer_median_ev_ebitda": 15.6,
+  "peer_range": "One basis: calendar-2027 street (adjusted) consensus EPS from Finviz, with ORCL and MSFT calendarised and stockanalysis 'Forward PE' not used. P/E runs from 14.5x (ORCL) to 209x (NET), n=7; the loss-making neoclouds are not meaningful. EV/EBITDA is calendar 2027, computed as TTM GAAP EBITDA margin x CY2027 consensus revenue (my own constant-margin estimate, the same basis as DOCN's): 7.3x (CRWV) to 67.1x (IREN), n=8, with NET and FSLY not meaningful. Developer software (DDOG, MDB, SNOW, GTLB, TWLO; supervisor's 12-name median 43.2x) is a sensitivity check only, because those companies run 75-80% gross margins with no GPU capex.",
+  "our_multiple_vs_peers": "DOCN today is ~78x CY2027 street EPS ($140.07/$1.80) and ~31x CY2027 EBITDA on my basis. I apply 40x P/E (1.7x the median, inside the range) and 18x EV/EBITDA (1.15x the median, inside the range) to CY2028 at the horizon.",
+  "premium_discount_justification": "The premium comes only from revenue growth that is contracted and structurally higher than peers': RPO is $894M (12x y/y) with a 3.7-year weighted life ($366M due within 12 months), 155MW is committed, and the >50% 2027 outlook was reaffirmed in the Q2 release. Because those contracts run past Oct-2027, the growth gap should persist through the horizon. I size the premium with growth-adjusted parity (peer PEG of about 1.3 times DOCN's ~30% EPS growth beyond the horizon), not with sell-side calls. I hold it below that level on EBITDA for three reasons: gross margin is falling, the growth is funded with leases and equity (two 2026 raises, MUFG facility), and returns on the GPU capacity are unproven."
+ },
+ "thesis_break_price": 75.0,
+ "thesis_break_reason": "At $75 the stock trades at about 42x the ~$1.80 street CY2027 EPS, below the $77 March 2026 offering price, and only about 1.8x the 23.4x infrastructure median. That price is close to a no-premium-beyond-contracts valuation. Getting there would most likely mean the >50% 2027 outlook or the nine-figure commitments behind the $894M RPO had broken (churn, capacity delays, GPU price collapse), or that lease-funded capex forced a dilutive raise, rather than ordinary volatility. I moved it from $80 because my fair value fell to $100 and $80 is now within one ordinary drawdown of it.",
+ "catalysts": [
+  {
+   "date": "2026-11 (~Nov 2-5; date TBA, after the 1-month window)",
+   "event": "Q3 2026 results vs guide of $304-307M and $0.28-0.30 EPS; Q4 exit growth; possible early 2027 colour",
+   "direction": "+"
+  },
+  {
+   "date": "2026-12-01",
+   "event": "Maturity of the $312M 0% 2026 convertible notes (out of the money at $178.51, so likely cash-settled)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-Q4 to 2027-09",
+   "event": "Draws on the MUFG $725M equipment-lease facility and its $300M accordion; possible further equity or convertible raises",
+   "direction": "-"
+  },
+  {
+   "date": "2027-02",
+   "event": "Q4 2026 results and first formal 2027 guidance (test of >50% growth)",
+   "direction": "?"
+  },
+  {
+   "date": "2027 (through year)",
+   "event": "About 60MW of new capacity online, plus 20MW in late 2027/early 2028",
+   "direction": "+"
+  },
+  {
+   "date": "2027-05 / 2027-08",
+   "event": "Q1 and Q2 2027 results: gross-margin trend and RPO conversion",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Whether >50% 2027 revenue growth reaches EPS: street CY27 EPS is +31% on the FY26 guide midpoint, and D&A is running +56% y/y",
+  "CY2028 trajectory: MarketScreener's thinly populated consensus of $2.69B (+48%) is well above my $2.55B; the gap moves fair value by about $10",
+  "Concentration in a few large AI-native customers with nine-figure commitments (the 'top 25 ≈ 20% of ARR' figure is unverified against the transcript)",
+  "Funding: two 2026 equity raises (11.95M shares at $77, 12.54M at $117.54) and growing finance-lease debt",
+  "Durability of the AI-infrastructure valuation regime (78x CY27 EPS, 82% realised vol, +290% in a year)"
+ ],
+ "reasoning": "Round 2. The supervisor confirmed my balance-sheet facts: net debt about $0.28B today (converts $465.5M after the 7/23 repurchase, no term loan, finance leases $578M) and 125M diluted shares. It corrected four things. D&A growth is 56%, not 65%. FY26 consensus EPS ($1.46) is above the $1.35-1.40 guide, so street CY27 growth is about +31%. Street CY27 EPS is ~$1.80, not $1.84. And MarketScreener's CY28 consensus ($2.69B revenue, which I re-checked) is above my +35%. I raised CY28 revenue to $2.55B and EPS to $2.50. I did not go all the way to consensus, because capacity (155MW, with 20MW arriving late 2027 to early 2028) caps 2028 and that consensus is thin. On multiples I rebuilt the comps on one Finviz CY27 street basis (infrastructure median 23.4x). I cut P/E from 45x to 40x, because a PEG-parity premium should use growth beyond the horizon (~30%), not CY28's peak. I cut EV/EBITDA from 22x to 18x, because only contracted growth justifies a premium and 22x was 40% above a 15.6x median. Fair value goes from $111 to about $100 (P/E $100, EV/EBITDA $105, DCF $85). I disagree with the supervisor's ~$112: it relies more heavily on EV/sales and on adjusted EBITDA that excludes SBC. Valuation predicts 12-month returns only weakly in a momentum, AI-narrative stock, so I do not centre the distribution on fair value. I blend a lognormal (median $124, sigma 0.66) 50/50 with a three-scenario mixture (bear $62/0.30, base $128/0.45, bull $225/0.25; scenario mean ≈ $132). That gives P(≥$140) ≈ 0.42 (round 1: 0.45) and thinner far-right tails (P(≥$350) 0.04). Research was limited to about 8 fetches: the EDGAR index (no Q3 date 8-K; routine Form 4s on 10/2), Finviz for DOCN, NET, ORCL, MSFT and CRWV, and MarketScreener. AKAM, FSLY, AMZN and GOOGL P/Es use the supervisor's Finviz spot-checks of my round-1 values. No option data was used.",
+ "lane": "primary",
+ "sources": [
+  {
+   "title": "DigitalOcean Q2 2026 results press release (8-K Ex.99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001582961/000162828026052135/a2026-q2dopressrelease.htm",
+   "date": "2026-08-04",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "DigitalOcean Form 10-Q for quarter ended 2026-06-30",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000162828026052556/docn-20260630.htm",
+   "date": "2026-08-04",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "8-K: MUFG Equipment Finance Facility ($725M committed + $300M accordion, finance leases)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000110465926106704/tm2625205d1_8k.htm",
+   "date": "2026-09-10",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "FWP pricing term sheet: registered direct offering of 12,543,915 shares at $117.54 to fund 2030 convert repurchase",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000110465926084065/tm2620279d2_fwp.htm",
+   "date": "2026-07-16",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "8-K: completion of $471.8M 2030 Convertible Notes repurchase for ~$1.474B cash",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000110465926086652/tm2621138d1_8k.htm",
+   "date": "2026-07-24",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "8-K Ex.99.1: preliminary Q2 2026 results, multiple nine-figure annual commitments, +20MW capacity (155MW total)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000055/exhibit991pressrelease.htm",
+   "date": "2026-07-07",
+   "type": "company",
+   "in_lane": true
+  },
+  {
+   "title": "DigitalOcean Q1 2026 results press release (8-K Ex.99.1): 2027 growth outlook raised to >50%",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000158296126000045/a2026-q1dopressrelease.htm",
+   "date": "2026-05-05",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Form 144 notices (officer/director RSU-vest sales: 5,697 sh ~$0.60M on 2026-09-03; 11,394 sh ~$1.60M on 2026-09-21)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000195917326007053/primary_doc.xml",
+   "date": "2026-09-21",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "DOCN Q2 2026 earnings call summary (top 25 customers ~20% of ARR; capacity timing)",
+   "url": "https://stocktaper.com/earningsCallSummary/DOCN/2026/Q2",
+   "date": "2026-08-05",
+   "type": "other",
+   "in_lane": true
+  },
+  {
+   "title": "MarketBeat: DigitalOcean Q2 earnings call highlights (60MW online mainly in 2027; 2027 >$1.7B)",
+   "url": "https://www.marketbeat.com/instant-alerts/digitalocean-q2-earnings-call-highlights-2026-08-05/",
+   "date": "2026-08-05",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis DOCN forecast and statistics (CY2027 consensus revenue $1.81B, EPS $1.84; EV $17.68B, TTM EBITDA $308.6M, TTM rev $1.01B; PT avg $175)",
+   "url": "https://stockanalysis.com/stocks/docn/forecast/",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Yahoo Finance analysis pages, current/next-year EPS and revenue consensus (CRWV, NBIS, IREN, ORCL, AKAM, FSLY, AMZN, GOOGL, MSFT), e.g. https://finance.yahoo.com/quote/AKAM/analysis/",
+   "url": "https://finance.yahoo.com/quote/AKAM/analysis/",
+   "date": "2026-10-03",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis statistics pages (market cap, EV, TTM revenue, TTM EBITDA) for CRWV, NBIS, IREN, ORCL, AKAM, NET, FSLY, AMZN, GOOGL, MSFT, e.g. https://stockanalysis.com/stocks/orcl/statistics/",
+   "url": "https://stockanalysis.com/stocks/orcl/statistics/",
+   "date": "2026-10-03",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis forecast pages: prices and FY2026 EPS for NET, ORCL, MSFT etc.",
+   "url": "https://stockanalysis.com/stocks/net/forecast/",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAlarm NET analyst page (FY2027E EPS $1.58)",
+   "url": "https://pro.stockalarm.io/quote/NET/analysts",
+   "date": "2026-10",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Finviz DOCN quote (Forward P/E 78.3 → EPS next Y ≈ $1.79; target $177.06)",
+   "url": "https://finviz.com/quote.ashx?t=DOCN",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Finviz peer quote pages: NET (EPS next Y $1.67, fwd P/E 208.7), ORCL (FY28 $11.02, fwd P/E 12.9), MSFT (FY28 $23.48, fwd P/E 22.0), CRWV (EPS next Y -$1.90); AKAM/FSLY/AMZN/GOOGL per supervisor spot-checks",
+   "url": "https://finviz.com/quote.ashx?t=NET",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "MarketScreener DOCN valuation (2028 sales consensus $2.69B)",
+   "url": "https://www.marketscreener.com/quote/stock/DIGITALOCEAN-HOLDINGS-INC-120405757/valuation/",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "EDGAR submissions index, DigitalOcean CIK 1582961 (no Q3 date 8-K as of 10/2; past Q3 Item 2.02 dates Nov 2-7)",
+   "url": "https://data.sec.gov/submissions/CIK0001582961.json",
+   "date": "2026-10-02",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Form 4s filed 2026-10-02 (director stock-in-lieu at $127.17; officer tax withholding, code F, 40,022 sh at $135.01)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1582961/000210726126000013/wk-form4_1790985125.xml",
+   "date": "2026-10-02",
+   "type": "filing",
+   "in_lane": true
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a fact",
+   "from": "D&A +65% y/y",
+   "to": "D&A +56% y/y (H1 2026)",
+   "why": "Supervisor feedback citing the Q2 release cash-flow table."
+  },
+  {
+   "item": "a fact",
+   "from": "CY27 consensus EPS $1.84, +26% growth",
+   "to": "~$1.80 street, +31% vs FY26 guide midpoint $1.375",
+   "why": "Supervisor: Finviz $1.79 vs stockanalysis $1.84; FY26 consensus $1.46 is above the $1.35-1.40 guide. Re-checked Finviz (fwd P/E 78.3)."
+  },
+  {
+   "item": "a fact",
+   "from": "CY28 revenue +35% ($2.44B)",
+   "to": "+41% ($2.55B)",
+   "why": "Supervisor flagged MarketScreener CY28 consensus $2.69B, which I re-checked. Partly adopted, because capacity timing and thin coverage cap it."
+  },
+  {
+   "item": "a fact",
+   "from": "Horizon net debt ~$1.0B",
+   "to": "~$1.1B",
+   "why": "Supervisor's $1.0-1.3B horizon range from MUFG lease draws; today's $0.28B and 125M shares confirmed."
+  },
+  {
+   "item": "a method",
+   "from": "P/E 45x x $2.48 = $112",
+   "to": "40x x $2.50 = $100",
+   "why": "Supervisor asked whether 45x is earned on ~32% EPS growth. PEG parity on post-horizon growth (~30%) gives ~40x."
+  },
+  {
+   "item": "a method",
+   "from": "EV/EBITDA 22x x $757M = $125",
+   "to": "18x x $790M = $105",
+   "why": "comps_review: infrastructure/neocloud median ~14x consensus (15.6x on my basis). The premium is cut to what contracted RPO supports through the horizon."
+  },
+  {
+   "item": "a method",
+   "from": "DCF $80",
+   "to": "DCF $85",
+   "why": "Higher 2028-29 revenue path after the CY28 consensus check; net debt $1.1B."
+  },
+  {
+   "item": "fair value",
+   "from": "$111",
+   "to": "$100",
+   "why": "Net effect of the multiple discipline (comps_review) partly offset by the higher CY28 revenue. I disagree with the supervisor's $112, which leans on EV/sales and SBC-excluded EBITDA."
+  },
+  {
+   "item": "a scenario",
+   "from": "bear $65 / base $135 / bull $230",
+   "to": "bear $62 / base $128 / bull $225 (probabilities 0.30/0.45/0.25 unchanged)",
+   "why": "Lower fair value and the multiple-compression path on corrected EPS."
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "P(>=140) 0.448; P(>=350) 0.07",
+   "to": "P(>=140) 0.417; P(>=350) 0.038",
+   "why": "Lower fair value; ladder now a 50/50 blend of a lognormal (median $124, sigma 0.66) and the scenario mixture, which also makes it consistent with the scenario mean."
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "1-month ladder centred ~$139.6",
+   "to": "essentially unchanged (median ~$139.3, sigma 22.5%)",
+   "why": "Supervisor confirmed the Q3 print falls after the Oct 30 last in-window close. EDGAR shows no date 8-K, and the 10/2 Form 4s are routine."
+  },
+  {
+   "item": "thesis break",
+   "from": "$80",
+   "to": "$75",
+   "why": "With fair value at $100, $80 is within ordinary drawdown range. $75 is below the $77 March offering and about 42x CY27 EPS."
+  },
+  {
+   "item": "a fact",
+   "from": "Comps P/E: NET 220.9x (StockAlarm), ORCL 14.5x, MSFT 23.8x, AKAM 15.9x, FSLY 41.0x, GOOGL 23.0x, AMZN 23.9x",
+   "to": "NET 209x, ORCL 14.5x, MSFT 24.0x, AKAM 15.8x, FSLY 41.9x, GOOGL 22.3x, AMZN 23.4x; median 23.8x → 23.4x",
+   "why": "comps_review: one Finviz CY27 street basis, ORCL and MSFT calendarised from Finviz FY figures. Stockanalysis 'Forward PE' not used."
+  },
+  {
+   "item": "a fact",
+   "from": "Top 25 customers ≈ 20% of ARR used as a fact",
+   "to": "Flagged as unverified",
+   "why": "Supervisor source_review discounted the third-party call summary."
+  }
+ ]
+}

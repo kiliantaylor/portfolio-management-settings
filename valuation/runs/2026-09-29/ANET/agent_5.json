@@ -1,0 +1,99 @@
+{
+  "symbol": "ANET", "agent_id": "agent_5", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 51, "p": 0.99}, {"K": 82, "p": 0.975}, {"K": 102, "p": 0.94}, {"K": 122, "p": 0.878},
+    {"K": 143, "p": 0.794}, {"K": 163, "p": 0.70}, {"K": 184, "p": 0.60}, {"K": 204, "p": 0.51},
+    {"K": 224, "p": 0.423}, {"K": 245, "p": 0.344}, {"K": 275, "p": 0.251}, {"K": 306, "p": 0.178},
+    {"K": 357, "p": 0.099}, {"K": 408, "p": 0.054}, {"K": 510, "p": 0.016}
+  ],
+  "ladder_1m": [
+    {"K": 163.22, "p": 0.945}, {"K": 173.42, "p": 0.88}, {"K": 183.62, "p": 0.78}, {"K": 189.74, "p": 0.707},
+    {"K": 195.86, "p": 0.626}, {"K": 204.02, "p": 0.513}, {"K": 212.18, "p": 0.403}, {"K": 218.30, "p": 0.328},
+    {"K": 224.42, "p": 0.26}, {"K": 234.62, "p": 0.17}, {"K": 244.82, "p": 0.105}
+  ],
+  "one_month_reasoning": "Arista's Q3 2026 date is not yet announced (no 8-K as of Sep 30). Its last three reports were on Tuesdays, so Tue Nov 3 is most likely; either Nov 2 or Nov 3 falls OUTSIDE the 2026-10-30 window. Inside the window are the late-October hyperscaler Q3 prints and 2027 capex remarks. Microsoft (26% of FY2025 revenue) and Meta (16%) matter most, and the read-through can go either way. FOMC and macro prints are also in the window. With no company event, I centre a near-symmetric lognormal on ~$205 (spot plus a trace of momentum). I cut the monthly sigma from 15% to ~14%, since realized vol over the last 20/40 days is 40-45%, below the 54% one-year figure. A month out, valuation does not drive the price.",
+  "fair_value": {
+    "value": 200.0,
+    "method": "The forward P/E leg is NTM EPS at Sep-2027 of ~$5.86 (0.25 x FY27 consensus $5.20 + 0.75 x FY28 ~$6.08) x 35x = $205, weight 0.6. The FCF-yield leg is FY28 FCF ~$7.3B at a 3.25% yield plus ~$15/share projected horizon net cash = $191, weight 0.4. The blend is ~$200.",
+    "methods": [
+      {"name": "P/E", "value": 205.0, "weight": 0.6,
+       "inputs": "NTM non-GAAP EPS at Sep-2027 ~$5.86 (0.25 x FY27 $5.20 + 0.75 x FY28 $6.08) x 35x forward P/E",
+       "inputs_detail": [
+         {"input": "FY2026 non-GAAP EPS consensus", "value": "$4.11", "basis": "consensus", "source_ids": [3, 16], "derivation": ""},
+         {"input": "FY2027 non-GAAP EPS consensus", "value": "$5.20 (29 analysts, range $4.66-5.73; revised up 16% in 60 days)", "basis": "consensus", "source_ids": [16], "derivation": ""},
+         {"input": "FY2028 non-GAAP EPS", "value": "$6.08", "basis": "estimate", "source_ids": [5, 7, 16], "derivation": "FY27 consensus $5.20 x 1.17. Morningstar models ~20% 2028 revenue growth, and UBS/Goldman see hyperscaler capex growth slowing to ~6-12% in 2028, so I trim to 17%. Gross margin is guided 'margin neutral', so EPS grows roughly with revenue."},
+         {"input": "Forward P/E", "value": "35x", "basis": "judgment", "source_ids": [6, 12, 18], "derivation": "The 5-year average forward P/E is ~34x. My own-history base rate says that when ANET started at an NTM P/E of 30-38x, the median next-12m return was only +13% (n=31 months, P(<0) 29%). Above 38x, the stock has almost no history (2 months). Spot is ~41x NTM. With growth slowing from ~40% to ~20-25%, I assume the multiple moves back to about its average."}
+       ]},
+      {"name": "FCF yield", "value": 191.0, "weight": 0.4,
+       "inputs": "FY28 revenue ~$19.2B x 38% FCF margin = ~$7.3B; at a 3.25% yield = ~$225B / 1.276B shares = $176, plus ~$15/share projected Sep-2027 net cash",
+       "inputs_detail": [
+         {"input": "FY2027 revenue consensus", "value": "$16.29B (+28.6%)", "basis": "consensus", "source_ids": [16], "derivation": ""},
+         {"input": "FY2028 revenue", "value": "$19.2B", "basis": "estimate", "source_ids": [5, 16], "derivation": "FY27 consensus $16.29B x 1.18 (Morningstar's ~20% 2028 growth, trimmed)."},
+         {"input": "FCF margin", "value": "38%", "basis": "estimate", "source_ids": [1, 17], "derivation": "H1 2026 OCF of $2.78B on $5.74B revenue (48%) includes a $1.49B deferred-revenue build. Excluding it, OCF was only ~22%, depressed by inventory and other-asset builds against $9.7B of purchase commitments. Deferred revenue is real customer cash, but it can unwind once acceptances clear, so I use neither extreme. I take 38%: below the ~46% GAAP operating margin (tax and working capital) and above the ex-deferred H1 figure, on the view that inventory builds normalise as supply constraints ease. This is my judgment, and the leg carries the lower weight for that reason."},
+         {"input": "FCF yield", "value": "3.25%", "basis": "judgment", "source_ids": [6, 18], "derivation": "~31x FCF, in line with a ~34-35x historical forward P/E for ~20% growth with capex-cycle exposure."},
+         {"input": "Horizon net cash (Sep-2027)", "value": "~$19.5B (~$15/share); $13.34B reported at 6/30/26, no debt", "basis": "estimate", "source_ids": [17], "derivation": "$2,290.2M cash + $11,053.1M marketable securities = $13.34B, plus ~5 quarters of ~$1.3-1.5B normalised FCF, less modest buybacks (~$818M authorisation left)."},
+         {"input": "Diluted shares", "value": "1.276B", "basis": "reported", "source_ids": [1], "derivation": ""}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 125.0, "prob": 0.2, "story": "Hyperscaler capex growth slows faster than consensus (UBS path), or Microsoft/Meta cut or reallocate spending. IDC share loss to Nvidia continues (2Q26 Nvidia 20.4% vs Arista 18.7% of branded DC Ethernet), and some of the $6.87B deferred revenue unwinds slowly. EPS ends near ~$4.8 NTM and the multiple mean-reverts to ~25-26x. This matches ANET's own history of 40-55% peak-to-trough drawdowns (2018-19, 2022, early 2025)."},
+    "base": {"price": 215.0, "prob": 0.55, "story": "FY27 is delivered close to the $5.20 consensus (~27% growth) and the stock enters FY28 at ~20% growth. The forward multiple compresses from ~41x toward ~36-37x, so the price ends slightly above spot. That fits the conditioned base rate (median +13% from a 30-38x start, and less from 41x)."},
+    "bull": {"price": 295.0, "prob": 0.25, "story": "On the Goldman path (hyperscaler capex +54% in 2027), deferred AI revenue converts and Arista wins back back-end share (Dell'Oro says it is near-tied once deferred revenue is counted). EPS beats and FY28 is seen at ~$6.8+, with the multiple holding ~42-43x. The price is capped below round 1's $310 because a 40x+ start has almost no historical precedent for further expansion."}
+  },
+  "thesis_break_price": 140.0,
+  "thesis_break_reason": "$140 is ~31% below spot and ~27x FY27 consensus EPS ($5.20), well under the ~34x five-year average forward multiple. Reaching it most likely takes a fundamental break: a Microsoft/Meta capex cut or share loss, a 2027 guide implying growth under ~15%, or deferred revenue unwinding without converting. It is below the May 2026 post-Q1 lows of $136-142 and roughly one annual sigma below spot, so normal 45-54% volatility alone is unlikely to take the stock there.",
+  "catalysts": [
+    {"date": "2026-10 (last week)", "event": "Hyperscaler Q3 earnings and 2027 capex commentary (Microsoft 26% and Meta 16% of ANET revenue; also GOOGL, AMZN)", "direction": "?"},
+    {"date": "2026-11-03 (likely; unannounced)", "event": "Arista Q3 2026 results and Q4 guide (Q3 guide ~$3.3B revenue, EPS $1.06-1.08)", "direction": "?"},
+    {"date": "2026-12 / 2027-03", "event": "IDC 3Q26/4Q26 Ethernet switch trackers and Dell'Oro AI back-end share updates", "direction": "?"},
+    {"date": "2027-02", "event": "Q4 2026 results and first FY2027 guide (no 2026 analyst day announced; the 2025 one was Sep 11)", "direction": "?"},
+    {"date": "2027-05", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-08", "event": "Q2 2027 results", "direction": "?"},
+    {"date": "2027 (Sep, possible)", "event": "Analyst day, if repeated on the Sep-2025 pattern (unconfirmed)", "direction": "?"},
+    {"date": "2026-2027", "event": "US recession risk (Polymarket ~35% by end-2027, secondary report, volume unknown) and tariff/semiconductor trade policy", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Path of hyperscaler capex growth in 2027-28: consensus ~22% vs Goldman ~54% vs UBS 25% then 6%",
+    "Whether the ~41x NTM multiple compresses toward the ~34x 5-year average. ANET's history has almost no months starting above 38x NTM, so the base rate is thin there.",
+    "FCF conversion: H1 2026 OCF was 48% of revenue with the deferred-revenue build and ~22% without it; how much of the $6.87B deferred revenue converts, and when",
+    "Share vs Nvidia (IDC 2Q26 20.4% vs 18.7%) and Celestica/white-box in AI back-end",
+    "Customer concentration: Microsoft 26% and Meta 16% of FY2025 revenue",
+    "Macro and recession odds (prediction-market figures are secondary reports with unknown volume)"
+  ],
+  "reasoning": "Round 2, base-rate lane. The supervisor's corrections I accepted: FY27 consensus EPS is $5.20 (29 analysts; FY26 $4.11), replacing my figure backed out of a snippet. Horizon net cash is ~$15/share, not today's $10.5. The Q3 date is unannounced and likely Tue Nov 3. No November analyst day. Microsoft/Meta are 26/16%. Following its feedback, I conditioned my own-history base rate on starting valuation. I rebuilt monthly closes from Dec-2015 to Sep-2026 (Twelve Data) and computed an NTM P/E for each month from split-adjusted annual non-GAAP EPS. The EPS history is approximate, and realized forward EPS carries a hindsight bias. Results: from starting NTM P/E below 30x, the median next-12m return was +66% (n=85, P(<0) 8%). From 30-38x it was +13% (n=31, P(<0) 29%, 10th/90th percentile -24%/+46%). ANET has only ~2 months above 38x, and today it is ~41x. My round-1 unconditioned median of +46% therefore came mostly from cheap starting points, and the supervisor was right that my right tail was too fat. I cut P(>=408) from 7.5% to 5.4% and P(>=510) from 2.5% to 1.6%, and moved the bull price from $310 to $295. Fair value comes out at ~$200. Using consensus EPS and a correct horizon cash figure would raise it. I did not reach the supervisor's $209 because I kept 17% FY28 growth (vs its ~20%), a 35x multiple, and a 38% FCF margin at a 3.25% yield. My FCF margin is lower than the ~40% implied by its ~$7.8B, because H1 OCF excluding the deferred build was only ~22%. The distribution is a 90/10 mixture: a lognormal with median $216 and sigma 0.41, plus a bust component (median $125, sigma 0.35) for a capex-cut or recession outcome. That gives a median of ~$205 (P(>=204) 51%), a mean of ~$220, and a left tail slightly fatter than one lognormal. The analyst mean target of $231-242 is treated as upside-skewed evidence, not the answer. The 1-month sigma is tightened to ~14% on the recent realized vol. Research was limited: Twelve Data's earnings endpoint is paywalled, and historical EPS comes from company annual results, not re-downloaded in this round.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Arista Networks Q2 2026 earnings release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000174/ex991q226-earningsrelease.htm", "date": "2026-08-04", "type": "filing", "in_lane": false},
+    {"title": "Arista Networks Q2 2026 earnings call highlights (FY26 guide raised to $12.6B)", "url": "https://finance.yahoo.com/markets/stocks/articles/arista-networks-inc-anet-q2-050501472.html", "date": "2026-08", "type": "press", "in_lane": false},
+    {"title": "StockAnalysis ANET forecast: 31 analysts, mean target $241.93, FY26 EPS $4.11, FY26 revenue $12.67B", "url": "https://stockanalysis.com/stocks/anet/forecast/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Simply Wall St ANET earnings & revenue (superseded by Yahoo consensus; no longer used for EPS)", "url": "https://simplywall.st/stocks/us/tech/nyse-anet/arista-networks/past", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Morningstar: Arista earnings - 30%/25%/20% revenue growth 2026-2028", "url": "https://www.morningstar.com/stocks/arista-earnings-take-opportunity-buy-after-lighter-beat-and-raise-than-usual", "date": "2026", "type": "sell-side", "in_lane": false},
+    {"title": "ANET PE ratio history - 5-year average forward P/E ~34x (Intellectia / FinanceCharts via search)", "url": "https://intellectia.ai/stock/ANET/valuation", "date": "2026-06", "type": "data", "in_lane": true},
+    {"title": "Hyperscaler capex outlook 2027: Moody's ~$1T; UBS growth 76%->25%->6%; Goldman 54% in 2027", "url": "https://www.datacenterdynamics.com/en/news/moodys-hyperscaler-capex-forecasts-marked-up-by-85bn-to-close-in-on-1trn-by-2027/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Motley Fool: hyperscalers projected $1.3T capex in 2027, only 1 FCF-positive", "url": "https://www.fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow/", "date": "2026-09-06", "type": "press", "in_lane": true},
+    {"title": "Polymarket prices 35% chance of U.S. recession by end of 2027 (secondary report; volume unknown; discounted by supervisor, used only qualitatively)", "url": "https://predictionnews.com/story/polymarket-prices-35-chance-of-u-s-recession-by-end-of-2027", "date": "2026-09-24", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi recession odds 2026 vs 2027 (2027 contract ~38-39c as of 2026-08-04)", "url": "https://www.oddsshopper.com/articles/prediction-markets/kalshi-recession-odds", "date": "2026-08", "type": "prediction-market", "in_lane": true},
+    {"title": "FutureSearch: Will there be a significant pullback in AI capex by end-2027? (15%)", "url": "https://futuresearch.ai/app/p/a/ai-pullback-2027", "date": "2026", "type": "prediction-market", "in_lane": true},
+    {"title": "Twelve Data ANET monthly OHLC Dec-2015 to Sep-2026 (rolling 12m returns conditioned on starting NTM P/E, re-pulled 2026-09-30)", "url": "https://twelvedata.com/", "date": "2026-09-30", "type": "data", "in_lane": true},
+    {"title": "TIKR: Arista down 28% from peak in tariff-driven selloff (2025 drawdown context)", "url": "https://www.tikr.com/blog/arista-networks-is-down-28-from-its-peak-it-may-finally-be-time-to-buy-anet-stock", "date": "2025", "type": "press", "in_lane": true},
+    {"title": "GuruFocus: ANET 21.7% above GF Value $166.70 (2026-09-29)", "url": "https://www.gurufocus.com/news/9102506/arista-networks-inc-anet-shares-fall-10-what-gf-score-of-97-tells-investors", "date": "2026-09-29", "type": "data", "in_lane": true},
+    {"title": "Arista 'to announce Q2 2026 results on Tuesday, August 4' (Tuesday reporting pattern; Q3 date unannounced)", "url": "https://www.arista.com/en/company/news/press-release/24143-pr-20260706", "date": "2026-07-06", "type": "company", "in_lane": false},
+    {"title": "Yahoo Finance ANET analysis: FY26/FY27 EPS consensus $4.11/$5.20, FY27 revenue $16.29B, EPS trend (as established by supervisor)", "url": "https://finance.yahoo.com/quote/ANET/analysis/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Arista Form 10-Q, quarter ended June 30, 2026 (cash $2,290.2M + securities $11,053.1M; H1 OCF $2,776.5M incl. +$1,493.5M deferred revenue)", "url": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000175/anet-20260630.htm", "date": "2026-08-05", "type": "filing", "in_lane": false},
+    {"title": "Arista investor relations: annual non-GAAP EPS history 2016-2025 (split-adjusted, used for the P/E-conditioned base rate; approximate)", "url": "https://investors.arista.com/", "date": "2026-09", "type": "company", "in_lane": true}
+  ],
+  "revisions": [
+    {"item": "a fact", "from": "FY27 non-GAAP EPS $5.15 backed out of Simply Wall St net income + 8% uplift", "to": "FY27 consensus $5.20 (29 analysts), FY26 $4.11", "why": "Supervisor disagreement on consensus EPS (Yahoo EPS trend) and my feedback item 1"},
+    {"item": "a fact", "from": "Horizon cash added at $10.5/share (today's)", "to": "~$15/share projected Sep-2027 net cash (~$19.5B)", "why": "Supervisor net-cash resolution: $13.34B at 6/30 plus ~5 quarters of FCF"},
+    {"item": "a method", "from": "P/E $203 (NTM $5.80 x 35x)", "to": "P/E $205 (NTM $5.86 x 35x)", "why": "Re-anchored on $5.20 FY27 consensus; FY28 = 1.17x. Multiple kept at 35x, now backed by the valuation-conditioned base rate"},
+    {"item": "a method", "from": "FCF yield $185 (FY28 revenue $19.1B, 38%, 3.25%, +$10.5 cash)", "to": "FCF yield $191 (FY28 revenue $19.2B, 38%, 3.25%, +$15 cash)", "why": "Horizon cash correction. Kept 38% margin but documented it against H1 OCF of 48% incl. / ~22% excl. the deferred build, per supervisor challenge; not raised to the supervisor's ~40% because of weak ex-deferred conversion"},
+    {"item": "fair value", "from": "196", "to": "200", "why": "EPS and horizon-cash corrections. Stays below the supervisor's $209 because I keep 17% FY28 growth and a lower FCF margin"},
+    {"item": "a scenario", "from": "bear $120 / 0.20; base $215 / 0.55; bull $310 / 0.25", "to": "bear $125 / 0.20; base $215 / 0.55; bull $295 / 0.25", "why": "Bull capped because starting multiples above 38x NTM have almost no precedent in ANET's history (conditioned base rate). Bear lifted slightly on higher consensus EPS and horizon cash"},
+    {"item": "P(close >= K)", "from": "K=357/408/510: 0.125/0.075/0.025", "to": "0.099/0.054/0.016", "why": "Supervisor flagged a right tail 2-4x the other agents'. The valuation-conditioned base rate (30-38x start: median +13%, 90th pct +46%) supports trimming"},
+    {"item": "P(close >= K)", "from": "K=102-245: 0.925/0.87/0.795/0.71/0.62/0.535/0.455/0.38", "to": "0.94/0.878/0.794/0.70/0.60/0.51/0.423/0.344", "why": "Lower median (~$205 vs ~$212) now that unconditioned momentum base rates are dropped; left tail slightly thinner on higher EPS base and cash; sigma trimmed 0.46 to 0.41 core"},
+    {"item": "P(close >= K)", "from": "1-month sigma 15%, centre ~$205", "to": "1-month sigma ~14%, centre ~$205", "why": "Supervisor's measured 20/40-day realized vol of 40-45%; Q3 print (likely Nov 3) confirmed outside window"},
+    {"item": "a fact", "from": "Q3 report 2026-11-02; November analyst day", "to": "Unannounced, likely Tue 2026-11-03; 2025 analyst day was Sep 11, none announced for 2026", "why": "Supervisor Q3-date resolution and discounted claims"},
+    {"item": "thesis break", "from": "140 (~24x NTM on old EPS)", "to": "140 (~27x FY27 consensus $5.20)", "why": "Level unchanged; rationale updated to the corrected EPS base"}
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "symbol": "LAES", "agent_id": "agent_4", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 0.61, "p": 0.98}, {"K": 0.97, "p": 0.95}, {"K": 1.21, "p": 0.90}, {"K": 1.46, "p": 0.82},
+    {"K": 1.70, "p": 0.72}, {"K": 1.94, "p": 0.61}, {"K": 2.18, "p": 0.52}, {"K": 2.42, "p": 0.45},
+    {"K": 2.67, "p": 0.38}, {"K": 2.91, "p": 0.32}, {"K": 3.27, "p": 0.26}, {"K": 3.64, "p": 0.21},
+    {"K": 4.24, "p": 0.15}, {"K": 4.85, "p": 0.11}, {"K": 6.06, "p": 0.06}
+  ],
+  "ladder_1m": [
+    {"K": 1.94, "p": 0.80}, {"K": 2.06, "p": 0.72}, {"K": 2.18, "p": 0.64}, {"K": 2.26, "p": 0.59},
+    {"K": 2.33, "p": 0.55}, {"K": 2.42, "p": 0.49}, {"K": 2.52, "p": 0.44}, {"K": 2.59, "p": 0.40},
+    {"K": 2.67, "p": 0.36}, {"K": 2.79, "p": 0.30}, {"K": 2.91, "p": 0.25}
+  ],
+  "one_month_reasoning": "No scheduled earnings in the 2026-10-02 to 2026-11-01 window: H1 results came out 2026-09-15 (stock fell ~5.6% on later-than-hoped post-quantum revenue), and full-year results are normally reported in early spring. Possible unscheduled items: a Q3 business/metrics update or PQC certification news (CC EAL5+/FIPS 140-3/TCG were guided 'through Q4 2026'). These are not dated and could go either way. Alternative signals are neutral. Short interest is falling (12.05M on Aug 14, 10.96M on Sep 15, ~2.2 days to cover) and the squeeze model rates it 'low', so there is no squeeze setup. Borrow costs ~15%. Retail quantum sentiment is cooling. Insiders have sold small amounts with no buys. Cash of about $2.1/share sits just under the price and should soften the downside. So I use a near-symmetric lognormal around $2.41 with monthly sigma ~0.28 (100% annual vol / 3.5) and slightly more mass held above $1.94 because of the cash floor.",
+  "fair_value": {
+    "value": 2.45,
+    "method": "50/50 blend of (a) cash-adjusted EV/sales: 4x an estimated FY2027 revenue of $45M = $180M EV, plus ~$430M forward net cash and investments, over ~235M share-equivalents = $2.60; and (b) a sum of the parts that haircuts cash for burn and control/governance discount: $2.30. Net cash (~$495M liquidity vs ~$542M market cap) dominates the value.",
+    "methods": [
+      {"name": "EV/sales", "value": 2.60, "weight": 0.5,
+       "inputs": "FY2027 revenue $45M x 4.0x = $180M EV; plus forward net cash/investments ~$430M; / ~235M share-equivalents",
+       "inputs_detail": [
+         {"input": "FY2026 revenue guidance", "value": "$27-36M", "basis": "guidance", "source_ids": [1, 2], "derivation": ""},
+         {"input": "FY2027 revenue", "value": "$45M", "basis": "estimate", "source_ids": [1, 3, 12], "derivation": "Midpoint FY2026 ~$31M (H1 $11.2M plus a back-half ramp). Grown ~45% on IC'Alps ASIC, PKI and first QS7001/QVault TPM production revenue. Management says 'more meaningful' PQC contributions come in 2027, against a $225M pipeline through 2029. This is set below the earlier >$50M FY27 aspiration because PQC revenue slipped."},
+         {"input": "EV/sales multiple", "value": "4.0x", "basis": "judgment", "source_ids": [8, 10, 1], "derivation": "The company is a sub-scale secure-chip maker with ~48% gross margin and a ~$60M/yr EBITDA loss. A multiple of 3-5x is typical for loss-making small security semis. At ~1x EV/2026 sales today, the market prices the business almost at zero, and quantum names are de-rating (source 10). Midpoint 4x assumes partial execution."},
+         {"input": "Liquidity at 2026-06-30", "value": "$486.1M cash + restricted; ~$495M incl. short-term investments; debt ~$0.7M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Forward net cash + investments (~mid-2027)", "value": "~$430M", "basis": "estimate", "source_ids": [1], "derivation": "$495M less ~$60M annualised EBITDA burn (H1 EBITDA loss $29.5M x2). Less about half of the ~$60M+ further SEALQUANTUM/Quantix commitments being deployed, valued at ~50%. Rounded."},
+         {"input": "Share-equivalents", "value": "~235M", "basis": "estimate", "source_ids": [1], "derivation": "223.4M ordinary shares plus 1.5M F shares, which carry ~5x per-share economics (EPS -$0.64 vs -$0.13) for ~7.5M equivalents, = ~231M. Add ~4M for equity comp/ATM. The March 2026 warrants are out of the money."}
+       ]},
+      {"name": "SOTP", "value": 2.30, "weight": 0.5,
+       "inputs": "Forward cash $1.85/sh x 85% = $1.57; operating business 3x FY2027 sales $45M = $135M = $0.57/sh; quantum fund/strategic investments ~$35M at 50% = $0.15/sh",
+       "inputs_detail": [
+         {"input": "Forward cash per share", "value": "$1.85", "basis": "estimate", "source_ids": [1], "derivation": "($495M - $60M burn - ~$0M debt - ~$70M deployed into investments) / 235M share-equivalents"},
+         {"input": "Cash haircut", "value": "15%", "basis": "judgment", "source_ids": [1, 8, 9], "derivation": "WISeKey controls the vote (F shares). G&A is heavy ($23.1M in H1), the company keeps acquiring and investing (Miraex, Wecan, $200M SEALQUANTUM allocation), insiders are net sellers and the history of dilution is long. The market has recently priced LAES at or below cash (52w low $1.99 vs ~$2.1 cash/share)."},
+         {"input": "Operating business EV/sales", "value": "3x FY2027 sales of $45M", "basis": "judgment", "source_ids": [1, 3, 12], "derivation": "The low end of the 3-5x range, used for a conservative SOTP. The revenue estimate is the same as in method 1."},
+         {"input": "Strategic investments value", "value": "~$35M at 50%", "basis": "estimate", "source_ids": [1], "derivation": ">$60M committed of $200M SEALQUANTUM allocation (part already reflected in cash deployment), valued at 50% for illiquidity/venture risk"}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 1.50, "prob": 0.30, "story": "PQC certifications or production slip into 2028 and FY2026 lands at the low end (~$27M). Burn continues and cash keeps flowing into acquisitions and sovereign fab/quantum investments. Quantum sentiment keeps fading, and the stock trades at a 20-30% discount to shrinking net cash (~$1.85/sh)."},
+    "base": {"price": 2.40, "prob": 0.45, "story": "FY2026 ~$30M, and FY2027 ~$40-50M with first QS7001/QVault TPM production revenue. Burn holds at ~$60M/yr. The stock trades around cash plus a modest value for the operating business."},
+    "bull": {"price": 5.00, "prob": 0.25, "story": "Certifications land in Q4 2026 to Q1 2027 and named design wins (TPM/IoT/defense) convert pipeline. Revenue clearly exceeds $50M in 2027, and a quantum/PQC narrative rally (regulatory PQC deadlines, quantum hardware headlines) re-rates the stock back toward the 2025-26 highs, as it has done before (52w high $8.71)."}
+  },
+  "thesis_break_price": 1.40,
+  "thesis_break_reason": "At ~$1.40 the market cap (~$320M) would be ~35% below current liquidity and ~25% below my forward net cash. That would most likely mean something fundamental: a large cash-consuming acquisition or write-down of the quantum/fab investments, a much faster burn, a governance problem at the WISeKey-controlled structure, or abandonment of the PQC product roadmap. Ordinary volatility alone would not take it there.",
+  "catalysts": [
+    {"date": "2026-Q4", "event": "QS7001 / QVault TPM CC EAL5+, FIPS 140-3 and TCG certifications (guided 'through Q4 2026')", "direction": "+"},
+    {"date": "2026-Q4", "event": "First production/commercial revenue of PQC chips (guided late H2 2026)", "direction": "+"},
+    {"date": "2027-01", "event": "Preliminary FY2026 revenue vs $27-36M guidance; FY2027 guidance", "direction": "?"},
+    {"date": "2027-03/04", "event": "Audited FY2026 results (20-F) and Q4 call", "direction": "?"},
+    {"date": "2027-07", "event": "Preliminary H1 2027 revenue", "direction": "?"},
+    {"date": "2027-09", "event": "H1 2027 results; cash burn and investment-deployment update", "direction": "?"},
+    {"date": "ongoing", "event": "Further equity raises, acquisitions, or SEALQUANTUM/Quantix fund deployments", "direction": "-"},
+    {"date": "ongoing", "event": "Quantum-sector sentiment swings (hardware milestones, PQC mandates)", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether PQC chip revenue really starts in 2027 after repeated slips",
+    "How much of the ~$495M cash is consumed by burn, acquisitions and quantum investments, versus staying as shareholder value",
+    "Dilution: share count rose from 191.5M to 223.4M in H1 2026 alone",
+    "Sentiment-driven beta to the quantum basket. It can produce 2-3x moves either way, independent of fundamentals",
+    "Control by WISeKey via F shares and related-party flows"
+  ],
+  "reasoning": "The stock is a hype-cycle quantum/PQC name that has de-rated to roughly its cash. At $2.425 the market cap is ~$542M on 223.4M ordinary shares (~$560M including F-share equivalents), against ~$495M of liquidity and almost no debt, so the enterprise value is only ~$50-65M for a business guiding $27-36M of 2026 revenue at ~48% gross margin. That is the core fact, and it anchors the distribution: cash gives a soft floor, and history shows the stock can trade below it (52w low $1.99) because burn (~$60M/yr EBITDA loss), heavy G&A, constant acquisitions/investments and WISeKey control justify a discount. Alternative-lane signals are neutral to slightly negative. Short interest fell for four straight settlements to ~11M shares (~2.2 days to cover), and the squeeze risk is rated low. Borrow costs ~15%, which is elevated but not extreme. Insiders sold ~$115k over 3 months with no buys. Retail quantum enthusiasm is cooling, with peers down YTD, although Stocktwits polls are still bullish. Prediction markets put a cryptographically relevant quantum computer as unlikely before 2027 (Kalshi ~7% before 2027 per secondary report; Manifold 15% for an RSA break by 2030, a thin market of 10 holders), so no 'Q-day' panic catalyst is likely inside the horizon. PQC demand will be driven by compliance deadlines rather than by an imminent threat. I could not fetch X/Twitter, Kalshi (HTTP 429), Google Trends or job-posting data, so the alternative-data coverage is limited. Fair value is ~$2.45, a blend of EV/sales at $2.60 and a haircut SOTP at $2.30, so I set the median slightly below spot (~$2.30) for burn and dilution. The right tail is fat because the name re-rates violently on quantum news (52w high $8.71), giving ~25% for the bull case near $5. The left tail is compressed relative to a pure 100%-vol lognormal by the cash backing; I put ~18% below $1.46 and ~5% below $0.97. Scenario-weighted mean is ~$2.78 against a median of ~$2.30.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "SEALSQ Corp Form 6-K Ex.99.1: H1 2026 financial and operational results", "url": "https://www.sec.gov/Archives/edgar/data/0001951222/000121390026099027/ea030520701ex99-1.htm", "date": "2026-09-15", "type": "filing", "in_lane": false},
+    {"title": "SEALSQ Reports H1 2026 Financial and Operational Results; Revenue Increases 131% to $11.2 Million; FY2026 Guidance Reaffirmed", "url": "https://finviz.com/news/391242/sealsq-reports-h1-2026-financial-and-operational-results-revenue-increases-131-to-112-million-fy2026-guidance-reaffirmed", "date": "2026-09-15", "type": "company", "in_lane": false},
+    {"title": "Transcript: SEALSQ H1 earnings call highlights", "url": "https://www.marketbeat.com/instant-alerts/transcript-sealsq-h1-earnings-call-highlights-2026-09-15/", "date": "2026-09-15", "type": "press", "in_lane": false},
+    {"title": "LAES borrow fee, short interest and squeeze model (Curved Trading)", "url": "https://curvedtrading.com/stocks/laes/", "date": "2026-10-02", "type": "alt-data", "in_lane": true},
+    {"title": "LAES short interest history (Equibles)", "url": "https://equibles.com/stocks/laes/shortinterest", "date": "2026-09-15", "type": "alt-data", "in_lane": true},
+    {"title": "Manifold: Will a quantum computer use Shor's algorithm to break a public-key cryptosystem by 2030? (15%, 16 trades, 10 holders)", "url": "https://manifold.markets/event/will-a-quantum-computer-successfull", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi: useful quantum computer market (~7% before 2027, 36% before 2030 per search snippet; page returned HTTP 429, volume not verified)", "url": "https://kalshi.com/markets/kxquantum/quantum/kxquantum", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Is LAES a Buy or a Sell? The Bull and Bear Case (Walnut Invest)", "url": "https://walnutinvest.com/stocks/laes/is-it-a-buy-or-sell", "date": "2026-07", "type": "newsletter", "in_lane": true},
+    {"title": "MarketBeat: SEALSQ VP sells shares; insider and analyst summary", "url": "https://www.marketbeat.com/instant-alerts/sealsq-nasdaqlaes-vp-sells-15000-shares-2026-08-05/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "IONQ, RGTI, QBTS Stocks Lag In 2026, But Retail Traders Continue To Buy The Quantum Vision (Stocktwits)", "url": "https://stocktwits.com/news-articles/markets/equity/ionq-rgti-qbts-stocks-lag-in-2026-but-retail-traders-continue-to-buy-the-quantum-vision/cZo4LFeRJ4z", "date": "2026", "type": "social", "in_lane": true},
+    {"title": "SEALSQ reports H1 2026 financial results (Quantum Computing Report)", "url": "https://quantumcomputingreport.com/sealsq-reports-h1-2026-financial-results-revenue-surges-131-to-11-2m-486m-cash-balance-and-post-quantum-hardware-progress/", "date": "2026-09", "type": "trade", "in_lane": false},
+    {"title": "SEALSQ Q4 earnings call highlights (QS7001/QVault pipeline ~$60M, ~115 prospects)", "url": "https://www.marketbeat.com/instant-alerts/sealsq-q4-earnings-call-highlights-2026-04-01/", "date": "2026-04-01", "type": "press", "in_lane": false},
+    {"title": "Benzinga LAES sentiment page (analyst consensus ~$5, 2 analysts)", "url": "https://www.benzinga.com/quote/LAES/sentiment", "date": "2026-10", "type": "social", "in_lane": true},
+    {"title": "Manifold: Will quantum computing break RSA (related market cluster)", "url": "https://manifold.markets/event/will-quantum-computing-break-rsa-en", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Guest Post: The Polymarket Bet Quantum Could Break (The Quantum Insider)", "url": "https://thequantuminsider.com/2026/07/09/guest-post-the-polymarket-bet-quantum-could-break/", "date": "2026-07-09", "type": "newsletter", "in_lane": true}
+  ]
+}

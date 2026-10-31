@@ -1,0 +1,106 @@
+{
+  "symbol": "FCX", "agent_id": "agent_1", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 17.64, "p": 0.995}, {"K": 28, "p": 0.975}, {"K": 35, "p": 0.94}, {"K": 42, "p": 0.88},
+    {"K": 49, "p": 0.795}, {"K": 56, "p": 0.70}, {"K": 64, "p": 0.585}, {"K": 71, "p": 0.485},
+    {"K": 78, "p": 0.395}, {"K": 85, "p": 0.315}, {"K": 95, "p": 0.225}, {"K": 106, "p": 0.155},
+    {"K": 124, "p": 0.08}, {"K": 141, "p": 0.04}, {"K": 176, "p": 0.01}
+  ],
+  "ladder_1m": [
+    {"K": 56.46, "p": 0.945}, {"K": 59.99, "p": 0.875}, {"K": 63.52, "p": 0.765}, {"K": 65.64, "p": 0.69},
+    {"K": 67.76, "p": 0.60}, {"K": 70.58, "p": 0.49}, {"K": 73.40, "p": 0.375}, {"K": 75.52, "p": 0.30},
+    {"K": 77.64, "p": 0.235}, {"K": 81.17, "p": 0.15}, {"K": 84.70, "p": 0.09}
+  ],
+  "one_month_reasoning": "The main in-window event is Q3 2026 results. The date is not yet announced (the latest SEC filings are the Sep 8 PTFI revolver 8-K and the Sep 24 Form SD), but FCX has reported Q3 on Oct 19-23 every year and reports on Thursdays, so ~Thu Oct 22 is most likely. Consensus Q3 EPS is $0.74 (corrected from the $0.77 I cited in round 1). Guidance is 750M lb Q3 copper sales at $2.00/lb unit cost with a $6.00 H2 deck, while copper traded mostly above that in the quarter. That points to a modest price-driven beat, but FCX fell on its Q2 beat, so I take no strong earnings view. The Section 232 refined-copper tariff is still undecided after the notional window lapsed on Sep 28. Because the front-month COMEX premium is already ~zero (SMM, Sep 29), a 'no tariff' headline would do less near-term damage than I assumed in round 1, so I remove most of my small downside drag. Net: roughly symmetric lognormal around $70.58 at ~13.7% monthly vol (48%/3.5), with P(>=spot) at 0.49.",
+  "fair_value": {
+    "value": 68.0,
+    "method": "Blend of attributable P/E on 2027E EPS ~$3.98 (a $6.15 deck gives ~$17.0B EBITDA; 32% tax, 40% NCI, 1.444B shares) x 17x = $68, an FCF-yield value of $70 (62% attributable), a mid-cycle P/E of $62 at $5.25 copper and a 2028 full-Grasberg P/E of $70. Weighted 45/30/15/10 this gives ~$68, a little below the $70.58 spot and ~4% below the $4.16 consensus EPS.",
+    "methods": [
+      {"name": "P/E", "value": 68.0, "weight": 0.45,
+       "inputs": "2027E EPS $3.98 x 17x. EPS = (EBITDA $17.0B at $6.15 Cu - D&A ~$2.5B - interest ~$0.4B) x (1-32% tax) x (1-40% NCI) / 1.444B shares",
+       "inputs_detail": [
+         {"input": "2027 EBITDA sensitivity", "value": "$13B at $5/lb Cu, $20B at $7/lb", "basis": "guidance", "source_ids": [2], "derivation": ""},
+         {"input": "Copper price assumption (2027 avg)", "value": "$6.15/lb", "basis": "judgment", "source_ids": [11, 12, 6], "derivation": "Spot is ~$6.56 (ATH $6.85 in Sept). The front-month COMEX-LME spread is ~zero (SMM, Sep 29), so spot is an LME-level price, not a tariff artifact. I still assume partial mean reversion, toward Goldman-type ~$5.2-5.5 fair values, and the risk that ~770k st of COMEX stocks returns to the market. That puts the deck at $6.15, up from $6.00 in round 1."},
+         {"input": "2027 EBITDA", "value": "$17.0B", "basis": "estimate", "source_ids": [2], "derivation": "Linear interpolation of management's range: $13B + 1.15 x $3.5B per $1/lb. In round 1 I used the $390M/$0.10 point sensitivity, which is steeper than the $13-20B endpoints imply."},
+         {"input": "Tax rate", "value": "32%", "basis": "estimate", "source_ids": [1], "derivation": "The 2026 guided ETR is ~30% (Peru 40%, Indonesia 36%, US 7%; Q2 release footnote d). A higher Indonesian mix in 2027 moves it to ~32%."},
+         {"input": "Noncontrolling interest share of net income", "value": "40%", "basis": "estimate", "source_ids": [1, 3], "derivation": "NCI took 33% of H1 2026 net income ($913M of $2,778M) with Grasberg impaired, and 52% of H1 2025 ($1,216M of $2,340M) at full rate. With Grasberg at ~80% on average in 2027 and higher Americas margins at $6 copper, I set 40% (up from 38%)."},
+         {"input": "Diluted shares", "value": "1.444B", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "P/E multiple", "value": "17x", "basis": "judgment", "source_ids": [8, 10], "derivation": "At $70.58 the stock trades at ~17x consensus 2027 EPS of $4.16 (17 analysts, range $2.62-5.69). Volume growth into 2028 supports a mid-to-high-teens multiple, trimmed because these are near-peak-price earnings."}
+       ]},
+      {"name": "FCF yield", "value": 70.0, "weight": 0.30,
+       "inputs": "2027 OCF ~$12.95B at $6.15 Cu - capex $4.8B = $8.15B; x 62% attributable = $5.05B = $3.50/sh; at a 5% yield = $70",
+       "inputs_detail": [
+         {"input": "2027 operating cash flow", "value": "$12.95B at $6.15 Cu", "basis": "estimate", "source_ids": [2], "derivation": "Interpolated from management's $9.5B at $5 to $15.5B at $7 ($3.0B per $1/lb)"},
+         {"input": "2027 capex", "value": "$4.8B", "basis": "guidance", "source_ids": [2], "derivation": ""},
+         {"input": "Attributable share of FCF", "value": "62%", "basis": "estimate", "source_ids": [1, 3, 10], "derivation": "Cut from 65% after the supervisor's check: this makes it consistent with the ~38-40% NCI earnings share in my P/E bridge (PTFI 48.76% and Cerro Verde ~55.7% owned)"},
+         {"input": "Required FCF yield", "value": "5%", "basis": "judgment", "source_ids": [8], "derivation": "Consistent with the ~17x consensus-EPS framework, and typical for a large-cap copper producer at elevated prices"}
+       ]},
+      {"name": "P/E", "value": 62.0, "weight": 0.15,
+       "inputs": "Mid-cycle EPS ~$3.11 at ~$5.25/lb Cu x 20x",
+       "inputs_detail": [
+         {"input": "Mid-cycle copper", "value": "$5.25/lb", "basis": "judgment", "source_ids": [6], "derivation": "Goldman fair value of ~$11,500/t (~$5.22/lb)"},
+         {"input": "Mid-cycle EPS", "value": "$3.11", "basis": "estimate", "source_ids": [2, 1], "derivation": "Same bridge at $5.25: EBITDA ~$13.9B, less $2.9B D&A and interest, 32% tax, 40% NCI, 1.444B shares"},
+         {"input": "Mid-cycle multiple", "value": "20x", "basis": "judgment", "source_ids": [8], "derivation": "A higher multiple on normalized (non-peak) earnings, which lands near the low end of the consensus EPS range"}
+       ]},
+      {"name": "P/E", "value": 70.0, "weight": 0.10,
+       "inputs": "2028E full-Grasberg EPS ~$4.4 x 16x",
+       "inputs_detail": [
+         {"input": "2028 EPS", "value": "$4.4", "basis": "estimate", "source_ids": [1, 2, 10], "derivation": "Grasberg approaches full capacity by end-2027 (Q2 release). About 8-10% more copper and gold volume than 2027 at the same $6.15 deck, partly offset by an NCI share near 42%"},
+         {"input": "Multiple", "value": "16x", "basis": "judgment", "source_ids": [8, 10], "derivation": "One turn below the 2027 multiple because this is one year further out and at full volume"}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 45.0, "prob": 0.25, "story": "LME retreats toward ~$4.75-5.00/lb: demand slows and, if the tariff is dropped, ~770k st of COMEX stocks returns to the global market (the front-month COMEX premium is already gone, so the downside runs through LME, not a COMEX-LME convergence). A Grasberg ramp setback (PB2/3 capped at ~60% until the ore-loading fix) or adverse IUPK terms add to it. 2027 EPS ~$2.8 at 16x."},
+    "base": {"price": 71.0, "prob": 0.5, "story": "Grasberg reaches ~80% by mid-2027 and 2027 copper sales rise >20% (>=3.72B lb) with gold up >50%. Copper averages ~$5.9-6.4 and the IUPK extension is granted. EPS ~$4.0 in 2027 and ~$4.4 in 2028, and the market pays ~16-17x."},
+    "bull": {"price": 100.0, "prob": 0.25, "story": "Mine disruptions keep supply short and copper holds above $7/lb (EBITDA >$20B). The leach push toward 800Mlb is validated and Bagdad goes ahead. EPS ~$5.5 x 18x."}
+  },
+  "thesis_break_price": 46.0,
+  "thesis_break_reason": "Below ~$46 (~35% down) the stock would be discounting LME copper sustainably under ~$5/lb (~$13B EBITDA, ~$2.9-3.0 EPS) or a failure of the Grasberg recovery or the IUPK extension (economic interest already steps down to ~37% from 2042). That would break the volume-plus-price thesis fundamentally; it is not ordinary 48%-vol noise.",
+  "catalysts": [
+    {"date": "2026-10-22", "event": "Q3 2026 results (estimated date, not yet announced; consensus EPS $0.74) and an early look at 2027", "direction": "?"},
+    {"date": "2026 Q4", "event": "Indonesia IUPK amendment and extension beyond 2041 (management expected a decision in 2026)", "direction": "+"},
+    {"date": "2026 Q4", "event": "Bagdad expansion final investment decision (~$4.5B capex), planned for year-end", "direction": "?"},
+    {"date": "2026-11", "event": "US midterms; the Section 232 refined-copper tariff (15% from Jan 2027, 30% in 2028) is still undecided after the Sep 28 window lapsed", "direction": "?"},
+    {"date": "2027-01", "event": "Q4 2026 results and 2027 volume, cost and capex guidance", "direction": "?"},
+    {"date": "2027 mid-year", "event": "Grasberg reaching the 80% capacity milestone and the PB2/3 ore-loading fix", "direction": "+"},
+    {"date": "2027-07", "event": "Q2 2027 results", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "LME copper path: spot ~$6.56 is now essentially LME-level; the risk is an LME retreat and COMEX inventory (~770k st) returning to the market if the tariff is dropped",
+    "Execution and safety of the Grasberg Block Cave ramp after the 2025 mud rush (PB2/3 capped at ~60% until mid-2027)",
+    "Timing and terms of the IUPK extension (FCX economic interest falls to ~37% from 2042)",
+    "Minority leakage: NCI took 33% of H1 2026 net income and 52% of H1 2025 net income, and it rises as Grasberg recovers",
+    "Cost inflation in energy, sulfur and acid; capex creep (2027 capex $4.8B; Bagdad)"
+  ],
+  "reasoning": "Round 2 changes are small and the view is unchanged: no valuation edge at spot. The supervisor confirmed consensus 2027 EPS at $4.16 (17 analysts), in line with my bridge, and corrected Q3 consensus to $0.74. It showed that the front-month COMEX tariff premium has collapsed (Oct-26 COMEX $47/t below LME 3M on Sep 29), so I stop treating spot as a tariff artifact and restate the tariff risk as LME tightness from US stock hoarding that could reverse. That lifts my 2027 deck from $6.00 to $6.15. Re-reading the Q2 release, NCI took 52% of H1 2025 net income at full Grasberg, so I raise my 2027 NCI share to 40% and cut the FCF attributable share to 62%, as the supervisor suggested. I also correct my EBITDA interpolation to the $13-20B endpoints ($3.5B per $1/lb). The net effect is 2027 EPS of ~$3.98 (vs $4.10), P/E $68, FCF $70, mid-cycle $62, plus a new 2028 full-Grasberg leg at $70, for a blended fair value of ~$68 (vs $69). This is slightly below spot and consensus; I stay a touch more conservative than consensus on NCI leakage. I agree with the supervisor's $5.3B net debt, but my methods are attributable P/E and FCF, so it does not enter directly. Distribution: median ~$70, lognormal sigma ~0.42 with a slightly fat left tail. The upper body is trimmed by ~0.005 to reflect the lower fair value; the lower tail is unchanged. Scenarios $45/$71/$100 at 25/50/25 give a mean of ~$72. For the 1-month ladder I removed most of the downside drag because the tariff-premium unwind has already happened at the front of the curve. Extra research was limited to SEC EDGAR (the filing index and the Q2 release)."
+  ,
+  "lane": "primary",
+  "sources": [
+    {"title": "Freeport-McMoRan Q2 2026 results press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0000831259/000083125926000033/a2q2026exhibit991.htm", "date": "2026-07-23", "type": "filing", "in_lane": true},
+    {"title": "Freeport-McMoRan Q2 2026 earnings call transcript", "url": "https://stockanalysis.com/stocks/fcx/transcripts/653699-q2-2026/", "date": "2026-07-23", "type": "company", "in_lane": true},
+    {"title": "Freeport-McMoRan Q2 2026 Form 10-Q", "url": "https://www.sec.gov/Archives/edgar/data/831259/000083125926000036/fcx-20260630.htm", "date": "2026-08-06", "type": "filing", "in_lane": true},
+    {"title": "Freeport-McMoRan Eyes Grasberg Ramp-Up, U.S. Copper Growth From Leaching (Jefferies Industrials Conference remarks)", "url": "https://www.marketbeat.com/instant-alerts/event-freeport-mcmoran-eyes-grasberg-ramp-up-us-copper-growth-from-leaching-2026-09-10/", "date": "2026-09-10", "type": "company", "in_lane": true},
+    {"title": "Freeport-McMoRan Eyes Leach Breakthrough, Bagdad Growth and Grasberg Recovery (Morgan Stanley conference remarks)", "url": "https://marketbeat.com/instant-alerts/event-freeport-mcmoran-eyes-leach-breakthrough-bagdad-growth-and-grasberg-recovery-2026-09-16/?amp=", "date": "2026-09-16", "type": "company", "in_lane": true},
+    {"title": "Copper Prices: Record High Then 4.7% Crash on Tariff Risk", "url": "https://discoveryalert.com/news/copper-prices-record-crash-tariff-september-2026/", "date": "2026-09-10", "type": "press", "in_lane": false},
+    {"title": "Copper Hits a Record $6.83 a Pound as Mine Disasters Choke Supply", "url": "https://startupfortune.com/copper-hits-a-record-683-a-pound-as-mine-disasters-choke-supply/", "date": "2026-09-22", "type": "press", "in_lane": false},
+    {"title": "FCX analyst estimates (Yahoo Finance, per supervisor: 2027 EPS $4.16, Q3 $0.74)", "url": "https://finance.yahoo.com/quote/FCX/analysis/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Freeport-McMoRan at Jefferies Industrials Conference: growth bets take shape (transcript summary)", "url": "https://www.investing.com/news/transcripts/freeportmcmoran-at-jefferies-industrials-conference-growth-bets-take-shape-93CH-4896429", "date": "2026-09-10", "type": "company", "in_lane": true},
+    {"title": "Freeport-McMoRan Form 8-K: PTFI revolving credit facility amended, maturity extended to 2031", "url": "https://www.sec.gov/Archives/edgar/data/831259/000083125926000038/fcx-20260901.htm", "date": "2026-09-08", "type": "filing", "in_lane": true},
+    {"title": "SMM Analysis: US copper tariff remains unresolved; near-month arbitrage fades", "url": "https://news.metal.com/newscontent/104139377-smm-analysis-us-copper-tariff-remains-unresolved-near-month-arbitrage-fades-long-term-siphoning-expectations-resurface", "date": "2026-09-29", "type": "trade", "in_lane": false},
+    {"title": "Copper price (Trading Economics)", "url": "https://tradingeconomics.com/commodity/copper", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "FCX SEC EDGAR filing index (no Q3 date 8-K yet)", "url": "https://data.sec.gov/submissions/CIK0000831259.json", "date": "2026-09-30", "type": "filing", "in_lane": true}
+  ],
+  "revisions": [
+    {"item": "fair value", "from": "69.0", "to": "68.0", "why": "Q2 release shows NCI took 52% of net income at full Grasberg (H1 2025), so I raised NCI to 40%. I also corrected the EBITDA interpolation to the $13-20B endpoints, partly offset by a higher $6.15 deck and a new 2028 leg."},
+    {"item": "a method", "from": "P/E 2027: EPS $4.10 x 17x = $70 (weight 0.5)", "to": "EPS $3.98 x 17x = $68 (weight 0.45)", "why": "NCI 38%->40%, EBITDA $16.9B->$17.0B at a $6.15 deck (interpolation fix), tax kept at 32% (supervisor confirmed the 30% 2026 ETR)"},
+    {"item": "a method", "from": "FCF yield $69 at 65% attributable, $6.00 Cu", "to": "$70 at 62% attributable, $6.15 Cu", "why": "Supervisor feedback: 62% is more consistent with my own NCI bridge; deck raised because the front-month tariff premium is gone"},
+    {"item": "a method", "from": "Mid-cycle P/E $66 (EPS $3.30)", "to": "$62 (EPS $3.11)", "why": "Same NCI and interpolation corrections applied at $5.25 copper"},
+    {"item": "a method", "from": "none", "to": "2028 full-Grasberg P/E $70 (weight 0.10)", "why": "Supervisor key driver: ~16x a full-Grasberg 2028 is how the market frames FCX"},
+    {"item": "a fact", "from": "Q3 consensus EPS ~$0.77", "to": "$0.74", "why": "Supervisor (Yahoo, 11 analysts); my source was an unnamed secondary one"},
+    {"item": "a fact", "from": "Spot includes a ~$2,800/t COMEX tariff premium (Goldman)", "to": "Front-month COMEX-LME spread ~zero; the risk is LME tightness from ~770k st of COMEX stocks", "why": "SMM Sep 29 finding in the supervisor's file"},
+    {"item": "a scenario", "from": "bear: tariff premium unwinds; base $72", "to": "bear: LME retreat plus COMEX stock overhang; base $71", "why": "Tariff risk re-expressed as the supervisor asked; base trimmed for the lower EPS bridge"},
+    {"item": "P(close >= K)", "from": "K=49-95: 0.80/0.705/0.59/0.49/0.40/0.32/0.23", "to": "0.795/0.70/0.585/0.485/0.395/0.315/0.225", "why": "Fair value down $1 to $68; small trim to the body"},
+    {"item": "P(close >= K)", "from": "1-month P(>=70.58) 0.475", "to": "0.49", "why": "The front-month tariff premium has already unwound, so a no-tariff outcome carries less near-term downside; Q3 at a likely price-driven beat vs $0.74"}
+  ]
+}

@@ -1,0 +1,556 @@
+{
+ "symbol": "CRWV",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "round": 4,
+ "disagreements": [
+  {
+   "topic": "Refresh capex intensity (caller note 1)",
+   "positions": "The worry was that agent_2 refreshes at 0.85x of revenue while the others refresh at ~2.4-2.6x. That is not the case. All five refresh at a fraction of k: agent_1 0.85k (k 2.5/2.7 = 2.1-2.3x revenue), agent_2 0.85k (code: amt = MW x 0.85 x k x then-current revenue per MW = 2.04x at k 2.4), agent_3 2.3x flat vs 2.6x growth (0.88k), agent_4 0.83k plus the DC at 15 yrs, agent_5 0.85k. The ~2.4-2.6x figures are new-build k, not refresh.",
+   "resolution": "Refresh at ~0.85 of new-build k is supported by the 10-Q. At 6/30/26, in-service gross PP&E is $40.7B: technology equipment $33.8B and software $0.9B (85%), against data-center equipment and leasehold improvements $6.0B (15%). The reused share is shells, power and cooling. At the fleet k of ~2.6x ($40.7B in-service gross over ~1.5 GW = ~$27M/MW against ~$10.3M/MW of exit-2026 revenue per MW), refresh is ~2.2x of restored revenue. All five sit at 2.0-2.3x, so there is nothing to settle on refresh. The real gap is agent_2's lower new-build k grid (2.1/2.4/2.7 at 25/45/30). The 25% weight on 2.1x is not supported by fleet evidence (only the undisclosed-volume $40M/MW 3-6 month deals point that low), so I restate agent_2 on 2.3/2.6/2.7 at 25/50/25: floored split $12.8 -> $3.8, central -$22.9.",
+   "evidence": "CoreWeave 10-Q Q2-26 PP&E note (fetched); agent_2 model.py (run); 9/17/26 release via Yahoo (the $40M/MW is annualised revenue on ~3-6 month contracts; MW and delivery not disclosed)."
+  },
+  {
+   "topic": "Discount rate on CoreWeave's own lease obligations (caller note 2)",
+   "positions": "Agent_2 discounts all signed landlord rent at 9.25% (CoreWeave's unsecured credit), which lowered its split DCF ($12.8 -> $9.1 floored; central +$3.3 -> -$4.8). Agents 1, 3, 4 and 5 keep rent inside operating cash flow, at the contract rate during signed customer terms and at WACC after. Agent_1 uses 9% only for stranded rent in its stranding scenario.",
+   "resolution": "Not consistent with the brief or with agent_2's own WACC. The brief splits only customer-contract inflows from creditworthy counterparties and keeps everything else at WACC. More importantly, all five WACCs (11.5-11.6%) sit on a capital structure that excludes the $16.3B operating-lease liability, because adjusted EBITDA is after rent and net debt excludes leases. The equity beta inside that WACC already carries the lease leverage. Pulling rent out at a debt rate while keeping that WACC charges the lease risk twice. One treatment for all five: rent stays inside operating cash flow (agent_2 restated from its own model). As a cross-check, CoreWeave itself discounts its leases at a ~10% weighted average (10-Q), so the alternative would cost ~$8 a share unfloored and ~$1.5 floored on every model. I report that as a sensitivity, not the base.",
+   "evidence": "brief_r4_agent_N.md item 2; 10-Q Q2-26 lease note (weighted-average discount rate 10%, remaining term 12 yrs); agent_2 model.py run in three modes (single / split inflows / split + lease leg)."
+  },
+  {
+   "topic": "Capacity not tied to named sites (caller note 3)",
+   "positions": "Unnamed MW by agent: agent_1 710 energized (at 10/1) + 647 unattributed (2028) + 180 at named sites with undisclosed MW = 1,537; agent_2 585 energized + 866 contracted (to JV-2, NJ-JV, UK-SCOT, CA-SK, CA-CAL) = 1,451; agent_3 857 energized + ~610 = ~1,467; agent_4 772 energized + 764 contracted = 1,536; agent_5 a 500 MW US-OTHER plug plus allocations = ~1,570 inside a 3.94 GW fleet.",
+   "resolution": "Reconciled arithmetic: contracted power is 4.2 GW at 8/11 plus Niagara 85 MW = ~4,285 MW. Niagara was an LOI then, the company excludes LOIs (they sit in the >1.5 GW), and the definitive lease is from 9/16. Named MW are 990 energized + 1,759 to come = 2,749, so ~1,536 MW is unnamed. Of that, ~772 MW is energized by YE26 (>1.85 GW guide - 990 named - Cheyenne 88). About 0.25 GW more must come online in 2027, because named 2027 deliveries (Dalton P2 153, Helios II 260, PF1 150, Lancaster ~100, Kenilworth ~100-125, Bell SK phase 1) give ~2.75 GW against the >3 GW YE27 guide. The remaining ~0.5 GW lands in 2028 with Indonesia and Helios III. Agent_4 matches the total exactly. Agents 1, 2, 3 and 5 are ~85 MW short because they put Niagara inside 4.2 GW, and agents 2, 3 and 5 also double count it in PIPE-LAND. Agent_5 counts Kenilworth phase 2 and Hammond both inside its plug-filled fleet and as pipeline (~250 expected MW twice). Agent_1 is late on timing (all in 2028). Each effect is under $1 unfloored and ~$0 floored, so the DCF range stands. The allocation is fixed in the review rather than re-run.",
+   "evidence": "sites.md company totals and MW summary; Q2-26 call (LOIs excluded from contracted power; >3 GW active YE27); Blockfusion definitive lease 9/16/26 (via inventory); agent site_coverage rows summed."
+  },
+  {
+   "topic": "Floored vs unfloored DCF and the reporting basis (caller note 4)",
+   "positions": "Floored split DCFs as filed: $0 / $9.1 / $4.6 / $1.0 / $8.9. Agents 3 and 5 report gpu_life unfloored, agents 1, 2 and 4 floored. Unfloored figures mix grid means and central cells.",
+   "resolution": "Restated on one basis (Oct-27, rent inside operating cash flow, each agent's own grid, cell-level floor) by running each model: see round4_review.dcf_common_basis. Floored split $0 / $3.8 (agent_2 reconciled) / $4.6 / $1.0 / $8.9, mean $3.7. Unfloored grid means -$39.6 / -$19.2 / -$55.5 / -$37.1 / -$19.2. Central cells -$39.6 / -$22.9 / -$74.2 / -$42.3 / -$27.3. Same reading as round 3: at k ~2.6 the equity's cash-flow value is about zero, and all positive floored value sits in the k <= 2.3, 7-8-yr or shortage cells.",
+   "evidence": "Agents' model scripts run in the supervisor scratch (agent_2 model.py, agent_3 run4.py, agent_4 grid4.py, agent_5 r4.py); agent_1 reported both bases."
+  },
+  {
+   "topic": "Contract discount-rate anchors",
+   "positions": "IG rates: agent_4 7.0%, agents 1 and 2 7.5%, agent_3 8.0%, agent_5 8.1%. Blends 8.06-9.4%. All anchor on DDTL 4.0 (A3, SOFR+225, 2.00% + 3.14-yr UST = ~5.9% at pricing).",
+   "resolution": "The 3-yr UST was 3.81% on 3/31/26 and 4.91% on 10/1/26 (two independent official series agree), so the same loan today costs ~6.9%. With 1.2x DSCR the debt covers ~83% of the contract cash, and the ~17% residual carries completion and operating risk at an equity-like ~13%. That gives ~7.8-8.0% for IG cash (agents 3 and 5 are right; agents 1 and 2 are slightly low but within ~50bp). Agent_4's 7.0% leaves no residual premium and is too low, worth about -$0.5 a share. All five apply the rate only inside signed terms (RPO-based), with post-contract, pipeline and terminal at WACC, as the brief requires.",
+   "evidence": "DDTL 4.0 overview deck (via inventory and agents); US Treasury daily par yields and Fed H.15 (3-yr CMT 3.81% on 3/31/26, 4.91-5.00% on 9/30-10/1/26)."
+  },
+  {
+   "topic": "EV/EBITDA leg after site rebuild",
+   "positions": "agent_1 $92 (6.0x x $19.7B), agent_2 $100, agent_3 $69 (5.2x x $20.3B), agent_4 $81.9 (6.0x x $19.1B NTM, $63.0B net debt incl. JV), agent_5 $97 (6.0x x $20.3B).",
+   "resolution": "Agent_4's lower NTM EBITDA comes from delivery-weighting its site path, which is consistent with the Helios II slip but conservative. Agent_1's site-built 2027 revenue ($24.2B, ~8% below consensus) points the same way. I use ~$19.9B NTM EBITDA at 6.0x, less ~$62.4B net debt including ~$1.4B of JV commitments (flag F5, now in every bridge), over ~625M shares = ~$91. I keep agent_3's 5.2x as the bear mechanism, as in round 3.",
+   "evidence": "Agent fair_value methods; 10-Q JV commitments (inventory)."
+  }
+ ],
+ "ladder": [
+  {
+   "K": 22.0,
+   "p": 0.936
+  },
+  {
+   "K": 35.0,
+   "p": 0.833
+  },
+  {
+   "K": 44.0,
+   "p": 0.751
+  },
+  {
+   "K": 53.0,
+   "p": 0.67
+  },
+  {
+   "K": 62.0,
+   "p": 0.591
+  },
+  {
+   "K": 71.0,
+   "p": 0.518
+  },
+  {
+   "K": 80.0,
+   "p": 0.451
+  },
+  {
+   "K": 89.0,
+   "p": 0.391
+  },
+  {
+   "K": 97.0,
+   "p": 0.344
+  },
+  {
+   "K": 106.0,
+   "p": 0.299
+  },
+  {
+   "K": 120.0,
+   "p": 0.241
+  },
+  {
+   "K": 133.0,
+   "p": 0.199
+  },
+  {
+   "K": 155.0,
+   "p": 0.145
+  },
+  {
+   "K": 177.0,
+   "p": 0.107
+  },
+  {
+   "K": 221.0,
+   "p": 0.06
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 70.86,
+   "p": 0.793
+  },
+  {
+   "K": 75.28,
+   "p": 0.722
+  },
+  {
+   "K": 79.71,
+   "p": 0.645
+  },
+  {
+   "K": 82.37,
+   "p": 0.597
+  },
+  {
+   "K": 85.03,
+   "p": 0.549
+  },
+  {
+   "K": 88.57,
+   "p": 0.486
+  },
+  {
+   "K": 92.11,
+   "p": 0.427
+  },
+  {
+   "K": 94.77,
+   "p": 0.384
+  },
+  {
+   "K": 97.43,
+   "p": 0.345
+  },
+  {
+   "K": 101.86,
+   "p": 0.285
+  },
+  {
+   "K": 106.28,
+   "p": 0.232
+  }
+ ],
+ "one_month_reasoning": "No CoreWeave earnings in the window (Q3 expected ~Nov 5-16, no date announced). Window events are the 35M-share ATM from ~Oct 17, hedging around the $97.85 2033 convert, the Oct 27-28 FOMC and late-October hyperscaler capex commentary. Site coverage and split discounting do not touch the window, and the five 1-month ladders agree within ~1.5pts, so I keep their mean.",
+ "confidence": "low",
+ "confidence_reason": "My checks restated the DCFs on one basis and fixed small site and rate errors. Agent_2's lease rate and k grid offset each other, so the reconciled floored DCF ($0-9, mean ~$4) still contributes almost nothing. None of this moves the 12-month price, which follows the ~6x EBITDA multiple and 2027 site delivery. So I keep the forecasters' mean ladder, which moved only ~0.5pt from round 3.",
+ "thesis_break_price": 48.0,
+ "thesis_break_reason": "A sustained close below ~$48, ~21% under the $60.55 July-2026 low, would put equity at ~$30B on ~625M shares against ~$62B of Oct-27 net debt including JV commitments (~4.5-5x NTM EBITDA). Round-4 site triggers: 2027 deliveries slipping again (Helios II past H1-27, the PF1 third building, Lancaster, Bell SK), so >3 GW active at YE27 is missed while ~$29B+ of committed rent runs on. Older triggers: Hopper re-contracts well below 'within 5%', funding stress (CDS back above ~855bp) or a Customer A cut. The agents' mean is $47.6 (range $42-55).",
+ "key_drivers": [
+  "Capex intensity k: fleet ~2.6x ($40.7B in-service gross PP&E over ~1.5 GW = ~$27M/MW against ~$10.3M/MW of revenue). Each 0.1x is ~$11-13 a share unfloored. Refresh is ~0.85k (85% of in-service PP&E is technology and software, 10-Q).",
+  "Economic life and re-contract regime: 6->7 yrs is +$30-43, and shortage vs glut is ~$40. Current rents are firm (H100 ~$2.77 on Oct 1), so this is not tested before 2028.",
+  "Delivery of ~2.4 GW of contracted-not-energized capacity, ~0.75 GW of it unnamed: >3 GW active at YE27 needs ~0.25 GW of unnamed capacity in 2027, after Helios II slipped a year and Poolside's 250 MW was terminated.",
+  "Leverage and rent: ~$62B Oct-27 net debt including JV commitments, plus a $16.3B lease liability (12-yr remaining) that runs whether or not slots are refilled. The split rate adds only ~$3 a share unfloored because signed cash is 0-4 yrs out by Oct-27.",
+  "The 12-month price follows ~6x NTM adj. EBITDA (~$19.9B) and AI-capex sentiment. Concentration (Customer A 36% of Q2) and dilution (35M-share ATM, 2033 converts at $97.85) are the near-term overhangs."
+ ],
+ "fair_value": {
+  "value": 48.0,
+  "reason": "50/50 blend, as all five use. EV/EBITDA: 6.0x x ~$19.9B Oct-27 NTM adj. EBITDA = ~$119B, less ~$62.4B net debt (now including ~$1.4B of JV commitments), over ~625M shares = ~$91. DCF: ~$5, the reconciled floored split mean of $3.7 plus a little option value that a cell-level floor leaves out. Blend ~$48, vs the agents' mean $47.7 and $50 in round 3. The drop is the JV commitments and the slightly lower site-built NTM EBITDA."
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "Niagara (85 MW) was an LOI at 8/11 and is outside the 4.2 GW (LOIs excluded per Q2-26 call); definitive lease 9/16 makes contracted power ~4,285 MW.",
+    "Gross->IT conversion applied to the pipeline and the self-builds but not to the 4.2 GW contracted figure.",
+    "~0.25 GW of your 647 MW unattributed pool must energize in 2027 to meet the >3 GW YE27 guide."
+   ],
+   "revisit": "Model the unattributed pool as ~0.25 GW in 2027 and the rest in 2028, and add Niagara on top of 4.2 GW. Use one MW unit throughout. Your discounting is the template the others should match."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "Discounting CoreWeave's own rent at 9.25% is outside the brief and double counts lease risk already in your lease-excluded 11.6% WACC (CoreWeave's own lease rate is ~10%). On the brief's basis your floored split DCF is $12.8, central +$3.3.",
+    "Your k grid's 25% weight on 2.1x is not supported: in-service gross PP&E of ~$27M per active MW against ~$10.3M of revenue per MW gives ~2.6x. On 2.3/2.6/2.7 your DCF is $3.8 floored and -$22.9 central.",
+    "Niagara is inside 4.2 GW and also in PIPE-LAND at 1.5 GW."
+   ],
+   "revisit": "Keep rent inside operating cash flow, re-centre k on ~2.6x with a 2.3x low case, and re-blend. Your 35% DCF weight at $9 overstated the blend by ~$2."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "Niagara is inside 4.2 GW and also in PIPE-LAND."
+   ],
+   "revisit": "There are no material errors. Your discount-rate anchoring (re-struck DDTL 4.0 plus residual) and signed-share mapping are the best of the five. State a grid-mean unfloored value (-$55.5 split) next to the central cell."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "IG contract rate 7.0% equals the bare DDTL 4.0 cost re-struck to today's 4.91% 3-yr UST (~6.9%), leaving no premium for the ~17% residual and completion risk; ~7.75% fits."
+   ],
+   "revisit": "Raise the IG rate. Your Niagara and pool arithmetic (772 + 764 MW) is the reconciled allocation. Check whether delivery-weighting both the site path and the NTM EBITDA double counts the slip haircut in your $81.9 multiple leg."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "Kenilworth phase 2 and Hammond are counted twice: once inside your plug-filled 3.94 GW fleet and again as p 0.7/0.6 pipeline. The 4.2 GW already includes both.",
+    "Carries every contracted-not-energized site at p 1.0, against checked delivery-slip evidence (Helios II ~1 yr, Poolside, DDTL 3.0 reset).",
+    "Niagara is inside 4.2 GW and also in PIPE-LAND."
+   ],
+   "revisit": "Shrink the US-OTHER plug by ~330 MW or drop the two self-builds from the pipeline, haircut 2027-28 deliveries to ~0.85-0.95, and note that your positive floored value rests on the 7-8-yr life cells."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 17,
+  "repeated_claims": [
+   {
+    "claim": "Site MW, landlords, lease rates ($1.44/1.8/1.9/2.2M per MW-yr), timing and contract-credit table",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "The checked inventory sites.md/sites.json (landlord filings, CoreWeave 8-Ks, DCD). One shared input by design."
+   },
+   {
+    "claim": "DDTL 4.0 at SOFR+225 / ~5.9% fixed, A3, 1.2x DSCR as the IG anchor",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "CoreWeave DDTL 4.0 deck and 8-K. Agents 1, 3 and 5 re-struck it to the current 3-yr UST from Treasury/H.15 data."
+   },
+   {
+    "claim": "RPO $103.7B with a 41/39/20% timing split",
+    "agents": [
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "10-Q Q2-26 (verified)."
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary lane: re-struck the IG rate on fetched Treasury data and gives the full site reconciliation. Minor units inconsistency."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Thorough site model and code. The lease-leg rate and the k 2.1 weight are modelling choices outside the evidence."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Skeptic lane: best discount-rate anchoring and the signed-vs-contracted distinction (only ~half of modelled in-term cash is signed)."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Correct Niagara/pool arithmetic and a clean bridge. IG rate not re-struck to current yields."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Rebuilt cohort engine, conservative tier rates. Plug-driven fleet double counts the self-builds."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "$40M/MW as fleet economics or as support for k ~2.1",
+    "why": "Company-defined as annualised revenue on ~3-6 month contracts, with MW and delivery timing undisclosed (9/17 release)."
+   },
+   {
+    "claim": "Niagara 85 MW and ~$2.8B",
+    "why": "From the June LOI; the 9/16 definitive announcement did not restate them. Used by all, at p 0.81-1.0."
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "Fair value",
+   "from": 50.0,
+   "to": 48.0,
+   "why": "JV commitments (~$1.4B, ~$2 a share) now sit in net debt, and site-built NTM EBITDA is ~$19.9B rather than $20.3B. The DCF stays ~$5 (reconciled floored mean $3.7)."
+  },
+  {
+   "item": "agent_2 DCF (floored split, Oct-27)",
+   "from": 9.1,
+   "to": 3.8,
+   "why": "Rent moved back inside operating cash flow per the brief and its lease-excluded WACC (+$3.7, to $12.8), and the k grid re-centred on 2.3/2.6/2.7 per fleet PP&E per MW (-$9.0); both run on its own model."
+  },
+  {
+   "item": "agent_2 DCF (unfloored central, Oct-27)",
+   "from": -4.8,
+   "to": -22.9,
+   "why": "Same two restatements; central cell moved from k 2.4 to k 2.6."
+  },
+  {
+   "item": "Fact: refresh capex basis (agent_2)",
+   "from": "0.85x of revenue (as flagged)",
+   "to": "0.85 x k x revenue = ~2.0x at k 2.4 (code checked); all five at 2.0-2.3x of restored revenue",
+   "why": "agent_2 model.py refresh line, and the 10-Q PP&E mix (technology and software 85% of in-service gross PP&E)."
+  },
+  {
+   "item": "Fact: contracted power incl. Niagara (agents 1, 2, 3, 5)",
+   "from": 4200,
+   "to": 4285,
+   "why": "Niagara was an LOI at 8/11 and LOIs are excluded from contracted power. The definitive lease is dated 9/16, so it adds to 4.2 GW and comes out of the 1.5 GW PIPE-LAND (agent_4 had this right). Worth under $1."
+  },
+  {
+   "item": "Fact: agent_5 self-builds counted twice",
+   "from": "Kenilworth ph.2 200 MW (p0.7) + Hammond 180 MW (p0.6) in pipeline on top of a ~3.94 GW plug-filled fleet",
+   "to": "inside the 4.2 GW once",
+   "why": "The inventory's 1,759 MW of named contracted-not-energized capacity includes both self-builds; ~250 expected MW were double counted (worth +$0.5-1 unfloored)."
+  },
+  {
+   "item": "Fact: agent_4 IG contract rate",
+   "from": 7.0,
+   "to": 7.75,
+   "why": "DDTL 4.0 is 2.00% over the 3-yr UST, which was 4.91% on 10/1/26 vs 3.81% at pricing. The bare debt cost is ~6.9%, so 7.0% leaves no residual or completion premium (-~$0.5 a share)."
+  }
+ ],
+ "summary": "In round 4 all five rebuilt their DCFs site by site and split the discount rate. On one basis (Oct-27, rent inside operating cash flow, each agent's own grid), the floored split DCFs run $0-8.9 a share (mean $3.7; single rate mean $3.2), and the central cells run -$74 to -$23. Agent_2's high value came from a 25% weight on k 2.1x and was not supported by fleet capex per MW, while its 9.25% lease rate pushed the other way. The site coverage errors I found (Niagara outside the 4.2 GW, agent_5's self-builds counted twice) and the rate anchors are each worth under $1. The split rate adds only ~$3 unfloored because signed cash is 0-4 years out by Oct-27. Reconciled fair value is ~$48 against $88.57 spot. I keep the forecasters' mean ladder (P>=89 0.39), and the name stays a small satellite at most for a portfolio already in GOOGL, AVGO and VST.",
+ "round4_review": {
+  "agents": [
+   {
+    "agent": "agent_1",
+    "site_coverage_errors": [
+     "Niagara 85 MW is counted inside the 4.2 GW. It was an LOI on 8/11 (the company excludes LOIs from contracted power) and became a definitive lease only on 9/16, so contracted power is ~4,285 MW. The unattributed pool is therefore ~85 MW too small (fixed in the reconciliation: worth about +$0.5 unfloored, $0 floored).",
+     "Pipeline and self-build MW converted gross->IT (1.5 GW -> 1.2 GW; Kenilworth 250 -> 200; Hammond 180 -> 144) while the 4.2 GW is not converted. It is a units inconsistency, not a fact error. The pipeline has negative NPV, so the conversion slightly flatters value (<$1).",
+     "Unattributed 647 MW is all modelled from 2028.0. At least ~0.25 GW of it has to energize in 2027 to meet the >3 GW YE27 guide (see disagreement 3). Small timing effect (<$1).",
+     "Otherwise correct: every inventory site appears once, landlord leases are paid by CoreWeave at the inventory rates, Poolside and the CORZ merger are removed, JV commitments are in the bridge, and the NJ EDA credit is an inflow."
+    ],
+    "discount_rates": "Signed contracts 8.75% blend (IG 7.5% = DDTL 4.0 re-struck to the 4.91% 3-yr UST ~6.9% + ~60bp; Jane Street 8.5%; OpenAI/Anthropic 9.5%; DDTL 5.0 class 10.0%; short-dated 10.75%), applied only to customer-signed cash and the capex committed to deliver it; WACC 11.5% elsewhere. Stranded-lease outflows at 9% (scenario only). Sound and well anchored.",
+    "dcf_single_vs_split": {
+     "single_floored": 0.0,
+     "split_floored": 0.0,
+     "single_unfloored": -43.8,
+     "split_unfloored": -39.6
+    }
+   },
+   {
+    "agent": "agent_2",
+    "site_coverage_errors": [
+     "CoreWeave's own lease obligations are discounted at 9.25%. That is outside the brief and inconsistent with its own 11.6% WACC, which is built on lease-excluded net debt (restated: floored split $9.1 -> $12.8; see disagreement 2).",
+     "Niagara 85 MW is counted inside the 4.2 GW, and PIPE-LAND stays at 1.5 GW. That squeezes 85 MW out of the unattributed pool and double counts Niagara at p 0.5 in the pipeline (net effect <$1).",
+     "The unnamed ~0.87 GW is allocated to JV-2 (371 MW), NJ-JV (100), UK-SCOT (200), CA-SK (150) and CA-CAL (45). That is judgment but within the 4.2 GW, so nothing is double counted. Its timing (275 MW H2-26, 300 MW 2027, 291 MW 2028) matches the guidance arithmetic best.",
+     "Not a site error, but it moves value most: the k grid puts 25% on k 2.1, below the fleet evidence (~2.6x). Restated on a 2.3/2.6/2.7 grid: floored split $3.8, central -$22.9.",
+     "The refresh is 0.85 x k x then-current revenue per MW (code checked), i.e. ~2.0x of restored revenue at k 2.4, not 0.85x of revenue."
+    ],
+    "discount_rates": "Inflows: IG 7.5% (DDTL 4.0 ~5.9% + 160bp; not re-struck, but the level is right because ~6.9% + ~60bp is the same), Jane Street 8.5%, OpenAI/Anthropic 9.5%, other 10.0%; RPO-weighted 8.4%, applied to the signed RPO runoff only. Sound. Leases at 9.25% are not (see above).",
+    "dcf_single_vs_split": {
+     "single_floored": 10.9,
+     "split_floored_as_filed": 9.1,
+     "split_floored_brief_basis": 12.8,
+     "reconciled_split_floored": 3.8,
+     "reconciled_single_floored": 3.2
+    }
+   },
+   {
+    "agent": "agent_3",
+    "site_coverage_errors": [
+     "Niagara 85 MW is inside the 4.2 GW, and PIPE-LAND stays at 1.5 GW (same issue as agent_2, <$1).",
+     "Dalton Phase 1 is 25 MW against the inventory's 22. That is immaterial and inside the inventory's 22-30 MW range.",
+     "Otherwise correct: the 857 MW energized residual matches the 1.85 GW YE26 guide less named MW; the ~300 MW unattributed sits in the 2028 cohort via JV-2; Kenilworth and Hammond are probability-weighted with shell capex and avoided rent; exited sites are removed; JV commitments are in net debt."
+    ],
+    "discount_rates": "8.6% blend: IG 8.0% (DDTL 4.0 re-struck to ~6.9% on 83% of cash at 1.2x DSCR, plus a 17% residual at ~13%), Jane Street 8.75%, unrated 9.5%. Applied only to the signed share of in-term cash (62.5% of <=2027 cohorts, 31% of 2028), which matches RPO. The best-anchored of the five.",
+    "dcf_single_vs_split": {
+     "single_floored": 4.0,
+     "split_floored": 4.6,
+     "single_unfloored_central": -77.1,
+     "split_unfloored_central": -74.2
+    }
+   },
+   {
+    "agent": "agent_4",
+    "site_coverage_errors": [
+     "No factual site errors found. It is the only agent that adds Niagara on top of the 4.2 GW and takes it out of PIPE-LAND (1,415 MW), which is correct. Its 772 MW energized pool plus 764 MW unattributed contracted pool is the exact arithmetic identity.",
+     "The pools carry no per-site values, which is acceptable because the MW are undisclosed. Hammond and Kenilworth sit in contracted-not-energized at p 0.70/0.85, per the inventory.",
+     "Pipeline probabilities (PIPE-LAND 0.65, residual 0.35) are higher than the others' (0.5 / 0.2-0.25). Because the pipeline NPV is negative at k 2.6, this lowers value by ~$3-5 unfloored. It is a judgment, not an error."
+    ],
+    "discount_rates": "8.06% PV-equivalent: IG 7.0%, Jane Street 8.0%, OpenAI/Anthropic 9.0%, other 10.0%, on the $77.1B RPO left at Oct-27. IG 7.0% is too low: DDTL 4.0 is 2.00% over the 3-yr UST, which is 4.91% today (3.81% when it priced), so the bare debt cost is already ~6.9% and leaves no premium for the residual and completion risk. ~7.75% fits better (-~$0.5/share). Otherwise sound and applied only inside signed terms.",
+    "dcf_single_vs_split": {
+     "single_floored": 0.76,
+     "split_floored": 1.0,
+     "single_unfloored_central": -45.5,
+     "split_unfloored_central": -42.3
+    }
+   },
+   {
+    "agent": "agent_5",
+    "site_coverage_errors": [
+     "Power counted twice: its contracted fleet reaches ~3.94 GW using a 500 MW US-OTHER plug with only Kenilworth phase 1 (50 MW), and it then adds Kenilworth phase 2 (200 MW, p 0.7) and Hammond (180 MW, p 0.6) as uncontracted pipeline. The inventory's 4.2 GW already includes both self-builds, so ~250 expected MW are counted twice (value effect +$0.5-1 on removal, since those rows are near zero or negative).",
+     "Niagara inside the 4.2 GW, and PIPE-LAND at 1.5 GW (as agents 2 and 3).",
+     "Contracted-not-energized sites are carried at p 1.0, including Indonesia (2028) and Niagara (SPAC landlord). The brief allows contract terms for contracted capacity, but the checked delivery evidence (Helios II slipped ~1 yr, Poolside terminated, DDTL 3.0 reset 'to align with delivery schedule') supports the 0.8-0.95 the others use.",
+     "Includes the >$25B Q3-26 commitments in the signed pool at 11.2%. Delivery timing is undisclosed (company release), so it is unclear whether they run past Oct-27. At 11.2% (≈WACC) the value effect is ~$0."
+    ],
+    "discount_rates": "9.4% $-weighted: IG 8.1% (DDTL 4.0 re-based to ~7.0% on 83% plus a 17% residual at 13.75%), Jane Street 9.1%, OpenAI/Anthropic 10.1%, other 11.0%, Q3 commitments 11.2%. IG is sound. The unrated tiers are conservative (close to WACC), which makes its split uplift the smallest ($1.35B).",
+    "dcf_single_vs_split": {
+     "single_floored": 8.1,
+     "split_floored": 8.9,
+     "single_unfloored_central": -29.5,
+     "split_unfloored_central": -27.3
+    }
+   }
+  ],
+  "dcf_common_basis": {
+   "basis": "Per share at 2027-10-01. Lease payments kept inside operating cash flow (the brief's basis; see disagreement 2). 'floored' = each agent's own probability grid with every cell floored at $0, then weighted; 'unfloored_mean' = the same grid without the floor; 'central' = the 6-yr life at the agent's central k (regime-weighted where the agent uses regimes). Split = signed-contract cash at counterparty rates, everything else at WACC; single = one WACC. Values recomputed by running each agent's own model where it reported only part of this.",
+   "agent_1": {
+    "floored_split": 0.0,
+    "floored_single": 0.0,
+    "unfloored_mean_split": -39.6,
+    "unfloored_mean_single": -43.8,
+    "central_split": -39.6,
+    "central_single": -43.8,
+    "grid": "regime normal 60/shortage 40 x k 2.5/2.7, 6-yr life (its central is the grid mean)"
+   },
+   "agent_2_as_filed": {
+    "floored_split": 9.1,
+    "floored_single": 10.9,
+    "unfloored_mean_split": -9.4,
+    "unfloored_mean_single": -4.5,
+    "central_split": -4.8,
+    "central_single": 0.1,
+    "grid": "k 2.1/2.4/2.7 (25/45/30) x life 5/6/7 (25/50/25); leases at 9.25%"
+   },
+   "agent_2_brief_basis": {
+    "floored_split": 12.8,
+    "floored_single": 10.9,
+    "unfloored_mean_split": -1.3,
+    "unfloored_mean_single": -4.5,
+    "central_split": 3.3,
+    "central_single": 0.1,
+    "grid": "same grid, leases inside operating cash flow"
+   },
+   "agent_2_reconciled": {
+    "floored_split": 3.8,
+    "floored_single": 3.2,
+    "unfloored_mean_split": -19.2,
+    "unfloored_mean_single": -22.4,
+    "central_split": -22.9,
+    "central_single": -26.1,
+    "grid": "k 2.3/2.6/2.7 (25/50/25) x life 5/6/7 (25/50/25), leases inside operating cash flow; run on agent_2's own model"
+   },
+   "agent_3": {
+    "floored_split": 4.6,
+    "floored_single": 4.0,
+    "unfloored_mean_split": -55.5,
+    "unfloored_mean_single": -58.3,
+    "central_split": -74.2,
+    "central_single": -77.1,
+    "grid": "life 5/6/7/tight path x k 2.4/2.6/2.7; positive cells only on the tight re-contracting path"
+   },
+   "agent_4": {
+    "floored_split": 1.0,
+    "floored_single": 0.76,
+    "unfloored_mean_split": -37.1,
+    "unfloored_mean_single": -40.3,
+    "central_split": -42.3,
+    "central_single": -45.5,
+    "grid": "regime shortage/normalising/glut (30/50/20) x k 2.3/2.6/2.7 (25/50/25), 6-yr life"
+   },
+   "agent_5": {
+    "floored_split": 8.9,
+    "floored_single": 8.1,
+    "unfloored_mean_split": -19.2,
+    "unfloored_mean_single": -21.4,
+    "central_split": -27.3,
+    "central_single": -29.5,
+    "grid": "life 5/6/7/8 (20/45/25/10) x k 2.3/2.5/2.7 (25/50/25)"
+   },
+   "reconciled_range": {
+    "floored_split": [
+     0.0,
+     8.9
+    ],
+    "floored_single": [
+     0.0,
+     8.1
+    ],
+    "floored_split_mean": 3.7,
+    "floored_single_mean": 3.2,
+    "central_unfloored_split": [
+     -74.2,
+     -22.9
+    ],
+    "central_unfloored_single": [
+     -77.1,
+     -26.1
+    ],
+    "central_unfloored_split_mean": -41.3,
+    "central_unfloored_single_mean": -44.4,
+    "note": "Agent_2 enters at its reconciled values. The split rate adds only ~$0.5 floored and ~$3 unfloored, because by Oct-27 most signed cash is 0-4 years out. Discounting CoreWeave's own leases at its 9.25% credit instead would take a further ~$1.5 floored and ~$8 unfloored off each DCF (agent_2's model: central -22.9 -> -31.1). Small coverage fixes (Niagara, agent_5's Kenilworth/Hammond) are worth under +$1 unfloored and about $0 floored, so they are noted, not re-run."
+   }
+  },
+  "reconciled_dcf_range": "Floored, split rate, on one basis at Oct-27: $0-8.9 a share (mean $3.7; single rate $0-8.1, mean $3.2). Unfloored central cells: -$74 to -$23 split (mean -$41) and -$77 to -$26 single (mean -$44). The split rate is worth ~$0.5 floored and ~$3 unfloored. Agent_2 sat at $9-13 only because it put 25% weight on k 2.1. On the 2.3/2.6/2.7 grid it is $3.8 floored and -$22.9 central.",
+  "what_drives_value_now": "Capex intensity k still dominates. In agent_2's model k 2.3 vs 2.6 moves the central cell from +$16 to -$23 (~$13 per 0.1x), and agent_5's moves from +$5 to -$27. Next is the economic life and re-contract regime: agent_5's 6->7 yrs is +$43, and agent_4's shortage vs glut is $42. The split discount rate (+$3), site coverage fixes (<$1) and lease treatment (~$8) are second order. The 12-month price follows the ~6x NTM EBITDA multiple and delivery of the 2027 sites (>3 GW active by YE27), not the DCF."
+ },
+ "sources": [
+  {
+   "title": "CoreWeave Form 10-Q, quarter ended June 30, 2026 (PP&E mix, leases, RPO, concentration)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/crwv-20260630.htm",
+   "date": "2026-08-12"
+  },
+  {
+   "title": "CoreWeave Signs New Compute Contracts at Approximately $40 Million per Megawatt",
+   "url": "https://finance.yahoo.com/technology/ai/articles/coreweave-signs-compute-contracts-approximately-123402892.html",
+   "date": "2026-09-17"
+  },
+  {
+   "title": "CoreWeave DDTL 4.0 overview deck",
+   "url": "https://s205.q4cdn.com/133937190/files/doc_presentations/2026/Mar/2026-03-DDTL-4-Overview.pdf",
+   "date": "2026-03"
+  },
+  {
+   "title": "US Treasury daily par yield curve (3-yr 3.81% on 3/31/26; 4.91% on 10/1/26), as fetched by agent_1",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve",
+   "date": "2026-10-01"
+  },
+  {
+   "title": "Federal Reserve H.15 3-yr constant maturity (5.00% on 9/30/26), as fetched by agent_5",
+   "url": "https://www.federalreserve.gov/releases/h15/",
+   "date": "2026-09-30"
+  },
+  {
+   "title": "CoreWeave Q2 2026 earnings call, corrected transcript (contracted power 4.2 GW, LOIs excluded, >3 GW YE27)",
+   "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+   "date": "2026-08-11"
+  },
+  {
+   "title": "CRWV site inventory (checked), sites.md / sites.json",
+   "url": "file:///mnt/project-files/valuation/runs/2026-10-01/CRWV/sites.md",
+   "date": "2026-10-02"
+  }
+ ],
+ "sizing": {
+  "max_weight_pct": 1.5,
+  "confidence": 0.31,
+  "conviction_label_before": "low",
+  "conviction_label_reason": "No checked edge: the reconciled fair value (~$48) is ~46% below spot, the reconciled DCF is ~$4 a share, and the mean ladder implies roughly a ~5% expected return on ~90% volatility, so nothing I checked shows a Sharpe advantage over the S&P 500.",
+  "entry": "2 tranches: half after Q3 results (~Nov 5-16, date not yet announced) if 2027 site deliveries (Helios II, PF1 third building, Lancaster) are reaffirmed and Hopper re-contracts hold near original prices; half after FY27 guidance in Feb-Mar 2027. Skip both below the $48 thesis break.",
+  "overlap": "GOOGL (AI-capex buyer and cloud competitor), AVGO (AI infrastructure capex cycle) and VST (data-center power demand) all share the AI-capex driver. CRWV is the most levered, credit-sensitive way to hold it.",
+  "reason": "Round 4 confirms round 3. Site-level, split-rate DCFs still put the equity's cash-flow value near zero at the observed ~2.6x capex intensity, so value rests on a ~6x EBITDA multiple and on 2027 delivery. At ~90% vol the stock beats SPY on Sharpe less often than not (0.31). It would add a high-beta leg to an existing AI cluster, with near-term ATM supply and Q3 event risk, so the cap stays at 1.5% (~$150)."
+ }
+}

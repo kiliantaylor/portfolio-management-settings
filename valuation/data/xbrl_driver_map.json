@@ -1,0 +1,205 @@
+{
+ "_note": "xbrl_actuals.py map: driver id -> expr over XBRL facts (f flow, i closing instant, io opening instant, ia average instant), scale divisor, kind flow|instant|ratio. Unmapped drivers stay agent-sourced.",
+ "GOOGL": {
+  "cloud_backlog": {
+   "expr": "io('RevenueRemainingPerformanceObligation')",
+   "scale": 1000000000.0,
+   "kind": "instant",
+   "note": "total RPO at the period's opening (Google Cloud is most of it)"
+  },
+  "cloud_conv": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=goog:GoogleCloudMember') / io('RevenueRemainingPerformanceObligation')",
+   "kind": "ratio",
+   "note": "Cloud segment revenue / opening RPO; quarterly values are a quarter's revenue, so compare across quarters, not with the annual base"
+  },
+  "capex": {
+   "expr": "f('PaymentsToAcquirePropertyPlantAndEquipment')",
+   "scale": 1000000000.0,
+   "kind": "flow"
+  }
+ },
+ "NFLX": {
+  "content_amort": {
+   "expr": "f('nflx:CostofServicesAmortizationofStreamingContentAssets')",
+   "scale": 1000000.0,
+   "kind": "flow"
+  },
+  "other_opex": {
+   "expr": "f('Revenues') - f('nflx:CostofServicesAmortizationofStreamingContentAssets') - f('OperatingIncomeLoss')",
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "revenue - content amortization - operating income"
+  }
+ },
+ "AMZN": {
+  "aws_ppe": {
+   "expr": "ia('PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember')",
+   "scale": 1000000000.0,
+   "kind": "instant",
+   "note": "AWS segment net property and equipment incl. finance-lease assets, average of opening and closing"
+  },
+  "aws_turn": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') / ia('PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember')",
+   "kind": "ratio",
+   "note": "a quarter is a quarter of revenue: x4 to compare with the annual base"
+  },
+  "aws_ebitda_m": {
+   "expr": "(f('OperatingIncomeLoss', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') + f('Depreciation', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember')) / f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember')",
+   "kind": "ratio"
+  },
+  "ads_rev": {
+   "expr": [
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=us-gaap:AdvertisingMember')",
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=amzn:AdvertisingServicesMember')"
+   ],
+   "scale": 1000000000.0,
+   "kind": "flow",
+   "note": "advertising services (10-K member us-gaap:AdvertisingMember, 10-Q amzn:AdvertisingServicesMember)"
+  },
+  "stores_rev": {
+   "expr": [
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=us-gaap:AdvertisingMember')",
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=amzn:AdvertisingServicesMember')"
+   ],
+   "scale": 1000000000.0,
+   "kind": "flow",
+   "note": "total - AWS - advertising"
+  },
+  "stores_m": {
+   "expr": [
+    "(f('OperatingIncomeLoss') - f('OperatingIncomeLoss', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') - 0.5 * f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=us-gaap:AdvertisingMember')) / (f('RevenueFromContractWithCustomerExcludingAssessedTax') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=us-gaap:AdvertisingMember'))",
+    "(f('OperatingIncomeLoss') - f('OperatingIncomeLoss', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') - 0.5 * f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=amzn:AdvertisingServicesMember')) / (f('RevenueFromContractWithCustomerExcludingAssessedTax') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=amzn:AmazonWebServicesSegmentMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=amzn:AdvertisingServicesMember'))"
+   ],
+   "kind": "ratio",
+   "tol_abs": 0.002,
+   "note": "(NA + Intl OI - 50% ads margin) / stores revenue, as the driver_build; GAAP OI includes one-offs the set may strip"
+  }
+ },
+ "ABT": {
+  "cgm": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:MedicalDevicesMember', 'SubsegmentsAxis=abt:DiabetesCareMember')",
+   "scale": 1000000.0,
+   "kind": "flow"
+  },
+  "ep": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:MedicalDevicesMember', 'SubsegmentsAxis=abt:ElectrophysiologyMember')",
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "reported basis; Amulet moves into EP from 2026 (the set restates the path, not the base)"
+  },
+  "cv_other": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:MedicalDevicesMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:MedicalDevicesMember', 'SubsegmentsAxis=abt:DiabetesCareMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:MedicalDevicesMember', 'SubsegmentsAxis=abt:ElectrophysiologyMember')",
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "Medical Devices - Diabetes Care - EP"
+  },
+  "dx_base": {
+   "expr": [
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:DiagnosticProductsMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:DiagnosticProductsMember', 'SubsegmentsAxis=abt:CancerDiagnosticsMember')",
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:DiagnosticProductsMember')"
+   ],
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "Diagnostics less Cancer Diagnostics (Exact Sciences, from 2026, carried in cancer_dx)"
+  },
+  "epd": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:EstablishedPharmaceuticalProductsMember')",
+   "scale": 1000000.0,
+   "kind": "flow"
+  },
+  "cancer_dx": {
+   "expr": [
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=abt:DiagnosticProductsMember', 'SubsegmentsAxis=abt:CancerDiagnosticsMember')",
+    "0"
+   ],
+   "scale": 1000000.0,
+   "kind": "level",
+   "tol_abs": 0.5,
+   "note": "Cancer Diagnostics subsegment (Exact Sciences); 0 before the deal closed"
+  }
+ },
+ "META": {
+  "foa_other": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=us-gaap:ServiceOtherMember', 'StatementBusinessSegmentsAxis=meta:FamilyOfAppsMember')",
+   "scale": 1000000.0,
+   "kind": "flow"
+  },
+  "foa_margin": {
+   "expr": "f('OperatingIncomeLoss', 'StatementBusinessSegmentsAxis=meta:FamilyOfAppsMember') / f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=meta:FamilyOfAppsMember')",
+   "kind": "ratio"
+  },
+  "rl_loss": {
+   "expr": "-f('OperatingIncomeLoss', 'StatementBusinessSegmentsAxis=meta:RealityLabsMember')",
+   "scale": 1000000.0,
+   "kind": "flow"
+  },
+  "capex": {
+   "expr": "f('PaymentsToAcquirePropertyPlantAndEquipment') + f('FinanceLeasePrincipalPayments')",
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "capex + finance-lease principal"
+  }
+ },
+ "AMAT": {
+  "gm": {
+   "expr": "f('GrossProfit') / f('RevenueFromContractWithCustomerExcludingAssessedTax')",
+   "kind": "ratio",
+   "note": "GAAP gross margin as a proxy for the non-GAAP driver (FY25 gap -0.2%)"
+  },
+  "ags": {
+   "expr": "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ConsolidationItemsAxis=us-gaap:OperatingSegmentsMember', 'StatementBusinessSegmentsAxis=amat:AppliedGlobalServicesSegmentMember')",
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "the set is on the FY26 recast segment basis; matches once the FY26 10-K restates FY25"
+  }
+ },
+ "NVDA": {
+  "gm": {
+   "expr": "f('GrossProfit') / f('Revenues')",
+   "kind": "ratio",
+   "note": "GAAP gross margin (SBC in cost, card 2026-10-27)"
+  },
+  "opex": {
+   "expr": "f('OperatingExpenses')",
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "GAAP operating expenses incl. SBC"
+  }
+ },
+ "MOD": {
+  "dc_rev": {
+   "expr": [
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=mod:DataCenterMember')",
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=mod:DataCentersMember')"
+   ],
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "Data Center segment (from Q1 FY27), before that the Data Centers product line"
+  },
+  "chvac_rev": {
+   "expr": [
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=mod:CommercialHeatingVentilationAndAirConditioningMember')",
+    "f('RevenueFromContractWithCustomerExcludingAssessedTax', 'StatementBusinessSegmentsAxis=mod:ClimateSolutionsMember') - f('RevenueFromContractWithCustomerExcludingAssessedTax', 'ProductOrServiceAxis=mod:DataCentersMember')"
+   ],
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "Commercial HVAC segment (from Q1 FY27); FY26 = Climate Solutions - Data Centers"
+  }
+ },
+ "T": {
+  "cap_inv": {
+   "expr": "f('PaymentsToAcquireProductiveAssets') + f('RepaymentsOfLongtermLoansFromVendors')",
+   "scale": 1000000.0,
+   "kind": "flow",
+   "note": "capex + vendor financing payments"
+  }
+ },
+ "BKNG": {
+  "sh": {
+   "expr": "f('WeightedAverageNumberOfDilutedSharesOutstanding') * (1 if f('WeightedAverageNumberOfDilutedSharesOutstanding') > 2e8 else 25)",
+   "scale": 1000000.0,
+   "kind": "ratio",
+   "note": "diluted weighted shares, post 25-for-1 split (pre-split filings x25)"
+  }
+ }
+}

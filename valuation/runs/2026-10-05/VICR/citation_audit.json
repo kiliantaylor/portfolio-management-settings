@@ -1,0 +1,123 @@
+{
+ "date": "2026-10-05",
+ "symbol": "VICR",
+ "clean": true,
+ "checked": 152,
+ "ok": 140,
+ "scope": "supervisor.json and agent_1..agent_5.json (model_assumptions.json absent). Correction pass (citation_fix.json) re-checked independently.",
+ "failures": [
+  {
+   "item": "agent_1 fair_value.methods[DCF].value",
+   "value": "$149",
+   "cited": "stated inputs (ranges: D&A $35-100M, capex $130-160M after 2028)",
+   "result": "mislabelled",
+   "fix": "Derived value did not reproduce from its stated inputs (max ~$149 only with D&A $100M every year at the capex floor; central paths give ~$137-139). Path stated (linear D&A $35M->$100M, capex $200/220/130/140/150/160M, margin 31%->37%), arithmetic written, basis estimate: $138.8. FV 0.6 x 177 + 0.4 x 138.8 = $161.7 -> $162 (was $166); ladder shifted by 162/166 (median ~$220 -> ~$215, P>=306 0.265 -> 0.252)."
+  },
+  {
+   "item": "agent_2 fair_value.methods[DCF].value",
+   "value": "$158 (range $138-184)",
+   "cited": "stated inputs (no D&A add-back stated)",
+   "result": "mislabelled",
+   "fix": "Stated inputs give $120 without D&A; $158 needed ~6.6% of revenue of unstated D&A. D&A set at the 10-Q H1-26 ratio 4.2% ($10.760M / $256.321M, as for agent_3), arithmetic written: $144.3 (range $126.5-168.5). FV 0.625 x 188.2 + 0.375 x 144.3 = $171.7 -> $172 (was $177); ladder shifted by 172/177 (median ~$207 -> ~$202, P>=306 0.224 -> 0.211)."
+  },
+  {
+   "item": "supervisor thesis_break_reason, disagreements[3], changes[Thesis break]: Aug-2026 trading range",
+   "value": "$150-180",
+   "cited": "agent_5 / Vicor price history",
+   "result": "wrong",
+   "fix": "Twelve Data daily: Aug-2026 closes $187.68-$253.50 (intraday low $183.65). Text corrected; $140 thesis break unchanged (still below that range)."
+  },
+  {
+   "item": "agent_5 thesis_break_reason: 'traded through $150-$180 in Aug 2026'",
+   "value": "$150-$180",
+   "cited": "price history",
+   "result": "wrong",
+   "fix": "Corrected to the Aug-2026 closing range $187.68-$253.50 (last close below $150 was $142.22 on 2026-03-30). $145 unchanged."
+  },
+  {
+   "item": "agent_5 bear story: 2023-24 retracement",
+   "value": "-54%",
+   "cited": "Twelve Data monthly history",
+   "result": "wrong",
+   "fix": "Monthly closes Jul-2023 $92.27 to Apr-2024 $32.38 = -65% (intraday -69%). Text only; bear price/probability unchanged."
+  },
+  {
+   "item": "agent_5 WACC derivation and bear story: Jun-Aug 2026 drawdown",
+   "value": "-54%",
+   "cited": "Twelve Data monthly history",
+   "result": "wrong",
+   "fix": "Jun-30 high $382.65 to Jul-28 low $178.72 = -53% (monthly closes -51%). Text only."
+  },
+  {
+   "item": "agent_5 Product P/E multiple derivation: 'one customer 11.1% of 2025 revenue'",
+   "value": "11.1%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/751978/000119312526085102/vicr-20251231.htm",
+   "result": "not_found",
+   "fix": "Not in the FY2025 10-K (no single-customer % disclosed; XBRL has no concentration fact). Removed; replaced with the 10-K wording. Judgment multiple unchanged."
+  },
+  {
+   "item": "agent_3 sources[3] title: 'customer concentration 11.1%'",
+   "value": "11.1%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/751978/000119312526085102/vicr-20251231.htm",
+   "result": "not_found",
+   "fix": "Removed from the title; 10-K wording substituted. No value effect."
+  },
+  {
+   "item": "supervisor source_review.discounted[0]: 'No agent used the 11.1% figure'",
+   "value": "no agent",
+   "cited": "agent files",
+   "result": "wrong",
+   "fix": "agent_5 and agent_3 cited it; text corrected (both removed)."
+  },
+  {
+   "item": "supervisor defense_exposure.primary_evidence[2]: BAE subawards",
+   "value": "$0.6M",
+   "cited": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+   "result": "wrong",
+   "fix": "Re-pull with the stated filters: BAE $0.67M + $0.09M = $0.8M. Other figures reproduce (276 rows, $29.6M; LMT $15.5M, NOC $5.7M, BA $2.4M, RTX $1.8M, GD $1.5M, GA-ASI $0.7M, SNC $0.2M; 2024 $2.85M). Flag only."
+  },
+  {
+   "item": "supervisor disagreements[2].resolution / confidence_reason / summary / scenario_reconciliation: ladder medians and agent FV ranges",
+   "value": "median $222 vs $217; FVs $157-177; ladder medians $192-220",
+   "cited": "supervisor and agent files",
+   "result": "wrong",
+   "fix": "Stale after the fair-value shifts: supervisor median ~$205 vs agents' mean ~$208; FVs $157-175; ladder medians $192-218. round1_to_round2, revision_check and feedback updated."
+  },
+  {
+   "item": "agent_2 reasoning: Q2 product GM base",
+   "value": "~46.8%",
+   "cited": "Q2-26 8-K Ex.99.1",
+   "result": "wrong",
+   "fix": "($83.120M - $30.426M) / $112.926M = 46.7%; the correction pass fixed the derivation but not the reasoning text. No value effect."
+  }
+ ],
+ "open_failures": [],
+ "verified_from_correction_pass": [
+  "USITC IDS record 8856 (opened 2026-10-06): target_date 2027-09-20, initial_determination_date 2027-05-20, hearing 2027-01-25..29, institution vote 2026-02-11, FR notice 2026-02-17 (91 FR 7300), 'Pending before the ALJ'",
+  "Twelve Data VICR daily closes 2025-10-03..2026-10-05: 252 closes, annualised realised vol 95.2% (6m 103.4%, 3m 93.7-95.3% by window)",
+  "ADI 8-K 2026-05-19: definitive agreement to acquire Empower (price not in the 8-K); Pulse 2.0: $1.5B all-cash; Evertiq 2026-07-08: completion",
+  "BELFB finviz: prev close 257.63 / EPS next Y 11.21 = 22.98x, +13.68%; StockAnalysis 8.01 vs 8.26 (-3.03%). IFX StockAnalysis: 2.85 vs 1.74 (+63.53%), prev close EUR 63.47 -> 22.3x. agent_4 median 26.1x reproduces; the other 7 agent_4 StockAnalysis multiples reproduce",
+  "D&A add-back: 10-Q H1-26 D&A $10.760M (Q1 XBRL $5.337M) / H1 revenue $256.321M (Q1 XBRL $112.969M + Q2 $143.352M) = 4.2%; agent_3 DCF reproduces at $146.4 (no D&A $124.4)",
+  "Ladder shifts: supervisor (166/180) reproduces exactly; agent shifts a2 0.9219, a3 0.9937, a4 0.9459, a5 0.9814 reproduce within 0.0005 of the pre-fix curves in model_VICR.xlsx; a1 unchanged in the pass",
+  "Fair-value arithmetic re-run: supervisor $166.4, a2 P/E $188.2, a3 $156.75, a4 $174.6 / base $217, a5 $157.85 / DCF $159.5 / base $216; scenario means a1 241, a2 241, a3 222, a4 241, a5 252"
+ ],
+ "notes": [
+  "Delta (2308.TW) is priced at the 2026-10-06 close TWD 2,050 (31.9x) while US peers use the 2026-10-05 close; on TWD 2,005 it is 31.2x. Labelled correctly and no median changes (supervisor excludes it; it is above agent_3/agent_4 medians).",
+  "agent_4 takes BELFB from finviz and its other peers from StockAnalysis; both figures are sourced and labelled, the mix is the agent's stated judgment.",
+  "Supervisor fair value ($166) and its 12-month ladder are unchanged by this gate."
+ ],
+ "fair_value_changes": {
+  "agent_1": [
+   166.0,
+   162.0
+  ],
+  "agent_2": [
+   177.0,
+   172.0
+  ],
+  "supervisor": [
+   166.0,
+   166.0
+  ]
+ }
+}

@@ -1,0 +1,80 @@
+{
+  "symbol": "CRM", "agent_id": "agent_3", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 58, "p": 0.995}, {"K": 93, "p": 0.98}, {"K": 116, "p": 0.95}, {"K": 139, "p": 0.89},
+    {"K": 162, "p": 0.80}, {"K": 185, "p": 0.70}, {"K": 208, "p": 0.595}, {"K": 231, "p": 0.495},
+    {"K": 254, "p": 0.40}, {"K": 278, "p": 0.31}, {"K": 312, "p": 0.21}, {"K": 347, "p": 0.135},
+    {"K": 405, "p": 0.06}, {"K": 463, "p": 0.025}, {"K": 578, "p": 0.006}
+  ],
+  "ladder_1m": [
+    {"K": 185.05, "p": 0.96}, {"K": 196.61, "p": 0.90}, {"K": 208.18, "p": 0.80}, {"K": 215.12, "p": 0.72},
+    {"K": 222.06, "p": 0.63}, {"K": 231.31, "p": 0.505}, {"K": 240.56, "p": 0.385}, {"K": 247.50, "p": 0.30},
+    {"K": 254.44, "p": 0.23}, {"K": 266.01, "p": 0.135}, {"K": 277.57, "p": 0.075}
+  ],
+  "one_month_reasoning": "No earnings in the window: Q3 FY27 results fall in early December (last year's pattern), and Dreamforce (Sep 15-17) and Investor Day (Sep 16) are already behind us. What falls inside the window: the final settlement of the $25B ASR (expected October 2026; mechanical, small effect on share count), the closing of the Contentful and Fin acquisitions (already in guidance), and the peer software earnings season in late October, which has moved CRM on seat-compression headlines this year. Nothing here supports a directional call, so I use a near-symmetric lognormal centred on $231.8 with sigma 12.5% a month. That is a little under 47%/3.5 = 13.4%, because the 47% realized volatility was inflated by the H1 2026 crash and later rebound.",
+  "fair_value": {
+    "value": 236.0,
+    "method": "Blend of P/E (14x a Sep-2027 NTM non-GAAP EPS of about $17.0 gives $238) and an SBC-burdened FCF yield (about $12.0B owner FCF / 800M shares at a 6.5% yield gives $231). The skeptic adjustments are a treasury-style multiple and treating SBC (9% of revenue) as a real cost.",
+    "methods": [
+      {"name": "P/E", "value": 238.0, "weight": 0.5,
+       "inputs": "NTM non-GAAP EPS at Sep-2027 of about $17.0 (blend of FY28 consensus $16.0 and FY29 of about $17.5) x 14x",
+       "inputs_detail": [
+         {"input": "FY27 non-GAAP EPS guidance", "value": "$16.67-$16.71 (includes about $2.9/sh of H1 strategic-investment gains)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY28 non-GAAP EPS consensus", "value": "about $16.0", "basis": "consensus", "source_ids": [9, 10], "derivation": ""},
+         {"input": "NTM EPS at Sep-2027", "value": "$17.0", "basis": "estimate", "source_ids": [1, 9, 10], "derivation": "In Sep-2027 the NTM window is roughly 1/3 FY28 and 2/3 FY29. FY29 is taken as about $17.5: FY28 $16.0 grown about 9% from 7-8% organic growth plus the lower share count. Blend is about $17.0. No further strategic-investment gains are assumed."},
+         {"input": "P/E multiple", "value": "14x", "basis": "judgment", "source_ids": [3, 6, 10], "derivation": "The stock trades at about 14.4x FY28 consensus today and BofA noted 14x forward in May. With organic growth only about 7-8% (headline 11% minus about 4pts from Informatica), higher leverage after the Moody's downgrade to A2 and an unresolved seat-compression debate, I hold the multiple at its current depressed level rather than assume a rerating."}
+       ]},
+      {"name": "FCF yield", "value": 231.0, "weight": 0.5,
+       "inputs": "FY28 FCF of about $16.2B minus SBC of about $4.2B = about $12.0B owner FCF; about 800M diluted shares; 6.5% required yield",
+       "inputs_detail": [
+         {"input": "FY27 FCF", "value": "about $15B (growth guided at 4-5%)", "basis": "guidance", "source_ids": [1, 7], "derivation": ""},
+         {"input": "FY28 FCF", "value": "$16.2B", "basis": "estimate", "source_ids": [1, 7, 10], "derivation": "FY27 $15B grown about 8%. This is below the consensus cash-flow/share of about $20.5 to allow for after-tax interest on about $39B of debt."},
+         {"input": "SBC", "value": "about $4.2B (9.0% of revenue)", "basis": "guidance", "source_ids": [1], "derivation": "9.0% of the FY27 revenue midpoint of $46.25B. Held flat into FY28."},
+         {"input": "Diluted shares", "value": "about 800M", "basis": "estimate", "source_ids": [1, 7], "derivation": "Q3 guided diluted count is 827M before the final ASR settlement; the ASR is described as reducing the count by more than 14% from 962M. Further open-market buybacks are partly offset by dilution."},
+         {"input": "Required owner-FCF yield", "value": "6.5%", "basis": "judgment", "source_ids": [3, 4, 6], "derivation": "Premium to an A2/negative-outlook credit, with about $28B net debt (debt $39.3B minus cash and securities $11.4B) and a contested terminal value from AI seat compression."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 150.0, "prob": 0.25, "story": "The second-half organic reacceleration fails. Organic subscription growth slips to about 6%, KeyBanc/Bernstein-style checks (more CIOs cutting CRM spend than adding) show up in cRPO, and Agentforce ARR growth reads as repackaging (Slackbot and Headless 360 were added to the definition in Q2). The multiple compresses to about 10x a FY29 EPS of $15, roughly the May 2026 low ($146-178) and BofA's $160 target."},
+    "base": {"price": 240.0, "prob": 0.5, "story": "Organic growth holds at 7-9%, the FY30 $63B path stays credible but is mostly M&A-driven, margins hold at about 34%, and the buyback lifts EPS to about $17 NTM. The multiple stays around 14x."},
+    "bull": {"price": 320.0, "prob": 0.25, "story": "NNAOV strength (the best in four years) turns into visible organic reacceleration to 10%+, Agentforce plus Data 360 ARR passes $6B, and seat-compression fears fade. The market rerates to about 18-19x NTM EPS of $17.5."}
+  },
+  "thesis_break_price": 160.0,
+  "thesis_break_reason": "Below about $160 (roughly 9.5x NTM EPS, near the May 2026 lows and BofA's target) the market would be pricing an actual decline in the seat base: organic cRPO growth falling toward mid-single digits, or a guide-down in December or February. That would mean the AI seat-compression bear case is showing up in the numbers rather than just the multiple. It would also squeeze a balance sheet now carrying $39.3B of debt on an A2/negative-outlook rating, which limits further debt-funded buybacks.",
+  "catalysts": [
+    {"date": "2026-10", "event": "Final settlement of the $25B ASR; closing of Contentful and Fin acquisitions", "direction": "?"},
+    {"date": "2026-12 (early)", "event": "Q3 FY27 earnings: first test of the promised second-half organic reacceleration; cRPO guided at about 14%", "direction": "?"},
+    {"date": "2027-02/03 (late Feb or early Mar)", "event": "Q4 FY27 earnings and initial FY28 guidance (organic growth ex-Informatica, FCF, buyback pace)", "direction": "?"},
+    {"date": "2027-05 (late May)", "event": "Q1 FY28 earnings; Informatica anniversary removes the inorganic tailwind", "direction": "-"},
+    {"date": "2027-08 (late Aug)", "event": "Q2 FY28 earnings, just before the horizon", "direction": "?"},
+    {"date": "ongoing", "event": "Rating agency review (S&P negative outlook); data-breach class action proceeding after motion to dismiss largely denied", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Whether organic growth (headline 11% minus about 4pts Informatica, plus Contentful and Fin from Q3) actually reaccelerates in H2 FY27 as management promised",
+    "Whether seat compression from AI agents shows up in renewals. CIO surveys cited by KeyBanc point to net spend cuts, while management cites record-low attrition",
+    "Quality of the Agentforce ARR metric, whose definition was widened in Q2 FY27 to include Slackbot and Headless 360",
+    "Balance-sheet leverage after the $25B debt-funded ASR: Moody's cut to A2 and S&P outlook negative",
+    "FY27 non-GAAP EPS is inflated by about $2.9/share of strategic-investment gains, so headline EPS growth overstates core growth",
+    "Size of the data-breach class action (Salesloft/Drift-related 2025 breach), which has survived a motion to dismiss"
+  ],
+  "reasoning": "Skeptic lane. Q2 FY27 (Aug 26) was solid on the surface: revenue $11.3B (+11%), cRPO +14%, FY27 revenue guidance raised to $46.1-46.4B, 34.3% non-GAAP margin, FCF about $15B. The bear evidence points to lower quality than the headlines suggest. (1) About 4pts of growth is Informatica, and $200M of the $200M-300M guide raise is Contentful and Fin M&A, so organic growth is about 7-8%. (2) FY27 non-GAAP EPS of $16.7 includes about $2.9 of H1 strategic-investment gains, so FY28 consensus of about $16.0 is actually lower. (3) Agentforce ARR was redefined in Q2 to include Slackbot and Headless 360. (4) The $25B debt-funded ASR took noncurrent debt from $10.4B to $39.3B (net debt about $28B), with a Moody's cut to A2 and a negative S&P outlook. That buyback mechanically lifts EPS about 15% and flatters per-share growth. (5) KeyBanc and Bernstein downgraded in July on slow Agentforce adoption and a CIO survey showing net spend cuts, and BofA is at Underperform with a $160 target. (6) The data-breach class action survived dismissal. Weighing it honestly: I found no short-seller report or accounting red flag. Benioff terminated his 10b5-1 sale plan in March, and the stock already de-rated from about $265 to a $146 low before rebounding. At about 14x FY28 EPS and a roughly 5% SBC-burdened FCF yield, much of the bear case is priced in. The consensus target is about $281 (54 analysts, 38 Buy-rated); I discount it as sell-side optimism. My fair value is about $236, essentially the current price. Scenarios: bear $150 / base $240 / bull $320 at 25/50/25, for a mean of about $237. The ladder is a lognormal with median about $231 and sigma about 0.40 (below the crash-inflated 47% realized volatility, above the typical 25-35% large-cap band), with a slightly fatter left tail for leverage and the binary seat-compression debate. Research limits: Alpha Vantage was rate-limited, the Twelve Data estimates endpoint was unavailable, CNBC, TheStreet and some pages returned 403, and I did not fetch X/Twitter.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "Salesforce Q2 FY27 earnings press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000187/crm-q2fy27xexhibit991.htm", "date": "2026-08-26", "type": "filing", "in_lane": false},
+    {"title": "Salesforce completes $25B senior notes offering to fund share repurchase", "url": "https://www.investing.com/news/sec-filings/salesforce-completes-25b-senior-notes-offering-to-fund-share-repurchase-93CH-4561134", "date": "2026-03", "type": "press", "in_lane": true},
+    {"title": "Salesforce's Record Bond Sale Recasts Buybacks, Leverage and Credit (Moody's A2 downgrade, S&P negative outlook)", "url": "https://simplywall.st/stocks/us/software/nyse-crm/salesforce/news/salesforces-record-bond-sale-recasts-buybacks-leverage-and-c", "date": "2026-03", "type": "press", "in_lane": true},
+    {"title": "Salesforce issues $25 billion in debt to buy back stock. Should we be concerned? (CNBC; 403 on fetch, headline only)", "url": "https://www.cnbc.com/2026/03/20/salesforce-issues-25-billion-in-debt-to-buy-back-stock-should-we-be-concerned.html", "date": "2026-03-20", "type": "press", "in_lane": true},
+    {"title": "BofA Slaps Salesforce With Underperform Rating, $160 Price Target", "url": "https://finance.yahoo.com/markets/stocks/articles/bofa-slaps-salesforce-underperform-rating-153256535.html", "date": "2026-05-18", "type": "sell-side", "in_lane": true},
+    {"title": "Salesforce receives double blow over an AI product (KeyBanc and Bernstein downgrades)", "url": "https://finance.yahoo.com/technology/ai/articles/salesforce-receives-double-blow-over-181700627.html", "date": "2026-07-09", "type": "sell-side", "in_lane": true},
+    {"title": "Salesforce Investor Day unveils AIforce, Claudeforce and $63B FY2030 revenue target", "url": "https://finance.yahoo.com/technology/ai/articles/salesforce-investor-day-unveils-aiforce-010207822.html", "date": "2026-09-16", "type": "press", "in_lane": false},
+    {"title": "Salesforce Fails to Dismiss Suit Over Massive 2025 Data Breach", "url": "https://news.bloomberglaw.com/litigation/salesforce-fails-to-dismiss-suit-over-massive-2025-data-breach", "date": "2026", "type": "press", "in_lane": true},
+    {"title": "Salesforce, Inc. financial forecasts (MarketScreener; FY28 EPS consensus about $16.0)", "url": "https://www.marketscreener.com/quote/stock/SALESFORCE-INC-102194590/finances/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Salesforce (CRM) Stock Forecast and Analyst Price Targets (StockAnalysis)", "url": "https://stockanalysis.com/stocks/crm/forecast/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Salesforce Form 10-Q for quarter ended April 30, 2026 (Benioff 10b5-1 plan termination disclosure)", "url": "https://www.sec.gov/Archives/edgar/data/0001108524/000110852426000127/crm-20260430.htm", "date": "2026-05", "type": "filing", "in_lane": true},
+    {"title": "The SaaSpocalypse of 2026 (ChartWaveInvesting Substack)", "url": "https://chartwaveinvesting.substack.com/p/the-saaspocalypse-of-2026", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Salesforce Has Fallen 45%. Could 2026 Be the Turning Point? (TIKR, bear-case framing incl. $39.3B debt)", "url": "https://www.tikr.com/blog/salesforce-has-fallen-45-could-2026-be-the-turning-point", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Salesforce Stock Is Down Nearly 12% in 2026 (Morgan Stanley EW $235; WF/BMO target moves)", "url": "https://finance.yahoo.com/markets/stocks/articles/salesforce-stock-down-nearly-12-123926159.html", "date": "2026-09", "type": "sell-side", "in_lane": true},
+    {"title": "Dreamforce 2026 dates (Sep 15-17)", "url": "https://www.salesforceben.com/dreamforce/", "date": "2026", "type": "trade", "in_lane": false}
+  ]
+}

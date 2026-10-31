@@ -1,0 +1,547 @@
+{
+ "symbol": "INTC",
+ "agent_id": "agent_3",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 30.0,
+   "p": 0.97
+  },
+  {
+   "K": 48.0,
+   "p": 0.89
+  },
+  {
+   "K": 60.0,
+   "p": 0.815
+  },
+  {
+   "K": 72.0,
+   "p": 0.735
+  },
+  {
+   "K": 84.0,
+   "p": 0.655
+  },
+  {
+   "K": 96.0,
+   "p": 0.58
+  },
+  {
+   "K": 108.0,
+   "p": 0.505
+  },
+  {
+   "K": 120.0,
+   "p": 0.445
+  },
+  {
+   "K": 132.0,
+   "p": 0.385
+  },
+  {
+   "K": 144.0,
+   "p": 0.335
+  },
+  {
+   "K": 162.0,
+   "p": 0.275
+  },
+  {
+   "K": 180.0,
+   "p": 0.225
+  },
+  {
+   "K": 210.0,
+   "p": 0.16
+  },
+  {
+   "K": 240.0,
+   "p": 0.115
+  },
+  {
+   "K": 300.0,
+   "p": 0.065
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 96.0,
+   "p": 0.835
+  },
+  {
+   "K": 102.0,
+   "p": 0.755
+  },
+  {
+   "K": 108.0,
+   "p": 0.67
+  },
+  {
+   "K": 111.6,
+   "p": 0.615
+  },
+  {
+   "K": 115.2,
+   "p": 0.56
+  },
+  {
+   "K": 120.0,
+   "p": 0.485
+  },
+  {
+   "K": 124.8,
+   "p": 0.415
+  },
+  {
+   "K": 128.4,
+   "p": 0.365
+  },
+  {
+   "K": 132.0,
+   "p": 0.32
+  },
+  {
+   "K": 138.0,
+   "p": 0.25
+  },
+  {
+   "K": 144.0,
+   "p": 0.195
+  }
+ ],
+ "one_month_reasoning": "The one scheduled event in the window is Q3 2026 earnings on 2026-10-22 after the close (source #3), so the 10-31 close will include the reaction. Guidance was $15.8-16.8B revenue, $0.38 non-GAAP EPS, ~42% gross margin (source #1). Intel has beaten guidance seven quarters in a row, server CPUs are supply-constrained and estimates are rising (source #6, source #20, source #21), so a beat is likely. But the stock is up about 258% in a year, trades around 60-70x NTM EPS (source #3, source #6), and sold off about 9% from $127 to $116 in the week of 9-24 to 9-28 on rate fears, with the 10-year yield at its highest since 2007 (source #22). A beat may already be priced in, and any wobble on capex, the foundry loss rate (about $2B+ a quarter) or 14A customers could be punished. I see no edge in direction, so I use a near-symmetric lognormal with median about $119 (a slight downside tilt for rates and mean reversion) and a 1-month sigma of about 22% (76% annual vol / 3.5, kept flat rather than widened because the earnings move is already part of realized vol).",
+ "fair_value": {
+  "value": 93.0,
+  "method": "Blend of P/E on NTM EPS a year out ($2.50 x 35x = $88), a SOTP ($99) and EV/sales (7x 2027 revenue of $72B = $93). Weights are 0.40/0.35/0.25, giving about $93.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 87.5,
+    "weight": 0.4,
+    "inputs": "NTM EPS at Oct-2027 $2.50 x 35x",
+    "inputs_detail": [
+     {
+      "input": "NTM EPS as of Oct-2027 (Q4'27 + 3/4 of 2028)",
+      "value": "$2.50",
+      "basis": "estimate",
+      "source_ids": [
+       6,
+       21,
+       3,
+       8
+      ],
+      "derivation": "Consensus 2027 EPS is $2.06 (source #6, source #21) and normalized 2028 is about $3 (source #3), so a blend is about $2.75. I cut it ~10% because the CPU-shortage pricing (10-15% server price hikes, source #20) may fade, and Northland expects datacenter spend to fall in CY27 (source #8)."
+     },
+     {
+      "input": "P/E multiple",
+      "value": "35x",
+      "basis": "judgment",
+      "source_ids": [
+       6,
+       8,
+       13
+      ],
+      "derivation": "AMD trades at about 40x forward and NVDA at about 25x (source #6). Northland called 38x on $3.20 'expensive' (source #8). Intel's 5-year median P/E is about 12x (source #13). 35x still prices growth and a foundry option but no longer a shortage-peak multiple."
+     }
+    ]
+   },
+   {
+    "name": "SOTP",
+    "value": 99.0,
+    "weight": 0.35,
+    "inputs": "Products (CCPG + DCAI) ~$22B 2027 op income, after 15% tax ~$18.7B x 25x = $467B; Foundry $120B; Mobileye/Altera stakes $9.4B; minus unallocated corporate costs $50B, net debt $5B and NCI $15.6B. That is about $525B / 5.30B shares = $99.",
+    "inputs_detail": [
+     {
+      "input": "Products segment op income run-rate",
+      "value": "$19.3B annualized (Q2'26 CCPG $2.34B + DCAI $2.47B, x4)",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": "Q2 2026 segment table."
+     },
+     {
+      "input": "2027 products op income",
+      "value": "$22B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       21
+      ],
+      "derivation": "About 14% growth on the Q2 run-rate, in line with consensus 2027 revenue growth of ~14% (source #21)."
+     },
+     {
+      "input": "Products multiple",
+      "value": "25x after-tax",
+      "basis": "judgment",
+      "source_ids": [
+       5,
+       6
+      ],
+      "derivation": "Same multiple source #5 uses for Intel Products, inside the 25-40x range of semi peers (source #6)."
+     },
+     {
+      "input": "Foundry value",
+      "value": "$120B",
+      "basis": "judgment",
+      "source_ids": [
+       1,
+       3,
+       5,
+       17,
+       18
+      ],
+      "derivation": "Net PP&E is $105.7B (source #1). Foundry loses about $2.1-2.5B a quarter with breakeven targeted for end-2027 and possibly slipping into 2028 (source #3); external revenue is only $293M a quarter (source #5). I give about 1.1x net PP&E for the strategic and government-backed value and the 18A yield progress (source #17) and 14A evaluations (source #18), well below source #5's ~$250B implied residual."
+     },
+     {
+      "input": "Mobileye + Altera stakes",
+      "value": "$9.4B",
+      "basis": "estimate",
+      "source_ids": [
+       5
+      ],
+      "derivation": "Per source #5."
+     },
+     {
+      "input": "Unallocated corporate/other costs",
+      "value": "-$50B",
+      "basis": "estimate",
+      "source_ids": [
+       1
+      ],
+      "derivation": "Q2 corporate unallocated was -$1.42B (source #1). I take ~$3B a year net of non-GAAP adjustments and capitalize it at about 17x after tax."
+     },
+     {
+      "input": "Net debt (pro forma)",
+      "value": "~$5B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2
+      ],
+      "derivation": "Q2 debt $50.5B less cash $12.9B + ST investments $16.9B (source #1) = $20.8B; less ~$19.7B offering net proceeds (source #2) = ~$1B; add ~$4B for H2 cash burn (Q2 adj. FCF -$8.4B, source #1, much of it the $14.3B partner distribution)."
+     },
+     {
+      "input": "Non-controlling interests",
+      "value": "$15.6B",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": "Balance sheet 2026-06-27."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "5.30B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       5
+      ],
+      "derivation": "5,104M Q2 diluted (source #1) + 210.5M offering shares (source #2), ~5.285B per source #5; rounded to 5.30B to allow for greenshoe/escrow drift (143M escrowed DOC shares, source #4, not fully added)."
+     }
+    ]
+   },
+   {
+    "name": "EV/sales",
+    "value": 93.0,
+    "weight": 0.25,
+    "inputs": "2027 revenue $72B x 7.0x = $504B EV; less net debt $5B and NCI $15.6B, plus stakes $9.4B, is about $492B / 5.30B = $93.",
+    "inputs_detail": [
+     {
+      "input": "2027 revenue",
+      "value": "$72B",
+      "basis": "consensus",
+      "source_ids": [
+       21
+      ],
+      "derivation": "Consensus about $71-72B."
+     },
+     {
+      "input": "EV/sales multiple",
+      "value": "7.0x",
+      "basis": "judgment",
+      "source_ids": [
+       4
+      ],
+      "derivation": "source #4 puts the current multiple at about 10x sales, the $74 bear case at 5.9x and the $172 bull at 13.7x. I use 7x, leaning to the bear side because negative FCF and an unproven foundry argue against a full AI-semi multiple."
+     },
+     {
+      "input": "Net debt (pro forma)",
+      "value": "~$5B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2
+      ],
+      "derivation": "Q2 debt $50.5B less cash $12.9B + ST investments $16.9B (source #1) = $20.8B; less ~$19.7B offering net proceeds (source #2) = ~$1B; add ~$4B for H2 cash burn (Q2 adj. FCF -$8.4B, source #1, much of it the $14.3B partner distribution)."
+     },
+     {
+      "input": "Non-controlling interests",
+      "value": "$15.6B",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": "Balance sheet 2026-06-27."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "5.30B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       5
+      ],
+      "derivation": "5,104M Q2 diluted (source #1) + 210.5M offering shares (source #2), ~5.285B per source #5; rounded to 5.30B to allow for greenshoe/escrow drift (143M escrowed DOC shares, source #4, not fully added)."
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 65.0,
+   "prob": 0.3,
+   "story": "The CPU shortage eases and hyperscaler capex flattens in 2027 (Northland's call, source #8), so DCAI growth slows from +59% and server price increases reverse. No high-volume external 14A customer signs, and Intel signals a 14A pause (source #6). Foundry breakeven slips to 2028 (source #3) while FCF stays negative after the $20B raise (source #1, source #2). The multiple falls to about 6x sales and ~25x EPS (source #4, source #7). Price $60-75."
+  },
+  "base": {
+   "price": 110.0,
+   "prob": 0.45,
+   "story": "The turnaround continues: DCAI keeps growing, gross margin edges toward the mid-40s, 2027 EPS lands near $2.0-2.2 (source #21), and Apple/18A-P work progresses (source #19) without a blockbuster volume commitment. Earnings growth absorbs some de-rating from about 65x toward about 45x NTM. The stock ends roughly flat to slightly down, close to the street mean target of about $116 (source #6)."
+  },
+  "bull": {
+   "price": 175.0,
+   "prob": 0.25,
+   "story": "A named high-volume 14A/18A-P customer is announced (Apple, Nvidia or a hyperscaler, source #18, source #19), the agentic-AI CPU shortage persists into 2027 (source #20), and 2028 EPS heads to $3+ (source #3, source #8). That matches source #4's $172 bull case at about 13.7x sales."
+  }
+ },
+ "thesis_break_price": 70.0,
+ "thesis_break_reason": "Below about $70 (about 6x sales, ~42% below spot; source #4's bear case is $74 and source #5's is $70) the market would be pricing not just multiple compression but a fundamental break: the server-CPU upcycle rolling over and/or 14A losing its external customers, with foundry losses running at $2B+ a quarter and no breakeven path (source #3, source #6). It would also put the stock below the $95 offering and CEO purchase price by a wide margin (source #2, source #16). A fall to the $90s would be ordinary volatility given 76% realized vol and the $89 low in September.",
+ "catalysts": [
+  {
+   "date": "2026-10-22",
+   "event": "Q3 2026 earnings and Q4 guide (guide was $16.3B revenue midpoint, $0.38 EPS)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01",
+   "event": "Q4 2026 earnings and 2027 capex/gross-margin framework; first look at 2027 foundry loss trajectory",
+   "direction": "?"
+  },
+  {
+   "date": "2026-Q4 to 2027-H1",
+   "event": "Formal confirmation or volume terms of the Apple foundry agreement; any named 14A anchor customer, or a 14A pause decision",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01 to 2027-02",
+   "event": "Hyperscaler 2027 capex guides (MSFT/GOOGL/AMZN/META); Northland-type thesis of CY27 datacenter decline tested",
+   "direction": "-"
+  },
+  {
+   "date": "2027-04",
+   "event": "Q1 2027 earnings; DCAI growth deceleration and server CPU pricing check",
+   "direction": "?"
+  },
+  {
+   "date": "2027-07",
+   "event": "Q2 2027 earnings; foundry breakeven trajectory vs end-2027 target",
+   "direction": "?"
+  },
+  {
+   "date": "ongoing",
+   "event": "Rates: 10-year Treasury at highest since 2007 compresses long-duration high-multiple names",
+   "direction": "-"
+  },
+  {
+   "date": "ongoing",
+   "event": "Escrowed DOC share mark-to-market swings GAAP EPS (~$143M per $1 of stock price); appeal of dismissed foundry securities class action",
+   "direction": "-"
+  }
+ ],
+ "key_uncertainties": [
+  "Durability of the AI/agentic server-CPU shortage and the 10-15% price increases vs a 2027 hyperscaler capex slowdown",
+  "Whether any external customer commits high volume to 18A-P/14A (Apple scope still undisclosed); 14A may be paused without one",
+  "Foundry loss rate (~$2-2.5B/qtr) and whether breakeven slips from end-2027 into 2028",
+  "Negative adjusted FCF (-$8.4B in Q2) despite a $20B equity raise; further dilution or debt needs",
+  "Multiple: at ~60-70x NTM EPS the stock is sensitive to rates and AI-sentiment swings (76% realized vol)",
+  "Government/strategic holders (US ~10%, Nvidia, SoftBank) bought at $20-23 and sit on large gains: a potential supply overhang"
+ ],
+ "reasoning": "Skeptic lane. Facts: Q2'26 revenue was $16.1B (+25%), non-GAAP EPS $0.42 and GAAP EPS -$2.16 (a $12.5B+ escrow mark-to-market loss). Adjusted FCF was -$8.4B, debt is $50.5B and foundry lost $2.1B on only $293M of external revenue (source #1, source #5). In August Intel raised about $20B in equity at $95 (source #2), which tells me the cash need is real even at peak sentiment. Credit is investment grade but weak (Baa2/BBB, Fitch negative outlook; source #9, source #10), with tech CDS widening in 2026 (source #12) and new long-dated notes at up to 6.2% (source #11). Valuation is the core of the bear case: about 63-69x NTM, 57x consensus 2027 EPS of $2.06, about 10x sales and roughly $635B of market cap (source #3, source #4, source #5, source #6). Comparisons to Cisco's 2000 peak multiple are in circulation (source #13). The street is mostly Hold, with a mean target of about $116, below spot (source #6), and Northland downgraded at a similar price in May, modelling a CY27 datacenter decline (source #8). Weighing this honestly: estimates rose about 35% in 90 days, server demand exceeds supply (source #20, source #21), 18A yields of about 80% are reported (source #17), eight major firms are evaluating 14A (source #18), Apple has a preliminary deal (source #19), and the CEO bought $10M at $95 with no meaningful insider selling (source #16). Short interest is only about 3% (source #15), the dismissed class action is a minor risk (source #14), and I found no accounting red flags beyond the escrow mark-to-market noise. My fundamental fair value is about $93 (P/E, SOTP and EV/sales), about 22% below spot. For the forecast I do not put the median at fair value. I set the 12-month median at about $108-110, roughly 10% below spot, as a compromise between my fair value and the market's momentum and evidence of rising estimates. The spread is a lognormal with sigma about 0.62 plus a 15% wide (sigma 1.0) tail component, a little below the 76% realized vol because vol tends to mean-revert, but fat-tailed for binary foundry and customer news. That gives P(>=120) of about 0.45 and P(<72) of about 0.26, consistent with the scenario weights (bear 30% at $65, base 45% at $110, bull 25% at $175; mean about $113). Limits: Seeking Alpha and Advisor Perspectives returned 403, I did not fetch X posts, and I found no relevant Polymarket or Kalshi market, so none is quoted.",
+ "lane": "skeptic",
+ "sources": [
+  {
+   "title": "Intel Q2 2026 earnings release (Form 8-K, Ex.99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/q226earningsrelease.htm",
+   "date": "2026-07",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Intel prospectus supplement (424B5): 210.5M-share primary offering at $95",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000050863/000119312526345221/d98483d424b5.htm",
+   "date": "2026-08-10",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "TIKR: Intel Stock Fell Nearly 6% in a Day. Here's the Foundry Deadline That Matters More",
+   "url": "https://www.tikr.com/blog/intel-stock-fell-nearly-6-in-a-day-heres-the-foundry-deadline-that-matters-more",
+   "date": "2026-09-28",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "FinanceFeeds: Intel (INTC) Stock Prediction: $172 Bull vs $74 Bear",
+   "url": "https://financefeeds.com/intel-intc-stock-prediction-172-bull-74-bear/",
+   "date": "2026-09-27",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Ashton Invests (Substack): INTC Deep Dive: What a $635 Billion Turnaround Is Actually Pricing In",
+   "url": "https://ashtoninvests.substack.com/p/intc-deep-dive-what-a-635-billion",
+   "date": "2026-10-01",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "24/7 Wall St: 32 Analysts Say Hold on Intel. Here's What the Numbers Actually Show",
+   "url": "https://247wallst.com/investing/2026/09/30/32-analysts-say-hold-on-intel-heres-what-the-numbers-actually-show",
+   "date": "2026-09-30",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "24/7 Wall St via Yahoo: Prediction: This Stock is Going to Plummet in the Second Half of 2026",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/prediction-stock-going-plummet-second-134950193.html",
+   "date": "2026-06-19",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Investing.com: Northland downgrades Intel stock rating on valuation concerns",
+   "url": "https://www.investing.com/news/analyst-ratings/northland-downgrades-intel-stock-rating-on-valuation-concerns-93CH-4709491",
+   "date": "2026-05-26",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "Investing.com: Intel downgraded by Moody's to Baa2 on weak profitability outlook",
+   "url": "https://www.investing.com/news/stock-market-news/intel-downgraded-by-moodys-to-baa2-on-weak-profitability-outlook-93CH-4186211",
+   "date": "2025",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "CNBC: Intel's credit rating downgraded by Fitch on demand challenges",
+   "url": "https://www.cnbc.com/2025/08/05/intels-credit-rating-downgraded-by-fitch-on-demand-challenges.html",
+   "date": "2025-08-05",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "StockTitan: Intel prices $6.5B multi-maturity note offering (424B5)",
+   "url": "https://www.stocktitan.net/sec-filings/INTC/424b5-intel-corp-prospectus-supplement-debt-securities-4d3042e45fa9.html",
+   "date": "2026-04",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Pluang: Credit default swap spreads widen for tech giants incl. Intel",
+   "url": "https://pluang.com/en/news-feed/peringatan-pasar-kredit-terhadap-saham-ai",
+   "date": "2026-07-12",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "GuruFocus: Intel (INTC) Stock Surge Raises Concerns Over AI Bubble",
+   "url": "https://www.gurufocus.com/news/8843605/intel-intc-stock-surge-raises-concerns-over-ai-bubble",
+   "date": "2026-05-07",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Intel Form 10-Q for quarter ended 2026-06-27 (litigation note: foundry securities class action on appeal)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000050863/000005086326000157/intc-20260627.htm",
+   "date": "2026-07",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Blockonomi: Intel short interest 158.8M shares (3.0%) as of 2026-09-15",
+   "url": "https://blockonomi.com/intel-intc-stock-soars-236-in-2026-as-ai-cpu-demand-creates-supply-shortage",
+   "date": "2026-09",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Yahoo Finance: Intel's CEO Just Bet $10 Million on His Company's Stock (Form 4, 105,263 sh at $95)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/insiders-only-buy-one-reason-140819796.html",
+   "date": "2026-08",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Hardware Busters: Intel 18A Yield Is Pegged at 80%, and 14A Starts at Just 6,000 Wafers a Month",
+   "url": "https://hwbusters.com/news/intel-18a-yield-is-pegged-at-80-and-14a-starts-at-just-6000-wafers-a-month/",
+   "date": "2026-09",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "TechSpot: Amazon, Apple, AMD, Google, Tesla, Microsoft, Nvidia, Qualcomm reportedly evaluating Intel 14A",
+   "url": "https://techspot.com/news/113984-amazon-apple-amd-google-tesla-microsoft-nvidia-qualcomm.html",
+   "date": "2026-09",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "AI Magazine: Intel to Make Apple Chips in Landmark Foundry Pact",
+   "url": "https://aimagazine.com/news/intel-to-make-apple-chips-in-new-deal",
+   "date": "2026-06",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "The Next Platform: AI-Driven CPU Shortage Saves Intel's Financial Cookies",
+   "url": "https://www.nextplatform.com/compute/2026/04/27/ai-driven-cpu-shortage-saves-intels-financial-cookies/5218916",
+   "date": "2026-04-27",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "24/7 Wall St: Intel Is Trying to Reinvent Itself. Here's Where INTC Stock Could Be in 2027",
+   "url": "https://247wallst.com/investing/2026/09/29/intel-is-trying-to-reinvent-itself-heres-where-intc-stock-could-be-in-2027/",
+   "date": "2026-09-29",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "MarketBeat: Intel shares down 5.7% (2026-09-28)",
+   "url": "https://www.marketbeat.com/instant-alerts/price-intel-nasdaq-intc-shares-down-57-heres-why-2026-09-28/",
+   "date": "2026-09-28",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Bloomberg: Intel stake held by US government jumps to $36 billion",
+   "url": "https://www.bloomberg.com/news/articles/2026-04-24/us-government-stake-in-intel-has-jumped-300-to-36-billion",
+   "date": "2026-04-24",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Tom's Hardware: Nvidia $5B Intel common stock deal (217.4M sh at $23.28)",
+   "url": "https://www.tomshardware.com/tech-industry/nvidia-gives-intel-a-lifeline-with-usd5-billion-common-stock-deal-september-deal-gets-ftc-approval-for-more-than-217-4-million-intel-shares-at-usd23-28-per-share",
+   "date": "2025-12",
+   "type": "press",
+   "in_lane": false
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+  "symbol": "RMBS", "agent_id": "agent_4", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [{"K":28,"p":0.99},{"K":45,"p":0.958},{"K":56,"p":0.91},{"K":67,"p":0.845},{"K":78,"p":0.77},{"K":90,"p":0.683},{"K":101,"p":0.605},{"K":112,"p":0.532},{"K":123,"p":0.464},{"K":134,"p":0.403},{"K":151,"p":0.321},{"K":168,"p":0.255},{"K":196,"p":0.174},{"K":224,"p":0.119},{"K":280,"p":0.056}],
+  "ladder_1m": [{"K":89.58,"p":0.87},{"K":95.17,"p":0.79},{"K":100.77,"p":0.695},{"K":104.13,"p":0.632},{"K":107.49,"p":0.567},{"K":111.97,"p":0.482},{"K":116.45,"p":0.40},{"K":119.81,"p":0.344},{"K":123.17,"p":0.292},{"K":128.77,"p":0.217},{"K":134.36,"p":0.157}],
+  "one_month_reasoning": "The main event in the window is Q3 2026 earnings, expected around Oct 26-29, 2026, before the 2026-11-01 horizon. Guidance is revenue of $210-216M and non-GAAP EPS of $0.75-0.82, with product revenue stepping up to $110-116M. Royalties are guided down to $69-75M from $84.2M in Q2. Rambus beat guidance in both Q1 and Q2 2026, yet the stock fell after both reports (about -11% and -9%), because the market was worried about DRAM supply limiting module units, about MRDIMM timing and about margins. The stock has also just rallied roughly 30-38% from about $81 in mid-September on the memory-sector momentum trade around Micron. That raises the chance of a give-back, but momentum often carries on for a while. Net effect: a median slightly below spot (~$111) and a monthly sigma of about 19%, a little under the 80%/3.5 rule of thumb because some of the 80% realized vol came from a one-off spring spike. The spread is roughly symmetric with a slight downside lean.",
+  "fair_value": {"value": 116.0, "method": "A 70/30 blend of forward P/E (horizon NTM EPS $4.00 x 28 + $7.5 net cash/share = $119.5) and FCF yield (NTM FCF $320M at a 3.0% yield on EV, plus net cash = $105). Blended value is about $116.",
+    "methods": [
+      {"name": "P/E", "value": 119.5, "weight": 0.7, "inputs": "NTM EPS as of Oct 2027 $4.00 (consensus-derived, 5% haircut) x 28x + net cash $7.5/share",
+       "inputs_detail": [
+         {"input": "FY2026 non-GAAP EPS consensus", "value": "$3.04", "basis": "consensus", "source_ids": [3], "derivation": ""},
+         {"input": "FY2027 non-GAAP EPS consensus", "value": "$3.72", "basis": "consensus", "source_ids": [3], "derivation": ""},
+         {"input": "NTM EPS at horizon (Q4'27-Q3'28)", "value": "$4.00", "basis": "estimate", "source_ids": [3,6,7], "derivation": "FY27 $3.72 grown ~18% for FY28 (~$4.40), weighted 25/75 FY27/FY28 = ~$4.23. Cut ~5% because of the DRAM-supply unit constraint flagged by Baird, the TrendForce tight-supply data, and the Diamond Rapids slip to 2027 that delays the Intel MRDIMM ramp."},
+         {"input": "Target P/E", "value": "28x", "basis": "judgment", "source_ids": [3,4,5], "derivation": "Spot is ~30x FY27 consensus ($111.97/3.72). The forum narrative uses 53.5x on 2029 earnings and a newsletter cites ~40x trailing. I use 28x forward, assuming the multiple compresses as growth normalizes to high-teens."},
+         {"input": "Net cash per share", "value": "$7.5", "basis": "reported", "source_ids": [1], "derivation": "$824.9M cash and securities at 6/30/26 over 110M diluted shares. Rambus has no material debt."}
+       ]},
+      {"name": "FCF yield", "value": 105.0, "weight": 0.3, "inputs": "NTM FCF at horizon $320M / 3.0% EV yield = $10.7B EV + $0.83B cash over 110M shares",
+       "inputs_detail": [
+         {"input": "Quarterly operating cash flow", "value": "$61.2M (Q2 2026)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "NTM FCF at horizon", "value": "$320M", "basis": "estimate", "source_ids": [1,3], "derivation": "Q2 OCF annualized is ~$245M. Grown ~20% a year in line with consensus revenue growth (2027 revenue $989M, +20%), less ~$30M capex, then rolled forward to the Oct 2027 NTM window."},
+         {"input": "FCF yield on EV", "value": "3.0%", "basis": "judgment", "source_ids": [3,4], "derivation": "This is consistent with the ~28-30x forward P/E range above for an IP-plus-chip business with 79.5% gross margin and ~36% EBIT margin."},
+         {"input": "Diluted shares", "value": "110M", "basis": "guidance", "source_ids": [1], "derivation": ""}
+       ]}
+    ]},
+  "scenarios": {
+    "bear": {"price": 72.0, "prob": 0.25, "story": "DRAM makers keep allocating wafers to HBM and supply stays tight, so server module units stall. MRDIMM slips with Diamond Rapids into late 2027 and CXL takes some content. Product growth stalls, royalties stay lumpy, and the memory momentum trade unwinds. The stock re-rates to ~22x on ~$3.3 EPS."},
+    "base": {"price": 120.0, "prob": 0.5, "story": "RCD share holds in the mid-40s%, PMIC and companion chips grow, and MRDIMM starts with AMD Venice. EPS lands near FY27 consensus (~$3.7) and FY28 trends to ~$4.2-4.4. The multiple drifts to ~28x forward."},
+    "bull": {"price": 185.0, "prob": 0.25, "story": "The AI-server upcycle broadens to general compute. MRDIMM ramps on both Venice and Diamond Rapids in 2027, the 9600 chipset wins, and companion-chip share reaches 40-50%. EPS beats by 10-15% and memory names keep momentum multiples (~38x)."}
+  },
+  "thesis_break_price": 70.0,
+  "thesis_break_reason": "$70 is below the 52-week low ($77.89) and about 18% under the September low (~$81), even though the memory pricing backdrop is strong. Trading there would most likely mean Rambus had lost RCD/companion-chip share, product revenue had failed to grow sequentially despite guidance, or the MRDIMM ramp had been pushed out materially. That would be a fundamental break, not normal volatility at 80% realized vol.",
+  "catalysts": [
+    {"date": "2026-10-27", "event": "Q3 2026 results and Q4 guidance (expected Oct 26-29); product revenue guided to $110-116M", "direction": "?"},
+    {"date": "2026-Q4", "event": "AMD EPYC Venice launch (Zen 6, MRDIMM support)", "direction": "+"},
+    {"date": "2026-12", "event": "Micron FQ1 2027 results / DRAM contract price prints (TrendForce)", "direction": "?"},
+    {"date": "2027-02", "event": "Q4 2026 results and 2027 outlook", "direction": "?"},
+    {"date": "2027", "event": "Intel Xeon 7 Diamond Rapids launch (MRDIMM gen 2), slipped to 2027", "direction": "+"},
+    {"date": "2027-04", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-07", "event": "Q2 2027 results", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether a DRAM supply squeeze (wafers diverted to HBM) caps server module units, which drive Rambus chip volumes",
+    "MRDIMM ramp timing given Diamond Rapids slipping to 2027",
+    "Royalty and licensing lumpiness (Q3 royalties guided down to $69-75M from $84M)",
+    "Sustainability of the memory-sector momentum trade (Micron up ~260% YTD) that drove the latest RMBS rally",
+    "Multiple compression from ~30x forward as growth normalizes"
+  ],
+  "reasoning": "Basic facts: Q2 2026 revenue was a record $207.4M (+20% y/y) with non-GAAP EPS of $0.77. Q3 guidance is $210-216M and $0.75-0.82, with $825M of cash and 110M shares. Consensus is FY26 EPS $3.04 and FY27 $3.72 (+22%), with an average target of ~$148 from 8 analysts (stockanalysis). Spot at $111.97 is about 30x FY27 EPS. Alternative-lane signals: (1) The forum narrative on Simply Wall St community values the stock at $149, but that rests on a 53.5x multiple on 2029 EPS, which looks aggressive. (2) Trader newsletters (StocksToTrade/Timothy Sykes) describe the September move from the low $80s to $105+ as a technical breakout tied to memory momentum and a Benchmark analyst meeting, not a fundamental change. (3) TrendForce price tracking shows server DRAM contract prices up 13-18% q/q in Q3 2026 and Q4 forecasts raised. That supports demand, but it confirms the supply tightness that Baird and others flag as a cap on Rambus units, since Rambus has no pricing power. (4) Independent hardware sites (igor'sLAB, aiweekly, 3DNews) report Intel Diamond Rapids slipping to 2027, which delays part of the MRDIMM upside, while AMD Venice stays on track for 2026. (5) A momentum blog notes Micron's ~260% rally has turned memory into a momentum trade, and RMBS trades as a satellite of it. That explains the 80% realized vol and argues for fat tails both ways. I could not reach X/Twitter or Reddit content through search (no direct RMBS Reddit threads surfaced), so social sentiment is thin. Blended fair value is ~$116, a little above spot. Scenario-weighted value is 0.25*72 + 0.5*120 + 0.25*185 = $124. I set a lognormal median of ~$117 with sigma 0.55: below the 80% realized vol, which included the spring spike, but well above a typical large cap's 25-35%. That gives P(>=112) ~0.53 and meaningful tails (P(>=196) ~0.17, P(<78) ~0.23). Research was limited to ~12 queries and fetches.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "Rambus Reports Second Quarter 2026 Financial Results", "url": "https://www.rambus.com/second-quarter-2026-financial-results/", "date": "2026-07-27", "type": "company", "in_lane": false},
+    {"title": "Rambus shares crater after revenue miss, Baird warns of DRAM supply squeeze", "url": "https://finance.yahoo.com/markets/stocks/articles/rambus-shares-crater-revenue-miss-173700183.html", "date": "2026", "type": "press", "in_lane": false},
+    {"title": "Rambus (RMBS) analyst forecast and estimates", "url": "https://stockanalysis.com/stocks/rmbs/forecast/", "date": "2026-10-02", "type": "data", "in_lane": false},
+    {"title": "Simply Wall St community narrative: RMBS expanding data center demand (fair value $149)", "url": "https://simplywall.st/community/narratives/us/semiconductors/nasdaq-rmbs/rambus/aar9pige-rmbs-expanding-data-center-demand-will-drive-strong-share-price-momentum", "date": "2026-07-21", "type": "forum", "in_lane": true},
+    {"title": "Rambus (RMBS) Stock Climbs As Traders Track Insider Filing", "url": "https://www.timothysykes.com/news/rambus-inc-rmbs-news-2026_09_22/", "date": "2026-09-22", "type": "newsletter", "in_lane": true},
+    {"title": "TrendForce raises its Q3 and Q4 DRAM contract price forecasts", "url": "https://www.kucoin.com/news/flash/trendforce-raises-q3-q4-dram-contract-price-forecasts-benefits-micron", "date": "2026", "type": "alt-data", "in_lane": true},
+    {"title": "Intel Diamond Rapids reportedly not coming until 2027", "url": "https://www.igorslab.de/en/intel-diamond-rapids-reportedly-not-coming-until-2027-xeon-7-leak-puts-pressure-on-intels-server-roadmap/", "date": "2026-08", "type": "expert", "in_lane": true},
+    {"title": "Intel bumps Xeon 7 Diamond Rapids to 256 cores, slips to 2027", "url": "https://aiweekly.co/alerts/intel-bumps-xeon-7-diamond-rapids-to-256-cores-slips-to-2027", "date": "2026-08", "type": "newsletter", "in_lane": true},
+    {"title": "Micron's 260% Rally Turns Memory Into a Momentum Trade", "url": "https://nai500.com/blog/2026/09/micron-s-260-rally-turns-memory-into-a-momentum-trade/", "date": "2026-09", "type": "newsletter", "in_lane": true},
+    {"title": "RMBS Stock Climbs As Traders Track Insider Filing, Analyst Meeting", "url": "https://stockstotrade.com/news/rambus-inc-rmbs-news-2026_09_22/", "date": "2026-09-22", "type": "newsletter", "in_lane": true},
+    {"title": "Rambus stock surged 98% in a month, then Q1 2026 earnings sent it back down", "url": "https://www.tikr.com/blog/rambus-stock-surged-98-in-a-month-then-q1-2026-earnings-sent-it-back-down", "date": "2026-04", "type": "newsletter", "in_lane": true},
+    {"title": "Is Rambus Inc (RMBS) Overvalued After 3.5% Rally?", "url": "https://gurufocus.com/news/9104296/is-rambus-inc-rmbs-overvalued-after-35-rally-gf-value-says-overvalued", "date": "2026-09-30", "type": "press", "in_lane": false},
+    {"title": "AMD gets a head start: Diamond Rapids delayed to 2027 (3DNews)", "url": "https://3dnews.ru/1142700/amd-poluchit-foru-angstremnie-xeon-diamond-rapids-zadergatsya-do-2027-goda", "date": "2026-08-03", "type": "trade", "in_lane": true}
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "symbol": "LSCC", "agent_id": "agent_5", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 34, "p": 0.995}, {"K": 54, "p": 0.96}, {"K": 67, "p": 0.905}, {"K": 80, "p": 0.83},
+    {"K": 94, "p": 0.735}, {"K": 107, "p": 0.645}, {"K": 121, "p": 0.555}, {"K": 134, "p": 0.48},
+    {"K": 147, "p": 0.41}, {"K": 161, "p": 0.345}, {"K": 181, "p": 0.27}, {"K": 201, "p": 0.205},
+    {"K": 234, "p": 0.135}, {"K": 268, "p": 0.085}, {"K": 335, "p": 0.035}
+  ],
+  "ladder_1m": [
+    {"K": 107.20, "p": 0.905}, {"K": 113.90, "p": 0.835}, {"K": 120.60, "p": 0.74}, {"K": 124.62, "p": 0.675},
+    {"K": 128.64, "p": 0.60}, {"K": 134.00, "p": 0.51}, {"K": 139.36, "p": 0.42}, {"K": 143.38, "p": 0.355},
+    {"K": 147.40, "p": 0.295}, {"K": 154.10, "p": 0.21}, {"K": 160.80, "p": 0.145}
+  ],
+  "one_month_reasoning": "The window runs to the last close before 2026-11-01 (Fri 2026-10-30). Lattice's Q3 2026 report is expected around 2026-11-03 per earnings calendars, so most likely just outside the window. Lattice has reported Q3 in late October before, though, so there is some chance it lands inside. Other scheduled drivers are macro and sector events: peer semiconductor earnings in late October (TXN, NXPI, MCHP, ON, AMD) and possible news on Section 232 Phase-2 chip tariffs, which Commerce flagged on 2026-09-02. Momentum is mixed. The stock bounced +16% from its September low to $134 and rose 4% on the last day, but it is still 15% below its June high. I have no directional edge, so I use a near-symmetric lognormal centered at $134.5 with sigma 0.17 (61% annual vol / 3.5). That is a touch above the usual monthly width to allow for a possible early earnings date and tariff headlines.",
+  "fair_value": {
+    "value": 136.0,
+    "method": "Blend of forward P/E (2028E EPS $3.30 x 40x = $132, discounted lightly) and a FCF-yield cross-check (NTM-at-horizon FCF/share ~$3.6 at a 2.6% yield = $138). Weights are 60/40, giving ~$136 for the 12-month fair value.",
+    "methods": [
+      {"name": "P/E", "value": 134.0, "weight": 0.6,
+       "inputs": "Forward EPS seen at Oct-2027 (CY2028E) $3.30 x 40x = $132. Cross-check: CY2027E EPS $2.75 x 49x historical mean = $135. Average ~$134.",
+       "inputs_detail": [
+         {"input": "Q3 2026 non-GAAP EPS guidance", "value": "$0.54-$0.58", "basis": "guidance", "source_ids": [1, 2], "derivation": ""},
+         {"input": "Year-end 2026 revenue run rate", "value": "~$1.2B", "basis": "guidance", "source_ids": [2], "derivation": ""},
+         {"input": "AMI 2027 revenue growth", "value": "~25% on >$200M run rate", "basis": "guidance", "source_ids": [2, 4], "derivation": ""},
+         {"input": "CY2027E non-GAAP EPS", "value": "$2.75", "basis": "estimate", "source_ids": [1, 2, 6, 7],
+          "derivation": "Revenue ~$1.28B (FPGA ~$1.03B: the ~$0.94B Q4-26 run rate +10%; AMI ~$0.25B). Non-GAAP op margin ~40%, below Q2's ~38% op/43% EBITDA plus software mix, gives ~$510M. Interest ~$45M on a ~$950M term loan being paid down. Tax ~13%. Shares ~143M (~137M pre-deal + 5.2-6.1M issued to AMI)."},
+         {"input": "CY2028E non-GAAP EPS", "value": "$3.30", "basis": "estimate", "source_ids": [2, 5], "derivation": "~20% EPS growth, between consensus 27% revenue CAGR (TIKR) and a slowdown as the AI data-center build matures. Mgmt targets $3B revenue by 2030."},
+         {"input": "Forward P/E multiple at horizon", "value": "40x (49x cross-check)", "basis": "judgment", "source_ids": [4, 5, 8, 14],
+          "derivation": "LSCC's historical mean P/E is ~49x (TIKR), currently ~62x NTM. I apply a ~20% discount for added leverage, the lower-multiple software mix from AMI, and base rates. In the 2023-24 FPGA down-cycle the stock fell from ~$97 to ~$45 and the multiple compressed hard (Twelve Data price history)."}
+       ]},
+      {"name": "FCF yield", "value": 138.0, "weight": 0.4,
+       "inputs": "FCF/share ~$3.6 (NTM at horizon: ~$1.45B revenue x ~35% FCF margin / 143M shares) at a 2.6% FCF yield = ~$138",
+       "inputs_detail": [
+         {"input": "Q2 2026 FCF margin", "value": "40.4%", "basis": "reported", "source_ids": [2], "derivation": ""},
+         {"input": "FCF margin assumed", "value": "35%", "basis": "estimate", "source_ids": [2, 7], "derivation": "Q2's 40% margin, less cash interest on acquisition debt and integration costs."},
+         {"input": "Revenue NTM at horizon", "value": "~$1.45B", "basis": "estimate", "source_ids": [2, 5], "derivation": "The CY2027E $1.28B grown at ~20% for the next four quarters."},
+         {"input": "Diluted shares", "value": "~143M", "basis": "estimate", "source_ids": [6, 9], "derivation": "MarketBeat's $18.36B market cap at $134 implies ~137M, plus 5.2-6.1M AMI consideration shares if they are not already included."},
+         {"input": "FCF yield", "value": "2.6%", "basis": "judgment", "source_ids": [5, 14], "derivation": "The ~49x mean P/E history implies a ~2-2.5% earnings/FCF yield for LSCC in non-bust years. I add a bit for leverage, which gives 2.6%."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 78.0, "prob": 0.25, "story": "The FPGA cycle rolls over as AI-server and industrial inventory digests, the AMI integration disappoints, and leverage plus a 2027 recession (Kalshi ~41%) compress the multiple to ~30x on ~$2.4 EPS. This repeats the 2023-24 pattern, when LSCC fell ~55% peak to trough."},
+    "base": {"price": 140.0, "prob": 0.50, "story": "Revenue reaches ~$1.3B in 2027 with FPGA growing modestly and AMI +25%. EPS ~$2.75 and the multiple de-rates to ~40x forward on 2028 EPS. The stock ends roughly flat to slightly up."},
+    "bull": {"price": 215.0, "prob": 0.25, "story": "AI data-center attach (board management, security FPGAs plus AMI firmware) keeps compounding toward the $3B 2030 target. 2028 EPS reaches ~$4 and the stock holds a ~55x premium multiple. That continues the 2019-21 style re-rating, when 12-month gains above 80% were often followed by further 30-100%."}
+  },
+  "thesis_break_price": 88.0,
+  "thesis_break_reason": "Below ~$88 the market would be valuing LSCC at ~32x a $2.75 2027 EPS, near the bottom of its post-2020 range. That level held only in the 2023-24 inventory bust. It would most likely mean FPGA revenue is shrinking again or the AMI deal and its ~$950M debt are going wrong, not ordinary volatility. It is also below the August-September 2026 lows (~$104-112) by a wide margin.",
+  "catalysts": [
+    {"date": "2026-11-03", "event": "Q3 2026 results and Q4 guide (first quarter with AMI; expected date)", "direction": "?"},
+    {"date": "2026-11-09", "event": "Delayed-draw term loan commitment deadline; refinancing of the 364-day acquisition loan", "direction": "?"},
+    {"date": "2026-Q4", "event": "Section 232 Phase-2 semiconductor and electronics tariff decision", "direction": "-"},
+    {"date": "2027-02", "event": "Q4 2026 results and 2027 framework, including AMI growth", "direction": "?"},
+    {"date": "2027-05", "event": "Q1 2027 results; possible analyst day update on the $3B 2030 target", "direction": "+"},
+    {"date": "2027-08", "event": "Q2 2027 results; first year-over-year comparison including AMI", "direction": "?"},
+    {"date": "2027", "event": "US recession risk (Kalshi 2027 recession ~41%)", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Whether the 62% YoY FPGA growth is a sustainable AI data-center share gain or a restock that reverses, as in 2023-24",
+    "AMI integration and growth (25% guided for 2027) and how the market values the software mix",
+    "Pace of deleveraging from roughly $0.95B of acquisition debt",
+    "Macro: Kalshi prices ~41% odds of a 2027 recession; semiconductor tariff escalation",
+    "Exact share count after the deal (5.2-6.1M shares issued) and the size of the GAAP vs non-GAAP gap"
+  ],
+  "reasoning": "Base rates first. Across 88 rolling 12-month windows of LSCC's own monthly history (2016-2026, Twelve Data), the median return is +49% with a 10th-90th percentile range of -24% to +150%. That is inflated by the 2019-21 re-rating from $6 to $77. Of 24 windows that followed a >80% one-year gain, 14 kept rising (mostly 2020-21), but the most recent episodes (2022-23 after the 2021 run) gave -2% to -51%. Long-run vol is ~49% annualized and the recent realized figure is 61%. On fundamentals, Q2 2026 revenue was $201M (+62%) with non-GAAP EPS $0.53, and Q3 guides $255M including AMI with EPS $0.56. Management targets a $1.2B exit run rate and $3B revenue by 2030. My CY2027 EPS estimate is ~$2.75, so at $134 the stock trades at ~49x, right on its historical mean P/E (TIKR). Sell-side mean target is ~$147 (MarketBeat, range $80-180). The stock already showed it can drop ~30% in two months on leverage worries (June $157 to Aug ~$112) despite beats. Fair value is ~$136, near the current price, so I center the distribution with a median ~$131-134 and a mean ~$140 (scenarios: 25% bear $78 / 50% base $140 / 25% bull $215). I model it as an 85/15 mixture: a lognormal with median $142 and sigma 0.50, plus a 15% 'bust' component with median $85, to fatten the left tail for an FPGA down-cycle, tariffs and the Kalshi 2027 recession odds. Research limits: the Business Wire release and some aggregator pages were blocked (403/503). I could not read Kalshi market volumes directly, so the 41% figure comes from a secondary aggregator snippet, and Twelve Data estimates were paywalled.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Lattice Semiconductor Reports Record 2Q26 Revenue, Up 62% YOY", "url": "https://www.businesswire.com/news/home/20260804329539/en/", "date": "2026-08-04", "type": "company", "in_lane": false},
+    {"title": "Lattice Semiconductor (LSCC) Q2 2026 earnings summary", "url": "https://quartr.com/events/lattice-semiconductor-corp-lscc-q2-2026_ofUC4zBe", "date": "2026-08-04", "type": "data", "in_lane": false},
+    {"title": "Lattice Semiconductor (NASDAQ:LSCC) Reports Strong Q2", "url": "https://www.barchart.com/story/news/3647039/lattice-semiconductor-nasdaqlscc-reports-strong-q2", "date": "2026-08", "type": "press", "in_lane": false},
+    {"title": "Lattice Semiconductor Stock Surges 50% in 2026 and the AMI Deal Can Push It Even Higher", "url": "https://www.tikr.com/blog/lattice-semiconductor-stock-surges-50-in-2026-and-the-ami-deal-can-push-it-even-higher", "date": "2026-05", "type": "other", "in_lane": true},
+    {"title": "Lattice Semiconductor stock is up 150% over the past year: can LSCC reach $170 by 2028", "url": "https://www.tikr.com/blog/lattice-semiconductor-stock-is-up-150-over-the-past-year-can-lscc-reach-170-by-2028", "date": "2026-05-01", "type": "other", "in_lane": true},
+    {"title": "Lattice closes $1.65bn AMI deal in Q3 2026 with $1bn cash and $650m in stock", "url": "https://btw.media/en/lattice-to-acquire-ami-for-165bn", "date": "2026", "type": "press", "in_lane": false},
+    {"title": "LSCC 8-K (AMI financing: $950M term loan, $200M revolver)", "url": "https://www.boardroomalpha.com/sec/lscc-8-k-2026-07-27-0001437749-26-024519", "date": "2026-07-27", "type": "filing", "in_lane": false},
+    {"title": "LSCC monthly OHLC 2015-2026 (Twelve Data time series; own computation of rolling 12m return base rates)", "url": "https://twelvedata.com/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "Lattice Semiconductor trading down 8.4% - here's what happened (analyst targets, market cap)", "url": "https://www.marketbeat.com/instant-alerts/lattice-semiconductor-nasdaqlscc-trading-down-84-heres-what-happened-2026-08-05/", "date": "2026-08-05", "type": "data", "in_lane": false},
+    {"title": "Recession worries shift to 2027 as Fed holds firm (Kalshi 2027 recession ~41%, 2026 ~17.5%)", "url": "https://simplefunctions.dev/predictions/recession/recession-worries-shift-to-2027-as-fed-holds-firm-3bd7a3", "date": "2026", "type": "prediction-market", "in_lane": true},
+    {"title": "Trump administration moves to expand tariffs on imported semiconductors", "url": "https://cryptobriefing.com/trump-tariffs-imported-semiconductors-2026/", "date": "2026-09-02", "type": "press", "in_lane": true},
+    {"title": "Section 232 semiconductor tariff July 2026 Phase 2 guide", "url": "https://www.tarifflens.ai/blog/section-232-semiconductor-tariff-july-2026-phase-2-guide", "date": "2026-07", "type": "trade", "in_lane": true},
+    {"title": "Lattice Semiconductor shares decline 5.4% to $130.68 amid sector weakness (peers MCHP, ON, GFS)", "url": "https://kalkine.com/news/technology/lattice-semiconductor-nasdaq-lscc-shares-decline-54-to-13068-amid-market-recovery", "date": "2026-07-24", "type": "press", "in_lane": true},
+    {"title": "LSCC enterprise value history (peak $13.2B Jul-2023; 10y mean $4.2B)", "url": "https://wisesheets.io/enterprise-value/LSCC", "date": "2026", "type": "data", "in_lane": true},
+    {"title": "LSCC earnings date (Q3 2026 expected Nov 3)", "url": "https://beta.earningswhispers.com/go/w/LSCC", "date": "2026-10", "type": "data", "in_lane": true}
+  ]
+}

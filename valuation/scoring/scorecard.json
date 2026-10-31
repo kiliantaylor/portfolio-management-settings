@@ -1,0 +1,365 @@
+{
+ "as_of": "2026-10-30",
+ "generated": "2026-10-31T00:43Z",
+ "method": "Scorecard: do the research and the trades add value? Usage (from the valuation folder): python3 scoring/scorecard.py D\n\nWrites scoring/scorecard.json for market date D and prints a short summary. Two parts:\n\nforecasts  From scoring/live_scores.json (score_live.py is run first if that file is not for D). For 1-month and\n           12-month forecasts separately: mean CRPS (log-price units, lower is better) of the options market alone\n           (p_market), the agents alone after Platt scaling (p_llm_platt) and the published blend (p_final), and the\n           agents-minus-market CRPS difference with a standard error clustered by forecast date (names forecast on the\n           same date move together, so forecast dates are the independent units).\n\nlive_book  The real book rebuilt day by day from data/trades.json (the owner's fills) and data/book.json, from the\n           close before the first fill to D. Stocks are marked at the daily close; cash (in the account and the outside\n           cash in book.json external_cash) earns the 3M T-bill (../portfolio/data/tbill_3m_weekly.csv, notional,\n           calendar days / 365); dividends (../portfolio/data/dividends.json) are credited on the ex-date. Outside money\n           (book.json external_cash and lots bought outside the project, funding \"external\") enters as a cash flow at\n           the start of the day it joined the book, valued at the prior close; returns are time-weighted (each day's\n           return = value at close / (prior close value + flow at the open) - 1), so added money is not counted as return.\n           Compared with:\n             hold_first_book  the book at the close of the first fill day, never traded again; the same outside money\n                              enters on the same days and is then held as is (cash stays cash, outside lots are kept).\n                              Gap = value of every later add, trim, sale and deployment of new cash (\"add_trim_value\").\n             hold_first_book_no_flows  the same first-day book with no outside money (pure buy-and-hold of day 1).\n             spy              SPY close-to-close plus distributions reinvested on the ex-date (no adjusted closes in the\n                              data; dividends.json supplies SPY distributions). Fully invested, so flows do not matter.\n             equal_weight     equal weight in the names the real book holds; rebalanced to equal weight at the close on\n                              any day the set of names changes and on the first trading day of each month, drifting\n                              otherwise; holds T-bill cash while the book holds no stock. Fully invested otherwise.\n           A few weeks of daily returns cannot separate skill from luck: the numbers say what happened, not whether it\n           will happen again.\n\nstandard_model_trial  The standard model's 12-month target (weight 0, on trial since Kilian 2026-10-19) scored beside the\n           blended target and the supervisor fair value: see scoring/std_model_log.py for the log and the method.\n           Pending until the first targets logged (2026-10-13) mature.",
+ "forecasts": {
+  "1m": {
+   "n_ladders_logged": 119,
+   "n_forecast_dates_logged": 12,
+   "first_maturity": "2026-10-29",
+   "first_maturity_from": "2026-09-29",
+   "n_matured": 51,
+   "n_forecast_dates": 2,
+   "n_ladders": 34,
+   "excluded_split_basis": 0,
+   "pending": 85,
+   "mean_crps": {
+    "market": 0.06975,
+    "agents": 0.06979,
+    "blend": 0.0697
+   },
+   "agents_minus_market": {
+    "mean": 0.00015,
+    "se": 0.00094,
+    "t": 0.16
+   },
+   "blend_minus_market": {
+    "mean": -2e-05,
+    "se": 0.00032
+   },
+   "status": "1-month: 2 forecast dates (34 ladders) scored; agents minus market CRPS +0.0002 \u00b1 0.0009 (agents worse); too few forecast dates to judge (20+ needed)."
+  },
+  "12m": {
+   "n_ladders_logged": 2314,
+   "n_forecast_dates_logged": 26,
+   "first_maturity": "2027-09-25",
+   "first_maturity_from": "2026-09-25",
+   "n_matured": 0,
+   "n_forecast_dates": 0,
+   "n_ladders": 0,
+   "excluded_split_basis": 0,
+   "pending": 2314,
+   "status": "First 12-month forecasts mature 2027-09-25; nothing scored yet."
+  }
+ },
+ "live_book": {
+  "start_close": "2026-09-30",
+  "first_fill": "2026-10-01",
+  "end": "2026-10-30",
+  "n_days": 22,
+  "months": 1,
+  "starting_wealth": 10000.0,
+  "end_value": 23895.71,
+  "external_flows": [
+   {
+    "date": "2026-10-07",
+    "amount": 13984.0
+   }
+  ],
+  "net_added": 13984.0,
+  "end_invested_share": 0.5927,
+  "avg_invested_share": 0.3063,
+  "holdings_end": [
+   "ABT",
+   "AMAT",
+   "AMZN",
+   "BKNG",
+   "GOOGL",
+   "MOD",
+   "NFLX",
+   "NVDA",
+   "T",
+   "VST"
+  ],
+  "cum_return": {
+   "real_book": 0.00056,
+   "hold_first_book": -0.01547,
+   "hold_first_book_no_flows": -0.02214,
+   "spy": -0.00906,
+   "equal_weight": -0.0603
+  },
+  "gap_vs": {
+   "hold_first_book": {
+    "cum_return_gap": 0.01603,
+    "rough_se": 0.01677
+   },
+   "hold_first_book_no_flows": {
+    "cum_return_gap": 0.0227,
+    "rough_se": 0.01545
+   },
+   "spy": {
+    "cum_return_gap": 0.00962,
+    "rough_se": 0.02707
+   },
+   "equal_weight": {
+    "cum_return_gap": 0.06086,
+    "rough_se": 0.05967
+   }
+  },
+  "hold_first_book_end_value": 23507.47,
+  "daily": [
+   {
+    "date": "2026-10-01",
+    "value": 9962.45,
+    "flow": 0.0,
+    "invested": 0.2336,
+    "r_real": -0.003755,
+    "r_hold": -0.003755,
+    "r_spy": 0.001783,
+    "r_ew": 0.000115
+   },
+   {
+    "date": "2026-10-02",
+    "value": 9977.64,
+    "flow": 0.0,
+    "invested": 0.2347,
+    "r_real": 0.001525,
+    "r_hold": 0.001525,
+    "r_spy": 0.007395,
+    "r_ew": 0.006289
+   },
+   {
+    "date": "2026-10-05",
+    "value": 10004.43,
+    "flow": 0.0,
+    "invested": 0.2608,
+    "r_real": 0.002685,
+    "r_hold": 0.003121,
+    "r_spy": 0.006743,
+    "r_ew": 0.013367
+   },
+   {
+    "date": "2026-10-06",
+    "value": 10073.21,
+    "flow": 0.0,
+    "invested": 0.2657,
+    "r_real": 0.006875,
+    "r_hold": 0.006841,
+    "r_spy": 0.005498,
+    "r_ew": 0.027092
+   },
+   {
+    "date": "2026-10-07",
+    "value": 24012.43,
+    "flow": 13984.0,
+    "invested": 0.158,
+    "r_real": -0.001862,
+    "r_hold": -0.002041,
+    "r_spy": -0.0024,
+    "r_ew": 0.008022
+   },
+   {
+    "date": "2026-10-08",
+    "value": 23966.62,
+    "flow": 0.0,
+    "invested": 0.1507,
+    "r_real": -0.001908,
+    "r_hold": -0.002849,
+    "r_spy": -0.004233,
+    "r_ew": -0.014056
+   },
+   {
+    "date": "2026-10-09",
+    "value": 23993.84,
+    "flow": 0.0,
+    "invested": 0.1516,
+    "r_real": 0.001136,
+    "r_hold": 0.005892,
+    "r_spy": 0.005995,
+    "r_ew": 0.007193
+   },
+   {
+    "date": "2026-10-12",
+    "value": 23992.25,
+    "flow": 0.0,
+    "invested": 0.1513,
+    "r_real": -6.6e-05,
+    "r_hold": -0.003441,
+    "r_spy": -0.000604,
+    "r_ew": -0.005516
+   },
+   {
+    "date": "2026-10-13",
+    "value": 24007.44,
+    "flow": 0.0,
+    "invested": 0.1517,
+    "r_real": 0.000633,
+    "r_hold": -0.001107,
+    "r_spy": -0.000116,
+    "r_ew": 0.00376
+   },
+   {
+    "date": "2026-10-14",
+    "value": 23955.9,
+    "flow": 0.0,
+    "invested": 0.1201,
+    "r_real": -0.002147,
+    "r_hold": -0.006954,
+    "r_spy": -0.01081,
+    "r_ew": -0.015944
+   },
+   {
+    "date": "2026-10-15",
+    "value": 23991.71,
+    "flow": 0.0,
+    "invested": 0.1572,
+    "r_real": 0.001495,
+    "r_hold": 0.000905,
+    "r_spy": 0.002846,
+    "r_ew": 0.008534
+   },
+   {
+    "date": "2026-10-16",
+    "value": 23866.25,
+    "flow": 0.0,
+    "invested": 0.1784,
+    "r_real": -0.005229,
+    "r_hold": -0.008802,
+    "r_spy": -0.011065,
+    "r_ew": -0.025983
+   },
+   {
+    "date": "2026-10-19",
+    "value": 23898.53,
+    "flow": 0.0,
+    "invested": 0.1792,
+    "r_real": 0.001353,
+    "r_hold": 0.001469,
+    "r_spy": 0.004232,
+    "r_ew": 0.008451
+   },
+   {
+    "date": "2026-10-20",
+    "value": 23860.39,
+    "flow": 0.0,
+    "invested": 0.2263,
+    "r_real": -0.001596,
+    "r_hold": -0.00206,
+    "r_spy": 0.003353,
+    "r_ew": -0.00637
+   },
+   {
+    "date": "2026-10-21",
+    "value": 23819.04,
+    "flow": 0.0,
+    "invested": 0.2249,
+    "r_real": -0.001733,
+    "r_hold": 0.000277,
+    "r_spy": 0.005253,
+    "r_ew": -0.003138
+   },
+   {
+    "date": "2026-10-22",
+    "value": 23652.13,
+    "flow": 0.0,
+    "invested": 0.3156,
+    "r_real": -0.007007,
+    "r_hold": -3.8e-05,
+    "r_spy": -0.01181,
+    "r_ew": -0.037913
+   },
+   {
+    "date": "2026-10-23",
+    "value": 23660.78,
+    "flow": 0.0,
+    "invested": 0.4098,
+    "r_real": 0.000366,
+    "r_hold": 0.004527,
+    "r_spy": -0.005223,
+    "r_ew": -0.008974
+   },
+   {
+    "date": "2026-10-26",
+    "value": 23829.45,
+    "flow": 0.0,
+    "invested": 0.6914,
+    "r_real": 0.007129,
+    "r_hold": 0.001818,
+    "r_spy": 0.007106,
+    "r_ew": -0.000276
+   },
+   {
+    "date": "2026-10-27",
+    "value": 23821.83,
+    "flow": 0.0,
+    "invested": 0.6808,
+    "r_real": -0.00032,
+    "r_hold": 0.002808,
+    "r_spy": 0.005605,
+    "r_ew": 0.008923
+   },
+   {
+    "date": "2026-10-28",
+    "value": 23880.5,
+    "flow": 0.0,
+    "invested": 0.6103,
+    "r_real": 0.002463,
+    "r_hold": -0.002193,
+    "r_spy": 0.003443,
+    "r_ew": 0.004684
+   },
+   {
+    "date": "2026-10-29",
+    "value": 23922.92,
+    "flow": 0.0,
+    "invested": 0.5932,
+    "r_real": 0.001776,
+    "r_hold": -0.005681,
+    "r_spy": -0.00382,
+    "r_ew": -0.016698
+   },
+   {
+    "date": "2026-10-30",
+    "value": 23895.71,
+    "flow": 0.0,
+    "invested": 0.5927,
+    "r_real": -0.001137,
+    "r_hold": -0.005666,
+    "r_spy": -0.017729,
+    "r_ew": -0.021343
+   }
+  ],
+  "spy_basis": "price plus distributions reinvested on the ex-date (dividends.json); no adjusted closes in the data",
+  "dividends_missing_for": [
+   "PANW"
+  ],
+  "dividends_missing_note": "names not in dividends.json are treated as paying nothing",
+  "prices_missing_for": [],
+  "note": "22 trading days of returns cannot show skill: daily stock returns swing by about 1-2%, so a gap of a few percent over a few weeks is well within luck. rough_se treats days as independent; read the gaps as what happened, not as evidence, until there are many months. Cash earns the T-bill notionally in every account.",
+  "add_trim_value": {
+   "cum_return_gap": 0.01603,
+   "rough_se": 0.01677,
+   "dollars": 388.24,
+   "meaning": "real book minus the first-day book held unchanged with the same outside money added as cash/lots (time-weighted); it counts every later add, trim, sale and the pace of putting new cash to work."
+  }
+ },
+ "add_trim_value": {
+  "cum_return_gap": 0.01603,
+  "rough_se": 0.01677,
+  "dollars": 388.24,
+  "meaning": "real book minus the first-day book held unchanged with the same outside money added as cash/lots (time-weighted); it counts every later add, trim, sale and the pace of putting new cash to work."
+ },
+ "standard_model_trial": {
+  "weight": "0 in fair value and levels (trial, Kilian 2026-10-19)",
+  "log": "scoring/std_model_log.csv",
+  "outcome": "first close on or after the forecast date + 1 year (the blended target horizon), split-adjusted to the forecast basis",
+  "n_logged": 255,
+  "n_forecast_dates": 14,
+  "n_names": 26,
+  "n_research_dates": 45,
+  "first_logged": "2026-10-13",
+  "n_not_on_time": 12,
+  "first_maturity": "2027-10-13",
+  "latest": {
+   "run_date": "2026-10-30",
+   "n": 22,
+   "median_std_vs_blended": 0.0518,
+   "median_std_vs_spot": 0.0785,
+   "median_blended_vs_spot": 0.0466
+  },
+  "n_scored": 0,
+  "pending": 243,
+  "excluded_split_basis": [],
+  "status": "Standard model trial (weight 0): pending. 243 on-time 12-month targets logged from 14 forecast dates since 2026-10-13 (26 names, 45 distinct research runs); first outcomes 2027-10-13. Scored then against the realised price beside the blended target and the supervisor fair value."
+ }
+}

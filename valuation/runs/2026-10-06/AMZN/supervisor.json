@@ -1,0 +1,729 @@
+{
+ "symbol": "AMZN",
+ "as_of": "2026-10-06",
+ "horizon": "2027-10-06",
+ "round": 2,
+ "delta_refresh": true,
+ "delta_review": {
+  "previous_run": "2026-09-29 supervisor.json: fair value $264, thesis break $185, P(>=247) 0.57 at spot $246.67, ladder median ~$261 (estimate, interpolated: 247 + (0.570-0.5)/(0.570-0.452) x 24 = 261.2)",
+  "what_changed_in_evidence": [
+   "Price: $246.67 -> $256.29 (+3.9%). There was no Amazon 8-K or 10-Q after Sep 29. The EDGAR submissions feed shows only a Form 4 (Oct 5), a Form 3/A (Oct 6) and an exchange CERT (Sep 24) since the Sep 24 8-A12B. The last 8-K was Sep 14 (GBP notes closing). So the move is not company news.",
+   "Consensus barely moved. Yahoo FY27 EPS is $10.51 (52 analysts), against $10.50 7 and 30 days ago and $9.99 90 days ago, with 4 up and 0 down revisions in 30 days. Last week's $10.48 was on another page (stockanalysis), so the gap is source noise, not a revision.",
+   "Rates are flat. The FRED 10-year was 5.26% on Sep 29 and 5.31% on Oct 5. The fed funds target is 3.75-4.00%, effective Sep 17 (Fed implementation note). The next FOMC is Oct 27-28 (Fed calendar).",
+   "AWS EC2 Capacity Block prices rise ~15% on Oct 7 (P6-B300 $14.04 -> $16.146; 16.146/14.04 = 1.150), verified on the AWS pricing page. It is a small product, and no agent put it into a number. Context only.",
+   "Press only, removed from every number: the FT/Reuters report of an ~$8B Nvidia-chip SPV leaseback (not agreed; Amazon did not comment; no filing), and the Polymarket October hike odds (19.5%), cited via a news briefing."
+  ],
+  "fair_value_bridge": "Fair value went from $264 to $283 (+$19, +7.2%). P/E leg: $276 -> $288.1 (+$12). Nearly all of that comes from the FY28 input: last week's own +20% assumption ($12.56) is replaced by the MarketScreener FY28 consensus of $13.81, haircut to $13.20. FY27 news adds ~+$0.2 (0.25 x $0.03 x 23). SOTP leg: ~$250 -> $278.8. Most of that is method: segment earnings are rolled to the horizon NTM window (0.25 x 2027 + 0.75 x 2028), to match the horizon P/E leg. Last week's SOTP applied multiples to 2027 earnings, i.e. a value as of today blended with a horizon P/E. Also in the SOTP leg: +$4.6/share for the $50.0B OpenAI stake every run has omitted (an error fix), -$1.0/share for a tighter Anthropic deferred tax, and a lower value from net debt on the consensus path to Oct-2027 ($61.1B estimate vs ~$31B). News contributes ~$0.",
+  "justified": "Partly. Rolling the SOTP to the horizon and using a sourced FY28 consensus are real fixes, and the OpenAI stake is a factual correction. But FY28 consensus is thin and pro-cyclical. It assumes 2028 capex of only $296.9B, against ~$399B if Amazon tracks the standing AI-capex base. So the FV rise is an input/method change with model risk, not new information. That is why I do not pass it into the ladder: the reconciled ladder moved with spot only. P(>=spot) is ~0.57 in both runs, and the median is ~+5.4% vs ~+5.9% last week. The delta agents' own medians ($278, $267) also sit well below their FVs.",
+  "anchoring_check": "The blind agent_3 never saw the prior files. It independently used the same FY28 consensus ($13.81, haircut to $13.24) and the same 23x P/E. Its multiple legs ($288 P/E before stakes, $295 EV/EBITDA) are at or above the delta agents' legs. Its lower FV ($267) comes only from a 20%-weight DCF ($144 at a 10.44% WACC). Its ladder is the most cautious: P(>=256) 0.54 vs 0.618 and 0.554 for the delta agents. So the delta agents' FV rise is not an artefact of anchoring to last week. agent_1's ladder is the most bullish, partly because of an off-basis peer median and AWS multiple (see comps_review)."
+ },
+ "disagreements": [
+  {
+   "topic": "Peer median and basis (26.7x vs 23.8x vs 25.15x)",
+   "positions": "agent_1 has an 11-name median of 26.7x and agent_3 a 12-name median of 25.15x. Both use MarketScreener's printed P/E for the fiscal year ending Jun-2027 to May-2028, which mixes MSFT FY Jun-27, COST FY Aug-27, ORCL FY May-28 and BABA FY Mar-28, and both include CPNG at 40.2x on a depressed base. agent_2 calendarizes 10 names to CY2027 and gets 23.8x.",
+   "resolution": "I use one basis, CY2027, with 11 names (CPNG excluded). The median is 23.5x (SE), and the mega-cap cloud subgroup median is 22.5x (Oct 6 closes; citation gate). agent_1's 26.7x median is exactly MSFT's off-basis FY Jun-27 multiple (MSFT on CY27 is 24.5x). AMZN trades at 24.4x CY27 (256.29/10.51). 23x is a 2.3% discount to the reconciled median, so no agent's P/E multiple changes. agent_1's AWS 26x, which was anchored on MSFT's 26.7x, goes to 25x.",
+   "evidence": "MarketScreener finances pages opened Oct 6 for MSFT, GOOGL, META, ORCL, WMT, COST, MELI, SE, SHOP, BABA and PDD (consensus EPS), and stockanalysis.com Oct 6 closes (see comps_review)"
+  },
+  {
+   "topic": "FY28 EPS input ($13.40 / $13.00 / $13.24 vs consensus $13.81)",
+   "positions": "All three haircut the MarketScreener FY28 consensus for capex/D&A above consensus: agent_1 -$0.41 (2027 capex ~$310B), agent_2 -6% (memory costs), agent_3 -$0.57 (capex scaled to the standing-view Big-4 base, 50% revenue offset).",
+   "resolution": "Consensus verified: EPS 2027 $10.51 and 2028 $13.81; capex 2027 $277.4B and 2028 $296.9B; EBIT 2028 $182.7B. The haircut is warranted because consensus 2028 capex growth (+7%) is far below the standing view, in which Big-4 capex goes 1,080 -> 1,330 ($B) in 2028. I use $13.20, the mean of the three independent haircuts ((13.40 + 13.00 + 13.24)/3 = 13.21, rounded). NTM EPS at the horizon = 0.25 x 10.51 + 0.75 x 13.20 = $12.53 (estimate).",
+   "evidence": "MarketScreener AMZN finances (opened Oct 6); /mnt/project-files/adhoc/nvda_customer_capex.md (Big-4 base 2027 1,080 / 2028 1,330)"
+  },
+  {
+   "topic": "AI-lab stakes: Anthropic only ($160B after tax) vs all investments at 50% ($251B)",
+   "positions": "agents 1 and 2 value only Anthropic ($190.4B carrying, ~$160B after tax). agent_3 adds OpenAI and other investments ($229.7B recorded at 6/30 + $21.3B OpenAI after quarter-end = $251.0B) at a 50% haircut, and adds them to its P/E leg.",
+   "resolution": "The 10-Q confirms Anthropic preferred $92.5B + notes $97.9B = $190.4B. It also shows OpenAI Series C at $28.7B at 6/30, plus $21.3B invested after quarter-end = $50.0B at cost. Agents 1 and 2 (and the 2026-09-29 supervisor) omitted the OpenAI stake. I add it at cost in the SOTP (no embedded gain, so no deferred tax): +$4.6/share. Anthropic after tax is an estimate: cash invested = $8.0B notes + $10.0B preferred in Q2-26 = $18.0B, so the embedded gain is $172.4B. H1 discrete tax was $15.9B on $62.8B of upward adjustments plus a $4.5B reclass gain (23.6%), so I use 24%: 190.4 - 0.24 x 172.4 = $149.0B, vs the agents' $160B. Stakes are not added to the P/E leg: AMZN's own 24.4x already prices them.",
+   "evidence": "Amazon 10-Q Q2-26, investments note (Anthropic, OpenAI, $229.7B recorded value, $21.3B subsequent investment) and tax note ($15.9B discrete tax)"
+  },
+  {
+   "topic": "Net debt at the horizon (~$61B consensus path vs $30.9B pro forma vs $74B end-2027)",
+   "positions": "agent_1: MarketScreener consensus interpolated to Oct-2027 = $61.1B. agent_2: LTD $128.9B + $25B July notes - cash $78.2B - securities $44.8B = $30.9B. agent_3: end-2027 consensus $74.0B.",
+   "resolution": "Consensus net debt is verified: end-2026 $22.3B, end-2027 $74.0B. The interpolation is labelled an estimate: 22.278 + 0.75 x (74.022 - 22.278) = $61.1B. I use it because the SOTP is a horizon value. agent_2's arithmetic is wrong: it adds the July notes without their cash proceeds and omits the $3.3B current portion. The correct pro forma is 6/30 face debt $133.0B - cash $78.2B - securities $44.8B = $10.0B, plus the $21.3B OpenAI payment = $31.3B (estimate, before Q3 cash flow). By coincidence that is about its figure. Caveat: consensus end-2026 $22.3B looks low against that $31.3B, so the horizon figure may be understated by ~$10B (~$0.9/share).",
+   "evidence": "Amazon 10-Q Q2-26 balance sheet and debt note; MarketScreener AMZN finances"
+  },
+  {
+   "topic": "Valuation method weight: agent_3's skeptic DCF ($144, 20%)",
+   "positions": "agent_3 blends P/E $299.6, EV/EBITDA $295.2 and a DCF at 10.44% WACC of $144.1 into $267. The delta agents use P/E and SOTP only ($278-290).",
+   "resolution": "The verified 10-year of 5.31% supports a high discount rate. But the DCF hinges on an assumed 8% post-SBC FCF margin by 2032 and a 3.5% terminal growth rate. Both are judgment, and a 1pp WACC move swings it ~$30. I keep it as a downside marker and give it no FV weight. The ladder keeps agent_3's lower distribution through the mean, so its caution is not discarded.",
+   "evidence": "FRED DGS10 5.31% (2026-10-05); agent_3 sensitivity table"
+  },
+  {
+   "topic": "Q3 report date and the 1-month window",
+   "positions": "agents 1 and 2: Oct 29 after the close (Trefis estimate). agent_3: last week of October, TBA.",
+   "resolution": "Not yet announced. Amazon's IR release feed, checked Oct 6, shows no Q3 webcast notice; the Q2 notice came Jul 16 for a Jul 30 print, 14 days ahead. Oct 29 remains an estimate, but any late-October date falls inside the window ending Nov 5. FOMC Oct 27-28 is confirmed.",
+   "evidence": "Amazon IR press-release feed (2026 list: last item 'Amazon.com Announces Second Quarter Results', 07/30/2026); federalreserve.gov FOMC calendar"
+  }
+ ],
+ "ladder": [
+  {
+   "K": 64.0,
+   "p": 0.9987
+  },
+  {
+   "K": 103.0,
+   "p": 0.9947
+  },
+  {
+   "K": 128.0,
+   "p": 0.9827
+  },
+  {
+   "K": 154.0,
+   "p": 0.951
+  },
+  {
+   "K": 179.0,
+   "p": 0.8943
+  },
+  {
+   "K": 205.0,
+   "p": 0.8087
+  },
+  {
+   "K": 231.0,
+   "p": 0.696
+  },
+  {
+   "K": 256.0,
+   "p": 0.5707
+  },
+  {
+   "K": 282.0,
+   "p": 0.44
+  },
+  {
+   "K": 308.0,
+   "p": 0.325
+  },
+  {
+   "K": 346.0,
+   "p": 0.1977
+  },
+  {
+   "K": 384.0,
+   "p": 0.1147
+  },
+  {
+   "K": 449.0,
+   "p": 0.0447
+  },
+  {
+   "K": 513.0,
+   "p": 0.0177
+  },
+  {
+   "K": 641.0,
+   "p": 0.0037
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 205.03,
+   "p": 0.9705
+  },
+  {
+   "K": 217.85,
+   "p": 0.929
+  },
+  {
+   "K": 230.66,
+   "p": 0.84
+  },
+  {
+   "K": 238.35,
+   "p": 0.7575
+  },
+  {
+   "K": 246.04,
+   "p": 0.6525
+  },
+  {
+   "K": 256.29,
+   "p": 0.501
+  },
+  {
+   "K": 266.54,
+   "p": 0.354
+  },
+  {
+   "K": 274.23,
+   "p": 0.2595
+  },
+  {
+   "K": 281.92,
+   "p": 0.1845
+  },
+  {
+   "K": 294.73,
+   "p": 0.0985
+  },
+  {
+   "K": 307.55,
+   "p": 0.0535
+  }
+ ],
+ "one_month_reasoning": "I keep the mean of the forecasters whose 1-month distributions rest on verified inputs, agents 2 and 3 (P(>=spot) 0.501). agent_1's 1-month mixture is left out: it dropped the rate-shock component it carried last week on the strength of Polymarket odds (19.5%) cited from a news briefing, a press-only figure that must not enter a number. Its ladder sits within 0.005 of the agents 2-3 mean at every strike, so the effect is small. Q3 results (not yet announced, estimated ~Oct 29) and the confirmed Oct 27-28 FOMC both fall before the Nov 5 scored close, and the agents widen the tails for an earnings gap; the verified record supports that: AMZN closed +15.3% the session after the Q2-26 print (235.50 -> 271.58, Jul 30-31), -5.6% after Q4-25 (222.69 -> 210.32) and +0.8% after Q1-26 (263.04 -> 265.06) (Twelve Data daily closes). The bar is verified: guidance of $197-202B sales and $22.5-26.5B operating income (8-K Ex.99.1), against Yahoo consensus of $202.03B and EPS $1.95. No directional edge.",
+ "confidence": "low",
+ "confidence_reason": "My checks corrected inputs: the OpenAI stake, the Anthropic tax, the peer-median basis, agent_1's AWS multiple and agent_2's net-debt arithmetic. They moved my fair value to $283, but they largely offset agent by agent: agent_1's corrected FV falls to ~$283 and agent_2's rises to ~$281. None changes the distribution enough to beat the mean, so I leave the 12-month ladder at the forecasters' mean; the 1-month ladder is the mean of agents 2 and 3 (citation gate: agent_1's 1-month mixture leaned on press-only Polymarket odds).",
+ "thesis_break_price": 188.0,
+ "thesis_break_reason": "$188 is 26.6% below spot and 17.9x FY27 consensus EPS of $10.51 (188/10.51 = 17.89). That is Oracle's CY2027 P/E of 17.9x at the Oct 6 close (144.77 / 8.102; estimate from MarketScreener consensus EPS) applied to AMZN's FY27 EPS (17.87 x 10.51 = 187.8), the market's current price for debt-funded AI capex under stress. Reaching it while FY27 EPS is still being revised up (4 up, 0 down in 30 days) would take a structural break: AWS growth falling to the low 20s, an AI-lab commitment renegotiated against the $496B backlog, or a 2027 capex guide far above ~$300B with no AWS acceleration. agents 1 and 2 have $185, agent_3 $190; the gap is within noise. Citation gate: was $185 on ORCL 17.6x at the Oct 5 close; re-based to the Oct 6 close used for AMZN's spot.",
+ "key_drivers": [
+  "AWS average net property and equipment (installed capacity, $): 150.4 -> 266.2/426.3/590.8 (estimate)",
+  "AWS revenue per $ of average net PP&E (capacity turnover): 0.8561 -> 0.6528/0.5503/0.4972 (estimate)",
+  "AWS EBITDA margin (segment OI + segment D&A) / AWS sales: 0.5209 -> 0.571/0.585/0.6 (estimate)",
+  "Advertising services revenue: 68.64 -> 85.44/102.5/121 (estimate)",
+  "North America + International revenue excluding advertising (stores, 3P services, subscriptions, other): 519.6 -> 579.8/626.2/676.3 (estimate)",
+  "Operating margin of NA + International excluding advertising (ads at an assumed 50% margin): 0.0001 -> 0.00162/0.00162/0.00162 (estimate)"
+ ],
+ "fair_value": {
+  "value": 283.0,
+  "reason": "50/50 blend of two horizon (Oct-2027) values, $283.4, rounded to $283. (1) P/E: NTM EPS 0.25 x $10.51 + 0.75 x $13.20 = $12.53, x 23x = $288.1 (estimate). (2) SOTP: AWS NTM pre-tax OI $96.2B x 0.79 x 25 = $1,900B; North America + International $59.0B x 0.79 x 22 = $1,025B; Anthropic after tax $149.0B (estimate: 190.4 - 0.24 x (190.4 - 18.0) = 149.0; 24% rounds the implied H1-26 rate 15.9 / (62.8 + 4.5) = 23.6%, 10-Q); OpenAI $50.0B at cost (10-Q: $28.7B at 6/30 + $21.3B after quarter-end); less net debt $61.1B (estimate: 22.278 + 0.75 x (74.022 - 22.278), MarketScreener consensus) and Globalstar $10.9B (10-Q). That is $3,052B over 10.95B diluted shares (estimate: Q2-26 diluted 10,903M x ~1.005 for SBC and Globalstar stock) = $278.8. The segment estimates and multiples are agent_1's, except AWS at 25x, not 26x, after the CY27 peer re-basing. Against the agents' $290/$278/$267 (mean $278.3): agent_1 falls to ~$283 (23x and AWS 25x), agent_2 rises to ~$281 (OpenAI stake, tax), and agent_3's $267 is pulled down by a 20% DCF I do not weight. No news moved it; see delta_review."
+ },
+ "comps_review": {
+  "basis": "CY2027 P/E = Oct 6, 2026 close (stockanalysis.com price history) / CY2027 consensus EPS (MarketScreener finances pages, opened Oct 6). Each multiple is computed here (basis estimate); no aggregator-printed multiple is used. Non-December fiscal years are calendarized by months (MSFT 6/12 FY27 + 6/12 FY28; ORCL 5/12 FY27 + 7/12 FY28; COST 8/12 FY27 + 4/12 FY28; BABA 3/12 FY27 + 9/12 FY28; WMT FY Jan-28 taken as CY27). BABA and PDD: USD ADR close x USD/CNY 6.70534 (Oct 6, Twelve Data) against CNY EPS per ADR. Citation gate: the earlier set mixed Oct 5 closes (GOOGL, META, ORCL, and the page prices) with Oct 6 closes; re-based to Oct 6 throughout.",
+  "peers": [
+   {
+    "symbol": "MSFT",
+    "cy27_pe": 24.5,
+    "calc": "529.30 / (0.5 x 19.70 + 0.5 x 23.58 = 21.64) = 24.46",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $529.30 (stockanalysis.com/stocks/msft/history/)",
+     "eps": "FY Jun EPS FY27 $19.70, FY28 $23.58, consensus (https://www.marketscreener.com/quote/stock/MICROSOFT-CORPORATION-4835/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "GOOGL",
+    "cy27_pe": 23.3,
+    "calc": "347.68 / (14.95) = 23.26",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $347.68 (stockanalysis.com/stocks/googl/history/)",
+     "eps": "EPS 2027 $14.95, consensus (https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "META",
+    "cy27_pe": 21.7,
+    "calc": "738.88 / (34.07) = 21.69",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $738.88 (stockanalysis.com/stocks/meta/history/)",
+     "eps": "EPS 2027 $34.07, consensus (https://www.marketscreener.com/quote/stock/META-PLATFORMS-INC-10547141/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "ORCL",
+    "cy27_pe": 17.9,
+    "calc": "144.77 / (5/12 x 6.643 + 7/12 x 9.144 = 8.102) = 17.87",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $144.77 (stockanalysis.com/stocks/orcl/history/)",
+     "eps": "FY May EPS FY27 $6.643, FY28 $9.144, consensus (https://www.marketscreener.com/quote/stock/ORACLE-CORPORATION-13620698/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "WMT",
+    "cy27_pe": 33.7,
+    "calc": "107.20 / (3.181 (FY Jan-28 taken as CY27)) = 33.70",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $107.20 (stockanalysis.com/stocks/wmt/history/)",
+     "eps": "FY Jan-28 EPS $3.181, consensus (https://www.marketscreener.com/quote/stock/WALMART-INC-4841/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "COST",
+    "cy27_pe": 39.8,
+    "calc": "935.68 / (8/12 x 22.78 + 4/12 x 24.96 = 23.507) = 39.80",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $935.68 (stockanalysis.com/stocks/cost/history/)",
+     "eps": "FY Aug EPS FY27 $22.78, FY28 $24.96, consensus (https://www.marketscreener.com/quote/stock/COSTCO-WHOLESALE-CORPORAT-4866/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "MELI",
+    "cy27_pe": 33.0,
+    "calc": "1857.99 / (56.38) = 32.95",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $1857.99 (stockanalysis.com/stocks/meli/history/)",
+     "eps": "EPS 2027 $56.38, consensus (https://www.marketscreener.com/quote/stock/MERCADOLIBRE-INC-58469/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "SE",
+    "cy27_pe": 23.5,
+    "calc": "96.53 / (4.101) = 23.54",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $96.53 (stockanalysis.com/stocks/se/history/)",
+     "eps": "EPS 2027 $4.101, consensus (https://www.marketscreener.com/quote/stock/SEA-LIMITED-38150303/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "SHOP",
+    "cy27_pe": 79.9,
+    "calc": "164.44 / (2.059) = 79.86",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $164.44 (stockanalysis.com/stocks/shop/history/)",
+     "eps": "EPS 2027 $2.059, consensus (https://www.marketscreener.com/quote/stock/SHOPIFY-INC-22283351/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "BABA",
+    "cy27_pe": 14.7,
+    "calc": "$109.26 x 6.70534 CNY/USD = CNY 732.63 / (0.25 x 34.73 + 0.75 x 54.66 = 49.68 CNY per ADR) = 14.75",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $109.26 (stockanalysis.com/stocks/baba/history/); USD/CNY 6.70534 Oct 6 (Twelve Data)",
+     "eps": "FY Mar EPS FY27 CNY 34.73, FY28 CNY 54.66 (per ADR), consensus (https://www.marketscreener.com/quote/stock/ALIBABA-GROUP-HOLDING-LIM-17916677/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   },
+   {
+    "symbol": "PDD",
+    "cy27_pe": 6.5,
+    "calc": "$78.40 x 6.70534 CNY/USD = CNY 525.70 / (80.85 CNY per ADS) = 6.50",
+    "basis": "estimate",
+    "inputs": {
+     "price": "Oct 6, 2026 close $78.40 (stockanalysis.com/stocks/pdd/history/); USD/CNY 6.70534 Oct 6 (Twelve Data)",
+     "eps": "EPS 2027 CNY 80.85, consensus (https://www.marketscreener.com/quote/stock/PDD-HOLDINGS-INC-45049866/finances/, opened 2026-10-06)"
+    },
+    "verified": "inputs checked 2026-10-06; multiple computed, not taken from an aggregator"
+   }
+  ],
+  "dropped": [
+   {
+    "symbol": "CPNG",
+    "why": "CY27 EPS is a depressed post-loss base (agents show +98% EPS growth into 2028), so its 40.2x does not measure a persistent multiple"
+   }
+  ],
+  "reconciled_median_pe": 23.5,
+  "megacap_cloud_subgroup_median_pe": 22.47,
+  "amzn_cy27_pe": 24.4,
+  "multiple_used": 23.0,
+  "premium_discount_vs_median_pct": -2.3,
+  "justification": "A 2.3% discount to the 23.5x reconciled median (23/23.54), and a small premium to the 22.5x median of the capex-heavy cloud subgroup (MSFT 24.5x, GOOGL 23.3x, META 21.7x, ORCL 17.9x). AMZN's EPS growth is above its peers (+31% FY28 vs FY27 consensus: 13.81/10.51). Its consensus FCF is negative in 2026 (-$34.0B) and 2027 (-$8.2B), and its 2027 capex ($277.4B) is above its 2027 EBITDA ($273.5B), but that profile is shared by the capex-heavy peers, not unique: META consensus FCF is -$6.5B (2026) and -$25.3B (2027), GOOGL -$36.7B (2027), and ORCL negative in FY26-FY28 (-$23.7B, -$37.3B, -$32.6B) (MarketScreener finances pages, opened Oct 6). So 23x prices AMZN slightly above the subgroup that carries the same AI-capex burden, for faster growth, and below the all-peer median, which includes staples (WMT, COST) and high-growth commerce (MELI, SHOP) without that burden. The multiple is unchanged; the citation gate replaced the earlier claim that AMZN is 'the only mega-cap with consensus FCF negative in both 2026 and 2027', which the pages contradict. The $8B chip SPV and the MS growth-adjusted framing stay out of the justification.",
+  "spot_checks": {
+   "agent_1": "6 checked on the pages: MSFT 26.7x (correct on its FY Jun-27 basis, but off-basis), GOOGL 23.2x (page 23.3x at the Oct 6 price), META 21.8x, ORCL 15.6x (FY May-28, off-basis), WMT 33.0x, COST 40.5x (FY Aug-27). The figures are accurate, but the mixed fiscal basis plus CPNG inflate the median to 26.7x.",
+   "agent_2": "5 checked: MSFT 24.3x (24.5x at the $529.30 close; the agent used $525.18), ORCL 17.6x (exact at the Oct 5 close $142.48; 17.9x at the Oct 6 close $144.77), COST 39.3x (39.8x at $935.68), BABA 15.0x (exact), PDD 6.5x. Calendarization is correct.",
+   "agent_3": "6 checked: MSFT 26.7x, ORCL 15.6x, COST 40.5x (same off-basis issue as agent_1), SE 23.6x (page now 23.5x), SHOP 77.8x, PDD 6.46x.",
+   "gate_note": "Agent comps that copy MarketScreener-printed multiples (agents 1 and 3, and agent_2's MSFT/COST at Oct 5 closes) are aggregator multiples; they feed only the agents' own views. The reconciled set above is computed from price / consensus EPS."
+  }
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "Peer basis: your 'FY ending Jun-2027 to May-2028' mixes MSFT FY Jun-27 (26.7x), ORCL FY May-28 (15.6x) and COST FY Aug-27 (40.5x), and includes CPNG on a depressed base. On CY2027, MSFT is 24.5x (529.30/21.64) and the 11-name median is 23.5x, not 26.7x (MarketScreener finances pages). Your 23.5x is therefore at the median, not a 12% discount.",
+    "AWS 26x was anchored on MSFT's off-basis 26.7x; on CY27, MSFT is 24.5x. I use 25x.",
+    "The 10-Q shows a $28.7B OpenAI Series C stake at 6/30 plus $21.3B invested after quarter-end = $50.0B at cost. Your SOTP omits it (+$4.6/share).",
+    "Anthropic deferred tax: cash invested is $18.0B ($8.0B notes + $10.0B preferred) and H1 discrete tax was $15.9B on $62.8B of upward adjustments. That implies ~$41B of tax, not ~$30B, so after tax is ~$149B.",
+    "Removed from numbers: Polymarket 19.5% hike odds (via a news briefing, not opened at the source) and '10-year at a 24-year high' (not verified). FRED confirms only 5.31% on Oct 5, vs 5.26% on Sep 29.",
+    "FCF claim: 'MSFT/GOOGL/META/WMT/COST are FCF-positive' is wrong for META (consensus FCF -$6.5B 2026, -$25.3B 2027) and GOOGL (-$36.7B 2027) on MarketScreener; the negative-FCF profile is shared by the capex-heavy peers."
+   ],
+   "revisit": "Re-base the comps to CY2027 and keep the 23x-23.5x P/E, now justified as at the median. Cut AWS to ~25x, add the OpenAI stake and recompute the SOTP (~$279). Your ladder median ($278) should come down a little: the corrected FV is ~$283 and most of it is method, not news."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "Net debt arithmetic: adding the $25B July notes without their cash proceeds is inconsistent with treating the GBP notes as net-neutral. The 6/30 face net debt is $133.0B - $78.2B - $44.8B = $10.0B; pro forma for the $21.3B OpenAI payment it is ~$31.3B (10-Q).",
+    "The OpenAI stake ($50.0B at cost, 10-Q) is missing from your SOTP, and the Anthropic after-tax figure is ~$149B, not $160B (see agent_1).",
+    "The $8B Nvidia-chip SPV is an FT report relayed by Reuters/Quartz: not agreed, Amazon did not comment, no filing. It must not appear in your multiple justification or bear story. The AWS Capacity Block +15% is verified on the AWS pricing page; keep it, as you did, out of the revenue estimate.",
+    "Leo -$50B: check in the 10-Q whether Leo costs already sit inside segment operating income; if so, the deduction double-counts.",
+    "FCF claim: 'MSFT, GOOGL and META are FCF-positive' is wrong for META (-$6.5B 2026, -$25.3B 2027) and GOOGL (-$36.7B 2027) per MarketScreener consensus. Peer prices: MSFT $525.18 and COST $923.52 are Oct 5 closes; use one date."
+   ],
+   "revisit": "Your CY2027 calendarization is the right method, and I adopted it. Fix the net-debt bridge, add OpenAI, and re-test whether the Leo deduction is double counting. Your corrected FV is ~$281."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "Adding stakes at 50% on top of a P/E leg double-counts: the 24.4x CY27 multiple you discount from already includes the market's value of those stakes. Keep them in a SOTP only.",
+    "Comp basis: same mixed-fiscal-year issue as agent_1 (MSFT FY Jun-27 26.7x vs 24.5x CY27; ORCL 15.6x vs 17.9x CY27 at the Oct 6 close) and CPNG included. The CY27 median is 23.5x.",
+    "Unverified items I removed: 'two of the last three prints moved ~10%' (no source given), Moody's outlook via Insider Monkey (secondary; read Moody's or Amazon directly), and the Feb-Mar 2026 $196-199 lows (not sourced).",
+    "'AMZN is the only large peer with consensus FCF negative in both 2026 and 2027' is wrong: META (-$6.5B, -$25.3B) and ORCL are too (MarketScreener). 'Two of the last three prints moved ~10%+': close-to-close it was one of three (-5.6% Feb 6, +0.8% Apr 30, +15.3% Jul 31; the Feb -9% was after hours)."
+   ],
+   "revisit": "The skeptic case on FCF quality and debt is well documented in the filings, and you stayed in lane. Re-examine the 20% DCF weight: an assumed 8% FCF margin plus a 10.44% WACC gives $144, which is a scenario, not a central value. Show what WACC and margin the current price implies, and check the Q3 10-Q for whether the $17.5B term loan was drawn by Sep 30."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 22,
+  "repeated_claims": [
+   {
+    "claim": "Q3-26 guide: sales $197-202B, OI $22.5-26.5B",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3"
+    ],
+    "original_source": "Amazon Q2-26 8-K Ex.99.1"
+   },
+   {
+    "claim": "Consensus EPS FY27 $10.51 / FY28 $13.81, capex, FCF, net debt",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3"
+    ],
+    "original_source": "MarketScreener consensus (one aggregator) and Yahoo for FY27"
+   },
+   {
+    "claim": "All peer multiples",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3"
+    ],
+    "original_source": "MarketScreener (a single source for all three peer sets)"
+   },
+   {
+    "claim": "AWS backlog ~$496B; Anthropic $190.4B; Globalstar ~$10.9B",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3"
+    ],
+    "original_source": "Amazon 10-Q Q2-26"
+   },
+   {
+    "claim": "Q3 report ~Oct 29",
+    "agents": [
+     "agent_1",
+     "agent_2"
+    ],
+    "original_source": "Trefis estimate; Amazon has not announced a date"
+   },
+   {
+    "claim": "10-year 5.31%",
+    "agents": [
+     "agent_1",
+     "agent_3"
+    ],
+    "original_source": "FRED DGS10 (agent_1 cited a news briefing)"
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary lane: EDGAR (GBP notes FWP/8-K/8-A12B, Item 5.02, Form 4), the 10-Q and the 8-K. Weak points: Polymarket odds via a news site and an unsourced '24-year high'; both removed. The comps are accurate, but on a mixed fiscal basis."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Good in-lane primary finds: the AWS Capacity Block pricing page (verified) and the Micron 8-K. The FT chip-SPV story is press only. It leaned on the MS digest only lightly (low weight, as stated), which is appropriate. Its CY27 calendarization was correct."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Strong primary debt-document work (424B5s, term-loan 8-K, OpenAI 8-K, 10-K). Its expert and newsletter sources (Burry, Fitzgerald, a Substack) are context only. A few unsourced figures (earnings-move base rate, 2026 lows) are removed. As the blind agent it is a useful anchoring check: its multiple legs match the delta agents'."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "Amazon weighing an ~$8B Nvidia Grace Blackwell SPV leaseback",
+    "why": "FT report relayed by Reuters/Quartz; 'nothing agreed', no Amazon comment, no filing. Removed from all numbers."
+   },
+   {
+    "claim": "Polymarket Oct FOMC hike odds 19.5%",
+    "why": "Cited from a news briefing, not opened at the source. Removed; the confirmed FOMC date (Oct 27-28) stays as an event."
+   },
+   {
+    "claim": "10-year at a 24-year high",
+    "why": "Not verified; only the 5.31% level (FRED) is used."
+   },
+   {
+    "claim": "Two of Amazon's last three prints moved the stock ~10%+",
+    "why": "No source given; not used for the 1-month width, which rests on the agents' mixtures."
+   },
+   {
+    "claim": "Synergy cloud share (AWS 28%, market +43%) and getdeploying H100 +16% y/y",
+    "why": "Not re-opened by me; context only, and they feed no number."
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "Fair value",
+   "from": 278.3,
+   "to": 283.0,
+   "why": "50/50 horizon P/E ($288.1) and corrected SOTP ($278.8), with the OpenAI stake added, Anthropic tax tightened and AWS at 25x on CY27 comps; agent_3's 20% DCF is not weighted."
+  },
+  {
+   "item": "Fact: OpenAI stake omitted by agents 1 and 2",
+   "from": 0.0,
+   "to": 50.0,
+   "why": "10-Q: $28.7B Series C at 6/30 plus $21.3B invested after quarter-end ($B, at cost)."
+  },
+  {
+   "item": "Estimate: Anthropic stake after tax ($B)",
+   "from": 160.0,
+   "to": 149.0,
+   "why": "10-Q: $190.4B carrying, $18.0B cash invested, $15.9B discrete tax on $62.8B of H1 gains -> ~24% on the $172.4B embedded gain (estimate)."
+  },
+  {
+   "item": "Fact: peer median forward P/E (agent_1 26.7x, agent_3 25.15x, agent_2 23.8x)",
+   "from": 26.7,
+   "to": 23.5,
+   "why": "Re-based 11 names to CY2027 on MarketScreener pages opened Oct 6 and dropped CPNG; MSFT is 24.5x on CY27, not 26.7x."
+  },
+  {
+   "item": "AWS after-tax multiple in the SOTP (agent_1)",
+   "from": 26.0,
+   "to": 25.0,
+   "why": "The anchor (MSFT 26.7x) was a FY Jun-27 figure; MSFT is 24.5x on CY27."
+  },
+  {
+   "item": "Fact: agent_2 net debt bridge ($B)",
+   "from": 30.9,
+   "to": 31.3,
+   "why": "6/30 face debt $133.0B - cash $78.2B - securities $44.8B = $10.0B, plus the $21.3B OpenAI payment; the July notes are net-neutral."
+  },
+  {
+   "item": "Thesis break",
+   "from": 186.67,
+   "to": 188.0,
+   "why": "188/10.51 = 17.9x FY27 EPS, equal to ORCL's CY27 multiple at the Oct 6 close (17.9x; citation gate re-based from 17.6x at the Oct 5 close, which gave $185); agent_3's $190 is within noise."
+  },
+  {
+   "item": "Removed from numbers: $8B chip SPV, Polymarket odds, '24-year high' yield",
+   "from": "used in agent_2's discount justification and bear story, and in agent_1's 1-month reasoning",
+   "to": "context only",
+   "why": "Press or briefing only; not confirmed at a primary source (hard rule)."
+  }
+ ],
+ "summary": "No Amazon-specific news since Sep 29 (EDGAR shows only a Form 4). The stock's +3.9% is mostly market beta, and the 10-year is flat at 5.31%. The delta agents' higher fair values come from inputs and method: a sourced FY28 consensus ($13.81, which I use at $13.20) and a SOTP rolled to the horizon. I fixed real errors: the $50B OpenAI stake was missing, the peer median is 23.5x on a CY2027 basis (not 26.7x), and agent_2's net-debt bridge was wrong. The corrected fair value is $283 (+10% vs spot), but the blind agent confirms the multiple legs and I leave the 12-month ladder at the forecasters' mean: median ~$270, P(>=spot) 0.57. The citation gate re-based the peer set to Oct 6 closes (median still 23.5x; ORCL 17.9x, so the thesis break moves $185 -> $188), corrected the claim that AMZN alone has negative FCF (META, GOOGL, ORCL do too; multiple unchanged), and set the 1-month ladder to the agents 2-3 mean (P(>=spot) 0.501). The Q3 print (not yet dated, est. ~Oct 29) and the Oct 27-28 FOMC fall inside the 1-month window. No revise round is needed.",
+ "sources": [
+  {
+   "title": "Amazon.com Form 10-Q, quarter ended June 30, 2026 (Anthropic $92.5B + $97.9B; OpenAI $28.7B + $21.3B subsequent; debt face $133.0B; cash $78.2B; securities $44.8B; RPO ~$496B; Globalstar ~$10.9B; $15.9B discrete tax)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+   "date": "2026-07-31"
+  },
+  {
+   "title": "Amazon Q2 2026 earnings release (8-K Ex.99.1): segments, Q3 guidance, TTM FCF -$7.6B",
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm",
+   "date": "2026-07-30"
+  },
+  {
+   "title": "SEC EDGAR submissions feed, Amazon (CIK 1018724): Form 4 only since Sep 24",
+   "url": "https://data.sec.gov/submissions/CIK0001018724.json",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Amazon finances: EPS 2027 $10.51 / 2028 $13.81; net debt 2026 $22.3B / 2027 $74.0B; FCF; capex; EBIT; EBITDA",
+   "url": "https://www.marketscreener.com/quote/stock/AMAZON-COM-INC-12864605/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "Yahoo Finance AMZN analysis: FY27 $10.51 (52), EPS trend, revisions, Q3 EPS $1.95 / revenue $202.03B",
+   "url": "https://finance.yahoo.com/quote/AMZN/analysis/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Microsoft finances (FY Jun EPS FY27 $19.70, FY28 $23.58; price $529.30)",
+   "url": "https://www.marketscreener.com/quote/stock/MICROSOFT-CORPORATION-4835/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Alphabet finances (2027 P/E 23.3x)",
+   "url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Meta finances (2027 P/E 21.8x)",
+   "url": "https://www.marketscreener.com/quote/stock/META-PLATFORMS-INC-10547141/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Oracle finances (FY May EPS FY27 $6.643, FY28 $9.144; price $142.48)",
+   "url": "https://www.marketscreener.com/quote/stock/ORACLE-CORPORATION-13620698/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Walmart finances (FY Jan-28 P/E 33x)",
+   "url": "https://www.marketscreener.com/quote/stock/WALMART-INC-4841/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Costco finances (FY Aug EPS FY27 $22.78, FY28 $24.96; price $935.68)",
+   "url": "https://www.marketscreener.com/quote/stock/COSTCO-WHOLESALE-CORPORAT-4866/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener MercadoLibre finances (2027 P/E 33x)",
+   "url": "https://www.marketscreener.com/quote/stock/MERCADOLIBRE-INC-58469/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Sea Limited finances (2027 P/E 23.5x)",
+   "url": "https://www.marketscreener.com/quote/stock/SEA-LIMITED-38150303/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Shopify finances (2027 P/E 77.8x)",
+   "url": "https://www.marketscreener.com/quote/stock/SHOPIFY-INC-22283351/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener Alibaba finances (FY Mar EPS FY27 34.73, FY28 54.66 CNY; P/E FY27 21.4x)",
+   "url": "https://www.marketscreener.com/quote/stock/ALIBABA-GROUP-HOLDING-LIM-17916677/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "MarketScreener PDD finances (2027 P/E 6.46x)",
+   "url": "https://www.marketscreener.com/quote/stock/PDD-HOLDINGS-INC-45049866/finances/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "FRED DGS10: 5.31% on 2026-10-05, 5.26% on 2026-09-29",
+   "url": "https://fred.stlouisfed.org/series/DGS10",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "Federal Reserve implementation note: target range 3-3/4 to 4 percent, effective Sep 17, 2026",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a1.htm",
+   "date": "2026-09-16"
+  },
+  {
+   "title": "Federal Reserve FOMC calendar (Oct 27-28, Dec 8-9, 2026)",
+   "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "Amazon IR press-release list 2026 (no Q3 webcast notice as of Oct 6; Q2 notice Jul 16)",
+   "url": "https://ir.aboutamazon.com/news-release/default.aspx",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "AWS EC2 Capacity Blocks pricing: effective Oct 7, 2026 P6-B300 $16.146 (from $14.04), P6-B200 $14.208, P5 $5.970",
+   "url": "https://aws.amazon.com/ec2/capacityblocks/pricing/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "Amazon seeks to offload $8 billion of Nvidia chips to investors, FT reports (Reuters via The Star), context only",
+   "url": "https://www.thestar.com.my/tech/tech-news/2026/10/02/amazon-seeks-to-offload-8-billion-of-nvidia-chips-to-investors-ft-reports",
+   "date": "2026-10-02"
+  },
+  {
+   "title": "Standing view: AI data-center capex across NVIDIA customer groups 2026-2028 (Big-4 base 2027 $1,080B, 2028 $1,330B)",
+   "url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "stockanalysis.com price history (Oct 6, 2026 closes): AMZN 256.29, MSFT 529.30, GOOGL 347.68, META 738.88, ORCL 144.77, WMT 107.20, COST 935.68, MELI 1,857.99, SE 96.53, SHOP 164.44, BABA 109.26, PDD 78.40",
+   "url": "https://stockanalysis.com/stocks/amzn/history/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "Twelve Data: USD/CNY 6.70534 (Oct 6, 2026 close); AMZN daily closes around the last three prints",
+   "url": "https://twelvedata.com/",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "FRED DGS10 text data (5.26% 2026-09-29, 5.31% 2026-10-05)",
+   "url": "https://fred.stlouisfed.org/data/DGS10.txt",
+   "date": "2026-10-06"
+  },
+  {
+   "title": "Amazon Q2 2026 earnings call transcript (~$220B 2026 cash capex; 2027 capacity largely reserved; $496B backlog; 520bp ex derivative gain)",
+   "url": "https://www.theglobeandmail.com/investing/markets/stocks/AMZN/pressreleases/3730734/amazon-amzn-q2-2026-earnings-call-transcript/",
+   "date": "2026-07-30"
+  },
+  {
+   "title": "Amazon 8-K: closing of GBP 4.25B notes (Sep 14, 2026)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926107526/tm2624614d5_8k.htm",
+   "date": "2026-09-14"
+  }
+ ],
+ "sizing": {
+  "max_weight_pct": 10.0,
+  "confidence": 0.45,
+  "entry": "Keep the $230 GTC limit live through the Q3 print (est. ~Oct 29, not yet announced). If it is unfilled after the print and the print does not threaten the $188 thesis break, buy the 1 share at market. Do not scrap the limit for a buy now, ahead of the print.",
+  "overlap": "GOOGL (cloud and digital-ads drivers, same AI-capex cycle); NVDA, AVGO and VST (AI data-center capex theme, where AMZN is the spender); NFLX and BKNG (US consumer discretionary and internet beta).",
+  "reason": "The edge is modest: the ladder median is ~$270 (+5%) and FV $283 (+10%), but both rest on input/method changes rather than news. AMZN is far more volatile than the index, so P(Sharpe beats SPY) is just under a coin flip. A 1-share buy now is ~2.6% of the book, well under a 10% cap, which itself reflects overlap with GOOGL and the AI-capex holdings. The 1-month ladder is centered on spot with no directional edge, so waiting until after the print costs nothing in expectation. P(close <= $230.66 on Nov 5) is ~16%, so the limit has a real chance to fill.",
+  "open_flags": []
+ },
+ "citation_audit": {
+  "date": "2026-10-06",
+  "audit_file": "citation_audit.json",
+  "corrections": [
+   {
+    "item": "Peer CY27 P/E set: price date and source",
+    "from": "mixed Oct 5 / Oct 6 prices; 7 of 11 multiples copied from MarketScreener-printed P/E",
+    "to": "all 11 computed as Oct 6 close / CY27 consensus EPS (MSFT 24.5, GOOGL 23.3, META 21.7, ORCL 17.9, WMT 33.7, COST 39.8, MELI 33.0, SE 23.5, SHOP 79.9, BABA 14.7, PDD 6.5); median 23.5x unchanged",
+    "source": "stockanalysis.com price history (Oct 6 closes); MarketScreener finances pages (consensus EPS); Twelve Data USD/CNY 6.70534"
+   },
+   {
+    "item": "ORCL CY27 P/E",
+    "from": 17.6,
+    "to": 17.9,
+    "source": "144.77 (Oct 6 close, stockanalysis) / 8.102 (5/12 x 6.643 + 7/12 x 9.144, MarketScreener)"
+   },
+   {
+    "item": "Cloud subgroup median P/E",
+    "from": 22.55,
+    "to": 22.5,
+    "source": "median of MSFT 24.46, GOOGL 23.26, META 21.69, ORCL 17.87"
+   },
+   {
+    "item": "Premium/discount vs peer median (%)",
+    "from": -2.0,
+    "to": -2.3,
+    "source": "23 / 23.54 - 1"
+   },
+   {
+    "item": "Thesis break",
+    "from": 185.0,
+    "to": 188.0,
+    "source": "ORCL CY27 17.87x x AMZN FY27 EPS $10.51 = $187.8 (same method as before, Oct 6 close)"
+   },
+   {
+    "item": "Multiple justification: 'AMZN is the only mega-cap with consensus FCF negative in 2026 and 2027'",
+    "from": "stated as fact",
+    "to": "replaced: META (-$6.5B / -$25.3B), GOOGL (2027 -$36.7B) and ORCL (FY26-28 negative) also negative; 23x re-justified as a small premium to the 22.5x capex-heavy subgroup; multiple unchanged",
+    "source": "MarketScreener finances pages for META, GOOGL, ORCL, MSFT (opened 2026-10-06)"
+   },
+   {
+    "item": "1-month ladder",
+    "from": "mean of agents 1-3 (P(>=256.29) 0.5057)",
+    "to": "mean of agents 2-3 (P(>=256.29) 0.501); every strike moves by <=0.005",
+    "source": "agent_1's 1-month mixture dropped its rate-shock component on Polymarket odds cited from a news briefing (press-only)"
+   },
+   {
+    "item": "Change-log label 'Fact: Anthropic stake after tax'",
+    "from": "Fact",
+    "to": "Estimate (190.4 - 0.24 x 172.4 = 149.0)",
+    "source": "Amazon 10-Q Q2-26 (inputs)"
+   },
+   {
+    "item": "EDGAR filings since Sep 24",
+    "from": "Form 4 only",
+    "to": "Form 4 (Oct 5), Form 3/A (Oct 6), CERT (Sep 24); still no 8-K or 10-Q",
+    "source": "https://data.sec.gov/submissions/CIK0001018724.json"
+   }
+  ]
+ },
+ "key_drivers_text_before": [
+  "Earnings path: FY27 consensus EPS $10.51 (Yahoo, 52 analysts) and FY28 $13.81 (MarketScreener), which I use at $13.20 for capex/D&A; NTM EPS at the horizon is ~$12.53 (estimate) at 23x, a 2.3% discount to the 23.5x CY27 peer median",
+  "AWS: Q2-26 revenue $42.2B (+37%) and OI $16.6B; RPO ~$496B with a 6.4-year weighted life, including >$100B expansions each from OpenAI and Anthropic (10-Q)",
+  "Capex and funding: TTM FCF -$7.6B (8-K); consensus FCF -$34.0B in 2026 and -$8.2B in 2027; long-term debt face $133.0B at 6/30 plus $25B of July notes and the GBP 4.25B notes; 10-year 5.31%",
+  "AI-lab stakes: Anthropic $190.4B carrying (~$149B after tax, estimate) and OpenAI $50.0B at cost, ~$18/share combined; their marks are two-sided for GAAP EPS and value",
+  "Q3 print (est. ~Oct 29, unconfirmed) against a $197-202B / $22.5-26.5B OI guide that is depressed by Prime Day moving to June, plus the first 2027 capex framing"
+ ]
+}

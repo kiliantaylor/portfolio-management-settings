@@ -1,0 +1,116 @@
+{
+  "symbol": "ORCL", "agent_id": "agent_1", "as_of": "2026-10-05", "horizon": "2027-10-05",
+  "ladder": [
+    {"K": 36, "p": 0.99}, {"K": 57, "p": 0.96}, {"K": 72, "p": 0.905}, {"K": 86, "p": 0.85},
+    {"K": 100, "p": 0.80}, {"K": 115, "p": 0.74}, {"K": 129, "p": 0.665}, {"K": 143, "p": 0.58},
+    {"K": 158, "p": 0.48}, {"K": 172, "p": 0.40}, {"K": 194, "p": 0.29}, {"K": 215, "p": 0.215},
+    {"K": 251, "p": 0.12}, {"K": 287, "p": 0.06}, {"K": 359, "p": 0.012}
+  ],
+  "ladder_1m": [
+    {"K": 114.73, "p": 0.92}, {"K": 121.90, "p": 0.85}, {"K": 129.07, "p": 0.75}, {"K": 133.37, "p": 0.68},
+    {"K": 137.67, "p": 0.61}, {"K": 143.41, "p": 0.51}, {"K": 149.15, "p": 0.415}, {"K": 153.45, "p": 0.35},
+    {"K": 157.75, "p": 0.285}, {"K": 164.92, "p": 0.20}, {"K": 172.09, "p": 0.135}
+  ],
+  "one_month_reasoning": "No Oracle earnings in the window: Q1 FY27 was reported 2026-09-10 and Q2 FY27 should come around the second week of December, after 2026-11-04. Events inside the window are second-order but matter for an AI-infrastructure proxy with 56% realized vol. (1) Big-4 hyperscaler Q3 results in late October bring the first numeric 2027 capex guides. The standing capex view (base Big-4 2027 ~$1.08T, guides only went up in 2026) leans mildly positive for AI-capacity demand. (2) Any OpenAI financing or IPO-timing news. OpenAI is the largest RPO counterparty and drove the April selloff (CNBC 2026-04-28). (3) Credit-market signals on Oracle-linked project debt; the $18B New Mexico landlord loan was quoted at 89-91c on 2026-09-18. (4) Oracle's own fall AI World event, if held in October as usual. These cut both ways, and there is no clean post-earnings drift signal: the stock fell after a beat-and-raise quarter that came with a $20B ATM equity sale. So I keep a near-symmetric lognormal centred at ~$144 (tiny positive drift) with monthly sigma 0.16 (56%/3.5).",
+  "fair_value": {
+    "value": 154.0,
+    "method": "Blend, at 2027-10-05, of P/E (0.45 weight: NTM non-GAAP EPS $11.0 x 15x = $165), sum of the parts (0.35: legacy software at 15x after-tax earnings plus OCI at 3.2x NTM EV/sales, less ~$170B net debt incl. finance leases, on 3.15B diluted shares = $120) and EV/EBITDA (0.20: haircut NTM EBITDA $77B x 10x, less $170B net debt, on 3.15B shares = $190). Blended = $154.",
+    "methods": [
+      {"name": "P/E", "value": 165.0, "weight": 0.45,
+       "inputs": "NTM EPS at Oct-2027 = 2/3 x FY28 $10.2 + 1/3 x FY29 $12.6 = $11.0; multiple 15x vs peer CY2027 median 21.5x (range 8.5-27.0x)",
+       "inputs_detail": [
+         {"input": "FY27 non-GAAP EPS", "value": "$8.10 guide; $8.14 consensus", "basis": "guidance", "source_ids": [1, 3, 6], "derivation": "Company guide on the Q1 FY27 call; Yahoo consensus $8.14 (37 analysts) as a cross-check"},
+         {"input": "FY28 non-GAAP EPS", "value": "$10.2 (consensus $11.00, range $9.00-13.30)", "basis": "estimate", "source_ids": [6, 7, 2], "derivation": "Yahoo FY28 consensus $11.00, marked ~7% lower. Share count rose to 3.024B after the $19.9B Q1 ATM sale (10-Q), and the FY27-28 'peak capex' plan with consensus FCF of -$32.6B in FY28 (MarketScreener) implies more equity or debt. Depreciation is up 134% y/y and AI gross margin is falling (call), so I put EPS near the lower-middle of the range."},
+         {"input": "FY29 non-GAAP EPS", "value": "$12.6", "basis": "estimate", "source_ids": [7], "derivation": "MarketScreener FY29/FY28 EPS ratio is 1.47 on its own basis; I assume +24% growth from my $10.2 FY28 instead, because OCI ramp margins are thin and dilution continues"},
+         {"input": "Target P/E", "value": "15x", "basis": "judgment", "source_ids": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 2, 7], "derivation": "Peer median 21.5x on CY2027 EPS. A ~30% discount, landing between CRM 14.3x and IBM 16.8x inside the peer range, is justified for the whole horizon. Consensus FCF stays negative through FY28 (-$37B FY27, -$33B FY28), $288B of not-yet-commenced 15-19-year leases are outstanding, net debt keeps rising (consensus $147B FY28), EPS is diluted by ATM issuance, and RPO is concentrated in a counterparty (OpenAI) that is still raising capital. ORCL trades at 14.6x CY2027 consensus today."}
+       ]},
+      {"name": "SOTP", "value": 120.0, "weight": 0.35,
+       "inputs": "Legacy (software, SaaS, hardware, services) ~$49B revenue, 45% op margin, 20% tax = $17.6B x 15x = $264B; OCI NTM revenue ~$89B x 3.2x = $285B; less net debt ~$170B; / 3.15B shares",
+       "inputs_detail": [
+         {"input": "Legacy revenue run-rate", "value": "~$49B (Q1 FY27: software $5.55B -3%, SaaS $4.2B +10%, hardware $0.77B, services $1.41B, all x4 with SaaS growth)", "basis": "reported", "source_ids": [1], "derivation": "Q1 FY27 segment lines annualised, SaaS grown 10%"},
+         {"input": "Legacy op margin / multiple", "value": "45% / 15x after-tax", "basis": "judgment", "source_ids": [1, 14, 17, 12], "derivation": "Non-GAAP op margin was 42% company-wide, with the high-margin support base above that. 15x sits between the CRM (14.3x), WDAY (14.2x) and IBM (16.8x) CY2027 P/Es."},
+         {"input": "OCI NTM revenue at Oct-2027", "value": "~$89B", "basis": "estimate", "source_ids": [6, 7, 1], "derivation": "FY28 consensus revenue $131.7B less ~$49B legacy = ~$83B OCI, and FY29 $183.6B less ~$51B = ~$132B. Blending 2/3 and 1/3 gives ~$99B, cut 10% for conversion risk. Half of the $664B RPO converts within 36 months, but only 13% within 12 months."},
+         {"input": "OCI EV/sales", "value": "3.2x", "basis": "judgment", "source_ids": [16, 18], "derivation": "CRWV trades at EV $94.3B / CY2027 revenue $26.3B = 3.6x. I apply a small discount because Oracle says AI gross margins dipped during the ramp."},
+         {"input": "Net debt at Oct-2027 (ex operating leases)", "value": "~$170B", "basis": "estimate", "source_ids": [2, 7], "derivation": "Aug-26: notes $125.3B + finance leases $9.2B - cash $37.1B = ~$97B. MarketScreener consensus net debt is $147B at FY28; I add ~$20B for finance leases commencing."},
+         {"input": "Diluted shares at Oct-2027", "value": "3.15B", "basis": "estimate", "source_ids": [1, 2], "derivation": "3.000B diluted in Q1 and 3.024B outstanding at 2026-09-07 after the $19.9B ATM; another ~4% assumed from further equity funding"}
+       ]},
+      {"name": "EV/EBITDA", "value": 190.0, "weight": 0.20,
+       "inputs": "NTM EBITDA at Oct-2027 = 2/3 x $74.6B + 1/3 x $107.5B = $85.6B, cut 10% to $77B, x 10x = $770B EV; less $170B net debt; / 3.15B shares",
+       "inputs_detail": [
+         {"input": "FY28/FY29 EBITDA consensus", "value": "$74.6B / $107.5B", "basis": "consensus", "source_ids": [7], "derivation": "MarketScreener consensus (dated 2026-06-10, possibly stale), cut 10%"},
+         {"input": "EV/EBITDA multiple", "value": "10x", "basis": "judgment", "source_ids": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], "derivation": "Peer median CY2027 EV/EBITDA is ~15.2x (range 5.9-38x). An EBITDA-mix weighting of ~55% GPU-infrastructure (CRWV 5.9x) and ~45% software (~15x) gives ~10x, inside the range. Today ORCL trades at ~8.7x CY2027 consensus EBITDA."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 80.0, "prob": 0.25, "story": "OpenAI (largest RPO counterparty) slows, renegotiates or defers. RPO conversion slips, and the 13% recognised within 12 months misses. Oracle keeps paying $90-95B gross capex plus $288B of committed leases. More ATM or hybrid equity, a rating cut toward BBB-/junk risk, and wider project-loan discounts (the landlord loan is already at 89-91c). EPS is ~$8.5-9 and gets 9-10x."},
+    "base": {"price": 155.0, "prob": 0.50, "story": "OCI keeps growing triple digits as GW come online. FY28 revenue lands at ~$125-130B and non-GAAP EPS ~$10-10.5, with continued dilution. FCF stays negative but the FY28 peak-capex message holds, and the multiple stays ~14-15x NTM EPS."},
+    "bull": {"price": 245.0, "prob": 0.25, "story": "Hyperscaler 2027 capex guides come in high and OpenAI's funding (IPO or round) de-risks the backlog. Bring-your-own-hardware and prepaid contracts cut net capex, a positive-FCF path becomes visible in FY29, and margins flatten as management guided. The stock re-rates to ~20x $12+ NTM EPS, still below the peer median."}
+  },
+  "comps": [
+    {"symbol": "MSFT", "name": "Microsoft", "why_comparable": "Azure hyperscale cloud + enterprise software/database; also hosts OpenAI", "fwd_pe": 24.2, "ev_ebitda_fwd": 15.9, "growth_next_yr": "EPS +20% (FY28 vs FY27); rev +19.5%", "as_of": "2026-10-05", "source_ids": [8, 19]},
+    {"symbol": "AMZN", "name": "Amazon", "why_comparable": "AWS hyperscale cloud, AI infrastructure capex peer", "fwd_pe": 24.1, "ev_ebitda_fwd": 13.6, "growth_next_yr": "rev +14%; CY27 EPS $10.51 below CY26 $12.88 (2026 inflated by investment gains)", "as_of": "2026-10-05", "source_ids": [9, 19]},
+    {"symbol": "GOOGL", "name": "Alphabet", "why_comparable": "Google Cloud hyperscaler, AI capex peer", "fwd_pe": 23.2, "ev_ebitda_fwd": 17.3, "growth_next_yr": "rev +23%; CY27 EPS $14.95 vs CY26 $20.63 (2026 gains)", "as_of": "2026-10-05", "source_ids": [10, 19]},
+    {"symbol": "META", "name": "Meta Platforms", "why_comparable": "AI data-center capex peer and OCI customer", "fwd_pe": 21.8, "ev_ebitda_fwd": 12.7, "growth_next_yr": "EPS +9%; rev +21%", "as_of": "2026-10-05", "source_ids": [11, 19]},
+    {"symbol": "IBM", "name": "IBM", "why_comparable": "Legacy enterprise software/infrastructure + hybrid cloud, levered", "fwd_pe": 16.8, "ev_ebitda_fwd": 15.3, "growth_next_yr": "EPS +7%; rev +4%", "as_of": "2026-10-05", "source_ids": [12, 19]},
+    {"symbol": "SAP", "name": "SAP", "why_comparable": "Enterprise apps/ERP competitor to Oracle Fusion/NetSuite", "fwd_pe": 21.1, "ev_ebitda_fwd": 15.2, "growth_next_yr": "EPS +17%; rev +12%", "as_of": "2026-10-05", "source_ids": [13, 19]},
+    {"symbol": "CRM", "name": "Salesforce", "why_comparable": "Enterprise SaaS applications peer", "fwd_pe": 14.3, "ev_ebitda_fwd": 15.0, "growth_next_yr": "EPS -4% (FY28 vs FY27); rev +10%", "as_of": "2026-10-05", "source_ids": [14, 19]},
+    {"symbol": "NOW", "name": "ServiceNow", "why_comparable": "Enterprise workflow SaaS peer", "fwd_pe": 27.0, "ev_ebitda_fwd": 38.1, "growth_next_yr": "EPS +23%; rev +19%", "as_of": "2026-10-05", "source_ids": [15, 19]},
+    {"symbol": "ADBE", "name": "Adobe", "why_comparable": "Mature high-margin enterprise software", "fwd_pe": 8.5, "ev_ebitda_fwd": 8.2, "growth_next_yr": "EPS +13%; rev +9%", "as_of": "2026-10-05", "source_ids": [20, 19]},
+    {"symbol": "WDAY", "name": "Workday", "why_comparable": "HCM/financials SaaS, direct Fusion competitor", "fwd_pe": 14.2, "ev_ebitda_fwd": 24.4, "growth_next_yr": "EPS +19% (FY28); rev +10%", "as_of": "2026-10-05", "source_ids": [17, 19]},
+    {"symbol": "CRWV", "name": "CoreWeave", "why_comparable": "GPU cloud / AI infrastructure lessor with OpenAI exposure and heavy debt, the closest comparable for OCI's AI business", "fwd_pe": 0.0, "ev_ebitda_fwd": 5.9, "growth_next_yr": "rev +104%; EPS negative (-$4.33), P/E n/m", "as_of": "2026-10-05", "source_ids": [16, 19]}
+  ],
+  "comps_summary": {
+    "peer_median_fwd_pe": 21.5,
+    "peer_median_ev_ebitda": 15.2,
+    "peer_range": "P/E on calendar-2027 street EPS 8.5x (ADBE) to 27.0x (NOW), n=10 (CRWV n/m). EV/CY2027 EBITDA 5.9x (CRWV) to 38.1x (NOW), n=11. All P/Es are on one calendar-2027 basis: MSFT = 1/2 FY27 + 1/2 FY28; CRM and WDAY FY28 (Jan-28) ~ CY27; ADBE FY27 (Nov) ~ CY27; SAP EUR EPS x 1.17 USD (assumed FX). Forward EV/EBITDA is my estimate: stockanalysis trailing EV/EBITDA rolled forward ~1.5 years at consensus revenue growth, with CRWV CY27 EBITDA assumed ~$16B.",
+    "our_multiple_vs_peers": "ORCL on the same basis: CY2027 EPS = 5/12 x FY27 $8.14 + 7/12 x FY28 $11.00 = $9.81, so 14.6x at $143.41; EV/CY27 EBITDA ~8.7x. My P/E of 15x NTM is ~30% below the peer median and inside the range, near CRM/WDAY/IBM. My 10x EV/EBITDA is ~35% below the median, between CRWV and the software peers.",
+    "premium_discount_justification": "The discount reflects conditions that last through the horizon on management's and consensus's own numbers. (a) Management calls FY27 and FY28 'peak capex years' ($90-95B gross FY27); consensus FCF is -$37B FY27 and -$33B FY28, not positive until FY29. (b) Funding needs equity: a $19.9B ATM in Q1 alone, shares outstanding up to 3.024B. (c) $288B of not-yet-commenced 15-19-year data-center leases, up from $260B a quarter earlier, plus $125B of notes. (d) Backlog concentration: OpenAI anchors a ~$300B contract, and its revenue misses moved ORCL in April. (e) The mix is shifting toward capital-intensive GPU leasing, which the market values at single-digit EBITDA multiples (CRWV 5.9x). None of this relies on sell-side outperform calls."
+  },
+  "thesis_break_price": 98.0,
+  "thesis_break_reason": "Below ~$98 (~15% under the 52-week low of $114.50 and ~32% below today) the market would be pricing a fundamental break, not volatility. That means a material OpenAI contract deferral or renegotiation, a downgrade toward high yield that forces a halt in funding (equity on dilutive terms, project loans in distress), or a cut to the FY27 revenue guide of at least $90B. At that price the stock implies ~9x CY2027 EPS, which is where my bear case sits.",
+  "catalysts": [
+    {"date": "2026-10 (late)", "event": "Big-4 hyperscaler Q3 results with first numeric 2027 capex guides (AI demand read-through)", "direction": "?"},
+    {"date": "2026-10", "event": "Oracle AI World / fall customer event (if held as in prior Octobers): OCI capacity, multicloud and contract updates", "direction": "+"},
+    {"date": "2026-12 (approx. 2nd week)", "event": "Q2 FY27 results: guide is revenue +30-34%, cloud +65-71% (USD), non-GAAP EPS $1.85-1.93; capex and ATM/funding update", "direction": "?"},
+    {"date": "2026-2027 (rolling)", "event": "OpenAI funding round / IPO timing; ability to meet compute commitments", "direction": "?"},
+    {"date": "rolling", "event": "Credit rating actions on Oracle; pricing of data-center project loans and new bond/hybrid issuance", "direction": "-"},
+    {"date": "2027-03 (mid)", "event": "Q3 FY27 results", "direction": "?"},
+    {"date": "2027-06 (mid)", "event": "Q4 FY27 results and first FY28 guidance (revenue, capex, net capex, FCF timing)", "direction": "?"},
+    {"date": "2027-09 (mid)", "event": "Q1 FY28 results, weeks before the horizon", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "OpenAI's ability to fund its ~$300B Oracle commitment, and whether RPO conversion (13% in 12 months, 37% in months 13-36) holds",
+    "How fast and how much funding is needed: gross capex $90-95B FY27, more in FY28, $288B of leases not yet commenced, and how much more ATM equity follows",
+    "Steady-state gross margin of OCI AI infrastructure as depreciation and lease costs ramp (depreciation +134% y/y)",
+    "Whether 2027 AI capex follows the standing base case (Big-4 ~$1.08T, Oracle CY27 ~$110B) or turns into a digestion year like Meta 2023",
+    "Consensus FY28 EPS spread ($9.00-13.30) is very wide; MarketScreener EBITDA/FCF consensus is dated June 2026"
+  ],
+  "reasoning": "Primary documents first. The Q1 FY27 release and 10-Q (quarter to 2026-08-31) show strong growth: revenue $19.35B +30%, OCI $7.4B +121%, non-GAAP EPS $1.92, RPO $664B (+$26B q/q, >$30B AI bookings) and record OCF of $23.1B. The OCF was flattered by $11.4B of customer prepayments. The funding picture is heavy: capex $28.5B in one quarter (net $18.0B), FCF -$5.4B, a $19.9B ATM equity sale, 3.024B shares, $125B of notes, $288B of not-yet-commenced 15-19-year leases (up from $260B), and the FY26 10-K's $3.3B lessor-loan guarantee no longer mentioned. Management guides FY27 revenue of at least $90B, EPS $8.10, capex $90-95B gross / up to $70B net, calls FY27-28 'peak capex', and gives no date for positive FCF. The standing AI-capex view (Oracle CY27 ~$110B base) is consistent with this. The market has already de-rated ORCL from $322 to $143 (-51% over a year). It trades at 14.6x CY2027 EPS against a peer median of 21.5x on the same basis, and at ~8.7x EBITDA against ~15x. I value it at $154 (P/E $165, SOTP $120, EV/EBITDA $190), only ~7% above spot, because I think a large discount is warranted and will persist. Scenarios are bear $80 (25%), base $155 (50%) and bull $245 (25%), with mean ~$159. The ladder is a lognormal mixture (sigmas 0.32/0.22/0.22), giving an overall spread close to the 56% realized vol. P(>=143) is 0.58, a slight upward tilt from the fair value and positive revision trend (FY28 consensus up from $10.89 to $11.00 over 60 days). The tails stay fat because the binary OpenAI and funding risks are real. Research was limited: SEC blocked scripted access so filings were read via WebFetch, the 10-Q text was truncated (lease figure cross-checked via an independent newsletter), Alpha Vantage was rate-limited and Twelve Data estimates were paywalled.",
+  "lane": "primary",
+  "sources": [
+    {"title": "Oracle Q1 FY2027 results press release (Exhibit 99.1, 8-K)", "url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526387905/orcl-ex99_1.htm", "date": "2026-09-10", "type": "filing", "in_lane": true},
+    {"title": "Oracle Form 10-Q for quarter ended 2026-08-31", "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm", "date": "2026-09", "type": "filing", "in_lane": true},
+    {"title": "Oracle Q1 FY2027 earnings call transcript", "url": "https://www.fool.com/earnings/call-transcripts/2026/09/11/oracle-orcl-q1-2027-earnings-call-transcript/", "date": "2026-09-11", "type": "company", "in_lane": true},
+    {"title": "Oracle Q4 and FY2026 results press release (Exhibit 99.1, 8-K)", "url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526265848/orcl-ex99_1.htm", "date": "2026-06-10", "type": "filing", "in_lane": true},
+    {"title": "AI data-center capex across NVIDIA's customer groups (standing internal view; Oracle section)", "url": "file:///mnt/project-files/adhoc/nvda_customer_capex.md", "date": "2026-10-05", "type": "other", "in_lane": false},
+    {"title": "Yahoo Finance ORCL analysis (FY27/FY28 EPS and revenue consensus, EPS trend)", "url": "https://finance.yahoo.com/quote/ORCL/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "MarketScreener ORCL finances (FY27-29 EBITDA, FCF, net debt, capex consensus)", "url": "https://www.marketscreener.com/quote/stock/ORACLE-CORPORATION-13620698/finances/", "date": "2026-06-10", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance MSFT analysis", "url": "https://finance.yahoo.com/quote/MSFT/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance AMZN analysis", "url": "https://finance.yahoo.com/quote/AMZN/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance GOOGL analysis", "url": "https://finance.yahoo.com/quote/GOOGL/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance META analysis", "url": "https://finance.yahoo.com/quote/META/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance IBM analysis", "url": "https://finance.yahoo.com/quote/IBM/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "StockAnalysis SAP forecast", "url": "https://stockanalysis.com/stocks/sap/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance CRM analysis", "url": "https://finance.yahoo.com/quote/CRM/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance NOW analysis", "url": "https://finance.yahoo.com/quote/NOW/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance CRWV analysis", "url": "https://finance.yahoo.com/quote/CRWV/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance WDAY analysis", "url": "https://finance.yahoo.com/quote/WDAY/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "StockAnalysis CRWV statistics (EV, EBITDA)", "url": "https://stockanalysis.com/stocks/crwv/statistics/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "StockAnalysis statistics pages for peers and ORCL (EV, trailing EV/EBITDA; e.g. MSFT, AMZN, GOOGL, META, IBM, SAP, CRM, NOW, ADBE, WDAY, ORCL)", "url": "https://stockanalysis.com/stocks/orcl/statistics/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance ADBE analysis", "url": "https://finance.yahoo.com/quote/ADBE/analysis/", "date": "2026-10-05", "type": "data", "in_lane": false},
+    {"title": "Oracle's landlord borrowed the $18 billion, quoted at 89 to 91 cents (10-K vs 10-Q lease and guarantee disclosure)", "url": "https://r40.io/news/orcl-18bn-jupiter-loan-is-the-landlords/", "date": "2026-09-18", "type": "newsletter", "in_lane": true},
+    {"title": "OpenAI reportedly missed revenue targets; shares of Oracle fall", "url": "https://www.cnbc.com/2026/04/28/openai-reportedly-missed-revenue-targets-shares-of-oracle-and-these-chip-stocks-are-falling.html", "date": "2026-04-28", "type": "press", "in_lane": false},
+    {"title": "StockAnalysis ORCL forecast (FY27 consensus, 43 analysts)", "url": "https://stockanalysis.com/stocks/orcl/forecast/", "date": "2026-10-05", "type": "data", "in_lane": false}
+  ]
+}

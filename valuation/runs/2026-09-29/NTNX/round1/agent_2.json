@@ -1,0 +1,88 @@
+{
+  "symbol": "NTNX", "agent_id": "agent_2", "as_of": "2026-10-01", "horizon": "2027-10-01",
+  "ladder": [
+    {"K": 17.68, "p": 0.995}, {"K": 28, "p": 0.98}, {"K": 35, "p": 0.95}, {"K": 42, "p": 0.90},
+    {"K": 49, "p": 0.83}, {"K": 57, "p": 0.73}, {"K": 64, "p": 0.63}, {"K": 71, "p": 0.54},
+    {"K": 78, "p": 0.45}, {"K": 85, "p": 0.37}, {"K": 95, "p": 0.28}, {"K": 106, "p": 0.20},
+    {"K": 124, "p": 0.115}, {"K": 141, "p": 0.065}, {"K": 177, "p": 0.02}
+  ],
+  "ladder_1m": [
+    {"K": 56.56, "p": 0.96}, {"K": 60.09, "p": 0.90}, {"K": 63.63, "p": 0.80}, {"K": 65.75, "p": 0.72},
+    {"K": 67.87, "p": 0.635}, {"K": 70.70, "p": 0.51}, {"K": 73.53, "p": 0.395}, {"K": 75.65, "p": 0.31},
+    {"K": 77.77, "p": 0.24}, {"K": 81.30, "p": 0.15}, {"K": 84.84, "p": 0.085}
+  ],
+  "one_month_reasoning": "No Nutanix earnings fall inside 2026-10-01 to 2026-10-31: fiscal Q1 FY27 (quarter ending Oct 31) is normally reported in late November, so it is outside the window. Q1 guide ($755-765M revenue, 26-28% op margin) was set on Aug 26. Chain events inside the window could move the stock a little: server and memory supply news from Dell, HPE and the memory makers, plus any further Broadcom moves against migration tooling (VDDK was pulled in late August). None of them is scheduled with a clear direction. The stock is up about 55% from its June low (~$45 to $70.9), and that momentum argues for a slight upward tilt, but a rally that big can also reverse. So I used a near-symmetric lognormal centered at about $71 with monthly sigma ~13% (47% annual vol / 3.5).",
+  "fair_value": {
+    "value": 75.0,
+    "method": "Blend of P/E on FY28E non-GAAP EPS of ~$2.80 x 27x ($76), an FCF yield on FY28E FCF of ~$1.0B at 5% plus ~$3.4/share net cash ($72), and EV/sales of 6x FY28E revenue of ~$3.55B plus net cash ($76). Rounded to $75.",
+    "methods": [
+      {"name": "P/E", "value": 76.0, "weight": 0.4,
+       "inputs": "FY28E non-GAAP EPS $2.80 x 27x",
+       "inputs_detail": [
+         {"input": "FY27 revenue guidance", "value": "$3.18-3.23B (midpoint $3.205B)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY27 non-GAAP operating margin", "value": "24-25%", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "Q4 FY26 non-GAAP diluted EPS", "value": "$0.60", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Diluted shares", "value": "292.7M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY27E non-GAAP EPS", "value": "$2.40", "basis": "estimate", "source_ids": [1], "derivation": "$3.205B x 24.5% = ~$785M non-GAAP operating income, plus ~$45M net interest on $2.36B cash less convert coupon, taxed at ~15%, gives ~$705M / 293M shares = ~$2.40. That cross-checks with the Q4 run-rate of $0.60 x 4."},
+         {"input": "FY28E non-GAAP EPS (NTM at horizon)", "value": "$2.80", "basis": "estimate", "source_ids": [1, 2, 6], "derivation": "Assumes ~11% revenue growth (ARR +16% and NRR 106% support low-teens) and ~100bp of margin expansion, helped by the 5% restructuring and buybacks ($483M in FY26). Result is ~+17% EPS."},
+         {"input": "P/E multiple", "value": "27x", "basis": "judgment", "source_ids": [1, 6, 11], "derivation": "At $70.7 the stock trades at ~29x FY27E EPS. Mid-teens ARR growth and a 29% FCF margin justify a mid/high-20s multiple. I cap it below today's level because Broadcom is holding its large customers (87% of its top 10k on VCF) and competition is rising (OpenShift Virtualization, HPE VM Essentials)."}
+       ]},
+      {"name": "FCF yield", "value": 72.0, "weight": 0.3,
+       "inputs": "FY28E FCF $1.0B at a 5% yield = $20B, plus $1.0B net cash, / 293M shares",
+       "inputs_detail": [
+         {"input": "FY26 FCF", "value": "$840.7M (29% margin)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY27 FCF guidance", "value": "$850-950M", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY28E FCF", "value": "$1.0B", "basis": "estimate", "source_ids": [1], "derivation": "FY27 guide midpoint of $900M grown ~11% with revenue."},
+         {"input": "Net cash", "value": "$1.01B (~$3.4/share)", "basis": "reported", "source_ids": [1], "derivation": "$2.36B cash and short-term investments less $1.35B convertible notes."},
+         {"input": "FCF yield", "value": "5%", "basis": "judgment", "source_ids": [1, 6], "derivation": "Today's market cap of ~$20.7B on FY27 guide FCF is a ~4.3% yield. I use 5% because stock comp is large and FCF is not adjusted for it, and because migration timing is uncertain."}
+       ]},
+      {"name": "EV/sales", "value": 76.0, "weight": 0.3,
+       "inputs": "FY28E revenue $3.55B x 6.0x = $21.3B EV, plus $1.0B net cash, / 293M shares",
+       "inputs_detail": [
+         {"input": "FY28E revenue", "value": "$3.55B", "basis": "estimate", "source_ids": [1, 2], "derivation": "FY27 guide midpoint of $3.205B x ~1.11."},
+         {"input": "EV/sales multiple", "value": "6.0x", "basis": "judgment", "source_ids": [1], "derivation": "The current EV of ~$19.7B is ~6.1x FY27 guide revenue. I hold the multiple roughly flat as growth stays at ~12%."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 45.0, "prob": 0.25, "story": "Memory and server shortages keep delaying customer projects. Broadcom keeps adding friction (VDDK pulled, VCF lock-in of large accounts) and Red Hat and HPE take share of the cost-driven migrations. ARR growth slows to ~11-12%, FY28 guidance disappoints, and the multiple falls to ~4x sales / ~19x EPS, back to the May-June 2026 trading range."},
+    "base": {"price": 78.0, "prob": 0.5, "story": "FY27 lands at guidance. 3,000+ new logos a year, external storage (Dell, Pure, NetApp) and NC2 ease the hardware constraint, and the vSphere 8 end of general support (Oct 2027) builds the pipeline. ARR grows ~15%, EPS reaches ~$2.80 on an NTM basis, and the stock trades at ~27-28x."},
+    "bull": {"price": 105.0, "prob": 0.25, "story": "The supply crunch eases and deferred deals close, with the vSphere 8 deadline pulling large enterprise migrations forward. ARR growth re-accelerates to high teens, margins beat the 25% target, and the multiple rises to ~33x NTM EPS."}
+  },
+  "thesis_break_price": 46.0,
+  "thesis_break_reason": "A sustained move below ~$46 (the June 2026 lows, ~35% below today) would most likely mean the VMware migration story has stalled in fundamentals: ARR growth falling toward 10% or below, or a FY27 guide cut on top of the November 2025 cut. That would point to Broadcom successfully locking in its base, or to competitors such as OpenShift, HPE or Proxmox taking the cost-driven migrations, rather than ordinary volatility.",
+  "catalysts": [
+    {"date": "2026-11 (late)", "event": "Q1 FY27 results; first check on whether supply constraints are deferring deals", "direction": "?"},
+    {"date": "2026-12", "event": "Broadcom FQ4 results: VMware growth and VCF renewal commentary", "direction": "?"},
+    {"date": "2027-02 (late)", "event": "Q2 FY27 results", "direction": "?"},
+    {"date": "2027-H1", "event": "Server DRAM pricing and lead-time trend (Dell/HPE earnings); easing would release delayed projects", "direction": "+"},
+    {"date": "2027-05", "event": "Nutanix .NEXT 2027 and Q3 FY27 results", "direction": "?"},
+    {"date": "2027-08 (late)", "event": "Q4 FY27 results and FY28 guidance", "direction": "?"},
+    {"date": "2027-10", "event": "vSphere 8 end of general support forces VMware customers to decide: VCF 9 or migrate", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "How long the server memory shortage keeps customer projects waiting for hardware",
+    "Whether Broadcom's tactics (VDDK removal, VCF bundling) slow migrations more than they push customers out",
+    "Share of VMware leavers won by Nutanix versus Red Hat OpenShift Virtualization, HPE VM Essentials, hyperscalers and Proxmox",
+    "Deal-timing and start-date effects on recognized revenue (the cause of the Nov 2025 guide cut)"
+  ],
+  "reasoning": "Company basics come from the Q4 FY26 release (Aug 26, 2026): revenue $757M (+16%), ARR $2.55B (+16%), FY26 FCF $841M, net cash ~$1.0B, 292.7M diluted shares. FY27 guide is $3.18-3.23B revenue, 24-25% margin and $850-950M FCF. The industry chain is mixed. Demand is positive: Gartner expects 35% of VMware workloads to migrate by 2028; Forrester says customers are renewing only ~25% of their VMware estates; a CloudBolt survey finds 87% reducing their VMware footprint but only 4% done; and vSphere 8 end of general support in Oct 2027 sets a hard deadline. Nutanix adds 500-1,000 ex-VMware logos per quarter, and partner integrations with Dell, Pure and NetApp widen its reach to customers who keep external storage. The negatives: Broadcom says 87% of its top 10k customers are on VCF and VMware revenue is growing 13%, so the large accounts are sticky. Broadcom pulled VDDK in late Aug 2026, which hits Nutanix Move. Red Hat OpenShift Virtualization is growing fast (>$500M of contracts) and HPE VM Essentials competes on price. Server DRAM prices are up ~90% and lead times are 12-24 weeks at Dell/HPE/Lenovo, which management says will delay projects. Valuation: a three-method blend gives ~$75 against $70.7. The stock has run from ~$45 to ~$71 since June, so much of the good news is priced in. Scenarios are $45 / $78 / $105 at 25/50/25 (mean ~$76.5). For the ladder I used a lognormal with median ~$74 and sigma ~0.43, a little below the 47% realized vol because the business is now more mature, then fattened the left tail slightly for the risk of hardware-driven deferrals. Research limits: the Twelve Data analyst-target and estimate endpoints were unavailable on this plan, so EPS is built from guidance, and one trade-press page (ChannelWeb) returned 403.",
+  "lane": "industry",
+  "sources": [
+    {"title": "Nutanix Q4 FY2026 results press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0001618732/000117184326005752/exh_991.htm", "date": "2026-08-26", "type": "filing", "in_lane": false},
+    {"title": "Nutanix Q4 Earnings Call Highlights (Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/nutanix-q4-earnings-call-highlights-230417635.html", "date": "2026-08-26", "type": "press", "in_lane": false},
+    {"title": "Dell, HPE server supply upended by memory crunch", "url": "https://www.supplychaindive.com/news/dell-hpe-server-supply-upended-by-memory-crunch/822273/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "IT Hardware Price Increases 2026: Mid-Year Update", "url": "https://britecity.com/articles/hardware-price-increases-2026", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Enterprise Server Delivery Lead Times 2026 - Dell, HPE, Lenovo", "url": "https://benquan.hk/article-server-delivery-lead-times-2026-procurement.html", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Will Broadcom's VMware strategy keep paying big dividends? (Network World; Forrester and CloudBolt data)", "url": "https://www.networkworld.com/article/4180754/will-broadcoms-vmware-strategy-keep-paying-big-dividends.html", "date": "2026-06-03", "type": "trade", "in_lane": true},
+    {"title": "Leaving VMware Just Got Harder After Broadcom Pulled VDDK Downloads", "url": "https://www.virtualizationhowto.com/2026/09/leaving-vmware-just-got-harder-after-broadcom-pulled-vddk-downloads/", "date": "2026-09", "type": "trade", "in_lane": true},
+    {"title": "Gartner: 35 percent of VMware workloads will disappear (Techzine)", "url": "https://www.techzine.eu/news/applications/134595/gartner-35-percent-of-vmware-workloads-will-disappear/", "date": "2025", "type": "trade", "in_lane": true},
+    {"title": "The VMware deadline that could reshape your IT strategy (CIO.com)", "url": "https://www.cio.com/article/4160846/the-vmware-deadline-that-could-reshape-your-it-strategy.html", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Nutanix stock sunk by VMware migration challenges (SDxCentral)", "url": "https://www.sdxcentral.com/news/nutanix-stock-sunk-by-vmware-migration-challenges/", "date": "2025-11-26", "type": "trade", "in_lane": true},
+    {"title": "Red Hat touts OpenShift Virtualization momentum (Computer Weekly)", "url": "https://www.computerweekly.com/news/366623794/Red-Hat-touts-OpenShift-Virtualization-momentum", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "HPE Morpheus VM Essentials - VMware alternative", "url": "https://www.hpe.com/us/en/morpheus-software/virtualization.html", "date": "2026", "type": "company", "in_lane": true},
+    {"title": "Nutanix Rewrites the Storage Rulebook at NEXT 2026: NetApp, Everpure, Dell (VMblog)", "url": "https://vmblog.com/bylines/nutanix-rewrites-the-storage-rulebook-at-next-2026-netapp-everpure-dell-and-a-partner-ecosystem-built-for-the-ai-era/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Cisco, Nutanix, Pure Storage jointly deliver VMware alternative (Forbes)", "url": "https://www.forbes.com/sites/stevemcdowell/2026/01/20/cisco-nutanix-pure-storage-deliver-joint-vmware-alternative/", "date": "2026-01-20", "type": "trade", "in_lane": true},
+    {"title": "NTNX weekly price history (Twelve Data)", "url": "https://twelvedata.com", "date": "2026-10-01", "type": "data", "in_lane": false}
+  ]
+}

@@ -1,0 +1,597 @@
+{
+ "symbol": "RMBS",
+ "as_of": "2026-10-02",
+ "horizon": "2027-10-02",
+ "round": 2,
+ "round1_to_round2": {
+  "agent_fair_values": {
+   "round1": {
+    "agent_1": 117,
+    "agent_2": 106,
+    "agent_3": 103,
+    "agent_4": 116,
+    "agent_5": 118,
+    "mean": 112.0
+   },
+   "round2": {
+    "agent_1": 114,
+    "agent_2": 107,
+    "agent_3": 107,
+    "agent_4": 110,
+    "agent_5": 112,
+    "mean": 110.0
+   }
+  },
+  "agent_mean_ladder_moves": "12-month mean ladder barely moved: P(>=112) 0.514 -> 0.509, P(>=123) 0.440 -> 0.436; tails fattened (P(>=224) 0.089 -> 0.097, P(>=280) 0.037 -> 0.045) after the base-rate feedback. The 1-month mean fell about 2.5 points around spot (P(>=111.97) 0.493 -> 0.466), now slightly below my round-1 tilt (0.470).",
+  "supervisor_moves": "Fair value 114 -> 108; 12-month P(>=112) 0.525 -> 0.495; 1-month P(>=111.97) 0.470 -> 0.455; thesis break 72 kept; ladder confidence low -> medium; sizing confidence 0.38 -> 0.43; max weight 3% kept.",
+  "why_my_view_moved": "Round 1 I credited the FCF legs and added net cash on top, and wrote that share-settlement taxes were ~$100M/yr. This round the filings show (a) FY2025 settlement taxes were $41.9M with 84% paid in H1 (Q1 vesting), so ~$55-62M/yr in 2026, not ~$100M; and (b) FCF includes ~$24M/yr of after-tax interest income, so adding ~$0.76B of net cash to a capitalized FCF that already contains the interest double counts ~$7/share in every FCF leg that does it (agents 1, 3, 4, 5 and my own round-1 leg). Removing it takes ~$2 off a blended fair value. My round-1 $114 was therefore ~$4-6 too high.",
+  "convergence_assessment": "Mostly anchoring on the round-1 supervisor file, not independent agreement. Fair-value spread narrowed from $15 to $7, but the shared inputs that narrowed it (NTM EPS ~$3.93-4.00 from 1/4 FY27 + 3/4 FY28, 28-29x, net cash $0.75-0.78B, ~$50M settlement taxes, H1 FCF $123.8M, the bit-vs-unit argument) all come from my round-1 file, and four of five agents cut their bear probability by the same 3 points for the same reason. Source overlap rose (mean Jaccard 0.12 -> 0.171, distinct share 0.72 -> 0.644) and the URLs now cited by 3+ agents are the 10-Q, the ASR 8-K, TrendForce and EDGAR, i.e. my round-1 sources. Agents 2 and 3 ran only two searches each. New independent information came only from agent_4 (Montage H1 results, hiring data) and agent_5 (23-print earnings base rate). The agreement is therefore one view counted five times; it should not raise confidence in the ~$110 centre beyond round 1."
+ },
+ "revision_check": [
+  {
+   "agent": "agent_1",
+   "file_loaded": true,
+   "applied_round1_findings": true,
+   "assessment": "Took every round-1 correction (Q2 reaction -9%, ASR timing, NTM weighting, settlement taxes, fatter right tail) and checked the ASR 8-K itself. Its FCF leg ($340M at 3.0% plus $0.78B net cash = $112) double counts ~$7/share because the $340M includes ~$24M after-tax interest income; corrected that leg is ~$105 and its blend ~$111. 29x is one turn above the others with no new evidence beyond 'cut 1 turn from 30x'. The '$77.89 March low' it uses is the intraday low; the March closing low was $79.73 (Mar-30)."
+  },
+  {
+   "agent": "agent_2",
+   "file_loaded": true,
+   "applied_round1_findings": true,
+   "assessment": "Fixed the Q3 date attribution, Sep low, net cash ($0.76B) and the bit/unit framing, and moved its P/E to a horizon NTM. Its FCF leg (FCF/share at 3.0%, no cash add) is internally consistent; the EV/sales leg adds cash correctly. Only two searches this round and it relied on my price check (rate-limited), so little new evidence; fair value $107 is defensible."
+  },
+  {
+   "agent": "agent_3",
+   "file_loaded": true,
+   "applied_round1_findings": true,
+   "assessment": "The JSON parses cleanly (json.load OK), so nothing was lost. It fixed the reversed NTM weighting, the stale Baird item, the finance-bench and share-loss claims. Remaining errors: it says the FCF base is '~$250-270M', but FY2025 FCF was $333M (OCF $360.0M less capex $26.8M, 10-K XBRL) and H1-2026 was depressed by a $30.7M inventory build; and its FCF leg adds ~$7/share net cash on top of interest-inclusive FCF (double count). Correcting both roughly offset, so $107 stands."
+  },
+  {
+   "agent": "agent_4",
+   "file_loaded": true,
+   "applied_round1_findings": true,
+   "assessment": "Removed the cash add from its P/E leg, which is right: H1-2026 'interest income and other' was $14.2M (~$28M/yr pre-tax, ~$24M after tax, ~$0.22/share, ~$6 at 28x vs ~$7/share cash). But its FCF leg still adds $0.76B to an FCF that includes that interest, the same double count. It replaced the newsletter/forum sources with real alternative data: Montage H1 revenue RMB 3.34B +26.7% (verified; interconnect +26.4%, new products incl. MRCD/MDB +80.7%), Revelio/TrueUp postings (noisy, counts 96/59/16 disagree; neutral), DDR5 retail ~$18/GB (consumer channel, little bearing on Rambus's per-unit RCD economics)."
+  },
+  {
+   "agent": "agent_5",
+   "file_loaded": true,
+   "applied_round1_findings": true,
+   "assessment": "Rebuilt EPS bottom-up and dropped the target haircut. Its headline base rate checks out exactly against EDGAR 2.02 8-K dates and Twelve Data closes (23 prints since 2021, 11 down, median +2.0%, mean -1.4%, mean |move| 8.45%). Its run-up subsample is off by one: after a >9% 15-day run-up, 5 of 8 fell (mean -3.0%), not 4 of 8. It also omits that the regime since 2024 is worse: 8 of the last 12 prints fell (mean -4.6%). The FCF leg (3.5% yield plus net cash) has the same interest double count, and the 'base-rate drift' leg ($123) is a price-momentum prior rather than a valuation."
+  }
+ ],
+ "disagreements": [
+  {
+   "topic": "Revised fair values $107-114 and whether convergence is real",
+   "positions": "agent_1 $114, agent_2 $107, agent_3 $107, agent_4 $110, agent_5 $112 (mean $110) vs my round-1 $114 and a $111.97 close.",
+   "resolution": "The spread is mainly the FCF leg (weights 25-40%) and the multiple (28x vs 29x). After removing the interest/cash double count from the FCF legs and using filing-based settlement taxes, I get ~$108: P/E $111 (NTM EPS ~$3.97 x 28x, 70%) and FCF ~$99 (30%). The convergence is largely anchoring on my round-1 inputs (see round1_to_round2), so I treat the five as roughly 1-2 independent views.",
+   "evidence": "Agent files; source_overlap.json (mean Jaccard 0.12 -> 0.171); Rambus 10-Q Q2 2026."
+  },
+  {
+   "topic": "Forward EPS at Oct-2027 and the multiple",
+   "positions": "NTM EPS $3.93 (a2), $3.95 (a3), $3.98 (a1), $4.00 (a4, a5) built from FY27 $3.55-3.59 and FY28 $4.05-4.13; multiple 28x (a2-a5) vs 29x (a1).",
+   "resolution": "The construction is right (the year from Oct-2027 is ~1/4 FY27 + 3/4 FY28) and the inputs are internally consistent: 2026E ~$3.03 from Q1 $0.63 + Q2 $0.77 + Q3 guide mid $0.785 + Q4E ~$0.84; FY27 +17-18% and FY28 +14-15%. The $3.72 FY27 consensus remains paywalled and unverified, so I use ~$3.97 (midpoint). I keep 28x (four of five agents); agent_1's extra turn is not backed by new evidence. The stock is ~32x the current NTM EPS (~$3.45), so 28x a year out already assumes ~4 turns of de-rating as growth slows to mid-teens.",
+   "evidence": "Rambus Q1/Q2 2026 8-K Ex.99.1; stockanalysis.com forecast page (2027 paywalled)."
+  },
+  {
+   "topic": "Share-settlement taxes in FCF",
+   "positions": "All five now deduct ~$50M/yr; my round-1 file said ~$100M/yr.",
+   "resolution": "Deduct, but size it from the filings. Payments of taxes on net share settlement: $52.7M H1-2026 (10-Q), vs $35.0M H1-2025 and $41.9M FY2025 (10-K XBRL), so ~84% falls in H1 with Q1 vesting. 2026 should be ~$55-62M, not ~$100M (my round-1 error) and a little above the agents' $50M; it scales with the share price. It is the cash cost of SBC (FY2025 SBC $54.3M) that non-GAAP EPS excludes, so deducting it from FCF is correct and not a double count with dilution as long as share count is held flat.",
+   "evidence": "Rambus 10-Q Q2 2026 cash-flow statement; SEC XBRL companyfacts (PaymentsRelatedToTaxWithholdingForShareBasedCompensation 2021-2025)."
+  },
+  {
+   "topic": "Adding net cash on top of interest-inclusive earnings or FCF (agent_4's point)",
+   "positions": "agent_4: adding cash to a P/E on EPS that includes interest income double counts; agents 1, 3, 4, 5 still add $0.75-0.78B of net cash to an FCF-yield value.",
+   "resolution": "agent_4 is right, and the same logic applies to the FCF legs. H1-2026 'interest income and other income, net' was $14.2M (~$28M/yr pre-tax, ~$24M after a 16% tax), about $0.22/share. In a 28x P/E that is worth ~$6/share, close to the ~$7/share of cash, so P/E without a cash add is about right. In a 3.0% FCF yield the interest is capitalized at ~$0.8B (~$7.3/share), so adding the $0.76B of cash on top double counts ~$7/share (~$6 at 3.5%). Correct method: strip interest from FCF, then add cash.",
+   "evidence": "Rambus 10-Q Q2 2026 income statement and 'Interest and Other Income' discussion."
+  },
+  {
+   "topic": "FCF base",
+   "positions": "Horizon FCF $350M (a3), $370M (a4), $377M (a5), $390M (a1); agent_3 calls the base '~$250-270M'.",
+   "resolution": "FY2025 FCF was $333M (OCF $360.0M less capex $26.8M). H1-2026 FCF of $123.8M was depressed by a $30.7M inventory build and an $8.2M deferred-revenue drawdown, so the 2026 run-rate is ~$300-320M, not $250-270M. Horizon FCF of $370-390M is plausible; ex-interest and after ~$58M settlement taxes it is ~$300M.",
+   "evidence": "SEC XBRL companyfacts (FY2021-2025 OCF and capex); 10-Q Q2 2026."
+  },
+  {
+   "topic": "Net cash after the ASR",
+   "positions": "$0.75B (a5), $0.76B (a2, a4), ~$7/share (a3), $0.78B (a1).",
+   "resolution": "Verified: $824.9M of cash and marketable securities at 6/30, no debt; the 8-K says the $100M ASR (initial delivery ~796,000 shares) is 'expected to be completed by the end of the third quarter of 2026'. Completion is not yet confirmed (no 8-K needed; it will show in the Q3 10-Q). With ~$70-80M of Q3 FCF less ~$10M of installment payments, 9/30 net cash is ~$0.79B before Q3 settlement-tax payments, so $0.75-0.78B is the right range. Shares 108.46M at 6/30 less ~1M ASR shares, ~109M diluted.",
+   "evidence": "Rambus 8-K Item 1.01 (2026-08-05); 10-Q Q2 2026 cover and investments note."
+  },
+  {
+   "topic": "RDIMM module units vs DRAM bit growth",
+   "positions": "All five now accept that units can outgrow TrendForce's 15-20% bit supply and cut bear probabilities by ~3 points.",
+   "resolution": "Re-read the TrendForce release: 'total RDIMM bit supply will grow by only 15-20% YoY, significantly lagging the projected growth in server CPU shipments', with 'some systems shifting from 96 GB and 128 GB modules to 32 GB and 64 GB modules'. That supports unit growth at or above bit growth and is consistent with Baird's 12-15% unit call, but it is one source repeated, and the same release says supply lags CPU demand, a cap on upside. The 3-point bear cut is reasonable; it should not be taken further.",
+   "evidence": "TrendForce press release 2026-07-09."
+  },
+  {
+   "topic": "Earnings-reaction base rate (agent_5) vs the last four prints",
+   "positions": "agent_5: 23 prints since 2021, 11 fell next day, median +2.0%, mean -1.4%, mean |move| 8.5%, after a >9% 15-day run-up 4 of 8 fell; others: last four prints fell 9-21%.",
+   "resolution": "Recomputed from EDGAR 2.02 8-K dates (excluding a 2021-10-13 non-earnings 2.02) and Twelve Data closes: 23 prints, 11 down, median +2.0%, mean -1.42%, mean |move| 8.45%: confirmed. But after a >9% 15-day run-up 5 of 8 fell (mean -3.0%), not 4 of 8, and since Feb-2024 8 of 12 prints fell (mean -4.6%). The stock is +28.7% over the last 15 sessions, the second-largest pre-print run-up in the sample (the largest, +53% before Apr-2026, preceded -21%). The long sample says direction is near a coin flip with ~8.5% moves; the conditional and recent samples justify a 1.5-2% downward tilt, slightly more than agent_5's ~1%.",
+   "evidence": "EDGAR submissions (CIK 917273); Twelve Data RMBS daily closes 2021-01-04 to 2026-10-02."
+  },
+  {
+   "topic": "Q3 report date",
+   "positions": "All five: unannounced; Oct 26-27 likely.",
+   "resolution": "Still unannounced as of 2026-10-02 (no release found; EDGAR shows no new 8-K since 2026-09-04). All 23 earnings 8-Ks since 2021 were filed on Mondays, and Rambus issues its 'to announce' release ~3 weeks ahead (the Q4-2025 date was announced 2026-01-12 for 2026-02-02), so expect a notice around Oct 5-6 naming Oct 26 or 27. In-window probability ~95%.",
+   "evidence": "EDGAR submissions; BusinessWire 'Rambus to Announce Fourth Quarter and Fiscal Year 2025 Results' (2026-01-12)."
+  },
+  {
+   "topic": "September low and the March low",
+   "positions": "Agents now use $80.39 (Sep-14) and '$77.89 March low'; agent_2 could not re-check.",
+   "resolution": "Confirmed: Sep-14 close $80.39, intraday $80.00. The $77.89 figure is the March intraday low; the March closing low was $79.73 on Mar-30. Thesis-break levels described as 'x% below the $77.89 low' are measured from an intraday print; this does not change the levels.",
+   "evidence": "Twelve Data RMBS daily OHLC."
+  },
+  {
+   "topic": "agent_4 alternative data",
+   "positions": "Revelio postings down 27% (96 vs 116), headcount +1.5%; Montage H1 +26.7% with Q2 +28.3% q/q; DDR5 retail ~$18/GB.",
+   "resolution": "Montage verified (H1 revenue RMB 3.34B +26.7%, interconnect ~RMB 3.11B +26.4%, new products including MRCD/MDB +80.7% y/y, Q2 +28.3% q/q). It shows no share loss on the y/y comparison (Rambus product +22% in Q2) but Montage is already shipping MRCD/MDB in volume, so it is ahead on the MRDIMM ramp that is Rambus's 2027 driver: a modest competitive risk, kept in the bear case. Hiring counts disagree across vendors (96/59/16) and are neutral at best. Retail DDR5 $/GB is a consumer-channel price with no direct link to Rambus's per-unit revenue; discounted.",
+   "evidence": "Montage H1-2026 results (HKEX filing 2026-07-17 and press recaps)."
+  },
+  {
+   "topic": "DOJ grand-jury subpoena",
+   "positions": "All keep it as an undatable left tail.",
+   "resolution": "No developments found as of 2026-10-02; the only original remains the 10-Q risk factor (Q1 and Q2 2026), with Legal Proceedings still showing no material pending proceeding. The Q3 10-Q (~Oct 27-28) is the next disclosure point. No change to the median.",
+   "evidence": "Rambus 10-Q Q2 2026 Item 1A; web search for news (none new)."
+  },
+  {
+   "topic": "Thesis-break level",
+   "positions": "$70 (a2, a5), $71 (a4), $72 (a1, a3); mean $71.",
+   "resolution": "$72 kept: ~18x NTM EPS of ~$3.97 and ~10% below the $79.73-80.39 closing lows of March and September. The $1-2 differences are noise.",
+   "evidence": "Twelve Data closes; agents' NTM EPS."
+  }
+ ],
+ "ladder": [
+  {
+   "K": 28,
+   "p": 0.992
+  },
+  {
+   "K": 45,
+   "p": 0.954
+  },
+  {
+   "K": 56,
+   "p": 0.905
+  },
+  {
+   "K": 67,
+   "p": 0.84
+  },
+  {
+   "K": 78,
+   "p": 0.763
+  },
+  {
+   "K": 90,
+   "p": 0.662
+  },
+  {
+   "K": 101,
+   "p": 0.576
+  },
+  {
+   "K": 112,
+   "p": 0.495
+  },
+  {
+   "K": 123,
+   "p": 0.422
+  },
+  {
+   "K": 134,
+   "p": 0.358
+  },
+  {
+   "K": 151,
+   "p": 0.277
+  },
+  {
+   "K": 168,
+   "p": 0.214
+  },
+  {
+   "K": 196,
+   "p": 0.142
+  },
+  {
+   "K": 224,
+   "p": 0.097
+  },
+  {
+   "K": 280,
+   "p": 0.045
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 89.58,
+   "p": 0.864
+  },
+  {
+   "K": 95.17,
+   "p": 0.776
+  },
+  {
+   "K": 100.77,
+   "p": 0.674
+  },
+  {
+   "K": 104.13,
+   "p": 0.607
+  },
+  {
+   "K": 107.49,
+   "p": 0.542
+  },
+  {
+   "K": 111.97,
+   "p": 0.455
+  },
+  {
+   "K": 116.45,
+   "p": 0.374
+  },
+  {
+   "K": 119.81,
+   "p": 0.318
+  },
+  {
+   "K": 123.17,
+   "p": 0.268
+  },
+  {
+   "K": 128.77,
+   "p": 0.197
+  },
+  {
+   "K": 134.36,
+   "p": 0.142
+  }
+ ],
+ "one_month_reasoning": "Q3 results (unannounced, very likely Mon Oct 26 or 27, ~95% in-window) dominate; the guide looks achievable, but the stock is +28.7% in 15 sessions (+39% from the $80.39 Sep-14 close), the ASR bid is most likely finished, and after >9% pre-print run-ups 5 of 8 prints fell (8 of the last 12 overall), so I tilt about 1 point below the agents' mean around spot (median ~$110), keeping their ~19-20% monthly width.",
+ "confidence": "medium",
+ "confidence_reason": "The searches settled two checkable points that the forecasters share: the FCF legs of four agents double count ~$7/share of cash, and agent_5's run-up subsample is 5 of 8 down, not 4 of 8. Both point the same way (slightly lower), so I am fairly sure of the direction, but the size is small (fair value -$2, ladder -1 to -1.5 points) and the 28x multiple, which drives most of the value, is a judgment I did not settle.",
+ "thesis_break_price": 72.0,
+ "thesis_break_reason": "A sustained close below ~$72 is ~18x NTM EPS of ~$3.97 and ~10% under the March ($79.73) and September ($80.39) closing lows, levels the stock held through the -21% April print and the summer DOJ/sector selloff. Getting there would most likely need a fundamental break: a guided product-revenue decline (RDIMM units contracting or MRDIMM/RCD share loss to Montage, which is already shipping MRCD/MDB), a royalty-renewal shortfall with a top licensee (top two ~38-40% of revenue), or a DOJ indictment or forced change to licensing practices.",
+ "key_drivers": [
+  "Multiple: the stock is ~32x current NTM EPS (~$3.45); fair value needs ~28x on ~$3.97 NTM EPS at Oct-2027, so the 12-month return is close to EPS growth minus de-rating.",
+  "2027 RDIMM unit growth (Baird 12-15%) and the MRDIMM ramp on AMD Venice and the delayed Diamond Rapids, with Montage already shipping MRCD/MDB (+80.7% y/y new products in H1).",
+  "Cash conversion: FY2025 FCF $333M; ~$24M/yr after-tax interest and ~$55-62M/yr of share-settlement taxes mean owner FCF ex-interest is only ~$300M at the horizon, which caps the FCF-based value near $100.",
+  "Late-October Q3 print after a +28.7% 15-session run-up: 5 of 8 prints after >9% run-ups fell, and 8 of the last 12 overall.",
+  "The DOJ Antitrust Division criminal grand-jury probe (10-Q risk factor since Q1 2026, no developments), an undatable left tail."
+ ],
+ "fair_value": {
+  "value": 108.0,
+  "reason": "P/E: NTM non-GAAP EPS at Oct-2027 ~$3.97 (1/4 FY27 ~$3.57 + 3/4 FY28 ~$4.10, from a verified ~$3.03 2026E) x 28x = $111, no cash add because EPS already includes ~$0.22/share of interest income (70%). FCF: horizon FCF ~$380M less ~$24M after-tax interest less ~$58M share-settlement taxes = ~$300M at a 3.0% yield = $10.0B, plus ~$0.76B net cash, over ~109M diluted shares = ~$99 (30%). Blend ~$108. Corrections vs agents: the four FCF legs that add cash to interest-inclusive FCF overstate by ~$6-7/share; settlement taxes run ~$55-62M/yr (FY2025 $41.9M, 84% in H1), not ~$100M as I said in round 1; agent_3's '$250-270M' FCF base is below FY2025's $333M. $108 is ~$2 below the agents' mean ($110) and ~3.5% below the $111.97 close."
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "Your FCF leg adds $0.78B net cash to an FCF that includes ~$24M/yr after-tax interest income (10-Q H1-2026 'interest income and other' $14.2M); at a 3.0% yield that double counts ~$7/share. The leg should be ~$105, not $112.",
+    "29x vs the others' 28x has no new evidence behind it.",
+    "'$77.89 March low' is the intraday low; the March closing low was $79.73 (Mar-30, Twelve Data)."
+   ],
+   "revisit": "Strip interest from FCF before adding cash, and justify or drop the extra turn of multiple."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "Your settlement-tax drag is fine, but size it from the filings: $41.9M FY2025 with $35.0M in H1 (Q1 vesting), so ~$55-62M for 2026, not an annualized H1.",
+    "Montage is already shipping MRCD/MDB (new products +80.7% y/y in H1-2026), relevant to your RCD/MRDIMM share discussion."
+   ],
+   "revisit": "Little to change; your FCF leg without a cash add is the consistent one. Add independent industry checks rather than relying on the supervisor's price data."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "FY2025 FCF was $333M (OCF $360.0M, capex $26.8M; 10-K XBRL), so '~$250-270M' understates the base; H1-2026 was depressed by a $30.7M inventory build.",
+    "Your FCF leg adds ~$7/share net cash on top of interest-inclusive FCF, a double count of about the same size.",
+    "Your JSON loaded without error."
+   ],
+   "revisit": "Rebuild the FCF leg ex-interest with cash added once; the two corrections roughly offset, so your $107 should hold. Two searches were too few for a skeptic lane; test the inventory build against Q3 results."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "You were right that adding cash to a P/E double counts interest income, but your FCF leg does the same thing ($0.76B added to FCF that includes ~$24M/yr after-tax interest).",
+    "DDR5 retail $/GB is a consumer-channel price and says little about Rambus's per-unit RCD revenue; Revelio, TrueUp and Migrate Mate posting counts disagree (96/59/16)."
+   ],
+   "revisit": "Good lane recovery. Montage's MRCD/MDB volume (+80.7% y/y new products) is your most useful find; quantify what it implies for Rambus's 2027 MRDIMM share instead of the retail-price tracker."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "Recomputed from EDGAR 8-K dates and Twelve Data closes: after a >9% 15-day run-up, 5 of 8 prints fell (mean -3.0%), not 4 of 8. Since Feb-2024, 8 of 12 fell (mean -4.6%). The current 15-day run-up is +28.7%.",
+    "Your FCF leg adds $0.75B cash to interest-inclusive FCF (double count ~$6/share at 3.5%).",
+    "The 'base-rate drift' leg ($123) is a momentum prior, not a valuation; it belongs in the ladder centre, not the fair value."
+   ],
+   "revisit": "Your headline base rate is verified and valuable. Report the conditional and recent-regime splits alongside it and size the 1-month tilt from those."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 18,
+  "repeated_claims": [
+   {
+    "claim": "NTM EPS ~$3.93-4.00 at Oct-2027 from 1/4 FY27 + 3/4 FY28, at ~28x",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Round-1 supervisor.json (derived from Rambus Q1/Q2 2026 releases), not five independent estimates"
+   },
+   {
+    "claim": "~$50M/yr share-settlement taxes deducted from FCF",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Rambus 10-Q Q2 2026 cash-flow statement ($52.7M H1), via the round-1 supervisor"
+   },
+   {
+    "claim": "Net cash ~$0.75-0.78B after the $100M ASR",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Rambus 10-Q Q2 2026 ($824.9M) and ASR 8-K 2026-08-05, via the round-1 supervisor"
+   },
+   {
+    "claim": "RDIMM units can outgrow 15-20% bit supply (32/64GB module shift)",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "TrendForce press release 2026-07-09, via the round-1 supervisor"
+   },
+   {
+    "claim": "Last four prints fell 9-21% next day; Sep-14 low $80.39; +39% rally",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Twelve Data daily closes (round-1 supervisor); agent_2 could not re-check"
+   },
+   {
+    "claim": "Montage H1-2026 revenue +26.7%",
+    "agents": [
+     "agent_2",
+     "agent_4"
+    ],
+    "original_source": "Montage HKEX interim results announcement 2026-07-17"
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary filings throughout and it re-read the ASR 8-K itself; weak spot is the FCF-plus-cash double count and an unexplained 29x."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Industry originals from round 1 (TrendForce, Micron, Montage); only two new searches and the price facts rest on the supervisor."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Skeptic points that survive are filing-based (DOJ, concentration, inventory); FCF base understated and only two searches this round."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Upgraded from low: dropped the promotional newsletters and forum post, added Montage results (verified) and hiring data (noisy). The retail DDR5 price tracker is weakly relevant."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Computed its own 23-print base rate from EDGAR and Twelve Data (verified); one subsample count is off (5 of 8, not 4 of 8). The drift leg is weak as a valuation input."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "DDR5 retail ~$18/GB (RAM Prices USA Amazon index) as support for Rambus",
+    "why": "Consumer retail price; Rambus is paid per RCD/PMIC unit and has no direct pricing leverage on DRAM."
+   },
+   {
+    "claim": "Rambus job postings down 27% signal opex discipline",
+    "why": "Vendor counts disagree (96/59/16); a single noisy alt-data series, not used to move EPS."
+   },
+   {
+    "claim": "Montage interconnect revenue RMB 5.1B, +53% (search snippet)",
+    "why": "agent_4 correctly found the fetched article does not support it; ignored."
+   },
+   {
+    "claim": "FY2027 consensus EPS $3.72",
+    "why": "Still paywalled on the cited page; an upper anchor, not a fact."
+   },
+   {
+    "claim": "Base-rate drift leg (spot x 1.10 = $123) as a fair-value method",
+    "why": "A historical median price return is not a valuation and double-counts drift already in the ladder."
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "P(close >= K) for K = 90-196 (12-month)",
+   "from": [
+    0.672,
+    0.589,
+    0.509,
+    0.436,
+    0.371,
+    0.287,
+    0.221,
+    0.146
+   ],
+   "to": [
+    0.662,
+    0.576,
+    0.495,
+    0.422,
+    0.358,
+    0.277,
+    0.214,
+    0.142
+   ],
+   "why": "Removing the ~$7/share interest/cash double count from four agents' FCF legs lowers fair value from the $110 agent mean to ~$108, shifting the middle of the distribution ~2% lower; tails kept at the mean."
+  },
+  {
+   "item": "P(close >= K) for K = 95.17-134.36 (1-month)",
+   "from": [
+    0.782,
+    0.683,
+    0.618,
+    0.553,
+    0.466,
+    0.384,
+    0.327,
+    0.276,
+    0.203,
+    0.146
+   ],
+   "to": [
+    0.776,
+    0.674,
+    0.607,
+    0.542,
+    0.455,
+    0.374,
+    0.318,
+    0.268,
+    0.197,
+    0.142
+   ],
+   "why": "After >9% 15-day run-ups 5 of 8 prints fell (agent_5 said 4 of 8) and 8 of the last 12 prints fell; the stock is +28.7% over 15 sessions into an in-window Q3 print."
+  },
+  {
+   "item": "fair value",
+   "from": 110.0,
+   "to": 108.0,
+   "why": "FCF legs re-done ex-interest with cash added once, and settlement taxes sized from filings (~$58M/yr); P/E leg unchanged at ~$111."
+  },
+  {
+   "item": "thesis break",
+   "from": 71.0,
+   "to": 72.0,
+   "why": "~18x NTM EPS of ~$3.97 and ~10% below the $79.73/$80.39 closing lows; within noise of the agents' $70-72."
+  },
+  {
+   "item": "fact: share-settlement taxes per year (round-1 supervisor)",
+   "from": 100.0,
+   "to": 58.0,
+   "why": "FY2025 was $41.9M with $35.0M (84%) in H1, so H1-2026's $52.7M implies ~$55-62M for 2026, not ~$100M ($M)."
+  },
+  {
+   "item": "fact: net cash added to interest-inclusive FCF (agents 1, 3, 4, 5)",
+   "from": "cash added on top of capitalized FCF",
+   "to": "strip ~$24M/yr after-tax interest, then add cash",
+   "why": "H1-2026 interest income and other was $14.2M; at a 3.0-3.5% yield the interest is capitalized at ~$6-7/share, the same cash counted twice."
+  },
+  {
+   "item": "fact: FCF base (agent_3)",
+   "from": 260.0,
+   "to": 333.0,
+   "why": "FY2025 OCF $360.0M less capex $26.8M per 10-K XBRL ($M); H1-2026 was depressed by a $30.7M inventory build."
+  },
+  {
+   "item": "fact: prints that fell after a >9% 15-day run-up (agent_5)",
+   "from": 4,
+   "to": 5,
+   "why": "Recomputed from EDGAR 2.02 8-K dates and Twelve Data closes: 5 of 8 fell, mean -3.0%."
+  },
+  {
+   "item": "fact: March 2026 low used as thesis-break reference (all agents)",
+   "from": 77.89,
+   "to": 79.73,
+   "why": "$77.89 is the intraday low; the closing low was $79.73 on 2026-03-30 (Twelve Data)."
+  }
+ ],
+ "summary": "After round 2 the five forecasters cluster at $107-114 (mean $110), but the clustering mostly reflects inputs they took from my round-1 file, so it is not five independent confirmations. The filings show four of them double count ~$7/share by adding net cash to an FCF that already contains interest income, and that share-settlement taxes run ~$55-62M a year; correcting both puts fair value near $108 (~28x NTM EPS of ~$3.97), about 3.5% below the $111.97 close. I lower the 12-month ladder 1-1.5 points in the middle (median ~$111) and the 1-month ladder ~1 point into a late-October print that follows a +28.7% 15-session run-up, after which 5 of 8 past prints fell. There is no checked edge over the S&P 500; any position should be small, start after the Q3 print, and count as more AI-datacenter exposure alongside AVGO and GOOGL.",
+ "sources": [
+  {
+   "title": "Rambus Form 10-Q, quarter ended June 30, 2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526321000/rmbs-20260630.htm",
+   "date": "2026-07-28"
+  },
+  {
+   "title": "Rambus 8-K: ASR agreement with Mizuho ($100M), Item 1.01",
+   "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526333887/d122300d8k.htm",
+   "date": "2026-08-05"
+  },
+  {
+   "title": "SEC XBRL companyfacts for Rambus (OCF, capex, SBC, tax withholding on share settlement, 2021-2025)",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000917273.json",
+   "date": "2026-10-02"
+  },
+  {
+   "title": "Rambus EDGAR submissions index (earnings 8-K dates since 2021)",
+   "url": "https://data.sec.gov/submissions/CIK0000917273.json",
+   "date": "2026-10-02"
+  },
+  {
+   "title": "Twelve Data RMBS daily OHLC 2021-01-04 to 2026-10-02; SPY daily 2025-09-25 to 2026-10-02",
+   "url": "https://twelvedata.com/",
+   "date": "2026-10-02"
+  },
+  {
+   "title": "TrendForce: 3Q26 server DRAM contract prices +13-18% QoQ; 2027 RDIMM bit supply +15-20%",
+   "url": "https://www.trendforce.com/presscenter/news/20260709-13140.html",
+   "date": "2026-07-09"
+  },
+  {
+   "title": "Montage Technology H1-2026 results announcement (HKEX)",
+   "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0717/2026071700055.pdf",
+   "date": "2026-07-17"
+  },
+  {
+   "title": "Montage Technology's first-half net profit jumps 72% (Tiger Brokers news recap)",
+   "url": "https://www.itiger.com/news/1116211622",
+   "date": "2026-07"
+  },
+  {
+   "title": "Rambus to Announce Fourth Quarter and Fiscal Year 2025 Results (BusinessWire)",
+   "url": "https://www.businesswire.com/news/home/20260112542644/en/Rambus-to-Announce-Fourth-Quarter-and-Fiscal-Year-2025-Results/",
+   "date": "2026-01-12"
+  },
+  {
+   "title": "Rambus targeted in US DOJ criminal antitrust probe (MLex)",
+   "url": "https://www.mlex.com/mlex/articles/2471162/rambus-targeted-in-us-doj-criminal-antitrust-probe",
+   "date": "2026"
+  }
+ ],
+ "sizing": {
+  "max_weight_pct": 3.0,
+  "confidence": 0.43,
+  "entry": "Nothing before the Q3 print (expected Mon Oct 26 or 27; watch for the date notice ~Oct 5-6). If still wanted afterwards, 2 tranches over ~4 weeks starting the week after the report.",
+  "overlap": "AVGO (AI-datacenter semis, same server/AI capex cycle and semis beta) and GOOGL (hyperscaler AI capex is the end demand); VST loosely (AI-datacenter power theme). NFLX and BKNG are unrelated.",
+  "reason": "Checked fair value (~$108) sits slightly below the $111.97 price and RMBS's realized vol (~65-86% annualized) is ~5x SPY's. A simple simulation with a median near spot and 0.5-0.55 log vol gives ~0.48 for beating SPY's Sharpe (helped by SPY's Sharpe going very negative in down years), which I shade to 0.43 for the drag of single-name, high-vol outcomes and an in-window print after a sharp run-up. The name adds to an already AI-heavy book, so cap it at 3% of the ~$9,976 portfolio (the cash already includes the new money) and wait for the print.",
+  "conviction_label_before": "low",
+  "conviction_label_reason": "After the checks, fair value (~$108) is within ~4% of the price, the round-2 agreement mostly echoes my round-1 inputs, and the DOJ probe and 2027 unit/MRDIMM share remain open, so there is no edge over the S&P 500 strong enough to act on."
+ },
+ "brief_feedback": [
+  "The Sizing section says Kilian has 'about $0 of new cash' while also saying the $7,634 cash 'already includes the new money'; one of the two should be dropped to avoid confusion.",
+  "The round-2 revise brief tells agents to treat every supervisor finding as fact, which drives anchoring (fair-value spread $15 -> $7 on shared inputs). Asking each agent to re-derive at least one supervisor number from the primary source, or hiding the supervisor's fair value, would keep round 2 more independent.",
+  "The brief's 1-month strikes are spot-based on $111.97 while Twelve Data's 2026-10-02 close is $111.95; harmless, but worth stating which feed sets spot.",
+  "Asking agents to state explicitly whether each valuation leg includes interest income would have caught the cash double count in round 1."
+ ]
+}

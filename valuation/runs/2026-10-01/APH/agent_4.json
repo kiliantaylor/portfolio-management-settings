@@ -1,0 +1,514 @@
+{
+ "symbol": "APH",
+ "agent_id": "agent_4",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 21,
+   "p": 0.999
+  },
+  {
+   "K": 34,
+   "p": 0.987
+  },
+  {
+   "K": 43,
+   "p": 0.954
+  },
+  {
+   "K": 51,
+   "p": 0.902
+  },
+  {
+   "K": 60,
+   "p": 0.817
+  },
+  {
+   "K": 69,
+   "p": 0.712
+  },
+  {
+   "K": 77,
+   "p": 0.612
+  },
+  {
+   "K": 86,
+   "p": 0.5
+  },
+  {
+   "K": 94,
+   "p": 0.408
+  },
+  {
+   "K": 103,
+   "p": 0.317
+  },
+  {
+   "K": 116,
+   "p": 0.214
+  },
+  {
+   "K": 129,
+   "p": 0.14
+  },
+  {
+   "K": 150,
+   "p": 0.068
+  },
+  {
+   "K": 171,
+   "p": 0.032
+  },
+  {
+   "K": 214,
+   "p": 0.007
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 68.54,
+   "p": 0.968
+  },
+  {
+   "K": 72.82,
+   "p": 0.92
+  },
+  {
+   "K": 77.1,
+   "p": 0.834
+  },
+  {
+   "K": 79.67,
+   "p": 0.761
+  },
+  {
+   "K": 82.24,
+   "p": 0.675
+  },
+  {
+   "K": 85.67,
+   "p": 0.541
+  },
+  {
+   "K": 89.1,
+   "p": 0.397
+  },
+  {
+   "K": 91.67,
+   "p": 0.295
+  },
+  {
+   "K": 94.24,
+   "p": 0.209
+  },
+  {
+   "K": 98.52,
+   "p": 0.109
+  },
+  {
+   "K": 102.8,
+   "p": 0.055
+  }
+ ],
+ "one_month_reasoning": "I built this 1-month distribution myself rather than reusing round 1's. Window events: Q3 2026 earnings on Oct 28 before the open (guide $9.3-9.4B sales, $0.70-0.71 split-adjusted EPS) and the late-October hyperscaler Q3 capex prints. Model: about 20 non-earnings trading days at ~2.2%/day with fat tails (Student-t, 5 df; 10% monthly sd, which is below the 46%/3.5 = 13% headline because the 1-year figure includes the Jan-May swings; recent Aug-Sep daily moves run ~2%), plus a two-state earnings-day jump. In the beat state (72%) the jump is +4.5% \u00b1 3%, matching the verified +3.6% (Oct-25), +3.2% (Apr-26) and +4.5% then +6.3% (Jul-26) reactions. In the sell-off state (28%) it is -8.5% \u00b1 4%, matching the -12.2% on a beat in Jan-26. A small -0.3% drift offsets the +10% run from $77.55 on Sep 18 to $85.67 (short-term reversal risk). Result: median ~$86.6 (+1%), mean ~$86.8, and a left tail fatter than the right: P(>=77.10) = 0.83, while P(>=94.24) = 0.21.",
+ "fair_value": {
+  "value": 88.6,
+  "method": "60% P/E: Oct-2027 NTM EPS $3.62 x 24x = $86.9 (includes a ~1% haircut for the risk that Foxconn Interconnect takes Kyber midplane share in 2028). 40% FCF yield: $3.40 / 3.75% = $90.7. Blend ~$88.6.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 86.9,
+    "weight": 0.6,
+    "inputs": "NTM EPS at Oct 2027 $3.62 ($3.65 base, less ~1% for Kyber midplane share-loss risk in 2028) x 24x",
+    "inputs_detail": [
+     {
+      "input": "Diluted shares (post 2:1 split)",
+      "value": "2,578M",
+      "basis": "reported",
+      "source_ids": [
+       1,
+       14
+      ],
+      "derivation": "1,289.2M Q2 diluted shares x2 for the 2-for-1 split effective 2026-09-03"
+     },
+     {
+      "input": "Q3 2026 adj EPS guidance (split-adjusted)",
+      "value": "$0.70-0.71",
+      "basis": "guidance",
+      "source_ids": [
+       1,
+       14
+      ],
+      "derivation": "$1.40-1.42 pre-split / 2"
+     },
+     {
+      "input": "2027 revenue / EPS",
+      "value": "$42.1B revenue (+19% vs $35.5B 2026E); EPS ~$3.28",
+      "basis": "consensus",
+      "source_ids": [
+       4,
+       3
+      ],
+      "derivation": "Oakridge cites 2026/27 revenue estimates; EPS backed out of the 25.2x forward P/E at $82.57. Stockanalysis' 29x NTM at $85.67 gives ~$2.95 NTM EPS, which is consistent"
+     },
+     {
+      "input": "NTM EPS as of Oct 2027 (Q4'27 to Q3'28)",
+      "value": "$3.62",
+      "basis": "estimate",
+      "source_ids": [
+       4,
+       10,
+       8,
+       18,
+       19,
+       21
+      ],
+      "derivation": "2027 EPS of $3.28 grows ~11% into the following year (Q4'27 to Q3'28) as hyperscaler capex growth slows from 54% in 2027 to ~12% in 2028 (Goldman; UBS's +6% is the low outlier per the supervisor) = $3.65. I then take ~1% off for the GF Securities report that Foxconn Interconnect may be the major Kyber midplane connector supplier. The haircut is small because SemiAnalysis reports Kyber slipped to 2028, so 2027 Rubin Ultra ships on Oberon (NVL72 copper cartridges, where APH is a relative beneficiary). That puts most of the share risk in late 2028 and beyond, outside the NTM window."
+     },
+     {
+      "input": "Forward P/E in Oct 2027",
+      "value": "24x",
+      "basis": "judgment",
+      "source_ids": [
+       3,
+       4
+      ],
+      "derivation": "Today it trades at 29x NTM and 25x 2027. I assume a few turns of compression as growth falls from 50%+ to the teens; the market should still pay above the ~22x pre-AI connector multiple"
+     }
+    ]
+   },
+   {
+    "name": "FCF yield",
+    "value": 90.7,
+    "weight": 0.4,
+    "inputs": "Forward FCF/share $3.40 (2027 NI $7.8B, ~100% conversion, +12%) / 3.75% yield",
+    "inputs_detail": [
+     {
+      "input": "Q2 2026 free cash flow",
+      "value": "$1.2B (op CF $1.6B)",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "FCF/share for the year ahead in Oct 2027",
+      "value": "$3.40",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       4,
+       5
+      ],
+      "derivation": "2027 net income ~ $42.1B x 18.5% net margin = $7.8B with ~100% FCF conversion (the Q2 run-rate is ~$4.8B per year and still ramping) gives $3.0/share. Grown ~12% to the next year: $3.4"
+     },
+     {
+      "input": "Required FCF yield",
+      "value": "3.75%",
+      "basis": "judgment",
+      "source_ids": [
+       4
+      ],
+      "derivation": "Today's yield is 1.4% on trailing FCF, which still includes acquisition and working-capital drag. A 3.5-4% yield on forward FCF fits a high-quality industrial compounder whose growth is slowing to the mid-teens"
+     },
+     {
+      "input": "Net debt",
+      "value": "$14.1B ($18.81B debt - $4.73B cash)",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": "Already reflected in equity FCF after interest; listed for leverage context"
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 57.0,
+   "prob": 0.22,
+   "story": "AI capex digests in 2028 (Goldman +12%, UBS +6%), and the market starts pricing the loss of Kyber midplane content to Foxconn Interconnect (GF Securities) for the 2028 ramp. Book-to-bill drops below 1, IT datacom stalls, and the multiple falls to ~18x on ~$3.15 EPS. The verified 20% drawdown in three weeks after Q1 2026 shows how quickly that can happen."
+  },
+  "base": {
+   "price": 89.0,
+   "prob": 0.53,
+   "story": "2027 roughly in line with consensus: revenue ~$42B, EPS ~$3.3, margins ~29%. Oberon/NVL72 copper demand is extended through 2027 by the Kyber delay, and CommScope optics adds to growth. The multiple compresses to ~24x NTM as growth slows to the teens."
+  },
+  "bull": {
+   "price": 120.0,
+   "prob": 0.25,
+   "story": "2027 capex lands at or above $1.2-1.4T and 2028 keeps growing double digits. The extended Oberon life and power interconnect content beat plan, Kyber content risk proves smaller than GF suggests, NTM EPS reaches $4.2+, and the market holds ~28x."
+  }
+ },
+ "thesis_break_price": 59.0,
+ "thesis_break_reason": "$59 is ~31% below spot and just under the $59.6 closing floor that held twice in 2026 (Mar 30, May 19, Twelve Data). That is ~18x 2027 consensus EPS. A break there would most likely mean estimate cuts: book-to-bill below 1 for two quarters, a hyperscaler capex cut, or confirmation of lost Nvidia rack content (Kyber midplane to Foxconn Interconnect) without an offset elsewhere. A rotation alone would not explain it.",
+ "catalysts": [
+  {
+   "date": "2026-10-28",
+   "event": "Q3 2026 earnings and Q4 guide",
+   "direction": "+"
+  },
+  {
+   "date": "2026-10 late",
+   "event": "Hyperscaler Q3 capex prints and 2027 capex commentary (MSFT, GOOGL, META, AMZN)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11",
+   "event": "NVIDIA FQ3 results and Rubin ramp/CPO commentary",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01 late",
+   "event": "Q4 2026 earnings and Q1 2027 guide; first 2027 color",
+   "direction": "?"
+  },
+  {
+   "date": "2027-02",
+   "event": "Hyperscaler 2027 capex guidance finalized",
+   "direction": "?"
+  },
+  {
+   "date": "2027-04 late",
+   "event": "Q1 2027 earnings",
+   "direction": "?"
+  },
+  {
+   "date": "2027-07 late",
+   "event": "Q2 2027 earnings; laps 30% organic growth comps",
+   "direction": "-"
+  },
+  {
+   "date": "2027-03",
+   "event": "NVIDIA GTC: Kyber/Rubin Ultra timing and midplane supplier signals (GF Foxconn report vs Oberon extension)",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Whether hyperscaler capex keeps growing in 2028 or digests. All forecasts show a sharp slowdown (Goldman +12%, UBS +6%), and the stock will price 2028 by Oct 2027",
+  "Nvidia rack content: GF Securities says Foxconn Interconnect may displace APH as the major Kyber midplane supplier. The Kyber slip to 2028 (SemiAnalysis; Nvidia says only that its 'roadmap remains intact') defers that risk and extends Oberon copper demand",
+  "Copper vs co-packaged optics timing in next-gen racks; CommScope optics hedges part of it",
+  "How much the multiple compresses as growth normalizes from 30%+ organic to the teens",
+  "Earnings-reaction asymmetry: a beat can still sell off (-12.2% in Jan-26)",
+  "Integration and margin durability after the CommScope deal; $14B net debt"
+ ],
+ "reasoning": "Round 2. Round-1 facts stand: 2:1 split on 2026-09-03; Q2-26 sales $8.8B (+30% organic), adj EPS $0.675, book-to-bill 1.23; Q3 guide $9.3-9.4B / $0.70-0.71; net debt $14.1B; ~2.58B diluted shares. The supervisor raised three points. (1) The GF Securities report that Nvidia may have replaced APH with Foxconn Interconnect as the major Kyber midplane connector supplier. I confirmed the headline (MSN/Intellectia) but not its date. I also found what it leaves out: on Jul 6 2026 SemiAnalysis reported Kyber slipped to 2028 over midplane PCB problems, and 2027 Rubin Ultra stays on Oberon/NVL72. TechFlow's winners/losers summary names Amphenol a relative beneficiary of the longer copper-cartridge life, and a Jefferies note quoted on X says the supply chain had seen this coming since May. Nvidia replied only that its 'roadmap remains intact'. So I agree the GF report is a real left-tail input, but I disagree that it is a 2027 issue. It mostly bites in 2028+, which the stock will start to price by Oct 2027, so I give it a ~1% NTM EPS haircut and a slightly heavier bear leg rather than a large shift. (2) Earnings-reaction asymmetry (+3.6/-12.2/+3.2/+4.5%) is verified, so I built it explicitly into a new, independent 1-month model. (3) Thin Polymarket markets (~$9k volume) now get zero weight. Their removal is offset by the GF and drawdown evidence, so the bear weight stays at 22%. 12-month distribution: 78% lognormal with median $92.5, sigma 0.35, plus 22% bear lognormal with median $63, sigma 0.38. That gives median ~$86, mean ~$91.6, and P(>=86) = 0.50. Fair value is $88.6 (from $88.8), roughly at spot: EPS growth is offset by multiple compression from 29x to ~24x. Limits: MSN, Intellectia and CNBC blocked fetching, so the Kyber delay comes from Tom's Hardware/DCD headlines, a KuCoin/TechFlow summary and Benzinga. X posts appear only as search snippets. Only 11 of 24 sources are in-lane (below the 60% target) because the supervisor's follow-ups pointed to press and sell-side items. No option data was used.",
+ "lane": "alternative",
+ "sources": [
+  {
+   "title": "Amphenol Reports Record Second Quarter 2026 Results (Form 8-K Ex.99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000820313/000110465926087904/aph-20260729xex99d1.htm",
+   "date": "2026-07-29",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Amphenol (APH) Q2 2026 Earnings Call Transcript",
+   "url": "https://www.fool.com/earnings/call-transcripts/2026/08/07/amphenol-aph-q2-2026-earnings-call-transcript/",
+   "date": "2026-07-29",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Amphenol (APH) Stock Price & Overview (forward P/E, consensus target, split)",
+   "url": "https://stockanalysis.com/stocks/aph/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Amphenol: When Exceptional Growth Becomes a Valuation Test (Oakridge Capital Substack)",
+   "url": "https://oakridgecapital.substack.com/p/amphenol-when-exceptional-growth",
+   "date": "2026-09-23",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Amphenol Wins Whether The Rack Goes Copper Or Optical (Simply Wall St community narrative)",
+   "url": "https://simplywall.st/community/narratives/us/tech/nyse-aph/amphenol/te4bvtfe-amphenol-wins-whether-the-rack-goes-copper-or-optical-and-that-is-the-point",
+   "date": "2026-09-11",
+   "type": "forum",
+   "in_lane": true
+  },
+  {
+   "title": "Amphenol ($APH) Deep Dive - Jimmy's Journal (Substack)",
+   "url": "https://jimmysjournal.substack.com/p/amphenol-aph-deep-dive",
+   "date": "2026-06-04",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Amphenol CEO: AI Is Driving More Copper, Optics and Power Interconnect - Converge Digest",
+   "url": "https://convergedigest.com/amphenol-ai-copper-optics-power-interconnect/",
+   "date": "2026-09-09",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Hyperscaler capex roundup: September 2026 (Supercycle buildout tracker)",
+   "url": "https://supercyclehq.com/blog/reports/hyperscaler-capex-september-2026",
+   "date": "2026-09-16",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Cloud capex forecast calls for 29% jump in 2027 (Morgan Stanley Global Cloud Capex Tracker via Seeking Alpha)",
+   "url": "https://seekingalpha.com/news/4629570-cloud-capex-forecast-calls-for-29-jump-in-2027-as-compute-demand-exceeds-capacity-ms",
+   "date": "2026-09",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Goldman Sachs: AI capex to rise 54% in 2027, ~12% in 2028 (TechFlow summary)",
+   "url": "https://www.techflowpost.com/en-US/article/34264",
+   "date": "2026-09",
+   "type": "sell-side",
+   "in_lane": false
+  },
+  {
+   "title": "Polymarket: AI bubble burst by...?",
+   "url": "https://polymarket.com/event/ai-bubble-burst-by",
+   "date": "2026-10-02",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Amphenol workforce and job-posting data (Revelio Labs)",
+   "url": "https://www.reveliolabs.com/companies/amphenol/employees",
+   "date": "2026",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Amphenol 3rd Quarter 2026 Earnings event page",
+   "url": "https://investors.amphenol.com/news-and-events/events/event-details/2026/3rd-Quarter-2026-Earnings-2026-TUEfK-G-C6/default.aspx",
+   "date": "2026-09",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Amphenol Shares Scheduled to Split on Thursday, September 3rd (MarketBeat)",
+   "url": "https://www.marketbeat.com/instant-alerts/amphenol-shares-scheduled-to-split-on-thursday-september-3rd-nyseaph-2026-08-18/",
+   "date": "2026-08-18",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "NVIDIA Vera Rubin Ultra Ushers AI Networking Into the Co-Packaged Optics Era (Radiant blog)",
+   "url": "https://radiant.co/blog/nvidia-vera-rubin-ultra-ushers-in-the-cpo-era",
+   "date": "2026",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "6 Hyperscalers projected to spend $1.3T on capex in 2027; only 1 forecast positive FCF (Motley Fool)",
+   "url": "https://www.fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow/",
+   "date": "2026-09-06",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "APH's Order Book Hit $10.7B. Q3 Earnings Are Oct. 28 (Options Trading Report newsletter; only the earnings date was used)",
+   "url": "https://www.optionstradingreport.com/2026/09/aphs-order-book-hit-10-7b-q3-earnings-are-oct-28/",
+   "date": "2026-09",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Nvidia's Kyber rack for Rubin Ultra reportedly delayed to 2028 (SemiAnalysis via Tom's Hardware)",
+   "url": "https://www.tomshardware.com/pc-components/gpus/nvidias-kyber-rack-for-rubin-ultra-slips-to-2028",
+   "date": "2026-07-06",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "NVIDIA Kyber Delayed to 2028; Supply Chain Winners and Losers Emerge (TechFlow summary of SemiAnalysis, via KuCoin News)",
+   "url": "https://www.kucoin.com/news/flash/nvidia-kyber-delayed-to-2028-supply-chain-winners-and-losers-emerge",
+   "date": "2026-07-06",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Nvidia Says 'Our Roadmap Remains Intact' After Kyber AI Server Delay Report (Benzinga)",
+   "url": "https://www.benzinga.com/markets/tech/26/07/60296720/nvidia-says-our-roadmap-remains-intact-after-kyber-ai-server-delay-report-as-jim-cramer-says-buy",
+   "date": "2026-07-07",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Nvidia may have replaced Amphenol in Kyber product with Foxconn Interconnect: GF (MSN; Intellectia mirrors)",
+   "url": "https://www.msn.com/en-us/news/technology/nvidia-may-have-replaced-amphenol-in-kyber-product-with-foxconn-interconnect-gf/ar-AA1YU40I",
+   "date": "2026 (unconfirmed)",
+   "type": "sell-side",
+   "in_lane": false
+  },
+  {
+   "title": "Jefferies on NVDA Kyber/backplane delay: Rubin Ultra in 2027 to stick to Oberon (X post quoting the note, search snippet only)",
+   "url": "https://x.com/sean_________/status/2073894300165820489",
+   "date": "2026-07",
+   "type": "social",
+   "in_lane": true
+  },
+  {
+   "title": "Nvidia's Kyber rack system delayed to 2028 over manufacturing snags (CNBC; headline only, fetch blocked)",
+   "url": "https://www.cnbc.com/2026/07/06/nvidia-kyber-rack-system-delays-manufacturing-taiwan-rubin-chips-.html",
+   "date": "2026-07-06",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "APH daily OHLCV, Jul 2025 to Oct 2026 (Twelve Data)",
+   "url": "https://twelvedata.com/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a fact",
+   "from": "Rubin/Kyber content: CommScope optics noted as a hedge; no supplier-change risk",
+   "to": "GF Securities: Foxconn Interconnect may be the major Kyber midplane supplier; Kyber slipped to 2028 and 2027 Rubin Ultra stays on Oberon copper (APH a relative beneficiary)",
+   "why": "Supervisor's GF finding (disagreement 4), plus my follow-up on the Kyber delay (sources 18-23). This is where I disagree on timing: it is mostly a 2028+ risk."
+  },
+  {
+   "item": "a method",
+   "from": "P/E: NTM EPS $3.65 x 24x = $87.6",
+   "to": "P/E: NTM EPS $3.62 x 24x = $86.9",
+   "why": "~1% EPS haircut for the GF Kyber share risk, kept small because of the Kyber delay to 2028"
+  },
+  {
+   "item": "fair value",
+   "from": "88.8",
+   "to": "88.6",
+   "why": "P/E method change; FCF yield method unchanged at $90.7"
+  },
+  {
+   "item": "a scenario",
+   "from": "bear $56 / base $90 (Polymarket 18% cited as context)",
+   "to": "bear $57 at 22% (capex digestion + Kyber share loss priced for 2028) / base $89",
+   "why": "Supervisor: Polymarket ~$9k volume is too thin, so zero weight. GF report and the verified 20% post-Q1 drawdown keep the bear leg at 22%"
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "K=60/69/77/86/94/103: 0.812/0.709/0.61/0.501/0.411/0.322",
+   "to": "0.817/0.712/0.612/0.50/0.408/0.317",
+   "why": "Mixture refit (78% median 92.5 sigma 0.35; 22% median 63 sigma 0.38): slightly heavier bear centre from GF/Kyber, less extreme tails after dropping the Polymarket input. Net change is small, since the Oberon extension offsets the GF risk"
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "ladder_1m as in round 1 (0.532 at 85.67, 0.102 at 102.8)",
+   "to": "independent model: 0.541 at 85.67, 0.055 at 102.8, 0.834 at 77.10",
+   "why": "Supervisor flagged the round-1 1-month ladder as identical to another agent's. Rebuilt from Twelve Data closes: fat-tailed 10% monthly sd plus a two-state earnings jump (72% +4.5%, 28% -8.5%) using the verified reaction history"
+  },
+  {
+   "item": "thesis break",
+   "from": "62",
+   "to": "59",
+   "why": "Supervisor/Twelve Data: the $59.6 closing floor held twice in 2026; only a break below it would signal estimate cuts rather than a rotation"
+  }
+ ]
+}

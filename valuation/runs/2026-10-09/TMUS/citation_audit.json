@@ -1,0 +1,978 @@
+{
+ "date": "2026-10-09",
+ "symbol": "TMUS",
+ "clean": true,
+ "checked": 120,
+ "ok": 101,
+ "run_date": "2026-10-12",
+ "scope": "supervisor.json (fair_value, ladder, thesis_break, sizing, comps_review, disagreements, changes), model_assumptions.json (all reconciled entries and agent values) and agent_1..agent_5 inputs_detail and comps. www.sec.gov refused a generic-UA curl (403), so filings were read with WebFetch; data.sec.gov XBRL via curl; StockAnalysis, FRED, Fed, Light Reading, Verizon, Finviz, YipitData, CompaniesMarketCap via WebFetch; ECB rates via the ECB data API. The T-Mobile dividend release on Business Wire and t-mobile.com returned 403 (not worked around); the $1.17 dividend is verified on StockAnalysis. No keyed feed was used.",
+ "result_summary": "Fair value $163.0 -> $155.0; P/E 10.75x -> 10.25x; EV/EBITDA target 7.75x -> 6.86x peer basis (6.61x -> 6.14x company); conversion 1.172 -> 1.118; shares 1,010M -> 1,005M; ladder scaled by 155/163 (median ~$155 -> ~$147); ladder_1m unchanged; thesis break $115 unchanged; sizing confidence 0.45 -> 0.40, max weight 5% -> 4%.",
+ "failures": [
+  {
+   "item": "Core peer forward P/E (VZ 8.23, T 9.20, CMCSA 5.90, RCI 9.46, BCE 10.44, TU 15.46, AMX 10.90, VOD 13.62; median 9.95x) in supervisor disagreements, key_drivers, comps_review, thesis_break_reason, A5 and agents' comps",
+   "value": "median 9.95x",
+   "cited": "StockAnalysis statistics 'Forward PE' (aggregator ratio)",
+   "result": "not_found",
+   "fix": "Peer multiples must come from filings/company releases. Rebuilt as Oct-9 close / NTM consensus EPS (0.227 x FY26 + 0.773 x FY27; VOD to March), local currency at ECB rates: VZ 7.98, T 8.81, CMCSA 5.80, RCI 8.83, BCE 10.17, TU 14.72, AMX 10.35, VOD 12.56; median 9.50x. Supervisor P/E target 10.75x -> 10.25x (+8% kept); A5 reconciled 10.75 -> 10.25; agents' values kept with sourcing notes."
+  },
+  {
+   "item": "Core peer trailing EV/EBITDA (VZ 7.13, T 6.68, CMCSA 4.58, RCI 7.63, BCE 7.99, TU 9.72, AMX 5.58, VOD 8.38; median 7.38x)",
+   "value": "median 7.38x",
+   "cited": "StockAnalysis statistics (aggregator)",
+   "result": "not_found",
+   "fix": "Rebuilt from 10-Q/6-K balance sheets and company adjusted EBITDA (TTM): VZ 6.98, T 6.71, CMCSA 4.71, RCI 7.31, BCE 6.48, TU 6.59, AMX 4.87, VOD 4.91; median 6.53x. Target 7.75x -> 6.86x peer basis; A9 reconciled 7.75 -> 6.86."
+  },
+  {
+   "item": "TMUS EV/EBITDA 8.06x on the peer basis, behind the 1.172 conversion ratio (A10, fair_value)",
+   "value": "8.06x; ratio 1.172",
+   "cited": "StockAnalysis TMUS statistics",
+   "result": "not_found",
+   "fix": "Rebuilt from the Q2 Factbook and 10-Q on the same basis as the peers: (159.378 + 86.920 + 3.461 + 29.058 - 2.825) / 35.902 = 7.687x; ratio 7.687 / 6.878 = 1.118; company-basis target 6.61x -> 6.14x; EV leg $167.8 -> $150.3."
+  },
+  {
+   "item": "Peer FCF yields (T 11.62%, VZ 12.44% and the 8-peer median 13.06%) behind the 11.75% target",
+   "value": "T 11.62%, VZ 12.44%, median 13.06%",
+   "cited": "StockAnalysis statistics (aggregator)",
+   "result": "not_found",
+   "fix": "Rebuilt as TTM CFO - capex / Oct-9 market cap from filings: T 11.60%, VZ 12.44%, median 12.29% (AMX FY2025, VOD FY to Mar-2026). 11.75% still sits between T and VZ and above TMUS's 11.54%, so the target and FCF leg are unchanged except for the share count."
+  },
+  {
+   "item": "TMUS forward P/E labelled NTM in comps_review.tmus_now",
+   "value": "11.82x (NTM)",
+   "cited": "StockAnalysis TMUS statistics",
+   "result": "wrong",
+   "fix": "148.58 / 11.82 implies $12.57 EPS, not the NTM consensus. NTM = 0.227 x 12.39 + 0.773 x 14.44 = $13.98, so 10.63x; text corrected."
+  },
+  {
+   "item": "Verizon's '8.23x forward P/E' anchoring the $115 thesis break",
+   "value": "8.23x",
+   "cited": "StockAnalysis VZ statistics",
+   "result": "not_found",
+   "fix": "VZ NTM P/E rebuilt at 7.98x ($41.65 / $5.22); $115 = 7.96x FY27 EPS is at Verizon's multiple; thesis_break_reason updated, $115 unchanged."
+  },
+  {
+   "item": "VZ/T growth-slope anchor and AMX/ORA cap for the P/E target",
+   "value": "~10.6x; AMX 10.90x, ORA 11.02x",
+   "cited": "StockAnalysis statistics",
+   "result": "not_found",
+   "fix": "Rebuilt: slope ~10.0x, AMX 10.35x, ORA 11.56x (ORA noted as a weak growth match: FY27 consensus EPS falls 16%). Text updated in disagreements and comps_review."
+  },
+  {
+   "item": "TIMB and ORA EV/EBITDA (5.04x, 6.45x) and FCF yields; 'both together pull the median from 7.38x to 6.905x'",
+   "value": "5.04x / 6.45x",
+   "cited": "StockAnalysis statistics",
+   "result": "not_found",
+   "fix": "Not rebuilt (TIMB's filings not reached; ORA is not an SEC filer and its releases were not opened). Claims removed; neither enters any number. Their P/E rebuilt from close and consensus: TIMB 8.81x, ORA 11.56x."
+  },
+  {
+   "item": "CHTR '2.34x forward P/E, $16.9B market cap' (reason for exclusion)",
+   "value": "2.34x; $16.9B",
+   "cited": "StockAnalysis CHTR statistics",
+   "result": "not_found",
+   "fix": "P/E rebuilt 2.29x ($103.38 / NTM $45.24); market-cap claim removed (10-Q cover shows 119.3M Class A shares, ~$12.3B; the aggregator figure includes other units). Exclusion unchanged."
+  },
+  {
+   "item": "agent_1 9-peer median P/E (supervisor changes)",
+   "value": "9.46x -> 9.95x",
+   "cited": "StockAnalysis",
+   "result": "not_found",
+   "fix": "Rebuilt basis: agent_1's set gives 8.83x and the core set 9.50x; the changes entry updated."
+  },
+  {
+   "item": "Share count: '~3M of dilutive securities (Q2 diluted weighted 1,082.4M vs 1,072.7M outstanding)'",
+   "value": "~3M",
+   "cited": "10-Q / Q2 Factbook",
+   "result": "wrong",
+   "fix": "Diluted minus basic Q2 weighted shares is 0.64M (1,082,409,636 - 1,081,771,279); the gap to period-end shares is mostly buybacks. Corrected to ~0.6M; feedback to agent_5 corrected."
+  },
+  {
+   "item": "Share count: '~6M of net equity-comp issuance' (no arithmetic)",
+   "value": "~6M",
+   "cited": "none",
+   "result": "mislabelled",
+   "fix": "Estimate now derived from the 10-Q equity statement: 2,699,892 RSUs vested less 862,204 withheld = 1.84M net in H1 2026, x 2.5 half-years = ~4.6M. Horizon count 1,010M -> 1,005M (A18 1.010 -> 1.005); EV and FCF legs recomputed."
+  },
+  {
+   "item": "Net-debt cash check: 'returns ~$17.8B ... leaves ~$6B'",
+   "value": "~$17.8B",
+   "cited": "own arithmetic",
+   "result": "wrong",
+   "fix": "$8.5B + $0.39B + 0.77 x $11.8B = ~$18.0B, leaving ~$5.8B; text corrected (net debt still held flat, no number changes)."
+  },
+  {
+   "item": "2027 service-revenue guidance growth '+4.5-5.5%'",
+   "value": "+4.5-5.5%",
+   "cited": "Feb 2026 8-K",
+   "result": "wrong",
+   "fix": "$80.5-81.5B over the 8-K's ~$77.0B 2026 figure is +4.5-5.8%; text corrected (no number changes)."
+  },
+  {
+   "item": "Supervisor re-run of agent_5's EV leg (~$170.5; agent_5 fair value ~$164.6) in disagreements, feedback, changes and A9/A11",
+   "value": "$170.5",
+   "cited": "StockAnalysis core median 7.38x",
+   "result": "not_found",
+   "fix": "Built on the aggregator median; withdrawn. The changes entry is removed and the texts say agent_5's leg stays its own view."
+  },
+  {
+   "item": "agent_5: 'the 10-Q says up to ~$30.0B ... from Jan 2026 to end-2027 including the $18.2B program'",
+   "value": "~$30B through 2027",
+   "cited": "10-Q (src 30)",
+   "result": "not_found",
+   "fix": "Not in the 10-Q (R21). agent_5.json now cites the Feb 2026 8-K capital-envelope wording (src 29) and labels the period as an inference."
+  },
+  {
+   "item": "agent_5: TMUS TTM EBITDA $34.37B (StockAnalysis basis) labelled 'reported'",
+   "value": "$34.37B, reported",
+   "cited": "StockAnalysis TMUS statistics",
+   "result": "mislabelled",
+   "fix": "Vendor-computed figure, not a filing; basis set to estimate with a sourcing note in agent_5.json and A11. Not used by the supervisor."
+  },
+  {
+   "item": "agent_4: 'Opensignal 12 of 16 awards'",
+   "value": "12 of 16",
+   "cited": "Broadband Breakfast",
+   "result": "not_found",
+   "fix": "The page shows 12 performance awards but no total; agent_4.json text corrected to '12 performance awards'."
+  },
+  {
+   "item": "Agents' comps arrays and multiple inputs (fwd_pe, ev_ebitda_fwd, FCF yields, 1.172 ratio) in agent_1..agent_5",
+   "value": "aggregator multiples",
+   "cited": "StockAnalysis statistics",
+   "result": "not_found",
+   "fix": "Agent files only get sourcing notes (values are their independent views). The supervisor's numbers use the filings-based rebuild, and the supervisor ladder (mean of agents' ladders) is scaled by 155.0/163.0 to the corrected fair value."
+  },
+  {
+   "item": "Peer consensus EPS for T, CMCSA, RCI, BCE, TU, AMX, VOD (9.50x NTM P/E median)",
+   "value": "",
+   "cited": "cited only the VZ forecast page",
+   "result": "not_found",
+   "fix": "each company's own forecast page cited; all figures match; median unchanged 9.50x (stockanalysis.com/stocks/{t,cmcsa,rci,bce,tu,amx,vod}/forecast/ (re-checked 2026-10-13))"
+  },
+  {
+   "item": "RCI share count 540.2M (EV/EBITDA 7.31x)",
+   "value": "",
+   "cited": "cited Ex.99.3 (release), which does not show it",
+   "result": "not_found",
+   "fix": "540.2M confirmed in Ex.99.2 statement of changes in equity (111,149k Class A + 429,076k Class B); 7.31x unchanged (https://www.sec.gov/Archives/edgar/data/733099/000073309926000015/rci-06302026xexhibit992.htm)"
+  },
+  {
+   "item": "~4% T-bill in sizing",
+   "value": "",
+   "cited": "no source",
+   "result": "not_found",
+   "fix": "13-week T-bill 4.16% (coupon equivalent) on 2026-10-09, US Treasury; ~4% unchanged (US Treasury daily bill rates 2026)"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "TMUS FY2027 consensus EPS (non-GAAP adjusted; S&P Global, 27 analysts)",
+   "value": "$14.44 (+16.49%)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/tmus/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | thesis_break | scenarios"
+  },
+  {
+   "item": "TMUS FY2026 consensus EPS",
+   "value": "$12.39",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/tmus/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps (TMUS NTM P/E)"
+  },
+  {
+   "item": "TMUS FY2027 consensus revenue growth",
+   "value": "+4.44% ($98.52B)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/tmus/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (EBITDA haircut reasoning)"
+  },
+  {
+   "item": "TMUS close 2026-10-09 and 1-day change",
+   "value": "$148.58, -13.27%",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/tmus/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | thesis_break | sizing | ladder_1m"
+  },
+  {
+   "item": "TMUS 3Y EPS growth forecast",
+   "value": "17.03%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/tmus/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "comps (P/E premium)"
+  },
+  {
+   "item": "TMUS beta (5Y)",
+   "value": "0.32",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/tmus/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "sizing"
+  },
+  {
+   "item": "TMUS annual dividend / next dividend",
+   "value": "$4.68; $1.17 ex/record 2026-11-25, paid 2026-12-10 (company release on Business Wire and t-mobile.com returned 403)",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/tmus/dividend/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (dividends) | share count"
+  },
+  {
+   "item": "TMUS shares outstanding (10-Q cover, 2026-07-17)",
+   "value": "1,072,671,613",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/tmus-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | thesis_break | share count"
+  },
+  {
+   "item": "TMUS operating lease liabilities 2026-06-30",
+   "value": "$3,620M current + $25,438M non-current",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/tmus-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps (TMUS peer-basis EV)"
+  },
+  {
+   "item": "TMUS H1 2026 repurchases",
+   "value": "34,750,770 shares, $7.1B (cash $7,146M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/R21.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count"
+  },
+  {
+   "item": "TMUS 2026 stockholder return program",
+   "value": "$14.6B (2025-12-11) raised to $18.2B on 2026-04-23; $8.9B left at 2026-06-30; $8.5B left at 2026-07-17 (repurchases and dividends)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/R21.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count | net debt"
+  },
+  {
+   "item": "TMUS repurchases Jul 1-17 2026",
+   "value": "2,149,600 shares, $392M (avg $182.53)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/R21.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count | net debt"
+  },
+  {
+   "item": "TMUS dividends $1.02 per share (Mar, Jun, Sep 2026 payments)",
+   "value": "$1.02; $2.2B paid H1 2026",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/R21.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count"
+  },
+  {
+   "item": "TMUS RSUs vested / shares withheld H1 2026",
+   "value": "2,699,892 / 862,204 (net 1.84M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/tmus-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count"
+  },
+  {
+   "item": "TMUS Q2 2026 weighted shares basic / diluted",
+   "value": "1,081,771,279 / 1,082,409,636",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/tmus-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count"
+  },
+  {
+   "item": "TMUS net debt excl. towers 2026-06-30",
+   "value": "$84,095M (total debt $86,920M incl. finance leases, cash $2,825M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (EV leg)"
+  },
+  {
+   "item": "TMUS tower obligations 2026-06-30",
+   "value": "$3,461M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (EV leg)"
+  },
+  {
+   "item": "TMUS LTM Core Adjusted EBITDA and leverage",
+   "value": "$35,902M; 2.3x",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (basis ratio) | net debt"
+  },
+  {
+   "item": "TMUS Q3 2025 Core Adj. EBITDA / service revenues",
+   "value": "$8,680M / $18,241M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (EBITDA haircut reasoning)"
+  },
+  {
+   "item": "TMUS H1 2026 Adjusted Free Cash Flow",
+   "value": "$9,396M ($4,599M + $4,797M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "net debt"
+  },
+  {
+   "item": "TMUS CFO / capex Q3-25..Q2-26",
+   "value": "$7,457/6,654/7,222/7,500M; $2,639/2,469/2,623/2,703M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps (TMUS FCF yield)"
+  },
+  {
+   "item": "TMUS Q2 2026 postpaid net account adds; postpaid ARPA",
+   "value": "277k; $152.91 vs $149.87 (+2.0%)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "scenarios | agent_3 haircut"
+  },
+  {
+   "item": "TMUS 2026 guidance (Q2 release)",
+   "value": "Core Adj. EBITDA $37.1-37.5B; AFCF $18.4-18.8B; capex ~$10.0B; account adds 950k-1.05M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | net debt | thesis_break"
+  },
+  {
+   "item": "TMUS Q2 2026 growth (Q2 release)",
+   "value": "service revenues +9% ($19.0B); Core Adj. EBITDA +12% ($9.5B); $18.2B authorization through 2026-12-31",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps (premium justification)"
+  },
+  {
+   "item": "TMUS 2027 targets (Feb 2026 8-K)",
+   "value": "Core Adj. EBITDA $40.0-41.0B; AFCF $19.5-20.5B; service revenues $80.5-81.5B (2026 ~$77.0B); capex $9.0-10.0B",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000119312526045679/d106287dex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | thesis_break | scenarios"
+  },
+  {
+   "item": "TMUS capital envelope (Feb 2026 8-K)",
+   "value": "over $50.0B remains of $80.0B through 2027, incl. up to ~$30.0B for stockholder returns; flexible envelope over $22.0B incl. potentially additional returns; 2.5x leverage target",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000119312526045679/d106287dex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count | net debt"
+  },
+  {
+   "item": "TMUS 2026-09-03 8-K",
+   "value": "reaffirms 2026 guidance; maintains capital return program and long-term financial framework",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000119312526381901/d155079dex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "TMUS Q2 2026 call: Q3 guide",
+   "value": "~250,000 postpaid account adds; service revenue ~$19.3B (+6%); Core Adj. EBITDA ~$9.4B (+8%); 'temporary elevated account churn'; '2027 guidance ambitions'; capital envelope considerate of 2027-28 spectrum",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/tmus/transcripts/656421-q2-2026/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | scenarios | ladder_1m"
+  },
+  {
+   "item": "Q3 guide growth vs Q3 2025 bases",
+   "value": "+8.3% EBITDA (9.4/8.68), +5.8% service revenue (19.3/18.241)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (EBITDA haircut)"
+  },
+  {
+   "item": "SpaceX mobile service target",
+   "value": "first half of 2028 (CFO Bret Johnsen, Goldman Communacopia); undecided on building a terrestrial network",
+   "basis": "reported",
+   "source_url": "https://www.lightreading.com/satellite/spacex-shoots-for-mobile-service-in-2028-wavers-on-wireless-network",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (multiple) | scenarios"
+  },
+  {
+   "item": "SpaceX-Grain 800 MHz deal",
+   "value": "up to 14 MHz paired; requires FCC approval; not compatible with V1/V2 D2D satellites (New Street)",
+   "basis": "reported",
+   "source_url": "https://www.lightreading.com/satellite/spacex-grain-s-lowband-spectrum-is-our-ticket-to-becoming-major-mobile-carrier-",
+   "checked": "2026-10-12",
+   "feeds": "scenarios | key_drivers"
+  },
+  {
+   "item": "10-year Treasury",
+   "value": "5.22% on 2026-10-08 (4.14% on 2025-10-09)",
+   "basis": "reported",
+   "source_url": "https://fred.stlouisfed.org/series/DGS10",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (multiple) | sizing"
+  },
+  {
+   "item": "FOMC meeting",
+   "value": "2026-10-27/28 (and 12-08/09)",
+   "basis": "reported",
+   "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m"
+  },
+  {
+   "item": "Verizon Q3 2026 report date",
+   "value": "2026-10-26",
+   "basis": "reported",
+   "source_url": "https://www.verizon.com/about/news/verizon-q3-2026-earnings-report-date",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m"
+  },
+  {
+   "item": "T-Mobile Q3 2026 release/call",
+   "value": "2026-10-28 ~4:05pm ET release, 4:30pm ET call",
+   "basis": "reported",
+   "source_url": "https://finviz.com/news/393276/t-mobile-to-host-q3-2026-earnings-call-on-october-28-2026",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m | sizing"
+  },
+  {
+   "item": "AT&T Q3 2026 release",
+   "value": "2026-10-21 before NYSE open",
+   "basis": "reported",
+   "source_url": "https://finviz.com/news/386444/att-to-release-third-quarter-2026-earnings-on-oct-21",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m"
+  },
+  {
+   "item": "YipitData switching (context only)",
+   "value": "968 vs 408 (2.4x); base Oct-Dec 2025, outcome May-Jul 2026; 94.7% of 570; 'directional'",
+   "basis": "reported",
+   "source_url": "https://ask.yipitdata.com/insights/verizon-t-mobile-switcher-deficit",
+   "checked": "2026-10-12",
+   "feeds": "ladder (reason for restoring agent_4 bear weight)"
+  },
+  {
+   "item": "Orange annual returns 2010-2014",
+   "value": "-11.42%, -18.16%, -21.65%, +17.46%, +51.45%",
+   "basis": "reported",
+   "source_url": "https://companiesmarketcap.com/orange/stock-price-history/",
+   "checked": "2026-10-12",
+   "feeds": "scenarios (agent_5 base rates)"
+  },
+  {
+   "item": "ARCEP: incumbents lost EUR 1.6bn EBITDA in Free Mobile's first year",
+   "value": "EUR 1.6bn",
+   "basis": "reported",
+   "source_url": "https://www.universfreebox.com/article/20235/Une-etude-de-l-ARCEP-sur-Free-Mobile-donne-une-bonne-claque-aux-arguments-de-ses-concurrents-et-de-Montebourg/amp",
+   "checked": "2026-10-12",
+   "feeds": "scenarios (agent_5 haircut)"
+  },
+  {
+   "item": "Comcast Q2 2026 wireless line adds",
+   "value": "448,000",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1166691/000162828026049274/ex991-6302026.htm",
+   "checked": "2026-10-12",
+   "feeds": "scenarios (agent_2 haircut)"
+  },
+  {
+   "item": "Charter Q2 2026 mobile line adds",
+   "value": "406,000 (Broadband Breakfast)",
+   "basis": "reported",
+   "source_url": "https://broadbandbreakfast.com/charter-reports-weak-second-quarter-dropping-172-000-broadband-customers/",
+   "checked": "2026-10-12",
+   "feeds": "scenarios (agent_2 haircut)"
+  },
+  {
+   "item": "Reaves Q2 2026 letter: Verizon/AT&T plans narrowed TMUS's premium",
+   "value": "quoted",
+   "basis": "reported",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/renewed-industry-competition-sparks-t-140751845.html",
+   "checked": "2026-10-12",
+   "feeds": "scenarios (agent_5 haircut)"
+  },
+  {
+   "item": "FX ECB reference 2026-10-09",
+   "value": "EUR/USD 1.1206, EUR/CAD 1.5942, EUR/MXN 20.395, EUR/BRL 5.6086 (USD/CAD 1.4226, USD/MXN 18.200, USD/BRL 5.005)",
+   "basis": "reported",
+   "source_url": "https://data-api.ecb.europa.eu/service/data/EXR/D.USD+CAD+MXN+BRL.EUR.SP00.A?startPeriod=2026-10-09&endPeriod=2026-10-09",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VZ close; shares; total debt; op leases; NCI; cash",
+   "value": "$41.65; 4,154,775,202; $165,231M; $4,835M + $18,392M; $1,276M; $1,752M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/732712/000073271226000046/vz-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VZ LTM consolidated adjusted EBITDA (Jun-26); FY2025",
+   "value": "$51,753M; $49,997M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/732712/000073271226000040/a2026q2exhibit99.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VZ TTM CFO / capex (FY25 + H1-26 - H1-25)",
+   "value": "$38,799M / $17,268M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/732712/000073271226000046/vz-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VZ FY2026 / FY2027 consensus EPS",
+   "value": "$5.02 / $5.28",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/vz/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "T close; shares; debt; op leases; NCI; cash",
+   "value": "$22.18; 6,852,385,650; $9,323M + $134,631M; $18,934M + $3,581M (Dec-25 current); $15,990M; $17,570M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/732717/000073271726000297/t-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "T adjusted EBITDA trailing four quarters (Jun-26)",
+   "value": "$47,230M (FY25 $46,361M; H1 $24,133M vs $23,264M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/732717/000073271726000294/t-2q2026exhibit993.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "T TTM CFO / capex",
+   "value": "$39,868M / $22,245M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/732717/000073271726000297/t-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "T FY2026 / FY2027 consensus EPS",
+   "value": "$2.34 / $2.57",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/t/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "CMCSA close; shares (Class A + B); debt; op leases (Dec-25); NCI; cash",
+   "value": "$20.66; 3,548,636,573; $90,381M; $6,097M; $7M; $7,661M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1166691/000162828026049360/cmcsa-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "CMCSA adjusted EBITDA FY25 / H1-26 / H1-25 (reported, incl. Versant in 2025)",
+   "value": "$37,384M / $16,831M / $19,815M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1166691/000162828026049274/ex991-6302026.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "CMCSA TTM CFO / capex",
+   "value": "$32,517M / $12,073M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1166691/000162828026049360/cmcsa-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "CMCSA FY2026 / FY2027 consensus EPS",
+   "value": "$3.48 / $3.59",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/cmcsa/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "RCI close (USD); shares A+B; borrowings; leases; NCI; cash (CAD)",
+   "value": "$29.78; 111.149M + 429.076M; 42,283M; 3,415M; 6,291M; 1,726M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/733099/000073309926000015/rci-06302026xexhibit992.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "RCI adjusted EBITDA LTM Dec-25 / H1-26 / H1-25 (CAD)",
+   "value": "9,820M / 4,806M / 4,616M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/733099/000073309926000015/rci-06302026xexhibit993.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "RCI TTM CFO / capex (CAD)",
+   "value": "6,179M / 3,557M (FY25 6,059 / 3,863 from the 40-F)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/733099/000073309926000015/rci-06302026xexhibit992.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "RCI FY2026 / FY2027 consensus EPS (CAD)",
+   "value": "4.76 / 4.81",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/rci/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "BCE close (USD); shares (weighted basic); debt incl. leases; preferred; NCI; cash (CAD)",
+   "value": "$18.78; 932.5M; 4,254M + 37,522M; 3,216M; 314M; 479M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/718940/000071894026000009/bce-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "BCE adjusted EBITDA FY25 (24,468 - 13,810) / H1-26 / H1-25 (CAD)",
+   "value": "10,658M / 5,333M / 5,232M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/718940/000071894026000009/a2026-q2xmda.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "BCE TTM CFO / capex (CAD)",
+   "value": "6,786M / 4,129M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/718940/000071894026000009/bce-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "BCE FY2026 / FY2027 consensus EPS (CAD)",
+   "value": "2.58 / 2.64",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/bce/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "TU close (USD); shares; LTD incl. leases; short-term borrowings; NCI; cash (CAD)",
+   "value": "$7.72; 1,575M; 30,231M; 1,225M; 808M; 1,387M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926088973/tu-20260630xex99d1.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "TU long-term debt components 2026-06-30 (CAD): senior notes 17,247; CP 2,093; junior subordinated 7,403; other 513; lease liabilities 2,975; total 30,231; company net debt 25,963 after 50% hybrid equity credit",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926088973/R119.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "BCE leases inside debt: lease principal ($499M H1 2026) included in 'Repayment of long-term debt'",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/718940/000071894026000009/R18.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "TU adjusted EBITDA Q3-25..Q2-26 (CAD)",
+   "value": "1,862 + 1,839 + 1,837 + 1,777 = 7,315M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926088973/tu-20260630xex99d2.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "TU TTM CFO / capex excl. spectrum (CAD)",
+   "value": "5,015M / 2,617M (FY25 4,866 / 2,515)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/868675/000110465926013854/R5.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "TU FY2026 / FY2027 consensus EPS (CAD)",
+   "value": "0.70 / 0.76",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/tu/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMX ADS close; shares; debt; leases; cash (MXN)",
+   "value": "$21.32 (20 shares/ADS); 60.1B; 476,927M; 214,400M; 74,732M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1129137/000114036126029404/ef20078440_6k.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMX NCI Dec-25 (MXN)",
+   "value": "65,602M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1129137/000114036126017486/R2.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMX EBITDA FY25 / H1-26 / H1-25 (MXN)",
+   "value": "372,209M / 190,412M / 183,458M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1129137/000114036126005056/ef20065498_6k.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMX FY2025 CFO / PP&E + intangibles (MXN)",
+   "value": "272,399M / 130,817M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1129137/000114036126017486/R5.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMX FY2026 / FY2027 consensus EPS (MXN)",
+   "value": "1.69 / 1.93",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/amx/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VOD ADS close; shares ex treasury (2026-09-30)",
+   "value": "$15.56 (10 shares/ADS); 23,167,256,725",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008697/a0435x.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VOD FY26 operating profit; D&A owned + right-of-use; net debt; leases; NCI; CFO; capex (EUR)",
+   "value": "2,844M; 8,481M + 3,674M; 25,411M; 12,388M; 3,732M; 14,291M; 7,318M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426004689/a9489d.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VOD FY2027 / FY2028 consensus EPS (EUR, rounded)",
+   "value": "0.10 / 0.12",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/vod/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "ORA close; FY2026 / FY2027 consensus EPS (EUR)",
+   "value": "13.87; 1.37 / 1.15",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/quote/epa/ORA/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "TIMB ADS close; FY2026 / FY2027 consensus EPS (BRL)",
+   "value": "$17.98 (5 shares/ADS); 1.82 / 2.11",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/timb/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "CHTR close; FY2026 / FY2027 consensus EPS; Class A shares",
+   "value": "$103.38; $39.10 / $47.04; 119,277,492",
+   "basis": "consensus",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000052/chtr-20260630.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "Peer 3Y EPS growth forecasts",
+   "value": "VZ 6.99%, T 11.06%, AMX 18.02%, ORA 15.63%, TIMB 9.45%",
+   "basis": "reported",
+   "source_url": "consensus",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "VZ NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "7.98x / 6.98x / 12.44%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "T NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "8.81x / 6.71x / 11.60%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "CMCSA NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "5.80x / 4.71x / 27.89%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "RCI NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "8.83x / 7.31x / 11.46%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "BCE NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "10.17x / 6.48x / 10.66%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "TU NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "14.72x / 6.59x / 13.86%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "AMX NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "10.35x / 4.87x / 12.14%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "VOD NTM P/E / EV/EBITDA / FCF yield (rebuilt)",
+   "value": "12.56x / 4.91x / 21.68%",
+   "basis": "estimate",
+   "source_url": "see peer inputs above (filings + consensus)",
+   "checked": "2026-10-12",
+   "feeds": "comps | fair_value"
+  },
+  {
+   "item": "Core-8 medians (rebuilt): NTM P/E / EV/EBITDA / FCF yield",
+   "value": "9.50x / 6.53x / 12.29%",
+   "basis": "estimate",
+   "source_url": "derived from the rows above",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | comps"
+  },
+  {
+   "item": "TMUS NTM P/E",
+   "value": "10.63x = 148.58 / (0.227 x 12.39 + 0.773 x 14.44)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/tmus/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps"
+  },
+  {
+   "item": "TMUS EV/EBITDA, peer basis; company basis; ratio",
+   "value": "7.687x = (159.378 + 86.920 + 3.461 + 29.058 - 2.825) / 35.902; 6.878x; 1.118",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (EV leg)"
+  },
+  {
+   "item": "TMUS TTM FCF yield",
+   "value": "11.54% = (28,833 - 10,434) / 159,378",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000100/tmus06302026ex992.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (FCF yield anchor)"
+  },
+  {
+   "item": "Rebuilt VZ/T growth slope at 17.03%",
+   "value": "~10.0x",
+   "basis": "estimate",
+   "source_url": "derived",
+   "checked": "2026-10-12",
+   "feeds": "fair_value (P/E judgment)"
+  },
+  {
+   "item": "TIMB / ORA / CHTR NTM P/E (rebuilt, not in median)",
+   "value": "8.81x / 11.56x / 2.29x",
+   "basis": "estimate",
+   "source_url": "derived",
+   "checked": "2026-10-12",
+   "feeds": "comps (exclusions)"
+  },
+  {
+   "item": "Horizon share count",
+   "value": "~1,005M = 1,072.7 - 38 - 35 + 4.6 + 0.6",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1283699/000128369926000101/R21.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Supervisor fair value",
+   "value": "$155.0 = 0.4 x 154.3 + 0.3 x 150.3 + 0.3 x 160.7",
+   "basis": "estimate",
+   "source_url": "derived",
+   "checked": "2026-10-12",
+   "feeds": "fair_value | sizing"
+  },
+  {
+   "item": "Thesis break",
+   "value": "$115 = ~7.96x FY27 EPS (VZ 7.98x NTM); 15.8% yield on $19.5B / 1,072.7M",
+   "basis": "estimate",
+   "source_url": "derived",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "Peer consensus EPS T/CMCSA/RCI/BCE/TU/AMX/VOD",
+   "value": "T 2.34/2.57; CMCSA 3.48/3.59; RCI 4.76/4.81 CAD; BCE 2.58/2.64 CAD; TU 0.70/0.76 CAD; AMX 1.69/1.93 MXN; VOD 0.10/0.12 EUR",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/{t,cmcsa,rci,bce,tu,amx,vod}/forecast/",
+   "checked": "2026-10-13",
+   "feeds": "comps_review"
+  },
+  {
+   "item": "RCI shares outstanding Jun 30 2026",
+   "value": "540.2M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/733099/000073309926000015/rci-06302026xexhibit992.htm",
+   "checked": "2026-10-13",
+   "feeds": "comps_review"
+  },
+  {
+   "item": "3-month T-bill",
+   "value": "4.16% (13-week coupon equivalent, 2026-10-09)",
+   "basis": "reported",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_bill_rates&field_tdr_date_value=2026&page&_format=csv",
+   "checked": "2026-10-13",
+   "feeds": "sizing"
+  }
+ ],
+ "post_audit_note": "2026-10-13: three citation gaps found by the split-gate test were sourced; no number changed; still clean."
+}

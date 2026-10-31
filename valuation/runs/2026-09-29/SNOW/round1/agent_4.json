@@ -1,0 +1,80 @@
+{
+  "symbol": "SNOW", "agent_id": "agent_4", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 84, "p": 0.985}, {"K": 135, "p": 0.94}, {"K": 169, "p": 0.89}, {"K": 202, "p": 0.82},
+    {"K": 236, "p": 0.745}, {"K": 270, "p": 0.665}, {"K": 304, "p": 0.59}, {"K": 338, "p": 0.515},
+    {"K": 371, "p": 0.445}, {"K": 405, "p": 0.38}, {"K": 456, "p": 0.295}, {"K": 506, "p": 0.225},
+    {"K": 591, "p": 0.14}, {"K": 675, "p": 0.085}, {"K": 844, "p": 0.035}
+  ],
+  "ladder_1m": [
+    {"K": 270.00, "p": 0.90}, {"K": 286.88, "p": 0.83}, {"K": 303.75, "p": 0.735}, {"K": 313.88, "p": 0.67},
+    {"K": 324.00, "p": 0.60}, {"K": 337.50, "p": 0.51}, {"K": 351.00, "p": 0.42}, {"K": 361.12, "p": 0.36},
+    {"K": 371.25, "p": 0.30}, {"K": 388.12, "p": 0.22}, {"K": 405.00, "p": 0.155}
+  ],
+  "one_month_reasoning": "No Snowflake earnings fall in the window: Q2 FY27 was reported 2026-09-02 and Q3 FY27 should come around early December (last year's Q3 came in early December). What is in the window: (1) settlement of the upsized $3.75B zero-coupon convertibles (priced 2026-09-28, conversion prices $500.38 and $483.98) plus the repurchase of some 2027 notes. Convert-arb short hedging mostly happens at pricing, so the ~4% drop is probably already in the price, and unwinding hedges on the repurchased 2027 notes could give some support. (2) Hyperscaler cloud results in late October (Microsoft, Alphabet, Amazon), which move consumption-software sentiment. (3) Post-earnings drift after a big beat and a +20% gap (Sep 3) is pulling against the pullback from the $384.56 high and a Form 144 insider sale. I have no directional edge, so I centre at ~$339 (a slight positive drift) with monthly vol of about 17.5% (62%/3.5), lognormal.",
+  "fair_value": {
+    "value": 340.0,
+    "method": "Blend of 12-month-forward EV/NTM sales (60%, ~$355 at 14x on ~$9.6B NTM revenue as of Sep 2027) and an NTM FCF multiple (40%, ~$315 at 50x on ~$2.4B adj. FCF). Both add ~$1.8B net cash and use ~390M diluted shares.",
+    "methods": [
+      {"name": "EV/sales", "value": 355.0, "weight": 0.6,
+       "inputs": "NTM revenue as of Sep 2027 ~$9.6B x 14x = $134B EV + $1.8B net cash = $136B / 390M shares = ~$350-355",
+       "inputs_detail": [
+         {"input": "FY27 product revenue guidance", "value": "$6.07B (+36%)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "Q2 FY27 product revenue growth / RPO growth", "value": "37% / 30% ($9.0B RPO)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY28 total revenue", "value": "~$8.2B (+30%)", "basis": "estimate", "source_ids": [1, 4, 6], "derivation": "FY27 total revenue ~$6.3B (product $6.07B plus ~4% professional services), grown ~30%: a slow fade from 37% because RPO is growing 30% and NRR is 126%. The PredictLeads data showing new detections up 72% supports demand holding up."},
+         {"input": "NTM revenue as of 2027-09-30", "value": "~$9.6B", "basis": "estimate", "source_ids": [1], "derivation": "About 1/3 of FY28 ($8.2B) plus 2/3 of FY29 (~$10.4B at +27%), weighted toward later quarters."},
+         {"input": "EV/NTM sales multiple", "value": "14x", "basis": "judgment", "source_ids": [5, 7, 8], "derivation": "Today the stock trades at ~16-17x NTM sales. In April 2026 it was 7-9x (Substack), and the median software multiple is 3.6x (Clouded Judgement). If growth fades toward ~27-30%, some compression is likely, but the AI 'token path' premium (Tunguz) keeps it well above median. I take 14x."},
+         {"input": "Net cash", "value": "~$1.8B", "basis": "estimate", "source_ids": [1, 2], "derivation": "Cash plus investments of $4.33B minus the $2.28B 2027 converts at 7/31/26. The new $3.75B converts are roughly cash-neutral on a net basis, less ~$0.3B assumed for capped calls and fees."},
+         {"input": "Diluted shares Sep 2027", "value": "~390M", "basis": "estimate", "source_ids": [1], "derivation": "FY27 non-GAAP diluted share guidance of 380M, plus ~2-3% net SBC dilution."}
+       ]},
+      {"name": "FCF yield", "value": 315.0, "weight": 0.4,
+       "inputs": "NTM adj. FCF as of Sep 2027 ~$2.4B (25% margin on $9.6B) x 50x = $120B + $1.8B net cash / 390M = ~$312-315",
+       "inputs_detail": [
+         {"input": "FY27 adj. FCF margin guidance", "value": "23%", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "NTM FCF margin Sep 2027", "value": "25%", "basis": "estimate", "source_ids": [1], "derivation": "Guidance of 23%, plus operating leverage: the non-GAAP operating margin guide was raised to 14.5% from 13.5%."},
+         {"input": "FCF multiple", "value": "50x (2% yield)", "basis": "judgment", "source_ids": [1, 5], "derivation": "The multiple is high because growth is ~30% and SBC is heavy, so GAAP FCF net of SBC is much lower. It is set to cross-check the sales multiple with a discount for SBC."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 200.0, "prob": 0.25, "story": "AI consumption tailwind fades or workloads move to Databricks/Iceberg-native engines. Product growth falls into the low-20s by FY28, and software de-rates back toward the ~8-9x NTM sales seen in April 2026. Convert overhang and insider sales weigh on the stock."},
+    "base": {"price": 360.0, "prob": 0.5, "story": "Growth fades gradually from 37% to ~28-30%, with FCF margin ~25%. The multiple compresses to ~14-15x NTM sales but earnings growth offsets it, leaving a modest gain from $337.5."},
+    "bull": {"price": 520.0, "prob": 0.25, "story": "Cortex/Snowflake Intelligence keep growth at 35%+ into FY28 and NRR rises further. The market pays ~18-20x for an AI 'token path' data platform, and the stock trades through the ~$484-500 convert conversion prices."}
+  },
+  "thesis_break_price": 215.0,
+  "thesis_break_reason": "Around $215, ~36% below today and below the level the stock broke out from in early summer, the market would be pricing a real deceleration (product growth back under ~25%, NRR rolling over, or a guide-down), not just volatility. The alternative-data check for that is the PredictLeads detection/migration ratio (now ~2:1 net inflow vs close competitors) turning negative, with Databricks taking most departures.",
+  "catalysts": [
+    {"date": "2026-10", "event": "Settlement of the $3.75B converts; partial repurchase of the 2027 notes", "direction": "?"},
+    {"date": "2026-10 (late)", "event": "Hyperscaler Q3 cloud results (Azure, GCP, AWS), a read-across for data/AI consumption", "direction": "?"},
+    {"date": "2026-12 (early)", "event": "Q3 FY27 earnings (guide $1.588-1.593B product revenue); first FY28 commentary", "direction": "+"},
+    {"date": "2027-02/03", "event": "Q4 FY27 earnings and FY28 guidance (key: starting growth guide vs ~30%)", "direction": "?"},
+    {"date": "2027-05", "event": "Q1 FY28 earnings", "direction": "?"},
+    {"date": "2027-06", "event": "Snowflake Summit 2027 product announcements; Databricks Data+AI Summit and ARR disclosure", "direction": "?"},
+    {"date": "2027-08/09", "event": "Q2 FY28 earnings, just before the horizon date", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether AI-driven acceleration (management says ~half of the Q2 acceleration came from AI) lasts or is a one-off step-up",
+    "Share loss to Databricks, which is growing ~80% at $6.9B ARR vs Snowflake ~37%, and to open table formats",
+    "Software multiple regime: the sector median is at a 10-year low of 3.6x NTM sales while SNOW is at ~16x",
+    "Dilution: $3.75B of new converts (conversion prices ~$484-500), SBC, insider selling",
+    "Very high realized volatility (62%) and a 52-week range of $118-385 widen every outcome"
+  ],
+  "reasoning": "Basic facts come from the Q2 FY27 8-K (released 9/2/26). Product revenue was $1.49B, up 37% and accelerating for a third straight quarter; RPO is $9.0B (+30%) and NRR 126%. The FY27 product guide was raised to $6.07B (+36%), with operating margin at 14.5% and adj. FCF margin at 23%. The stock gapped up ~20% on the report, peaked at $384.56, then drifted to $337.5; the drop included ~4% on the upsized $3.75B zero-coupon converts. Alternative-lane evidence: (a) PredictLeads (9/29/26) shows trailing-12-month new Snowflake detections up 72% YoY, statistically tied with Databricks and BigQuery, with net migrations into Snowflake of ~4:1 overall and ~2:1 against close competitors. Databricks takes 54% of departures. This supports demand, not share loss. (b) Job-posting data show total postings down sharply and GTM hiring cut while engineering hiring is focused on Cortex AI, which suggests margin leverage and an AI-product push. (c) Tunguz's blog and the CNBC figures show Databricks at $6.9B ARR growing 80%, the main structural risk. (d) Clouded Judgement shows software multiples at 10-year lows (3.6x median), so SNOW's ~16x is a premium that depends on the acceleration lasting. (e) Retail/WSB sentiment was euphoric after earnings, and the sell-side consensus target is ~$414 (range $250-525), which I treat as optimistic. Valuation: 14x NTM sales (~$355) and 50x NTM FCF (~$315) blend to ~$340, roughly today's price. So I expect little drift and a median of ~$345. The ladder is a lognormal with sigma ~0.55 (a bit below the 62% realized vol, which was inflated by the April crash-and-recovery), with a slightly fattened left tail for the de-rating risk and a slightly thinned far right tail. Scenario mean is ~$360 (25% at $200, 50% at $360, 25% at $520). Limits: X/Twitter was not reachable for direct posts and Twelve Data analyst endpoints were paywalled, so consensus targets came from MarketBeat.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "Snowflake Q2 FY2027 earnings release (8-K Ex.99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm", "date": "2026-09-02", "type": "filing", "in_lane": false},
+    {"title": "Snowflake prices $3.75 billion convertible notes offering", "url": "https://www.investing.com/news/company-news/snowflake-prices-375-billion-convertible-notes-offering-93CH-4921635", "date": "2026-09-29", "type": "press", "in_lane": false},
+    {"title": "Snowflake shares slide as $3.5B debt offering sparks dilution jitters", "url": "https://finance.yahoo.com/markets/stocks/articles/snowflake-shares-slide-3-5b-122443248.html", "date": "2026-09-28", "type": "press", "in_lane": false},
+    {"title": "Snowflake Adoption Trends: Switching Data (September 2026) - PredictLeads", "url": "https://predictleads.com/blog/snowflake-adoption-trends-competitive-migration/", "date": "2026-09-29", "type": "alt-data", "in_lane": true},
+    {"title": "The Bull Case for Snowflake (SNOW): No AI Strategy Without a Data Strategy (Substack)", "url": "https://substack.com/home/post/p-193296784", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Snowflake number of employees / hiring (Revelio Labs) and job-posting trend data", "url": "https://www.reveliolabs.com/companies/snowflake/employees", "date": "2026", "type": "alt-data", "in_lane": true},
+    {"title": "Clouded Judgement 4.17.26 - Rising Tide, Hidden Risk (Jamin Ball)", "url": "https://cloudedjudgement.substack.com/p/clouded-judgement-41726-rising-tide", "date": "2026-04-17", "type": "newsletter", "in_lane": true},
+    {"title": "Databricks Widens the Lead on the Yellow Brick Token Path (Tomasz Tunguz)", "url": "https://tomtunguz.com/databricks-widens-lead/", "date": "2026-06-17", "type": "expert", "in_lane": true},
+    {"title": "Databricks revenue growth tops 80% to $6.9 billion annualized (CNBC)", "url": "https://www.cnbc.com/2026/06/16/databricks-revenue-growth-tops-80percent-to-6point9-billion-annualized.html", "date": "2026-06-16", "type": "press", "in_lane": false},
+    {"title": "Snowflake: Evidence That Enterprise AI Consumption Is Becoming Structural (Long Yield Substack)", "url": "https://longyield.substack.com/p/snowflake-evidence-that-enterprise", "date": "2026-09", "type": "newsletter", "in_lane": true},
+    {"title": "Social Buzz: Wallstreetbets stocks mixed pre-bell; Snowflake jumps", "url": "https://www.bitget.com/news/detail/12560605782176", "date": "2026-09-03", "type": "forum", "in_lane": true},
+    {"title": "Snowflake Stock Has Lost Half Its Value in 2026: Why Analysts Still Say Buy (TIKR)", "url": "https://www.tikr.com/blog/snowflake-stock-has-lost-half-its-value-in-2026-why-analysts-still-say-buy", "date": "2026-04-27", "type": "newsletter", "in_lane": true},
+    {"title": "Snowflake (SNOW) analyst forecast - MarketBeat", "url": "https://www.marketbeat.com/stocks/NYSE/SNOW/forecast/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Snowflake vs Databricks 2026 cost comparison (Tech Insider)", "url": "https://tech-insider.org/snowflake-vs-databricks-2026/", "date": "2026", "type": "trade", "in_lane": true}
+  ]
+}

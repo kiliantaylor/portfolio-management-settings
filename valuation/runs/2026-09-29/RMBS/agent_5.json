@@ -1,0 +1,107 @@
+{
+  "symbol": "RMBS", "agent_id": "agent_5", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 28, "p": 0.995}, {"K": 45, "p": 0.962}, {"K": 56, "p": 0.918}, {"K": 67, "p": 0.852},
+    {"K": 78, "p": 0.772}, {"K": 90, "p": 0.68}, {"K": 101, "p": 0.596}, {"K": 112, "p": 0.514},
+    {"K": 123, "p": 0.44}, {"K": 134, "p": 0.373}, {"K": 151, "p": 0.286}, {"K": 168, "p": 0.215},
+    {"K": 196, "p": 0.132}, {"K": 224, "p": 0.08}, {"K": 280, "p": 0.03}
+  ],
+  "ladder_1m": [
+    {"K": 89.58, "p": 0.88}, {"K": 95.17, "p": 0.802}, {"K": 100.77, "p": 0.703}, {"K": 104.13, "p": 0.638},
+    {"K": 107.49, "p": 0.571}, {"K": 111.97, "p": 0.482}, {"K": 116.45, "p": 0.397}, {"K": 119.81, "p": 0.338},
+    {"K": 123.17, "p": 0.284}, {"K": 128.77, "p": 0.208}, {"K": 134.36, "p": 0.148}
+  ],
+  "one_month_reasoning": "The window (to 2026-11-01) contains the Q3 2026 print. The date is not yet announced, but all 23 earnings 8-Ks since 2021 were filed on a Monday in the last week of the reporting month or the first days of the next, so Oct 26 or 27 is the likely date and the print is almost certainly inside the window. The Oct 27-28 FOMC also falls in it (Polymarket, 2026 event slug fed-decision-in-october-20260617190323537: ~82.5% hold / ~17.5% +25bp, $24.2M volume, read 2026-10-02). The $100M ASR was expected to finish by the end of Q3 (8-K 2026-08-05), so that bid has most likely ended, and the stock is up ~39% from the $80.39 close on Sep 14. The supervisor stresses that the last four prints fell 9-21% the next day. I computed the longer base rate from EDGAR 8-K dates and Twelve Data closes: across 23 prints since 2021, 11 fell the next day, the median move was +2.0%, the mean was -1.4% and the mean absolute move was 8.5%. For the 8 prints that followed a 15-day run-up of more than 9%, 4 fell and the mean was about -3%. The recent losing streak is real but comes from a small sample, so I tilt only modestly: median ~$111 (just under spot) with a monthly log sigma of 0.18, which reflects the earnings gap risk.",
+  "fair_value": {
+    "value": 112.0,
+    "method": "28x NTM non-GAAP EPS at Oct-2027 of ~$4.00 = $112 (60%). 2028E FCF ~$377M at a 3.5% yield plus ~$0.75B net cash over ~108M shares = $107 (30%). Spot grown by RMBS's 20-year median 12-month return of +10% = $123 (10%). The blend is ~$112.",
+    "methods": [
+      {"name": "P/E", "value": 112.0, "weight": 0.6,
+       "inputs": "NTM EPS at Oct-2027 $4.00 (0.25 x FY27 $3.59 + 0.75 x FY28 $4.13) x 28x",
+       "inputs_detail": [
+         {"input": "2026E non-GAAP EPS", "value": "$3.04", "basis": "consensus", "source_ids": [6, 1], "derivation": "stockanalysis 2026 consensus. It matches Q1 $0.63 + Q2 $0.77 + Q3 guide midpoint $0.785 plus a similar Q4."},
+         {"input": "FY27 EPS", "value": "$3.59", "basis": "estimate", "source_ids": [6, 2, 11], "derivation": "Built bottom-up as 2026E $3.04 x 1.18. Baird expects RDIMM units +12-15% in 2027, and the shift to 32/64GB modules (TrendForce) lets units outgrow the 15-20% bit supply. Add MRDIMM/companion-chip content and a slight margin lever. I no longer use the unverified $3.72 consensus, which is paywalled, except as an upper bound."},
+         {"input": "FY28 EPS", "value": "$4.13", "basis": "estimate", "source_ids": [6, 11, 16], "derivation": "FY27 $3.59 x 1.15. Growth slows as MRDIMM ramps on Diamond Rapids and Venice but the supply cap persists."},
+         {"input": "Forward P/E multiple", "value": "28x", "basis": "judgment", "source_ids": [7, 8, 9], "derivation": "Forward P/E has ranged from ~24x (July 2026 trough) to ~44x (Aug 2026); the 12-month average P/E is ~41x. With growth slowing to the mid-teens and the DOJ overhang, I put it near the low third of the range."}
+       ]},
+      {"name": "FCF yield", "value": 107.0, "weight": 0.3,
+       "inputs": "2028E FCF $377M / 3.5% = $10.8B, plus $0.75B net cash, over 108M shares",
+       "inputs_detail": [
+         {"input": "2026 FCF run-rate", "value": "$285M", "basis": "reported", "source_ids": [21], "derivation": "H1 2026 OCF of $144.5M (after a $30.7M inventory build) less $20.7M capex = $123.8M FCF. Annualized with some inventory normalization, that is ~$285M."},
+         {"input": "2028E FCF", "value": "$377M", "basis": "estimate", "source_ids": [21, 6], "derivation": "$285M grown ~15% a year for two years, in line with the EPS path."},
+         {"input": "FCF yield", "value": "3.5%", "basis": "judgment", "source_ids": [8, 9, 21], "derivation": "This is the inverse of a ~28x FCF multiple, consistent with the P/E leg. It is set slightly above a 3.25% yield because H1 2026 also paid $52.7M of taxes on net share settlement, a recurring cash cost that FCF omits."},
+         {"input": "Net cash", "value": "$0.75B", "basis": "reported", "source_ids": [21, 22], "derivation": "$824.9M cash at 6/30, no debt, less the $100M ASR prepay, plus Q3 cash generation."},
+         {"input": "Diluted shares", "value": "~108M", "basis": "reported", "source_ids": [17, 21], "derivation": "Share count after the ASR retirement."}
+       ]},
+      {"name": "other", "value": 123.0, "weight": 0.1,
+       "inputs": "Base-rate drift: $111.97 x (1 + 10% median 12-month return, RMBS 2006-2026)",
+       "inputs_detail": [
+         {"input": "Median 12-month return", "value": "+10%", "basis": "estimate", "source_ids": [10], "derivation": "Taken from 228 overlapping 12-month windows of RMBS monthly closes from 2006 to 2026. It replaces my round-1 target-haircut leg, which had no base-rate support. The weight is small because the windows overlap and are dominated by rebound periods."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 70.0, "prob": 0.25, "story": "Q3/Q4 prints extend the run of post-earnings selloffs. 2027 unit growth undershoots Baird's 12-15% (MRDIMM slips further with Diamond Rapids, or a hyperscaler pause), royalties step down, and 2027 EPS lands near $3.1-3.2. A DOJ development or a hawkish Fed compresses the multiple to ~18-20x NTM, and the stock revisits and breaks the $77.89/$80.39 lows."},
+    "base": {"price": 117.0, "prob": 0.5, "story": "Rambus delivers mid/high-teens EPS growth (FY27 ~$3.6, FY28 ~$4.1). RDIMM units still grow because smaller modules mean more RCDs per bit. The DOJ probe stays quiet, and the stock trades at ~28-30x NTM EPS of ~$4.00 with typical RMBS swings."},
+    "bull": {"price": 170.0, "prob": 0.25, "story": "AMD Venice and then Diamond Rapids drive MRDIMM and companion-chip content, FY27 EPS reaches the $3.72+ consensus or higher, and the multiple returns to ~40x as seen in Aug 2026. The stock retakes the area of the $174 June 2026 high."}
+  },
+  "thesis_break_price": 70.0,
+  "thesis_break_reason": "$70 is ~10% below the $77.89 March 2026 low and the $80.39 Sep-14 close, and ~17.5x my NTM EPS of ~$4.00 at the horizon. That is a multiple RMBS has not traded at since its AI re-rating, and the stock did not reach it through the April -21% print or the June DOJ/sector selloff. A sustained trade there would most likely mean earnings are being cut: RDIMM units actually contracting, share loss in RCD/PMIC, a royalty-renewal shortfall, or a DOJ indictment or forced change to licensing practices. I keep $70 rather than the supervisor's $72; the gap is within noise, and $70 sits more clearly outside the 2026 trading range.",
+  "catalysts": [
+    {"date": "2026-10-26/27 (unconfirmed; Monday pattern of all 23 earnings 8-Ks since 2021)", "event": "Q3 2026 results and Q4 guide", "direction": "?"},
+    {"date": "2026-10-28", "event": "FOMC decision (Polymarket ~17.5% odds of a 25bp hike)", "direction": "?"},
+    {"date": "2027-02 (early)", "event": "Q4 2026 results and 2027 outlook, including supply and MRDIMM commentary", "direction": "?"},
+    {"date": "2027 (undated)", "event": "DOJ Antitrust Division grand-jury probe outcome (no developments since the Q1 2026 10-Q)", "direction": "-"},
+    {"date": "2027 H1", "event": "AMD Venice ramp, then Diamond Rapids (slipped to 2027), driving MRDIMM content", "direction": "+"},
+    {"date": "2027 H1", "event": "TrendForce 2027 DRAM/RDIMM supply and contract-price data", "direction": "?"},
+    {"date": "2027-04 / 2027-07", "event": "Q1 and Q2 2027 results", "direction": "?"},
+    {"date": "2026-2027", "event": "Possible expansion of Section 232 semiconductor tariffs", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "2027 RDIMM unit growth versus the 15-20% bit-supply growth (module mix can lift units above bits)",
+    "The true FY27 EPS: the $3.72 consensus is unverified and bottom-up estimates sit at $3.45-3.60",
+    "Outcome and timing of the DOJ criminal antitrust grand-jury investigation",
+    "Whether a ~28x multiple holds for an AI-linked semi with no Fed cuts priced and some hike risk",
+    "Earnings-day gap risk: the last four prints fell 9-21% next day, though the 23-print base rate is roughly 50/50"
+  ],
+  "reasoning": "The anchor is unchanged from round 1. RMBS's 20-year 12-month log-return sd is ~0.45, the median 12-month return is +10%, and P(>=2x) is ~7%. Cases more than 25% below the trailing high show mean reversion with fat tails. I use sigma 0.50 for 12 months, between the long-run figure and the 80% 2026 realized vol. Round-2 corrections from the supervisor: (1) the $3.72 FY27 consensus is paywalled and unverified, so I rebuilt EPS bottom-up (FY27 $3.59, FY28 $4.13) and used the correct Oct-2027 NTM weighting (1/4 FY27 + 3/4 FY28 = $4.00) instead of full 2028E $4.40; (2) I dropped the target-haircut leg and replaced it with a small base-rate drift leg and a FCF-yield leg on the 10-Q H1 FCF base; (3) the ASR is complete, so it is no longer a support catalyst; (4) TrendForce's figure is bit supply and modules are shrinking, which makes unit contraction less likely and offsets part of the fair-value cut. Fair value falls from $118 to $112, about spot. With the historical +10% median drift given partial weight, I set the 12-month median at ~$114 (round 1: $116). The ladder is a lognormal (median 114, sigma 0.50) with the 2x+ tail trimmed toward the empirical 7% and a slightly fatter far-left tail for the DOJ and concentration risks (two customers are ~38-40% of revenue). The scenario mean is ~$118.5. For the 1-month ladder I added the earnings-reaction base rate the supervisor asked for, computed over 23 prints since 2021 (EDGAR 2.02 8-K dates and Twelve Data closes). It shows a coin flip on direction with an 8.5% average absolute move, so I tilt only ~1% below spot rather than the supervisor's ~2 points. Research was limited to EDGAR and Twelve Data calls in this round; the Twelve Data earnings endpoint was paywalled.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Rambus Reports Second Quarter 2026 Financial Results", "url": "https://www.rambus.com/second-quarter-2026-financial-results/", "date": "2026-07-27", "type": "company", "in_lane": false},
+    {"title": "Rambus shares crater after revenue miss, Baird warns of DRAM supply squeeze", "url": "https://finance.yahoo.com/markets/stocks/articles/rambus-shares-crater-revenue-miss-173700183.html", "date": "2026-04-28", "type": "press", "in_lane": true},
+    {"title": "Why Rambus Plunged Today", "url": "https://www.fool.com/investing/2026/04/28/why-rambus-plunged-today/", "date": "2026-04-28", "type": "press", "in_lane": true},
+    {"title": "Rambus (RMBS) falls as legal overhang and chip-sector weakness pressure shares", "url": "https://www.quiverquant.com/news/Rambus+(RMBS)+falls+as+legal+overhang+and+chip-sector+weakness+pressure+shares", "date": "2026-06-23", "type": "press", "in_lane": true},
+    {"title": "Rambus targeted in US DOJ criminal antitrust probe (recap of the Q1 2026 10-Q risk factor)", "url": "https://www.mlex.com/mlex/articles/2471162/rambus-targeted-in-us-doj-criminal-antitrust-probe", "date": "2026-04", "type": "press", "in_lane": true},
+    {"title": "Rambus (RMBS) Stock Forecast & Price Target (2027 EPS paywalled; used only as an upper anchor)", "url": "https://stockanalysis.com/stocks/rmbs/forecast/", "date": "2026-10-02", "type": "data", "in_lane": false},
+    {"title": "Wall Street Keeps Warming to Rambus Stock. Here's Our Price Target", "url": "https://247wallst.com/investing/2026/07/21/wall-street-keeps-warming-to-rambus-stock-heres-our-price-target/", "date": "2026-07-21", "type": "press", "in_lane": false},
+    {"title": "Rambus Forward P/E", "url": "https://eulerpool.com/stock/Rambus-Stock-US7509171069/forwardpe", "date": "2026-08-04", "type": "data", "in_lane": true},
+    {"title": "Rambus P/E ratio history", "url": "https://fullratio.com/stocks/nasdaq-rmbs/pe-ratio", "date": "2026-04-02", "type": "data", "in_lane": true},
+    {"title": "Twelve Data RMBS monthly OHLC 2006-11 to 2026-10 (base-rate computation)", "url": "https://twelvedata.com/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "TrendForce: server DRAM contract prices to rise 13-18% QoQ in 3Q26; 2027 RDIMM bit supply +15-20%; module mix shifting to 32/64GB", "url": "https://www.trendforce.com/presscenter/news/20260709-13140.html", "date": "2026-07-09", "type": "trade", "in_lane": true},
+    {"title": "Polymarket: US recession by end of 2026? (7.5% yes, $2.24M volume, read via gamma API)", "url": "https://polymarket.com/event/us-recession-by-end-of-2026", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket: Fed Decision in October 2026 (82.5% hold, 17.5% +25bp, $24.2M volume)", "url": "https://polymarket.com/event/fed-decision-in-october-20260617190323537", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket: How many Fed rate cuts in 2026? (96% zero, $53.8M volume)", "url": "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "President Trump orders narrowly targeted 25% Section 232 tariff on certain advanced semiconductor articles", "url": "https://www.whitecase.com/insight-alert/president-trump-orders-narrowly-targeted-25-section-232-tariff-certain-advanced", "date": "2026-01", "type": "expert", "in_lane": true},
+    {"title": "VCP Scanner RMBS estimates", "url": "https://www.vcpscanner.com/valuation/rmbs/estimates", "date": "2026-06-15", "type": "data", "in_lane": false},
+    {"title": "Equibles RMBS (share count, $100M ASR)", "url": "https://equibles.com/stocks/RMBS", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Rambus price target raised to 114 from 81 at Evercore ISI", "url": "https://www.tipranks.com/news/the-fly/rambus-price-target-raised-to-114-from-81-at-evercore-isi-thefly", "date": "2025/2026 (undated in fetch)", "type": "sell-side", "in_lane": false},
+    {"title": "Rambus EDGAR submissions: 23 Item 2.02 earnings 8-K dates, 2021-2026 (earnings-reaction base rate)", "url": "https://data.sec.gov/submissions/CIK0000917273.json", "date": "2026-10-02", "type": "filing", "in_lane": true},
+    {"title": "Twelve Data RMBS daily closes 2021-01 to 2026-10 (next-day and 21-day post-earnings returns)", "url": "https://twelvedata.com/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "Rambus Form 10-Q, quarter ended June 30, 2026", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526321000/rmbs-20260630.htm", "date": "2026-07-28", "type": "filing", "in_lane": false},
+    {"title": "Rambus 8-K: $100M ASR with Mizuho, expected to complete by end of Q3 2026", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526333887/d122300d8k.htm", "date": "2026-08-05", "type": "filing", "in_lane": false}
+  ],
+  "revisions": [
+    {"item": "fair value", "from": "118", "to": "112", "why": "The supervisor showed the $3.72 FY27 consensus is unverified and that my target-haircut leg lacked support. I rebuilt EPS bottom-up with correct NTM weighting ($4.00, not 2028E $4.40) and added a FCF-yield leg on the 10-Q H1 FCF base."},
+    {"item": "a method", "from": "P/E 28x 2028E $4.40 = $123 (50%)", "to": "P/E 28x NTM Oct-2027 $4.00 = $112 (60%)", "why": "Supervisor: the year from Oct-2027 is ~1/4 FY27 + 3/4 FY28, and FY27 should be bottom-up rather than the paywalled $3.72."},
+    {"item": "a method", "from": "P/E 30x 2027 consensus $3.72 = $112 (35%)", "to": "FCF yield: 2028E FCF $377M at 3.5% + $0.75B net cash / 108M = $107 (30%)", "why": "This drops a second leg built on the unverified consensus. Supervisor's 10-Q findings: H1 FCF $123.8M, net cash ~$0.75B after the ASR, and $52.7M of share-settlement taxes."},
+    {"item": "a method", "from": "20% haircut to $148 analyst target = $118 (15%)", "to": "Base-rate drift: spot x 1.10 = $123 (10%)", "why": "The supervisor said the haircut had no base-rate support; my own 20-year price base rate is a lane-consistent replacement."},
+    {"item": "a scenario", "from": "base $120", "to": "base $117", "why": "Lower NTM EPS ($4.00 vs $4.40) at a similar multiple."},
+    {"item": "a scenario", "from": "bull $175", "to": "bull $170", "why": "Same EPS correction; bull still assumes the consensus or higher and a ~40x multiple."},
+    {"item": "P(close >= K)", "from": "12m: K=112 0.525, K=123 0.45, K=151 0.29", "to": "12m: K=112 0.514, K=123 0.44, K=151 0.286", "why": "The median moves from $116 to $114 on the lower fair value, partly offset by the supervisor's bit-vs-unit finding, which makes unit contraction less likely."},
+    {"item": "P(close >= K)", "from": "1m: K=111.97 0.51, K=107.49 0.60, K=116.45 0.425", "to": "1m: K=111.97 0.482, K=107.49 0.571, K=116.45 0.397", "why": "Centre moved from $112.5 to $111. Reasons: the ASR bid has ended (8-K), the rally from the $80.39 Sep-14 close is +39%, and the last four prints fell. My 23-print base rate (11 down, median +2%) argues for a smaller tilt than the supervisor's ~2 points."},
+    {"item": "thesis break", "from": "70", "to": "70 (kept)", "why": "At corrected NTM EPS of $4.00, $70 is ~17.5x, still well below any post-re-rating multiple. I keep it rather than the supervisor's $72 because it sits more clearly outside the 2026 range ($77.89/$80.39 lows)."},
+    {"item": "a fact", "from": "ASR completion a Q4-2026/2027 support catalyst", "to": "ASR expected complete by end of Q3 2026; removed from catalysts", "why": "Supervisor, citing the 8-K of 2026-08-05."},
+    {"item": "a fact", "from": "Polymarket URL slug fed-decision-in-october", "to": "fed-decision-in-october-20260617190323537", "why": "Supervisor: the old slug resolves to the 2025 market; the figures themselves were verified."},
+    {"item": "a fact", "from": "Q3 report ~Oct 29 (third-party calendar)", "to": "Oct 26/27 likely (unannounced)", "why": "EDGAR: all 23 earnings 8-Ks since 2021 were filed on Mondays; supervisor notes the date is unannounced."}
+  ]
+}

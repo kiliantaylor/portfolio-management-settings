@@ -1,0 +1,513 @@
+{
+ "symbol": "PWR",
+ "agent_id": "agent_3",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 166.0,
+   "p": 0.998
+  },
+  {
+   "K": 265.0,
+   "p": 0.988
+  },
+  {
+   "K": 331.0,
+   "p": 0.954
+  },
+  {
+   "K": 398.0,
+   "p": 0.887
+  },
+  {
+   "K": 464.0,
+   "p": 0.792
+  },
+  {
+   "K": 530.0,
+   "p": 0.68
+  },
+  {
+   "K": 596.0,
+   "p": 0.564
+  },
+  {
+   "K": 663.0,
+   "p": 0.452
+  },
+  {
+   "K": 729.0,
+   "p": 0.355
+  },
+  {
+   "K": 795.0,
+   "p": 0.273
+  },
+  {
+   "K": 895.0,
+   "p": 0.179
+  },
+  {
+   "K": 994.0,
+   "p": 0.115
+  },
+  {
+   "K": 1160.0,
+   "p": 0.053
+  },
+  {
+   "K": 1325.0,
+   "p": 0.024
+  },
+  {
+   "K": 1656.0,
+   "p": 0.005
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 530.08,
+   "p": 0.946
+  },
+  {
+   "K": 563.21,
+   "p": 0.88
+  },
+  {
+   "K": 596.34,
+   "p": 0.779
+  },
+  {
+   "K": 616.22,
+   "p": 0.703
+  },
+  {
+   "K": 636.1,
+   "p": 0.62
+  },
+  {
+   "K": 662.6,
+   "p": 0.506
+  },
+  {
+   "K": 689.1,
+   "p": 0.395
+  },
+  {
+   "K": 708.98,
+   "p": 0.32
+  },
+  {
+   "K": 728.86,
+   "p": 0.253
+  },
+  {
+   "K": 761.99,
+   "p": 0.163
+  },
+  {
+   "K": 795.12,
+   "p": 0.099
+  }
+ ],
+ "one_month_reasoning": "The main event in the window is Q3 2026 earnings. The date is not confirmed in what I found, but the pattern (Q3 2025 on Oct 30, Q2 2026 on July 30) puts it around Oct 29-30, before the Oct 30 close (Oct 31 is a Saturday). Quanta beat by about 30% in both Q1 and Q2 2026 and the stock jumped ~16% on the Q2 print, but much of that is now in consensus ($16.74 for 2026 against the $16.45-16.95 guide), and the stock gave back the post-Q2 gains within a month. Hyperscaler Q3 capex guides (late October) and the Texas data-center permitting pause (audit due mid-December) are the other inputs. I see no clear direction: a small upside skew from the beat history roughly cancels the risk of a 'beat but de-rate' reaction. So I use a nearly symmetric lognormal centered at $664, with sigma 14% (the 12.6% baseline monthly vol plus an earnings premium).",
+ "fair_value": {
+  "value": 620.0,
+  "method": "Blend of 30x Oct-2027 NTM adj EPS of $21.1 ($633, 50%), 19x NTM EBITDA of $5.3B less $5.5B net debt ($624, 30%) and a 3% FCF yield on 2027E FCF of $2.7B ($590, 20%), giving ~$620. That is slightly below the $662.6 spot because I assume further multiple compression while earnings grow ~15-17%.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 633.0,
+    "weight": 0.5,
+    "inputs": "NTM (Oct-2027 forward) adj EPS $21.1 x 30x",
+    "inputs_detail": [
+     {
+      "input": "2026 adj EPS guidance",
+      "value": "$16.45-16.95 (mid $16.70)",
+      "basis": "guidance",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "2027 adj EPS consensus",
+      "value": "$19.64",
+      "basis": "consensus",
+      "source_ids": [
+       17,
+       18
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "2027 adj EPS (skeptic)",
+      "value": "$19.0",
+      "basis": "judgment",
+      "source_ids": [
+       17,
+       11,
+       12,
+       14
+      ],
+      "derivation": "Consensus $19.64 haircut ~3% for data-center permitting pauses (Texas, NY) and the large-project ramp only stacking in 2H27 per management"
+     },
+     {
+      "input": "2028 adj EPS (skeptic)",
+      "value": "$21.8",
+      "basis": "estimate",
+      "source_ids": [
+       5,
+       17
+      ],
+      "derivation": "+15% on $19.0, the low end of management's 15-20% long-term adj EPS CAGR target"
+     },
+     {
+      "input": "NTM EPS at Oct-2027",
+      "value": "$21.1",
+      "basis": "estimate",
+      "source_ids": [
+       17,
+       5
+      ],
+      "derivation": "0.25 x 2027 $19.0 + 0.75 x 2028 $21.8"
+     },
+     {
+      "input": "Forward P/E",
+      "value": "30x",
+      "basis": "judgment",
+      "source_ids": [
+       3,
+       4,
+       19
+      ],
+      "derivation": "Current ~35x NTM (TIKR, Sept 24) down from ~50x in June; JPM/BMO/Benchmark valuation downgrades and decelerating 2027 hyperscaler capex growth argue for further mild de-rating toward ~30x; still above the pre-AI-cycle multiple"
+     }
+    ]
+   },
+   {
+    "name": "EV/EBITDA",
+    "value": 624.0,
+    "weight": 0.3,
+    "inputs": "NTM adj EBITDA $5.3B x 19x = EV $100.7B, less net debt $5.5B, / 152.5M diluted shares",
+    "inputs_detail": [
+     {
+      "input": "2026 adj EBITDA guidance",
+      "value": "$4.09-4.21B (mid $4.15B)",
+      "basis": "guidance",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "NTM adj EBITDA at Oct-2027",
+      "value": "$5.3B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       5
+      ],
+      "derivation": "2027 $4.77B (+15%) and 2028 $5.45B (+14%), time-weighted 0.25/0.75; growth in line with management's long-term plan"
+     },
+     {
+      "input": "EV/EBITDA multiple",
+      "value": "19x",
+      "basis": "judgment",
+      "source_ids": [
+       19,
+       3
+      ],
+      "derivation": "Forward EV/EBITDA currently ~26-28x (Simply Wall St 28.3x); assume compression of roughly one-third, consistent with the P/E de-rating from 50x to 35x already seen and the analysts calling it a pure valuation call"
+     },
+     {
+      "input": "Net debt",
+      "value": "$5.5B",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       7,
+       14
+      ],
+      "derivation": "June-30-2026 debt $6.10B less cash $0.51B = $5.6B; Aug-2026 $2.0B notes mostly refinanced CP/revolver; FCF assumed to roughly fund continued M&A so net debt stays flat"
+     },
+     {
+      "input": "Diluted shares",
+      "value": "152.5M",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     }
+    ]
+   },
+   {
+    "name": "FCF yield",
+    "value": 590.0,
+    "weight": 0.2,
+    "inputs": "2027E FCF $2.7B / 152.5M shares = $17.7/share at a 3.0% yield",
+    "inputs_detail": [
+     {
+      "input": "2026 FCF guidance",
+      "value": "$2.0-2.5B",
+      "basis": "guidance",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "2027 FCF",
+      "value": "$2.7B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2
+      ],
+      "derivation": "Midpoint $2.25B grown ~20% with EBITDA; tempered by receivables growth (AR up 24% in H1 2026 to $8.53B)"
+     },
+     {
+      "input": "Required FCF yield",
+      "value": "3.0%",
+      "basis": "judgment",
+      "source_ids": [
+       7,
+       8
+      ],
+      "derivation": "New senior notes yield 4.85-5.55% (Baa3/BBB- credit); a 3% equity FCF yield implies ~7% FCF growth expectation, generous for a contractor but reflecting backlog visibility"
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 400.0,
+   "prob": 0.25,
+   "story": "AI and data-center capex digestion (2027 hyperscaler capex growth slows from ~80% to ~20% or lower), spreading state permitting pauses (Texas, New York), and possibly a recession (Polymarket 35% / Kalshi 24%). NTM EPS slips to ~$18 and the multiple falls to ~22x, closer to contractor peers. Debt-funded M&A and a $2.9B+ build in contract assets and unbilled receivables add risk."
+  },
+  "base": {
+   "price": 645.0,
+   "prob": 0.5,
+   "story": "Guidance is met and 2027 adj EPS comes in around $19-19.6. The multiple drifts from ~35x to ~30x NTM as growth normalizes toward the 15-20% long-term plan, so the stock goes roughly sideways, with earnings growth offsetting de-rating."
+  },
+  "bull": {
+   "price": 920.0,
+   "prob": 0.25,
+   "story": "Another round of 25%+ beats; transmission and generation megaprojects ramp in 2H27; labor-scarcity pricing power (the Bernstein thesis). NTM EPS reaches ~$24 and the multiple holds at ~38x."
+  }
+ },
+ "thesis_break_price": 480.0,
+ "thesis_break_reason": "At $480 the stock would trade at ~24x 2027 consensus adj EPS, a level the market would likely only accept if expected earnings were falling: a 2027 guide below consensus, backlog decline, cancellation of data-center or large transmission work, or a sector-wide AI-capex retrenchment. It is ~28% below spot, which is more than one standard deviation of ordinary drift at 44% vol over ~8 months, and close to the low end of sell-side targets ($410).",
+ "catalysts": [
+  {
+   "date": "2026-10-29",
+   "event": "Q3 2026 earnings and 2026 guide update (date estimated from historical pattern)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10",
+   "event": "Hyperscaler Q3 earnings and 2027 capex commentary (MSFT, GOOGL, AMZN, META)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11-03",
+   "event": "US midterm elections; data centers and power prices are a campaign issue",
+   "direction": "?"
+  },
+  {
+   "date": "2026-12",
+   "event": "ERCOT/PUCT data-center audit expected to complete; Texas permitting pause lifted or extended",
+   "direction": "?"
+  },
+  {
+   "date": "2027-02",
+   "event": "Q4 2026 results and first 2027 guidance",
+   "direction": "?"
+  },
+  {
+   "date": "2027-04",
+   "event": "Q1 2027 results",
+   "direction": "?"
+  },
+  {
+   "date": "2027-07",
+   "event": "Q2 2027 results; check whether large projects are ramping as promised for 2H27",
+   "direction": "?"
+  },
+  {
+   "date": "2026-2027",
+   "event": "Continued insider selling (CEO sold $120M in May 2026) and debt-funded M&A",
+   "direction": "-"
+  }
+ ],
+ "key_uncertainties": [
+  "Durability of AI and data-center capex in 2027-28 (consensus growth slows sharply; Goldman sees upside)",
+  "Spread of state and local data-center moratoria and permitting pauses (Texas, New York, 116+ municipalities)",
+  "Multiple compression: P/E already fell from ~50x to ~35x fwd; where it settles matters more than EPS",
+  "Gap between adjusted and GAAP EPS (2026 adj $16.70 vs GAAP $11.67 midpoints), driven by rising acquisition amortization and stock comp",
+  "Working-capital and M&A cash use; AR up 24% in H1 2026, goodwill and intangibles at $11.1B",
+  "US recession probability by end-2027 (Polymarket 35%, Kalshi 24%)",
+  "Silverado wildfire indemnity claims from SCE (amount undisclosed)"
+ ],
+ "reasoning": "Starting point: $662.6, 44% realized vol. The fundamentals are strong. Q2 2026 beat by ~29% on EPS, backlog is a record $53.4B, and 2026 adj EPS guidance is $16.45-16.95 (+55% YoY), so a short or fraud case does not hold up. I found no short-seller report, no material weakness, no 10%+ customer, and credit is investment grade (Baa3, outlook positive; new notes at 4.85-5.55%) with debt/EBITDA of 1.7x. The bear case is about valuation and the cycle, not solvency. (1) Valuation: ~40x 2026 adj EPS and ~57x GAAP, EV/EBITDA ~26x. JPM (Neutral, $714), BMO and Benchmark (Sell) downgraded explicitly on valuation, and the forward P/E has already de-rated from ~50x to ~35x. (2) Demand risk: Texas paused data-center interconnections (Aug 3) and then all permits (Sept 21) until an audit due mid-December; New York and 116+ municipalities have moratoria; technology is 15-20% of Quanta revenue; consensus 2027 hyperscaler capex growth slows to ~20-25%. (3) Quality: adj EPS runs ~43% above GAAP because of acquisition amortization and stock comp, M&A is serial and debt-funded ($2B of notes in August), receivables are growing fast, and the CEO sold $120M near the highs in May. Weighing these honestly: earnings should still grow ~15-17%, so the realistic downside is a de-rating to ~30x rather than a collapse. My fair value is ~$620 (P/E, EV/EBITDA and FCF blend) and the scenario mean is ~$660 (25% at $400, 50% at $645, 25% at $920). For the ladder I used a mixture: 85% lognormal (median $665, sigma 0.36) plus a 15% crash component (median $470, sigma 0.35) for the AI-capex or recession left tail. The result has a median of ~$640, P(>=spot) of 0.45, and a fatter left tail than a plain lognormal. Limitations: Twelve Data fundamentals and insider endpoints need a paid plan; a curl fetch of some SEC 8-K exhibits was blocked, so I relied on press-release and 10-Q pages through WebFetch; prediction-market volumes were not reachable (403/429), so the recession odds are qualitative inputs only and come from search snippets. The 2027 consensus EPS comes from a search snippet of Yahoo Finance because the page did not render.",
+ "lane": "skeptic",
+ "sources": [
+  {
+   "title": "Quanta Services Reports Second Quarter 2026 Results",
+   "url": "https://investors.quantaservices.com/news-events/press-releases/detail/402/quanta-services-reports-second-quarter-2026-results",
+   "date": "2026-07-30",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services Form 10-Q for quarter ended June 30, 2026 (debt, goodwill/intangibles, receivables, Silverado wildfire contingency)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001050915/000105091526000025/pwr-20260630.htm",
+   "date": "2026-07-30",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "PWR Downgraded by JP Morgan -- Rating Changed to Neutral (PT $714; trailing P/E 87x vs 5y median 49x; $123.2M insider sales in 3 months)",
+   "url": "https://www.gurufocus.com/news/8969426/pwr-downgraded-by-jp-morgan-rating-changed-to-neutral",
+   "date": "2026-07-21",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "Quanta Services Won a Bernstein Upgrade After a 12% Slide (fwd P/E 50x->35x; NTM EPS +27%; street targets)",
+   "url": "https://www.tikr.com/blog/quanta-services-won-a-bernstein-upgrade-after-a-12-slide-heres-where-the-stock-could-go",
+   "date": "2026-09-24",
+   "type": "newsletter",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services Just Unveiled Its Most Ambitious 5-Year Plan Yet (2030 adj EPS $21.60-26.75; 2025 adj EPS $10.75)",
+   "url": "https://www.tikr.com/blog/quanta-services-just-unveiled-its-most-ambitious-5-year-plan-yet-heres-what-it-means-for-investors",
+   "date": "2026",
+   "type": "newsletter",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services stock extends five-day slide as investors digest Q2 2026 beat and higher leverage",
+   "url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/quanta-services-stock-extends-five-day-slide-as-investors-digest-q2-2026/70000023",
+   "date": "2026-08-25",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Quanta Services Announces Pricing of Senior Notes Offering ($500M 4.85% 2029, $750M 5.30% 2033, $750M 5.55% 2036)",
+   "url": "https://investors.quantaservices.com/news-events/press-releases/detail/403/quanta-services-announces-pricing-of-senior-notes-offering",
+   "date": "2026-08-03",
+   "type": "company",
+   "in_lane": true
+  },
+  {
+   "title": "Moody's affirms Quanta's Baa3 rating, revises outlook to positive",
+   "url": "https://www.investing.com/news/stock-market-news/moodys-affirms-quantas-baa3-rating-revises-outlook-to-positive-93CH-4128785",
+   "date": "2025-07-09",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Quanta Services president and CEO Austin Earl C. Jr. $120.2m share sale",
+   "url": "https://www.investing.com/news/insider-trading-news/quanta-services-president-and-ceo-austin-earl-c-jr-1202m-share-sale-93CH-4670447",
+   "date": "2026-05-07",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Quanta Services Stock Has Average Price Target of $768.12 (33 analysts: 3 sell, 7 hold; Benchmark Sell 2026-07-31)",
+   "url": "https://www.marketbeat.com/instant-alerts/consensus-quanta-services-inc-nyse-pwr-stock-has-average-price-target-of-76812-according-to-brokerages-2026-10-01/",
+   "date": "2026-10-01",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "Gov. Greg Abbott pauses new data centers until ERCOT, PUCT audit energy, water usage",
+   "url": "https://www.houstonpublicmedia.org/articles/news/energy-environment/2026/08/03/558529/gov-greg-abbott-pauses-new-data-centers-until-ercot-puct-audit-energy-water-usage/",
+   "date": "2026-08-03",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Governor Abbott expands data center permitting pause to environmental permits pending ERCOT audit",
+   "url": "https://www.dlapiper.com/en/insights/publications/2026/09/governor-abbott-expands-data-center-permitting-pause",
+   "date": "2026-09",
+   "type": "expert",
+   "in_lane": true
+  },
+  {
+   "title": "Data Center Moratorium Bills Are Spreading in 2026",
+   "url": "https://goodjobsfirst.org/data-center-moratorium-bills-are-spreading-in-2026/",
+   "date": "2026",
+   "type": "other",
+   "in_lane": true
+  },
+  {
+   "title": "Earnings call transcript: Quanta Services posts big Q2 2026 beat, lifts outlook (tech 15-20% of revenue; debt/EBITDA 1.7x)",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-quanta-services-posts-big-q2-2026-beat-lifts-outlook-93CH-4825090",
+   "date": "2026-07-30",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Polymarket prices 35% chance of U.S. recession by end of 2027",
+   "url": "https://predictionnews.com/story/polymarket-prices-35-chance-of-u-s-recession-by-end-of-2027",
+   "date": "2026-09-24",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Kalshi: Recession next year? (KXRECSSNBER-27)",
+   "url": "https://kalshi.com/markets/kxrecssnber/recession/kxrecssnber-27",
+   "date": "2026-10 (as seen in search snippet)",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Yahoo Finance PWR analysis (2027 consensus EPS $19.64, 25 analysts; via search snippet)",
+   "url": "https://finance.yahoo.com/quote/PWR/analysis/",
+   "date": "2026-10",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Stock Analysis PWR forecast (2026 adj EPS consensus $16.74; PT avg $769, low $410, high $976)",
+   "url": "https://stockanalysis.com/stocks/pwr/forecast/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services (PWR) Stock Looks Overvalued On A 461% Five Year Run - Simply Wall St (bear narrative: commoditization/margin compression; fwd EV/EBITDA 28.3x)",
+   "url": "https://simplywall.st/stocks/us/capital-goods/nyse-pwr/quanta-services/news/quanta-services-pwr-stock-looks-overvalued-on-a-461-five-yea",
+   "date": "2026",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Investors rotate within AI trade as slowing hyperscaler spending becomes a growing concern",
+   "url": "https://finance.yahoo.com/technology/ai/articles/investors-rotate-within-ai-trade-102131863.html",
+   "date": "2026-09",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Goldman says consensus 2027 hyperscaler capex estimates are too conservative",
+   "url": "https://finance.yahoo.com/sectors/technology/articles/goldman-says-consensus-2027-hyperscaler-140152065.html",
+   "date": "2026-09",
+   "type": "sell-side",
+   "in_lane": false
+  },
+  {
+   "title": "Steve Eisman Says Cutting AI Capex Would Sink the Market",
+   "url": "https://www.barchart.com/story/news/3559405/steve-eisman-says-cutting-ai-capex-would-sink-the-market-spending-too-much-could-be-just-as-dangerous-for-hyperscaler-stocks",
+   "date": "2026",
+   "type": "press",
+   "in_lane": true
+  }
+ ]
+}

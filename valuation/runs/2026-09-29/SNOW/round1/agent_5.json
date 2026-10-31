@@ -1,0 +1,81 @@
+{
+  "symbol": "SNOW", "agent_id": "agent_5", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 84, "p": 0.99}, {"K": 135, "p": 0.955}, {"K": 169, "p": 0.91}, {"K": 202, "p": 0.855},
+    {"K": 236, "p": 0.785}, {"K": 270, "p": 0.70}, {"K": 304, "p": 0.60}, {"K": 338, "p": 0.495},
+    {"K": 371, "p": 0.405}, {"K": 405, "p": 0.32}, {"K": 456, "p": 0.215}, {"K": 506, "p": 0.145},
+    {"K": 591, "p": 0.07}, {"K": 675, "p": 0.03}, {"K": 844, "p": 0.006}
+  ],
+  "ladder_1m": [
+    {"K": 270.00, "p": 0.91}, {"K": 286.88, "p": 0.835}, {"K": 303.75, "p": 0.735}, {"K": 313.88, "p": 0.665},
+    {"K": 324.00, "p": 0.59}, {"K": 337.50, "p": 0.49}, {"K": 351.00, "p": 0.39}, {"K": 361.12, "p": 0.325},
+    {"K": 371.25, "p": 0.265}, {"K": 388.12, "p": 0.185}, {"K": 405.00, "p": 0.12}
+  ],
+  "one_month_reasoning": "No Snowflake earnings in the window (Q3 FY27 report is scheduled for 2026-12-02). The main scheduled event is the Oct 27-28 FOMC, where Polymarket/Kalshi price a ~65-69% chance of a 25bp hike (Sep 26-29 readings) with the 10-year near 5.17%; that is largely priced, but a long-duration 16x-forward-sales stock is exposed to any hawkish surprise. Short-horizon regularities are mixed: post-earnings drift after the +21% Sep 3 gap argues mildly up, while the literature on past-winner reversals and the 5% short interest ($6.2B) argue for chop. Net: essentially symmetric lognormal centred at ~$336 (a hair below spot for the rate risk) with ~16% monthly sigma (slightly under the 62%/3.5 = 17.7% rule because realized vol was inflated by the April AI-disintermediation crash and the September earnings gap).",
+  "fair_value": {
+    "value": 320.0,
+    "method": "Blend of EV/NTM revenue (12.5x on ~$9.6B NTM revenue as of Sep-2027 plus ~$3B net cash, / 385M shares = $320) and forward P/E (FY29E non-GAAP EPS ~$4.20 x 75x = $315), weighted 60/40; multiple compresses from ~16x today as growth decelerates toward mid-20s, consistent with the growth-to-multiple line across peers (PLTR 45x at 63% growth, DDOG 10.6x at 20%, MDB 6.2x at 17.5%).",
+    "methods": [
+      {"name": "EV/sales", "value": 322.0, "weight": 0.6,
+       "inputs": "NTM revenue at Sep-2027 ~$9.6B x 12.5x = $120B EV + ~$3.0B net cash = $123B / 385M diluted shares",
+       "inputs_detail": [
+         {"input": "FY2027 revenue (Jan-27)", "value": "~$6.35B total (product $6.07B guided)", "basis": "guidance", "source_ids": [1], "derivation": "Product revenue guide $6,070M; total revenue ~4.5% above product per Q2 mix ($1.55B total vs $1.49B product)."},
+         {"input": "FY2028 revenue consensus", "value": "$8.11B (+28%)", "basis": "consensus", "source_ids": [5]},
+         {"input": "NTM revenue as of 2027-09-30", "value": "~$9.6B", "basis": "estimate", "source_ids": [1, 5], "derivation": "Remaining ~4 months of FY28 at consensus run-rate plus 8 months of FY29 at ~24% growth off $8.11B (~$10.05B); time-weighted ≈ $9.6B."},
+         {"input": "EV/NTM revenue multiple", "value": "12.5x", "basis": "judgment", "source_ids": [6, 7, 8, 9], "derivation": "Today ~16x forward (TIKR, top of 3-yr range); LTM EV/rev 20.3x vs 25x (2025) and 32.9x (2024) shows secular compression; peer growth-multiple line (DDOG 10.6x at 20%, PLTR 44.9x at 63%) implies ~12-13x for mid-20s growth with a durable-platform premium."},
+         {"input": "Net cash", "value": "~$3.0B", "basis": "estimate", "source_ids": [1], "derivation": "Jul-31-2026 cash+ST+LT investments $4.33B less $2.28B converts = ~$2.05B, plus ~12 months FCF (23% FCF margin guide) less buybacks/M&A, conservatively +$1B."},
+         {"input": "Diluted shares", "value": "385M", "basis": "estimate", "source_ids": [1], "derivation": "Q3 guide 382M non-GAAP diluted weighted shares, ~1% net dilution over a year."}
+       ]},
+      {"name": "P/E", "value": 315.0, "weight": 0.4,
+       "inputs": "FY2029E non-GAAP EPS ~$4.20 x 75x",
+       "inputs_detail": [
+         {"input": "FY2028 EPS consensus", "value": "$3.02", "basis": "consensus", "source_ids": [5]},
+         {"input": "FY2029 EPS", "value": "~$4.20", "basis": "estimate", "source_ids": [1, 5], "derivation": "Consensus $3.02 grown ~39%: ~24% revenue growth plus ~2pt non-GAAP operating margin expansion per year (guide raised 13.5%->14.5%, Q3 15.5%)."},
+         {"input": "Forward P/E", "value": "75x", "basis": "judgment", "source_ids": [6, 7], "derivation": "Stock trades ~132x NTM EPS today (TIKR); margins are still ramping so P/E compresses as EPS grows faster than price; 75x ≈ 3x a ~25% growth rate, typical for top-decile growth software."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 190.0, "prob": 0.22, "story": "Growth decelerates back to ~20% as AI consumption tailwind normalises, or AI-disintermediation fears return (as in the Apr-2026 56% drawdown); rates rise further (Fed hikes Oct/Dec) and the multiple resets to ~8x NTM sales, near the early-2026 trough. SNOW has done this twice: -70% after the Nov-2021 peak and -56% into Apr-2026."},
+    "base": {"price": 335.0, "prob": 0.53, "story": "Product growth holds low-to-mid 30s near term, fading to mid-20s by FY29; revenue compounds ~28% but multiple compresses from ~16x to ~12.5x, so price roughly flat; fair value ~$320-340."},
+    "bull": {"price": 480.0, "prob": 0.25, "story": "Fourth/fifth consecutive quarter of acceleration, AI products (CoCo/CoWork, Cortex) become a visible revenue line, FY28 guide at 30%+; multiple holds ~15-16x on ~$10B NTM revenue; consistent with the upper half of the $414 mean / $525 high analyst targets."}
+  },
+  "thesis_break_price": 215.0,
+  "thesis_break_reason": "Below ~$215 (about -36%, back under the pre-Q2-earnings breakout zone and roughly 11x current-year sales) the market would be telling us the reacceleration was a one-off: product growth sliding back toward 20%, NRR falling from 126%, or AI agents displacing warehouse spend. That is more than ordinary 1-sigma volatility over a few months and would coincide with a fundamental guide-down.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "FOMC decision; ~67% priced for a 25bp hike (Polymarket)", "direction": "-"},
+    {"date": "2026-12-02", "event": "Q3 FY27 results; guide $1,588-1,593M product revenue (+37-38%)", "direction": "?"},
+    {"date": "2026-12-09", "event": "FOMC; ~72% priced for another hike", "direction": "-"},
+    {"date": "2027-02 (late)", "event": "Q4 FY27 results and initial FY28 product revenue guide (key: >=28%?)", "direction": "?"},
+    {"date": "2027-05 (late)", "event": "Q1 FY28 results", "direction": "?"},
+    {"date": "2027-06", "event": "Snowflake Summit: AI product roadmap and pricing", "direction": "+"},
+    {"date": "2027-08/09", "event": "Q2 FY28 results just before horizon", "direction": "?"},
+    {"date": "2027 (Oct)", "event": "0% convertible notes due 2027 mature; settlement/dilution mechanics", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Durability of the AI-driven consumption acceleration (three straight quarters of acceleration; base rates say consumption spurts mean-revert)",
+    "Rate path: Fed pricing has swung to hikes, 10-year ~5.2%, which hits long-duration software multiples",
+    "AI disintermediation narrative that caused the April 2026 56% drawdown could return",
+    "Multiple compression pace: at ~16x forward sales SNOW is at the top of its 3-year range",
+    "SBC/dilution and elevated short interest (~5% of float, $6.2B) amplifying moves both ways"
+  ],
+  "reasoning": "Anchor: SNOW's own history shows extreme two-way base rates: a 70% drawdown after the Nov-2021 $402 peak, a 56% peak-to-trough fall into April 2026, and then a round-trip to new highs with a +21% one-day gap on Q2 FY27 (third straight quarter of acceleration, product +37%, FY guide raised to $6.07B/+36%, op margin 14.5%). Realized vol of 62% is inflated by those two shocks; I use ~40-50% effective forward vol via a three-component mixture. Valuation base rate: LTM EV/rev has compressed each year (32.9x 2024, 25x 2025, ~20x now; ~16x forward, top of 3-year range, 132x NTM P/E). The cross-section (PLTR 45x at 63% growth, DDOG 10.6x at 20%, MDB 6.2x at 17.5%) implies ~12-13x for the mid-20s growth SNOW will likely show by late 2027, so revenue growth of ~28% is mostly eaten by multiple compression: fair value ~$320, about spot. Analyst mean target $414 (34/40 buys) is a bullish tilt, but sell-side targets after large rallies historically overshoot. Event base rates: post-earnings drift after large positive surprises supports modest continuation for ~3 months, but academic work finds ~50% of earnings-day 'gap' reactions reverse over time and past winners reverse around announcements. Macro: prediction markets flipped hawkish (Polymarket ~67% Oct hike, ~72% Dec hike, ~3% any 2026 cut; Kalshi 2026 recession ~6%), a headwind for long-duration names. Combined: median ~$337 (flat), mean ~$350, fat left tail (22% bear at ~$190) and right tail (25% bull at ~$480). Research was limited to ~14 queries; Kalshi page returned 429 so its figures come via secondary reporting.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Snowflake Q2 FY2027 earnings press release (8-K Ex.99)", "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm", "date": "2026-09-02", "type": "filing", "in_lane": false},
+    {"title": "What Did Snowflake Stock Investors Miss Before The Run? (Trefis)", "url": "https://www.trefis.com/stock/snow/articles/616926/what-did-snowflake-stock-investors-miss-before-the-run/2026-09-29", "date": "2026-09-29", "type": "press", "in_lane": false},
+    {"title": "Snowflake Is Up Nearly 50% in 2026 - What Are Short Sellers Betting Against", "url": "https://finance.yahoo.com/markets/stocks/articles/snowflake-nearly-50-2026-short-134000649.html", "date": "2026-09", "type": "press", "in_lane": true},
+    {"title": "Snowflake 6-year stock price history (Macrotrends)", "url": "https://www.macrotrends.net/stocks/charts/SNOW/snowflake/stock-price-history", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Snowflake consensus price target $414.24; FY2028 estimates (MarketBeat / StockAnalysis)", "url": "https://www.marketbeat.com/instant-alerts/consensus-snowflake-inc-nyse-snow-stock-has-average-price-target-of-41424-according-to-analysts-2026-09-26/", "date": "2026-09-26", "type": "data", "in_lane": false},
+    {"title": "Snowflake Broke Out / Snowflake Stock Erased a 56% Drawdown (TIKR) - 132x NTM P/E, 16x fwd EV/rev, top of 3-yr range", "url": "https://www.tikr.com/blog/snowflake-stock-erased-a-56-drawdown-a-coding-agent-could-be-why", "date": "2026-07-21", "type": "newsletter", "in_lane": true},
+    {"title": "Snowflake valuation multiples history (Multiples.vc): 32.9x 2024, 25.0x 2025, 20.3x LTM", "url": "https://multiples.vc/public-comps/snowflake-valuation-multiples", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Snowflake EV-to-Revenue historical range, median 20.9x (GuruFocus)", "url": "https://www.gurufocus.com/term/ev2rev/SNOW/EV-to-Revenue/SNOW", "date": "2026-08", "type": "data", "in_lane": true},
+    {"title": "Public Software Valuation Multiples - September 2026 and peer EV/NTM (PLTR 44.9x, DDOG 10.6x, MDB 6.2x)", "url": "https://multiples.vc/insights/software-saas-valuation-multiples", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Polymarket Puts an October Fed Hike at 67% as Cut Odds Fade (FinanceFeeds)", "url": "https://financefeeds.com/polymarket-puts-an-october-fed-hike-at-67-and-a-2026-rate-cut-at-3/", "date": "2026-09-26", "type": "prediction-market", "in_lane": true},
+    {"title": "Fed Rate Odds for October 2026: Kalshi, Polymarket and futures (~69% hike as of Sep 29)", "url": "https://predictionmarketspicks.com/articles/fed-rate-october-2026-odds-warsh-kalshi-polymarket-futures", "date": "2026-09-29", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi / Polymarket 2026 US recession odds (Seeking Alpha / Yahoo summary; Kalshi page blocked 429)", "url": "https://seekingalpha.com/news/4575878-prediction-markets-slash-2026-us-recession-odds-to-28", "date": "2026", "type": "prediction-market", "in_lane": true},
+    {"title": "Mind the Gap: The Non-Fundamental Role of Earnings Days (Ben-Rephael et al.)", "url": "https://haslam.utk.edu/wp-content/uploads/2024/11/Ben-Rephael-Paper.pdf", "date": "2024-11", "type": "expert", "in_lane": true},
+    {"title": "Limited Attention and the Earnings Announcement Returns of Past Stock Market Winners (UCLA)", "url": "https://www.anderson.ucla.edu/documents/areas/fac/accounting/earnings_paper08.pdf", "date": "2008", "type": "expert", "in_lane": true},
+    {"title": "Snowflake Q3 FY27 earnings date Dec 2, 2026 (MarketBeat earnings calendar)", "url": "https://www.marketbeat.com/stocks/NYSE/SNOW/earnings/", "date": "2026-09", "type": "data", "in_lane": true}
+  ]
+}

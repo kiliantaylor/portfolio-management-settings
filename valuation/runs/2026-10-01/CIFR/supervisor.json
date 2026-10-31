@@ -1,0 +1,549 @@
+{
+ "symbol": "CIFR",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "disagreements": [
+  {
+   "topic": "Round-4 DCF level, split vs single rate",
+   "positions": "Split-rate DCF/share: agent_1 7.30, agent_2 7.05, agent_3 6.56, agent_4 9.28, agent_5 8.25 (mean 7.69). Single-rate: 6.23, 6.14, 5.33, 7.72, 7.57 (mean 6.60). Uplift from splitting the rate: +1.07, +0.91, +1.23, +1.56, +0.68. Fair values 10.69, 8.5, 7.5, 10.4, 8.26 (mean 9.07).",
+   "resolution": "All five DCFs now value the leases site by site from the inventory figures (BP $296M yr-1, Stingray ~$108M, BL Fluidstack $331M then AI lab $454M, 3% escalators). The contract rates sit in a narrow band (AWS 6.5-6.75%, Fluidstack 7.25-7.75%, AI lab 7.75-8.5%). So the remaining $2.7 spread comes from inputs outside the split: corporate overhead ($110M to $150M, and the rate it is discounted at), the WACC on non-contract flows (8.0% to 9.0%), pipeline value ($0.85B to $1.73B) and net debt ($4.78B to $5.28B at Oct-27). I ran every agent on common financial inputs: 9.0% WACC (3 of 5 agents), $5.0B net debt at 2027-10-01 (the agents' mean, which sits inside the $4.5-5.25B bracket from the 10-Q), 495M shares, and overhead discounted at the contract blend. On that basis the split-rate DCF is $6.32-9.55 (mean $7.42) and the single-rate DCF is $5.09-8.29 (mean $6.21).",
+   "evidence": "Agent discounting/fair_value blocks; 10-Q Q2-26 balance sheet (cash $831.8M, restricted $3,188.5M current / $539.5M noncurrent; debt principal $6,015.5M per Q2-26 deck); supervisor arithmetic below."
+  },
+  {
+   "topic": "Corporate overhead level and discount rate",
+   "positions": "agent_1 $150M (cash $113M + $37M normalized SBC) at 6.9% (-$2.82B); agent_3 $130M at 7.0% (-$2.13B); agent_2 $115M at 7.3% (-$1.45B); agent_5 $115M allocated pro rata to each stream; agent_4 $110M perpetual at its 9.0% WACC (-$1.72B) while its contract revenue is at 6.5-8.5%.",
+   "resolution": "The 10-Q settles the cash figure: comp $42.4M + G&A $16.5M - SBC $30.1M = ~$28.7M/qtr, or ~$115M/yr. Q2-26 SBC itself runs at ~$120M/yr, so leaving future SBC out entirely (agents 2, 4, 5) flatters value. Adding a normalized ~$35M/yr would cost those agents ~-$1.1/share. That is judgment, so I report it as a sensitivity and do not apply it. agent_4 discounts the fixed overhead at 9% while discounting the revenue it supports at 6.5-8.5%. That mismatch inflates value. Re-discounted at the contract blend it costs ~-$0.3/share, and I apply that. In agent_4's SOTP the overhead is capitalized at 8x against ~14x on NOI, a further -$1.33/share on that method.",
+   "evidence": "10-Q Q2-26 income statement (comp $42,359K, G&A $16,479K, SBC $30,119K); agent_4 SOTP inputs."
+  },
+  {
+   "topic": "Contract discount rates: anchoring and the 10-yr yield",
+   "positions": "Every agent anchors on the secured notes: Black Pearl 6.125% and Stingray 6.000% (Ba2/BB-, AWS lease guaranteed by Amazon.com AA/A1) and Cipher Compute 7.125% (Ba3/BB-, Fluidstack with ~45% Google backstop). All five quote the 10-yr at 5.24% and put the notes ~+80-90bp (AWS) and ~+190bp (Fluidstack) over it.",
+   "resolution": "The coupons, maturities and ratings check out (Q2-26 deck capital-structure slide). The 10-yr was 5.12% on 2026-10-01 (5.19% on 09-30), not 5.24%, so the stated spreads are ~12bp too narrow. Against maturity-matched Treasuries (5-yr 5.09% on 09-30) the notes sit ~+95-105bp (AWS) and ~+205bp (Fluidstack). The rates the agents use are anchored on the coupons, not on the Treasury figure, so none changes. 6.5% for AWS term cash flows is UST+~140bp: sound, given a 2031 note maturity against a 2042 lease end, the equity-slice operating risk and an AA guarantor. 7.25-7.75% for the Fluidstack term is sound. agent_1's 7.25% is only +12bp over a 2030 note for a term to 2037, the aggressive end, but it adds an explicit refresh-default term. The AI-lab years are a binding commitment, not a signed lease, with an unrated, unnamed tenant. All agents correctly price them between the Fluidstack rate and WACC, with a 10-12.5% expected loss. Every agent keeps post-contract, renewal, pipeline and terminal flows at WACC.",
+   "evidence": "Q2-26 deck (Cipher Compute $1,733MM 7.125% 11/15/30 Ba3/BB-; Black Pearl $2,000MM 6.125% 02/15/31 Ba2/BB-; Stingray $810MM 6.000% 06/15/31 Ba2/BB-); US Treasury daily par yield curve, 2026-09-30 and 2026-10-01."
+  },
+  {
+   "topic": "Pipeline value per IT MW and probabilities",
+   "positions": "NPV per IT MW net of capex at signing/lease start: agent_4 $5.6M; agent_1 $4.0M near-term / $3.0M GW-scale; agent_2 ~$4.2M x 0.85 dilution; agent_3 $2.9-3.1M near-term, $1.65M Batch Zero, $1.3M 2030+; agent_5 $2.63M. Totals $0.85B (agent_3) to $1.73B (agent_4); mean ~$1.2B. Probabilities: Odessa HPC 25-45%, Reveille 40-50%, Ulysses 35-45%, Batch Zero 8-20%, 2030+ 4-12%.",
+   "resolution": "I rebuilt the NPV per IT MW: $1.40M rent, 3% escalators, 15 years, the shared renewal mechanics and $10.5M capex 1 year ahead at 9%. That gives ~$6.3M at lease start, $4.7M with 2 years of build lead and $11M capex, and ~$4.4M on agent_5's inputs. So agent_4's $5.6M follows from its own inputs and is not an arithmetic error. It sits at the high end because it carries no overhead or financing friction beyond 2% and uses capex at Stingray's $10.5M despite the Barber Lake overrun. agent_3's GW-scale $1.3-1.65M is the low end. This is judgment the evidence cannot settle, so I keep each agent's pipeline. No signed lease exists for any pipeline site.",
+   "evidence": "Supervisor scratch pipe.py; agent site_coverage rows."
+  },
+  {
+   "topic": "Net debt at the valuation date",
+   "positions": "agent_1 $4.855B (Sep-27, credits +$0.1B interim cash flow, no contingency); agent_2 $4.882B today / $4.78B Oct-27; agent_3 $5.15B today / ~$4.95B Oct-27; agent_4 $5.28B (Oct-27, +$0.2B contingency, no interim credit); agent_5 $5.105B.",
+   "resolution": "Primary build-up: debt principal $6,015.5M less the $172.5M deep-in-the-money 2030 converts (in shares) = $5,843M; less cash $832M, BTC ~$38M and ~$0.4B of the $539.5M noncurrent restricted cash; plus the $359.3M Barber Lake overrun layer = ~$4.93B. Then -$0 to -$0.37B depending on whether the $373M of current restricted cash above commitments plus AP is truly spare, +$0-0.2B contingency, and ~+$0.1B of Oct-26 to Sep-27 free cash after coupons. That gives ~$4.5-5.25B. I use $5.0B (the agents' Oct-27 mean). agent_1 and agent_2 are ~$0.15-0.2B light (no contingency for further overruns). agent_4 is ~$0.28B heavy (contingency with no interim credit).",
+   "evidence": "10-Q Q2-26 balance sheet; Q2-26 deck debt table; 8-K 2026-09-25 ($359.3M layer)."
+  },
+  {
+   "topic": "Site coverage against the inventory",
+   "positions": "All five now carry one row per inventory site: 14 sites plus the sold WindHQ stakes. agent_4 splits Odessa into a mining row and an HPC-option row, sequential in time.",
+   "resolution": "Checked row by row. Every agent has the right MW (gross / 216, 207, 70 IT), tenant (AWS on Black Pearl and Stingray; Fluidstack then the AI lab on Barber Lake), contract terms and timing (8-K hall dates for Barber Lake), payment direction (tenants and the Google backstop pay Cipher; Cipher pays Luminant and the first $359.3M of overrun), Colchis at 76%, the sold stakes removed with the Canaan shares credited once, and pipeline probability-weighted net of capex. No MW is double counted. Black Pearl mining ended before the HPC retrofit (10-Q: 'was previously used for bitcoin mining'), and Odessa mining and HPC are exclusive branches. Residual slips are small: agent_2 ends Odessa mining at the Jul-2027 PPA date, though the PPA auto-renews annually; agents 2 and 4 show the sold-JV row at $0.04 with probability 0 although the value sits in net debt; agent_3 keeps a stale weight-0 'pipeline option' method that still says 'rest ~0'. None moves value by more than ~$0.05/share. Two inventory conflicts are settled from the 10-Q: Odessa is a finance lease with Luminant affiliates (commenced 2022-11-22), not owned land, and Colchis is 76% (redeemable NCI $25.7M). Canaan closed at $0.34 on 2026-10-01, so the $18M credit is right.",
+   "evidence": "sites.md / sites.json; 10-Q Q2-26 (Combined Luminant Lease 'classified as a finance lease'; Colchis 76%; Canaan 806,439,900 shares carried at $34.5M); Twelve Data CAN quote."
+  },
+  {
+   "topic": "Inconsistent rates inside the non-DCF methods",
+   "positions": "agent_1 SOTP: one 6.5% cap on all $718M of 2028 NOI, Barber Lake included, and overhead capitalized at 10x (vs ~15.4x on NOI). agent_4 SOTP: stale deck 2028 NOI of $727M (site-built ~$702-718M) and overhead at 8x (vs ~14x on NOI). agent_3 NAV (6.5% AWS / 7.5% BL, overhead at 7%) and the EV/EBITDA methods of agents 2 and 5 are internally consistent.",
+   "resolution": "These carry the high fair values. agent_1's own split DCF prices Barber Lake 75-150bp above AWS. A 7.5% cap on ~$300M of BL NOI is -$1.24/share, and overhead at the NOI multiple is -$1.63/share, so its SOTP goes 12.81 -> ~9.94. agent_4's SOTP goes 12.2 -> ~10.3 (-$0.57 for NOI, -$1.33 for overhead). Net effect on fair value: agent_1 -1.0, agent_4 -0.76.",
+   "evidence": "Agent fair_value.methods inputs; inventory flag on the stale Q2-26 NOI schedule."
+  },
+  {
+   "topic": "Events in the 1-month window",
+   "positions": "All five agree: no Q3 print before Nov 1 (Q3-25 was Nov 3), first Barber Lake rent in Q4-26, Black Pearl DH2 targeted Oct-31, the Oct-28 FOMC and late-October hyperscaler capex prints. The 1-month ladders are nearly identical.",
+   "resolution": "Confirmed; unchanged from round 3.",
+   "evidence": "8-K 2026-09-25; agent one_month_reasoning."
+  }
+ ],
+ "ladder": [
+  {
+   "K": 3.87,
+   "p": 0.95
+  },
+  {
+   "K": 6.18,
+   "p": 0.844
+  },
+  {
+   "K": 7.73,
+   "p": 0.763
+  },
+  {
+   "K": 9.28,
+   "p": 0.682
+  },
+  {
+   "K": 10.82,
+   "p": 0.605
+  },
+  {
+   "K": 12.37,
+   "p": 0.532
+  },
+  {
+   "K": 13.91,
+   "p": 0.465
+  },
+  {
+   "K": 15.46,
+   "p": 0.406
+  },
+  {
+   "K": 17.01,
+   "p": 0.355
+  },
+  {
+   "K": 18.55,
+   "p": 0.31
+  },
+  {
+   "K": 21,
+   "p": 0.253
+  },
+  {
+   "K": 23,
+   "p": 0.215
+  },
+  {
+   "K": 27,
+   "p": 0.157
+  },
+  {
+   "K": 31,
+   "p": 0.115
+  },
+  {
+   "K": 39,
+   "p": 0.063
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 12.37,
+   "p": 0.761
+  },
+  {
+   "K": 13.14,
+   "p": 0.697
+  },
+  {
+   "K": 13.91,
+   "p": 0.629
+  },
+  {
+   "K": 14.38,
+   "p": 0.587
+  },
+  {
+   "K": 14.84,
+   "p": 0.546
+  },
+  {
+   "K": 15.46,
+   "p": 0.493
+  },
+  {
+   "K": 16.08,
+   "p": 0.441
+  },
+  {
+   "K": 16.54,
+   "p": 0.405
+  },
+  {
+   "K": 17.01,
+   "p": 0.369
+  },
+  {
+   "K": 17.78,
+   "p": 0.316
+  },
+  {
+   "K": 18.55,
+   "p": 0.268
+  }
+ ],
+ "one_month_reasoning": "No CIFR earnings before Oct 31 (Q3 most likely the first week of November). Barber Lake first rent (Q4-26), Black Pearl DH2 (Oct-31), the Oct-28 FOMC and hyperscaler capex prints are the window's drivers. Nothing in the site or discount-rate work changes a one-month distribution, so I keep the agents' near-identical mean, centered on spot.",
+ "confidence": "low",
+ "confidence_reason": "My checks settled facts and inconsistencies that move fair value (normalized DCF mean $7.42 split / $6.21 single; reconciled fair value $8.6 vs the $9.07 mean) but do not settle what moves the 12-month price: new lease signings, ERCOT Batch Zero and AI-infrastructure beta. The direction (slightly lower) is clear, but how the value maps to price is not, so I keep the mean ladder.",
+ "thesis_break_price": 7.0,
+ "thesis_break_reason": "On common inputs, contracted-only split-rate value is ~$4.4-6.0/share (mean ~$5.0). $7 is that plus ~$1B of pipeline, slightly below the agents' ~$1.2B mean. A sustained close below $7 most likely means the market is impairing signed leases (Fluidstack stress beyond the ~$1.73B Google backstop, Barber Lake overruns past the $359.3M layer, a forced parent raise), not only pricing out the pipeline. Agents' mean is 6.95.",
+ "key_drivers": [
+  "Contracted value is now well pinned down: site-level leases with split rates give contracted-only equity of ~$4.4-6.0/share. At $15.46, roughly two-thirds of the price rests on unsigned pipeline and multiple expansion.",
+  "Corporate overhead is now the single largest DCF swing: cash ~$115M/yr (10-Q). Whether future SBC (running ~$120M/yr in Q2-26) is charged is worth ~$1.1/share, and discounting it at WACC rather than the contract blend another ~$0.3-0.6.",
+  "Pipeline value ($0.85-1.73B, ~$1.7-3.5/share) rests on NPV per IT MW ($1.3-5.6M) and signing odds. Near-term catalysts are an Odessa, Reveille or Ulysses lease and ERCOT Batch Zero results (~Apr-2027).",
+  "Contract discount rates are anchored on Cipher's own secured notes (6.0-6.125% AWS, 7.125% Fluidstack). Splitting the rate adds only ~$0.7-1.6/share, because post-expiry, pipeline and overhead dominate the residual.",
+  "Rates (10-yr 5.12%, not 5.24%) and AI-infrastructure sector beta dominate the 12-month distribution."
+ ],
+ "fair_value": {
+  "value": 8.6,
+  "reason": "Agent mean 9.07. Corrections on common inputs (9.0% WACC for non-contract flows, $5.0B net debt at Oct-27, 495M shares, overhead at the contract blend) plus method consistency: agent_1 10.69 -> ~9.40 (net debt -0.29/share; SOTP Barber Lake cap 6.5% -> 7.5% and overhead capitalized at the NOI multiple, SOTP 12.81 -> 9.94); agent_2 8.5 -> ~7.85 (WACC 8.5% -> 9.0%, net debt +$0.22B); agent_3 7.5 -> ~7.40 (net debt); agent_4 10.4 -> ~10.08 (net debt +0.57/share, overhead at contract blend -0.30, SOTP NOI $727M -> ~$707M and overhead 8x -> ~14x); agent_5 8.26 -> ~8.05 (WACC 8.0% -> 9.0%, net debt). Mean ~$8.56, about 45% below spot. Charging ~$35M/yr of future SBC to agents 2-5 would take ~$0.6 off."
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "SOTP uses one 6.5% cap on all 2028 NOI, including Barber Lake, which your own DCF discounts at 7.25-8.0%. A 7.5% cap on ~$300M of BL NOI is -$1.24/share. Overhead is capitalized at 10x against a ~15.4x NOI multiple (-$1.63/share).",
+    "Net debt of $4.855B carries no contingency for further Barber Lake overruns beyond the $359.3M layer, while it credits +$0.1B of interim cash. Peers bracket $4.95-5.28B.",
+    "The 10-yr was 5.12% on 2026-10-01 (Treasury), not 5.24%. Your Fluidstack rate (7.25%) is only +12bp over 2030 notes for a term running to 2037."
+   ],
+   "revisit": "Split the SOTP cap by credit, as in your DCF, and capitalize overhead at the NOI multiple. Add a ~$0.15B overrun contingency. 18x EBITDA is above peers' 14-15x; justify it or trim."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "Odessa mining is cut off at the Jul-2027 PPA date, but the Luminant PPA auto-renews annually with 6-month notice (inventory, 10-Q). Small.",
+    "Overhead ($115M) charges no future SBC, which runs at ~$120M/yr in Q2-26 (10-Q). About -$1.1/share if ~$35M/yr is normalized.",
+    "Your 8.5% WACC is the second lowest. On a 9.0% WACC your split DCF is ~$6.8 before the net-debt normalization."
+   ],
+   "revisit": "Decide explicitly on future SBC. Show the DCF at a 9% WACC. Net debt at Oct-27 ($4.78B) has no contingency."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "The 'other' method with weight 0 still carries the stale round-3 pipeline bucket ('rest ~0'), which contradicts your site-by-site $854M. Remove it.",
+    "Your Batch Zero and 2030+ NPV per IT MW ($1.3-1.65M) is the lowest of the five. With the shared renewal mechanics, a lease at $1.45M/IT MW against $12M capex nets ~$3-4M at lease start before signing delay."
+   ],
+   "revisit": "Recheck the GW-scale NPV per IT MW (capex timing and equity-raise friction). Otherwise the site coverage and split rates are sound."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "Overhead ($110M) is discounted at the 9% WACC while the revenue it supports is at 6.5-8.5%. That inflates the split DCF by ~$0.3/share. Peers discount it at the contract blend or allocate it.",
+    "The SOTP uses the stale deck 2028 NOI of $727M (site-built ~$702-718M) and capitalizes overhead at 8x against a ~14x NOI multiple: -$1.9/share on that method.",
+    "Net debt adds a $0.2B contingency but credits no interim Oct-26 to Sep-27 cash (~+$0.1B). The pipeline NPV of $5.6M/IT MW is the highest, with no overhead or financing friction beyond 2%."
+   ],
+   "revisit": "Make the overhead treatment consistent between the DCF and SOTP. Use site-built NOI. Reconsider pipeline capex ($10.5M/IT MW looks light after the Barber Lake overrun)."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "The 8.0% WACC on post-contract, terminal and pipeline flows is the lowest of the five: 10-yr 5.12% + ~290bp for a 112%-vol, levered developer. At 9.0% your split DCF is ~$7.5.",
+    "Overhead ($115M) charges no future SBC (Q2-26 SBC ~$120M/yr annualized).",
+    "Your AI-lab rate (7.75%) is only 25bp below your WACC. Fine, but the contract rate then does little work."
+   ],
+   "revisit": "Justify the 8% WACC against the 9% used by three peers, or move it. State a policy on future SBC."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 9,
+  "repeated_claims": [
+   {
+    "claim": "Site MW, tenants, terms and the contract/credit table",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "sites.md / sites.json (one compiled inventory from the 10-K, 10-Q, 8-Ks and decks)"
+   },
+   {
+    "claim": "10-yr Treasury at 5.24%",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "inventory's contracts_credit table; the Treasury curve shows 5.12% on 2026-10-01"
+   },
+   {
+    "claim": "Secured-note coupons, ratings and ~103 quotes",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Q2-26 deck capital-structure slide / 10-Q"
+   },
+   {
+    "claim": "Barber Lake AI-lab follow-on and $359.3M overrun layer",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "8-K 2026-09-25"
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary filings plus the inventory. The DCF is sound. The SOTP's single cap and low overhead multiple are a method inconsistency, not a sourcing problem."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Industry lane: site-level monthly model, explicit rates by contract. Low WACC and no future SBC."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Most complete primary net-debt bridge (10-Q commitments, restricted cash). The stale weight-0 method should go."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Alt-data (Polymarket FOMC) kept out of the valuation. Overhead treatment and SOTP inputs are inconsistent."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Base-rate lane: careful hall-by-hall timing and backstop arithmetic. Low WACC."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "Five-way agreement on site facts",
+    "why": "All rest on one compiled inventory, so it counts as one source set. I checked the load-bearing items (coupons, ratings, Colchis 76%, the Odessa finance lease, the Canaan price) against primary sources."
+   },
+   {
+    "claim": "10-yr at 5.24% and the note spreads derived from it",
+    "why": "Treasury par curve shows 5.12% (2026-10-01); the spreads are ~12bp too narrow. No rate changes, since the rates are coupon-anchored."
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "fair value",
+   "from": 9.07,
+   "to": 8.6,
+   "why": "Common financial inputs (9% WACC, $5.0B net debt, overhead at contract blend) and consistent SOTP caps and overhead multiples for agents 1 and 4; agent-level 9.40/7.85/7.40/10.08/8.05."
+  },
+  {
+   "item": "fact: 10-yr Treasury on 2026-10-01 (all agents, inventory)",
+   "from": 5.24,
+   "to": 5.12,
+   "why": "US Treasury daily par yield curve: 5.12% on 10/01, 5.19% on 09/30; note spreads are ~12bp wider than stated, rates unchanged."
+  },
+  {
+   "item": "fact: Odessa land tenure (inventory conflict)",
+   "from": "owned (10-K extraction) vs leased (10-Q)",
+   "to": "finance lease with Luminant affiliates, commenced 2022-11-22",
+   "why": "10-Q Q2-26: the Combined Luminant Lease Agreement 'is classified as a finance lease'."
+  },
+  {
+   "item": "reconciled DCF range, split-rate",
+   "from": "6.56-9.28 (mean 7.69)",
+   "to": "6.32-9.55 (mean 7.42)",
+   "why": "Agents re-run on common WACC, net debt and shares; agent_4 overhead re-discounted at the contract blend."
+  },
+  {
+   "item": "reconciled DCF range, single-rate",
+   "from": "5.33-7.72 (mean 6.60)",
+   "to": "5.09-8.29 (mean 6.21)",
+   "why": "Same normalization; single-rate cases at 9.0%."
+  },
+  {
+   "item": "method: agent_1 SOTP",
+   "from": 12.81,
+   "to": 9.94,
+   "why": "7.5% cap on Barber Lake NOI (matching its own DCF credit split) and overhead capitalized at the NOI multiple rather than 10x."
+  },
+  {
+   "item": "method: agent_4 SOTP",
+   "from": 12.2,
+   "to": 10.3,
+   "why": "Site-built 2028 NOI (~$707M, not the stale $727M) and overhead at ~14x rather than 8x."
+  }
+ ],
+ "summary": "Round 4 fixed site coverage: every agent now values all 14 inventory sites once, with the right MW, tenants, terms, payment direction and Colchis at 76%, no double-counted power and the sold JVs removed. Contract rates are soundly anchored on Cipher's own secured notes (AWS 6.5-6.75%, Fluidstack 7.25-7.75%, AI lab 7.75-8.5%). On common inputs the DCF is $6.32-9.55 split-rate (mean $7.42) vs $5.09-8.29 single-rate (mean $6.21). Overhead (and whether future SBC is charged), pipeline value and WACC now drive value more than the contract rate. Reconciled fair value is ~$8.6, about 45% below spot. I keep the mean ladder (P(>=15.46) 0.41) with low confidence and a $7.0 thesis break.",
+ "sources": [
+  {
+   "title": "Cipher Digital 10-Q Q2-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000041/cifr-20260630.htm",
+   "date": "2026-08-04"
+  },
+  {
+   "title": "Cipher Digital Q2-26 business update deck (capital structure, NOI schedule)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000038/cipherdigital_businessup.htm",
+   "date": "2026-08-04"
+  },
+  {
+   "title": "Cipher Digital 8-K: Barber Lake amendment, AI-lab follow-on, $359.3M overrun layer",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000043/cifr-20260924.htm",
+   "date": "2026-09-25"
+  },
+  {
+   "title": "US Treasury daily par yield curve, Oct 2026",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610",
+   "date": "2026-10-01"
+  },
+  {
+   "title": "US Treasury daily par yield curve, Sep 2026",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202609",
+   "date": "2026-09-30"
+  },
+  {
+   "title": "CIFR site inventory (checked)",
+   "url": "file:///mnt/project-files/valuation/runs/2026-10-01/CIFR/sites.md",
+   "date": "2026-10-02"
+  }
+ ],
+ "sizing": {
+  "max_weight_pct": 1.5,
+  "confidence": 0.3,
+  "conviction_label_before": "low",
+  "conviction_label_reason": "My checks found no expected-return edge over the S&P 500 per unit of risk: the reconciled fair value (~$8.6) is ~45% below $15.46, and with ~112% realized volatility only unsigned leases could clear the Sharpe bar.",
+  "entry": "2 tranches over ~6 weeks: half after Q3 results (expected early Nov), half after confirmed Barber Lake rent commencement",
+  "overlap": "GOOGL (backstops ~$1.73B of Fluidstack's Barber Lake rent, holds 24.18M CIFR warrants), AVGO (same AI-capex cycle), VST (Texas power/ERCOT; Luminant, a Vistra affiliate, is the Odessa PPA and finance-lease counterparty)",
+  "reason": "Price sits well above a fair value the agents bracket at $7.4-10.1 on common inputs, and the upside depends on unsigned leases and AI-infrastructure sentiment. The name adds to AI-capex and Texas-power exposure already held, with Q3 results, first Barber Lake rent and ERCOT Batch Zero as near-term events. Keep it small and staged."
+ },
+ "round4_review": {
+  "per_agent": [
+   {
+    "agent": "agent_1",
+    "site_coverage_errors_found": [
+     "None material: 14 sites once, MW/tenant/terms/direction correct, Colchis 76%, Canaan credited once in net debt"
+    ],
+    "fixed_in_reconciliation": [
+     "Net debt $4.855B -> $5.0B (-$0.29/share)",
+     "SOTP: Barber Lake cap 6.5% -> 7.5%, overhead 10x -> NOI multiple (SOTP 12.81 -> 9.94)"
+    ],
+    "discount_rates": {
+     "aws": 0.065,
+     "fluidstack_term": 0.0725,
+     "ai_lab_term": 0.08,
+     "wacc": 0.09,
+     "overhead": "6.9% in contract years"
+    },
+    "rates_sound": "Yes: anchored on 6.0-6.125% / 7.125% secured notes. Fluidstack +12bp over a 2030 note is the aggressive end, offset by an explicit refresh-default term.",
+    "dcf_single": 6.23,
+    "dcf_split": 7.3,
+    "dcf_single_normalized": 5.94,
+    "dcf_split_normalized": 7.01,
+    "fair_value_normalized": 9.4
+   },
+   {
+    "agent": "agent_2",
+    "site_coverage_errors_found": [
+     "Odessa mining stopped at the Jul-2027 PPA date (PPA auto-renews annually); immaterial",
+     "WindHQ row shows $0.04 at probability 0 (value sits in net debt); cosmetic"
+    ],
+    "fixed_in_reconciliation": [
+     "WACC 8.5% -> 9.0% (split -$0.28, single -$0.60)",
+     "Net debt $4.78B -> $5.0B at Oct-27 (-$0.45/share)"
+    ],
+    "discount_rates": {
+     "aws": 0.0675,
+     "fluidstack_term": 0.0775,
+     "ai_lab_term": 0.08,
+     "wacc": 0.085,
+     "overhead": "7.3% contract blend"
+    },
+    "rates_sound": "Yes: the most conservative contract rates (+65bp over the notes). The WACC is low.",
+    "dcf_single": 6.14,
+    "dcf_split": 7.05,
+    "dcf_single_normalized": 5.09,
+    "dcf_split_normalized": 6.32,
+    "fair_value_normalized": 7.85
+   },
+   {
+    "agent": "agent_3",
+    "site_coverage_errors_found": [
+     "Round-3 flags (244 MW, $3B, Fluidstack on Stingray, omitted 2030+ sites) all fixed; stale weight-0 'other' method still says 'rest ~0' (cosmetic)"
+    ],
+    "fixed_in_reconciliation": [
+     "Net debt Oct-27 ~$4.95B -> $5.0B (-$0.10/share)"
+    ],
+    "discount_rates": {
+     "aws": 0.065,
+     "fluidstack_term": 0.075,
+     "ai_lab_term": 0.085,
+     "wacc": 0.09,
+     "overhead": "7.0% contract blend"
+    },
+    "rates_sound": "Yes",
+    "dcf_single": 5.33,
+    "dcf_split": 6.56,
+    "dcf_single_normalized": 5.23,
+    "dcf_split_normalized": 6.46,
+    "fair_value_normalized": 7.4
+   },
+   {
+    "agent": "agent_4",
+    "site_coverage_errors_found": [
+     "Odessa split into mining + HPC-option rows; sequential in time, not a power double count",
+     "Round-3 tenant-order error fixed",
+     "WindHQ row $0.04 at probability 0 (in net debt); cosmetic"
+    ],
+    "fixed_in_reconciliation": [
+     "Net debt $5.28B -> $5.0B (+$0.57/share)",
+     "Overhead re-discounted at contract blend instead of 9% WACC (-$0.30, split only)",
+     "SOTP: NOI $727M -> ~$707M and overhead 8x -> ~14x (SOTP 12.2 -> 10.3)"
+    ],
+    "discount_rates": {
+     "aws": 0.065,
+     "fluidstack_term": 0.075,
+     "ai_lab_term": 0.085,
+     "wacc": 0.09,
+     "overhead": "9.0% WACC (inconsistent)"
+    },
+    "rates_sound": "Contract rates yes. Discounting overhead at WACC alongside contract-rate revenue is not.",
+    "dcf_single": 7.72,
+    "dcf_split": 9.28,
+    "dcf_single_normalized": 8.29,
+    "dcf_split_normalized": 9.55,
+    "fair_value_normalized": 10.08
+   },
+   {
+    "agent": "agent_5",
+    "site_coverage_errors_found": [
+     "Round-3 flags (flat $367M BP rent, Sep-2036 BL end, omitted expansions, mining) all fixed; none remaining"
+    ],
+    "fixed_in_reconciliation": [
+     "WACC 8.0% -> 9.0% (split ~-$0.70, single ~-$1.30)",
+     "Net debt $5.105B -> $5.0B (+$0.21/share)"
+    ],
+    "discount_rates": {
+     "aws": 0.065,
+     "fluidstack_term": 0.075,
+     "ai_lab_term": 0.0775,
+     "wacc": 0.08,
+     "overhead": "allocated pro rata to streams"
+    },
+    "rates_sound": "Contract rates yes. The 8.0% WACC is the low outlier.",
+    "dcf_single": 7.57,
+    "dcf_split": 8.25,
+    "dcf_single_normalized": 6.48,
+    "dcf_split_normalized": 7.76,
+    "fair_value_normalized": 8.05
+   }
+  ],
+  "reconciled_dcf_range": {
+   "split_rate": [
+    6.32,
+    9.55
+   ],
+   "split_rate_mean": 7.42,
+   "single_rate": [
+    5.09,
+    8.29
+   ],
+   "single_rate_mean": 6.21,
+   "raw_agent_split": [
+    6.56,
+    9.28
+   ],
+   "raw_agent_split_mean": 7.69,
+   "raw_agent_single": [
+    5.33,
+    7.72
+   ],
+   "raw_agent_single_mean": 6.6,
+   "common_inputs": "9.0% WACC on non-contract flows, $5.0B net debt at 2027-10-01, 495M FD shares, each agent's own contract rates, overhead level and pipeline; agent_4 overhead at contract blend",
+   "sbc_sensitivity": "Charging ~$35M/yr normalized future SBC to agents 2-5 (agent_3 +$20M) lowers their DCFs ~$0.6-1.1/share (not applied)"
+  },
+  "what_drives_value_most": "After site coverage and contract rates converged, the DCF spread comes from (1) corporate overhead: level $110-150M, future SBC and its discount rate (~$1-2/share); (2) pipeline value, $0.85-1.73B (~$1.7-3.5/share) from NPV per IT MW and signing odds; (3) WACC on post-contract, terminal and pipeline flows (~$0.6-0.75/share per 100bp split, ~$1.3 single); (4) net debt \u00b1$0.25B (~$0.5/share). The split versus single rate itself is worth only $0.7-1.6/share. Contracted-only equity is ~$4.4-6.0/share, so most of the $15.46 price is unsigned pipeline and sentiment."
+ }
+}

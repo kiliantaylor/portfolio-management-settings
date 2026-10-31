@@ -1,0 +1,826 @@
+{
+ "date": "2026-10-27",
+ "symbol": "META",
+ "clean": true,
+ "checked": 90,
+ "ok": 88,
+ "failures": [
+  {
+   "item": "total expenses FY2026 guide as of 2026-10-21",
+   "value": "175000.0-179000.0",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "result": "wrong",
+   "fix": "Range kept; basis rewritten: Q3 $9.89B legal charge (src 1) + Q2 $2.40B legal charges and $1.18B severance (Q2-26 release, src 9) = $12.29B legal; Q2 release now cited."
+  },
+  {
+   "item": "Reality Labs operating loss FY2026 (first guide qualitative): first guide (2026-01-28) / reported actual",
+   "value": "19193.0-19193.0 / 18475.0",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-12312025xexhibit991.htm",
+   "result": "mislabelled",
+   "fix": "Both labelled estimate with derivation and confidence medium: anchor 19,193 = FY2025 RL loss for the 'similar to 2025' wording; actual 18,475 = 9M 12,775 (src 1) + Q4 est 5,700, inside the updated $18-19B guide; not reported."
+  },
+  {
+   "item": "revenue (quarterly) Q4-2026 consensus as of 2026-10-25",
+   "value": "74937.0",
+   "cited": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=META",
+   "result": "not_found",
+   "fix": "Removed (consensus null): Alpha Vantage needs an API key (none used); Nasdaq/Zacks snapshot has EPS only; Twelve Data revenue estimates unavailable on this plan. Feeds no number."
+  },
+  {
+   "item": "total expenses FY2024: first guide (2023-10-25) / reported actual",
+   "value": "94000.0-99000.0 / 95121.0",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000100/meta09302023-exhibit991.htm",
+   "result": "not_found",
+   "fix": "Actual 95,121 now cited to the Q4/FY2024 release (src 13), opened: total costs and expenses $95,121M."
+  },
+  {
+   "item": "capex (incl. finance-lease principal) FY2024: first guide (2023-10-25) / reported actual",
+   "value": "30000.0-35000.0 / 39230.0",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000100/meta09302023-exhibit991.htm",
+   "result": "not_found",
+   "fix": "Actual 39,230 now cited to the Q4/FY2024 release (src 13), opened: $39.23B = P&E $37,256M + finance-lease principal $1,969M."
+  },
+  {
+   "item": "shares",
+   "value": "2,573M diluted now (2026-09-30), flat; horizon 2,613M incl. 40M forward shares",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "result": "mislabelled",
+   "fix": "Basis estimate: horizon 2,613M = 2,573M (10-Q) + 40M forward shares (pricing term sheet), confidence high."
+  },
+  {
+   "item": "Series A mandatory convertible preferred (balance.preferred)",
+   "value": "$12,662.5M deducted at the horizon; dividends $812.5M/yr",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "result": "wrong",
+   "fix": "Kept $12,662.5M as a labelled estimate: $12,500M face (12.5M x $1,000, term sheet) + accrued dividend 12,500 x 6.5% x 72/360 = $162.5M (2027-08-15 to horizon 2027-10-27); dividends 12.5M x $65 = $812.5M/yr; confidence high. No value change."
+  },
+  {
+   "item": "2022 trough multiple",
+   "value": "~14x core NTM EPS",
+   "cited": "",
+   "result": "not_found",
+   "fix": "'2022 trough' claim removed; ~14x kept as derived: (490 + ~$30/share adjustments) / core NTM EPS $36.9 = 14.1x (engine); thesis break price $490 unchanged (judgment)."
+  },
+  {
+   "item": "consensus revenue FY2027",
+   "value": "$311.3B (+21%)",
+   "cited": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=META",
+   "result": "not_found",
+   "fix": "Removed from disagreements and reasoning: no openable dated revenue consensus found; no API key used. Feeds no number."
+  },
+  {
+   "item": "peer_median_pe_ntm (7 peers)",
+   "value": "23.7x",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "result": "mixed_basis",
+   "fix": "23.7x kept only as a labelled cross-check with window (Jul-26 to Jun-27; MSFT FY Jun-27 at weight 1.0, NFLX Oct-26 to Sep-27) and EPS basis (Zacks via Nasdaq, not uniformly GAAP) stated; basis-consistent GAAP TTM median 19.9x from filings (peers.md pe_ttm ids) added as the reference; fact_ids set; 18.5x multiple is a judgment and unchanged."
+  },
+  {
+   "item": "founder voting control",
+   "value": "~61% of votes",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "result": "not_found",
+   "fix": "Relabelled estimate: Class B votes 341.8M x 10 / (2,214.5M + 3,417.7M) = 60.7% from 10-Q cover counts; founder control per 424B5 wording. Judgment-only line."
+  },
+  {
+   "item": "Big-4 2028 capex growth in file base",
+   "value": "+26%",
+   "cited": "file:///mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "wrong",
+   "fix": "Text corrected +26% -> +23% (file: $1,080B -> $1,330B); FY2028 capex $236B (x1.23) unchanged."
+  },
+  {
+   "item": "Wells Fargo 2027 Meta capex (variant)",
+   "value": "~$250B",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
+   "result": "not_found",
+   "fix": "Recited to Yahoo Finance 2026-10-22 (opened: 'could spend 250 billion on CAPEX next year'); variant only; bear story corrected (+10% = ~$211B)."
+  },
+  {
+   "item": "Reality Labs loss FY2027 guidance arithmetic",
+   "value": "0/1/0, median -0.0374, adjusted 14439, ours 15000 inside 0.0",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "Count corrected 0/1/0 -> 0/0/1 (18,475 < low 19,193 = miss); median -3.74%, record-adjusted 14,439, position inside unchanged."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue (quarterly) Q3-2026: first guide (2026-07-29) / reported actual",
+   "value": "61000.0-64000.0 / 64601.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q4-2026 guide as of 2026-10-21",
+   "value": "73000.0-76000.0",
+   "basis": "GAAP total revenue; FX ~1% headwind (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "capex (incl. finance-lease principal) FY2026 guide as of 2026-10-21",
+   "value": "135000.0-145000.0",
+   "basis": "purchases of P&E plus principal payments on finance leases (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Reality Labs operating loss FY2027 guide as of 2026-10-21",
+   "value": "15000.0-15000.0",
+   "basis": "'around $15B' (segment operating loss) (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q4-2024: first guide (2024-10-30) / reported actual",
+   "value": "45000.0-48000.0 / 48385.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680124000077/meta-09302024xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q1-2025: first guide (2025-01-29) / reported actual",
+   "value": "39500.0-41800.0 / 42310.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000014/meta-12312024xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "total expenses FY2025: first guide (2025-01-29) / reported actual",
+   "value": "114000.0-119000.0 / 117690.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000014/meta-12312024xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "capex (incl. finance-lease principal) FY2025: first guide (2025-01-29) / reported actual",
+   "value": "60000.0-65000.0 / 72220.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000014/meta-12312024xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q2-2025: first guide (2025-04-30) / reported actual",
+   "value": "42500.0-45500.0 / 47520.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000050/meta-03312025xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q3-2025: first guide (2025-07-30) / reported actual",
+   "value": "47500.0-50500.0 / 51242.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828025036719/meta-06302025xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q4-2025: first guide (2025-10-29) / reported actual",
+   "value": "56000.0-59000.0 / 59893.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828025047114/meta-09302025xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q1-2026: first guide (2026-01-28) / reported actual",
+   "value": "53500.0-56500.0 / 56310.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-12312025xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue (quarterly) Q2-2026: first guide (2026-04-29) / reported actual",
+   "value": "58000.0-61000.0 / 60800.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028364/meta-03312026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "total expenses FY2023: first guide (2022-10-26) / reported actual",
+   "value": "96000.0-101000.0 / 88150.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680122000105/meta09302022-exhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "capex (incl. finance-lease principal) FY2023: first guide (2022-10-26) / reported actual",
+   "value": "34000.0-39000.0 / 28100.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680122000105/meta09302022-exhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "forward sale agreements (Class A)",
+   "value": "40.0M shares, $24,917M cash at settlement",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "forward offering terms",
+   "value": "40M Class A at $625.00; $24.9B settlement cash",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "mandatory convertible preferred",
+   "value": "$12.5B 6.50%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "52-week low",
+   "value": "$520",
+   "basis": "reported",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "accrued legal liabilities 2026-09-30",
+   "value": "$11,577M current + $8,304M non-current",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "NM privacy case civil penalty",
+   "value": "$25B, 15% post-judgment interest, 2026-10-21, >43M violations",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "NM penalty (outlet)",
+   "value": "$25B, 15% interest",
+   "basis": "reported",
+   "source_url": "https://news.bloombergtax.com/litigation/meta-to-pay-historic-25-billion-in-new-mexico-deception-case",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "NM penalty (outlet)",
+   "value": "$25B, 15% interest",
+   "basis": "reported",
+   "source_url": "https://ppc.land/meta-faces-15-yearly-interest-on-25bn-new-mexico-penalty/",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "NM youth case",
+   "value": "$375M penalty + $567M abatement (stayed)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "AG contingent tranche",
+   "value": "~$5.3B (of up to $18.59B)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "RL loss guidance",
+   "value": "$18-19B 2026; around $15B 2027",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "RL loss rising every year 2021-25",
+   "value": "FY2024 $17.73B -> FY2025 $19.19B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-12312025xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "impressions growth Q1/Q2/Q3-26",
+   "value": "+19% / +14% / +10%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028364/meta-03312026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "price per ad growth Q1/Q2/Q3-26",
+   "value": "+12% / +12% / +14%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "DAP growth",
+   "value": "+3%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "WARC social ad spend",
+   "value": "+21.3% 2026, +14.6% 2027",
+   "basis": "estimate",
+   "source_url": "https://ppc.land/warc-forecasts-social-media-ad-spend-gains-21-3-to-394-6bn-in-2026/",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "FY2026 capex guide",
+   "value": "$135-145B",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "first-guide capex overshoot",
+   "value": "+21% (2024), +16% (2025); 2026 guide midpoint +12%",
+   "basis": "reported",
+   "source_url": "file:///mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "diluted shares / buybacks",
+   "value": "2,574M FY2025, 2,573M Q3-26, zero buybacks",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "non-marketable equity investments",
+   "value": "$32,624M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "GOOGL P/E TTM / NTM",
+   "value": "16.1x / 18.0x",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "MSFT P/E TTM / NTM",
+   "value": "29.1x / 26.7x",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "AMZN P/E TTM / NTM",
+   "value": "19.8x / 26.6x",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "NFLX P/E TTM / NTM",
+   "value": "18.3x / 17.8x",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "APP P/E TTM / NTM",
+   "value": "19.9x / 14.6x",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "PINS P/E TTM / NTM",
+   "value": "50.5x / 35.8x",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "TTD P/E TTM / NTM / EPS growth",
+   "value": "15.0x / 25.7x / -2%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-23/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "META TTM multiples",
+   "value": "22.0x P/E TTM, 15.9x EV/EBITDA TTM",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "FY2025 bases",
+   "value": "rl_loss 19,193; capex 72,220; foa_other 2,584",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-12312025xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M-26 FoA other revenue",
+   "value": "$2,987M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M-26 RL loss",
+   "value": "$12.78B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M-26 capex incl. finance-lease principal",
+   "value": "$85.83B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY2026 expenses guide",
+   "value": "$175-179B",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "2026 legal and severance charges",
+   "value": "~$13.5B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "RL Jan-26 guide",
+   "value": "'similar to 2025'",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-12312025xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q4-26 tax guide",
+   "value": "15-17%",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M-26 tax / pretax",
+   "value": "$1,028M on $53,509M",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M-26 D&A",
+   "value": "$19,509M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q4 revenue guide and FX",
+   "value": "$73-76B, ~1% FX headwind",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Muse / Meta One subscription revenue flagged",
+   "value": "subscriptions",
+   "basis": "reported",
+   "source_url": "https://s21.q4cdn.com/399680738/files/content_files/META-Q3-2026-Earnings-Call-Transcript.pdf",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY2025 Oct capex guide",
+   "value": "$70-72B vs $72.22B",
+   "basis": "guidance",
+   "source_url": "file:///mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "2027 Meta capex consensus",
+   "value": "185.6 (IO Fund) / 164.0 (S&P via Motley Fool)",
+   "basis": "consensus",
+   "source_url": "file:///mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q3-26 interest expense / total debt",
+   "value": "$882M; $83.7B",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "net debt 2026-09-30",
+   "value": "$1,220M",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Meta requested NM cap",
+   "value": "~$1.5-3.5B",
+   "basis": "reported",
+   "source_url": "https://ppc.land/meta-faces-15-yearly-interest-on-25bn-new-mexico-penalty/",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "youth trial calendar",
+   "value": "2026-10-28; Feb-2027; 2027-03-16; 2027-08-06",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "forward price / settlement",
+   "value": "$622.91875; on or before 2027-11-19; physical settlement expected",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "upsize and option",
+   "value": "$22.5B -> $25.0B; 6,000,000 option (~$28.7B)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Nasdaq last sale 10-26",
+   "value": "$630.56",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "forward price adjustment",
+   "value": "OBFR less spread, less expected dividends",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526431040/d94886d424b5.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "use of proceeds",
+   "value": "general corporate purposes",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526431040/d94886d424b5.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "cornerstone indications",
+   "value": "NVIDIA/AMD/Broadcom up to $5.0B, non-binding",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526431036/d116268dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "preferred terms",
+   "value": "250M depositary shares at $50 = 12.5M pref at $1,000; 6.50%; first div $19.1389, then $16.25",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "preferred dividend dates / conversion",
+   "value": "Feb/May/Aug/Nov 15, 2027-02-15 to 2029-08-15; mandatory conversion 2029-08-15",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526431043/d133631d424b5.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "conversion rates",
+   "value": "initial $625.00 (max 1.6000), threshold $734.2144 (min 1.3620, +17.5%)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "preferred over-allotment / settlement / proceeds",
+   "value": "1,875,000 pref (37.5M depositary); settles 2026-10-29; ~$12.5B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "revenue Q4-2026 guidance arithmetic",
+   "value": "6/2/0, median 0.0407, adjusted 77533.0, ours 75948 inside 0.0194",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "total expenses FY2026 guidance arithmetic",
+   "value": "0/2/1, median -0.0143, adjusted 174469, ours 177100 inside 0.0006",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "capex FY2026 guidance arithmetic",
+   "value": "2/0/1, median 0.1555, adjusted 161770, ours 141000 inside 0.0071",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "net interest in core EPS",
+   "value": "FY2027 633; FY2028 3,373",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "net debt pro forma for the raise",
+   "value": "-35,551.3",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "total expenses FY2026 guide as of 2026-10-21",
+   "value": "175000-179000; legal $12.29B, severance $1.18B",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-06302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Reality Labs operating loss FY2026 (first guide qualitative): first guide (2026-01-28) / reported actual",
+   "value": "19193 / 18475 (estimate)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "total expenses FY2024: first guide (2023-10-25) / reported actual",
+   "value": "94000-99000 / 95121",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000014/meta-12312024xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "capex (incl. finance-lease principal) FY2024: first guide (2023-10-25) / reported actual",
+   "value": "30000-35000 / 39230",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680125000014/meta-12312024xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "shares",
+   "value": "2,573M now; 2,613M horizon (estimate)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Series A mandatory convertible preferred (balance.preferred)",
+   "value": "$12,662.5M (estimate); $812.5M/yr",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526432549/d382225dfwp.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "2022 trough multiple",
+   "value": "~14.1x at $490 (derived)",
+   "basis": "estimate",
+   "source_url": "model_engine.py check (supervisor.json)",
+   "checked": "2026-10-27",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "peer_median_pe_ntm (7 peers)",
+   "value": "NTM 23.7x (cross-check); GAAP TTM 19.9x",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-27/META/peers.md",
+   "checked": "2026-10-27",
+   "feeds": "comps"
+  },
+  {
+   "item": "founder voting control",
+   "value": "Class B ~61% (60.7%) of votes",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066773/meta-20260930.htm",
+   "checked": "2026-10-27",
+   "feeds": "long_dated_review"
+  },
+  {
+   "item": "Big-4 2028 capex growth in file base",
+   "value": "+23%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-10-27",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Wells Fargo 2027 Meta capex (variant)",
+   "value": "~$250B (sell-side, variant)",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/video/wells-fargo-cuts-meta-price-002001458.html",
+   "checked": "2026-10-27",
+   "feeds": "scenarios (variant only)"
+  },
+  {
+   "item": "Reality Labs loss FY2027 guidance arithmetic",
+   "value": "0/0/1; record-adjusted 14439",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026066700/meta-09302026xexhibit991.htm",
+   "checked": "2026-10-27",
+   "feeds": "guidance_check"
+  }
+ ],
+ "quarterly_gate": {
+  "checked": 101,
+  "fixes": 5,
+  "file": "driver_models/META/quarterly/gate.json"
+ },
+ "financing_gate": {
+  "date": "2026-10-29",
+  "checked": 1,
+  "clean": true,
+  "by": "separate gate agent (opened FWP 0001193125-26-431036, 424B5 0001193125-26-436410, PRE 14C 0001628280-26-066710)",
+  "result": "quotes and arithmetic ok; 4 labelling fixes applied (start date, price, proceeds as estimates; source 28 for $625; price variant)"
+ }
+}

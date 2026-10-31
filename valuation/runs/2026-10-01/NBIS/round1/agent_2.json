@@ -1,0 +1,574 @@
+{
+  "symbol": "NBIS",
+  "agent_id": "agent_2",
+  "as_of": "2026-10-01",
+  "horizon": "2027-10-01",
+  "ladder": [
+    {
+      "K": 58.0,
+      "p": 0.96
+    },
+    {
+      "K": 93.0,
+      "p": 0.88
+    },
+    {
+      "K": 116.0,
+      "p": 0.825
+    },
+    {
+      "K": 139.0,
+      "p": 0.77
+    },
+    {
+      "K": 163.0,
+      "p": 0.705
+    },
+    {
+      "K": 186.0,
+      "p": 0.63
+    },
+    {
+      "K": 209.0,
+      "p": 0.555
+    },
+    {
+      "K": 232.0,
+      "p": 0.475
+    },
+    {
+      "K": 256.0,
+      "p": 0.4
+    },
+    {
+      "K": 279.0,
+      "p": 0.34
+    },
+    {
+      "K": 314.0,
+      "p": 0.265
+    },
+    {
+      "K": 348.0,
+      "p": 0.205
+    },
+    {
+      "K": 406.0,
+      "p": 0.13
+    },
+    {
+      "K": 465.0,
+      "p": 0.08
+    },
+    {
+      "K": 581.0,
+      "p": 0.027
+    }
+  ],
+  "ladder_1m": [
+    {
+      "K": 185.82,
+      "p": 0.785
+    },
+    {
+      "K": 197.44,
+      "p": 0.72
+    },
+    {
+      "K": 209.05,
+      "p": 0.645
+    },
+    {
+      "K": 216.02,
+      "p": 0.6
+    },
+    {
+      "K": 222.99,
+      "p": 0.555
+    },
+    {
+      "K": 232.28,
+      "p": 0.5
+    },
+    {
+      "K": 241.57,
+      "p": 0.445
+    },
+    {
+      "K": 248.54,
+      "p": 0.405
+    },
+    {
+      "K": 255.51,
+      "p": 0.365
+    },
+    {
+      "K": 267.12,
+      "p": 0.31
+    },
+    {
+      "K": 278.74,
+      "p": 0.26
+    }
+  ],
+  "one_month_reasoning": "Inside the Oct 2-31 window: (1) Nebius's leaked GPU/CPU price increases took effect Oct 1 (H100 +17% to $4.50/hr), already partly priced after the Sept 17 +4% move; (2) hyperscaler Q3 reports in the last week of October (Microsoft, Alphabet, Meta, Amazon), where capex guides matter most for neocloud sentiment; all three of Alphabet/Amazon/Meta raised capex in July and consensus points toward ~$1T in 2027, so a further raise is more likely than a cut, but the stock reacts to tone and any off-balance-sheet/leasing commentary; (3) neocloud credit tone (CoreWeave CDS, Redburn Sell calls of Sept 21). Nebius Q3 results (likely ~Nov 11-12), CoreWeave Q3 and NVIDIA (late Nov) fall just outside. No strong directional edge, so I use a symmetric lognormal around $232.28 with monthly sigma ~28% (106%/3.5 = 30%, trimmed slightly as vol has compressed since the June peak).",
+  "fair_value": {
+    "value": 201.0,
+    "method": "50/50 blend of a capex-driven DCF ($157 at Oct-2027: WACC 12.5%, g 3%, asset turnover 0.48, EBITDA margin 55%, capex $34B in 2027 falling to $15B) and EV/NTM EBITDA ($246: 11x on $9.4B, net debt ~$30B, 320M shares). The DCF is very sensitive: +/-1pt WACC or +/-0.04 turnover moves it by roughly +/-$60-80.",
+    "methods": [
+      {
+        "name": "DCF",
+        "value": 157.0,
+        "weight": 0.5,
+        "inputs": "Capex-driven FCFF 2027-2033 + Gordon terminal, valued at Oct-2027. Productive gross PP&E start-2027 $24B + $6B CIP; capex $34B/30/25/20/18/16/15B (2027-33); revenue = 0.48 x prior-year gross PP&E (2027 $14.0B, 2028 $32.9B, 2030 $58.6B); EBITDA margin 50% (2027) then 55%; D&A 13.75% of gross PP&E; tax 25%; WACC 12.5%; terminal g 3% with replacement capex = D&A + g x PP&E. EV $53.3B (PV FCF -$3.0B, PV TV $56.3B) - debt-like $16B + stakes $5.2B = $42.5B / 295M diluted shares = $144 at start-2027, rolled to $157 at Oct-2027. Sensitivity: WACC 12-13% x asset turnover 0.45-0.52 gives $80-$266; bear inputs (turnover 0.40, margin 45%) give negative equity value.",
+        "inputs_detail": [
+          {
+            "input": "2027 revenue (model check)",
+            "value": "$14.0B",
+            "basis": "estimate",
+            "source_ids": [
+              6,
+              7,
+              2
+            ],
+            "derivation": "Model output, set to sit between Yahoo consensus avg $12.31B (range $8.81-17.99B) and the path to BNP's ~$22B exit-2027 ARR; management says it could sell all 2027 capacity and will add >1GW in 2027."
+          },
+          {
+            "input": "Asset turnover (revenue / gross PP&E)",
+            "value": "0.48",
+            "basis": "estimate",
+            "source_ids": [
+              1,
+              2,
+              14,
+              15,
+              24,
+              9
+            ],
+            "derivation": "ARR exit-2026 guide $8B mid vs cumulative ~$30B capex (2026 $20-25B guide + prior years) = ~0.27 on all capex incl. not-yet-productive sites; on productive GPUs, B200 at $5.86-8.09/hr (Silicon Data, Ornn) x 8,760h x ~85% util = ~$44-60k/yr vs ~$65k all-in cost/GPU and H100 still $2.71-3.84/hr 3+ yrs after launch, consistent with 0.45-0.55. Mid-term deals at $20-25M/MW (Nebius) vs CoreWeave $40M/MW short-dated, IREN $20M+/MW 3-yr."
+          },
+          {
+            "input": "EBITDA margin",
+            "value": "50% 2027, 55% thereafter",
+            "basis": "estimate",
+            "source_ids": [
+              2,
+              3,
+              12
+            ],
+            "derivation": "Group adj. EBITDA 41% in Q2-26 and ~40% 2026 guide; AI cloud segment 50% in Q2; CoreWeave runs ~60% adj. EBITDA margin (2025). Scale plus Oct-1 price increases move Nebius toward but not to CoreWeave's level."
+          },
+          {
+            "input": "Capex path",
+            "value": "$34B (2027) falling to $15B (2033)",
+            "basis": "estimate",
+            "source_ids": [
+              2,
+              8,
+              10
+            ],
+            "derivation": "2026 guide $20-25B; >1GW new capacity in 2027 at ~$30-35M/MW all-in; 5GW contracted power coming online over 2-3.5 yrs; Redburn estimates ~$250B through 2030 for 5GW (my path is ~$110B through 2030, i.e. I assume only ~2.5-3GW actually built/financed). CoreWeave 2026 capex $35-39B for 1.85GW active is a scale cross-check."
+          },
+          {
+            "input": "D&A rate",
+            "value": "13.75% of gross PP&E",
+            "basis": "judgment",
+            "source_ids": [
+              14,
+              15,
+              23
+            ],
+            "derivation": "75% GPUs/servers over 6 yrs + 25% buildings/power over 20 yrs; H100 rental prices ($2.50-3.84/hr in Sept 2026) show 3-4 year-old GPUs still earn, supporting ~6-yr lives."
+          },
+          {
+            "input": "WACC",
+            "value": "12.5%",
+            "basis": "estimate",
+            "source_ids": [
+              19,
+              11
+            ],
+            "derivation": "10y UST 5.29% + beta ~1.8 x 5% ERP = ~14.3% cost of equity; ~25% debt at ~7% pre-tax (low-coupon converts, ABS); neocloud credit stress (CoreWeave CDS 855bp) argues against going lower."
+          },
+          {
+            "input": "Terminal growth",
+            "value": "3%",
+            "basis": "judgment",
+            "source_ids": [
+              19,
+              17
+            ],
+            "derivation": "Nominal growth near long rates (5.29%) less maturity; AI capex expected near $1T in 2027 supports durable demand but not supernormal terminal growth."
+          },
+          {
+            "input": "Debt-like items at start-2027",
+            "value": "$16B",
+            "basis": "estimate",
+            "source_ids": [
+              4,
+              2
+            ],
+            "derivation": "June-30 debt $10.2B less cash $8.04B = $2.2B net debt, plus H2-26 capex (~$22.5B guide mid less $8.1B H1) less H2 EBITDA ~$1B = ~$15.6B; customer prepayments not credited because the matching future revenue is counted in the DCF."
+          },
+          {
+            "input": "Non-core stakes",
+            "value": "$5.2B",
+            "basis": "estimate",
+            "source_ids": [
+              20,
+              21
+            ],
+            "derivation": "28% of ClickHouse at ~$15B Series D = $4.2B, plus ~$1B judgment for Toloka/Avride/TripleTen."
+          },
+          {
+            "input": "Diluted shares",
+            "value": "295M",
+            "basis": "estimate",
+            "source_ids": [
+              4,
+              2
+            ],
+            "derivation": "274.1M outstanding plus convertible/ATM/equity-comp dilution (12.3M shares still available under ATM; $4.3B converts issued Q1-26)."
+          }
+        ]
+      },
+      {
+        "name": "EV/EBITDA",
+        "value": 246.0,
+        "weight": 0.5,
+        "inputs": "Oct-2027 NTM EBITDA $9.4B (exit-2027 ARR ~$18B x 52%) x 11x = EV $103B; less Oct-2027 net debt ~$30B, plus stakes $5.2B = $78.6B equity / 320M shares = $246.",
+        "inputs_detail": [
+          {
+            "input": "Exit-2027 ARR",
+            "value": "$18B",
+            "basis": "estimate",
+            "source_ids": [
+              7,
+              6,
+              2
+            ],
+            "derivation": "Haircut to BNP's ~$22B; above path implied by 2027 consensus revenue $12.3B; 2026 exit ARR guide $7-9B plus >1GW added in 2027."
+          },
+          {
+            "input": "NTM EBITDA margin",
+            "value": "52%",
+            "basis": "estimate",
+            "source_ids": [
+              2,
+              3,
+              12
+            ],
+            "derivation": "Between Nebius AI segment 50% (Q2-26) and CoreWeave ~60%."
+          },
+          {
+            "input": "EV/NTM EBITDA multiple",
+            "value": "11x",
+            "basis": "estimate",
+            "source_ids": [
+              12,
+              11,
+              8
+            ],
+            "derivation": "CoreWeave EV/LTM EBITDA 14.8x (EV $94B) implies ~11x forward; Nebius has less leverage than CoreWeave (recourse debt $31.4B, CDS 855bp) but Redburn flags greater valuation downside; in a year growth will be slower, so no premium."
+          },
+          {
+            "input": "Oct-2027 net debt",
+            "value": "$30B",
+            "basis": "estimate",
+            "source_ids": [
+              4,
+              2,
+              10
+            ],
+            "derivation": "Start-2027 debt-like $16B plus ~3/4 of 2027 FCF burn (~-$21B) less assumed ~$8B of new equity (ATM pace of $2.8B/qtr in Q2) = ~$29-30B."
+          },
+          {
+            "input": "Oct-2027 shares",
+            "value": "320M",
+            "basis": "estimate",
+            "source_ids": [
+              4,
+              2
+            ],
+            "derivation": "295M diluted + ~$8B equity issued at ~$250 = ~32M shares, rounded down."
+          },
+          {
+            "input": "Non-core stakes",
+            "value": "$5.2B",
+            "basis": "estimate",
+            "source_ids": [
+              20,
+              21
+            ],
+            "derivation": "As in DCF."
+          }
+        ]
+      }
+    ]
+  },
+  "scenarios": {
+    "bear": {
+      "price": 90.0,
+      "prob": 0.25,
+      "story": "Funding window narrows (neocloud CDS widen, hyperscaler off-balance-sheet leverage concerns per Redburn), training demand from VC-funded labs cools, GPU rental prices resume falling as Blackwell supply loosens after CoWoS relief; Nebius slows the 5GW build, misses 2026 exit ARR ($7B low end) and 2027 guide disappoints; market values it near invested capital less debt."
+    },
+    "base": {
+      "price": 225.0,
+      "prob": 0.5,
+      "story": "2026 exit ARR ~$8B, 2027 guide implies $12-14B revenue and ~$18B exit ARR; EBITDA margins drift to low-50s on price increases; capex financed by prepayments, converts, ABS and steady ATM dilution; multiple compresses as growth decelerates, so share price roughly flat to slightly down."
+    },
+    "bull": {
+      "price": 400.0,
+      "prob": 0.25,
+      "story": "Compute stays sold out through 2027 (CoWoS-constrained, hyperscaler capex ~$1T), Blackwell/Rubin pricing holds, Nebius hits BNP-like ~$22B exit-2027 ARR with 55-60% margins and more Meta/Microsoft-scale contracts; stock re-rates toward high-end targets ($399-415)."
+    }
+  },
+  "thesis_break_price": 115.0,
+  "thesis_break_reason": "Below ~$115 the market would be pricing equity near invested capital less debt (DCF with asset turnover <=0.45 or WACC >=13.5%), which most likely means a fundamental break: failure to finance the build (equity/convert window shut, prepayments drying up), a major customer (Meta/Microsoft) deferring capacity, or a sharp drop in contracted $/MW pricing, rather than ordinary 100%-vol noise.",
+  "catalysts": [
+    {
+      "date": "2026-10-01",
+      "event": "Nebius GPU/CPU price increases take effect",
+      "direction": "+"
+    },
+    {
+      "date": "2026-10-28",
+      "event": "Hyperscaler Q3 earnings week (MSFT, GOOGL, META, AMZN): 2027 capex commentary",
+      "direction": "?"
+    },
+    {
+      "date": "2026-11",
+      "event": "Nebius Q3 2026 results; formal 2027 guidance expected later in 2026",
+      "direction": "?"
+    },
+    {
+      "date": "2026-11",
+      "event": "CoreWeave Q3 results and backlog / credit read-through",
+      "direction": "?"
+    },
+    {
+      "date": "2026-11",
+      "event": "NVIDIA Q3 FY27 results (guide $108B) and AI Clouds segment trend",
+      "direction": "+"
+    },
+    {
+      "date": "2026-12",
+      "event": "Oracle Q2 FY27: RPO and AI cloud pricing read-through",
+      "direction": "?"
+    },
+    {
+      "date": "2026-12-31",
+      "event": "Exit-2026 ARR vs $7-9B guide; connected power 0.8-1GW",
+      "direction": "?"
+    },
+    {
+      "date": "2027-02",
+      "event": "Nebius Q4 2026 results and 2027 guidance",
+      "direction": "?"
+    },
+    {
+      "date": "2027",
+      "event": "Possible ClickHouse IPO / stake monetization",
+      "direction": "+"
+    },
+    {
+      "date": "2027",
+      "event": "Ongoing equity/convert issuance to fund >1GW 2027 build",
+      "direction": "-"
+    }
+  ],
+  "key_uncertainties": [
+    "Durability of GPU rental pricing as Blackwell/Rubin supply loosens (H100 index $2.71-3.84 vs Nebius list $4.50)",
+    "Access to ~$100B+ of external financing through 2030 and resulting dilution",
+    "Customer concentration (Meta $27B, Microsoft, four >$1B deals) and AI-lab training demand dependent on venture funding",
+    "Useful life / depreciation of GPUs, which drives the DCF sign",
+    "Hyperscaler 2027 capex path and whether they keep outsourcing to neoclouds",
+    "Execution on 5GW contracted power coming online over 2-3.5 years"
+  ],
+  "reasoning": "Industry evidence is strong on demand and pricing near term: NVIDIA's AI Clouds/Industrial/Enterprise data-center revenue grew 138% y/y to $40.3B and Q3 is guided to $108B; CoreWeave raised 2026 revenue and capex guides with a $104B (then $129B) backlog; Oracle's RPO hit $664B; hyperscaler 2026 capex >$700B with ~$1T expected in 2027; B200 rental indices are firm ($5.86-8.09/hr) and Nebius is raising list prices from Oct 1. The other side is also industry-wide: CoreWeave CDS at 855bp (~50% implied 5-yr default) in July, Redburn Sell calls ($84 NBIS) arguing training demand only lasts while outside capital does, and H100 prices half their peak. A capex-driven DCF says the equity is worth ~$157 at Oct-2027 on reasonable assumptions (12.5% WACC given 5.29% 10y, 0.48 asset turnover, 55% EBITDA margin), but its range spans negative to >$400 because returns on capital sit near the cost of capital; EV/EBITDA at a CoreWeave-like 11x forward gives $246. Blended fair value ~$201, below the $232 price and the ~$283 consensus target. Scenarios 25/50/25 at $90/$225/$400 (mean ~$235, median ~$225) modeled as a lognormal mixture (sigmas 0.45/0.30/0.30), giving an implied overall dispersion close to the stock's 106% realized vol with a fatter left tail for a financing break. Ladder is roughly at spot at the median, slightly lower, reflecting fair value below price offset by strong industry momentum. Research limited by Twelve Data/Alpha Vantage plan limits (used web sources instead); no option data used.",
+  "lane": "industry",
+  "sources": [
+    {
+      "title": "Nebius Group Form 6-K Ex.99-2: Q1 2026 results (ARR $1.92B, 2026 guidance, Meta $27B deal, >3.5GW contracted power)",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926059872/tm2614392d1_ex99-2.htm",
+      "date": "2026-05",
+      "type": "filing",
+      "in_lane": false
+    },
+    {
+      "title": "Earnings call transcript: Nebius Q2 2026 (revenue $582.3M, ARR $3B, guidance reaffirmed, capex $20-25B, $/MW pricing, ATM)",
+      "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-nebius-beats-q2-2026-forecasts-shares-jump-165-93CH-4855076",
+      "date": "2026-08-12",
+      "type": "company",
+      "in_lane": false
+    },
+    {
+      "title": "My Nebius Q2 2026 Notes (Motley Fool community): AI EBITDA margin 50%, capex payback 1y10m, prepayments cover 50-70% of capex",
+      "url": "https://discussion.fool.com/t/my-nebius-q2-2026-notes/125967",
+      "date": "2026-08",
+      "type": "forum",
+      "in_lane": false
+    },
+    {
+      "title": "StockAnalysis NBIS statistics: 274.1M shares, debt $10.2B, cash $8.04B",
+      "url": "https://stockanalysis.com/stocks/nbis/statistics/",
+      "date": "2026-10-02",
+      "type": "data",
+      "in_lane": false
+    },
+    {
+      "title": "StockAnalysis NBIS forecast: 2026 revenue consensus $3.3B, 20 analysts, targets $84-$415, avg $283.58",
+      "url": "https://stockanalysis.com/stocks/nbis/forecast/",
+      "date": "2026-09-25",
+      "type": "data",
+      "in_lane": false
+    },
+    {
+      "title": "Yahoo Finance NBIS analysis: 2027 revenue consensus avg $12.31B (low $8.81B, high $17.99B, 20 analysts)",
+      "url": "https://finance.yahoo.com/quote/NBIS/analysis/",
+      "date": "2026-09",
+      "type": "sell-side",
+      "in_lane": false
+    },
+    {
+      "title": "BNP Paribas upgrades Nebius to Outperform, PT $399, sees ~$22B ARR exiting 2027",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/nebius-stock-surges-bnp-paribas-023856743.html",
+      "date": "2026-09",
+      "type": "sell-side",
+      "in_lane": false
+    },
+    {
+      "title": "Rothschild Redburn starts Nebius at Sell, $84 target; ~$250B needed through 2030 for 5GW, ~$200B unfunded; hyperscaler off-balance-sheet leverage",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/rothschild-redburn-starts-nebius-sell-131344717.html",
+      "date": "2026-09-22",
+      "type": "sell-side",
+      "in_lane": true
+    },
+    {
+      "title": "TipRanks: Neocloud stocks CoreWeave, Nebius, IREN fall amid GPU pricing concerns (CRWV $40M/MW short-dated, IREN $20M+/MW 3-yr, NBIS H100 +17% to $4.50/hr)",
+      "url": "https://www.tipranks.com/news/neocloud-stocks-coreweave-nebius-and-iren-fall-amid-gpu-pricing-concerns",
+      "date": "2026-09-22",
+      "type": "press",
+      "in_lane": true
+    },
+    {
+      "title": "CoreWeave Q2 2026 earnings call corrected transcript (2026 capex $35-39B, 1.85GW active power, revenue guide $12.4-13.2B)",
+      "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CRWV-US-CORRECTED-TRANSCRIPT-CoreWeave-Q2-2026-Earnings-Call-11August2026.pdf",
+      "date": "2026-08-11",
+      "type": "company",
+      "in_lane": true
+    },
+    {
+      "title": "TechTimes: CoreWeave Q2 2026 backlog $129B; CDS at 855bp implied ~50% 5-yr default probability in late July; recourse debt $31.4B; interest $640M/qtr",
+      "url": "https://www.techtimes.com/articles/324054/20260812/coreweave-q2-2026-129b-backlog-grew-296b-six-weeks-despite-50-default-odds.htm",
+      "date": "2026-08-12",
+      "type": "press",
+      "in_lane": true
+    },
+    {
+      "title": "Multiples.vc CoreWeave valuation multiples: market cap $48B, EV $94B, EV/LTM EBITDA 14.8x, EV/revenue 8.7x",
+      "url": "https://multiples.vc/public-comps/coreweave-valuation-multiples",
+      "date": "2026-09",
+      "type": "data",
+      "in_lane": true
+    },
+    {
+      "title": "NVIDIA Q2 FY2027 results: revenue $96.2B, data center $89.0B; AI Clouds/Industrial/Enterprise $40.3B (+138% y/y); Q3 guide $108B",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
+      "date": "2026-08-26",
+      "type": "filing",
+      "in_lane": true
+    },
+    {
+      "title": "Ornn Compute Price Index (OCPI): H100 SXM $2.71/GPU-hr, B200 $8.09/GPU-hr on 2026-09-30",
+      "url": "https://data.ornn.com/preview",
+      "date": "2026-09-30",
+      "type": "alt-data",
+      "in_lane": true
+    },
+    {
+      "title": "DEV Community: What it costs to rent an H100, B200 in September 2026, live prices from 28 GPU clouds (H100 avg $3.84, B200 avg $6.39)",
+      "url": "https://dev.to/fastgpu/what-it-costs-to-rent-an-h100-b200-or-rtx-4090-in-september-2026-live-prices-from-28-gpu-clouds-12n3",
+      "date": "2026-09-13",
+      "type": "alt-data",
+      "in_lane": true
+    },
+    {
+      "title": "Oracle Q1 FY27 results: RPO $664B, OCI +121%, capex $28B in quarter, FY capex $90-95B",
+      "url": "https://erp.today/oracle-q1-fy27-results-664b-backlog-ai-contracts/",
+      "date": "2026-09-10",
+      "type": "press",
+      "in_lane": true
+    },
+    {
+      "title": "2026 hyperscaler capex tops US$700bn (TMT Finance analysis)",
+      "url": "https://www.tmtfinance.com/intel/2026-hyperscaler-capex-tops-us700bn-analysis",
+      "date": "2026-08",
+      "type": "trade",
+      "in_lane": true
+    },
+    {
+      "title": "Manifold: Google, Amazon, Meta & Microsoft total capex for 2027 (800B+ 48%, 600-800B 37%; 6 holders, 39 trades; closed N/A, creator cites ~$1T consensus)",
+      "url": "https://manifold.markets/Mad2live/google-amazon-meta-microsoft-total",
+      "date": "2026-05-21",
+      "type": "prediction-market",
+      "in_lane": true
+    },
+    {
+      "title": "FRED DGS10: 10-year Treasury yield 5.29% on 2026-09-30",
+      "url": "https://fred.stlouisfed.org/series/DGS10",
+      "date": "2026-09-30",
+      "type": "data",
+      "in_lane": false
+    },
+    {
+      "title": "Sacra / reports: ClickHouse $400M Series D at ~$15B valuation (Jan 2026); Nebius owns ~28%",
+      "url": "https://sacra.com/c/clickhouse/",
+      "date": "2026-01",
+      "type": "data",
+      "in_lane": false
+    },
+    {
+      "title": "Globe and Mail/Zacks: Will Nebius' Toloka and ClickHouse stakes fund its AI expansion (Toloka, Avride, TripleTen holdings)",
+      "url": "https://www.theglobeandmail.com/investing/markets/stocks/CRWV/pressreleases/35528271/will-nebius-toloka-and-clickhouse-stakes-fund-its-ai-expansion/",
+      "date": "2025",
+      "type": "press",
+      "in_lane": false
+    },
+    {
+      "title": "Yahoo/Barchart: Nebius stock spikes 4% on higher compute prices (leaked customer notice: H100/H200/B200/B300 and CPU price increases from Oct 1, 2026)",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/nebius-stock-spikes-4-higher-194050887.html",
+      "date": "2026-09-17",
+      "type": "press",
+      "in_lane": true
+    },
+    {
+      "title": "Thunder Compute: AI GPU rental market trends (H100 $2.50-10.98/hr; Blackwell effectively reserved; CoWoS sold out)",
+      "url": "https://www.thundercompute.com/blog/ai-gpu-rental-market-trends",
+      "date": "2026-10",
+      "type": "trade",
+      "in_lane": true
+    },
+    {
+      "title": "Silicon Data B200 Rental Price Index: $5.86/GPU-hr on 2026-10-01, +0.2% 7-day",
+      "url": "https://www.silicondata.com/products/silicon-index/b200",
+      "date": "2026-10-01",
+      "type": "alt-data",
+      "in_lane": true
+    },
+    {
+      "title": "Investing.com: CoreWeave Q2 2026 slides, revenue doubles, backlog $104.2B (+246%)",
+      "url": "https://www.investing.com/news/company-news/coreweave-q2-2026-slides-revenue-doubles-backlog-surges-246-93CH-4852949",
+      "date": "2026-08-11",
+      "type": "company",
+      "in_lane": true
+    },
+    {
+      "title": "ValueAdd VC: Meta AI capex 2026 narrowed to $130-145B after Q2 (third raise of 2026)",
+      "url": "https://valueaddvc.com/blog/meta-145b-ai-capex-2026-why-zuckerberg-raised-guidance-twice",
+      "date": "2026-07-30",
+      "type": "trade",
+      "in_lane": true
+    }
+  ]
+}

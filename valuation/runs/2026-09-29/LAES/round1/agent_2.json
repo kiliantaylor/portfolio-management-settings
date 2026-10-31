@@ -1,0 +1,82 @@
+{
+  "symbol": "LAES", "agent_id": "agent_2", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 0.61, "p": 0.98}, {"K": 0.97, "p": 0.93}, {"K": 1.21, "p": 0.87}, {"K": 1.46, "p": 0.78},
+    {"K": 1.70, "p": 0.68}, {"K": 1.94, "p": 0.59}, {"K": 2.18, "p": 0.51}, {"K": 2.42, "p": 0.45},
+    {"K": 2.67, "p": 0.39}, {"K": 2.91, "p": 0.34}, {"K": 3.27, "p": 0.29}, {"K": 3.64, "p": 0.24},
+    {"K": 4.24, "p": 0.19}, {"K": 4.85, "p": 0.15}, {"K": 6.06, "p": 0.10}
+  ],
+  "ladder_1m": [
+    {"K": 1.94, "p": 0.78}, {"K": 2.06, "p": 0.71}, {"K": 2.18, "p": 0.63}, {"K": 2.26, "p": 0.58},
+    {"K": 2.33, "p": 0.54}, {"K": 2.42, "p": 0.49}, {"K": 2.52, "p": 0.43}, {"K": 2.59, "p": 0.40},
+    {"K": 2.67, "p": 0.36}, {"K": 2.79, "p": 0.31}, {"K": 2.91, "p": 0.26}
+  ],
+  "one_month_reasoning": "Only scheduled company event likely inside the window is a preliminary Q3/9M 2026 key-metrics release (SEALSQ issued Q1 metrics on 8 Apr and preliminary H1 in early July, so a Q3 update around mid-October is likely). The company has repeatedly reaffirmed $27-36M FY2026 guidance and beaten easy comps, yet the stock has drifted lower after each release (H1 +131% revenue did not stop the slide), so I do not expect a reliable positive drift from it. No regulatory decision is scheduled before 1 Nov (CNSA 2.0 new-acquisition deadline is 1 Jan 2027). Sector beta to speculative quantum names is high and has been negative in 2026. I therefore use a near-symmetric lognormal around today's $2.425 with monthly sigma ~0.29 (100%/3.5), shaded about 1 point down for persistent negative momentum.",
+  "fair_value": {
+    "value": 2.15,
+    "method": "Blend of a 12-month-forward sum of the parts (projected net cash ~$340M + operating business at 4x 2027E revenue of ~$45M + strategic stakes at half of cost, over ~232M shares = $2.39) weighted 0.6, and a distressed-discount case (projected cash plus ops at 1.5x sales = $1.78) weighted 0.4.",
+    "methods": [
+      {"name": "SOTP", "value": 2.39, "weight": 0.6,
+       "inputs": "Net cash Oct-2027 ~$340M ($495M Jun-2026 less ~5 quarters x ~$30M burn and ~$5M/qtr further strategic deployment); ops 4.0x 2027E revenue $45M = $180M; strategic stakes (Quobly, EeroQ, Wecan etc.) ~$35M; total ~$555M / ~232M diluted shares",
+       "inputs_detail": [
+         {"input": "Cash and short-term investments 30 Jun 2026", "value": "$495M", "basis": "reported", "source_ids": [1, 2], "derivation": ""},
+         {"input": "Quarterly cash consumption", "value": "~$30M/qtr", "basis": "estimate", "source_ids": [2, 3], "derivation": "Cash fell from >$525M at 31 Mar 2026 to $495M at 30 Jun 2026 (~$30M in a quarter incl. acquisitions); H1 operating loss $32.2M. Assume similar burn for 5 quarters to Oct 2027 plus ~$25M more for announced strategic investments (Quobly lead, EeroQ, Quantix) -> ~$340M."},
+         {"input": "Shares outstanding (diluted, Oct 2027)", "value": "~232M", "basis": "estimate", "source_ids": [5, 4], "derivation": "Public.com market cap $545M on 1 Oct 2026 at ~$2.40 implies ~228M shares (after 30.4M shares issued in the March 2026 $125M offering); add ~2% for equity compensation. 60.8M warrants at $5.50 excluded as out of the money except in the bull case."},
+         {"input": "FY2026 revenue", "value": "$27-36M (mid $31.5M)", "basis": "guidance", "source_ids": [1, 2], "derivation": ""},
+         {"input": "FY2027 revenue", "value": "$45M", "basis": "estimate", "source_ids": [1, 3, 6, 7], "derivation": "~40% growth on the $31.5M guidance midpoint: QS7001/QVault TPM first production revenue expected late 2026 and pipeline >$225M through 2029 is non-contracted, while Infineon/NXP/ST are shipping PQC-capable secure elements and controllers, which caps SEALSQ's share; so growth is below the 2026 rate."},
+         {"input": "EV/sales multiple", "value": "4.0x", "basis": "judgment", "source_ids": [9, 10, 5], "derivation": "Quantum pure-plays traded 45-110x forward sales before a 30-40% sector de-rating in mid-2026; small fabless secure-IC businesses with ~48% gross margin and heavy losses trade at low single digits. Market currently implies only ~2-3x 2026 sales for LAES ops (EV ~$80M), so 4x assumes a modest re-rating on production ramp."},
+         {"input": "Strategic stakes", "value": "~$35M", "basis": "judgment", "source_ids": [2, 3], "derivation": "Roughly half of disclosed/likely cost of minority stakes and acquisitions (Quobly Series A lead, EeroQ, Wecan 55.5%); private quantum stakes are illiquid so haircut 50%."}
+       ]},
+      {"name": "other", "value": 1.78, "weight": 0.4,
+       "inputs": "Distressed / cash-discount case: Oct-2027 net cash $340M + ops at 1.5x 2027E revenue $45M ($68M) = $408M / 232M shares = $1.76, ~$1.78 with stakes at 10% of cost",
+       "inputs_detail": [
+         {"input": "Net cash Oct 2027", "value": "$340M", "basis": "estimate", "source_ids": [1, 2, 3], "derivation": "Same cash roll-forward as SOTP."},
+         {"input": "EV/sales multiple (bear-ish)", "value": "1.5x", "basis": "judgment", "source_ids": [9, 10], "derivation": "Applies if the quantum de-rating continues and the market keeps pricing a discount for cash being spent on acquisitions/venture stakes; consistent with LAES's ops currently being valued at only ~2-3x sales."},
+         {"input": "Shares", "value": "232M", "basis": "estimate", "source_ids": [5, 4], "derivation": "As above."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 1.30, "prob": 0.30, "story": "QS7001/QVault TPM production revenue slips into late 2027; FY2026 lands at the low end ($27M); incumbents (Infineon TEGRION SLI22, NXP, ST ST54M) win the large PQC sockets; cash keeps leaking into acquisitions and quantum venture stakes; quantum/speculative de-rating continues so stock trades well below shrinking cash per share (~$1.45)."},
+    "base": {"price": 2.30, "prob": 0.45, "story": "FY2026 ~$31M, 2027 ~$45M with first QS7001 volumes; burn ~$30M/qtr; stock trades around projected cash plus a small premium for the ops and stakes, roughly where it is today."},
+    "bull": {"price": 5.00, "prob": 0.25, "story": "CNSA 2.0 (Jan 2027) and EU national PQC roadmaps (end-2026) trigger visible design wins and a QS7001/TPM ramp; quantum-themed risk appetite returns (stock was $8.71 within the past year) and the market again pays a narrative multiple; the $5.50 warrants come into play as a cap/overhang near that level."}
+  },
+  "thesis_break_price": 1.40,
+  "thesis_break_reason": "Below ~$1.40 the market would be valuing SEALSQ below its projected Oct-2027 cash per share (~$1.45) with zero value for operations, which would most likely mean something fundamental: a large value-destructive acquisition or cash commitment, a dilutive raise despite ~$495M of liquidity, a failed QS7001 production launch, or governance/related-party issues with parent WISeKey, rather than ordinary volatility.",
+  "catalysts": [
+    {"date": "2026-10 (mid)", "event": "Preliminary Q3/9M 2026 key metrics and guidance reaffirmation", "direction": "?"},
+    {"date": "2026-12", "event": "EU member states due to have national PQC transition roadmaps and pilots under EU coordinated roadmap", "direction": "+"},
+    {"date": "2026-Q4", "event": "First QS7001 / QVault TPM production revenue (company target late 2026)", "direction": "+"},
+    {"date": "2027-01-01", "event": "CNSA 2.0: new US National Security Systems acquisitions must support quantum-resistant algorithms", "direction": "+"},
+    {"date": "2027-01 to 2027-03", "event": "Preliminary FY2026 revenue vs $27-36M guidance and FY2027 guidance; annual 20-F", "direction": "?"},
+    {"date": "2027", "event": "WISeSat-Columbus Acquisition Corp SPAC combination (sister/parent space asset) completion", "direction": "?"},
+    {"date": "2027-07 / 2027-09", "event": "Preliminary and full H1 2027 results; cash burn and acquisition spending visible", "direction": "?"},
+    {"date": "rolling", "event": "Incumbent PQC product launches/wins (Infineon, NXP, ST) and quantum-sector risk sentiment", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Whether SEALSQ wins meaningful PQC sockets against Infineon, NXP and STMicro, who are already shipping PQC-capable secure elements/controllers",
+    "Capital allocation: how much of the ~$495M cash pile is spent on acquisitions and quantum venture stakes vs preserved",
+    "Exact share count (sources range 199M-231M) and possibility of further dilution via ATM/registered directs",
+    "Speculative quantum-sector sentiment, which dominated the stock's 52-week $8.71 to $1.99 range",
+    "Conversion of the non-contracted $225M pipeline into revenue; timing of QS7001 production revenue"
+  ],
+  "reasoning": "Industry lane. The core fact is that LAES trades near its cash: ~$553M market cap at $2.425 on ~228M shares versus $495M cash and short-term investments at 30 Jun 2026 (likely ~$465M by end-Sept at ~$30M/qtr burn), so the operating business is priced at roughly $80-90M, ~2.6x 2026 guided revenue. The value chain says PQC hardware demand is real but slow and contested: ABI forecast >100M PQC-ready secure embedded units by 2028 but named NXP, Infineon and ST as frontrunners; Infineon launched the CC EAL6 TEGRION SLI22 automotive PQC controller (Mar 2026) and CNSA-2.0-compliant PSOC Control MCUs; ST launched the ST54M PQC secure mobile chip (Jun 2026); NXP is building PQC into i.MX 9 and S32. SEALSQ's QS7001 has certifications and >10 evaluating customers but first production revenue only late 2026, so 2027 revenue of ~$45M is my base. Regulation (CNSA 2.0 Jan 2027, EU roadmaps end-2026, high-risk by 2030) supports demand timing but benefits incumbents at least as much. Sector-wise, quantum pure-plays de-rated 30-40% in mid-2026 and LAES moves with them (100% realized vol). Fair value ~$2.15 (cash roll-forward plus modest ops value) is slightly below today's price because the cash is being consumed and redeployed into illiquid stakes. Distribution: median ~$2.2, lower tail thinner than a 100%-vol lognormal because of cash support (I put ~13% below $1.21 and ~22% below $1.46), and a fat right tail from quantum-narrative re-ratings (15% above $4.85, 10% above $6.06) given the stock was $8.71 within the year. Research limited: the SEC 6-K was not fetchable in this session and Twelve Data statistics/targets were unavailable, so share count is inferred from a market-cap data page and figures from secondary write-ups of the H1 release.",
+  "lane": "industry",
+  "sources": [
+    {"title": "SEALSQ Reports H1 2026 Financial Results: Revenue Surges 131% to $11.2M, $486M Cash Balance", "url": "https://quantumcomputingreport.com/sealsq-reports-h1-2026-financial-results-revenue-surges-131-to-11-2m-486m-cash-balance-and-post-quantum-hardware-progress/", "date": "2026-09-11", "type": "trade", "in_lane": true},
+    {"title": "Sealsq Revenue Accelerates 120% Y/Y as Cash Position Surpasses Valuation", "url": "https://www.panabee.com/news/sealsq-earnings-q3-2026", "date": "2026-07-08", "type": "press", "in_lane": false},
+    {"title": "SEALSQ Reports Q1 2026 Key Financial and Operational Metrics (StockTitan)", "url": "https://www.stocktitan.net/news/LAES/sealsq-reports-q1-2026-key-financial-and-operational-metrics-and-ym3ca93xo7sh.html", "date": "2026-04-08", "type": "company", "in_lane": false},
+    {"title": "SEALSQ: $125 Million Raised In Registered Direct Offering Priced At $4.11 Per Share", "url": "https://pulse2.com/sealsq-125-million-raised-in-registered-direct-offering-priced-at-4-11-per-share", "date": "2026-03-16", "type": "press", "in_lane": false},
+    {"title": "SEALSQ Corp (LAES) market cap", "url": "https://public.com/stocks/laes/market-cap", "date": "2026-10-01", "type": "data", "in_lane": false},
+    {"title": "PQC-Ready Secure Embedded Hardware Moving from Innovation to Over 100 Million Shipments by 2028 (ABI Research)", "url": "https://www.abiresearch.com/press/pqc-ready-secure-embedded-hardware-moving-from-innovation-to-over-100-million-shipments-by-2028", "date": "2024-10-01", "type": "trade", "in_lane": true},
+    {"title": "Infineon launches TEGRION SLI22 automotive security controller with PQC certified to CC EAL6", "url": "https://www.eejournal.com/industry_news/infineon-launches-tegrion-sli22-automotive-security-controller-with-post-quantum-cryptography-certified-to-common-criteria-eal6/", "date": "2026-03", "type": "trade", "in_lane": true},
+    {"title": "A chipmaker's post-quantum cryptography strategy (NXP)", "url": "https://www.computing.co.uk/news/2026/security/chipmaker-targets-automotive-and-industrial-systems-with-post-quantum-cryptography", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "IonQ, Rigetti, and D-Wave Quantum Are Down 30% in a Month", "url": "https://247wallst.com/investing/2026/07/29/ionq-rigetti-and-d-wave-quantum-are-down-30-in-a-month-is-more-pain-coming-for-quantum-computing-stocks/", "date": "2026-07-29", "type": "press", "in_lane": true},
+    {"title": "QBTS or IONQ: Which Quantum Stock Wins After January Sell-Off? (forward P/S multiples)", "url": "https://finance.yahoo.com/news/qbts-ionq-quantum-stock-wins-200000991.html", "date": "2026", "type": "press", "in_lane": true},
+    {"title": "STMicro's quantum gambit: ST54M PQC secure mobile chip", "url": "https://briefglance.com/articles/stmicros-quantum-gambit-a-new-chip-to-secure-the-post-quantum-world", "date": "2026-06-24", "type": "trade", "in_lane": true},
+    {"title": "Infineon drives industry transition to Post Quantum Cryptography on PSOC Control microcontrollers (CNSA 2.0)", "url": "https://www.eejournal.com/industry_news/infineon-drives-industry-transition-to-post-quantum-cryptography-on-psoc-control-microcontrollers", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "CNSA 2.0 and the 2027 inflection point", "url": "https://www.safelogic.com/blog/cnsa-2.0-and-the-2027-inflection-point", "date": "2026", "type": "expert", "in_lane": true},
+    {"title": "EU PQC Workstream publishes Coordinated Implementation Roadmap for the Transition to PQC", "url": "https://pqshield.com/eu-pqc-workstream-publishes-a-coordinated-implementation-roadmap-for-the-transition-to-post-quantum-cryptography/", "date": "2025-06", "type": "trade", "in_lane": true},
+    {"title": "WISeKey Reports Unaudited Preliminary H1 2026 Key Metrics; Revenue Up 115%", "url": "https://finviz.com/news/367559/wisekey-reports-unaudited-preliminary-h1-2026-key-metrics-revenue-up-115-fy-2026-guidance-reaffirmed", "date": "2026-07", "type": "company", "in_lane": true}
+  ]
+}
