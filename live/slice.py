@@ -3,9 +3,10 @@
     python3 live/slice.py OUT [--root /mnt/project-files] [--date D]
 
 OUT may already hold yesterday's slice (a clone of live-data): run folders of past dates are kept when the
-same file is already there with the same size, so a nightly run only reads what changed from the slow mount.
+same file is already there with the same size and the source has not been modified since that slice was taken
+(slice.json 'time'), so a nightly run only reads what changed from the slow mount.
 Writes OUT/base.json, the DATA embedded in the published valuation/report.html, which the live patch is measured from."""
-import concurrent.futures as cf, glob, json, os, re, shutil, sys
+import concurrent.futures as cf, glob, json, os, re, shutil, sys, time
 
 ARGS = sys.argv[1:]
 OUT = os.path.abspath(ARGS[0])
@@ -114,10 +115,19 @@ def wanted():
 def base_key(data):  # the page computes the same key from its embedded DATA (applyLive in report_template.html)
     return f"{data.get('as_of')}|{data.get('generated')}|{(data.get('live') or {}).get('time_utc')}"
 
+NOW = time.time()
+try: PREV = float(json.load(open(f'{OUT}/slice.json')).get('time') or 0)
+except Exception: PREV = 0.0  # no stamp: recopy everything once
+MARGIN = 600  # network-mount clocks can drift; anything touched near the last slice is recopied
+
 def copy(src):
     rel = os.path.relpath(src, ROOT); dst = os.path.join(OUT, rel)
-    fresh = '/runs/' in rel and f'/runs/{D}/' not in rel  # past runs don't change: reuse yesterday's copy
-    if fresh and os.path.exists(dst) and os.path.getsize(dst) == os.path.getsize(src): return 0
+    # past runs rarely change: reuse the last copy unless the source was edited after that slice (a same-size
+    # edit of runs/2026-10-28/GOOGL/supervisor.json slipped through a size-only check on 2026-11-02)
+    fresh = '/runs/' in rel and f'/runs/{D}/' not in rel
+    if fresh and os.path.exists(dst):
+        st = os.stat(src)
+        if os.path.getsize(dst) == st.st_size and st.st_mtime < PREV - MARGIN: return 0
     os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(src, dst); return 1
 
 if __name__ == '__main__':
@@ -133,5 +143,5 @@ if __name__ == '__main__':
     base = json.loads(m.group(1).replace('<\\/', '</'))
     json.dump(base, open(f'{OUT}/base.json', 'w'))
     key = base_key(base)
-    json.dump(dict(date=D, base=key), open(f'{OUT}/slice.json', 'w'))
+    json.dump(dict(date=D, base=key, time=NOW), open(f'{OUT}/slice.json', 'w'))
     print(json.dumps(dict(date=D, files=len(files), copied=n, removed=gone, base=key)))
