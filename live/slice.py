@@ -137,7 +137,7 @@ if __name__ == '__main__':
     gone = 0
     for p in walk(OUT):
         rel = os.path.relpath(p, OUT)
-        if rel not in keep and rel not in ('base.json', 'slice.json') and not rel.startswith('.git/'): os.remove(p); gone += 1
+        if rel not in keep and rel not in ('base.json', 'slice.json') and rel.split(os.sep)[0] != '.git': os.remove(p)  # .git is a folder in a clone, a file in a worktree; gone += 1
     h = open(f'{V}/report.html').read()
     m = re.search(r'<script id="data" type="application/json">(.*?)</script>', h, re.S)
     base = json.loads(m.group(1).replace('<\\/', '</'))
