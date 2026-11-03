@@ -49,7 +49,7 @@ jobs:
           git clone -q --depth 1 -b live-data "$URL" slice
           # nightly.sh pushes live-data as plain fast-forwards; fold the history back into one commit so the branch
           # stays one snapshot. The lease skips the fold if a newer push lands meanwhile (the next run folds it).
-          if [ -s slice/.git/shallow ]; then
+          if git -C slice cat-file -p HEAD | grep -q "^parent "; then
             ( cd slice && tip=$(git rev-parse HEAD) && git checkout -q --orphan fold \
               && git -c user.name=live-bot -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "$(git log -1 --format=%s "$tip")" \
               && git push -q --force-with-lease="live-data:$tip" "$URL" HEAD:live-data ) || echo "live-data fold skipped"
