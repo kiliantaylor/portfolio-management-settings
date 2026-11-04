@@ -16,9 +16,20 @@ case "${1:-}" in
   push)
     git clone -q --depth 1 -b live-data "$REPO" "$W/slice" 2>/dev/null || { git init -q "$W/slice" && git -C "$W/slice" checkout -q -b live-data; }
     python3 "$W/main/live/slice.py" "$W/slice" --root "$ROOT"
+    # 2026-11-04: each build has its own live-patch key, so the page shows no live prices until a live run patches the
+    # new build. This workflow rides in the live-data tree: a push here starts live.yml at once instead of at the next
+    # 30-minute tick. (Pushes made with the Actions token, such as live.yml's fold, start no workflow, so no loop.)
+    if [ -f "$W/main/live/on_slice.yml" ]; then mkdir -p "$W/slice/.github/workflows" && cp "$W/main/live/on_slice.yml" "$W/slice/.github/workflows/on-slice.yml"; fi
     cd "$W/slice" && git add -A
     git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live inputs $(date -u +%FT%TZ)"
-    git push -q "$REPO" HEAD:live-data || { echo "live-data moved while slicing (another push landed): rerun live/nightly.sh push" >&2; exit 1; }
+    if ! git push -q "$REPO" HEAD:live-data; then
+      # a token without workflow scope refuses .github/workflows: push the slice without the trigger (live prices then
+      # wait for the next 30-minute run) rather than not at all
+      git rm -q --cached -r .github && rm -rf .github
+      git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -q --amend -m "live inputs $(date -u +%FT%TZ)"
+      git push -q "$REPO" HEAD:live-data || { echo "live-data moved while slicing (another push landed): rerun live/nightly.sh push" >&2; exit 1; }
+      echo "pushed without the on-slice trigger (workflow scope refused); live prices return at the next 30-minute run" >&2
+    fi
     cd "$W/main"
     # only fills already in the trades.json just pushed; a fill entered during the re-mark stays for tomorrow's fold
     ids=$(python3 -c 'import glob,json,os,sys; have={t.get("fill_id") for t in json.load(open(sys.argv[1]))["trades"]}; print(" ".join(i for i in (os.path.basename(p)[:-5] for p in glob.glob("fills/*.json")) if i in have))' "$W/slice/valuation/data/trades.json")
