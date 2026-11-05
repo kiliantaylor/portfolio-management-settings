@@ -28,6 +28,12 @@ Fills, live quotes and the page's numbers update here, in GitHub Actions, with n
   4% / 7% or more records the day's event in the slice's `data/tape_hold.json`, so `review.py` holds adds in the exposed
   names (AI/data-center names and watchlist semis) and they are not swap candidates. A name stays held until it is cleared
   after its read-through (`tape_hold.py clear`); `live/nightly.sh tape` pushes the clear to `live-data` intraday.
+- **AI cap.** AI names (named list, watchlist semis, and any name with a riskcal `semis_ai` loading of 0.3 or more or
+  25%+ AI / data-center revenue; `valuation/data/ai_cap.json`) may be at most 50% of the money in stocks (Kilian 2026-11-05).
+  It holds back buys only and never trims. The live `review.py` run caps AI targets and clips the 'now' AI adds to the room
+  left (`valuation/ai_cap.py`, `runs/D/ai_cap.json`), `valuation/swap_test.py` drops a swap winner that would lift AI
+  over the cap, and `rules_check.py` ('ai-cap') refuses a build with a due AI buy that leaves AI above it. Gross: no hedge
+  is netted. Both files ride in the slice with the rest of `valuation/`, so `live/remark.py` needs no change.
 - **Nightly.** `live/nightly.sh fold` adds `fills/` to `valuation/data/trades.json` before the re-mark;
   `live/nightly.sh push` re-slices after the publish and removes fill files that trades.json now holds.
 
