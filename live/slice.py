@@ -1,11 +1,22 @@
 """Copy the inputs the live run needs from the project files into a folder that becomes the `live-data` branch.
 
     python3 live/slice.py OUT [--root /mnt/project-files] [--date D]
+    python3 live/slice.py OUT --research SYM [SYM ...] [--root /mnt/project-files]
 
 OUT may already hold yesterday's slice (a clone of live-data): run folders of past dates are kept when the
 same file is already there with the same size and the source has not been modified since that slice was taken
 (slice.json 'time'), so a nightly run only reads what changed from the slow mount.
-Writes OUT/base.json, the DATA embedded in the published valuation/report.html, which the live patch is measured from."""
+Writes OUT/base.json, the DATA embedded in the published valuation/report.html, which the live patch is measured from.
+
+--research (Kilian 2026-11-05, "valuation changes go live at once"): OUT is the live-data clone of the published slice.
+Adds each named symbol's newest finished research round dated after the slice date D (a model update done today, which
+the nightly can only pick up after the 4:15pm ET close bar) and lists it in slice.json 'research' {SYM: RDATE}; live/remark.py
+then re-marks that name with combine.py --research RDATE on every live run, so the page's target, take-profit, stop and
+the held names' sizing move intraday. Finished = runs/RDATE/SYM has supervisor.json, result.json and a clean
+citation_audit.json, a model_engine.json that values the current supervisor.json (combine.standard_model), and
+data/name_updates.json does not hold the name pending. D, base.json and every other slice file
+stay as they are (only files the slice lacks are added), so the page's patch key and the close-bar guard are untouched.
+The next nightly slice (D = RDATE) drops the list: the nightly re-mark picks the round up itself."""
 import concurrent.futures as cf, glob, json, os, re, shutil, sys, time
 
 ARGS = sys.argv[1:]
@@ -115,6 +126,42 @@ def wanted():
 def base_key(data):  # the page computes the same key from its embedded DATA (applyLive in report_template.html)
     return f"{data.get('as_of')}|{data.get('generated')}|{(data.get('live') or {}).get('time_utc')}"
 
+def research(syms):
+    meta = json.load(open(f'{OUT}/slice.json')); D0 = meta['date']
+    today = __import__('datetime').datetime.now(__import__('zoneinfo').ZoneInfo('America/New_York')).date().isoformat()
+    try: pend = json.load(open(f'{V}/data/name_updates.json')).get('names') or {}
+    except FileNotFoundError: pend = {}
+    got, why = dict(meta.get('research') or {}), {}
+    for s in syms:
+        rs = sorted(p.split('/')[-3] for p in glob.glob(f'{V}/runs/*/{s}/supervisor.json'))
+        rs = [r for r in rs if D0 < r <= today]
+        if not rs: why[s] = f'no research round after the slice date {D0}'; continue
+        R = rs[-1]; rd = f'{V}/runs/{R}/{s}'
+        try: ca = json.load(open(f'{rd}/citation_audit.json'))
+        except FileNotFoundError: ca = {}
+        if ca.get('clean') is not True: why[s] = f'runs/{R}/{s}/citation_audit.json missing or not clean'; continue
+        if not os.path.exists(f'{rd}/result.json'): why[s] = f'runs/{R}/{s} has no result.json (round not finished)'; continue
+        if os.path.exists(f'{rd}/model_engine.json'):  # the model must value this exact set, as the nightly's combine will see it
+            sys.path.insert(0, V); import combine
+            sm, sm_why = combine.standard_model(R, s, 'clean')
+            if not sm: why[s] = f'runs/{R}/{s}: standard model not usable ({sm_why})'; continue
+        e = pend.get(s) or {}
+        if e.get('status') == 'pending': why[s] = f'data/name_updates.json holds {s} pending: run name_update.py finish first'; continue
+        files = set(walk(rd))
+        for f in (f'{V}/priors/{R}/{s}.json', f'{V}/priors/{R}/1m/{s}.json'):
+            if os.path.exists(f): files.add(f)
+        # what combine.py reads to re-mark at D on this round; the slice already holds the nightly's copy of anything shared
+        own = (f'{V}/runs/{R}/{s}/', f'{V}/priors/{R}/')
+        for f in traced('combine.py', D0, s, '--research', R, '--dry-run'):
+            if f.startswith(own) or not os.path.exists(os.path.join(OUT, os.path.relpath(f, ROOT))): files.add(f)
+        for f in files:
+            dst = os.path.join(OUT, os.path.relpath(f, ROOT)); os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(f, dst)
+        got[s] = R
+    meta['research'] = got
+    json.dump(meta, open(f'{OUT}/slice.json', 'w'))
+    print(json.dumps(dict(date=D0, base=meta['base'], research=got, refused=why)))
+    return [x for x in syms if x in got and x not in why]
+
 NOW = time.time()
 try: PREV = float(json.load(open(f'{OUT}/slice.json')).get('time') or 0)
 except Exception: PREV = 0.0  # no stamp: recopy everything once
@@ -131,6 +178,11 @@ def copy(src):
     os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(src, dst); return 1
 
 if __name__ == '__main__':
+    if '--research' in ARGS:
+        rest = ARGS[ARGS.index('--research') + 1:]
+        syms = [a.upper() for a in rest[:next((i for i, a in enumerate(rest) if a.startswith('--')), len(rest))]]
+        if not syms: sys.exit('--research needs at least one symbol')
+        sys.exit(0 if research(syms) else 2)  # 2: every symbol was refused (refusals print either way)
     files = sorted(set(wanted()))
     with cf.ThreadPoolExecutor(16) as ex: n = sum(ex.map(copy, files))
     keep = {os.path.relpath(p, ROOT) for p in files}

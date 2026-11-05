@@ -98,5 +98,5 @@ if __name__ == '__main__':
         sheet.set_status(upd, stamp)
     print(json.dumps(dict(version=p['version'], bytes=os.path.getsize(f'{OUT}/patch.json'), sets=len(p['set']),
                           fills_applied=len(intake['logged']), rejected=intake['rejected'], sheet=bool(sheet),
-                          chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'],
+                          chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'], research=remark.get('research'),
                           swap_candidates=sorted(remark['candidates']), swap_winners=swaps['winners'], swap_failed=swaps.get('failed'))))

@@ -18,7 +18,11 @@ which the workflow pushes to live-out, so later held-name runs measure from it).
 session then has it written over the slice's priors/D (and its 30-day ATM vol into the slice's newest IV file), and
 combine.py re-marks it: market leg, page target, take-profit and stop. forecast_log.csv is never written here; the
 nightly re-mark logs the day's forecasts. The joint steps (conviction scaling is recomputed by review.py itself;
-allocate.py and the book Sharpe) stay at the nightly. Prints one JSON line."""
+allocate.py and the book Sharpe) stay at the nightly.
+Research pushed intraday (Kilian 2026-11-05; live/nightly.sh research SYM, slice.json 'research' {SYM: RDATE}): a model
+update finished after the slice date is re-marked on every run with combine.py's research=RDATE, on the session's market
+leg if one was pulled, else on the slice's priors/D; the move trigger and candidate tests above then see its new target.
+Prints one JSON line."""
 import datetime as dt, glob, json, math, os, shutil, sys
 
 
@@ -32,7 +36,8 @@ if __name__ == '__main__':
     V = f'{SLICE}/valuation'; sys.path.insert(0, V); os.chdir(V)
     import book, combine, divs, last_print, market_dist
     combine._LOG_OPS = {}  # collect forecast_log.csv rows and drop them
-    D = json.load(open(f'{SLICE}/slice.json'))['date']
+    META = json.load(open(f'{SLICE}/slice.json')); D = META['date']
+    PUSHED = {k: v for k, v in (META.get('research') or {}).items() if v > D}  # intraday research rounds (live/nightly.sh research)
     quotes = json.load(open(f'{V}/data/live_quotes.json')).get('quotes') or {}
     held = sorted(p['symbol'] for p in book.load()['positions'] if p.get('shares'))
     R = f'{OUT}/remark'; os.makedirs(R, exist_ok=True)
@@ -40,6 +45,9 @@ if __name__ == '__main__':
     for f in glob.glob(f'{R}/*.json'):  # a market leg from an earlier session is the nightly's job now
         if json.load(open(f)).get('market_date') != session: os.remove(f)
     pulled, checked, failed, cands = [], {}, {}, {}
+    for s in sorted(PUSHED):  # the new round first, so the Entry below and candidate tests read its target
+        try: combine.combine(D, s, PUSHED[s])
+        except (Exception, SystemExit) as e: failed[s] = f'combine on research {PUSHED[s]}: {str(e)[:200]}'
     EM = json.load(open(f'{V}/data/earnings_miss.json'))  # last_report_date per name: research must postdate the last print
     for f in sorted(glob.glob(f'{V}/runs/{D}/*/result.json')):  # swap candidates: unheld, gate-clean, at or below Entry below
         s = f.split('/')[-2]; q = quotes.get(s) or {}; P = q.get('price')
@@ -77,6 +85,7 @@ if __name__ == '__main__':
     legs = sorted(os.path.basename(f)[:-5] for f in glob.glob(f'{R}/*.json') if not f.endswith('_1m.json'))
     legs = [s for s in legs if s in held and json.load(open(f'{R}/{s}.json'))['market_date'] > json.load(open(f'{V}/priors/{D}/{s}.json'))['market_date']] \
         + [s for s in pulled if s in cands]  # a candidate's leg is this run's own
+    again = [s for s in sorted(PUSHED) if s not in legs and s not in failed]  # pushed research on the slice's own leg: combined above, re-run after the IV patch
     ivf = sorted(f for f in glob.glob(f'{SLICE}/portfolio/data/iv/*.json') if os.path.basename(f)[:-5] <= D)
     iv = json.load(open(ivf[-1])) if ivf else None
     remarked = {}
@@ -87,12 +96,13 @@ if __name__ == '__main__':
             iv['symbols'].setdefault(s, {})['atm30'] = json.load(open(f'{R}/{s}_1m.json'))['atm_iv_1y']
     if iv is not None and legs: json.dump(iv, open(ivf[-1], 'w'))
     combine._MEMO.clear()  # the IV file was read before it was patched
-    for s in legs:
+    for s in legs + again:
         try:
-            r = combine.combine(D, s)
+            r = combine.combine(D, s, PUSHED.get(s))
             remarked[s] = dict(spot=r['spot'], target=r['target'], take_profit=r['take_profit'], stop_loss=r['stop_loss'],
-                               market_target=r['market_only']['target'], as_of=r['as_of'])
+                               market_target=r['market_only']['target'], as_of=r['as_of'],
+                               **({'research': PUSHED[s]} if s in PUSHED else {}))
             if s in cands: cands[s]['remarked'] = True
         except (Exception, SystemExit) as e:
             failed[s] = f'combine: {str(e)[:200]}'
-    print(json.dumps(dict(session=session, checked=checked, pulled=pulled, remarked=remarked, failed=failed, candidates=cands)))
+    print(json.dumps(dict(session=session, checked=checked, pulled=pulled, remarked=remarked, failed=failed, candidates=cands, research=PUSHED)))
