@@ -9,9 +9,10 @@ fills tab are first written there (the workflow commits them), each row gets a s
 Sheet's live tab, where the page reads it. OUT_DIR is a checkout of the live-out branch; it gets patch.json
 (live/patch.py format, plus fills and quotes_as_of) and state.json.
 
-Held names that moved past their implied move since their last market leg are re-marked on a fresh option chain first
-(live/remark.py; the legs it pulls are kept in OUT_DIR/remark for the rest of the session), and so is every unheld,
-gate-clean researched name at or below its Entry below; live/swaps.py scores those as swaps (patch key live_swaps).
+Every researched name (held, or in runs/D with a driver model) is re-marked on a fresh option chain first, every run
+(live/remark.py, Kilian 2026-11-05; only on a chain quoted in the live session, never on the prior close; the legs it pulls
+are kept in OUT_DIR/remark for the rest of the session). The unheld, gate-clean ones at or below their Entry below are
+then scored as swaps by live/swaps.py (patch key live_swaps).
 Runs the valuation step when the market is open or the set of fills changed since the last patch; otherwise exits.
 Applying fills is idempotent: every fill not yet in the nightly trades.json is appended on each run (fill_intake.py),
 and the nightly run folds them into the project's trades.json for good."""
@@ -64,7 +65,7 @@ if __name__ == '__main__':
     intake = json.loads(r.stdout)
 
     sh('python3', 'live_quotes.py', D)
-    # held names that moved past their implied move get a fresh option chain and a re-mark of their own (live/remark.py)
+    # every researched name gets a fresh option chain and a re-mark of its own (live/remark.py)
     r = subprocess.run(['python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'remark.py'), SLICE, OUT],
                        capture_output=True, text=True)
     if r.returncode: sys.exit(f'remark.py failed:\n{r.stderr[-3000:]}')
