@@ -19,7 +19,7 @@ Fills, live quotes and the page's numbers update here, in GitHub Actions, with n
   gate-clean, model valuing the current set, not pending) and lists it in `slice.json` `research`. The push starts a live run
   at once; `live/remark.py` re-marks the name with `combine.py` research = that round on every run, so the new target and the
   held-name sizing reach the page before the 4:15pm ET close bar. The slice date, `base.json` and the other inputs are
-  untouched (the page's patch key holds); the next nightly slice drops the list.
+  untouched (the page's patch key holds); a same-day republish keeps the list, the next nightly slice drops it.
 - **Nightly.** `live/nightly.sh fold` adds `fills/` to `valuation/data/trades.json` before the re-mark;
   `live/nightly.sh push` re-slices after the publish and removes fill files that trades.json now holds.
 

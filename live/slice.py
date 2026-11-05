@@ -16,7 +16,8 @@ the held names' sizing move intraday. Finished = runs/RDATE/SYM has supervisor.j
 citation_audit.json, a model_engine.json that values the current supervisor.json (combine.standard_model), and
 data/name_updates.json does not hold the name pending. D, base.json and every other slice file
 stay as they are (only files the slice lacks are added), so the page's patch key and the close-bar guard are untouched.
-The next nightly slice (D = RDATE) drops the list: the nightly re-mark picks the round up itself."""
+A republish on the same D keeps the list (each name re-checked); the next nightly slice (D = RDATE) drops it, since the
+nightly re-mark picks the round up itself."""
 import concurrent.futures as cf, glob, json, os, re, shutil, sys, time
 
 ARGS = sys.argv[1:]
@@ -163,8 +164,10 @@ def research(syms):
     return [x for x in syms if x in got and x not in why]
 
 NOW = time.time()
-try: PREV = float(json.load(open(f'{OUT}/slice.json')).get('time') or 0)
-except Exception: PREV = 0.0  # no stamp: recopy everything once
+try: _prev = json.load(open(f'{OUT}/slice.json'))
+except Exception: _prev = {}
+PREV = float(_prev.get('time') or 0)  # 0 with no stamp: recopy everything once
+PREV_RESEARCH = _prev.get('research') or {}
 MARGIN = 600  # network-mount clocks can drift; anything touched near the last slice is recopied
 
 def copy(src):
@@ -197,3 +200,7 @@ if __name__ == '__main__':
     key = base_key(base)
     json.dump(dict(date=D, base=key, time=NOW), open(f'{OUT}/slice.json', 'w'))
     print(json.dumps(dict(date=D, files=len(files), copied=n, removed=gone, base=key)))
+    # 2026-11-05: a same-day republish re-slices on the same D; research pushed today still postdates D, so carry it
+    # (re-checked and re-copied) rather than drop it until the nightly (an 11:54am ET AMAT publish dropped NVDA/AVGO)
+    carry = sorted(k for k, v in PREV_RESEARCH.items() if v > D)
+    if carry: research(carry)
