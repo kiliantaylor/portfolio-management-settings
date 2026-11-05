@@ -1,34 +1,48 @@
-"""Intraday market-leg re-mark for held names (Kilian 2026-10-29 15:38Z): when a held name has moved past its implied
-move since its last market leg, pull its Cboe option chain again and re-mark that name only.
+"""Intraday market-leg re-mark for every researched name (Kilian 2026-11-05 18:35Z "change to all researched names", after
+"they are supposed to update throughout the session"; before that, 2026-10-29, held names only, when they moved past their
+implied move).
 
     python3 live/remark.py SLICE OUT_DIR
 
-Runs inside live/run.py after live_quotes.py and before review.py. For each held name (book.py):
-  reference = the newest market leg: OUT_DIR/remark/<SYM>.json when an earlier run re-marked it this session, else the
-              slice's priors/D/<SYM>.json (the nightly's, or one a research thread placed there);
-  implied move = the 30-day ATM implied vol x sqrt(sessions since the reference / 252), one standard deviation;
-  trigger   = |ln(live price / reference spot)| above the implied move, and a chain quoted in the live price's session.
+Runs inside live/run.py after live_quotes.py and before review.py. Every run pulls a fresh Cboe option chain for each
+researched name: every held name (book.py) and every unheld name in runs/D whose research round has a driver model
+(last_print.driver_model; Kilian 2026-11-04: no chain retries for names without one). No move trigger: the implied move
+since the name's last market leg (30-day ATM vol x sqrt(sessions since that leg / 252)) is still reported in 'checked'.
+One pull per name feeds both the 12-month and the 1-month distribution (a per-run chain folder), pulls are paced, and a
+429 is retried once, so ~26 names stay under Cboe's limit of about 40 quick pulls from one IP.
+Session rule (2026-11-05, "why are you remarking on yesterday's close, market is already open"): a chain counts only when it
+is quoted in the live price's session; before the open (pre-market quotes) or on a stale chain nothing is re-marked from it,
+and a name keeps the leg an earlier run pulled this session, if any.
 Swap candidates (Kilian 2026-10-30 19:17Z; 19:40Z "only names audited and up-to-date research"): an unheld name whose
 research passed the citation audit ('clean', not a pre-gate round), has a driver model, and is dated on or after its last
-earnings report (valuation/last_print.py), whose
-live price is at or below its Entry below at the last close, (target + a year of dividends) / (1 + rf + beta premium), is
-re-marked the same way on every run, with no move trigger; live/swaps.py then scores it.
-A triggered name gets market_dist.py's 12-month and 1-month distributions from a fresh chain (kept in OUT_DIR/remark,
-which the workflow pushes to live-out, so later held-name runs measure from it). Every name holding a market leg from the live
-session then has it written over the slice's priors/D (and its 30-day ATM vol into the slice's newest IV file), and
-combine.py re-marks it: market leg, page target, take-profit and stop. forecast_log.csv is never written here; the
-nightly re-mark logs the day's forecasts. The joint steps (conviction scaling is recomputed by review.py itself;
-allocate.py and the book Sharpe) stay at the nightly.
+earnings report (valuation/last_print.py), whose live price is at or below its Entry below at the last close,
+(target + a year of dividends) / (1 + rf + beta premium); live/swaps.py scores it, and only on a leg pulled in this run.
+Each pulled leg (12-month and 1-month market_dist.py distributions) is kept in OUT_DIR/remark, which the workflow pushes to
+live-out and the next session drops. Every name holding a market leg from the live session then has it written over the
+slice's priors/D (and its 30-day ATM vol into the slice's newest IV file), and combine.py re-marks it: market leg, page
+target, take-profit and stop (the research target (12m) does not move). forecast_log.csv is never written here; the
+nightly re-mark logs the day's forecasts and writes the official priors on the official close. The joint steps
+(conviction scaling is recomputed by review.py itself; allocate.py and the book Sharpe) stay at the nightly.
 Research pushed intraday (Kilian 2026-11-05; live/nightly.sh research SYM, slice.json 'research' {SYM: RDATE}): a model
 update finished after the slice date is re-marked on every run with combine.py's research=RDATE, on the session's market
-leg if one was pulled, else on the slice's priors/D; the move trigger and candidate tests above then see its new target.
+leg if one was pulled, else on the slice's priors/D; the candidate test above then sees its new target.
 Prints one JSON line."""
-import datetime as dt, glob, json, math, os, shutil, sys
+import datetime as dt, glob, json, math, os, shutil, sys, tempfile, time, urllib.error
 
 
 def sessions(a, b):  # weekdays after date a up to and including date b, at least 1
     a, b = dt.date.fromisoformat(a), dt.date.fromisoformat(b)
     return max(1, sum((a + dt.timedelta(d)).weekday() < 5 for d in range(1, (b - a).days + 1)))
+
+
+def pull(s, chains):  # one Cboe pull per name per run, shared by the 12-month and 1-month legs; paced, one retry on 429
+    for wait in (5, None):
+        try:
+            time.sleep(0.3)
+            return market_dist.market_dist(s, chains), market_dist.market_dist(s, chains, 30)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or wait is None: raise
+            time.sleep(wait)
 
 
 if __name__ == '__main__':
@@ -44,7 +58,7 @@ if __name__ == '__main__':
     session = max([q.get('date') or '' for q in quotes.values()] + [''])
     for f in glob.glob(f'{R}/*.json'):  # a market leg from an earlier session is the nightly's job now
         if json.load(open(f)).get('market_date') != session: os.remove(f)
-    pulled, checked, failed, cands = [], {}, {}, {}
+    pulled, checked, failed, cands, rdm = [], {}, {}, {}, []
     for s in sorted(PUSHED):  # the new round first, so the Entry below and candidate tests read its target
         try: combine.combine(D, s, PUSHED[s])
         except (Exception, SystemExit) as e: failed[s] = f'combine on research {PUSHED[s]}: {str(e)[:200]}'
@@ -53,38 +67,40 @@ if __name__ == '__main__':
         s = f.split('/')[-2]; q = quotes.get(s) or {}; P = q.get('price')
         if s in held or not P or (q.get('date') or '') <= D or not os.path.exists(f'{V}/priors/{D}/{s}.json'): continue
         r, pr = json.load(open(f)), json.load(open(f'{V}/priors/{D}/{s}.json'))
+        if not last_print.driver_model(s, r.get('research_as_of')): continue  # not a researched name: no intraday chain
+        rdm.append(s)
         last = last_print.last(D, s, EM)  # 2026-11-04: earnings_miss last_report_date alone was stale for unheld names (MTRN)
         if (r.get('citation_gate') or {}).get('status') != 'clean' or not last or (r.get('research_as_of') or '') < last: continue
-        if not last_print.driver_model(s, r.get('research_as_of')): continue  # Kilian 2026-11-04: no swap-in without a driver model
         E = (r['target'] + divs.dps(s)) / (1 + pr['rf'] + pr['premium'])
         if P <= E: cands[s] = dict(price=P, entry_below_close=round(E, 2), target_close=r['target'], research=r.get('research_as_of'),
                                    last_report=last, remarked=False)
-    for s in held + sorted(cands):
+    scope = held + sorted(s for s in rdm if s not in held)  # every researched name, every run
+    chains = tempfile.mkdtemp(prefix='chains-')
+    for s in scope:
         q = quotes.get(s) or {}; P = q.get('price')
         if not P or (q.get('date') or '') <= D: continue
         mine = f'{R}/{s}.json'
         if s in cands: os.path.exists(mine) and os.remove(mine)  # a candidate is pulled fresh on every run
+        if not os.path.exists(mine) and not os.path.exists(f'{V}/priors/{D}/{s}.json'): continue
         ref = json.load(open(mine if os.path.exists(mine) else f'{V}/priors/{D}/{s}.json'))
         v30 = (json.load(open(f'{R}/{s}_1m.json'))['atm_iv_1y'] if os.path.exists(mine) else None) \
             or combine.iv30(s, D)[0] or ref['atm_iv_1y']
         n = sessions(ref['market_date'], q['date']) if ref['market_date'] < q['date'] else 1
         move, bar = math.log(P / ref['spot']), v30 * math.sqrt(n / 252)
         checked[s] = dict(price=P, ref_spot=ref['spot'], ref_date=ref['market_date'], move=round(move, 4), implied_move=round(bar, 4))
-        if abs(move) <= bar and s not in cands: continue
         try:
-            m12 = market_dist.market_dist(s)
-            m1 = market_dist.market_dist(s, None, 30)
+            m12, m1 = pull(s, chains)
         except (Exception, SystemExit) as e:
             failed[s] = str(e)[:200]; continue
         if m12['market_date'] != q['date']:
             failed[s] = f"chain quoted {m12['market_date']}, not {q['date']}"; continue
-        for m in (m12, m1): m['intraday'] = dict(pulled_utc=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), trigger=checked[s])
+        for m in (m12, m1): m['intraday'] = dict(pulled_utc=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), move=checked[s])
         json.dump(m12, open(mine, 'w'), indent=1); json.dump(m1, open(f'{R}/{s}_1m.json', 'w'), indent=1)
         pulled.append(s)
     # every market leg from this session goes into the slice, then combine re-marks those names
     legs = sorted(os.path.basename(f)[:-5] for f in glob.glob(f'{R}/*.json') if not f.endswith('_1m.json'))
-    legs = [s for s in legs if s in held and json.load(open(f'{R}/{s}.json'))['market_date'] > json.load(open(f'{V}/priors/{D}/{s}.json'))['market_date']] \
-        + [s for s in pulled if s in cands]  # a candidate's leg is this run's own
+    legs = [s for s in legs if s not in cands and os.path.exists(f'{V}/priors/{D}/{s}.json') and json.load(open(f'{R}/{s}.json'))['market_date'] > json.load(open(f'{V}/priors/{D}/{s}.json'))['market_date']] \
+        + [s for s in pulled if s in cands]  # a candidate's leg is this run's own (its file was removed before the pull)
     again = [s for s in sorted(PUSHED) if s not in legs and s not in failed]  # pushed research on the slice's own leg: combined above, re-run after the IV patch
     ivf = sorted(f for f in glob.glob(f'{SLICE}/portfolio/data/iv/*.json') if os.path.basename(f)[:-5] <= D)
     iv = json.load(open(ivf[-1])) if ivf else None
