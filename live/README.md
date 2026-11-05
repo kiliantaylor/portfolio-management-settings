@@ -14,6 +14,12 @@ Fills, live quotes and the page's numbers update here, in GitHub Actions, with n
   the published page's data (`live/patch.py`) to the Sheet's `live` tab and branch `live-out`, and sets each row's status.
 - **Page.** Price Targets reads the `live` tab through the Google Sheets connector and applies the patch before it
   renders. A patch whose `base` does not match the page's own data is ignored, so a new publish never shows stale numbers.
+- **Research intraday.** `live/nightly.sh research SYM [SYM ...]`, run when a model update finishes during the day
+  (`name_update.py finish` prints it), adds that round to the published slice (`live/slice.py --research`: finished,
+  gate-clean, model valuing the current set, not pending) and lists it in `slice.json` `research`. The push starts a live run
+  at once; `live/remark.py` re-marks the name with `combine.py` research = that round on every run, so the new target and the
+  held-name sizing reach the page before the 4:15pm ET close bar. The slice date, `base.json` and the other inputs are
+  untouched (the page's patch key holds); the next nightly slice drops the list.
 - **Nightly.** `live/nightly.sh fold` adds `fills/` to `valuation/data/trades.json` before the re-mark;
   `live/nightly.sh push` re-slices after the publish and removes fill files that trades.json now holds.
 

@@ -3,6 +3,10 @@
 #   live/nightly.sh fold   before the re-mark: append the page's fills (repo fills/) to valuation/data/trades.json
 #   live/nightly.sh push   after Price Targets is published: push the live run's inputs to branch live-data and
 #                          remove the folded fill files from main (the workflow then rebuilds the patch on the new page)
+#   live/nightly.sh research SYM [SYM ...]
+#                          intraday, once a model update is finished (name_update.py finish, gate clean): add its round to
+#                          the published slice (live/slice.py --research) so the next live run, started by this push, re-marks
+#                          the name on the new research and the page shows it without waiting for the 4:15pm ET close bar
 # The push is a plain fast-forward on top of the cloned live-data (no force push, which sessions may be refused);
 # the live workflow folds live-data back to one commit so the branch never grows.
 set -euo pipefail
@@ -38,5 +42,13 @@ case "${1:-}" in
       git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "Fold fills into trades.json: $ids"
       git push -q "$REPO" HEAD:main
     fi ;;
-  *) echo "usage: live/nightly.sh fold|push" >&2; exit 2 ;;
+  research)
+    shift; [ $# -gt 0 ] || { echo "usage: live/nightly.sh research SYM [SYM ...]" >&2; exit 2; }
+    git clone -q --depth 1 -b live-data "$REPO" "$W/slice"
+    python3 "$W/main/live/slice.py" "$W/slice" --research "$@" --root "$ROOT"
+    cd "$W/slice" && git add -A
+    git diff --cached --quiet && { echo "live-data already holds this research" >&2; exit 0; }
+    git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live research $* $(date -u +%FT%TZ)"
+    git push -q "$REPO" HEAD:live-data || { echo "live-data moved while adding research (another push landed): rerun live/nightly.sh research $*" >&2; exit 1; } ;;
+  *) echo "usage: live/nightly.sh fold|push|research SYM..." >&2; exit 2 ;;
 esac
