@@ -9,7 +9,8 @@ Runs inside live/run.py after live_quotes.py and before review.py. For each held
   implied move = the 30-day ATM implied vol x sqrt(sessions since the reference / 252), one standard deviation;
   trigger   = |ln(live price / reference spot)| above the implied move, and a chain quoted in the live price's session.
 Swap candidates (Kilian 2026-10-30 19:17Z; 19:40Z "only names audited and up-to-date research"): an unheld name whose
-research passed the citation audit ('clean', not a pre-gate round) and is dated on or after its last earnings report, whose
+research passed the citation audit ('clean', not a pre-gate round), has a driver model, and is dated on or after its last
+earnings report (valuation/last_print.py), whose
 live price is at or below its Entry below at the last close, (target + a year of dividends) / (1 + rf + beta premium), is
 re-marked the same way on every run, with no move trigger; live/swaps.py then scores it.
 A triggered name gets market_dist.py's 12-month and 1-month distributions from a fresh chain (kept in OUT_DIR/remark,
@@ -29,7 +30,7 @@ def sessions(a, b):  # weekdays after date a up to and including date b, at leas
 if __name__ == '__main__':
     SLICE, OUT = (os.path.abspath(a) for a in sys.argv[1:3])
     V = f'{SLICE}/valuation'; sys.path.insert(0, V); os.chdir(V)
-    import book, combine, divs, market_dist
+    import book, combine, divs, last_print, market_dist
     combine._LOG_OPS = {}  # collect forecast_log.csv rows and drop them
     D = json.load(open(f'{SLICE}/slice.json'))['date']
     quotes = json.load(open(f'{V}/data/live_quotes.json')).get('quotes') or {}
@@ -44,8 +45,9 @@ if __name__ == '__main__':
         s = f.split('/')[-2]; q = quotes.get(s) or {}; P = q.get('price')
         if s in held or not P or (q.get('date') or '') <= D or not os.path.exists(f'{V}/priors/{D}/{s}.json'): continue
         r, pr = json.load(open(f)), json.load(open(f'{V}/priors/{D}/{s}.json'))
-        last = (EM.get(s) or {}).get('last_report_date') if isinstance(EM.get(s), dict) else None
+        last = last_print.last(D, s, EM)  # 2026-11-04: earnings_miss last_report_date alone was stale for unheld names (MTRN)
         if (r.get('citation_gate') or {}).get('status') != 'clean' or not last or (r.get('research_as_of') or '') < last: continue
+        if not last_print.driver_model(s, r.get('research_as_of')): continue  # Kilian 2026-11-04: no swap-in without a driver model
         E = (r['target'] + divs.dps(s)) / (1 + pr['rf'] + pr['premium'])
         if P <= E: cands[s] = dict(price=P, entry_below_close=round(E, 2), target_close=r['target'], research=r.get('research_as_of'),
                                    last_report=last, remarked=False)
