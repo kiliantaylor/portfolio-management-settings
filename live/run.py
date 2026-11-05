@@ -100,4 +100,5 @@ if __name__ == '__main__':
     print(json.dumps(dict(version=p['version'], bytes=os.path.getsize(f'{OUT}/patch.json'), sets=len(p['set']),
                           fills_applied=len(intake['logged']), rejected=intake['rejected'], sheet=bool(sheet),
                           chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'], research=remark.get('research'),
-                          swap_candidates=sorted(remark['candidates']), swap_winners=swaps['winners'], swap_failed=swaps.get('failed'))))
+                          swap_candidates=sorted(remark['candidates']), swap_winners=swaps['winners'], swap_failed=swaps.get('failed'),
+                          tape_hold=remark.get('tape_hold'))))

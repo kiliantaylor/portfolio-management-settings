@@ -26,6 +26,11 @@ nightly re-mark logs the day's forecasts and writes the official priors on the o
 Research pushed intraday (Kilian 2026-11-05; live/nightly.sh research SYM, slice.json 'research' {SYM: RDATE}): a model
 update finished after the slice date is re-marked on every run with combine.py's research=RDATE, on the session's market
 leg if one was pulled, else on the slice's priors/D; the candidate test above then sees its new target.
+Tape hold (Kilian 2026-11-05 card 'Tape-triggered news hold'): every run checks QQQ and SMH against the prior close
+(valuation/tape_hold.py check on the live session, the day's low or last); a fall of 4% / 7% or more records that day's
+event in the slice's data/tape_hold.json, so review.py, run next, holds the exposed names' adds, and those names are not
+swap candidates (their chains are still pulled), until each is cleared after its read-through (tape_hold.py clear,
+then live/nightly.sh tape).
 Prints one JSON line."""
 import datetime as dt, glob, json, math, os, shutil, sys, tempfile, time, urllib.error
 
@@ -59,6 +64,14 @@ if __name__ == '__main__':
     for f in glob.glob(f'{R}/*.json'):  # a market leg from an earlier session is the nightly's job now
         if json.load(open(f)).get('market_date') != session: os.remove(f)
     pulled, checked, failed, cands, rdm = [], {}, {}, {}, []
+    # Kilian 2026-11-05 card 'Tape-triggered news hold': a QQQ -4% / SMH -7% session records an event in the slice's
+    # data/tape_hold.json, so review.py (run next) holds the exposed names' adds and they are no swap candidates
+    try: import tape_hold
+    except ImportError: tape_hold = None  # a slice pushed before tape_hold.py existed
+    TAPE, tape_seen = {}, {}
+    if tape_hold and session > D:
+        _, tape_seen = tape_hold.check(session)
+        TAPE = tape_hold.active(session)
     for s in sorted(PUSHED):  # the new round first, so the Entry below and candidate tests read its target
         try: combine.combine(D, s, PUSHED[s])
         except (Exception, SystemExit) as e: failed[s] = f'combine on research {PUSHED[s]}: {str(e)[:200]}'
@@ -72,7 +85,7 @@ if __name__ == '__main__':
         last = last_print.last(D, s, EM)  # 2026-11-04: earnings_miss last_report_date alone was stale for unheld names (MTRN)
         if (r.get('citation_gate') or {}).get('status') != 'clean' or not last or (r.get('research_as_of') or '') < last: continue
         E = (r['target'] + divs.dps(s)) / (1 + pr['rf'] + pr['premium'])
-        if P <= E: cands[s] = dict(price=P, entry_below_close=round(E, 2), target_close=r['target'], research=r.get('research_as_of'),
+        if P <= E and s not in TAPE: cands[s] = dict(price=P, entry_below_close=round(E, 2), target_close=r['target'], research=r.get('research_as_of'),
                                    last_report=last, remarked=False)
     scope = held + sorted(s for s in rdm if s not in held)  # every researched name, every run
     chains = tempfile.mkdtemp(prefix='chains-')
@@ -121,4 +134,5 @@ if __name__ == '__main__':
             if s in cands: cands[s]['remarked'] = True
         except (Exception, SystemExit) as e:
             failed[s] = f'combine: {str(e)[:200]}'
-    print(json.dumps(dict(session=session, checked=checked, pulled=pulled, remarked=remarked, failed=failed, candidates=cands, research=PUSHED)))
+    print(json.dumps(dict(session=session, checked=checked, pulled=pulled, remarked=remarked, failed=failed, candidates=cands, research=PUSHED,
+                          tape_hold=dict(seen=tape_seen, on_hold=sorted(TAPE)))))

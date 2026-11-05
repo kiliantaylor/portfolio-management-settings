@@ -7,6 +7,8 @@
 #                          intraday, once a model update is finished (name_update.py finish, gate clean): add its round to
 #                          the published slice (live/slice.py --research) so the next live run, started by this push, re-marks
 #                          the name on the new research and the page shows it without waiting for the 4:15pm ET close bar
+#   live/nightly.sh tape   intraday, after tape_hold.py clear: copy the tape-triggered news hold into the published slice
+#                          so the live job stops holding the cleared names' adds before the next nightly
 # The push is a plain fast-forward on top of the cloned live-data (no force push, which sessions may be refused);
 # the live workflow folds live-data back to one commit so the branch never grows.
 set -euo pipefail
@@ -50,5 +52,12 @@ case "${1:-}" in
     git diff --cached --quiet && { echo "live-data already holds this research" >&2; exit 0; }
     git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live research $* $(date -u +%FT%TZ)"
     git push -q "$REPO" HEAD:live-data || { echo "live-data moved while adding research (another push landed): rerun live/nightly.sh research $*" >&2; exit 1; } ;;
-  *) echo "usage: live/nightly.sh fold|push|research SYM..." >&2; exit 2 ;;
+  tape)
+    git clone -q --depth 1 -b live-data "$REPO" "$W/slice"
+    python3 "$W/main/live/slice.py" "$W/slice" --tape --root "$ROOT"
+    cd "$W/slice" && git add -A
+    git diff --cached --quiet && { echo "live-data already holds this tape hold" >&2; exit 0; }
+    git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live tape hold $(date -u +%FT%TZ)"
+    git push -q "$REPO" HEAD:live-data || { echo "live-data moved (another push landed): rerun live/nightly.sh tape" >&2; exit 1; } ;;
+  *) echo "usage: live/nightly.sh fold|push|research SYM...|tape" >&2; exit 2 ;;
 esac

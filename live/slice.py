@@ -2,6 +2,7 @@
 
     python3 live/slice.py OUT [--root /mnt/project-files] [--date D]
     python3 live/slice.py OUT --research SYM [SYM ...] [--root /mnt/project-files]
+    python3 live/slice.py OUT --tape [--root /mnt/project-files]   (tape hold file only, after tape_hold.py clear)
 
 OUT may already hold yesterday's slice (a clone of live-data): run folders of past dates are kept when the
 same file is already there with the same size and the source has not been modified since that slice was taken
@@ -159,9 +160,17 @@ def research(syms):
             dst = os.path.join(OUT, os.path.relpath(f, ROOT)); os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(f, dst)
         got[s] = R
     meta['research'] = got
+    tape()  # 2026-11-05: a hold cleared alongside the research reaches the live job with it
     json.dump(meta, open(f'{OUT}/slice.json', 'w'))
     print(json.dumps(dict(date=D0, base=meta['base'], research=got, refused=why)))
     return [x for x in syms if x in got and x not in why]
+
+def tape():
+    """Copy the tape-triggered news hold (valuation/tape_hold.py and data/tape_hold.json) into the published slice, so a
+    hold cleared intraday (tape_hold.py clear) reaches the live job before the next nightly slice. D and base stay."""
+    for f in (f'{V}/tape_hold.py', f'{V}/data/tape_hold.json'):
+        if os.path.exists(f):
+            dst = os.path.join(OUT, os.path.relpath(f, ROOT)); os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(f, dst)
 
 NOW = time.time()
 try: _prev = json.load(open(f'{OUT}/slice.json'))
@@ -181,6 +190,8 @@ def copy(src):
     os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(src, dst); return 1
 
 if __name__ == '__main__':
+    if '--tape' in ARGS:
+        tape(); print(json.dumps(dict(tape=True))); sys.exit(0)
     if '--research' in ARGS:
         rest = ARGS[ARGS.index('--research') + 1:]
         syms = [a.upper() for a in rest[:next((i for i, a in enumerate(rest) if a.startswith('--')), len(rest))]]

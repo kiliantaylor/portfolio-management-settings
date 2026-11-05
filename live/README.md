@@ -24,6 +24,10 @@ Fills, live quotes and the page's numbers update here, in GitHub Actions, with n
   at once; `live/remark.py` re-marks the name with `combine.py` research = that round on every run, so the new target and the
   held-name sizing reach the page before the 4:15pm ET close bar. The slice date, `base.json` and the other inputs are
   untouched (the page's patch key holds); a same-day republish keeps the list, the next nightly slice drops it.
+- **Tape hold.** Each run `live/remark.py` checks QQQ and SMH against the prior close (`valuation/tape_hold.py`); a fall of
+  4% / 7% or more records the day's event in the slice's `data/tape_hold.json`, so `review.py` holds adds in the exposed
+  names (AI/data-center names and watchlist semis) and they are not swap candidates. A name stays held until it is cleared
+  after its read-through (`tape_hold.py clear`); `live/nightly.sh tape` pushes the clear to `live-data` intraday.
 - **Nightly.** `live/nightly.sh fold` adds `fills/` to `valuation/data/trades.json` before the re-mark;
   `live/nightly.sh push` re-slices after the publish and removes fill files that trades.json now holds.
 
