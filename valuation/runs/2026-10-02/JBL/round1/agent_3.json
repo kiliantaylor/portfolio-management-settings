@@ -1,0 +1,82 @@
+{
+  "symbol": "JBL", "agent_id": "agent_3", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 76, "p": 0.995}, {"K": 122, "p": 0.985}, {"K": 152, "p": 0.95}, {"K": 183, "p": 0.895},
+    {"K": 213, "p": 0.83}, {"K": 244, "p": 0.745}, {"K": 274, "p": 0.64}, {"K": 304, "p": 0.52},
+    {"K": 335, "p": 0.405}, {"K": 365, "p": 0.305}, {"K": 411, "p": 0.195}, {"K": 457, "p": 0.12},
+    {"K": 533, "p": 0.05}, {"K": 609, "p": 0.018}, {"K": 761, "p": 0.003}
+  ],
+  "ladder_1m": [
+    {"K": 243.53, "p": 0.945}, {"K": 258.75, "p": 0.88}, {"K": 273.97, "p": 0.78}, {"K": 283.10, "p": 0.70},
+    {"K": 292.23, "p": 0.615}, {"K": 304.41, "p": 0.50}, {"K": 316.59, "p": 0.385}, {"K": 325.72, "p": 0.31},
+    {"K": 334.85, "p": 0.245}, {"K": 350.07, "p": 0.155}, {"K": 365.29, "p": 0.095}
+  ],
+  "one_month_reasoning": "No Jabil-specific scheduled event falls in the window to 2026-11-01: Q4 FY26 results and the FY27 guide were released 2026-09-30 (stock fell ~4% despite a beat and above-consensus guide), and Q1 FY27 results are due around mid-December. The main event in the window is the late-October hyperscaler earnings round (Microsoft, Alphabet, Meta, Amazon), whose capex commentary moves AI hardware names like JBL in both directions; I have no edge on its sign. Post-earnings drift after a beat is mildly positive, but it is offset by the negative reaction on the day and the sector de-risking seen since June. I therefore center the distribution on today's $304.41 with a symmetric lognormal at sigma ~13.5% (47% annual vol / 3.5), with slightly fatter tails for the hyperscaler capex prints.",
+  "fair_value": {
+    "value": 302.0,
+    "method": "Blend of 15.5x FY28 core EPS of ~$19.50 (~$302, 60%) and a 5.5% FCF yield on FY28 adjusted FCF of ~$1.7B over ~102M shares (~$303, 40%). Both haircut the AI-driven growth and the multiple versus bullish consensus targets (~$441-454), because core EPS leaves out stock comp/amortization and the 2027 numbers sit on hyperscaler capex.",
+    "methods": [
+      {"name": "P/E", "value": 302.0, "weight": 0.6,
+       "inputs": "FY28 (Aug-2028) core EPS ~$19.50 x 15.5x forward multiple at Oct 2027",
+       "inputs_detail": [
+         {"input": "FY27 core EPS guidance", "value": "$17.55", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY26 core EPS (reported)", "value": "$13.09", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY28 core EPS", "value": "$19.50", "basis": "estimate", "source_ids": [1, 2, 13, 14], "derivation": "FY27 guide $17.55 grown ~11%, about half of FY27's 34% guided growth. Growth slows as the AI ramp laps (FY27 AI revenue guided +54% to $22.1B), ramp costs are back-end loaded, and peers point to choppy hyperscaler order flow; buybacks add ~3%."},
+         {"input": "Forward P/E", "value": "15.5x", "basis": "judgment", "source_ids": [15, 16, 9, 10], "derivation": "Stock re-rated to ~23x NTM (near a 10-year high) in mid-2026 and has since de-rated to ~17x the FY27 guide after the Goldman PT cut and Zacks downgrade. Pre-AI history was low-teens for EMS. 15.5x assumes a further partial de-rating as the AI growth rate peaks, which is a skeptic's discount to today's ~17x."}
+       ]},
+      {"name": "FCF yield", "value": 303.0, "weight": 0.4,
+       "inputs": "FY28 adjusted FCF ~$1.7B / ~102M diluted shares = ~$16.7/share, capitalized at a 5.5% yield",
+       "inputs_detail": [
+         {"input": "FY27 adjusted FCF guidance", "value": "~$1.6B", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY26 adjusted FCF", "value": "$1.532B", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY28 adjusted FCF", "value": "~$1.7B", "basis": "estimate", "source_ids": [1, 2, 4, 6], "derivation": "~6% above the FY27 guide. Kept modest because inventory days (64 net, ~82 gross) are above the 55-60 target, receivable sales and securitization (~$720M outstanding) flatter operating cash flow, and capex runs at 1.5-2% of revenue for 4M sq ft of new capacity."},
+         {"input": "Diluted shares Oct 2027", "value": "~102M", "basis": "estimate", "source_ids": [1, 6], "derivation": "106.0M at Aug-2026 less ~4% from continued buybacks (FY26 buyback was $1.06B)."},
+         {"input": "Required FCF yield", "value": "5.5%", "basis": "judgment", "source_ids": [1, 5], "derivation": "The stock's FY27 adj FCF yield today is ~5.0% ($1.6B / ~$32B market cap). Investment-grade debt at ~4.2-4.75% coupons means the equity yield needs a cyclical/concentration premium, so I require 5.5%."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 195.0, "prob": 0.25, "story": "Hyperscaler capex digestion in 2027 (or one of the 3 hyperscaler customers, the second expected to exceed 10% of revenue, insources or shifts share). The FY27 guide is cut, FY28 EPS goes flat at ~$16, inventory (already 64 days) has to be worked down, FCF disappoints, and the multiple compresses to ~12x as in past EMS down-cycles. Roughly a retest of the $189.60 52-week low."},
+    "base": {"price": 310.0, "prob": 0.5, "story": "Jabil roughly delivers the $17.55 FY27 guide (it has a record of beating its guides) and the FY28 outlook implies ~10-12% growth. AI growth decelerates from +54%, the multiple drifts from ~17x to ~15.5-16x forward, and EPS growth roughly offsets the de-rating. The stock is about flat."},
+    "bull": {"price": 440.0, "prob": 0.25, "story": "AI capex stays above $1.2T, 6%+ margins prove durable, the FY28 guide is ~$21-22 and the market pays ~20x as in mid-2026. That reaches about the June 2026 high and the ~$441-454 consensus target."}
+  },
+  "thesis_break_price": 205.0,
+  "thesis_break_reason": "At ~$205 the stock would trade at under 12x the $17.55 FY27 guide, i.e. a pre-AI EMS multiple. That level is most consistent with the market pricing a guidance cut from hyperscaler capex digestion or a lost large AI program, not ordinary 47%-vol noise. It also sits just above the $189.60 52-week low; a break there would confirm the AI earnings step-up is being unwound.",
+  "catalysts": [
+    {"date": "2026-10 (late)", "event": "Hyperscaler Q3 earnings (MSFT, GOOGL, META, AMZN): 2027 capex commentary", "direction": "?"},
+    {"date": "2026-11 (late)", "event": "Nvidia quarterly results: AI rack demand read-through", "direction": "?"},
+    {"date": "2026-12 (mid)", "event": "Jabil Q1 FY27 results (guide: core EPS $3.80-4.20, revenue $10.6-11.4B)", "direction": "?"},
+    {"date": "2027-01/02", "event": "Hyperscaler Q4 earnings and 2027 capex budgets", "direction": "?"},
+    {"date": "2027-03 (mid)", "event": "Jabil Q2 FY27 results; test of back-end-loaded margin ramp", "direction": "?"},
+    {"date": "2027-06 (mid)", "event": "Jabil Q3 FY27 results", "direction": "?"},
+    {"date": "2027-09 (late)", "event": "Jabil Q4 FY27 results and FY28 outlook (likely just before the horizon date)", "direction": "?"},
+    {"date": "2026-2027 ongoing", "event": "Tariff/trade policy and memory supply reallocation away from diversified end markets", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Durability of hyperscaler AI capex through 2027-2028; JBL's FY27 AI revenue guide is $22.1B (+54%), about half of revenue",
+    "Customer concentration: top 5 customers are ~36% of revenue; a second hyperscaler will exceed 10% in FY27, and Apple remains large",
+    "Working-capital quality: inventory above target (64 net days), receivable sales and securitization (~$720M outstanding), contract assets up ~39% YTD",
+    "Multiple: the stock went from ~23x NTM at its peak to ~17x now; EMS historically traded in the low teens",
+    "Execution on 4M sq ft of new capacity with back-end-loaded margins"
+  ],
+  "reasoning": "Basic facts: FY26 core EPS was $13.09 and revenue $36.0B (+21%). The FY27 guide of $17.55 core EPS on $44.5B revenue, $1.6B adj FCF and a 6.1% core margin was above consensus ($16.92 / $42.93B), yet the stock fell ~4% on 2026-09-30. It sits ~29% below the June high at ~17x the FY27 guide. As the skeptic I looked for what makes the consensus (~$441-454 targets) wrong. I found no short-seller report, litigation or accounting allegation of substance. Credit is investment-grade: the Jan-2026 notes priced at 4.2%/4.75%, net debt is ~$1.64B and there are no covenant concerns. Real bear points: (1) the earnings step-up is concentrated in AI/cloud for a few hyperscalers, and peers (Celestica: 3 customers >63% of sales, stock down 33% from highs) show how violently this group de-rates on capex fears; (2) working-capital quality: inventory above target, receivables sold and securitized, contract assets rising, buybacks partly debt-funded; (3) steady insider selling by the CEO (~$2.7M at ~$287) and the chairman, routine but not supportive; (4) the market already doesn't believe the guide: a beat-and-raise sold off, Goldman cut its PT to $375 and Zacks downgraded, which shows a multiple compressing as growth peaks. Weighed honestly, Jabil has a record of beating guidance and the stock already prices some skepticism (17x vs ~23x peak), so I do not forecast a collapse. Fair value ~$302 (P/E and FCF-yield methods agree), about flat to spot. Scenarios: bear $195 (25%), base $310 (50%), bull $440 (25%), modeled as a lognormal mixture. The result has a median of ~$305 and wide tails consistent with 47% realized vol (fatter left tail than a typical large-cap because of AI-cycle and concentration risk). P(>= spot) is ~0.52. Research note: Seeking Alpha blocked fetching; its downgrade (23x NTM, near a 10-year high) comes from the search snippet only. Twelve Data price targets were unavailable on this plan.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "Jabil Q4 and FY2026 results press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0000898293/000162828026063890/jbl-20260930ex991.htm", "date": "2026-09-30", "type": "filing", "in_lane": false},
+    {"title": "Jabil (JBL) Q4 2026 Earnings Call Transcript", "url": "https://www.theglobeandmail.com/investing/markets/markets-news/motley/4901886/jabil-jbl-q4-2026-earnings-call-transcript/", "date": "2026-09-30", "type": "company", "in_lane": true},
+    {"title": "Jabil Shares Fall 4% Despite Fourth-Quarter Earnings Beat and Higher Fiscal 2027 Outlook", "url": "https://finance.yahoo.com/markets/stocks/articles/jabil-shares-fall-4-despite-123707616.html", "date": "2026-09-30", "type": "press", "in_lane": true},
+    {"title": "Jabil Revenue Grows 18% YTD on AI Demand, Yet Inventory Divergence Persists", "url": "https://www.panabee.com/news/jabil-earnings-q2-2026-report", "date": "2026-03", "type": "newsletter", "in_lane": true},
+    {"title": "Jabil Form 424B5 prospectus supplement: 4.200% 2029 and 4.750% 2033 senior notes", "url": "https://www.sec.gov/Archives/edgar/data/898293/000119312526015418/d938204d424b5.htm", "date": "2026-01", "type": "filing", "in_lane": true},
+    {"title": "Jabil Form 10-Q for quarter ended May 31, 2026", "url": "https://www.sec.gov/Archives/edgar/data/0000898293/000162828026046138/jbl-20260531.htm", "date": "2026-06", "type": "filing", "in_lane": true},
+    {"title": "Insider Selling: Jabil Chairman Sells 20,000 Shares of Stock", "url": "https://www.insidertrades.com/alerts/nyse-jbl-insider-buying-and-selling-2026-01-06", "date": "2026-01-06", "type": "data", "in_lane": true},
+    {"title": "Jabil Form 4 (insider sale, 2026)", "url": "https://www.sec.gov/Archives/edgar/data/0000898293/000122520826006639/doc4.xml", "date": "2026", "type": "filing", "in_lane": true},
+    {"title": "Why Jabil (JBL) Shares Are Plunging Today (Goldman PT cut to $375)", "url": "https://stockstory.org/us/stocks/nyse/jbl/news/why-up-down/why-jabil-jbl-shares-are-plunging-today", "date": "2026-09-14", "type": "press", "in_lane": true},
+    {"title": "Zacks Research downgrades Jabil to Hold", "url": "https://www.marketbeat.com/instant-alerts/zacks-research-downgrades-jabil-nysejbl-to-hold-2026-08-19/", "date": "2026-08-19", "type": "sell-side", "in_lane": true},
+    {"title": "Jabil (JBL) Earnings Beat Puts Its Valuation Back In Focus", "url": "https://www.webull.com/news/15341505841030144", "date": "2026-08-03", "type": "data", "in_lane": false},
+    {"title": "Jabil AI margin pressure", "url": "https://pitchgrade.com/research/jabil-ai-margin-pressure", "date": "2026", "type": "other", "in_lane": true},
+    {"title": "Celestica Stock Has Been on a Roller Coaster the Past Month: What's Going On?", "url": "https://www.fool.ca/2026/09/17/celestica-stock-has-been-on-a-roller-coaster-the-past-month-whats-going-on/", "date": "2026-09-17", "type": "press", "in_lane": true},
+    {"title": "Hyperscaler Capex Tops $1.2 Trillion: These Nine Stocks Are Cashing In, BofA Says", "url": "https://www.webull.com/news/15340562084406272", "date": "2026-08", "type": "sell-side", "in_lane": false},
+    {"title": "Jabil: AI Demand Drives Long-Term Growth, But Valuation Is Too High (downgrade to hold, ~23x NTM P/E; fetch blocked, snippet only)", "url": "https://seekingalpha.com/article/4795694-jabil-inc-ai-demand-drives-long-term-growth-but-valuation-is-too-high", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Jabil (JBL) valuation recheck after AI rotation cooling", "url": "https://simplywall.st/stocks/us/tech/nyse-jbl/jabil/news/jabil-jbl-valuation-recheck-after-ai-rotation-cooling-constr", "date": "2025-12-14", "type": "data", "in_lane": false}
+  ]
+}

@@ -1,0 +1,67 @@
+{
+ "symbol": "VST",
+ "update_date": "2026-11-03",
+ "base": "2026-10-23",
+ "mode": "update",
+ "mode_reason": "base 2026-10-23 has a gate-clean standard model",
+ "trigger": "news: 11-03 election (Texas gov Hinojosa DC moratorium pledge, D House+Senate, local DC ballot bans); 2-sigma move -15% 11-04",
+ "playbook": "power_ipp",
+ "base_fair_value": 147.47039559958498,
+ "base_fair_value_source": "standard model",
+ "filings_since_base": [],
+ "created_utc": "2026-11-04T16:18Z",
+ "changed_inputs": [
+  "driver:ercot_dc_gw",
+  "driver:pjm_dc_gw",
+  "driver:gen_price",
+  "driver:cap_rev",
+  "driver:retail_margin",
+  "driver:gen_twh",
+  "driver:fuel_cost",
+  "driver:retail_twh",
+  "driver_build.quarters.lines.dc_adj",
+  "driver_build.quarters.lines.gp_eff",
+  "driver_build.quarters.lines.ret_off",
+  "driver_build.quarters.segments.Generation",
+  "driver_build.quarters.segments.Retail",
+  "quarter constants ercot_ref / ercot_l0 / pjm_ref",
+  "quarter constants open_tx / open_east",
+  "quarter constants aws_prem / s_e / s_p / r_ret / ret_on",
+  "quarter constant fixed_cost",
+  "Horizon EV/EBITDA (NTM adjusted)",
+  "Leg weights",
+  "Adjusted EBITDA path FY2026 / FY2027 / FY2028 / FY2029 (driver output)",
+  "Moratorium scenario weights (load-driver paths)",
+  "Data-center moratorium beyond the NTM window (FY2029+)",
+  "Capacity netting check (cap_rev net vs gross)"
+ ],
+ "what_changed": "DRIVER SET (approved by Kilian on his 2026-11-04 11:49am ET card). Two economic drivers were added. (1) ercot_dc_gw is ERCOT large load energized, from ERCOT's monthly operational overviews: 3.49 GW in May 2025, 4.04 GW in Feb 2026 and 4.27 GW on average over Jul-Sep 2026. Its FY2026-29 averages are 4.17/4.96/6.72/8.64 GW with no moratorium and 4.17/4.87/6.08/7.91 GW probability-weighted. Already-approved loads keep ramping at the observed +0.6 GW a year in every scenario. Only the 6.6 GW of Batch Zero loads are paused: they start in mid-2027 with no moratorium and in mid-2028 under the Texas pause. (2) pjm_dc_gw is PJM's firm data-center load from Table B-9b (RTO total), interpolated to quarters: 11.47/15.99/21.36/28.03 GW on PJM's path and 11.47/15.86/20.92/27.40 GW weighted. The weighted path delays growth by 18 months in the zones of OH, PA and IL (AEP, ATSI, DAYTON, PL, PECO, COMED). Mapping: realized price = gen_price book + dc_adj. dc_adj applies open, unhedged TWh x $1.2/MWh per GW in ERCOT and $0.67 per GW in PJM, on the Aug 2026 hedge levels (94%/72%). It also scales the AWS Comanche Peak premium (0/60/120 $M) with energized Batch Zero load. A retail offset adds half of the cheaper ERCOT supply on 57% of retail volume from FY2028. gen_twh is not linked. cap_rev is not linked through FY2029; from DY 2030/31 the capacity effect sits in the post-horizon adjustment, on net MW. Weights are 0.45 for a Texas pause and 0.10 for a spread to PJM states. EBITDA effect vs the reference paths: -3.0 / -30.9 / -66.5 $M in FY2027/28/29. The post-horizon adjustment is -324 $M. OTHER CHANGES. No Vistra filing has landed since the base round (Q3 prints 11-06), so actuals, the balance sheet and shares are unchanged, and Q3 FY2026 stays the next forecast quarter. Multiple 9.0x -> 8.9x (Kilian card): the IPP median at 11-04 midday is 10.01x, less the same 1.1x. cap_rev FY2029 goes from 508.3 to 522.0, with DY 2029/30 at the collar cap. Fixed costs for FY2029 now grow at CPI. Every other year of every driver was re-argued and kept, with its evidence restated. Added a top-level guidance_check, using two closed periods per metric. The FY2026 guide midpoint of 7.2B has a record-adjusted value of about 7.9B, inflated by the FY2024 nuclear PTC; ours is 7.3B, inside the range. For the FY2027 opportunity, ours is about 7.4B on its basis, below the range. Engine value 147.47 -> 143.56 (-2.7%). Without the moratorium the same set gives 145.25. Thesis break stays at $115.",
+ "escalate": [
+  {
+   "trigger": "stock near the thesis break",
+   "evidence": "VST 118.61 at 11-04 midday (Twelve Data), ~3.1% above the $115 thesis break."
+  },
+  {
+   "trigger": "move larger than 2x the implied earnings move (a -15% policy move)",
+   "evidence": "VST -15.0% on 11-04 (139.59 -> 118.61) on the 11-03 election, with no company news; peers fell CEG -8.9%, TLN -8.8%, NRG -14.5%. KeyBanc downgraded VST to Sector Weight, citing Texas policy risk."
+  },
+  {
+   "trigger": "structural news (policy shift)",
+   "evidence": "Texas governor-elect Hinojosa pledged a data-center moratorium; Abbott's 8-03 and 9-21 letters have no end date; ERCOT has paused energizing new large loads until its 12-10 reports. Booked through the new load drivers."
+  }
+ ],
+ "xbrl_actuals": {
+  "pulled": "2026-11-04T16:18Z",
+  "file": "data/xbrl_actuals/VST.json",
+  "scripted": [],
+  "y1_rolled": [],
+  "agent": [
+   "gen_twh",
+   "gen_price",
+   "fuel_cost",
+   "cap_rev",
+   "retail_twh",
+   "retail_margin"
+  ]
+ }
+}

@@ -1,0 +1,803 @@
+{
+ "date": "2026-11-05",
+ "symbol": "MOD",
+ "clean": true,
+ "checked": 88,
+ "ok": 88,
+ "failures": [
+  {
+   "item": "supervisor fair_value: moratorium driver: DC sales x (1 - 0.0403) Q1 FY28-Q1 FY29, VST weights 0.45/0.10, Cleanview counts; 202.64 -> 197.39",
+   "value": "0.0403; 197.39",
+   "cited": "",
+   "result": "wrong",
+   "fix": "fair_value 183.43 (engine check), reason leads with the shared dcmap basis x MOD Americas 0.87 (-7.07% from 197.39); old basis marked superseded"
+  },
+  {
+   "item": "supervisor key_drivers: dc_mor: 0 -> 0.0000/0.0403/0.0151",
+   "value": "0.0000/0.0403/0.0151",
+   "cited": "",
+   "result": "wrong",
+   "fix": "key_drivers dc_mor line -> 0.0000/0.1241/0.0452 = drivers[dc_mor].years"
+  },
+  {
+   "item": "supervisor model.reconciled_inputs.inputs_detail: driver:dc_mor row (Cleanview counts TX 0.172 / PJM 0.376, VST weights, window 0.5, 0.0403; sources 77,80-83)",
+   "value": "0.0403",
+   "cited": "https://cleanview.co/data-centers/us",
+   "result": "wrong",
+   "fix": "inputs_detail driver:dc_mor rewritten to the shared basis (dcmap GW shares TX 0.2692 / PJM 0.2585 / GA 0.0572 / NY 0.0176, weights 0.25/0.45/0.30, early stage 0.70, Americas 0.87); sources 77,81,84,85"
+  },
+  {
+   "item": "supervisor thesis_break_reason: 11-04 day moves: VRT -11.7%, NVT -13.0%, VST -14.6%, MOD -23.6%",
+   "value": "-11.7/-13.0/-14.6/-23.6%",
+   "cited": "https://twelvedata.com/",
+   "result": "wrong",
+   "fix": "replaced with Twelve Data daily closes 11-03 -> 11-04: MOD -21.4%, VRT -12.9%, NVT -12.7%, VST -13.8%; excess vs peers ~-8 to -9%; minute-bar session split labelled our own calculation (judgment)"
+  },
+  {
+   "item": "supervisor comps_review: reconciled_peer_median_fwd_pe 23.23 (12 peers)",
+   "value": "23.23",
+   "cited": "",
+   "result": "mixed_basis",
+   "fix": "Munters P/E put on MOD basis as an upper bound (EPS less 2 x H1 2026 amortization MSEK 165 after 20.6% tax = 18.10x; range 15.11-18.10x); Daikin MOD-basis range 16.7-19.6x; every foreign row stays below the 23.19/23.27 median pair: median 23.23x unchanged, estimate"
+  },
+  {
+   "item": "supervisor comps_review: reconciled_peer_median_fwd_ev_ebitda 14.17 (12 peers)",
+   "value": "14.17",
+   "cited": "",
+   "result": "mixed_basis",
+   "fix": "Munters EV/EBITDA put after lease cost (NTM EBITDA less 2 x H1 2026 lease depreciation MSEK 123 = 3,214.9; 9.38x, 8.83x if EV ex-leases); Alfa Laval and Daikin already after lease cost; median 14.17x unchanged, estimate. NVT consensus drift (~14.59x) is live-data drift, carried to the next peer refresh"
+  },
+  {
+   "item": "supervisor model.reconciled_inputs.inputs_detail: Q2 continuing corporate -18.1 (= -15.3 - 2.8, slide 20), continuing FY26 2,055.4 / 301.4, adjustments 13.1 / 4.7",
+   "value": "see item",
+   "cited": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "result": "not_found",
+   "fix": "OPEN: slide 20 (recast continuing operations) is an image; the SEC refused an automated image download and WebFetch failed on it; the 10-Q and release text do not show the 2.8/qtr PT-allocated corporate cost or the 2,055.4 / 301.4 / 13.1 / 4.7 recast figures. Value not changed (removing the allocation would be a driver change); needs a human read of slide 20 (mod-ex99d2g020.jpg)"
+  },
+  {
+   "item": "supervisor driver path dc_rev: FY29 3,500 (+10.1%; FY28 ~2.4%/qtr step extended)",
+   "value": "3500",
+   "cited": "",
+   "result": "unsupported",
+   "fix": "OPEN (carried judgment, not evidence): value kept per Kilian card 2026-11-04 until the Nov 18 Investor Day; derivation now says plainly there is no FY29 evidence and the ~2.4%/qtr step is our own FY28 assumption extended; judgment call lists the alternative 4,160 = 195.69 (+6.68%) on the current 183.43 set"
+  },
+  {
+   "item": "supervisor guidance: DC adj. EBITDA growth FY2027 guidance arithmetic",
+   "value": "3/1/0, median 0.064, adjusted 0.851, ours 0.6893 below -0.1384",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "counts 3/1/1, median 0.0456, record-adjusted 0.836; ours 0.6893 still below (gap -0.1384 unchanged)"
+  },
+  {
+   "item": "supervisor model: net debt at horizon 259.2 (inputs_detail prose)",
+   "value": "259.2",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "prose step corrected to +11.2 (= (485 - 469.8) x 0.736); 259.2 unchanged"
+  },
+  {
+   "item": "supervisor guidance_check CHVAC FY2027 why: Record: two in-year raises",
+   "value": "claim",
+   "cited": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "result": "wrong",
+   "fix": "'one in-year raise' (+5-10% Q4 FY26 deck, reaffirmed Q1, raised to +10-15% Q2); chvac_rev derivation's 'two raises, two beats' corrected the same way"
+  },
+  {
+   "item": "supervisor judgment call: Moratorium timing for MOD (not carded) why: MOD equipment ships earlier in a build than GPU delivery",
+   "value": "claim",
+   "cited": "",
+   "result": "invented",
+   "fix": "no source found for MOD ship lead time: reworded as an open question with no factual claim (judgment call and dc_mor derivation); no value effect"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "Data Centers sales growth (and DC earnings growth) FY2027 guide as of 2026-11-03 (segment net sales growth (slide 12 of the Q2 FY27 deck [src 76]: DC +80% to +\u2026",
+   "value": "0.8-0.9",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers adj. EBITDA growth FY2027 guide as of 2026-11-03 (DC slide 7 of the Q2 FY27 deck [src 76]: 'Anticipating full-year earnings growth in excess of 80\u2026",
+   "value": "0.8-None",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Commercial HVAC sales growth FY2027 guide as of 2026-11-03 (segment net sales growth (slide 12 of the Q2 FY27 deck [src 76]: CHVAC +10% to +15%; raised from 5-\u2026",
+   "value": "0.1-0.15",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers adj. EBITDA margin, H2 FY2027 H2 FY2027 guide as of 2026-11-03 (ESTIMATE (not a company figure): implied by the FY27 DC earnings growth floor (>80\u2026",
+   "value": "0.206-None",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex % of revenue anchor (company_adjusted, as of 2026-11-03): ESTIMATE derived from company guidance (arithmetic below). capex guide mid 175 - PT H1 ~15 (est\u2026",
+   "value": "0.051",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers sales growth (and DC earnings growth) FY2025 adj. EBITDA: first guide (2024-05-21) / reported actual",
+   "value": "365-385 / 392.1",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000114036124027058/ef20029568_ex99-1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers sales growth (and DC earnings growth) FY2025 net sales growth: first guide (2024-05-21) / reported actual",
+   "value": "0.05-0.1 / 0.073",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000114036124027058/ef20029568_ex99-1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers sales growth (and DC earnings growth) FY2026 adj. EBITDA: first guide (2025-05-20) / reported actual",
+   "value": "420-450 / 471.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000155837025008029/tmb-20250520xex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers sales growth (and DC earnings growth) FY2026 net sales growth: first guide (2025-05-20) / reported actual",
+   "value": "0.02-0.1 / 0.2313",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000155837025008029/tmb-20250520xex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers sales growth (and DC earnings growth) FY2027 DC sales growth (in-year): first guide (2026-05-26) / reported actual",
+   "value": "0.6-0.8 / raised to 80-90% at Q2 (H1 788.3, +93% y/y)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926066291/mod-20260526xex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Commercial HVAC sales growth FY2027 CHVAC sales growth (in-year): first guide (2026-05-26) / reported actual",
+   "value": "0.05-0.1 / raised to 10-15% at Q2 (H1 547.1, +22% y/y)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926066291/mod-20260526xex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers adj. EBITDA growth Q2 FY2027 DC adj. EBITDA margin: first guide (2026-07-30) / reported actual",
+   "value": "0.19-0.2 / 0.1537",
+   "basis": "guidance",
+   "source_url": "https://s205.q4cdn.com/270741342/files/doc_financials/2027/q1/Modine_-Transcript-Q1-FY27.pdf",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers sales growth (two-year target) FY2028 guide as of 2026-01-29 (management's Jan-2026 target: DC +50-70% a year over the next two years, 'exceeding \u2026",
+   "value": "0.5-0.7",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926008087/mod-20260129xex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers adj. EBITDA margin, H2 FY2027 Q1 FY2027 DC sales direction: first guide (None) / reported actual",
+   "value": "None-None / 348.6, +90% y/y (Q1 release [4]); -13% q/q = 348.6 / 401.9 (Q4 FY26 recast [6]) - 1 (estimate arithmetic)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926088230/mod-20260729xex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Data Centers adj. EBITDA margin, H2 FY2027 Q1 FY2027 DC adj. EBITDA margin: first guide (None) / reported actual",
+   "value": "None-None / 0.148",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926088230/mod-20260729xex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Continuing net sales and adj. EBITDA (RemainCo) FY2027 guide as of 2026-11-03 (FY27 continuing (excl. PT both years) adj. EBITDA $470-500M and net sales $3.1-3\u2026",
+   "value": "470-500",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "tax rate anchor (company_adjusted, as of 2026-11-03): ESTIMATE derived from company guidance (arithmetic below). FY27 continuing provision guide $95-105M (mid \u2026",
+   "value": "0.264",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "D&A % of revenue anchor (company_adjusted, as of 2026-11-03): ESTIMATE derived from company guidance (arithmetic below). FY27 continuing D&A guide $56-61M, mid\u2026",
+   "value": "0.0186",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "NWC % of incremental revenue anchor (company_adjusted, as of 2026-11-03): ESTIMATE derived from company guidance (arithmetic below). FY27 working-capital use i\u2026",
+   "value": "0.17",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "interest rate on net debt anchor (company_adjusted, as of 2026-11-03): ESTIMATE derived from company guidance: (28 - 14.9) x 2 / 406.1 = 26.2 / 406.1 = 6.45% (\u2026",
+   "value": "0.0645",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "diluted shares",
+   "value": "53.9",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "claim (src 77)",
+   "value": "Upper half of 80-90%, set by the CFO's quarter cadence on the call (Q3 ~80%, Q4 90%+, mostly volume) [src 77]; record of beats and raises (FY26, FY27 raise) supports it.",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "claim (src 77)",
+   "value": "Below the >80% floor: the floor needs H2 ~20.6% on our H2 sales 1,300; we use Q3 16.9% (call mid) and Q4 20.0% (bottom of '20% or above' [src 77]) = H2 18.7%, after two quarter-margin misses of 4-5 p\u2026",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q2 FY27 DC sales 439.7, CHVAC 285.5; DC margin 15.4%",
+   "value": "439.7 / 285.5 / 0.154",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY27 guide raised: DC +80-90%, CHVAC +10-15%, continuing adj. EBITDA $470-500M",
+   "value": "0.8-0.9 / 0.1-0.15 / 470-500",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "CFO cadence: DC Q3 ~+80%, Q4 90%+; margin Q3 +100-200bp seq., Q4 '20% or above'",
+   "value": "see item",
+   "basis": "management statement",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "EV at $125 = 53.2M x 125 + 406.1 = ~7.06B; 7,056 / 469.8 = 15.0x; 11.6x the 610 median FY28E",
+   "value": "7.06B / 15.0x / 11.6x",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "thesis_break_reason"
+  },
+  {
+   "item": "capacity customer ~11% of consolidated FY26 sales; >$4B CY27-29",
+   "value": "0.11; >4B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926066795/mod-20260331x10k.htm",
+   "checked": "2026-11-05",
+   "feeds": "thesis_break_reason"
+  },
+  {
+   "item": "record DC orders >$1B and $400M award (slides 4/7)",
+   "value": "> $1B; $400M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "thesis_break_reason"
+  },
+  {
+   "item": "Q2 call reaffirmed raised sales guide; stock ~95 on the print",
+   "value": "~95",
+   "basis": "reported",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "thesis_break_reason"
+  },
+  {
+   "item": "~107% upside = 197.39 / 95.38 intraday 2026-11-04 - 1",
+   "value": "1.07",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "sizing"
+  },
+  {
+   "item": "Q1 FY27 net debt table $528.2M debt, $95.3M cash (432.9)",
+   "value": "528.2 / 95.3",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926088230/mod-20260729xex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "Q1 FY27 slide 12: CHVAC +5-10%, DC +60-80%, PT flat to +5%, consolidated adj. EBITDA $650-680M; DC earnings >85%",
+   "value": "see item",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926088230/mod-20260729xex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "Q4 FY26 DC sales 401.9; Q1 FY27 348.6 at 14.8%",
+   "value": "401.9 / 348.6 / 0.148",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926088230/mod-20260729xex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "disagreements"
+  },
+  {
+   "item": "net debt at close 406.1 = 573.7 - 156.0 - 42.6 + 31.0; 6-30 check 432.9 - 198.6 + 31.0 = 265.3",
+   "value": "406.1",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926114220/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "H1 FY27 FCF -145.6, capex 88.5, WC lines AR -68.4 / inv -194.5 / AP +111.9 / other -58.8, treasury purchases 65.7, interest H1 14.9, PT H1 adj. EBITDA 77.1, DC H1 EBITDA 119.3",
+   "value": "see item",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY27 continuing guide: interest $26-30M, tax provision $95-105M, D&A $56-61M, RMT costs $20-25M H2, FCF flat to +$25M, capex $150-200M incl. PT H1",
+   "value": "see item",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q2 tax: 57.7 provision, 29.5 legal-entity restructuring, 0.8 + 3.5 tax benefits, pretax 88.0, restructuring 3.0, disposition 14.1",
+   "value": "see item",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "pro forma continuing Q1: tax benefit 11.1 on pretax 47.6",
+   "value": "11.1 / 47.6",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926114220/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "diluted shares 53.9M Q2 FY27 (53.8M Q2 FY26)",
+   "value": "53.9",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY26 D&A DC 19.1 + CHVAC 28.4 = 47.5; PT 30.8, corporate 1.4, total 79.7; base revenue 1,108.2 + 973.8 = 2,082.0",
+   "value": "see item",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926086644/mod-20260724xex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "organic growth: CHVAC Q2 +18%, H1 +12%; DC Q2 +96%",
+   "value": "0.18 / 0.12",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Americas DC sales +132%, EMEA -6% -> Americas share 0.87",
+   "value": "0.87",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY27 2,088.3 (Q3 536 = 297.6 x 1.8, Q4 764 = 401.9 x 1.9)",
+   "value": "2088.3",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY28 3,179 (Q1 flat at the 764 exit, then ~+2.6%/qtr)",
+   "value": "3179",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926008087/mod-20260129xex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY27 17.4% (Q3 16.9%, Q4 20.0%)",
+   "value": "0.1737",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY28 19.8% (Q1-Q2 19.5% ramp compression, Q3-Q4 20%) / FY29 20.0% flat",
+   "value": "0.1976 / 0.2000",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY27 1,117.1 (H1 547.1 + Q3 275.0 + Q4 295.0)",
+   "value": "1117.1",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY28 1,209 / FY29 1,308.4 at +8.2% y/y (H2 FY27 forecast exit trend)",
+   "value": "1209 / 1308.4",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY28-29 17.3% (Q1-Q2 FY28 +1.2pt y/y on depressed FY27 H1, Q3-Q4 held at FY27)",
+   "value": "0.1734",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY28-29 -74/yr (= Q2 continuing -18.1 run-rate)",
+   "value": "-74",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "state shares: dcmap pipeline TX 93.1, PJM 89.429, GA 19.8, NY 6.082 of 345.9 GW",
+   "value": "0.2692/0.2585/0.0572/0.0176",
+   "basis": "industry data",
+   "source_url": "https://dcmap.us/states/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "US pipeline 345.9 GW = 69.6 under construction + 276.3 planned",
+   "value": "345.9",
+   "basis": "industry data",
+   "source_url": "https://dcmap.us/insights/pipeline/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "early stage 0.70 (BNEF 'more than 70%' of ~50 GW Texas)",
+   "value": "0.70",
+   "basis": "industry data",
+   "source_url": "https://www.utilitydive.com/news/texas-data-center-pause-puts-us-pipeline-risk-of-delay-bnef/827185/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "quarter values follow the formula (0.87 x 0.70 x sum of share x weights; quarter = mean of months)",
+   "value": "Q2 FY28 0.12418, Q3 0.1809, Q4 0.19135, Q1 FY29 0.13463, Q2 0.02117, Q3 0.0142, Q4 0.01072; years 0.12411 / 0.04518",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "DC sales growth FY2027 guidance arithmetic",
+   "value": "3/1/0, median 0.064, adjusted 0.904, ours 0.8844 inside 0.0405",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "DC sales growth two-year target FY2028 arithmetic",
+   "value": "0/0/0, ours 0.6937 inside 0.1562",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "CHVAC sales growth FY2027 arithmetic",
+   "value": "3/1/0, median 0.064, adjusted 0.133, ours 0.1472 inside 0.1776",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "DC adj. EBITDA margin H2 FY2027 arithmetic",
+   "value": "0/1/2, ours 0.1872 below -0.0913",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Continuing adj. EBITDA FY2027 arithmetic",
+   "value": "2/0/0, median 0.064, adjusted 516.0, ours 469.8 below -0.0313",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "diluted shares 53.9 (reported_history)",
+   "value": "53.9",
+   "basis": "reported",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "tax rate 0.264",
+   "value": "0.264",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "D&A % of revenue 0.0228",
+   "value": "0.0228",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex % of revenue 0.05",
+   "value": "0.05",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "NWC % of incremental revenue 0.17",
+   "value": "0.17",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "interest rate on net debt 0.0645",
+   "value": "0.0645",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Top of the 50-70%/yr target: FY27 +88% from the call cadence; FY28 +52% = Q4 exit 764 plus ~2.6%/qtr",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926008087/mod-20260129xex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Investor Day Nov 18 gives FY28-29 targets",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "H1 already +22% (organic +12%); guide needs H2 -0.5% to +8.7%; we use +8.2% (heating rebound laps, DC coil demand continues)",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d1.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "H2 18.7% (Q3 16.9% call mid, Q4 20.0% bottom of '20% or above'); 450-500bp step gives ~19.5%; two straight quarter-margin misses",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "At the low end: DC Q3/Q4 from the call cadence, Q4 at bottom of '20% or above'; CHVAC H2 18.0% vs the call's +300-400bp",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Record-adjusted 516.0 (= mid 485 x 1.064) shown not used",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "two straight quarter-margin misses of 4-5 points; Investor Day Nov 18 gives FY28-29 targets",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://s205.q4cdn.com/270741342/files/doc_financials/2027/q1/Modine_-Transcript-Q1-FY27.pdf",
+   "checked": "2026-11-05",
+   "feeds": "judgment call: dc path after the call why"
+  },
+  {
+   "item": "company guides positive H2 FCF (~$158M)",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-05",
+   "feeds": "judgment call: net debt at the horizon why"
+  },
+  {
+   "item": "no cited FY29 figure; Nov 18 Investor Day gives FY28-29 targets",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "judgment call: dc fy29 sales path why"
+  },
+  {
+   "item": "Same events and weights as NVDA/AVGO (shared dc_mor file); MOD's exposure from its own Q2 FY27 call (Americas DC sales) rather than NVIDIA's 10-K US share",
+   "value": "claim",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-modine-posts-mixed-q2-2026-results-as-shares-sink-24-93CH-5000744",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor fair_value: moratorium driver: DC sales x (1 - 0.0403) Q1 FY28-Q1 FY29, VST weights 0.45/0.10, Cleanview counts; 202.64 -> 197.39 (after fix)",
+   "value": "183.43",
+   "basis": "estimate",
+   "source_url": "python3 valuation/model_engine.py check supervisor.json",
+   "checked": "2026-11-06",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor key_drivers: dc_mor: 0 -> 0.0000/0.0403/0.0151 (after fix)",
+   "value": "0.0000/0.1241/0.0452",
+   "basis": "estimate",
+   "source_url": "driver_models/shared/dc_mor.json",
+   "checked": "2026-11-06",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.reconciled_inputs.inputs_detail: driver:dc_mor row (Cleanview counts TX 0.172 / PJM 0.376, VST weights, window 0.5, 0.0403; sources 77,80-83) (after fix)",
+   "value": "0.0000/0.1241/0.0452",
+   "basis": "estimate",
+   "source_url": "https://dcmap.us/insights/pipeline/",
+   "checked": "2026-11-06",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor thesis_break_reason: 11-04 day moves: VRT -11.7%, NVT -13.0%, VST -14.6%, MOD -23.6% (after fix)",
+   "value": "-21.4/-12.9/-12.7/-13.8%",
+   "basis": "reported",
+   "source_url": "https://twelvedata.com/ (time_series 1day)",
+   "checked": "2026-11-06",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "supervisor comps_review: reconciled_peer_median_fwd_pe 23.23 (12 peers) (after fix)",
+   "value": "23.23",
+   "basis": "estimate",
+   "source_url": "https://www.munters.com/globalassets/story-page-import-images/munters-interim-report--jan-jun-20262.pdf?v=639198630810000000",
+   "checked": "2026-11-06",
+   "feeds": "comps"
+  },
+  {
+   "item": "supervisor comps_review: reconciled_peer_median_fwd_ev_ebitda 14.17 (12 peers) (after fix)",
+   "value": "14.17",
+   "basis": "estimate",
+   "source_url": "https://www.munters.com/globalassets/story-page-import-images/munters-interim-report--jan-jun-20262.pdf?v=639198630810000000",
+   "checked": "2026-11-06",
+   "feeds": "comps"
+  },
+  {
+   "item": "supervisor guidance: DC adj. EBITDA growth FY2027 guidance arithmetic (after fix)",
+   "value": "3/1/1; 0.0456; 0.836",
+   "basis": "estimate",
+   "source_url": "row arithmetic",
+   "checked": "2026-11-06",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "supervisor model: net debt at horizon 259.2 (inputs_detail prose) (after fix)",
+   "value": "259.2",
+   "basis": "estimate",
+   "source_url": "row arithmetic",
+   "checked": "2026-11-06",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance_check CHVAC FY2027 why: Record: two in-year raises (after fix)",
+   "value": "one raise",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67347/000110465926122032/mod-ex99d2.htm",
+   "checked": "2026-11-06",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "supervisor judgment call: Moratorium timing for MOD (not carded) why: MOD equipment ships earlier in a build than GPU delivery (after fix)",
+   "value": "n/a (removed claim)",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-06",
+   "feeds": "none"
+  }
+ ],
+ "engine_check": {
+  "before": 183.43,
+  "after": 183.43,
+  "note": "fixes change no driver or multiple; fair_value restated from the stale 197.39 to the engine's 183.43"
+ },
+ "closed_open_failures": [
+  {
+   "item": "supervisor model.reconciled_inputs.inputs_detail: Q2 continuing corporate -18.1 (= -15.3 - 2.8, slide 20), continuing FY26 2,055.4 / 301.4, adjustments 13.1 / 4.7",
+   "result": "not_found",
+   "why_open": "OPEN: slide 20 (recast continuing operations) is an image; the SEC refused an automated image download and WebFetch failed on it; the 10-Q and release text do not show the 2.8/qtr PT-allocated corporate cost or the 2,055.4 / 301.4 / 13.1 / 4.7 recast figures. Value not changed (removing the allocation would be a driver change); needs a human read of slide 20 (mod-ex99d2g020.jpg)",
+   "closed": "VERIFIED 2026-11-06 2:28am UTC: Kilian sent the slide 20 image (evidence/mod_q2fy27_deck_slide20.png): Discontinued operations adjustments (corporate costs allocated to PT) Q1 FY27 (1.9), Q2 FY27 (2.8), FY26 (13.1), H1 (4.7); FY26 continuing net sales 2,055.4, adj. EBITDA 301.4. All match."
+  },
+  {
+   "item": "supervisor driver path dc_rev: FY29 3,500 (+10.1%; FY28 ~2.4%/qtr step extended)",
+   "result": "unsupported",
+   "why_open": "OPEN (carried judgment, not evidence): value kept per Kilian card 2026-11-04 until the Nov 18 Investor Day; derivation now says plainly there is no FY29 evidence and the ~2.4%/qtr step is our own FY28 assumption extended; judgment call lists the alternative 4,160 = 195.69 (+6.68%) on the current 183.43 set",
+   "closed": "ACCEPTED JUDGMENT (not evidence): Kilian card 2026-11-04 chose this FY29 path until the Nov 18 Investor Day; derivation labels it judgment with no FY29 evidence; alternative 4,160 = +6.68% in judgment_calls_for_kilian. Kilian 2026-11-06 was shown both open items (card) and sent the slide to close the other; re-set at the Investor Day update."
+  }
+ ]
+}

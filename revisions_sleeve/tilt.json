@@ -1,0 +1,23 @@
+{
+ "_source": "WRDS I/BES statsum + CRSP monthly 2000-2025, $10B+ US common stock, 12M buy-and-hold excess vs all $10B+ names by month-end revision-score percentile (wrds/results/rev_tilt_buyhold.csv). Conservative full-sample figures used, not the stronger 2013-2025 ones. Wharton Research Data Services (WRDS) was used in preparing this table.",
+ "_score": "avg percentile rank of rev3 = (FY1 now - FY1 90d ago)/price and breadth = (up30 - down30)/n over last 2 monthly snapshots, across the live_scores.py universe (Nasdaq screener, cap >= $10B, price >= $5, ex Finance/Real Estate/defense)",
+ "min_analysts": 2,
+ "min_market_cap": 10000000000.0,
+ "buckets": [
+  {
+   "pct_lo": 0.97,
+   "pct_hi": 1.0,
+   "log_shift_12m": 0.03,
+   "label": "top 3%",
+   "evidence": "12M buy-hold excess +4.0% t 1.87 (2000-25), +5.9% t 1.82 (2013-25); 3M +1.2% t 2.36, 6M +2.3% t 2.20. Shrunk by t^2/(1+t^2) = 0.78 to +3.0%."
+  },
+  {
+   "pct_lo": 0.0,
+   "pct_hi": 0.97,
+   "log_shift_12m": 0.0,
+   "label": "rest",
+   "evidence": "95-97% +1.7% t 1.26; 5-20% -0.5% t -0.75; bottom 5% -1.0% t -0.71: none significant, so no shift."
+  }
+ ],
+ "_revised": "2026-10-08 15:40Z after Kilian asked whether the shifts are empirically backed: only the top-3% bucket is; others zeroed, top shrunk 4.0 -> 3.0%. Tilt is sized at quarter Kelly like research alpha (not half Kelly like the options part) and not scaled by conviction."
+}

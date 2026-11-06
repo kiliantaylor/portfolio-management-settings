@@ -1,0 +1,352 @@
+{
+ "as_of": "2026-11-05",
+ "generated": "2026-11-06T02:40Z",
+ "method": "Scorecard: do the research and the trades add value? Usage (from the valuation folder): python3 scoring/scorecard.py D\n\nWrites scoring/scorecard.json for market date D and prints a short summary. Two parts:\n\nforecasts  From scoring/live_scores.json (score_live.py is run first if that file is not for D). 12-month forecasts\n           whose research leg was the driver model only (runs/<as_of>/<SYM>/result.json research_leg.source ==\n           'standard_model'; Kilian 2026-11-04; the 1-month row was dropped): mean CRPS (log-price units, lower is better) of the options market alone\n           (p_market), the agents alone after Platt scaling (p_llm_platt) and the published blend (p_final), and the\n           agents-minus-market CRPS difference with a standard error clustered by forecast date (names forecast on the\n           same date move together, so forecast dates are the independent units).\n\nlive_book  The real book rebuilt day by day from data/trades.json (the owner's fills) and data/book.json, from the\n           close before the first fill to D. Stocks are marked at the daily close; cash (in the account and the outside\n           cash in book.json external_cash) earns the 3M T-bill (../portfolio/data/tbill_3m_weekly.csv, notional,\n           calendar days / 365); dividends (../portfolio/data/dividends.json) are credited on the ex-date. Outside money\n           (book.json external_cash and lots bought outside the project, funding \"external\") enters as a cash flow at\n           the start of the day it joined the book, valued at the prior close; returns are time-weighted (each day's\n           return = value at close / (prior close value + flow at the open) - 1), so added money is not counted as return.\n           Two returns:\n             whole_book   time-weighted, the whole account, cash included: r = V_close / (V_prior + outside money at the open) - 1.\n           invested_cash  return on invested cash, dollar-weighted (Kilian 2026-11-04): the stock sleeve's dollar gain\n                          over the period / its average capital, capital_t = S_prior + purchases (own buys at the fill\n                          price, outside lots at the prior close, at the open; sales leave at the close). SPY and equal\n                          weight are put on the same capital_t on the same days, so the gaps compare the same dollars.\n           Whole book is compared with:\n             spy              SPY close-to-close plus distributions reinvested on the ex-date (no adjusted closes in the\n                              data; dividends.json supplies SPY distributions). Fully invested, so flows do not matter.\n             equal_weight     equal weight in the names the real book holds; rebalanced to equal weight at the close on\n                              any day the set of names changes and on the first trading day of each month, drifting\n                              otherwise; holds T-bill cash while the book holds no stock. Fully invested otherwise.\n           A few weeks of daily returns cannot separate skill from luck: the numbers say what happened, not whether it\n           will happen again.\n\n(2026-11-04, Kilian: the Standard model trial row and the 1-month forecast row are no longer shown or written.)",
+ "forecasts": {
+  "12m": {
+   "n_ladders_logged": 244,
+   "n_forecast_dates_logged": 14,
+   "first_maturity": "2027-10-19",
+   "first_maturity_from": "2026-10-19",
+   "n_matured": 0,
+   "n_forecast_dates": 0,
+   "n_ladders": 0,
+   "excluded_split_basis": 0,
+   "pending": 244,
+   "status": "First 12-month driver-model forecasts mature 2027-10-19; nothing scored yet."
+  }
+ },
+ "live_book": {
+  "start_close": "2026-09-30",
+  "first_fill": "2026-10-01",
+  "end": "2026-11-05",
+  "n_days": 26,
+  "months": 2,
+  "starting_wealth": 10000.0,
+  "end_value": 23738.75,
+  "external_flows": [
+   {
+    "date": "2026-10-07",
+    "amount": 13984.0
+   }
+  ],
+  "net_added": 13984.0,
+  "end_invested_share": 0.5972,
+  "avg_invested_share": 0.3589,
+  "holdings_end": [
+   "ABT",
+   "AMAT",
+   "AVGO",
+   "GOOGL",
+   "MOD",
+   "NFLX",
+   "NVDA",
+   "T",
+   "VST"
+  ],
+  "cum_return": {
+   "whole_book": -0.00601,
+   "spy": -0.03885,
+   "equal_weight": -0.12074
+  },
+  "gap_vs": {
+   "whole_book": {
+    "spy": {
+     "cum_return_gap": 0.03284,
+     "rough_se": 0.03191
+    },
+    "equal_weight": {
+     "cum_return_gap": 0.11473,
+     "rough_se": 0.07222
+    }
+   }
+  },
+  "invested_cash": {
+   "return_pct": -0.03595,
+   "dollars": -303.34,
+   "avg_capital": 8438.7,
+   "spy": -0.06457,
+   "equal_weight": -0.20293,
+   "gap_vs": {
+    "spy": {
+     "return_gap": 0.02862,
+     "rough_se": 0.04487
+    },
+    "equal_weight": {
+     "return_gap": 0.16699,
+     "rough_se": 0.0976
+    }
+   },
+   "meaning": "dollar gain on stocks (price, dividends, realized and unrealized) / average dollars in stocks; SPY and equal weight = the same dollars on the same days in them instead"
+  },
+  "daily": [
+   {
+    "date": "2026-10-01",
+    "value": 9962.45,
+    "flow": 0.0,
+    "invested": 0.2336,
+    "r_whole": -0.003755,
+    "r_invested": -0.016357,
+    "r_spy": 0.001783,
+    "r_ew": 0.000115
+   },
+   {
+    "date": "2026-10-02",
+    "value": 9977.64,
+    "flow": 0.0,
+    "invested": 0.2347,
+    "r_whole": 0.001525,
+    "r_invested": 0.006149,
+    "r_spy": 0.007395,
+    "r_ew": 0.006289
+   },
+   {
+    "date": "2026-10-05",
+    "value": 10004.43,
+    "flow": 0.0,
+    "invested": 0.2608,
+    "r_whole": 0.002685,
+    "r_invested": 0.009339,
+    "r_spy": 0.006743,
+    "r_ew": 0.013367
+   },
+   {
+    "date": "2026-10-06",
+    "value": 10073.21,
+    "flow": 0.0,
+    "invested": 0.2657,
+    "r_whole": 0.006875,
+    "r_invested": 0.026037,
+    "r_spy": 0.005498,
+    "r_ew": 0.027092
+   },
+   {
+    "date": "2026-10-07",
+    "value": 24012.43,
+    "flow": 13984.0,
+    "invested": 0.158,
+    "r_whole": -0.001862,
+    "r_invested": -0.007222,
+    "r_spy": -0.0024,
+    "r_ew": 0.008022
+   },
+   {
+    "date": "2026-10-08",
+    "value": 23966.62,
+    "flow": 0.0,
+    "invested": 0.1507,
+    "r_whole": -0.001908,
+    "r_invested": -0.012692,
+    "r_spy": -0.004233,
+    "r_ew": -0.014056
+   },
+   {
+    "date": "2026-10-09",
+    "value": 23993.84,
+    "flow": 0.0,
+    "invested": 0.1516,
+    "r_whole": 0.001136,
+    "r_invested": 0.006884,
+    "r_spy": 0.005995,
+    "r_ew": 0.007193
+   },
+   {
+    "date": "2026-10-12",
+    "value": 23992.25,
+    "flow": 0.0,
+    "invested": 0.1513,
+    "r_whole": -6.6e-05,
+    "r_invested": -0.002383,
+    "r_spy": -0.000604,
+    "r_ew": -0.005516
+   },
+   {
+    "date": "2026-10-13",
+    "value": 24007.44,
+    "flow": 0.0,
+    "invested": 0.1517,
+    "r_whole": 0.000633,
+    "r_invested": 0.003535,
+    "r_spy": -0.000116,
+    "r_ew": 0.00376
+   },
+   {
+    "date": "2026-10-14",
+    "value": 23955.9,
+    "flow": 0.0,
+    "invested": 0.1201,
+    "r_whole": -0.002147,
+    "r_invested": -0.0148,
+    "r_spy": -0.01081,
+    "r_ew": -0.015944
+   },
+   {
+    "date": "2026-10-15",
+    "value": 23991.71,
+    "flow": 0.0,
+    "invested": 0.1572,
+    "r_whole": 0.001495,
+    "r_invested": 0.00893,
+    "r_spy": 0.002846,
+    "r_ew": 0.008534
+   },
+   {
+    "date": "2026-10-16",
+    "value": 23866.25,
+    "flow": 0.0,
+    "invested": 0.1784,
+    "r_whole": -0.005229,
+    "r_invested": -0.029142,
+    "r_spy": -0.011065,
+    "r_ew": -0.025983
+   },
+   {
+    "date": "2026-10-19",
+    "value": 23898.53,
+    "flow": 0.0,
+    "invested": 0.1792,
+    "r_whole": 0.001353,
+    "r_invested": 0.005966,
+    "r_spy": 0.004232,
+    "r_ew": 0.008451
+   },
+   {
+    "date": "2026-10-20",
+    "value": 23860.39,
+    "flow": 0.0,
+    "invested": 0.2263,
+    "r_whole": -0.001596,
+    "r_invested": -0.006822,
+    "r_spy": 0.003353,
+    "r_ew": -0.00637
+   },
+   {
+    "date": "2026-10-21",
+    "value": 23819.04,
+    "flow": 0.0,
+    "invested": 0.2249,
+    "r_whole": -0.001733,
+    "r_invested": -0.008057,
+    "r_spy": 0.005253,
+    "r_ew": -0.003138
+   },
+   {
+    "date": "2026-10-22",
+    "value": 23652.13,
+    "flow": 0.0,
+    "invested": 0.3156,
+    "r_whole": -0.007007,
+    "r_invested": -0.02215,
+    "r_spy": -0.01181,
+    "r_ew": -0.037913
+   },
+   {
+    "date": "2026-10-23",
+    "value": 23660.78,
+    "flow": 0.0,
+    "invested": 0.4098,
+    "r_whole": 0.000366,
+    "r_invested": 0.000698,
+    "r_spy": -0.005223,
+    "r_ew": -0.008974
+   },
+   {
+    "date": "2026-10-26",
+    "value": 23829.45,
+    "flow": 0.0,
+    "invested": 0.6914,
+    "r_whole": 0.007129,
+    "r_invested": 0.010042,
+    "r_spy": 0.007106,
+    "r_ew": -0.000276
+   },
+   {
+    "date": "2026-10-27",
+    "value": 23821.83,
+    "flow": 0.0,
+    "invested": 0.6808,
+    "r_whole": -0.00032,
+    "r_invested": -0.000514,
+    "r_spy": 0.005605,
+    "r_ew": 0.008923
+   },
+   {
+    "date": "2026-10-28",
+    "value": 23880.5,
+    "flow": 0.0,
+    "invested": 0.6103,
+    "r_whole": 0.002463,
+    "r_invested": 0.00355,
+    "r_spy": 0.003443,
+    "r_ew": 0.004684
+   },
+   {
+    "date": "2026-10-29",
+    "value": 23922.92,
+    "flow": 0.0,
+    "invested": 0.5932,
+    "r_whole": 0.001776,
+    "r_invested": 0.002837,
+    "r_spy": -0.00382,
+    "r_ew": -0.016698
+   },
+   {
+    "date": "2026-10-30",
+    "value": 23895.71,
+    "flow": 0.0,
+    "invested": 0.5927,
+    "r_whole": -0.001137,
+    "r_invested": -0.001997,
+    "r_spy": -0.017729,
+    "r_ew": -0.021343
+   },
+   {
+    "date": "2026-11-02",
+    "value": 23972.85,
+    "flow": 0.0,
+    "invested": 0.6786,
+    "r_whole": 0.003228,
+    "r_invested": 0.004485,
+    "r_spy": -0.00479,
+    "r_ew": -0.003025
+   },
+   {
+    "date": "2026-11-03",
+    "value": 24121.55,
+    "flow": 0.0,
+    "invested": 0.7082,
+    "r_whole": 0.006203,
+    "r_invested": 0.008727,
+    "r_spy": 0.002992,
+    "r_ew": 0.015178
+   },
+   {
+    "date": "2026-11-04",
+    "value": 24444.06,
+    "flow": 0.0,
+    "invested": 0.6089,
+    "r_whole": 0.01337,
+    "r_invested": 0.018134,
+    "r_spy": 0.016518,
+    "r_ew": -0.019
+   },
+   {
+    "date": "2026-11-05",
+    "value": 23738.75,
+    "flow": 0.0,
+    "invested": 0.5972,
+    "r_whole": -0.028854,
+    "r_invested": -0.047462,
+    "r_spy": -0.044092,
+    "r_ew": -0.057603
+   }
+  ],
+  "spy_basis": "price plus distributions reinvested on the ex-date (dividends.json); no adjusted closes in the data",
+  "dividends_missing_for": [
+   "PANW"
+  ],
+  "dividends_missing_note": "names not in dividends.json are treated as paying nothing",
+  "prices_missing_for": [],
+  "note": "26 trading days of returns cannot show skill: daily stock returns swing by about 1-2%, so a gap of a few percent over a few weeks is well within luck. rough_se treats days as independent; read the gaps as what happened, not as evidence, until there are many months. Whole book: time-weighted, cash at the T-bill, vs fully invested SPY and equal weight. Invested cash: dollar-weighted on the stock sleeve, vs the same dollars in SPY and equal weight."
+ }
+}

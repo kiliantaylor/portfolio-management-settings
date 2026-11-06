@@ -1,0 +1,512 @@
+{
+ "symbol": "VRT",
+ "agent_id": "agent_4",
+ "as_of": "2026-09-28",
+ "horizon": "2027-09-28",
+ "ladder": [
+  {
+   "K": 61,
+   "p": 0.98
+  },
+  {
+   "K": 98,
+   "p": 0.945
+  },
+  {
+   "K": 122,
+   "p": 0.895
+  },
+  {
+   "K": 146,
+   "p": 0.83
+  },
+  {
+   "K": 171,
+   "p": 0.755
+  },
+  {
+   "K": 195,
+   "p": 0.68
+  },
+  {
+   "K": 220,
+   "p": 0.605
+  },
+  {
+   "K": 244,
+   "p": 0.535
+  },
+  {
+   "K": 268,
+   "p": 0.465
+  },
+  {
+   "K": 293,
+   "p": 0.4
+  },
+  {
+   "K": 329,
+   "p": 0.32
+  },
+  {
+   "K": 366,
+   "p": 0.25
+  },
+  {
+   "K": 427,
+   "p": 0.165
+  },
+  {
+   "K": 488,
+   "p": 0.105
+  },
+  {
+   "K": 610,
+   "p": 0.04
+  }
+ ],
+ "fair_value": {
+  "value": 255.0,
+  "method": "Blend of forward P/E at the horizon (60%: NTM EPS $10.54 = 0.25 x FY27 $9.16 + 0.75 x FY28 $11.00, x 25x = $263.50) and a deposit-normalized FCF yield (40%: NTM FCF $3.52B = 85% of NTM adj net income, at a 3.75% yield / ~393M diluted shares + ~$1/share net cash = ~$240). 0.6 x 263.5 + 0.4 x 240 = ~$254, rounded to $255.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 263.5,
+    "weight": 0.6,
+    "inputs": "NTM adj EPS at 2027-09-28 = 0.25 x FY27 consensus $9.16 + 0.75 x FY28E $11.00 = $10.54, x 25x forward P/E",
+    "inputs_detail": [
+     {
+      "input": "FY2026 adj diluted EPS guidance",
+      "value": "$6.65-$6.75",
+      "basis": "guidance",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "FY2027 consensus adj EPS",
+      "value": "$9.16",
+      "basis": "consensus",
+      "source_ids": [
+       24,
+       22
+      ],
+      "derivation": "Alpha Vantage 29-analyst consensus, up from $8.80 90 days ago; GNG Research independently notes 21 upward vs 3 downward EPS revisions in the last 30 days. Round-1 $8.75 haircut dropped: no evidence of cuts."
+     },
+     {
+      "input": "FY2028 EPS used",
+      "value": "$11.00",
+      "basis": "estimate",
+      "source_ids": [
+       21,
+       16,
+       17,
+       1
+      ],
+      "derivation": "Aggregator consensus $11.19 (range $9.55-14.39, secondary source) trimmed ~2% for the Texas TCEQ data-center permit freeze (from 2026-09-21, no end date) delaying some 2027-28 Texas projects, and for recurring project-timing slips (Q2 miss). +20% on FY27, consistent with my round-1 growth view."
+     },
+     {
+      "input": "NTM EPS weighting",
+      "value": "0.25 x FY27 + 0.75 x FY28",
+      "basis": "judgment",
+      "source_ids": [
+       24,
+       21
+      ],
+      "derivation": "At 2027-09-28 one quarter of FY27 and three quarters of FY28 remain in the next 12 months; corrects my round-1 use of full-year FY28."
+     },
+     {
+      "input": "Forward P/E at horizon",
+      "value": "25x",
+      "basis": "judgment",
+      "source_ids": [
+       24,
+       3,
+       22
+      ],
+      "derivation": "VRT is 26.6x FY27 today, in line with Eaton (26.8x) and nVent (24.8x) on the same consensus feed (24); growth slows from ~35% to ~20% by the horizon, so ~25x, near the peer set and not a premium. Koh (3) and GNG (22) frame fair value in the $240-255 zone today, consistent with no re-rating."
+     }
+    ]
+   },
+   {
+    "name": "FCF yield",
+    "value": 240.0,
+    "weight": 0.4,
+    "inputs": "NTM adj net income $10.54 x 393M = $4.14B; normalized FCF conversion 85% = $3.52B; 3.75% equity FCF yield = $93.9B / 393M = $239 + ~$1/share net cash",
+    "inputs_detail": [
+     {
+      "input": "FY2026 adj FCF guidance",
+      "value": "$2.4-$2.6B",
+      "basis": "guidance",
+      "source_ids": [
+       1
+      ],
+      "derivation": "Not used as the growth base anymore: H1 2026 adj FCF $1.58B vs +$1.82B deferred-revenue build (2), so ~70% of the 2026 guide is customer deposits."
+     },
+     {
+      "input": "Deferred revenue build H1 2026",
+      "value": "$1,814.7M -> $3,633.7M current",
+      "basis": "reported",
+      "source_ids": [
+       2
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "Normalized FCF conversion of adj net income",
+      "value": "85%",
+      "basis": "judgment",
+      "source_ids": [
+       2,
+       1,
+       25
+      ],
+      "derivation": "Strip out deposit swings (which reverse as growth slows) and assume capex stays elevated for capacity expansion (Ohio +45% cooling capacity, Ireland/NI plants) and working capital keeps growing: ~85% of adj NI instead of the >100% reported cash conversion that deposits produced."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "~393M",
+      "basis": "reported",
+      "source_ids": [
+       1,
+       2
+      ],
+      "derivation": "392.7M Q2 weighted diluted; no 2026 buybacks"
+     },
+     {
+      "input": "Net cash at horizon",
+      "value": "~+$0.3B (~$1/share)",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       26,
+       14
+      ],
+      "derivation": "+$0.17B at 6/30/26 plus H2-2026 FCF ~$0.8-1.0B less $1.45B UIG cash at Q4 close, King deal, dividends, part of the up-to-$1.15B earnout, plus ~9 months of 2027 FCF: about -$0.5B to +$1.2B. Corrects my round-1 '~$1.5B+ net debt'."
+     },
+     {
+      "input": "Equity FCF yield",
+      "value": "3.75%",
+      "basis": "judgment",
+      "source_ids": [
+       3,
+       6
+      ],
+      "derivation": "Unchanged from round 1: ~2.6% on current-year (deposit-inflated) FCF today; require a higher yield on normalized NTM FCF at the horizon as growth slows."
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 150.0,
+   "prob": 0.25,
+   "story": "AI capex digestion plus permitting friction: the Texas TCEQ freeze drags on past the Oct 19 report and copycat state actions follow, the Q2-style 'timing' slip repeats, deferred revenue starts falling as deposits reverse and cash flow turns weak; FY28 EPS ~$9 and the stock trades ~16-17x, near the 52-week low zone."
+  },
+  "base": {
+   "price": 265.0,
+   "prob": 0.5,
+   "story": "H2-2026 conversion delivers (Q3 guide $3.65-3.85B, consensus $1.83 at the top of guide), estimates keep drifting up (FY27 $9.16, FY28 ~$11), the multiple settles ~25x NTM in line with ETN/NVT; FCF normalizes as deposits flatten. Stock ends modestly above today."
+  },
+  "bull": {
+   "price": 410.0,
+   "prob": 0.25,
+   "story": "Nvidia DSX Ready qualification (first qualified CDU) and Vera Rubin / 800V DC content push share gains; orders disclosure returns strong, UIG onsite power benefits from grid/permit bottlenecks (behind-the-meter), FY28 EPS ~$12.5+ and the multiple holds ~32x; stock exceeds the May-2026 high."
+  }
+ },
+ "thesis_break_price": 145.0,
+ "thesis_break_reason": "Below ~$145 the stock would be ~16x FY27 consensus $9.16 and ~14x my NTM EPS at the horizon, far below ETN (26.8x) and NVT (24.8x) and under the 52-week low region ($133.85 per the brief; $141.40 on Twelve Data per the supervisor). That only makes sense if earnings are actually falling: a second 'timing' revenue miss, deferred revenue declining without a revenue step-up (deposits reversing), FY27 guidance below ~$8.5, or the Texas permit freeze spreading and hyperscaler 2027 capex being cut. I keep $145 rather than the supervisor's $155 because a 66%-vol stock touched ~$221-227 twice in two months on sentiment alone, so $155 is still within reach of a pure de-rating.",
+ "catalysts": [
+  {
+   "date": "2026-10-19",
+   "event": "TCEQ compliance report on the Texas data-center permit freeze (ERCOT/PUCT and TWDB audits); signals how long the halt lasts",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10 (Oct 21-28, unconfirmed)",
+   "event": "Q3 2026 results vs guide $3.65-3.85B / $1.77-1.83 adj EPS (consensus $1.83); whether orders/backlog disclosure returns; deferred-revenue trend",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10 (late)",
+   "event": "Hyperscaler Q3 earnings calls: 2027 capex commentary after the Sept AI-slowdown debate",
+   "direction": "?"
+  },
+  {
+   "date": "2026-Q4",
+   "event": "Close of UtilityInnovation Group ($1.45B + up to $1.15B earnout) and King Environmental acquisitions",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01 (Texas legislative session)",
+   "event": "Abbott's push to eliminate Texas data-center financial incentives",
+   "direction": "-"
+  },
+  {
+   "date": "2027-02",
+   "event": "Q4/FY2026 results and first FY2027 guidance",
+   "direction": "?"
+  },
+  {
+   "date": "2027-03",
+   "event": "Nvidia GTC: Vera Rubin / 800V DC and DSX Ready ecosystem expansion",
+   "direction": "+"
+  },
+  {
+   "date": "2027 (ongoing)",
+   "event": "Hagens Berman shareholder-rights investigation into Q2-2026 disclosures (plaintiff firm, not SEC)",
+   "direction": "-"
+  },
+  {
+   "date": "2027-04 / 2027-07",
+   "event": "Q1 and Q2 2027 results; new Ohio/Ireland capacity ramps",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Order/backlog trajectory: nothing disclosed since Q4 2025 ($15.0B backlog, ~2.9x book-to-bill at 12/31/25); deferred revenue ($3.63B) is the only hard proxy",
+  "Cash-flow quality: ~70% of the 2026 FCF guide is customer-deposit build that will reverse as growth slows",
+  "Texas TCEQ permit freeze (from 2026-09-21, no end date) and whether other states copy it",
+  "Whether the Sept-2026 AI-slowdown debate turns into actual hyperscaler capex digestion in 2027",
+  "Multiple path as growth decelerates from ~60% to ~20% (peers at ~25-27x set the anchor)",
+  "UIG / King integration and earnout cash"
+ ],
+ "reasoning": "Round 2. Supervisor corrections accepted: FY27 consensus is $9.16 and rising (29 analysts; GNG Research independently counts 21 up / 3 down revisions in 30 days), so my unsupported 4% haircut is gone; NTM EPS at the horizon is 0.25xFY27+0.75xFY28, not full FY28; net cash after UIG is ~0 to +$1B at the horizon, not -$1.5B; and FCF is deposit-inflated (H1 FCF $1.58B vs +$1.82B deferred revenue), so I now value FCF on 85% conversion of adjusted net income rather than growing the $2.5B guide, and cut that method's weight to 40%. I verified the Texas TCEQ freeze (Foley, Troutman, Texas Tribune: all data-center environmental permits halted 2026-09-21, report due 10-19, no end date, following an August grid-connection freeze) and trim FY28 ~2% below the $11.19 aggregator for it. New in-lane finding the supervisor did not mention: Nvidia's DSX Ready program (2026-09-21) qualified Vertiv's 2.3MW CoolChip CDU as the first DSX Ready CDU (Vertiv release plus independent press), a modest share/positioning plus for the bull case, and capacity/hiring expansions (Ohio +45%, Ireland/NI several hundred jobs) continue. Net effect on fair value: P/E leg $262.5 -> $263.5 (higher EPS base offset by the correct NTM blend), FCF leg $258 -> $240 (deposit normalization), blend $260 -> $255. I disagree mildly with the supervisor's $262 because it ignores the FCF-quality finding it itself confirmed. Scenarios $150/$265/$410 at 25/50/25 (mean ~$272, median ~$256). Ladder: lognormal with median ~$256 and sigma ~0.57, with a slightly fatter left-middle for Texas/deposit-reversal risk and a thinner far right tail (peers at 25-27x cap re-rating); it ends close to round 1. Research limits: Alpha Vantage was rate-limited on my call, so consensus figures rely on the supervisor's retrieval plus an aggregator; X was not searched directly.",
+ "lane": "alternative",
+ "sources": [
+  {
+   "title": "Vertiv Q2 2026 results press release (8-K Ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001674101/000162828026050323/q22026exhibit991vrt07292026.htm",
+   "date": "2026-07-29",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Vertiv 10-Q for quarter ended June 30, 2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001674101/000162828026050609/vrt-20260630.htm",
+   "date": "2026-07-30",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "$VRT - Watching from a distance (Dr Alex Koh, Substack)",
+   "url": "https://dralexkoh.substack.com/p/vrt-watching-from-a-distance",
+   "date": "2026-09-25",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Research & Analysis: Vertiv Holdings Q2 2026 earnings review (Monte Investments, Substack)",
+   "url": "https://monteinvestments.substack.com/p/vertiv-holdings-vrt-q2-2026-earnings-review",
+   "date": "2026-08",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "VRT Stock After the Q2 Selloff: What Vertiv's Balance Sheet Says (TOPONE Markets)",
+   "url": "https://www.top1markets.com/news/vrt-stock-vertiv-q2-2026-backlog-analysis",
+   "date": "2026-08",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Vertiv Stock Fell Nearly 10% in a Day (TIKR blog)",
+   "url": "https://www.tikr.com/blog/vertiv-stock-fell-nearly-10-in-a-day-heres-whether-the-selloff-went-too-far",
+   "date": "2026-09-09",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Vertiv Stock Keeps Cooling Off. One Analyst Says a 100% Rally Is Coming (24/7 Wall St)",
+   "url": "https://247wallst.com/investing/2026/09/03/vertiv-stock-keeps-cooling-off-one-analyst-says-a-100-rally-is-coming/",
+   "date": "2026-09-03",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Wall Street's AI doomsday trade is here (Fortune)",
+   "url": "https://fortune.com/2026/09/14/ai-slowdown-stocks-nvidia-meta/",
+   "date": "2026-09-14",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Vertiv (VRT) Reddit Mentions & Sentiment (AltIndex)",
+   "url": "https://altindex.com/ticker/vrt/reddit-mentions",
+   "date": "2026-09",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Stop Saying Half of 2026 US Datacenter Capacity Is Canceled (SemiAnalysis)",
+   "url": "https://newsletter.semianalysis.com/p/stop-saying-half-of-2026-us-datacenter",
+   "date": "2026-06-18",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Up to 50% of data center capacity slated for 2026 could be delayed (Network World, citing Currence project tracker)",
+   "url": "https://www.networkworld.com/article/4201941/up-to-50-of-data-center-capacity-slated-for-2026-could-be-delayed.html",
+   "date": "2026-07-27",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Vertiv Holdings Co (VRT) Investigation (Hagens Berman)",
+   "url": "https://www.hbsslaw.com/cases/vertiv-holdings-co-vrt-investigation",
+   "date": "2026-08",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Vertiv: Backlog Silence Isn't Busting The Bull Case (Yet) (Seeking Alpha contributor)",
+   "url": "https://seekingalpha.com/article/4894167-vertiv-backlog-silence-isnt-busting-the-bull-case-yet",
+   "date": "2026",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Vertiv 8-K: agreement to acquire King Environmental Services",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001674101/000162828026063311/vrt-20260924.htm",
+   "date": "2026-09-24",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Big Tech AI Capex Hits $725B in 2026, On Pace for $1T in 2027 (ValueAdd VC)",
+   "url": "https://valueaddvc.com/blog/big-tech-ai-capex-in-2025-microsoft-google-meta-amazon-and-the-spending-race",
+   "date": "2026",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Texas Governor Abbott Directs TCEQ to Freeze All Data Center Permits (Foley & Lardner)",
+   "url": "https://www.foley.com/insights/publications/2026/09/texas-governor-abbott-directs-tceq-to-freeze-all-data-center-permits-in-a-whole-of-government-action/",
+   "date": "2026-09",
+   "type": "expert",
+   "in_lane": true
+  },
+  {
+   "title": "Governor Abbott Directs TCEQ to Halt All Data Center Permits Pending ERCOT/TWDB Audits (Troutman Pepper Locke)",
+   "url": "https://www.troutman.com/insights/governor-abbott-directs-tceq-to-halt-all-data-center-permits-pending-ercot-twdb-audits/",
+   "date": "2026-09",
+   "type": "expert",
+   "in_lane": true
+  },
+  {
+   "title": "Gov. Greg Abbott broadens moratorium on data center approvals to include environmental permits (Texas Tribune)",
+   "url": "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/",
+   "date": "2026-09-21",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Vertiv Coolant Distribution Unit qualified as NVIDIA DSX Ready for AI factory infrastructure (Vertiv release)",
+   "url": "https://www.vertiv.com/en-emea/about/news-and-events/news-releases/2026/vertiv-coolant-distribution-unit-qualified-as-nvidia-dsx-ready-for-ai-factory-infrastructure/",
+   "date": "2026-09-21",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Nvidia Just Qualified Tesla and Vertiv Products for Its New AI-Factory Standard (Yahoo Finance / Insider Monkey)",
+   "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-just-qualified-tesla-vertiv-130144385.html",
+   "date": "2026-09-22",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Vertiv Holdings Co stock forecast: FY2028 EPS consensus $11.19 (range $9.55-14.39) (Simply Wall St aggregator)",
+   "url": "https://simplywall.st/stocks/us/capital-goods/nyse-vrt/vertiv-holdings-co/future",
+   "date": "2026-09",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Vertiv Held Its July Low. Now the Third Quarter Has to (GNG Research, independent newsletter)",
+   "url": "https://www.gngresearch.com/articles/0b96deeb-86fe-4bb3-bd57-781aa6267cb8/",
+   "date": "2026-09-24",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Vertiv Q4 2025 results press release (8-K Ex. 99.1): $15.0B backlog, ~2.9x book-to-bill",
+   "url": "https://www.sec.gov/Archives/edgar/data/1674101/000167410126000006/exhibit991vrt02112026.htm",
+   "date": "2026-02-11",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Alpha Vantage EARNINGS_ESTIMATES: VRT FY27 consensus $9.16 (29 analysts); ETN, NVT FY27 (as retrieved by supervisor; my own call was rate-limited)",
+   "url": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=VRT",
+   "date": "2026-09-29",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Vertiv's Ohio capacity expansion (~45% more liquid-cooling/chilled-water capacity, hundreds of jobs) (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/vertiv-ohio-capacity-expansion-ai-060732363.html",
+   "date": "2026-03",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Vertiv to acquire UtilityInnovation Group (8-K Ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1674101/000119312526379306/d472406dex991.htm",
+   "date": "2026-09-02",
+   "type": "filing",
+   "in_lane": false
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a fact",
+   "from": "FY2027 consensus EPS $9.10, used $8.75",
+   "to": "$9.16, used without haircut",
+   "why": "Supervisor: Alpha Vantage 29-analyst consensus $9.16 with net upward revisions; GNG Research confirms 21 up/3 down revisions in 30 days"
+  },
+  {
+   "item": "a method",
+   "from": "P/E: FY28 $10.50 x 25x = $262.50 (full-year FY28 as NTM)",
+   "to": "P/E: NTM $10.54 (0.25 x $9.16 + 0.75 x $11.00) x 25x = $263.50, weight 0.6",
+   "why": "Supervisor NTM arithmetic correction; FY28 aggregator consensus $11.19 trimmed ~2% for the verified Texas permit freeze"
+  },
+  {
+   "item": "a method",
+   "from": "FCF yield: $3.8B 2028 FCF grown from the $2.5B guide, $258, weight 0.5",
+   "to": "FCF yield: $3.52B normalized (85% of NTM adj NI), $240, weight 0.4",
+   "why": "Supervisor finding (10-Q): H1 2026 FCF $1.58B vs +$1.82B deferred-revenue build; ~70% of the 2026 guide is deposits"
+  },
+  {
+   "item": "a fact",
+   "from": "Net debt ~$1.5B+ after UIG",
+   "to": "Net cash ~-$0.5B to +$1.2B at the horizon, ~+$0.3B central",
+   "why": "Supervisor net-cash walk from 10-Q and UIG 8-K"
+  },
+  {
+   "item": "fair value",
+   "from": "260",
+   "to": "255",
+   "why": "Net of the above: slightly higher P/E leg, materially lower deposit-normalized FCF leg"
+  },
+  {
+   "item": "a scenario",
+   "from": "base $270; bull $410 story on backlog proof",
+   "to": "base $265; bull $410 adds Nvidia DSX Ready qualification; bear story adds Texas freeze and deposit reversal",
+   "why": "Texas TCEQ freeze verified (Foley, Troutman, Texas Tribune); DSX Ready found in follow-up research (Vertiv release + press)"
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "K=98-195: 0.94/0.89/0.83/0.76/0.68; K=268-293: 0.47/0.40",
+   "to": "K=98-195: 0.945/0.895/0.83/0.755/0.68; K=268-293: 0.465/0.40",
+   "why": "Small reshape only: median ~$256 unchanged; slightly fatter left-middle for Texas/deposit risk, offset by stronger consensus revisions"
+  },
+  {
+   "item": "thesis break",
+   "from": "145",
+   "to": "145 (kept)",
+   "why": "Disagree with supervisor's $155: the stock hit ~$221-227 twice on sentiment alone, so $155 is still reachable by pure de-rating; $145 is ~16x rising FY27 consensus"
+  }
+ ]
+}

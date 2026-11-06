@@ -1,0 +1,870 @@
+{
+ "date": "2026-10-09",
+ "symbol": "DY",
+ "clean": true,
+ "checked": 107,
+ "ok": 91,
+ "failures": [
+  {
+   "item": "Peer forward P/E, 11 peers (supervisor comps_review.spot_checks, agents 1, 2, 3, 5 comps, A8)",
+   "value": "MTZ 19.89, PWR 38.32, PRIM 21.12, MYRG 23.97, EME 22.76, FIX 32.25, IESC 23.65, STRL 22.92, LMB 15.75, GVA 15.18, AGX 28.37",
+   "cited": "StockAnalysis statistics 'Forward PE' (aggregator ratio; pages reopened and match)",
+   "result": "not_found",
+   "fix": "Gate requires filings/company sources for peer multiples. Re-derived as Oct-9 close (Yahoo chart) / NTM consensus EPS calendarised from StockAnalysis this/next-year S&P Global estimates (0.227/0.773; AGX 0.312/0.688): 18.18, 37.00, 18.54, 22.20, 22.01, 29.77, n/a (IESC has no consensus page), 21.21, 11.40, 14.34, 25.79. Written into every agent comps[] with derivation; basis estimate."
+  },
+  {
+   "item": "Peer trailing EV/EBITDA, 11 peers (supervisor spot_checks, agents 1, 3, 5 comps, A14)",
+   "value": "15.12, 36.86, 17.29, 16.44, 17.31, 29.33, 20.94, 21.80, 11.02, 11.54, 24.27",
+   "cited": "StockAnalysis statistics (aggregator EV and EBITDA)",
+   "result": "not_found",
+   "fix": "EV = close x 10-Q cover shares (IESC x2 for the Aug-2026 2:1 split) + debt incl. finance leases + operating leases - cash/short-term investments + NCI (latest 10-Q XBRL); TTM GAAP operating income + D&A (10-K/10-Q XBRL; MTZ company-adjusted TTM $1,379.5M because its FY2025 operating income is not tagged): MTZ 14.58, PWR 36.64, PRIM 17.68, MYRG 16.19, EME 16.13, FIX 29.38, IESC 20.97, STRL 22.51, LMB 11.25, GVA 11.58, AGX 24.25."
+  },
+  {
+   "item": "Finviz ratios used by agent_4 (fwd P/E MTZ 17.19 etc.; EV/EBITDA MTZ 15.47, EME 17.31, PRIM 17.20, DY 11.62; medians 21.19/21.38, 17.31/19.24)",
+   "value": "as listed",
+   "cited": "Finviz v=121 / v=152 (aggregator; pages reopened and match)",
+   "result": "not_found",
+   "fix": "Superseded by the gate-derived values above in agent_4 comps, comps_summary and inputs_detail notes; agent_4's 16x and 12.38x are its judgments and unchanged (supervisor already replaces the 12.38x leg)."
+  },
+  {
+   "item": "Supervisor reconciled medians: comps_review.reconciled_peer_median_fwd_pe, reconciled_peer_median_ev_ebitda_trailing, telecom_core_fwd_pe; padding statement",
+   "value": "23.29x; 19.13x; 20.5x; 23.29x -> 22.92x",
+   "cited": "StockAnalysis ratios",
+   "result": "not_found",
+   "fix": "Recomputed on derived multiples: 22.01x (7 peers), 19.32x (8), 18.36x (MTZ+PRIM); padding 22.01x -> 21.61x. Recorded in supervisor.json citation_audit.corrections."
+  },
+  {
+   "item": "Agent comps_summary medians",
+   "value": "a1 22.92/17.31; a2 23.29/19.13; a3 22.92/17.31; a4 21.19 (Finviz); a5 23.3/19.1",
+   "cited": "StockAnalysis / Finviz ratios",
+   "result": "not_found",
+   "fix": "Recomputed per agent peer set: a1 21.61/17.68; a2 22.01/19.32; a3 21.61/17.68; a4 21.61; a5 22.01/19.32. Agent multiples (judgments) and fair values unchanged."
+  },
+  {
+   "item": "MTZ forward P/E anchor for the 16x multiple (supervisor fair_value.reason, key_drivers, target_multiple, disagreements[6], A8; all five agents)",
+   "value": "19.89x; 16x = ~20% below MTZ",
+   "cited": "StockAnalysis MTZ statistics",
+   "result": "not_found",
+   "fix": "MTZ = $212.65 / (0.227 x $9.30 + 0.773 x $12.40 = $11.70) = 18.18x. 16x is the supervisor's and agents' judgment and is kept (gate precedent); text restated to ~12% below MTZ and ~27% below the 22.0x median. Fair value $343 unchanged. Note for the supervisor: a literal 20% discount on this basis would be ~14.5x."
+  },
+  {
+   "item": "MTZ EV / 2026 adjusted EBITDA guide (disagreements[0], comps_review.mtz_ev_to_2026_guide_ebitda, target_multiple, A14, feedback agent_4, changes)",
+   "value": "12.4x on StockAnalysis EV $19.78B; DY 10x NTM ~14% below; agent_4 ~10% below",
+   "cited": "StockAnalysis MTZ statistics + MasTec release",
+   "result": "not_found",
+   "fix": "Filings-based EV $20.12B (212.65 x 80,304,948 + 2,740.2 + 495.2 - 315.6 + 123.0) / $1,600M = 12.57x; DY ~16% below; agent_4 ~11% below. 10x NTM judgment unchanged."
+  },
+  {
+   "item": "MTZ trailing EV/EBITDA",
+   "value": "15.12x / '15.1x trailing' (StockAnalysis); 15.47x (Finviz)",
+   "cited": "aggregators",
+   "result": "not_found",
+   "fix": "14.58x on company-adjusted TTM EBITDA $1,379.5M (1,150.1 + 667.9 - 438.5, MasTec Q2 2026 Ex. 99.1)."
+  },
+  {
+   "item": "Leverage DY vs MTZ (supervisor comps_review.discount_justification, sizing.reason '~2.9x', A8; agents 1-5)",
+   "value": "2.90x vs 2.23x (net debt / TTM EBITDA)",
+   "cited": "StockAnalysis net debt and EBITDA",
+   "result": "not_found",
+   "fix": "From filings: lease-inclusive net debt / company-adjusted TTM EBITDA 2.82x for DY ($2,708.3M / $959.8M) vs 2.12x for MTZ ($2,919.8M / $1,379.5M); 2.58x vs 1.76x ex leases. Sizing text ~2.8x; numbers unchanged."
+  },
+  {
+   "item": "DY current multiples (comps_review.dy_now_fwd_pe, summary, key_drivers; agents)",
+   "value": "14.60x forward P/E; 11.61x EV/EBITDA",
+   "cited": "StockAnalysis DY statistics (vendor basis not reproducible from consensus)",
+   "result": "not_found",
+   "fix": "13.72x = $269.23 / (0.31 x $17.05 + 0.69 x $20.78 = $19.63); EV $10.83B (269.23 x 30,160,957 + 2,819.7 + 228.7 - 340.1) / adjusted TTM EBITDA $959.8M = 11.28x."
+  },
+  {
+   "item": "agent_5 DY debt/EBITDA",
+   "value": "2.97x",
+   "cited": "StockAnalysis DY statistics",
+   "result": "not_found",
+   "fix": "From filings: gross debt incl. leases $3,048.4M / adjusted TTM EBITDA $959.8M = 3.18x (net 2.82x); dated note in agent_5. Judgment unchanged."
+  },
+  {
+   "item": "agent_5 pre-selloff P/E comparison",
+   "value": "DY 22.4x vs MTZ 25.1x / MYRG 25.6x",
+   "cited": "Zacks via TradingView (aggregator peer multiples)",
+   "result": "not_found",
+   "fix": "Withdrawn as support for the 16x in agent_5 notes; no number uses it."
+  },
+  {
+   "item": "agent_4 TTM EBITDA at Aug-2026 (inputs_detail; A10, A13)",
+   "value": "$931.98M, basis 'reported'",
+   "cited": "StockAnalysis DY statistics",
+   "result": "mislabelled",
+   "fix": "Basis set to estimate; derivation now shows filings figures: company-adjusted TTM $959.8M (737.7 + 578.0 - 355.9) or GAAP ~$917M (pre-tax 418.9 + net interest 110.4 + other non-op 10.2 + D&A 377.7). Agent's value unchanged."
+  },
+  {
+   "item": "agent_4 lease-inclusive net debt start point (inputs_detail; A15, A20)",
+   "value": "$2.70B",
+   "cited": "StockAnalysis (aggregator leverage)",
+   "result": "not_found",
+   "fix": "Reproduced from the 10-Q: 2,819.7 - 340.1 + 228.7 = $2,708.3M; re-sourced in agent_4 and model_assumptions."
+  },
+  {
+   "item": "agent_5 'buyback authorization expired 2026-08-25 ... no current authorization supports' (inputs_detail net debt; A17)",
+   "value": "no authorization",
+   "cited": "10-Q (src 4)",
+   "result": "wrong",
+   "fix": "10-Q Note 23 (R29): new $150.0M program authorized Aug 26, 2026 through Feb-2028, fully available Aug 27, 2026. Corrected in a dated note; the agent's no-buyback assumption is kept as its choice (per-share neutral)."
+  },
+  {
+   "item": "agent_3 'supplier finance $0 -> $226.4M in Q4 FY26 alone' (inputs_detail underlying FCF)",
+   "value": "Q4 FY26 alone",
+   "cited": "XBRL SupplierFinanceProgramObligation",
+   "result": "not_found",
+   "fix": "Filings show $0 at Jul 26, 2025 and $226.4M at Jan 31, 2026 (program began in fiscal 2026; Q3 FY26 10-Q has no supplier-finance note). Restated as H2 FY26 in a dated note; no value effect."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "DY Q2 FY27 contract revenues",
+   "value": "$2,005.9M (Communications $1,608.4M, Building Systems $397.5M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "comps, haircut (agent_2), segment builds"
+  },
+  {
+   "item": "DY Q2 FY27 adjusted diluted EPS / GAAP diluted EPS",
+   "value": "$5.29 / $3.81",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "P/E judgment (amortization argument)"
+  },
+  {
+   "item": "DY Q1 FY27 adjusted diluted EPS",
+   "value": "$4.42 (H1 $9.71 with Q2)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "FY27 consensus cross-check"
+  },
+  {
+   "item": "DY H1 FY27 adjusted EBITDA / revenue",
+   "value": "$578.0M / $3,970.7M (14.6%)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "EBITDA margin (A10), TTM EBITDA"
+  },
+  {
+   "item": "DY H1 FY26 adjusted EBITDA / revenue",
+   "value": "$355.9M / $2,636.6M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "TTM EBITDA, TTM revenue"
+  },
+  {
+   "item": "DY Q2 FY27 adjusted EBITDA and margin; Q2 FY26",
+   "value": "$315.5M, 15.7%; $205.5M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "EBITDA margin (A10)"
+  },
+  {
+   "item": "DY Q1 FY27 adjusted EBITDA and margin",
+   "value": "$262.5M, 13.4% on $1.965B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "EBITDA margin (agent_5)"
+  },
+  {
+   "item": "Communications Q2 adj. EBITDA margin",
+   "value": "13.6%, -134 bp YoY; H1 12.9%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "haircut, A24"
+  },
+  {
+   "item": "Building Systems Q2 / H1 adj. EBITDA margin",
+   "value": "24.5% (incl. favourable estimate changes) / 21.1%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "A25"
+  },
+  {
+   "item": "FY27 outlook (Aug 26, 2026)",
+   "value": "Revenue $7.48-7.66B; Communications $5.90-6.01B; Building Systems $1.58-1.65B; Communications margin 'slight decline'; ~$150M wireless deferral into FY28, 'Overall program scope is unchanged'",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "haircut, key_drivers, A24, A13 (agent_4)"
+  },
+  {
+   "item": "Building Systems margin outlook",
+   "value": "high-teens to low-twenties (remainder of FY27)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "A25"
+  },
+  {
+   "item": "Q3 FY27 outlook",
+   "value": "revenue $1.90-1.98B; adj. EBITDA $281-302M (mid $291.5M, 15.0%); adj. EPS $4.33-4.79 (mid $4.56)",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "EBITDA margin, agent_3 TTM EBITDA"
+  },
+  {
+   "item": "Backlog at Aug 1, 2026",
+   "value": "$12,242.4M (+53.2%); next 12 months $6,472M (Communications $5,362M, Building Systems $1,110M); BS total $1,259M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "FY29 growth judgment, thesis break"
+  },
+  {
+   "item": "Q2 FY27 weighted diluted shares",
+   "value": "30,363,819",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count (A21)"
+  },
+  {
+   "item": "Q2 FY27 D&A / amortization / net interest; H1 SBC",
+   "value": "$115.6M / $60.5M / $38.0M; $20.9M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 EPS bridge (A26)"
+  },
+  {
+   "item": "Q2 Communications organic growth",
+   "value": "+16.7%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 growth judgment"
+  },
+  {
+   "item": "H1 FY27 segment revenue",
+   "value": "Communications $3,177.8M; Building Systems $792.9M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "implied H2 Communications (~flat)"
+  },
+  {
+   "item": "Implied H2 FY27 Communications revenue vs H2 FY26",
+   "value": "$5.955B - $3.178B = $2.777B vs $1,451.8M + $1,361.7M = $2.814B (-1.3%)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "haircut, key_drivers"
+  },
+  {
+   "item": "Communications outlook midpoint change",
+   "value": "$6.115B (May) -> $5.955B (Aug) = -$160M; less ~$150M deferral = ~-$10M underlying",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "key_drivers, haircut"
+  },
+  {
+   "item": "Q1 FY27 outlook (May 27, 2026)",
+   "value": "Communications $6.03-6.20B, 'modest' margin improvement; NTI acquisition $275M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "haircut, A17"
+  },
+  {
+   "item": "Q4 FY26 / initial FY27 outlook",
+   "value": "FY26 revenue $5,545.9M; adj. EBITDA $737.7M (13.3%); Communications FY26 margin 13.3%; adj. EPS $11.97 (Q4 $2.03); Q4 margin 11.1%; initial Communications $5.70-5.90B; Q4 53rd week $97.3M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "EBITDA margin, NTM weighting (agent_3), FY29 judgment"
+  },
+  {
+   "item": "FY26 cash flow",
+   "value": "OCF $642.5M; capex $240.8M; asset-sale proceeds $33.6M; FCF $435.3M (Q4 $367.1M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "underlying FCF (A16), FCF leg (A22)"
+  },
+  {
+   "item": "Power Solutions acquisition",
+   "value": "closed Dec 23, 2025; Greater Washington DC/MD/VA data-center electrical",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "context for leverage and Building Systems"
+  },
+  {
+   "item": "FY26 weighted diluted shares",
+   "value": "29,423,339",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000067215.json",
+   "checked": "2026-10-12",
+   "feeds": "A22 (agent_1)"
+  },
+  {
+   "item": "FY26 accounts-payable increase; H1 FY27 increase",
+   "value": "$223,234,000; $117,534,000",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000067215.json",
+   "checked": "2026-10-12",
+   "feeds": "underlying FCF (A16), discount justification"
+  },
+  {
+   "item": "Supplier-finance obligation",
+   "value": "$0 (Jul 26, 2025); $226.4M (Jan 31, 2026); $349.4M (May 2, 2026); $367.4M (Aug 1, 2026); program began in fiscal 2026",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyconcept/CIK0000067215/us-gaap/SupplierFinanceProgramObligation.json",
+   "checked": "2026-10-12",
+   "feeds": "discount justification, thesis break, sizing open_flags"
+  },
+  {
+   "item": "Supplier-finance rollforward Q2 FY27",
+   "value": "begin $349.4M; invoices received $578.6M; paid $560.6M; end $367.4M (H1 +$141.0M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/R97.htm",
+   "checked": "2026-10-12",
+   "feeds": "A16"
+  },
+  {
+   "item": "Operating lease liabilities Aug 1, 2026",
+   "value": "$228.7M ($43.6M current + $185.1M non-current)",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyconcept/CIK0000067215/us-gaap/OperatingLeaseLiability.json",
+   "checked": "2026-10-12",
+   "feeds": "lease-inclusive net debt (A19, A20)"
+  },
+  {
+   "item": "Balance sheet Aug 1, 2026",
+   "value": "cash $340.1M; debt $28.4M current + $2,791.3M long-term = $2,819.7M (carrying net debt $2,479.6M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "net debt (A15)"
+  },
+  {
+   "item": "Notional net debt Q2 / Q1 FY27",
+   "value": "$2,502.6M ($500.0M notes + $1,540.0M TLA + $800.0M TLB + $2.7M finance leases - $340.1M cash) / $2,301.2M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/q22027presentationmateri.htm",
+   "checked": "2026-10-12",
+   "feeds": "net debt (A15, A18)"
+  },
+  {
+   "item": "FCF Q2 / H1 FY27",
+   "value": "$37.9M / -$54.2M (OCF $79.1M, capex $139.8M, proceeds $6.5M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/q22027presentationmateri.htm",
+   "checked": "2026-10-12",
+   "feeds": "A16, discount justification"
+  },
+  {
+   "item": "Shares outstanding (10-Q cover)",
+   "value": "30,160,957 at Aug 24, 2026",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "share count (A21)"
+  },
+  {
+   "item": "Prior repurchase program",
+   "value": "$150M authorized Feb 26, 2025 through Aug 25, 2026; $83.9M available at Aug 1, 2026",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "buybacks (A17)"
+  },
+  {
+   "item": "New repurchase program (Note 23)",
+   "value": "$150.0M authorized Aug 26, 2026 through Feb-2028; replaces the $83.9M; full $150.0M available Aug 27, 2026",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/R29.htm",
+   "checked": "2026-10-12",
+   "feeds": "buybacks (A17), horizon net debt (A18)"
+  },
+  {
+   "item": "Customer concentration Q2 FY27 (10-Q Note 19 HTML)",
+   "value": "AT&T 20.1% ($403.5M), Verizon 10.4% ($209.4M), Lumen 5.3% ($105.3M) = 35.8%; AT&T+Verizon 30.5%; top three $718.2M vs $723.4M prior year (flat)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "discount justification, thesis break, sizing"
+  },
+  {
+   "item": "Credit agreement covenants",
+   "value": "max consolidated net leverage 4.50x (4.00x after the first fiscal quarter ending after Dec 23, 2027); min interest coverage 2.50x; in compliance; incremental facilities up to $927.0M plus amount keeping senior secured net leverage <= 3.50x; revolver availability $746.4M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "thesis break, disagreements[3]"
+  },
+  {
+   "item": "Q2 FY27 effective tax rate",
+   "value": "24.9%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "tax (A27)"
+  },
+  {
+   "item": "Receivables sold non-recourse to a bank partner",
+   "value": "program described; balance not disclosed",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "discount justification"
+  },
+  {
+   "item": "FY26 customer concentration (10-K)",
+   "value": "AT&T 25.4%, Verizon 14.0%, Lumen 10.8%, Comcast 7.4% (top four 57.6%; AT&T+Verizon+Lumen 50.2%)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000008/R28.htm",
+   "checked": "2026-10-12",
+   "feeds": "discount justification (agents 3, 4)"
+  },
+  {
+   "item": "Agreements terminable for convenience; no volume commitments",
+   "value": "10-K Item 1: 'In most cases, a customer may terminate an agreement for convenience'",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000008/dy-20260131.htm",
+   "checked": "2026-10-12",
+   "feeds": "discount justification (agent_3)"
+  },
+  {
+   "item": "Supplier finance program start",
+   "value": "'Beginning in fiscal 2026'; FY26 rollforward $0 -> $226.4M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000008/R31.htm",
+   "checked": "2026-10-12",
+   "feeds": "agent_3 FCF note"
+  },
+  {
+   "item": "Q3 earnings release dates (8-K Item 2.02)",
+   "value": "2025-11-19, 2024-11-20, 2023-11-21, 2022-11-22",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/submissions/CIK0000067215.json",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m (one_month_reasoning)"
+  },
+  {
+   "item": "Q2 FY27 call: new $150M authorization; pro forma net leverage ~2.3x; $20B long-haul 'back half-loaded'; BS margins high teens to low 20s; ~$150M wireless shift into FY28",
+   "value": "as quoted",
+   "basis": "reported",
+   "source_url": "https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-10-12",
+   "feeds": "A17 (agent_1), thesis break (agents 1, 4), A4 (agent_4), A25"
+  },
+  {
+   "item": "DY FY27 / FY28 consensus adjusted EPS",
+   "value": "$17.05 / $20.78 (+21.92%), 11 analysts (S&P Global)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/dy/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value, A1, A3, A5, A7, thesis break"
+  },
+  {
+   "item": "DY FY27 / FY28 consensus revenue",
+   "value": "$7.58B / $8.58B (+13.22%)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/dy/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A9, A11, FY29 growth judgment"
+  },
+  {
+   "item": "DY FY29 consensus",
+   "value": "not public ('Pro' locked)",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/dy/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "A4 (judgment)"
+  },
+  {
+   "item": "DY EPS growth forecast (3Y)",
+   "value": "27.34%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/dy/statistics/",
+   "checked": "2026-10-12",
+   "feeds": "A4 (agent_1)"
+  },
+  {
+   "item": "DY TTM FCF / FCF yield",
+   "value": "$468.7M (OCF 718.1 - capex 249.4, XBRL) / 5.77% of $8.12B market cap",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000067215.json",
+   "checked": "2026-10-12",
+   "feeds": "A16 (agent_5), A23 (agent_1)"
+  },
+  {
+   "item": "Finviz EPS next-year growth DY 19.68% vs 11-peer median 19.36%",
+   "value": "as shown",
+   "basis": "consensus",
+   "source_url": "https://finviz.com/screener.ashx?v=121&t=DY,PWR,MTZ,PRIM,MYRG,EME,FIX,IESC,STRL,AGX,LMB,GVA",
+   "checked": "2026-10-12",
+   "feeds": "agent_4 discount justification"
+  },
+  {
+   "item": "DY close Oct 9, 2026",
+   "value": "$269.23",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DY?range=2y&interval=1d",
+   "checked": "2026-10-12",
+   "feeds": "upside, multiples"
+  },
+  {
+   "item": "DY 52-week low (intraday)",
+   "value": "$263.36",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DY?range=2y&interval=1d",
+   "checked": "2026-10-12",
+   "feeds": "thesis break"
+  },
+  {
+   "item": "DY realized volatility",
+   "value": "1y 52.3%, 3m 56.2%, 1m 43.3% (daily log returns)",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DY?range=2y&interval=1d",
+   "checked": "2026-10-12",
+   "feeds": "sizing, ladder_1m"
+  },
+  {
+   "item": "DY 2018 analog",
+   "value": "Aug-2018 close $83.91 -> Aug-2019 $44.50",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DY?period1=946684800&period2=1791590400&interval=1mo",
+   "checked": "2026-10-12",
+   "feeds": "disagreements[5], agent_5 bear"
+  },
+  {
+   "item": "DY base rates (monthly closes)",
+   "value": "close >=45% below 12-month high: n=36, median -8.5%, 36.1% positive; unconditional median +15.3%, 63.2% positive",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DY?period1=946684800&period2=1791590400&interval=1mo",
+   "checked": "2026-10-12",
+   "feeds": "ladder (mean kept)"
+  },
+  {
+   "item": "MasTec FY2026 guidance / FY2025 actual",
+   "value": "adj. EBITDA $1,600M vs $1,150.1M; adj. EPS $9.30 vs GAAP $6.20; revenue $18.2B",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000095/mtz630268-kex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "EV/EBITDA anchor (A14), amortization argument"
+  },
+  {
+   "item": "MasTec adj. EBITDA H1 2026 / H1 2025",
+   "value": "$667.9M / $438.5M (TTM $1,379.5M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000095/mtz630268-kex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "MTZ multiples and leverage"
+  },
+  {
+   "item": "MasTec balance sheet Jun 30, 2026",
+   "value": "debt incl. finance leases $2,740.2M; cash $315.6M; net debt $2,424.6M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000095/mtz630268-kex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "MTZ EV and leverage"
+  },
+  {
+   "item": "MasTec Communications Q2 2026",
+   "value": "revenue $888.9M (+6.2%); EBITDA margin 8.2% vs 9.9% (-170 bp); 18-month backlog $5,461M (Jun) vs $5,501M (Mar)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000095/mtz630268-kex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "haircut (A2), A24"
+  },
+  {
+   "item": "MasTec 10-Q cover shares; operating leases; NCI",
+   "value": "80,304,948 (Jul 27, 2026); $495.2M; $123.0M",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000015615.json",
+   "checked": "2026-10-12",
+   "feeds": "MTZ EV"
+  },
+  {
+   "item": "MasTec FY2026 / FY2027 consensus EPS",
+   "value": "$9.30 / $12.40",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/mtz/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "MTZ forward P/E"
+  },
+  {
+   "item": "MTZ multiples (gate-derived)",
+   "value": "fwd P/E 18.18x (close / NTM consensus EPS $11.7); EV $20.12B / TTM EBITDA $1379.5M = 14.58x; lease-incl. net debt $2919.8M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000015615.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/MTZ?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/mtz/forecast/"
+  },
+  {
+   "item": "PWR multiples (gate-derived)",
+   "value": "fwd P/E 37.0x (close / NTM consensus EPS $19.08); EV $112.33B / TTM EBITDA $3066.2M = 36.64x; lease-incl. net debt $6096.8M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001050915.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/PWR?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/pwr/forecast/"
+  },
+  {
+   "item": "PRIM multiples (gate-derived)",
+   "value": "fwd P/E 18.54x (close / NTM consensus EPS $4.51); EV $5.56B / TTM EBITDA $314.6M = 17.68x; lease-incl. net debt $1060.9M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001361538.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/PRIM?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/prim/forecast/"
+  },
+  {
+   "item": "MYRG multiples (gate-derived)",
+   "value": "fwd P/E 22.2x (close / NTM consensus EPS $14.04); EV $4.78B / TTM EBITDA $295.3M = 16.19x; lease-incl. net debt $-70.7M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000700923.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/MYRG?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/myrg/forecast/"
+  },
+  {
+   "item": "EME multiples (gate-derived)",
+   "value": "fwd P/E 22.01x (close / NTM consensus EPS $35.87); EV $34.45B / TTM EBITDA $2135.4M = 16.13x; lease-incl. net debt $-376.3M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000105634.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/EME?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/eme/forecast/"
+  },
+  {
+   "item": "FIX multiples (gate-derived)",
+   "value": "fwd P/E 29.77x (close / NTM consensus EPS $57.64); EV $58.90B / TTM EBITDA $2004.8M = 29.38x; lease-incl. net debt $-1484.9M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001035983.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/FIX?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/fix/forecast/"
+  },
+  {
+   "item": "IESC multiples (gate-derived)",
+   "value": "fwd P/E n/a (no consensus source); EV $11.55B / TTM EBITDA $550.7M = 20.97x; lease-incl. net debt $-311.0M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001048268.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/IESC?range=1mo&interval=1d"
+  },
+  {
+   "item": "STRL multiples (gate-derived)",
+   "value": "fwd P/E 21.21x (close / NTM consensus EPS $24.19); EV $15.60B / TTM EBITDA $692.9M = 22.51x; lease-incl. net debt $-127.5M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000874238.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/STRL?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/strl/forecast/"
+  },
+  {
+   "item": "LMB multiples (gate-derived)",
+   "value": "fwd P/E 11.4x (close / NTM consensus EPS $4.5); EV $0.65B / TTM EBITDA $58.1M = 11.25x; lease-incl. net debt $42.1M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001606163.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/LMB?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/lmb/forecast/"
+  },
+  {
+   "item": "GVA multiples (gate-derived)",
+   "value": "fwd P/E 14.34x (close / NTM consensus EPS $7.84); EV $5.79B / TTM EBITDA $500.3M = 11.58x; lease-incl. net debt $818.4M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000861459.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/GVA?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/gva/forecast/"
+  },
+  {
+   "item": "AGX multiples (gate-derived)",
+   "value": "fwd P/E 25.79x (close / NTM consensus EPS $15.22); EV $4.49B / TTM EBITDA $185.0M = 24.25x; lease-incl. net debt $-1022.1M",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000100591.json",
+   "checked": "2026-10-12",
+   "feeds": "comps (agents' and supervisor medians)",
+   "inputs": "close: https://query1.finance.yahoo.com/v8/finance/chart/AGX?range=1mo&interval=1d; consensus EPS: https://stockanalysis.com/stocks/agx/forecast/"
+  },
+  {
+   "item": "DY multiples (gate-derived)",
+   "value": "NTM P/E 13.72x ($269.23 / $19.63); EV $10.83B / adjusted TTM EBITDA $959.8M = 11.28x",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000067215.json",
+   "checked": "2026-10-12",
+   "feeds": "comps_review.dy_now_fwd_pe, key_drivers, summary"
+  },
+  {
+   "item": "Leverage DY vs MTZ",
+   "value": "2.82x ($2,708.3M / $959.8M) vs 2.12x ($2,919.8M / $1,379.5M) lease-inclusive; 2.58x vs 1.76x ex leases",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-10-12",
+   "feeds": "discount justification, sizing"
+  },
+  {
+   "item": "MTZ EV / 2026 adj. EBITDA guide",
+   "value": "$20.12B / $1,600M = 12.57x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000095/mtz630268-kex991.htm",
+   "checked": "2026-10-12",
+   "feeds": "EV/EBITDA anchor (A14), comps_review"
+  },
+  {
+   "item": "Peer medians (gate-derived)",
+   "value": "8 reconciled: fwd P/E 22.01x (7), EV/EBITDA 19.32x; 9 incl. LMB: 21.61x / 17.68x; 11: 21.61x (10) / 17.68x; telecom core (MTZ, PRIM) 18.36x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mtz/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "comps_review, agent comps_summary"
+  },
+  {
+   "item": "Reconciled FY28 EPS / FY29 EPS / NTM EPS",
+   "value": "$20.78 x 0.96 = $19.95; x 1.11 = $22.14; 0.31 x 19.95 + 0.69 x 22.14 = $21.46",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/dy/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value P/E leg"
+  },
+  {
+   "item": "NTM calendar weight at 2027-10-09",
+   "value": "~112/365 = 0.31 FY28 (FYE ~Jan 29, 2028)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Reconciled EBITDA build",
+   "value": "$8.58B x 14.2% = $1.218B; x 1.09 = $1.328B; NTM 0.31/0.69 = $1.294B",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/dy/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value EV leg"
+  },
+  {
+   "item": "Reconciled horizon net debt",
+   "value": "$2,502.6M - ~$250M + ~$75M = $2.33B; + $228.7M leases = $2.56B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/q22027presentationmateri.htm",
+   "checked": "2026-10-12",
+   "feeds": "fair_value EV leg"
+  },
+  {
+   "item": "Fair value legs and blend",
+   "value": "P/E 21.46 x 16 = $343.4; EV (12.94 - 2.56) / 30.2M = $343.7; 0.6/0.4 blend $343",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/dy/forecast/",
+   "checked": "2026-10-12",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Thesis break ratios",
+   "value": "$200 = 9.3x $21.46, 10.0x $19.95, 9.6x $20.78; 24% below $263.36",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DY?range=2y&interval=1d",
+   "checked": "2026-10-12",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "Agent fair-value mean",
+   "value": "(324 + 338 + 327 + 352 + 344) / 5 = $337; corrected ~$338",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-09/DY/agent_1.json ... agent_5.json (fair_value.value)",
+   "checked": "2026-10-12",
+   "feeds": "confidence_reason, changes"
+  },
+  {
+   "item": "Buyback per-share effect",
+   "value": "$75M / 30.2M = ~$2.5/share of net debt; $75M / ~$290 = ~0.26M shares",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/R29.htm",
+   "checked": "2026-10-12",
+   "feeds": "A17, A21"
+  },
+  {
+   "item": "Underlying FCF anchor",
+   "value": "FY26 FCF $435.3M - AP increase $223.2M = $212.1M; / FY26 adj. NI $352.2M (11.97 x 29.42M) = 60%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm",
+   "checked": "2026-10-12",
+   "feeds": "A16, A22"
+  },
+  {
+   "item": "Loudoun County pause",
+   "value": "Board to consider (Oct 20, 2026) up-to-12-month pause on legislative data center and substation applications, retroactive to Sep 15, 2026; administrative processes not affected",
+   "basis": "reported",
+   "source_url": "https://www.loudoun.gov/CivicAlerts.aspx?AID=10874",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m, thesis break"
+  },
+  {
+   "item": "Fed decision odds (snapshot Oct 11, 2026 19:54 ET)",
+   "value": "Oct 27-28 hike: Kalshi 15.5%, Polymarket 16.5%; Dec hike: Kalshi 71.5%, Polymarket 74.5% (~73% midpoint)",
+   "basis": "reported",
+   "source_url": "https://defirate.com/odds/fed-decision/snapshot/2026-10-11T1951/",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m, key_drivers"
+  },
+  {
+   "item": "SpaceX-Grain 800 MHz deal (Reuters)",
+   "value": "T-Mobile, Verizon, AT&T -5.5% to -7.4% premarket; towers +6.7% to +8.3% (Oct 9, 2026)",
+   "basis": "reported",
+   "source_url": "https://www.thestar.com.my/tech/tech-news/2026/10/09/us-european-telecom-stocks-slide-as-spacex-spectrum-deal-rattles-sector",
+   "checked": "2026-10-12",
+   "feeds": "ladder_1m, key_drivers"
+  },
+  {
+   "item": "Omdia: Verizon / AT&T",
+   "value": "Verizon 2026 capex decrease $0.5-1bn incl. Frontier; AT&T >36M fiber locations, 40M by end-2026, 60M by 2030",
+   "basis": "reported",
+   "source_url": "https://omdia.tech.informa.com/om143142/atampts-investment-strategy-diverges-from-verizon-and-tmobile-us",
+   "checked": "2026-10-12",
+   "feeds": "key_drivers, haircut (agent_2), FY29 judgment"
+  },
+  {
+   "item": "FBA: first-time fiber passings remaining",
+   "value": "~60 million",
+   "basis": "reported",
+   "source_url": "https://fiberbroadband.org/2025/12/16/fiber-broadband-association-reports-historic-fiber-deployment-highs/",
+   "checked": "2026-10-12",
+   "feeds": "FY29 judgment (agent_2)"
+  },
+  {
+   "item": "Verizon fiber targets",
+   "value": "2M new passings in 2026; 40-50M medium term",
+   "basis": "reported",
+   "source_url": "https://broadbandbreakfast.com/verizon-subscriber-metrics-beat-expectations/",
+   "checked": "2026-10-12",
+   "feeds": "FY29 judgment (agent_2)"
+  },
+  {
+   "item": "DMV data-center actions (Venable)",
+   "value": "Loudoun 6-1 vote Jul 22 to study a pause; Prince George's two-year moratorium; Montgomery six-month pause; VA EO Sep 19; Prince William by-right elimination Sep 22; MD EO Sep 23",
+   "basis": "reported",
+   "source_url": "https://www.venable.com/insights/publications/2026/09/data-centers-facing-major-regulatory",
+   "checked": "2026-10-12",
+   "feeds": "agent_4 discount justification"
+  }
+ ],
+ "notes": [
+  "Audit run 2026-10-12 by gate_DY on the 2026-10-09 round. sec.gov refused curl with a generic User-Agent, so www.sec.gov pages were read with WebFetch; data.sec.gov XBRL APIs opened directly.",
+  "No corrected figure enters fair value, ladders, thesis break or sizing numbers: supervisor fair value $343, ladders, thesis break $200 and sizing (4.0%, 0.42) are unchanged; all five agent fair values, methods and ladders are unchanged (sourcing notes only).",
+  "Judgment flag for the supervisor (not a gate failure): on the gate-derived basis the reconciled 16x NTM P/E is ~12% below MTZ (18.18x), not ~20%; the earlier stated 20% discount would imply ~14.5x. The 16x is kept as the agents' and supervisor's judgment.",
+  "The 10-Q XBRL R90 concentration table tags the $403.5M / 20.1% row to the Verizon member and $209.4M / 10.4% to AT&T, the reverse of the 10-Q HTML Note 19; the HTML (AT&T 20.1%, Verizon 10.4%) is used, and the three-carrier total 35.8% is unaffected.",
+  "Consensus figures, prices and the prediction-market odds can change: re-open them before reuse."
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "date": "2026-10-06",
+ "symbol": "NOK",
+ "clean": true,
+ "checked": 117,
+ "ok": 109,
+ "failures": [
+  {
+   "item": "NOK spot / 6 Oct close (supervisor fair_value reason, summary, ladder anchor, NOK NTM P/E 24.5x, sizing, key_drivers)",
+   "value": "$10.84 \"close\"",
+   "cited": "run brief (no page); StockAnalysis NOK history shows the 6 Oct close as $10.975",
+   "result": "wrong",
+   "fix": "Replaced by $10.975 (https://stockanalysis.com/stocks/nok/history/). Recomputed: ladder median 9.40 -> 9.45 (sqrt(8.13 x 10.975)); 15-strike ladder and 1-month ladder rescaled; P(close >= spot) 0.391 -> 0.387; NOK NTM P/E 24.54x -> 24.84x, premium +55% -> +57%; FV discount 25% -> 26%; sizing +20% odds 0.263 -> 0.259; day move +6.3% -> +7.6%. Fair value unchanged (does not use spot)."
+  },
+  {
+   "item": "Realized vol 1m/3m/6m/1y and 12-month return (supervisor)",
+   "value": "69.9/65.2/71.6/62.2%; +119%",
+   "cited": "Twelve Data closes (computed with the $10.84 intraday price as the last close)",
+   "result": "wrong",
+   "fix": "Recomputed with the verified close: 71.2/65.8/71.8/62.2%; +122%."
+  },
+  {
+   "item": "Supervisor thesis-break arithmetic and ladder share below it",
+   "value": "EUR 5.64 = 13.76x on 0.408 (or 13.6x on 0.410); 'about 25%' below",
+   "cited": "ERIC NTM 13.76x; own ladder",
+   "result": "mislabelled",
+   "fix": "Arithmetic written out: 13.76 x 0.410 = EUR 5.64 = $6.36 (estimate), or x 0.40844 = $6.33; share below = 1 - P(6.35) = 0.223 (about 22%). Thesis break $6.35 unchanged."
+  },
+  {
+   "item": "ANET page price and NTM P/E (supervisor comps_review)",
+   "value": "$215.11, 43.64x",
+   "cited": "https://stockanalysis.com/stocks/anet/forecast/",
+   "result": "wrong",
+   "fix": "Page now shows $215.44 (4:00 PM EDT): 43.70x (CY27 41.41x). Median 15.79x and segment multiple 22.61x unchanged."
+  },
+  {
+   "item": "agent_1 comparable NCI H1'26",
+   "value": "EUR 6m (12m p.a.)",
+   "cited": "Q2 6-K",
+   "result": "wrong",
+   "fix": "6-K comparable column shows EUR 4m for Q1-Q2'26 (6m is Q2'25). Set to 8m p.a.; agent_1 EPS 0.3529/0.4057 -> 0.3536/0.4064, NTM 0.3925 -> 0.3932, P/E leg $8.36 -> $8.37, FV $8.38 -> $8.39, bear $5.83 -> $5.84, base $9.38 -> $9.39; supervisor record of agent_1 FV and dispersion updated (agents' mean stays $7.99)."
+  },
+  {
+   "item": "agent_2 FY26 consensus OP EUR 2,400m, EPS range 0.32-0.36; Q3 consensus OP 444m / EPS 0.06",
+   "value": "Infront figures",
+   "cited": "nokia.com Infront PDF",
+   "result": "not_found",
+   "fix": "Per the run instruction the Infront PDF is treated as unavailable (the gate's own curl fetch returned HTTP 200, so the 403 is intermittent). Removed; FY26 EPS re-cited to StockAnalysis 0.34293 (range 0.31204-0.38); the Q3 context now cites Nokia guidance. No number used them."
+  },
+  {
+   "item": "agent_3 FY26 consensus OP EUR 2,400m, EPS range 0.32-0.36; Q3 consensus 444m (417-500) / EPS 0.06; Q2 consensus \"Inderes/Infront ~376m\"",
+   "value": "Infront figures",
+   "cited": "nokia.com Infront PDF",
+   "result": "not_found",
+   "fix": "Removed as for agent_2; FY26 EPS re-cited to StockAnalysis 0.34293; the 376m Q2 consensus is re-cited to the Inderes PDF, which shows it; catalyst text re-cited to Nokia guidance. No number used them."
+  },
+  {
+   "item": "\"$10.84 close/spot\" labels in agents 1, 2, 3 and 5",
+   "value": "$10.84 close",
+   "cited": "run brief",
+   "result": "mislabelled",
+   "fix": "Relabelled as the brief price (a 6 Oct intraday price, inside the Twelve Data 12:30-14:30 EDT hourly ranges of 10.80-10.95), with the official $10.975 close noted. The agents' own numbers stay on their stated price (their independent view)."
+  }
+ ],
+ "open_failures": [],
+ "notes": [
+  "No model_assumptions.json in this ad hoc run; audited supervisor.json (round 2) and the five round-2 agent files.",
+  "Fair value $8.13 unchanged: it does not use the spot price, and every input it uses was verified (Q2 6-K, CMD 6-K, StockAnalysis S&P Global consensus, ECB, Damodaran) or is a labelled estimate/judgment with its arithmetic.",
+  "Infront PDF: the run instruction says it returns 403; the gate's curl fetch on 6 Oct returned HTTP 200 with the same figures. It was still treated as unavailable, and no number depends on it.",
+  "Inderes: only FCFF 2028e EUR 2,064m is cited by the supervisor, as a cross-check; the TP EUR 6.50 and DCF EUR 6.5 feed no number. agent_3 uses Inderes model inputs (beta, financial items, segment weights) as its own labelled view; each was verified in the PDF.",
+  "Agent peer prices are 6 Oct intraday snapshots that the pages no longer display; each lies inside the 6 Oct trading range and the EPS figures match the page data exactly, so they are recorded as ok. agent_1 calendarises CSCO/CIEN/HPE by extrapolating FY27 growth (arithmetic written out; the supervisor does not use it).",
+  "Agent p_close_ge_spot values in round1_to_round2 are at the $10.84 brief price; the supervisor r2 value (0.387) is at the verified close.",
+  "Context-only items not opened: Light Reading, AOL/Santander, boerse-express (already excluded), Cignal AI, Uncle Stock Notes, DeFi Rate, managers' transactions, agent_5 base rates since 2000. None feeds a number."
+ ]
+}

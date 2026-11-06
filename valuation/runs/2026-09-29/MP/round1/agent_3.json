@@ -1,0 +1,87 @@
+{
+  "symbol": "MP", "agent_id": "agent_3", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 11.82, "p": 0.985}, {"K": 18.92, "p": 0.925}, {"K": 24, "p": 0.845}, {"K": 28, "p": 0.77},
+    {"K": 33, "p": 0.68}, {"K": 38, "p": 0.59}, {"K": 43, "p": 0.51}, {"K": 47, "p": 0.455},
+    {"K": 52, "p": 0.39}, {"K": 57, "p": 0.335}, {"K": 64, "p": 0.27}, {"K": 71, "p": 0.22},
+    {"K": 83, "p": 0.15}, {"K": 95, "p": 0.105}, {"K": 118, "p": 0.055}
+  ],
+  "ladder_1m": [
+    {"K": 37.83, "p": 0.85}, {"K": 40.20, "p": 0.775}, {"K": 42.56, "p": 0.685}, {"K": 43.98, "p": 0.625},
+    {"K": 45.40, "p": 0.565}, {"K": 47.29, "p": 0.49}, {"K": 49.18, "p": 0.415}, {"K": 50.60, "p": 0.365},
+    {"K": 52.02, "p": 0.315}, {"K": 54.38, "p": 0.245}, {"K": 56.75, "p": 0.185}
+  ],
+  "one_month_reasoning": "No company earnings expected inside the window: MP filed Q3 2025 results on 2025-11-06 and Q2 2026 on 2026-08-06 (EDGAR 8-K list), so Q3 2026 most likely lands ~Nov 5, after Oct 30 (some aggregators guess Oct 29; I give that ~25%). The main scheduled macro/policy event, the 2026-11-10 lapse of China's one-year suspension of its October-2025 rare-earth export controls, is also just outside the window, but positioning ahead of it could move the theme either way (escalation headlines have historically lifted MP; the June 2026 Chinese blacklisting of MP hurt it). The stock has fallen 21% in a month on a sector-wide sell-off (REMX -17%), and short interest is high (~23% of float), so both a reflex bounce and continued theme liquidation are plausible. With no clear edge I use a near-symmetric lognormal centred just below spot (median ~$47.0) with monthly vol ~21% (74%/3.5).",
+  "fair_value": {
+    "value": 40.0,
+    "method": "Blend of 22x NTM EBITDA at Sep-2027 (~$280M) plus net cash on ~238M diluted shares ($30), a 2030 steady-state EBITDA ($750M x 14x, discounted 3 years at 11%) DCF-lite ($36), and the low end of the sell-side target range ($57) as a strategic-premium cross-check; weights 0.35/0.35/0.30 give ~$40.",
+    "methods": [
+      {"name": "EV/EBITDA", "value": 30.0, "weight": 0.35,
+       "inputs": "NTM EBITDA at Sep-2027 ~$280M x 22x = EV $6.2B; + ~$0.65B net cash (ex-converts) at Sep-2027 = $6.85B equity; / ~238M diluted shares = ~$29-30",
+       "inputs_detail": [
+         {"input": "Current run-rate Adjusted EBITDA", "value": "$28.5M in Q2 2026 (~$114M annualized); Materials segment $32.5M on 1,006t NdPr sold", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "NTM EBITDA at Sep-2027", "value": "$280M", "basis": "estimate", "source_ids": [1, 2, 3, 14], "derivation": "NdPr sales scaling from ~4,000t/yr to ~5,500t/yr run rate by late 2027, realized ~$110/kg incl. PPA top-up (DoW $110/kg floor; spot ~$97-108), Materials margin rising from 29% to ~40% -> ~$240M; Magnetics (Independence GM ramp from Q4-26, 10X not yet contributing much) ~$80M; corporate ~-$45M."},
+         {"input": "EV/EBITDA multiple", "value": "22x", "basis": "judgment", "source_ids": [6, 10, 11], "derivation": "Stock currently trades ~190x TTM EBITDA (stockanalysis); third-party fair-value models (GF Value $40, Simply Wall St narrative $51) imply the strategic premium is already rich; 22x is a premium-to-miners, scarcity-adjusted multiple for a business still in ramp."},
+         {"input": "Net cash at Sep-2027 (treating in-the-money 2030 converts as equity)", "value": "~$0.65B", "basis": "estimate", "source_ids": [2, 3], "derivation": "Cash+ST investments $1.453B at 6/30/26 less non-convert debt (~$0.19B of the $0.935B LT debt) = ~$1.26B; Q2 capex alone was $230M and H1 cash capex $308M with 10X under construction, so I assume ~$0.6B net burn over the next 5 quarters."},
+         {"input": "Diluted shares", "value": "~238M", "basis": "reported", "source_ids": [2, 3], "derivation": "178.1M basic + 39.7M from 2030 notes (conversion ~$18.84, deep in the money) + 13.3M DoW Series A preferred (conv. $30.03) + ~4.1M net from 11.2M DoW warrants at $30.03 (treasury method at $47) + 2.3M RSU/PSU."}
+       ]},
+      {"name": "DCF", "value": 36.0, "weight": 0.35,
+       "inputs": "2030 steady-state EBITDA $750M x 14x exit = $10.5B EV in 2030; discounted 3 yrs at 11% = $7.7B; + ~$0.65B net cash; less ~$0.3B further capex; / 238M shares = ~$34-36",
+       "inputs_detail": [
+         {"input": "2030 steady-state EBITDA", "value": "$750M", "basis": "estimate", "source_ids": [2, 3, 8], "derivation": "Upstream ~10kt NdPr at the $110/kg floor (~$1.1B revenue at ~45% margin = ~$500M) + magnetics including the DoW-guaranteed $140M/yr 10X EBITDA and Independence/GM/Apple volumes ~$250M; assumes 10X executes on time, which is the key risk."},
+         {"input": "Exit multiple", "value": "14x EBITDA", "basis": "judgment", "source_ids": [10, 11], "derivation": "Mature, floor-protected, partly contracted cash flows deserve a utility-plus industrial multiple, not today's growth premium."},
+         {"input": "Discount rate", "value": "11%", "basis": "judgment", "source_ids": [6], "derivation": "High-beta (74% realized vol), pre-profit project company; equity cost ~11% with execution risk handled in the scenarios."},
+         {"input": "DoW price floor", "value": "$110/kg NdPr through 2035; 30% upside share once 10X runs", "basis": "reported", "source_ids": [2, 3], "derivation": ""}
+       ]},
+      {"name": "other", "value": 57.0, "weight": 0.30,
+       "inputs": "Sell-side cross-check: low end of current target range (Freedom Broker $57 Hold, JPM $60 OW) vs consensus ~$74-76; captures the strategic/national-security premium the market has paid for years",
+       "inputs_detail": [
+         {"input": "Sell-side targets", "value": "Freedom $57, JPM $60 (cut from $75), Barclays $65, Needham $73, DA Davidson $82; mean ~$74", "basis": "consensus", "source_ids": [7, 9, 6, 16], "derivation": "I use the low end rather than the mean because targets have been cut repeatedly since June and lag price."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 26.0, "prob": 0.30, "story": "Theme deflates further: Independence/GM commercial shipments slip past Q4-26 or yields disappoint, 10X schedule/cost overruns, capex keeps draining cash (cash already down from $1.83B to $1.45B in six months) forcing an equity or convert raise in 2027; China extends its export-control pause and NdPr stays below the floor so earnings are visibly 'subsidy' (PPA income ~16% of revenue+PPA); bill-and-hold revenue (47% of Q2 revenue) and rising receivables draw scrutiny; stock re-rates toward ~20x near-term EBITDA."},
+    "base": {"price": 45.0, "prob": 0.45, "story": "Ramp proceeds roughly on plan: commercial magnet shipments start, NdPr volumes grow, EBITDA run rate ~$250-300M by late 2027, but the premium multiple compresses as the story becomes execution, insider selling continues, and the stock trades sideways near today's level within a wide range."},
+    "bull": {"price": 80.0, "prob": 0.25, "story": "China reinstates/escalates export controls after Nov 10 2026, ex-China NdPr and heavy rare-earth premiums widen, new DoW/allied or Apple-type offtakes, 10X ahead of schedule; strategic scarcity premium returns toward the $100 52-week high."}
+  },
+  "thesis_break_price": 28.0,
+  "thesis_break_reason": "Below ~$28 (just under the $30.03 DoW warrant/preferred conversion price and ~40% below spot) the market would be pricing MP like a floor-protected miner with no magnet franchise, which most likely means a real fundamental break (failed GM/10X magnet ramp, a dilutive capital raise, an adverse change to DoW support, or an accounting problem), not ordinary 74%-vol noise.",
+  "catalysts": [
+    {"date": "2026-11 (early, ~Nov 5)", "event": "Q3 2026 results: first read on Q4 GM commercial magnet shipments, capex and cash burn", "direction": "?"},
+    {"date": "2026-11-10", "event": "Expiry of China's one-year suspension of October-2025 rare-earth export controls (renewal or lapse)", "direction": "?"},
+    {"date": "2026-Q4", "event": "Start of commercial magnet shipments to GM from Independence (guided)", "direction": "+"},
+    {"date": "2026-10 to 2027", "event": "Possible China Rare Earth Group takeover of Shenghe (holds ~3% of MP) and any resulting block sale", "direction": "-"},
+    {"date": "2027-02", "event": "FY2026 results and 2027 capex/10X timeline", "direction": "?"},
+    {"date": "2027 rolling", "event": "Further CEO 10b5-1 sales (>$58M sold Apr-Jun 2026) and potential capital raise as cash falls", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Whether Independence magnets pass GM qualification and ship commercially on time (guided Q4 2026, after multiple prior slips)",
+    "10X facility cost and schedule; size of the 2027 cash burn and whether new equity/converts are needed",
+    "China export-control path after Nov 10 2026 and its effect on NdPr pricing and on the scarcity premium",
+    "Quality of revenue: bill-and-hold revenue of $51.3M (47%) in Q2 2026 and trade receivables up from $14.6M to $40.4M",
+    "Durability of DoW support (price floor, offtake, preferred) across political cycles",
+    "Short interest ~23% of float can drive violent squeezes in either direction"
+  ],
+  "reasoning": "Skeptic lane. Fundamentals: Q2 2026 revenue $108.5M (+89%), adjusted EBITDA $28.5M, but GAAP net loss -$20M, PPA (government price-floor) income $17.6M was ~62% of adjusted EBITDA, and $51.3M of revenue was bill-and-hold with receivables nearly tripling, so reported improvement is partly policy- and timing-driven. Capex is heavy ($230M in Q2) and cash fell $380M in H1 to $1.45B. Fully diluted share count is ~238-245M (2030 notes deep in the money, DoW preferred and warrants at $30.03), so the true equity value is ~$11B+ vs ~$8.2B basic market cap, ~190x TTM EBITDA. CEO sold >$58M of stock at $64-71 in Apr-Jun 2026; China blacklisted MP in June; Shenghe (3% holder) may be absorbed by China Rare Earth Group; sell-side targets cut repeatedly (JPM $75->$60, Needham $81->$73, Barclays $69->$65). Weighing honestly: the DoW $110/kg floor, $140M guaranteed 10X EBITDA, Apple/GM contracts and net cash give a hard-ish floor, and geopolitical escalation (Nov 10 control expiry) is a real upside catalyst, so I don't forecast a collapse. My blended fair value is ~$40 (pure fundamental methods $30-36, sell-side low-end $57 cross-check). Distribution: lognormal with median ~$44 (modest drift toward fair value) and ~62% vol (a bit below the realized 74% given the policy floor), with a fat right tail for China-escalation scenarios. Research limited to ~15 queries; Seeking Alpha and Fintel pages were blocked (403), so short-interest is from stockanalysis and the SA downgrade is cited only as a lead. No option data was consulted.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "MP Materials Reports Second Quarter 2026 Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1801368/000180136826000047/mpmcq22026er.htm", "date": "2026-08-06", "type": "filing", "in_lane": false},
+    {"title": "MP Materials Form 10-Q for quarter ended June 30, 2026 (bill-and-hold, dilution table, DoW preferred/warrant, capex)", "url": "https://www.sec.gov/Archives/edgar/data/1801368/000180136826000048/mp-20260630.htm", "date": "2026-08-06", "type": "filing", "in_lane": true},
+    {"title": "MP Materials grows Q2 2026 revenue and narrows loss (10-Q summary)", "url": "https://www.stocktitan.net/sec-filings/MP/10-q-mp-materials-corp-de-quarterly-earnings-report-4084e780a2d5.html", "date": "2026-08", "type": "data", "in_lane": false},
+    {"title": "MP Materials chairman & CEO Litinsky sells $26.2 million in stock", "url": "https://www.investing.com/news/insider-trading-news/mp-materials-chairman--ceo-litinsky-sells-262-million-in-stock-93CH-4717559", "date": "2026-05", "type": "press", "in_lane": true},
+    {"title": "MP Materials CEO Litinsky sells $12.8m in company stock", "url": "https://www.investing.com/news/insider-trading-news/mp-materials-ceo-litinsky-sells-128m-in-company-stock-93CH-4729443", "date": "2026-06", "type": "press", "in_lane": true},
+    {"title": "MP Materials (MP) Statistics & Valuation (short interest 33.6M, 23.3% of float)", "url": "https://stockanalysis.com/stocks/mp/statistics/", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "MP Materials Stock Falls 4.3%; China Report Reopens the Shenghe Stake Question", "url": "https://ts2.tech/en/mp-materials-stock-falls-4-3-china-report-reopens-the-shenghe-stake-question/", "date": "2026-09", "type": "press", "in_lane": true},
+    {"title": "MP Materials Just Sank 21% in a Month", "url": "https://247wallst.com/investing/2026/09/28/mp-materials-just-sank-21-in-a-month-is-it-time-to-sell-or-is-this-a-prime-buying-opportunity/", "date": "2026-09-28", "type": "press", "in_lane": false},
+    {"title": "MP Materials Shares Down 7.8% on Analyst Downgrade", "url": "https://www.marketbeat.com/instant-alerts/mp-materials-nysemp-shares-down-78-on-analyst-downgrade-2026-07-29/", "date": "2026-07-29", "type": "sell-side", "in_lane": true},
+    {"title": "MP Materials Corp (MP) Shares Fall 4.3% -- GF Value Says Still Overvalued", "url": "https://www.gurufocus.com/news/9088730/mp-materials-corp-mp-shares-fall-43-gf-value-says-still-overvalued", "date": "2026-09", "type": "other", "in_lane": true},
+    {"title": "MP Materials (MP) Stock Could Be 18.6% Overvalued as Magnet Narrative Meets DCF Upside", "url": "https://simplywall.st/stocks/us/materials/nyse-mp/mp-materials/news/mp-materials-mp-stock-could-be-186-overvalued-as-magnet-narr", "date": "2026-09", "type": "other", "in_lane": true},
+    {"title": "Here's Why Shares in MP Materials Declined in June (China export-control blacklist)", "url": "https://www.fool.com/investing/2026/07/03/heres-why-shares-in-mp-materials-declined-in-june/", "date": "2026-07-03", "type": "press", "in_lane": true},
+    {"title": "China export pause on rare earths nears Nov. 10 expiration", "url": "https://eastasiabrief.com/trade-policy/china-export-pause-rare-earths-nears-nov-10-expiration-197", "date": "2026-09-06", "type": "press", "in_lane": false},
+    {"title": "Ex-China heavy rare earths continue to surge: Q3 2026 Rare Earths Price Review", "url": "https://source.benchmarkminerals.com/article/ex-china-heavy-rare-earths-continue-to-surge-q3-2026-rare-earths-price-review", "date": "2026-09", "type": "trade", "in_lane": false},
+    {"title": "EDGAR 8-K filing list for MP Materials (earnings release dates)", "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001801368&type=8-K", "date": "2026-10-01", "type": "filing", "in_lane": false},
+    {"title": "MP Materials falls as analyst target cuts and China-related overhang pressure shares", "url": "https://www.quiverquant.com/news/MP+Materials+falls+as+analyst+target+cuts+and+China-related+overhang+pressure+shares", "date": "2026-09", "type": "press", "in_lane": true},
+    {"title": "MP Materials: Wait For A Better Entry Point (Rating Downgrade) - Seeking Alpha (title only; page blocked)", "url": "https://seekingalpha.com/article/4926535-mp-materials-wait-for-a-better-entry-point-rating-downgrade", "date": "2026", "type": "newsletter", "in_lane": true}
+  ]
+}

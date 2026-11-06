@@ -1,0 +1,3559 @@
+{
+ "symbol": "VST",
+ "as_of": "2026-11-03",
+ "horizon": "2027-11-03",
+ "disagreements": [
+  {
+   "topic": "Horizon net claims (net debt + preferred) at 2027-10-14",
+   "positions": "agent_5 $22.25B (prorates management's 'more than $10 billion of available cash' as cash generated); agent_2 $22.96B and agent_3 $23.0B (FCFbG-based); agent_1 $20.9B + $2.49B = $23.4B; agent_4 $21.21B + $2.48B = $23.69B (FCFF after its own 15%/14% capex less after-tax interest, not FCFbG guidance).",
+   "resolution": "$20.4B net debt + $2.49B preferred/NCI = $22.89B. The $10B is 'available cash', which management allocates to ~$3B equity holders, $4.5-5B growth and ~$2-2.5B still unallocated through YE2027; it exceeds FCFbG (2026 guidance midpoint $4.325B + 2027 ~$4.86B, my estimate = 8,100 x 4,325/7,200; only 2026 is guided), so agent_5 overstates deleveraging by ~$0.6B. agent_4's cash build is ~$0.8B below FCFbG guidance, so it overstates claims. Each $0.34B is ~$1/share.",
+   "evidence": "Q2 2026 call transcript (src 2, opened via Bigdata.com 2026-10-14): 'more than $10 billion of available cash in 2026 and 2027', '~$3 billion to our equity holders', '$4.5 billion-$5 billion to accretive growth', '$2 billion-$2.5 billion of additional cash available to allocate through year-end 2027'; Q2 release FCFbG guide $3,925-4,725M (src 1)."
+  },
+  {
+   "topic": "DCF leg vs the multiples (new DCF check): terminal growth, WACC and DCF weight",
+   "positions": "DCF legs $125.8 (agent_2, 9.5% / 2.0%, -27% vs its multiple leg, flagged by the engine), $131.5 (agent_3, 9.25% / 2.0%, -19.6%), $138.2 (agent_4, 9.0% / 2.5%, -16.4%), $140.9 (agent_1, 9.15% / 2.0%, -17.6%), $142.2 (agent_5, 9.37% / 2.5%, -15.5%); every agent's multiples imply a WACC of 8.0-8.6%. My round-1 set was also flagged (DCF $136.2, -20.5%).",
+   "resolution": "Fixed the cause in my set: terminal growth 2.0% -> 2.5%. The 2.0% was chosen to price the post-2029/30 PJM design, which is already in the multiple discount, the flat FY2029-30 EBITDA and the bear case, so it counted that risk two or three times. DCF now $150.9 vs $172.5 (-12.5%); WACC 9.0% vs 8.4% implied (0.6pt). DCF keeps weight 0.3. See dcf_check.",
+   "evidence": "Engine check of the reconciled set (scratch copy) and of each agent file; BLS CPI +3.7% y/y, core +2.6% (src 5); OEG workshop proposal vs Brattle's $500-625 cap recommendation (src 19) show the PJM risk is two-sided."
+  },
+  {
+   "topic": "Horizon EV/EBITDA multiple: 9.25x (agents 3, 5) vs 9.5x (agents 1, 2, 4)",
+   "positions": "All five now apply the multiple to pre-SBC adjusted EBITDA, the peers' basis. agents 3 and 5 take a further 0.25x for the 72%-hedged 2028 and the nearer PJM decision.",
+   "resolution": "9.5x kept: 1.1x below the 10.6x IPP median and ~0.3x below VST's own ~9.8x NTM today. The hedge level and PJM design are the reasons for that discount already; stacking another 0.25x counts them twice. Each 0.25x is ~$6/share.",
+   "evidence": "peers.md NTM EV/EBITDA CEG 11.8x, TLN 10.6x, NRG 8.9x (re-run secfacts.py trailing figures match the table); Q2 release hedges ~94% 2027 / ~72% 2028 (src 1)."
+  },
+  {
+   "topic": "FY2028 adjusted EBITDA: $8.29B (agent_4) vs $8.5B (agents 1, 2, 3, 5)",
+   "positions": "agent_4 grows revenue 3% with a slightly lower margin (+2.2% y/y); others +5% for a full year of Meta PPA delivery and Comanche Peak load, offset by ERCOT.",
+   "resolution": "$8.5B kept. No management or usable consensus figure exists (FMP FY2028 has 1-2 analysts); agent_4's lower figure comes from its revenue/margin parameterisation, not a sourced ERCOT curve. The gap is ~$0.17B x 0.79 x 9.5 = ~$3.8/share.",
+   "evidence": "Q2 release / call (src 1, 2): no 2028 figure; Comanche Peak data-center load targeted to energize end-2027."
+  },
+  {
+   "topic": "Thesis-break price $112-118",
+   "positions": "agents 3 and 5 $112, agent_1 $115, agent_4 $116, agent_2 $118 (mean $114.6).",
+   "resolution": "$115 kept: ~8.0x the ~$8.1B 2027 base on pro forma claims, ~0.9x below NRG. agents 3/5's argument that $115-130 is reachable on factor moves alone is right, which is why the break is defined as the price plus a fundamental trigger (PJM 2030/31+ cap filing or 2027 guidance well below $8.1B).",
+   "evidence": "Pro forma EV at $115: 115 x 340.6M = $39.2B + $22.96B net debt + $2.49B preferred = $64.6B."
+  },
+  {
+   "topic": "PJM post-2029/30 cap probability 0.35-0.45",
+   "positions": "agent_2 0.35; agents 1, 4, 5 0.4; agent_3 0.45.",
+   "resolution": "0.4 kept. I opened the OEG presentation agent_1 cites: a consumer-group stakeholder proposal (not a PJM filing) to keep the floor and cap 'beyond 2029/2030 on existing generation'. The same document cites Brattle's recommended RTO-wide cap of $500-625/MW-day, so a post-2030 'cap' need not sit at today's $325.",
+   "evidence": "OEG / Kurtz, PJM workshop 2026-07-15 (src 19); PJM ER26-1556 answer (src 7)."
+  }
+ ],
+ "ladder": [
+  {
+   "K": 38,
+   "p": 0.998
+  },
+  {
+   "K": 61,
+   "p": 0.988
+  },
+  {
+   "K": 76,
+   "p": 0.96
+  },
+  {
+   "K": 91,
+   "p": 0.905
+  },
+  {
+   "K": 107,
+   "p": 0.825
+  },
+  {
+   "K": 122,
+   "p": 0.737
+  },
+  {
+   "K": 137,
+   "p": 0.643
+  },
+  {
+   "K": 152,
+   "p": 0.545
+  },
+  {
+   "K": 167,
+   "p": 0.445
+  },
+  {
+   "K": 183,
+   "p": 0.347
+  },
+  {
+   "K": 205,
+   "p": 0.238
+  },
+  {
+   "K": 228,
+   "p": 0.155
+  },
+  {
+   "K": 266,
+   "p": 0.071
+  },
+  {
+   "K": 304,
+   "p": 0.032
+  },
+  {
+   "K": 380,
+   "p": 0.007
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 121.76,
+   "p": 0.934
+  },
+  {
+   "K": 129.37,
+   "p": 0.867
+  },
+  {
+   "K": 136.98,
+   "p": 0.769
+  },
+  {
+   "K": 141.55,
+   "p": 0.696
+  },
+  {
+   "K": 146.11,
+   "p": 0.618
+  },
+  {
+   "K": 152.2,
+   "p": 0.511
+  },
+  {
+   "K": 158.29,
+   "p": 0.406
+  },
+  {
+   "K": 162.85,
+   "p": 0.334
+  },
+  {
+   "K": 167.42,
+   "p": 0.269
+  },
+  {
+   "K": 175.03,
+   "p": 0.181
+  },
+  {
+   "K": 182.64,
+   "p": 0.117
+  }
+ ],
+ "one_month_reasoning": "Left at the forecaster mean (median ~$152.5): the five 1-month ladders agree within 0.03, and the window events are verified: FOMC Oct 27-28 after the hot September CPI (+0.6% m/m, core +0.3%), and Q3 results and webcast on Nov 6 (10:00 ET), where management may update 2026/2027 guidance or wait on 2027 until Cogentrix closes. The $8.1B 2027 framing is already consensus, so I see no directional edge; the PJM 2029/30 auction falls after the window.",
+ "confidence": "medium",
+ "confidence_reason": "Round 2 settled the two remaining number-moving disagreements: the horizon claims bridge (now $22.9B, from the call's own allocation of the $10B), and the DCF gap. Every agent's DCF sits 15-27% below its multiple leg because three use 2.0% terminal growth that re-prices the PJM risk already in the multiple; fixing it lifts my fair value to $166.0 vs the $158.7 mean. That points the update up, but it is a method correction of ~2 points of probability at the centre, not a new fact about the business, so it is not 'high'.",
+ "thesis_break_price": 115.0,
+ "thesis_break_reason": "Reviewed 2026-11-03: kept at $115. At $115 the pro forma claims (115 x ~340.6M incl. the 5.0M Cogentrix shares = $39.2B + ~$23.0B net debt + $2.49B preferred) are ~$64.6B, ~8.0x this build's FY2027 8.05B, at NRG's 8.08x (the cheapest IPP at 11-04 midday) and ~2.0x below the 10.01x median. The Texas pause is a new route to that multiple besides a PJM cap after 2029/30 and a weak 2027 guide: through the load drivers it costs ~$1.7/share at expected value, because the hedges carry FY2027-28 and the paused Batch Zero load (6.6 GW) is ~1.3 GW of ERCOT load by FY2029. Reaching $115 needs the market to price a PJM-state spread or a lasting Texas block (pause past ERCOT's 12-10 reports, AWS campus not energized) at ~8.0x: that is the thesis failing, not noise. Spot 118.61 sits ~3% above it (escalated). Original: At $115 the pro forma equity (115 x ~340.6M shares incl. the 5.0M Cogentrix shares = $39.2B) plus pro forma net debt (~$23.0B = 19.16 + 2.3 cash + 1.5 assumed debt) and $2.49B preferred is ~$64.6B, ~8.0x the $8.1B 2027 base (low end $7.4B + ~$0.7B deals). That is ~0.5x below NRG (8.5x at the 2026-10-23 close, NRG.ev_ebitda_ntm), the cheapest IPP, and ~1.3x below VST's own ~9.3x NTM standalone (estimate, 2026-10-23; was 0.9x and 1.8x at 10-14). Reaching it without a market-wide crash would mean a fundamental break: PJM moving to cap or administratively set 2030/31+ capacity prices (decision path after the end-2026 stakeholder review), or 2027 guidance on Nov 6 well below $8.1B. Between the agents' $112 and $118 (mean $114.6).",
+ "key_drivers": [
+  "gen_twh: 208.2 -> 221/236.5/238.3/238.3",
+  "gen_price: 58.66 -> 62.65/64.47/64.66/64.91",
+  "fuel_cost: 26.02 -> 26/26/26/26",
+  "cap_rev: 227 -> 570.3/544.2/508.5/522.2",
+  "retail_twh: 139.1 -> 131.3/132.6/133.9/135.2",
+  "retail_margin: 11.66 -> 11.6/11.6/11.6/11.6",
+  "ercot_dc_gw: 3.573 -> 4.102/4.487/5.746/8.14",
+  "pjm_dc_gw: 7.082 -> 11.47/15.86/20.92/27.4",
+  "horizon multiple 8.9x NTM EV/EBITDA (IPP median 10.01x at 11-04 less 1.1x; Kilian card 2026-11-04)",
+  "moratorium weights 0.45 / 0.10 on the GW paths; post-horizon adjustment -495 $M"
+ ],
+ "long_dated_review": [
+  {
+   "risk": "PJM extends the capacity cap past 2029/30 or replaces RPM pricing with a lower or administrative cap for 2030/31+",
+   "probability": 0.4,
+   "when": "Decision path 2027 (PJM stakeholder evaluation by end-2026); affects capacity revenue from June 2030",
+   "value_effect_per_share": -3.2,
+   "agents_that_missed_it": [],
+   "how_applied": "In the horizon multiple (part of the 1.1x discount to the IPP median), flat FY2029-30 EBITDA and the bear scenario; no longer also in a 2.0% terminal growth. Conditional effect ~-$8/share x 0.4. A stakeholder (OEG) proposal to keep the cap on existing units exists (src 19); PJM has not proposed one. (Re-checked 2026-11-04: the OEG deck, src 19, quotes Brattle's 2025-04-09 'RTO-wide price cap of $500-$625/MW-day' and proposes to 'Maintain the existing price floor and price cap beyond 2029/2030 on existing generation'.)"
+  },
+  {
+   "risk": "ERCOT structural oversupply (batteries, solar) keeps forwards near ~$30/MWh as 2028+ hedges roll off",
+   "probability": 0.35,
+   "when": "2027-2030",
+   "value_effect_per_share": -3.5,
+   "agents_that_missed_it": [],
+   "how_applied": "FY2028 EBITDA held at ~$8.5B (no consensus uplift) and in the bear scenario (-2.5pt margin, -1.5x)."
+  },
+  {
+   "risk": "AI data-center capex follows the standing view's low case (2028 ex-China customer capex $1,265B vs $2,255B base), cutting hyperscaler contracting premiums and the AI-power multiple",
+   "probability": 0.2,
+   "when": "2027-2028",
+   "value_effect_per_share": -7.0,
+   "agents_that_missed_it": [],
+   "how_applied": "Bear scenario (8.0x); conditional ~-$35/share x 0.2."
+  },
+  {
+   "risk": "Higher-for-longer rates raise refinancing cost on ~$21B of debt plus hybrids (new junior notes at 7.0-7.25%)",
+   "probability": 0.5,
+   "when": "2027-2032",
+   "value_effect_per_share": -2.0,
+   "agents_that_missed_it": [],
+   "how_applied": "Through the WACC (rf 5.21%, marginal pre-tax debt 6.5% vs the new 7.0-7.25% junior notes); all five agents now carry it in WACC 9.0-9.5% or the terminal value. (Re-checked 2026-11-04: 7.000% Series A $850M / 7.250% Series B $650M due 2057, 8-K src 14; rf 5.21% on 2026-10-13 per the 2026-10-14 gate's FRED check, src 10; FRED shows 4.91% on 2026-11-02. No DCF leg, so no value effect.)"
+  },
+  {
+   "risk": "Upside: further nuclear contracting (Comanche Peak data-center load targeted end-2027, Beaver Valley) at premium prices",
+   "probability": 0.4,
+   "when": "2027-2029",
+   "value_effect_per_share": 3.0,
+   "agents_that_missed_it": [],
+   "how_applied": "Bull scenario (10.75x, +2pt margin)."
+  },
+  {
+   "risk": "Helix digital-infrastructure capital calls (timing and size not predictable per management) earn less than planned",
+   "probability": 0.25,
+   "when": "2026-2029",
+   "value_effect_per_share": -0.6,
+   "agents_that_missed_it": [],
+   "how_applied": "Cash calls inside the horizon net-debt bridge (growth allocation); return risk in the bear case."
+  }
+ ],
+ "fair_value": {
+  "value": 145.81,
+  "reason": "Citation-gate fix 2026-11-04: engine value $143.56 -> $145.81. Changes: Cogentrix volume on the release's 3,798 MW CCGT (gen_twh FY2027-29 236.5 / 238.3 / 238.3, EBITDA-neutral); no FY2028-29 hedge roll-off charge (the Q2 deck's 2028 forwards sit at or above 2027) and no Meta +50 step (not re-openable); fuel FY2027 26.0 (no cited dip); retail +1%/yr arithmetic; PJM capacity positions from the Q2 deck (2026/27 11,746 MW); ERCOT load flat at the post-letter 4.132 GW under the Texas pause until the ramp restarts mid-2028, per the approved scenario (b), with the +0.6 GW/yr common ramp removed; open volume on the Aug 2026 ladder (6/28/50%); post-horizon moratorium adjustment -323.5 -> -494.6. NTM adjusted EBITDA at the horizon 8,016; 8.9x (Kilian card 2026-11-04, IPP median 10.01x less 1.1x). Before: Model update 2026-11-03 (update): two approved data-center load drivers (ERCOT large load energized, PJM B-9b firm data-center load) carry the 11-03 election's moratorium risk at 0.45 Texas pause / 0.10 PJM-state spread into the realized price, the AWS ramp, the retail offset and a post-horizon adjustment (together -1.69/share), and the multiple moves 9.0x -> 8.9x on the 11-04 IPP median (10.01x less 1.1x; Kilian card); engine value $147.47 -> $143.56. Model update 2026-10-23 (update): peer set refresh (Kilian 2026-10-26 06:07Z); the IPP-only peer median fell from 10.6x to 10.06x NTM EV/EBITDA on the 10-23 close, so the horizon multiple moves 9.5x -> 9.0x with the same 1.1x discount, and the engine value of the set goes from $159.66 to $147.67 (-7.5%). Nothing else in the set changed. No-DCF rule (Kilian 2026-10-21 13:50Z: no DCF leg for any researched name except the neoclouds), applied 2026-10-22: the engine re-run of the reconciled set without its 0.3 DCF leg gives $172.53 (runs/2026-10-14/VST/model_engine.json model_fair_value; was $166.03 with the DCF at $150.9). Original reason: Engine base horizon value of the reconciled set: 9.5x horizon NTM pre-SBC adjusted EBITDA ($8.42B = 0.21 x FY2027 $8.1B + 0.79 x FY2028 $8.5B) less $20.4B net debt and $2.49B preferred/NCI, plus $0.63B Cogentrix tax NPV, over 334.6M shares = $172.5 (weight 0.7); DCF at 9.0% WACC and 2.5% terminal growth = $150.9 (0.3). Changes from round 1 ($160.8): horizon net debt $20.8B -> $20.4B (FCFbG to the horizon ~$6.0B, distributions ~$1.84B from the call's $3B plan) and terminal growth 2.0% -> 2.5% (the DCF check; PJM risk counted once). Forecaster mean fair value $158.7 (range $153.9-162.8).",
+  "value_with_dcf": 166.03
+ },
+ "dcf_check": {
+  "rule": "Kilian 2026-10-14: DCF more than 20% off the weighted non-DCF legs, or WACC more than 3 points off the reverse-DCF WACC, must be fixed or argued before the DCF gets weight.",
+  "round1_set": {
+   "dcf": 136.17,
+   "other_legs": 171.33,
+   "gap": -0.205,
+   "wacc": 0.09,
+   "implied_wacc": 0.08,
+   "flagged": true
+  },
+  "cause": "Terminal assumptions. At 9.0% WACC and 2.0% growth the Gordon value equals ~8.2x forward FY2031 EBITDA, ~1.3x below the 9.5x horizon multiple, which is itself 1.1x below the IPP median. The 2.0% was set to price the post-2029/30 PJM design, but that risk was also in the multiple discount, the flat FY2029-30 EBITDA path (+1%/yr) and the bear scenario: the 0.5pt cost ~$13.5/share of DCF against a probability-weighted PJM effect of ~-$3/share. The discount rate is not the cause (9.0% vs 8.0-8.4% implied, inside 3 points), and the 5-year window cannot be extended (engine cap) and is not needed: FY2028-30 growth is low by design.",
+  "fix": "Terminal growth 2.5% (about long-run inflation; BLS CPI +3.7% y/y, core +2.6%), WACC unchanged at 9.0%, EBITDA path unchanged.",
+  "reconciled_set": {
+   "dcf": 150.89,
+   "other_legs": 172.53,
+   "gap": -0.125,
+   "wacc": 0.09,
+   "implied_wacc": 0.084,
+   "terminal_ev_to_fwd_ebitda": 8.8,
+   "tv_share": 0.82,
+   "flagged": false
+  },
+  "why_dcf_kept_at_weight": "The DCF stays at 0.3 as the cash-flow check: at 9.0% it still values the fleet ~$22/share below the 9.5x leg, because the market prices IPPs at an ~8.4% WACC (implied cost of equity ~9.8%, ERP ~4% over a 5.21% 10-yr). I do not argue the multiples are wrong: 9.5x is already a discount to every merchant peer except NRG.",
+  "agents": [
+   {
+    "agent": "agent_1",
+    "dcf": 140.93,
+    "other_legs": 170.97,
+    "gap": -0.176,
+    "wacc": 0.0915,
+    "implied_wacc": 0.083,
+    "flagged": false,
+    "note": "2.0% terminal re-prices PJM risk already in its 9.5x."
+   },
+   {
+    "agent": "agent_2",
+    "dcf": 125.75,
+    "other_legs": 172.11,
+    "gap": -0.269,
+    "wacc": 0.095,
+    "implied_wacc": 0.08,
+    "flagged": true,
+    "note": "Flagged and not argued: 9.5% WACC (beta 1.2, Kd 6.75%) with 2.0% g; weight 0.2."
+   },
+   {
+    "agent": "agent_3",
+    "dcf": 131.46,
+    "other_legs": 163.52,
+    "gap": -0.196,
+    "wacc": 0.0925,
+    "implied_wacc": 0.082,
+    "flagged": false,
+    "note": "Just inside 20%; 2.0% terminal and 0.3 weight."
+   },
+   {
+    "agent": "agent_4",
+    "dcf": 138.22,
+    "other_legs": 165.26,
+    "gap": -0.164,
+    "wacc": 0.09,
+    "implied_wacc": 0.083,
+    "flagged": false,
+    "note": "2.5% g; DCF low because its FY2028 EBITDA is $8.29B and its weight 0.4 is the highest."
+   },
+   {
+    "agent": "agent_5",
+    "dcf": 142.22,
+    "other_legs": 168.3,
+    "gap": -0.155,
+    "wacc": 0.0937,
+    "implied_wacc": 0.086,
+    "flagged": false,
+    "note": "Closest to the multiples."
+   }
+  ]
+ },
+ "comps_review": {
+  "peer_count_flag": "3 peers (CEG, TLN, NRG): the only US-listed merchant generators with data-center contracting; regulated utilities earn allowed returns on rate base (different model); European generators (Fortum, RWE, Uniper) sit in different market designs with no data-center PPA pricing, context only. No country/regulatory exclusions apply (all US).",
+  "spot_checks": [
+   {
+    "peer": "CEG",
+    "metric": "EV/EBITDA NTM",
+    "value": 10.48,
+    "check": "EV $109.03B = mcap $85.03B (354.3M shares at 239.98, 11-04 ~12pm ET, src 25) + net debt $24.00B (filings) / NTM consensus EBITDA $10.407B (2026-10-14 Bigdata.com/FMP snapshot, peers.json); same NTM window, no CEG results since.",
+    "ok": true,
+    "fact_ids": [
+     "CEG.ebitda_ntm",
+     "CEG.mcap",
+     "CEG.ev"
+    ],
+    "source_ids": [
+     17,
+     25
+    ]
+   },
+   {
+    "peer": "TLN",
+    "metric": "EV/EBITDA NTM",
+    "value": 10.01,
+    "check": "EV $24.95B at 325.69 (11-04, src 25; 10-23 EV $25.05B at 327.91 less ~45.0M shares x $2.22) / NTM consensus $2.492B; adjusted basis (Talen Adj. EBITDA excludes unrealized marks and stock comp); consensus pre-dates TLN's 11-03 Q3 print (src 40).",
+    "ok": true,
+    "fact_ids": [
+     "TLN.ebitda_ntm",
+     "TLN.mcap",
+     "TLN.ev"
+    ],
+    "source_ids": [
+     17,
+     12,
+     25,
+     40
+    ]
+   },
+   {
+    "peer": "NRG",
+    "metric": "EV/EBITDA NTM",
+    "value": 8.08,
+    "check": "EV $40.52B = mcap $17.29B (210.2M shares at 82.26, src 25) + net debt $23.23B / NTM consensus $5.017B.",
+    "ok": true,
+    "fact_ids": [
+     "NRG.ebitda_ntm",
+     "NRG.mcap",
+     "NRG.ev"
+    ],
+    "source_ids": [
+     17,
+     25
+    ]
+   }
+  ],
+  "dropped_or_downweighted": [
+   "Regulated utilities NEE, ETR, D, AEP, SO, DUK, EXC, PEG removed from the table (approved set, Kilian 2026-10-26 06:07Z): rate-base returns, not merchant comparables. At 10-14 they only bounded the range; the IPP median already set the multiple.",
+   "European generators (Fortum, RWE, Uniper): context only, different market design and no data-center PPA pricing.",
+   "Country/regulatory exclusion rule: no China/HK, Korea or India names in this set."
+  ],
+  "reconciled_peer_median_ev_ebitda_ntm": 10.01,
+  "reconciled_peer_median_pe_ntm": null,
+  "reconciled_multiple": 8.9,
+  "premium_discount": "-1.11x (~-11.1%) to the IPP median of 10.01x (11-04 midday; mean 9.52x), on the same pre-SBC adjusted basis as the peers: 8.9x per the Kilian card 2026-11-04 ('8.9x, peer median less discount', src 51). The 1.1x discount is kept for the same reasons as the base round (2028 ~72% hedged, src 1; the PJM 2030/31+ design undecided); the Texas pause is booked through the load drivers and the post-horizon adjustment, not a wider discount. VST 7.67x NTM on this build at 118.61.",
+  "previous": {
+   "as_of": "2026-10-23",
+   "reconciled_peer_median_ev_ebitda_ntm": 10.06,
+   "reconciled_peer_median_pe_ntm": null,
+   "reconciled_multiple": 9.0,
+   "premium_discount": "-1.06x (~-10.5%) to the IPP median of 10.06x, on the same pre-SBC adjusted basis as the peers; VST ~9.3x NTM standalone today. Kept for the same verified reasons as the base round: 2028 only ~72% hedged with ERCOT forwards 'meaningfully lower' (Q2 release/call) and the PJM 2030/31+ design undecided. The peer re-rating moves the anchor, not the discount."
+  },
+  "pe_note": "not used: the three P/E NTM figures are on different consensus bases (CEG Nasdaq/Zacks fiscal-year blend; TLN, NRG FMP next-four-quarter sums), so no P/E median is struck; P/E is not a leg in this set",
+  "as_of": "2026-11-04"
+ },
+ "pjm_cap_status": {
+  "status": "open, not tripped",
+  "as_of": "2026-10-14",
+  "facts": [
+   "Collar of ~$325/MW-day cap and ~$175/MW-day floor (UCAP) applies to all RPM auctions for the 2028/2029 and 2029/2030 delivery years (PJM filing 2026-02-27 and answer in ER26-1556-000; FERC accepted 2026-04-28 per Troutman Pepper).",
+   "PJM said it will evaluate investment incentives with stakeholders by the end of 2026 and determine the Reliability Pricing Model path for the 2030/2031 delivery year and beyond (ER26-1556 answer).",
+   "2027/2028 BRA cleared at the temporary cap of $333.44/MW-day; 2028/2029 BRA (announced 2026-07-14) cleared at the $325/MW-day cap, short of the reliability requirement (FERC order of 2026-09-29).",
+   "FERC on 2026-09-29 (196 FERC 61,245; ER26-3380-000, EL26-108-000) accepted the Reliability Backstop Procurement, suspended it five months to become effective 2027-02-28 subject to refund and paper-hearing outcome, accepted a $555/MW-day MW-weighted maximum willingness to pay, and opened an FPA section 206 proceeding (EL26-108). In it, PJM argued that the price floor applies through 2029/2030 and that further extending the floor would be an impermissible expansion of MOPR.",
+   "No filing or FERC order to extend or lower the cap beyond the 2029/2030 delivery year was found on 2026-10-14.",
+   "A consumer stakeholder proposal (Ohio Energy Group, PJM market-design workshop 2026-07-15) would keep the 'existing price floor and price cap beyond 2029/2030 on existing generation' in a 'Legacy Auction' and run uncapped long-term auctions for new generation; it is a proposal, not a PJM filing. The same document cites Brattle's 2025 recommendation of an RTO-wide cap of $500-625/MW-day."
+  ],
+  "watch": "PJM stakeholder outcome on 2030/31+ RPM design (after end-2026); any new FPA 205 filing on price caps; the 2029/2030 BRA in December 2026; FERC action in EL26-108. Agents also list a PJM special Members Committee (2026-10-22) and a revised RBP filing (2026-10-29); not verified at PJM, so context only.",
+  "probability_post_2030_cap_or_admin_price": 0.4,
+  "sources": [
+   {
+    "title": "PJM answer, ER26-1556-000",
+    "url": "https://www.pjm.com/-/media/DotCom/documents/ferc/filings/2026/20260406-er26-1556-000.pdf",
+    "date": "2026-04-06"
+   },
+   {
+    "title": "Troutman Pepper Energy Report: FERC accepts PJM capacity market price collar extension",
+    "url": "https://www.troutmanenergyreport.com/2026/05/ferc-accepts-pjm-capacity-market-price-collar-extension/",
+    "date": "2026-05"
+   },
+   {
+    "title": "FERC order accepting Reliability Backstop Procurement, 196 FERC 61,245 (ER26-3380-000, EL26-108-000)",
+    "url": "https://www.pjm.com/pjmfiles/directory/etariff/FercOrders/9154/20260929-er26-3380-000.pdf",
+    "date": "2026-09-29"
+   },
+   {
+    "title": "Ohio Energy Group (M. Kurtz) presentation, PJM 'Powering Reliability Through Market Design' workshop, 2026-07-15: 'Legac",
+    "url": "https://www.pjm.com/-/media/DotCom/committees-groups/workshops/prtmdw/2026/20260714/20260714-item-04b---bifurcated-capacity-market-under-pjm-path-a-option-2---michael-kurtz-presentation.pdf",
+    "date": "2026-07-15"
+   }
+  ]
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "DCF check: your DCF ($140.9) is 17.6% below the 9.5x leg; the 2.0% terminal growth prices the PJM post-2029/30 risk that your 9.5x discount and bear case already carry (PJM risk p 0.4 x ~-$8 = ~-$3/share vs ~-$13/share of DCF from 2.0% vs 2.5%).",
+    "Horizon net debt $20.9B: FCFbG to the horizon is ~$6.0B (H2-2026 $2.16B + 0.79 x ~$4.86B for 2027 at the 2026 60% conversion), not ~$5.4B; distributions ~$1.84B per the call's ~$3B 2026-27 plan less H1 paid -> ~$20.4B."
+   ],
+   "revisit": "Terminal growth 2.5% (or argue the extra PJM charge explicitly); restate net_debt_horizon at ~$20.4B. Your OEG workshop source is verified at pjm.com and is a good in-lane find; label it a stakeholder proposal."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "DCF check flag: DCF $125.8 is 27% below your multiple leg ($172.1) with no argument; your WACC 9.5% (beta 1.2, Kd 6.75%) is 1.5pt above the 8.0% your multiples imply, and 2.0% terminal growth double counts the PJM risk in your 9.5x."
+   ],
+   "revisit": "Either bring the DCF within 20% (terminal growth ~2.5%, Kd ~6.5% marginal) or argue in dcf_check why the multiples are wrong; until then the DCF should not carry 0.2 weight."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "DCF $131.5 is 19.6% below your multiple legs: right at the threshold; 2.0% terminal growth with a 0.45-probability PJM cap already in the multiple.",
+    "9.25x adds 0.25x to the 1.1x discount for the same reasons (72%-hedged 2028, PJM design); each 0.25x is ~$6/share."
+   ],
+   "revisit": "Terminal growth and the stacked multiple discount; the P/E leg on the engine's own EPS is fine as a cross-check but adds little independent information."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "Horizon claims $23.69B are ~$0.8B high: your cash build (pre-SBC FCFF after 15%/14% capex less after-tax interest) runs below Vistra's FCFbG guidance ($3,925-4,725M for 2026) plus the call's $4.5-5B growth plan; build the bridge from FCFbG less growth spend.",
+    "FY2028 $8.29B (+2.2%) rests on a revenue/margin setting, not a sourced ERCOT curve; the agents' $8.5B is equally judgment, but say what ERCOT price your number assumes.",
+    "MGRID (FERC large-load order) and Polymarket remain context only."
+   ],
+   "revisit": "Net debt at ~$20.4B (plus $2.48B preferred); FY2028 basis; DCF weight 0.4 is the highest of the five for the leg with the most terminal dependence."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "The call's 'more than $10 billion of available cash in 2026 and 2027' is not cash generation to prorate: management splits it into ~$3B to equity holders, $4.5-5B growth and ~$2-2.5B still unallocated through YE2027, and it exceeds FCFbG (~$9.2B over 2026-27: 2026 guidance midpoint $4,325M + 2027 estimate ~$4,860M). Prorating $10B overstates deleveraging by ~$0.6B (~$1.8/share)."
+   ],
+   "revisit": "Rebuild horizon claims from FCFbG (~$22.9B incl. preferred). Your 9.25x stacks a further 0.25x on the 1.1x discount; your DCF (2.5% g) passes the DCF check."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 24,
+  "repeated_claims": [
+   {
+    "claim": "2027 trending to the low end of the $7.4-7.8B midpoint opportunity, plus ~$0.7B from Cogentrix and the Meta PPAs",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Vistra Q2 2026 earnings call (CFO) and Q2 release"
+   },
+   {
+    "claim": "PJM collar ~$325 cap / ~$175 floor for 2028/29 and 2029/30, FERC accepted 2026-04-28 (ER26-1556)",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "PJM filing and answer in ER26-1556; FERC order 2026-04-28"
+   },
+   {
+    "claim": "RBP accepted and suspended to 2027-02-28 with a $555/MW-day cap",
+    "agents": [
+     "agent_1",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "FERC order 196 FERC 61,245 (2026-09-29)"
+   },
+   {
+    "claim": "September CPI +0.6% m/m, +3.7% y/y triggered the AI-power selloff",
+    "agents": [
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "BLS CPI release 2026-10-14 (the price moves are from Twelve Data / Reuters)"
+   },
+   {
+    "claim": "Hedges ~100% 2026, ~94% 2027, ~72% 2028",
+    "agents": [
+     "agent_1",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Vistra Q2 2026 release"
+   },
+   {
+    "claim": "Peer NTM multiples (median 10.6x EV/EBITDA, 17.3x P/E)",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "run peers.md (Bigdata.com / FMP consensus snapshot); one source, not five"
+   },
+   {
+    "claim": "Cogentrix ~$0.7B NPV of expected tax benefits, ~7.25x 2027 Adj. EBITDA",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Vistra 8-K Ex. 99.1, 2026-01-05 (one source; all five now cite it after round-1 feedback)"
+   },
+   {
+    "claim": "PJM to evaluate investment incentives by end-2026 and then set the 2030/31+ RPM path",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "PJM answer in ER26-1556 (2026-04-06)"
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary lane: 10-Q/10-K XBRL, Q2 release, 8-Ks, 424B5, FERC/PJM documents; new OEG workshop find verified at pjm.com (stakeholder proposal, context for p 0.4)."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Industry lane kept (PJM answer, Talen basis, ERCOT reserve-margin trade piece via PubT, Benzinga transcript); unverified CPI consensus removed. DCF flagged by the engine and not argued."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Skeptic lane with primary PJM/FERC work; insider sales now from Form 4s only and kept out of numbers; TIKR blog context only."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Alternative lane (MGRID blog, TIKR, Polymarket, Workday) kept to context, as asked; the numbers rest on the same Vistra primaries as the others. Claims bridge ~$0.8B high."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Base-rate lane; valuation rests on the Q2 call and release. The $10B 'available cash' was read as cash generation (bridge ~$0.6B low)."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "PJM special Members Committee 2026-10-22 and revised RBP filing 2026-10-29 (agent_5 catalysts)",
+    "why": "Not opened at PJM; window context only, kept out of the numbers."
+   },
+   {
+    "claim": "FERC 2026-10-09 order rejecting PJM's curtail-first large-load plan (agent_4)",
+    "why": "Independent blog (MGRID) citing trade press; FERC order not opened; context only."
+   },
+   {
+    "claim": "Polymarket FOMC and data-center moratorium odds (agent_4)",
+    "why": "Thin prediction markets; context only, no number uses them."
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "exit multiple (k=0.8 rule)",
+   "from": "EV/EBITDA 9.0x",
+   "to": "EV/EBITDA 9.0x (kept)",
+   "why": "Exit k=0.8 rule (2026-10-26 12:16Z) not applied to VST: Kilian card 2026-10-26 15:02Z 'Keep the argued 9.0x' (alternatives were 9.21x on standalone EBITDA, own 9.01x, and 8.32x on FMP consensus, own 7.93x). The ERCOT/PJM discount case stands in for the rule. Rejected version kept as *.exitk-rejected."
+  },
+  {
+   "item": "fair value",
+   "from": 158.7,
+   "to": 166.03,
+   "why": "Reconciled set: 9.5x on pre-SBC EBITDA ($172.5, 0.7) and a DCF at 9.0% / 2.5% ($150.9, 0.3) with horizon claims of $22.9B; the forecaster mean carries DCFs 15-27% below their own multiples."
+  },
+  {
+   "item": "P(close >= K) for K = 91-304",
+   "from": [
+    0.9,
+    0.811,
+    0.719,
+    0.623,
+    0.524,
+    0.424,
+    0.328,
+    0.223,
+    0.144,
+    0.066,
+    0.03
+   ],
+   "to": [
+    0.905,
+    0.825,
+    0.737,
+    0.643,
+    0.545,
+    0.445,
+    0.347,
+    0.238,
+    0.155,
+    0.071,
+    0.032
+   ],
+   "why": "Centre moved up ~$3 (median ~$154.5 -> ~$156.5), part of the way to the reconciled set's $162.5, for the DCF-terminal and claims-bridge corrections; the mean's left tail is kept."
+  },
+  {
+   "item": "terminal growth in the reconciled DCF (agents 1, 2, 3 at 2.0%)",
+   "from": 0.02,
+   "to": 0.025,
+   "why": "DCF check: 2.0% re-priced the post-2029/30 PJM risk already in the multiple discount, the flat FY2029-30 EBITDA and the bear case."
+  },
+  {
+   "item": "horizon net claims (net debt + preferred), $B",
+   "from": [
+    22.25,
+    22.96,
+    23.0,
+    23.39,
+    23.69
+   ],
+   "to": 22.89,
+   "why": "Built from FCFbG guidance (~$6.0B to the horizon) and the call's capital plan (~$3B equity incl. H1 paid, $4.5-5B growth, $2-2.5B unallocated)."
+  },
+  {
+   "item": "a fact agent_5 got wrong: 'more than $10 billion of available cash' prorated as cash generated",
+   "from": -6460,
+   "to": -6000,
+   "why": "The call allocates the $10B to equity, growth and ~$2-2.5B unallocated; FCFbG is ~$9.2B over 2026-27 (2026 guidance midpoint $4,325M + 2027 estimate ~$4,860M = 8,100 x 4,325/7,200) (cash generated to the horizon, $M)."
+  },
+  {
+   "item": "horizon EV/EBITDA for agents 3 and 5",
+   "from": 9.25,
+   "to": 9.5,
+   "why": "The extra 0.25x restates the hedge/PJM reasons already in the 1.1x discount to the 10.6x IPP median."
+  },
+  {
+   "item": "thesis break",
+   "from": 114.6,
+   "to": 115.0,
+   "why": "~8.0x the $8.1B 2027 base on pro forma claims, ~0.9x below NRG; with a fundamental trigger attached."
+  },
+  {
+   "item": "research target (standard model), update 2026-11-03",
+   "from": 147.47,
+   "to": 143.56,
+   "why": "Approved data-center load drivers (ercot_dc_gw, pjm_dc_gw) with the moratorium weights; post-horizon adjustment; multiple 8.9x per Kilian card; cap_rev and fixed costs FY2029 re-argued."
+  },
+  {
+   "item": "research target (standard model), citation-gate fix 2026-11-04",
+   "from": 143.56,
+   "to": 145.81,
+   "why": "Gate fixes: Cogentrix 3,798 MW CCGT (EBITDA-neutral), no FY2028-29 roll-off charge and no Meta step, fuel FY2027 26.0, retail arithmetic, PJM positions from the Q2 deck, ERCOT flat under the pause per approved scenario (b) with the +0.6 GW/yr ramp removed, open volume on the Aug 2026 ladder, post-horizon adjustment -323.5 -> -494.6."
+  }
+ ],
+ "summary": "Round 2 converged: all five now use the $8.1B 2027 base, pre-SBC EBITDA like the peers, the full Cogentrix cost and the verified tax NPV, with fair values of $154-163 (mean $158.7). Two corrections remain: horizon claims are ~$22.9B when built from FCFbG guidance and the call's capital plan, and the DCFs sit 15-27% below the multiples mainly because 2.0% terminal growth re-prices the PJM risk the 9.5x multiple already carries. With 2.5% terminal growth my reconciled fair value is $166.0 (DCF $150.9, -12.5% vs the multiple; WACC 9.0% vs 8.4% implied), so I nudge the ladder up ~2 points at the centre with medium confidence. The PJM post-2029/30 cap flag is open, not tripped; thesis break $115.",
+ "sources": [
+  {
+   "title": "Vistra Q2 2026 results news release (8-K Ex. 99.1): 2026 guidance reaffirmed ($6.8-7.6B Adj. EBITDA, $3.925-4.725B Adj. FCFbG), 2027 midpoint opportunity $7.4-7.8B excl. Cogentrix and Meta PPAs, hedges ~100%/94%/72% for 2026/27/28, ~$1.2B buyback authorization left, non-cash comp $137M, 2026 D&A $2,150M",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm",
+   "date": "2026-08-07"
+  },
+  {
+   "title": "Vistra Q2 2026 earnings call transcript (The Motley Fool): CFO Kris Moldovan 'we would be trending towards the lower end of that range' (2027 midpoint opportunity); 'at or above the midpoint' (2026); Cogentrix and Meta PPAs 'roughly $700 million to our midpoint opportunity'; 'more than $10 billion of available cash in 2026 and 2027'; 'approximately $3 billion to our equity holders'; 'approximately $4.5 billion-$5 billion to accretive growth investments'; 'approximately $2 billion-$2.5 billion of additional cash available to allocate through year-end 2027'",
+   "url": "https://www.fool.com/earnings/call-transcripts/2026/08/14/vistra-vst-q2-2026-earnings-call-transcript/",
+   "date": "2026-08-07",
+   "note": "Replaces the Bigdata.com/Quartr copy (https://app.bigdata.com/documents/195B479A48CB63C52BC7051FD044E9A5), which needs JavaScript and could not be opened by the gate; quotes re-checked 2026-11-04. No ~$150M Meta figure is stated on the call (the 150 is derived, see driver:gen_price)."
+  },
+  {
+   "title": "Vistra 8-K: agreements to acquire Q-Generation (Cogentrix): ~$2.3B cash, ~$1.5B assumed debt, 5,000,000 shares at $185; FERC, HSR, NH/TX/CT approvals; outside date after 2026-12-31 with two 90-day extensions",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526002589/d62722d8k.htm",
+   "date": "2026-01-05"
+  },
+  {
+   "title": "Vistra press release (8-K Ex. 99.1): Acquisition of Cogentrix, net price ~$4.0B after ~$0.7B NPV of expected tax benefits, ~7.25x 2027 expected Adj. EBITDA contribution, ~5,500 MW, close expected mid-to-late 2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526002589/d62722dex991.htm",
+   "date": "2026-01-05"
+  },
+  {
+   "title": "BLS CPI news release, September 2026 (USDL-26-1574), released 2026-10-14 08:30 ET: all items +0.6% m/m SA, +3.7% y/y; core +0.3% m/m, +2.6% y/y; energy +5.2% m/m, +20.4% y/y",
+   "url": "https://www.bls.gov/news.release/cpi.nr0.htm",
+   "date": "2026-10-14"
+  },
+  {
+   "title": "FERC order accepting Reliability Backstop Procurement and establishing further procedures, 196 FERC 61,245, Docket Nos. ER26-3380-000 and EL26-108-000: accepted and suspended five months to effective 2027-02-28; new FPA 206 proceeding; $555/MW-day max willingness to pay; PJM states the price floor applies through the 2029/2030 delivery year",
+   "url": "https://www.pjm.com/pjmfiles/directory/etariff/FercOrders/9154/20260929-er26-3380-000.pdf",
+   "date": "2026-09-29"
+  },
+  {
+   "title": "PJM answer in ER26-1556-000: extend the ~$325/MW-day cap and ~$175/MW-day floor for RPM auctions through the 2029/2030 delivery year; evaluate investment incentives with stakeholders by end of 2026 and determine the RPM path for 2030/2031 and beyond",
+   "url": "https://www.pjm.com/-/media/DotCom/documents/ferc/filings/2026/20260406-er26-1556-000.pdf",
+   "date": "2026-04-06"
+  },
+  {
+   "title": "Troutman Pepper Energy Report: FERC accepts PJM capacity market price collar extension (order 2026-04-28, ER26-1556; ~$325 cap / ~$175 floor for 2028/2029 and 2029/2030)",
+   "url": "https://www.troutmanenergyreport.com/2026/05/ferc-accepts-pjm-capacity-market-price-collar-extension/",
+   "date": "2026-05"
+  },
+  {
+   "title": "Vistra to Report Third Quarter Results on Nov. 6, 2026 (PR Newswire via Finviz): webcast 10:00 a.m. ET",
+   "url": "https://finviz.com/news/396792/vistra-to-report-third-quarter-results-on-nov-6-2026",
+   "date": "2026-09-29"
+  },
+  {
+   "title": "FRED DGS10: 10-year Treasury constant maturity 5.21% on 2026-10-13",
+   "url": "https://fred.stlouisfed.org/series/DGS10",
+   "date": "2026-10-13"
+  },
+  {
+   "title": "Federal Reserve FOMC meeting calendar: 2026 meetings Oct 27-28 and Dec 8-9",
+   "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+   "date": "2026-10-14"
+  },
+  {
+   "title": "Talen Energy Q2 2026 results (8-K Ex. 99.1): 2026 Adj. EBITDA guidance raised to $2,025-2,225M; Adj. EBITDA excludes unrealized commodity derivative gains/losses and stock comp",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001622536/000162253626000065/a20260805q22026earningsrel.htm",
+   "date": "2026-08-05"
+  },
+  {
+   "title": "SEC XBRL company facts for Vistra: PreferredStockValue $2,476M and MinorityInterest $12M at 2026-06-30",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001692819.json",
+   "date": "2026-10-14"
+  },
+  {
+   "title": "Vistra 8-K: $850M 7.000% Series A and $650M 7.250% Series B junior subordinated notes due 2057, completed 2026-09-24 (use of proceeds not stated in the 8-K)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000114036126037577/ef20082680_8k.htm",
+   "date": "2026-09-24"
+  },
+  {
+   "title": "Vistra Form 10-Q for the quarter ended 2026-06-30 (fact pack F6, F33, F39, F46, F60, F97, F98, F103, F105)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm",
+   "date": "2026-08-10"
+  },
+  {
+   "title": "Vistra Form 10-K for FY2025 (fact pack F3, F36, F43, F57, F64, F71)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm",
+   "date": "2026-02-27"
+  },
+  {
+   "title": "Run peer table peers.md / peers.json (SEC filings + Bigdata.com company tearsheet analyst_estimates, provider FMP consensus, https://bigdata.com)",
+   "url": "/mnt/project-files/valuation/runs/2026-10-14/VST/peers.md",
+   "date": "2026-10-14"
+  },
+  {
+   "title": "Standing AI data-center capex view (nvda_customer_capex.md): ex-China customer AI capex 2028 low $1,265B / base $2,255B / high $3,160B",
+   "url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "date": "2026-10-05"
+  },
+  {
+   "title": "Ohio Energy Group (M. Kurtz) presentation, PJM 'Powering Reliability Through Market Design' workshop, 2026-07-15: 'Legacy Auction ... Maintain the existing price floor and price cap beyond 2029/2030 on existing generation'; notes Brattle's Sixth VRR review (2025-04-09) recommended an RTO-wide cap of $500-625/MW-day",
+   "url": "https://www.pjm.com/-/media/DotCom/committees-groups/workshops/prtmdw/2026/20260714/20260714-item-04b---bifurcated-capacity-market-under-pjm-path-a-option-2---michael-kurtz-presentation.pdf",
+   "date": "2026-07-15"
+  },
+  {
+   "title": "Vistra Operations 424B5 prospectus supplement, junior subordinated notes due 2057: use of proceeds may include redemption of some or all of the 8.0% Series A / 7.0% Series B preferred (claims-neutral)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000114036126036130/ny20081693x2_424b5.htm",
+   "date": "2026-09-10"
+  },
+  {
+   "title": "Vistra Q4/FY2024 results release (8-K Ex. 99.1): FY2024 Ongoing Ops Adj. EBITDA $5,656M, Adj. FCFbG $2,888M; 2025 guidance $5.5-6.1B / $3.0-3.6B; 2026 midpoint opportunity 'more than $6,000 million'",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312525037636/d126557dex991.htm",
+   "date": "2025-02-27",
+   "quote": "Ongoing Operations Adjusted EBITDA of $5,656 million ... Original 2024 guidance excluded any benefit from the nuclear PTC."
+  },
+  {
+   "title": "Vistra Q1 2024 results release (8-K Ex. 99.1): initiated 2024 guidance $4,550-5,050M Adj. EBITDA, $2,200-2,700M Adj. FCFbG; 2025 midpoint opportunity $5,000-5,500M",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312524133760/d837065dex991.htm",
+   "date": "2024-05-08",
+   "quote": "potential midpoint opportunities for Ongoing Operations Adjusted EBITDA to be in the range of $5,000 million to $5,500 million for 2025"
+  },
+  {
+   "title": "Vistra Q4/FY2025 results release (8-K Ex. 99.1): FY2025 Adj. EBITDA $5,912M, Adj. FCFbG $3,592M; 2026 guidance $6.8-7.6B / $3.925-4.725B; 2027 opportunity $7.4-7.8B; hedged ~100% 2026, ~84% 2027, ~58% 2028 (as of 2026-02-18)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526073364/d21122dex991.htm",
+   "date": "2026-02-26",
+   "quote": "Ongoing Operations Adjusted FCFbG of $3,592 million"
+  },
+  {
+   "title": "TIKR: Vistra Q3 preview, consensus Q3 2026 EBITDA ~$2.1B (8 analysts)",
+   "url": "https://www.tikr.com/blog/vistra-stock-fell-6-in-a-day-after-a-20-run-heres-what-its-november-6-report-needs-to-show",
+   "date": "2026-10-09",
+   "quote": "eight expect EBITDA of around $2.1 billion"
+  },
+  {
+   "title": "Twelve Data quotes 2026-11-04 ~12pm ET (thread addendum): VST 118.61, CEG 239.98, TLN 325.69, NRG 82.26",
+   "url": "https://twelvedata.com/",
+   "date": "2026-11-04",
+   "quote": "VST 11-04 midday 118.61 (-15.0%); CEG 239.98 (-8.9%), TLN 325.69 (-8.8%), NRG 82.26 (-14.5%)"
+  },
+  {
+   "title": "Moratorium census (thread work file)",
+   "url": "/mnt/project-files/valuation/driver_models/VST/moratorium/census.md",
+   "date": "2026-11-04",
+   "quote": "Texas, governor-ordered pause in force | 12 mo 45% | 36 mo 35% ... No state statute imposing a moratorium has been enacted anywhere."
+  },
+  {
+   "title": "Moratorium exposure (thread work file): fleet, deals, hedges, scenario price assumptions and effects",
+   "url": "/mnt/project-files/valuation/driver_models/VST/moratorium/exposure.md",
+   "date": "2026-11-04",
+   "quote": "(b) ... ERCOT forwards -$1-2/MWh Cal-27, -$2-4 Cal-28, -$3-5 Cal-29/30; (c) PJM West -$1-2 Cal-27, -$2-4 Cal-28, -$3-5 Cal-29/30"
+  },
+  {
+   "title": "Moratorium primary-source check (thread work file)",
+   "url": "/mnt/project-files/valuation/driver_models/VST/moratorium/verify.md",
+   "date": "2026-11-04",
+   "quote": "ERCOT paused energization of large loads that are not yet connected ... Both reports are due at the PUCT by 2026-12-10"
+  },
+  {
+   "title": "Gov. Abbott letter to PUCT/ERCOT (2026-08-03)",
+   "url": "https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf",
+   "date": "2026-08-03",
+   "quote": "before any additional data centers are approved to move forward"
+  },
+  {
+   "title": "ERCOT Batch Zero update (2026-09-11)",
+   "url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+   "date": "2026-09-11",
+   "quote": "will file the Batch Zero Eligibility Verification Report with the Commission by December 10, 2026"
+  },
+  {
+   "title": "Gov. Abbott letter to TCEQ (2026-09-21)",
+   "url": "https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf",
+   "date": "2026-09-21",
+   "quote": "I direct the TCEQ to pause the issuance of all permits related to data center projects until ERCOT completes its review."
+  },
+  {
+   "title": "KeyBanc downgrades Vistra to Sector Weight on Texas election (Investing.com)",
+   "url": "https://au.investing.com/news/stock-market-news/keybanc-downgrades-vistra-energy-stock-rating-on-texas-election-93CH-4743252",
+   "date": "2026-11-04",
+   "quote": "higher policy risk for names with large-load exposure"
+  },
+  {
+   "title": "TIKR: Constellation sinks 8%, Vistra down 14% as Democrats' midterm sweep hits AI power stocks",
+   "url": "https://www.tikr.com/blog/constellation-energy-sinks-8-vistra-down-14-as-democrats-midterm-sweep-hits-ai-power-stocks",
+   "date": "2026-11-04",
+   "quote": "In Texas, Democrat Gina Hinojosa unseated Gov. Greg Abbott after calling for a moratorium on new data centers."
+  },
+  {
+   "title": "Fast Company: Texas's new governor and data centers",
+   "url": "https://www.fastcompany.com/91634444/texas-wanted-to-power-americas-ai-boom-its-new-governor-could-change-everything",
+   "date": "2026-11-04",
+   "quote": "until state lawmakers pass stronger protections for residents"
+  },
+  {
+   "title": "Utility Dive: Vistra Q2 call, Comanche Peak / AWS and the Texas pause",
+   "url": "https://www.utilitydive.com/news/vistra-texas-data-center-pause-comanche-amazon-earnings/827434/",
+   "date": "2026-08-10",
+   "quote": "We don't see [Comanche Peak] being affected at this point."
+  },
+  {
+   "title": "Utility Dive: ERCOT / PUCT data-center audit; 17 large loads ~6.6 GW cleared stability review, ramping over ~5 years, not approved to energize",
+   "url": "https://utilitydive.com/news/ercot-texas-puc-data-center-audit/828472",
+   "date": "2026-08-21",
+   "quote": "17 large loads ... about 6.6 GW of peak demand ... ERCOT has not approved their energization"
+  },
+  {
+   "title": "PJM Inside Lines: 2028/2029 BRA at the $325/MW-day cap, 6,831 MW short",
+   "url": "https://insidelines.pjm.com/pjm-capacity-auction-procures-138318-mw-of-generation-resources-as-work-continues-to-address-growing-electricity-demand/",
+   "date": "2026-07-14",
+   "quote": "The price came in at the FERC-approved cap, $325/MW-day (UCAP) for the entire PJM footprint"
+  },
+  {
+   "title": "Ballotpedia News: 41 local data-center ballot measures, 2026-11-03",
+   "url": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/",
+   "date": "2026-11-03",
+   "quote": "voters in 10 states will vote on 41 ballot measures affecting local data center policy"
+  },
+  {
+   "title": "Texas Tribune: Texas governor powers under split government",
+   "url": "https://www.texastribune.org/2026/10/30/texas-governor-power-2026-greg-abbott-gina-hinojosa-split-government/",
+   "date": "2026-10-30",
+   "quote": "A veto can only be overridden by a two-thirds majority vote in both chambers."
+  },
+  {
+   "title": "SEC EDGAR submissions: Talen Q3 2026 10-Q filed 2026-11-03; no CEG/NRG 10-Q or 8-K since 2026-10-15; no Vistra filing since 2026-10-05",
+   "url": "https://data.sec.gov/submissions/CIK0001622536.json",
+   "date": "2026-11-04",
+   "quote": "10-Q 2026-11-03 0001622536-26-000086"
+  },
+  {
+   "title": "ERCOT Monthly Operational Overview, May 2025 (large loads)",
+   "url": "https://www.ercot.com/files/docs/2025/06/17/ERCOT-Monthly-Operational-Overview-May-2025.pdf",
+   "date": "2025-06-17",
+   "quote": "Of the 6,874 MW that have received Approval to Energize, ERCOT has observed a non-simultaneous monthly peak consumption of 3,489 MW in May 2025."
+  },
+  {
+   "title": "ERCOT Monthly Operational Overview, November 2025 (large loads)",
+   "url": "https://www.ercot.com/files/docs/2025/12/16/ERCOT-Monthly-Operational-Overview-November-2025.pdf",
+   "date": "2025-12-16",
+   "quote": "Of the 7502 MW that have received Approval to Energize, ERCOT has observed a nonsimultaneous monthly peak consumption of 3827 MW in December 2025"
+  },
+  {
+   "title": "ERCOT Monthly Operational Overview, February 2026 (large loads)",
+   "url": "https://www.ercot.com/files/docs/2026/03/18/ERCOT-Monthly-Operational-Overview-February-2026.pdf",
+   "date": "2026-03-18",
+   "quote": "Of the 9,043 MW that have received Approval to Energize, ERCOT has observed a nonsimultaneous monthly peak consumption of 4,037 MW in February 2026"
+  },
+  {
+   "title": "ERCOT Monthly Operational Overview, June 2026 (large loads)",
+   "url": "https://www.ercot.com/files/docs/2026/07/17/ERCOT-Monthly-Operational-Overview-June-2026.pdf",
+   "date": "2026-07-17",
+   "quote": "Of the 8,926 MW that have received Approval to Energize, ERCOT has observed a non-simultaneous monthly peak consumption of 3,966 MW in June 2026"
+  },
+  {
+   "title": "ERCOT Monthly Operational Overview, July 2026 (large loads)",
+   "url": "https://www.ercot.com/files/docs/2026/08/17/ERCOT-Monthly-Operational-Overview-July-2026.pdf",
+   "date": "2026-08-17",
+   "quote": "Of the 9,456 MW that have received Approval to Energize, ERCOT has observed a non-simultaneous monthly peak consumption of 4,370 MW in July 2026"
+  },
+  {
+   "title": "ERCOT Monthly Operational Overview, August 2026 (large loads)",
+   "url": "https://www.ercot.com/files/docs/2026/09/16/ERCOT-Monthly-Operational-Overview-August-2026.pdf",
+   "date": "2026-09-16",
+   "quote": "Of the 9,456 MW that have received Approval to Energize, ERCOT has observed a non-simultaneous monthly peak consumption of 4,316 MW in August 2026"
+  },
+  {
+   "title": "ERCOT Monthly Operational Overview, September 2026 (large loads)",
+   "url": "https://www.ercot.com/files/docs/2026/10/16/ERCOT-Monthly-Operational-Overview-September.pdf",
+   "date": "2026-10-16",
+   "quote": "Of the 9,456 MW that have received Approval to Energize, ERCOT has observed a non-simultaneous monthly peak consumption of 4,132 MW in September 2026"
+  },
+  {
+   "title": "ERCOT Interconnection and Grid Analysis Update (Board item 9, 2026-04-13)",
+   "url": "https://www.ercot.com/files/docs/2026/04/13/9-Interconnection-and-Grid-Analysis-Update.pdf",
+   "date": "2026-04-13",
+   "quote": "ERCOT is tracking approximately 410 GW of Large Loads seeking interconnection, of which ~87% are data centers."
+  },
+  {
+   "title": "PJM 2026 Load Report tables, Table B-9b: Total Load Associated with Adjustments to Summer Peak Load (MW), zones and RTO 2026-2046 (thread copy pjm_b9b.md / pjm_2026_load_report_tables.xlsx)",
+   "url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/load-forecast/2026-load-report-tables.xlsx",
+   "date": "2026-01 (fetched 2026-11-04)",
+   "quote": "PJM RTO B-9b total 11,469 / 15,856 / 21,280 / 27,361 / 38,805 / 46,638 / 53,949 MW (2026-2032)"
+  },
+  {
+   "title": "PJM 2026 Long-Term Load Forecast presentation (LAS, 2026-01-23): firm large-load adjustments",
+   "url": "https://www.pjm.com/-/media/DotCom/committees-groups/subcommittees/las/2026/20260123/20260123-item-03---pjm-2026-long-term-load-forecast---presentation.pdf",
+   "date": "2026-01-23",
+   "quote": "Only these projects will be allowed to impact RPM ... imposed minimum 36 month ... imposed 70% unless otherwise supported"
+  },
+  {
+   "title": "Kilian decision cards 2026-11-04 11:49am ET (relayed by the thread): (1) 'Approve as proposed' data-center load drivers per driver_models/VST/proposal.md; (2) multiple '8.9x, peer median less discount'",
+   "url": "/mnt/project-files/valuation/driver_models/VST/proposal.md",
+   "date": "2026-11-04",
+   "quote": "8.9x, peer median less discount"
+  },
+  {
+   "title": "Vistra Q2 2026 results presentation (IR site): slide 9 hedges ~100% / ~94% / ~72% for 2026/27/28 as of 2026-08-03; slide 10 'Expect to close Cogentrix in late 2026', 'Permian Peakers expected to be online by Q2 2028'; slide 17 retail volumes 2024 133.4 / 2025 139.1 TWh, YTD 2025 66.6 / YTD 2026 61.9; slide 19 hedging overview at 2026-06-30 (2027: Texas nuclear/coal 46 TWh 100% and gas 49 TWh 69% hedged, East 52 TWh 74% / 69 TWh 97%; hedge value vs market 2027 -$468M; total realized price 2027 $56.61); slide 20 forwards at 2026-06-30 (ERCOT North ATC $42.59 / $46.26 / $50.11, Texas weighted $42.69 / $46.32 / $50.30, East weighted $59.66 / $57.77 / $57.47 for Bal-2026 / 2027 / 2028); slide 22 PJM capacity positions at 2026-07-27 (zones RTO, ATSI, COMED, DEOK, DOM, EMAAC, MAAC: 2026/27 11,746 MW at $329.17; 2027/28 10,567 MW at $333.44; 2028/29 10,926 MW at $325.00); slide 24 'Beaver Falls, Syracuse, and Casco Bay assets pending sale'",
+   "url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf",
+   "date": "2026-08-07"
+  },
+  {
+   "title": "Driver-set gate records (thread work files): driver_models/VST/gate.json (2026-10-22: 10-K pp.52-54/61-64/97 bases verified: production 91,286 / 114,805 / 2,092 GWh; Note 3 revenue disaggregation 12,213; fuel 5,417; capacity 793 - 566 = 227; retail 1,622 / 139,139 GWh; AWS Comanche Peak 20-yr PPA 1,200 MW, delivery from Q4 2027, full by 2032) and driver_models/VST/quarterly/gate.json (2026-11-03: Q1/Q2 FY2026 10-Q volumes 50.487 / 50.257 TWh, retail 30.109 / 31.800 TWh, capacity net 321-199 / 346-212)",
+   "url": "/mnt/project-files/valuation/driver_models/VST/gate.json",
+   "date": "2026-10-22",
+   "note": "Reused fact store (filings do not change; within 21 days). The 2026-11-04 gate could not re-open the 10-K/10-Q MD&A (www.sec.gov returns 403 to curl and WebFetch converts only the first ~113k characters)."
+  }
+ ],
+ "sizing": {
+  "open_flags": [],
+  "note": "No unresolved fact-check, accounting or credit flag. Watch items (not flags): PJM 2030/31+ design after the end-2026 review; Nov 6 guidance; Cogentrix closing (outside date 2026-12-31, extendable)."
+ },
+ "model": {
+  "reconciled_inputs": {
+   "unit": "$M",
+   "ebit_basis": "adjusted",
+   "sbc_treatment": "dilution",
+   "base": {
+    "fy_end": "2025-12-31",
+    "revenue": 17586.0
+   },
+   "years": [
+    {
+     "label": "FY2026",
+     "tax_rate": 0.2,
+     "da_pct_rev": 0.11,
+     "capex_pct_rev": 0.145,
+     "nwc_pct_incr_rev": 0.077,
+     "sbc_pct_rev": 0.007,
+     "shareholder_returns": 1500.0,
+     "other_uses": 0.0,
+     "adj_ebitda_addback_pct_rev": 0.0,
+     "corporate_ebit": -2880.0
+    },
+    {
+     "label": "FY2027",
+     "capex_pct_rev": 0.135,
+     "shareholder_returns": 1500.0,
+     "other_uses": 0.0,
+     "corporate_ebit": -3116.0
+    },
+    {
+     "label": "FY2028",
+     "capex_pct_rev": 0.105,
+     "shareholder_returns": 1500.0,
+     "other_uses": 0.0,
+     "corporate_ebit": -3223.0
+    },
+    {
+     "label": "FY2029",
+     "capex_pct_rev": 0.105,
+     "shareholder_returns": 1500.0,
+     "other_uses": 0.0,
+     "corporate_ebit": -3223.0
+    }
+   ],
+   "terminal": {
+    "method": "gordon",
+    "growth": 0.025,
+    "exit_ev_ebitda": null
+   },
+   "discount_rate": {
+    "wacc": 0.09,
+    "basis": "Cost of equity 10.7% = 10-yr UST 5.21% (FRED DGS10, 2026-10-13, src 10) + beta 1.15 (judgment between agents' 1.1-1.3; merchant IPP with contracted nuclear) x ERP 4.75%; pre-tax cost of debt 6.5% (new junior subordinated notes priced at 7.000%/7.250%, src 14; senior debt lower; TTM interest 1,132 / debt 19,595 = 5.8%, F81/F98) x (1 - 20%) = 5.2%; weights ~70% equity ($51.1B = 152.2 x 335.6M) / 30% net debt + preferred ($21.6B). WACC = 0.7 x 10.7% + 0.3 x 5.2% = 9.0%."
+   },
+   "balance": {
+    "as_of": "2026-06-30",
+    "net_debt": 19160.0,
+    "minorities": 2488.0,
+    "interest_rate": 0.058,
+    "net_debt_horizon": 20400.0,
+    "net_debt_horizon_date": "2027-10-14",
+    "net_debt_horizon_link": [
+     {
+      "key": "adj_ebitda",
+      "from": "2026-06-30",
+      "to": "2026-12-31",
+      "basis": 3939.0,
+      "conversion": 0.6
+     }
+    ]
+   },
+   "shares": {
+    "diluted_now": 335.6,
+    "as_of": "2026-08-03",
+    "annual_change": 0.0,
+    "horizon": 334.6,
+    "horizon_date": "2027-10-14"
+   },
+   "dcf_weight": 0.0,
+   "horizon_multiples": [
+    {
+     "metric": "EV/EBITDA",
+     "value": 8.9,
+     "weight": 1.0,
+     "basis": "ntm",
+     "ebitda": "adjusted",
+     "eps": null,
+     "fcf_per_share": null,
+     "levered": true,
+     "peer_basis": "Kilian card 2026-11-04 11:49am ET: '8.9x, peer median less discount' (src 51). IPP peers at the 11-04 ~12pm ET quotes (src 25), same NTM consensus basis as the base round (adjusted EBITDA, Bigdata.com/FMP snapshots 2026-10-14, peers.json src 17; net debt from the latest filings): CEG 10.48x (EV $109.03B / NTM consensus $10.407B); TLN 10.01x (EV $24.95B / NTM consensus $2.492B); NRG 8.08x (EV $40.52B / NTM consensus $5.017B). Median 10.01x (TLN), mean 9.52x (10-23: 10.06x / 9.83x). 8.9x = 10.01 - 1.1 (the base round's discount: ERCOT merchant exposure, 2028 ~72% hedged, src 1, KeyBanc 11-04 'most Texas exposure', src 32; the open PJM 2030/31+ design, src 6-7). Not widened: the pause is booked through the load drivers and the post-horizon adjustment, and the peers' multiples on pre-election consensus already carry the 11-04 group de-rating. Exit-k rule not used (card). VST at 118.61: EV $61.5B / $7.84B NTM on this build = 7.84x. TLN filed Q3 on 11-03 (src 40): same NTM window, consensus and net debt pre-print."
+    }
+   ],
+   "segments": [],
+   "sotp_weight": 0.0,
+   "adjustments": [
+    {
+     "name": "Cogentrix tax benefits (NPV)",
+     "value": 700.0,
+     "probability": 0.9,
+     "note": "Vistra's Cogentrix release (8-K Ex. 99.1, 2026-01-05) nets 'approximately $0.7 billion of net present value of expected tax benefits' out of the ~$4.7B gross price; the EV/EBITDA leg and the 20% DCF tax rate do not capture this deal-specific tax shield. x 0.9 closing probability (FERC approved per the Q2 release; NH/TX/CT approvals and an outside date of 2026-12-31, extendable twice by 90 days, per the 8-K)."
+    },
+    {
+     "name": "Data-center moratorium beyond the NTM window (FY2029+)",
+     "value": -494.6,
+     "probability": 1.0,
+     "note": "Probability already inside the value (0.45 Texas pause + 0.10 PJM-state spread on the GW drivers); see inputs_detail row of the same name."
+    }
+   ],
+   "custom": [],
+   "scenarios": {
+    "downside": {
+     "deltas": {
+      "drivers": {
+       "gen_price": {
+        "pct": -0.03
+       },
+       "ercot_dc_gw": {
+        "pct": -0.1
+       },
+       "pjm_dc_gw": {
+        "pct": -0.1
+       }
+      },
+      "multiple": -1.5,
+      "wacc": 0.005
+     },
+     "story": "P10: data-center load 10% below the weighted path in ERCOT and PJM (moratoria spread, the pause outlasts 2028), ERCOT forwards near $30/MWh as 2028 hedges roll off, a PJM cap or administrative design for 2030/31+: load -10%, gen_price book -3%, multiple -1.5x (7.4x)."
+    },
+    "upside": {
+     "deltas": {
+      "drivers": {
+       "gen_price": {
+        "pct": 0.025
+       }
+      },
+      "multiple": 1.25
+     },
+     "story": "P90: the Texas pause lifts after ERCOT's 12-10 reports, more nuclear contracted with hyperscalers (Comanche Peak's second 1.2 GW, Beaver Valley), PJM capacity tight after the collar: gen_price book +2.5%, +1.25x (10.15x)."
+    }
+   },
+   "scenario_vol": 0.27,
+   "structure_note": "Standard structure fits: integrated IPP + retail valued on Ongoing Operations Adjusted EBITDA, the basis of the peers' consensus multiples. Driver-led (2026-10-22 scratch): two driven segments (Generation, Retail) + fixed/other as corporate_ebit; 3 model years. ROLL FORWARD 2026-11-02 (Kilian card \"Roll forward to FY27-FY29\"): Q1-Q4 FY2029 appended from evidence (no change to FY2026-28; the Q3 FY2026 post-print update on 11-06 should keep FY2029). UPDATE 2026-11-03 (approved driver set, Kilian 2026-11-04 11:49am ET): two economic drivers added, ercot_dc_gw and pjm_dc_gw, mapped through driver_build.quarters.lines (dc_adj -> gp_eff in the Generation segment; ret_off in Retail). gen_price is now the book on the no-moratorium load path. cap_rev is unaffected through FY2029; the PJM capacity effect from DY 2030/31 and the later years sit in the post-horizon adjustment. Values are probability-weighted on the GW paths: Texas pause 0.45, PJM-state spread 0.10.",
+   "gap_note": "fair_value.value equals the engine base horizon value of this set (143.56). Q3 FY2026 prints 2026-11-06: Vistra's Q3 stays the next forecast quarter (the ercot_dc_gw Q3 value is ERCOT's own Jul-Sep data); the print update only adds actuals. driver_build.set net_debt_horizon reads the gen_price book, so the FY2027 load effect (-3.0) is not in the net-debt link (~$1M). FY2026/27 EBITDA consensus not reachable.",
+   "reference": {
+    "guidance": [
+     {
+      "metric": "Adjusted EBITDA (Ongoing Operations)",
+      "fy": "FY2026",
+      "low": 6800,
+      "high": 7600,
+      "basis": "Ongoing Operations Adjusted EBITDA (adds back non-cash comp $137M, D&A incl. nuclear fuel amortization, unrealized hedge marks)",
+      "as_of": "2026-08-07",
+      "source_ids": [
+       1,
+       2
+      ],
+      "note": "Reaffirmed; CFO: 'at or above the midpoint'."
+     },
+     {
+      "metric": "Adjusted FCFbG (Ongoing Operations)",
+      "fy": "FY2026",
+      "low": 3925,
+      "high": 4725,
+      "basis": "Ongoing Operations Adjusted Free Cash Flow before Growth",
+      "as_of": "2026-08-07",
+      "source_ids": [
+       1
+      ],
+      "note": "Reaffirmed."
+     },
+     {
+      "metric": "Adjusted EBITDA midpoint opportunity (not guidance)",
+      "fy": "FY2027",
+      "low": 7400,
+      "high": 7800,
+      "basis": "Ongoing Operations Adjusted EBITDA; excludes Cogentrix and the Meta PPA premium; curves as of 2025-10-31",
+      "as_of": "2026-08-07",
+      "source_ids": [
+       1,
+       2
+      ],
+      "note": "CFO: trending towards the lower end; the two excluded deals would add roughly $700M absent other impacts."
+     },
+     {
+      "metric": "Adjusted EBITDA midpoint opportunity (not guidance)",
+      "fy": "FY2026 (prior statement)",
+      "low": 6000,
+      "high": null,
+      "basis": "Ongoing Ops Adj. EBITDA",
+      "as_of": "2025-02-27",
+      "source_ids": [
+       21
+      ],
+      "note": "'more than $6,000 million'; superseded by the 2026 guide"
+     }
+    ],
+    "consensus": [
+     {
+      "metric": "Adjusted EBITDA",
+      "fy": "Q3 FY2026",
+      "value": 2100,
+      "basis": "street EBITDA (TIKR)",
+      "as_of": "2026-10-09",
+      "n_estimates": 8,
+      "source_ids": [
+       24
+      ],
+      "note": "pre-print, pre-election; our Q3 2,010 (-4%). No FY2026/27 EBITDA consensus page reachable. Q3 prints 2026-11-06."
+     }
+    ]
+   },
+   "inputs_detail": [
+    {
+     "input": "Base revenue FY2025",
+     "value": "17,586",
+     "basis": "reported",
+     "source_ids": [
+      16
+     ],
+     "fact_ids": [
+      "F3"
+     ],
+     "derivation": "10-K FY2025 revenue."
+    },
+    {
+     "input": "Revenue growth FY2026-30",
+     "value": "+11% / +10% / +4% / +3% / +2.5%",
+     "basis": "estimate",
+     "source_ids": [
+      15,
+      4
+     ],
+     "fact_ids": [
+      "F6",
+      "F3"
+     ],
+     "derivation": "TTM revenue 18,985 (F6) is +8% on FY2025 with H2 seasonally strong -> ~19,520 FY2026; FY2027 adds ~5,500 MW Cogentrix (src 4) and Meta PPA volumes; then load-driven growth. Revenue matters little: margins are set to hit the EBITDA path below."
+    },
+    {
+     "input": "Adjusted EBITDA path FY2026 / FY2027 / FY2028 / FY2029 (driver output)",
+     "value": "7,313 / 8,059 / 8,039 / 7,972",
+     "basis": "estimate",
+     "source_ids": [
+      1,
+      2,
+      4,
+      15,
+      16,
+      27,
+      51,
+      52,
+      53
+     ],
+     "fact_ids": [],
+     "derivation": "Output of the driver build, not an input (2026-11-04 gate-fix set: corrected Cogentrix volume, no hedge roll-off charge, capacity positions from the Q2 deck, retail +1%/yr arithmetic, ERCOT paths per the approved scenario (b)); data-center load drivers vs the reference paths: -3.4 / -14.1 / -73.0 $M FY2027/28/29. See guidance_check.",
+     "confidence": "low"
+    },
+    {
+     "input": "D&A % revenue",
+     "value": "11.0%",
+     "basis": "estimate",
+     "source_ids": [
+      1
+     ],
+     "fact_ids": [
+      "F36"
+     ],
+     "derivation": "Estimate (no revenue guidance exists): 2026 D&A guidance $2,150M incl. nuclear fuel amortization $423M (src 1) / ~19,520 estimated FY2026 revenue = 11.0%; FY2025 1,986 / 17,586 = 11.3% (F36). [citation gate 2026-10-14]",
+     "anchor": {
+      "value": 0.112,
+      "kind": "company_stated",
+      "as_of": "2026-08-07",
+      "source_ids": [
+       1
+      ],
+      "fact_ids": [],
+      "note": "2026 guidance D&A $2,150M incl. nuclear fuel amortization (Q2 2026 release guidance reconciliation) / model FY2026 revenue $19,211M = 11.2%; FY2025 reported 11.3% (F36)"
+     }
+    },
+    {
+     "input": "EBIT margin (adjusted basis, before stock comp)",
+     "value": "26.4% / 26.7% / 27.1% / 26.4% / 25.9%",
+     "basis": "estimate",
+     "source_ids": [
+      1
+     ],
+     "fact_ids": [],
+     "derivation": "Adjusted EBITDA margin above minus D&A 11.0% of revenue."
+    },
+    {
+     "input": "Capex % revenue (incl. nuclear fuel and growth ex-Cogentrix)",
+     "value": "14.5% / 13.5% / 10.5% / 10.5% / 10.5%",
+     "basis": "estimate",
+     "source_ids": [
+      15,
+      16,
+      2
+     ],
+     "fact_ids": [
+      "F57",
+      "F60"
+     ],
+     "derivation": "TTM capex 2,866 (F60, 15.1% of TTM revenue) incl. Permian peakers, Meta uprates, Oak Hill 2 solar (call: $4.5-5B growth 2026-27 incl. the $2.3B Cogentrix cash); growth spend tapers after 2027; long-run ~10.5% vs D&A 11%.",
+     "anchor": {
+      "value": 0.151,
+      "kind": "reported_history",
+      "as_of": "2026-06-30",
+      "source_ids": [
+       15
+      ],
+      "fact_ids": [
+       "F60",
+       "F6"
+      ],
+      "note": "TTM capex $2,866M / TTM revenue $18,985M = 15.1%; later years taper with the stated $4.5-5B 2026-27 growth program (call); no leg reads it (EV/EBITDA leg, net debt at horizon stated)"
+     }
+    },
+    {
+     "input": "Tax rate",
+     "value": "20%",
+     "basis": "estimate",
+     "source_ids": [
+      15
+     ],
+     "fact_ids": [
+      "F88",
+      "F95"
+     ],
+     "derivation": "TTM income tax 584 / pretax income 2,803 = 20.8% (F88/F95).",
+     "anchor": {
+      "value": 0.208,
+      "kind": "reported_history",
+      "as_of": "2026-06-30",
+      "source_ids": [
+       15
+      ],
+      "fact_ids": [
+       "F88",
+       "F95"
+      ],
+      "note": "TTM income tax $584M / pretax $2,803M = 20.8%; no company ETR guide; no leg reads it today"
+     }
+    },
+    {
+     "input": "Stock comp",
+     "value": "0.7% of revenue, counted once as dilution (sbc_treatment 'dilution')",
+     "basis": "estimate",
+     "source_ids": [
+      1,
+      16
+     ],
+     "fact_ids": [
+      "F43",
+      "F46"
+     ],
+     "derivation": "2026 guidance reconciliation adds back $137M non-cash comp (src 1); FY2025 SBC 113 (F43), TTM 134 (F46). Peers' NTM consensus EBITDA is adjusted (pre-SBC; TLN confirmed, src 12), so the multiple is applied to pre-SBC EBITDA and SBC enters as ~1.1M shares issued by the horizon.",
+     "anchor": {
+      "value": 0.0071,
+      "kind": "reported_history",
+      "as_of": "2026-06-30",
+      "source_ids": [
+       15,
+       1
+      ],
+      "fact_ids": [
+       "F46",
+       "F6"
+      ],
+      "note": "TTM SBC $134M / TTM revenue $18,985M = 0.71%; 2026 guidance adds back $137M non-cash comp"
+     }
+    },
+    {
+     "input": "Net debt 2026-06-30",
+     "value": "19,160",
+     "basis": "estimate",
+     "source_ids": [
+      15
+     ],
+     "fact_ids": [
+      "F105",
+      "F98",
+      "F97"
+     ],
+     "derivation": "Estimate derived from reported 10-Q lines at 2026-06-30 (no net-debt figure is reported): long-term debt due currently 1,876 + long-term debt less current 17,719 = 19,595, less cash and cash equivalents 435 = 19,160. Excludes AR financing 300, the forward repurchase obligation 613 and restricted cash 46. [citation gate 2026-10-14]"
+    },
+    {
+     "input": "Preferred stock + NCI (minorities)",
+     "value": "2,488",
+     "basis": "estimate",
+     "source_ids": [
+      13
+     ],
+     "fact_ids": [],
+     "derivation": "Estimate: sum of two reported XBRL facts at 2026-06-30 (10-Q accn 0001692819-26-000019): PreferredStockValue 2,476 + MinorityInterest 12 = 2,488. The $1.5B junior notes of 2026-09-24 (src 14) leave total senior claims unchanged whether or not they redeem preferred. [citation gate 2026-10-14]"
+    },
+    {
+     "input": "Net debt at horizon (2027-10-14)",
+     "value": "20,400",
+     "basis": "estimate",
+     "source_ids": [
+      1,
+      2,
+      3,
+      4,
+      15
+     ],
+     "fact_ids": [
+      "F105"
+     ],
+     "derivation": "19,160 (F105) + Cogentrix cash 2,300 + assumed debt 1,500 (src 3/4) + growth spend ex-Cogentrix incl. Helix ~1,600 (($4.5-5B midpoint 4,750 - 2,300 Cogentrix) x 0.646 = 1,580; src 2) + distributions to equity holders ~1,840 (~$3,000M for 2026-27 incl. buybacks and common and preferred dividends, src 2, less ~$863M paid in H1-2026, x 15.5/18 months) - Adj. FCFbG to the horizon ~6,000 (H2-2026 half of the $4,325M guidance midpoint = 2,160, src 1; 2027 ~4,860 = 8,100 x 60% conversion (4,325 / 7,200) x 0.79 yr = 3,840) = 20,400. The call's 'more than $10 billion of available cash' is not prorated as cash generated: management allocates it to ~$3B equity, $4.5-5B growth and $2-2.5B still unallocated (src 2), and it exceeds FCFbG (2026 guidance midpoint 4,325 + 2027 estimate ~4,860 = ~9.2B; only 2026 is guided)."
+    },
+    {
+     "input": "Shares at horizon",
+     "value": "334.6M",
+     "basis": "estimate",
+     "source_ids": [
+      15,
+      1,
+      3
+     ],
+     "fact_ids": [
+      "F103"
+     ],
+     "derivation": "335.6M cover count (2026-08-03, F103) + 5.0M Cogentrix shares (src 3) - ~7.1M bought back (~$1.1B of the ~$1.2B authorization at ~$155, src 1) + ~1.1M stock-comp issuance ($137M/yr / ~$150 x 1.2 yr) = 334.6M.",
+     "anchor": {
+      "value": 335.6,
+      "kind": "reported_history",
+      "as_of": "2026-08-03",
+      "source_ids": [
+       15
+      ],
+      "fact_ids": [
+       "F103"
+      ],
+      "note": "10-Q cover count 335.6M; horizon 334.6M bridged in the derivation (Cogentrix +5.0M, buyback -7.1M on the authorization, SBC +1.1M)"
+     }
+    },
+    {
+     "input": "WACC",
+     "value": "9.0%",
+     "basis": "estimate",
+     "source_ids": [
+      10,
+      14
+     ],
+     "fact_ids": [
+      "F81",
+      "F98"
+     ],
+     "derivation": "See discount_rate.basis."
+    },
+    {
+     "input": "Terminal growth (Gordon)",
+     "value": "2.5%",
+     "basis": "judgment",
+     "source_ids": [
+      5,
+      7,
+      19
+     ],
+     "fact_ids": [],
+     "derivation": "Nominal growth at about long-run inflation (BLS: CPI +3.7% y/y, core +2.6% y/y, src 5), i.e. no real growth for the fleet after FY2030. Round 1 used 2.0% to price the post-2029/30 PJM design risk, but that risk is already in the 1.1x horizon-multiple discount, the flat FY2029-30 EBITDA (+1%/yr) and the bear scenario; the extra 0.5pt cost ~$13.5/share of DCF (~$4/share of fair value) against a probability-weighted PJM effect of ~-$3/share, and the risk is two-sided (src 19: a stakeholder proposal keeps the $325 cap for existing units, while Brattle recommended a $500-625 RTO-wide cap). See dcf_check."
+    },
+    {
+     "input": "Horizon EV/EBITDA (NTM adjusted)",
+     "value": "8.9x",
+     "basis": "judgment",
+     "source_ids": [
+      17,
+      12,
+      1,
+      6,
+      7,
+      25,
+      32,
+      40,
+      51
+     ],
+     "fact_ids": [
+      "CEG.ebitda_ntm",
+      "CEG.mcap",
+      "CEG.ev",
+      "TLN.ebitda_ntm",
+      "TLN.mcap",
+      "TLN.ev",
+      "NRG.ebitda_ntm",
+      "NRG.mcap",
+      "NRG.ev"
+     ],
+     "derivation": "Kilian card 2026-11-04 11:49am ET: '8.9x, peer median less discount' (src 51). IPP peers at the 11-04 ~12pm ET quotes (src 25), same NTM consensus basis as the base round (adjusted EBITDA, Bigdata.com/FMP snapshots 2026-10-14, peers.json src 17; net debt from the latest filings): CEG 10.48x (EV $109.03B / NTM consensus $10.407B); TLN 10.01x (EV $24.95B / NTM consensus $2.492B); NRG 8.08x (EV $40.52B / NTM consensus $5.017B). Median 10.01x (TLN), mean 9.52x (10-23: 10.06x / 9.83x). 8.9x = 10.01 - 1.1 (the base round's discount: ERCOT merchant exposure, 2028 ~72% hedged, src 1, KeyBanc 11-04 'most Texas exposure', src 32; the open PJM 2030/31+ design, src 6-7). Not widened: the pause is booked through the load drivers and the post-horizon adjustment, and the peers' multiples on pre-election consensus already carry the 11-04 group de-rating. Exit-k rule not used (card). VST at 118.61: EV $61.5B / $8.02B NTM on this build = 7.67x. TLN filed Q3 on 11-03 (src 40): same NTM window, consensus and net debt pre-print. NTM EBITDA at the horizon (2027-11-03 to 2028-11-03) = 8,016 (engine)."
+    },
+    {
+     "input": "Cogentrix tax-benefit NPV adjustment",
+     "value": "700 x 0.9 = 630",
+     "basis": "estimate",
+     "source_ids": [
+      4,
+      3,
+      1
+     ],
+     "fact_ids": [],
+     "derivation": "700 reported (Ex. 99.1: '~$0.7 billion of net present value of expected tax benefits'); 0.9 is my judged closing probability, not on the page (approvals pending, outside date 2026-12-31 extendable); 700 x 0.9 = 630. [citation gate 2026-10-14]"
+    },
+    {
+     "input": "Leg weights",
+     "value": "EV/EBITDA 1.0 (no DCF leg, no P/E leg)",
+     "basis": "judgment",
+     "source_ids": [
+      17
+     ],
+     "fact_ids": [],
+     "derivation": "No-DCF rule (Kilian 2026-10-21; engine sets dcf_weight 0 for non-neoclouds); P/E stays out (NTM EPS consensus rests on 1-2 analysts per quarter, peers.json notes)."
+    },
+    {
+     "input": "Fixed / other costs (years[].corporate_ebit, plain)",
+     "value": "2880 / 3116 / 3223",
+     "basis": "estimate",
+     "source_ids": [
+      16
+     ],
+     "fact_ids": [],
+     "derivation": "FY2025 residual 2733 = Ongoing Ops Adj. EBITDA 5,912 (FY2025 release) less the driver contributions (gen-segment opex 2,490 + SG&A 429 + corporate 70 less other income/adjustments, 10-K pp.61-62). FY2026 x1.03 (CPI +3.7% y/y, src 5) + Lotus full-year fixed ~65 (2,600 MW x ~$30/kW-yr x 10/12, estimate); FY2027 x1.03 + Cogentrix ~150 (5,500 MW x ~$30/kW-yr x 11/12, estimate); FY2028 x1.03 + 14.",
+     "confidence": "medium"
+    },
+    {
+     "input": "quarter constant fixed_cost",
+     "value": "[-647.0, -725.0, -661.0, -700.0, -725.0, -783.0, -666.34, -705.66, -737.67, -826.6, -753.63, -798.1, -763.0, -854.99, -779.51, -825.5, -785.89, -880.64, -802.9, -850.26]",
+     "basis": "estimate",
+     "source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). Residual: Ongoing Ops Adj. EBITDA (consolidated less Asset Closure) - [gen revenue - fuel + capacity] - Retail Adj. EBITDA. FY2025 -647/-725/-661/-700 (Ongoing 5,912); Q1 FY2026 -725 (Ongoing 1,494), Q2 FY2026 -783 (1,767).",
+     "derivation": "New quarterly driver for the live years[].corporate_ebit (-2,880 / -3,116 / -3,223, unchanged), which the quarter build sets from the quarters. Q3/Q4 FY2026 = -2,880 less H1 -1,508 split by FY2025 Q3:Q4 (-661:-700); FY2027-28 by the FY2025 quarter shares (23.7/26.5/24.2/25.6%). fixed_cost: FY2028 quarters x 1.03 (CPI +3.7% y/y, core +2.6%, BLS src 5; the ~3% step used FY2026-28, no plant added in 2029) -> FY2029 -3,319.7.",
+     "flag": "Residual on the set's driver construction, not a filed line.",
+     "source_ids": [
+      5,
+      15,
+      16
+     ],
+     "confidence": "medium"
+    },
+    {
+     "input": "driver:gen_twh",
+     "value": "Generation volume (Texas + East + West): 208.2 -> 221/236.5/238.3/238.3 (estimate; quarterly, sum)",
+     "basis": "estimate",
+     "source": "Base: 10-K FY2025 MD&A pp.63-64 production volumes (Texas 91,286 / East 114,805 / West 2,092 GWh; verified by the driver gate 2026-10-22, src 53) https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm; Q1/Q2 FY2026 volumes 50.487 / 50.257 TWh (10-Q, quarterly gate 2026-11-03, src 53); Cogentrix asset table (src 4) https://www.sec.gov/Archives/edgar/data/1692819/000119312526002589/d62722dex991.htm; Q2 2026 results presentation slides 10, 24 (src 52)",
+     "derivation": "FY2026 = H1-26 actual 100.7 + H2-25 114.5 x 1.05 (Lotus 2,600 MW owned all of H2-26 vs ~2 months of H2-25) = 221.0. FY2027 = 219.0 organic (221.0 - 2.0 for Beaver Falls / Syracuse / Casco Bay, 'pending sale', Q2 deck slide 24, src 52; 754 MW, estimate) + Cogentrix 19.04 TWh/yr x 11/12 (close 'late 2026', Q2 deck slide 10): the Cogentrix release's asset table (src 4) shows ~5,496 MW, of which ~3,798 MW CCGT (Patriot, Hamilton-Liberty, Lakewood, Newington, Bridgeport, Tiverton, Rumford) x 8,760 h x ~55% CF = 18.30 TWh, plus ~1,698 MW peakers x ~5% CF = 0.74 TWh = 236.46. FY2028 = 219.0 + 19.04 + 0.3 Permian peakers ('expected to be online by Q2 2028', slide 10) = 238.34. FY2029 238.34: no owned-capacity change announced for 2029 (the observed fleet held flat). Corrected 2026-11-04 (gate): was ~4,600 MW CCGT / 22.7 TWh/yr (239.8 / 242.0); the release shows 3,798 MW CCGT. EBITDA-neutral: gen_price is built from $ contributions (the Cogentrix 654 is fixed from the deal release), so lower TWh raises the $/MWh spread; revenue and D&A move slightly. Not linked to the load drivers (approved proposal: nuclear runs regardless; exposure.md: volume effect 'small'). Judgment calls: CCGT CF 55% (Q2-26 East CCGT CF 53.7%) and peaker CF 5%: value effect ~0 (EBITDA-neutral).",
+     "flag": "Cogentrix capacity factors (55% CCGT, 5% peakers) and the disposal volume are estimates (no filing figure).",
+     "source_ids": [
+      15,
+      16,
+      27,
+      52,
+      53
+     ],
+     "fact_ids": [],
+     "variant_view": "Cogentrix slips to mid-2027: FY2027 ~227 TWh (EBITDA effect only through the Cogentrix $ contribution timing).",
+     "confidence": "medium"
+    },
+    {
+     "input": "driver:gen_price",
+     "value": "Realized generation revenue incl. hedges, PTC and retail tra: 58.66 -> 62.65/64.47/64.66/64.91 (estimate; quarterly, wmean:gen_twh)",
+     "basis": "estimate",
+     "source": "Base: 10-K Note 3 p.97 revenue disaggregation, Texas+East+West = 12,213 / 208.18 TWh (driver gate 2026-10-22, src 53) https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm. Hedge levels: Q2 release (approx. 100% 2026 / 94% 2027 / 72% 2028, as of 2026-08-03, src 1) https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm; forwards and hedge book: Q2 2026 results presentation slides 19-20 (src 52); 2027 opportunity and CFO quotes: src 1, 2, 23; Cogentrix: src 4; AWS ramp: 10-K p.54 (src 53); load mapping: ERCOT monthly overviews, PJM Table B-9b, exposure.md, approved proposal.md (2026-11-04)",
+     "derivation": "Book on the reference (no-moratorium) load path; projected as spread + fuel_cost (26.0). FY2026 (Q3-Q4) unchanged: spread 36.65 = (7,300 - cap - retail + fixed) / TWh: ~100% hedged (src 1) and the CFO's 'at or above the midpoint' (src 2). FY2027 64.47 (spread 38.47): standalone 7,400 (low end of the $7.4-7.8B midpoint opportunity, src 1, 23; CFO: 'we would be trending towards the lower end of that range', src 2) -> 8,290 contribution + Cogentrix 654 (src 4) + Meta premium 150 (estimate: the CFO's 'roughly $700 million' for Cogentrix and the Meta PPAs together, src 2, less Cogentrix ~552 = ~$4.0B net price / ~7.25x 2027 Adj. EBITDA, src 4) = 9,096 / 236.46 TWh; ~94% hedged (src 1). FY2028 64.66 (spread 38.66): 9,096 + Cogentrix December 60 + Comanche Peak AWS +60 (delivery from Q4 2027, ramp to 1,200 MW by 2032, 10-K p.54, src 53; straight-line, judgment) = 9,214 / 238.34 TWh. No hedge roll-off charge: the Q2 2026 presentation (src 52, slides 19-20, at 2026-06-30) shows 2028 forwards at or above 2027 (Texas weighted ATC $50.30 vs $46.32; ERCOT North $50.11 vs $46.26; East weighted $57.47 vs $57.77) and the 2027 generation hedge book $468M below market, so nothing cited shows a lower price on the ~22pt of volume that opens in 2028 (was -160 at an unshown ~$3/MWh gap). Meta held at its 150 (the +50 'full delivery' step cited to 10-K p.53 could not be re-opened and is dropped). FY2029 64.91 (spread 38.91): + AWS +60 (same straight line); 2029 hedge level not disclosed: the ladder's observed trend (100/94/72%, latest step -22pt, src 1) gives ~50% hedged; no roll-off charge, as for FY2028. Judgment calls (engine value effects): roll-off at -$1.81/MWh (ERCOT North realized Q2-26 $30.20 vs FY2025 $32.01, 10-K/10-Q tables, not re-opened) on 22pt in FY2028 and again in FY2029 (-96 each): -1.5%; Meta +50 in FY2028: +0.8%. MORATORIUM (approved driver set, Kilian card 2026-11-04): the realized price used in the build is gp_eff = gen_price + dc_adj, dc_adj = [s_e x open_tx x (ercot_dc_gw - ercot_ref) + s_p x open_east x (pjm_dc_gw - pjm_ref) + aws_prem x (min(1, (ercot_dc_gw - ercot_l0) / (ercot_ref - ercot_l0)) - 1)] / gen_twh, every quarter; ercot_l0 is now the flat post-letter level 4.132 GW (no common ramp). s_e = $1.2/MWh per GW (approved proposal; exposure.md (b) Cal-28 -$2-4 / Cal-29 -$3-5 over the proposal's 2.39 / 3.53 GW gaps); s_p = $0.67/MWh per GW (exposure (c) PJM West over the (c) zone gaps 4.6 / 5.8 GW). Open TWh a year: Texas ~88 TWh ex-AWS (FY2025 Texas 91.3 TWh) x unhedged 6% / 28% / 50% = 5.28 / 24.64 / 44.0 (FY2027-29; Aug 2026 ladder ~94% / ~72%, src 1 and Q2 deck slide 9; 2029 the ladder trend, judgment: 47% hedged +0.0%); PJM: exposure.md's $15M / $50M / $80M per $1/MWh at its 16/45/70% open shares, rescaled to 6/28/50% = 5.63 / 31.11 / 57.14 TWh; spread by quarter on gen_twh shares. Judgment call: the Q2 deck's 2027 segment split at 2026-06-30 (Texas gas 49 TWh x 31% open = 15.2 TWh; East 15.6 TWh) instead of the fleet 94%: -0.0%. AWS premium in the book 0 / 60 / 120 $M (FY2027/28/29) scales with energized load above the flat 4.132 GW vs the reference (CEO 'not affected at this point', src 35). Expected EBITDA effect incl. the retail offset: -3.4 / -14.1 / -73.0 $M FY2027/28/29 (engine, vs the reference paths).",
+     "flag": "Hedge prices and PPA prices are not disclosed; the per-GW price sensitivities are derived estimates (no cited elasticity); the 2029 hedge level is the ladder trend and the AWS +60/yr a straight-line ramp (judgments).",
+     "source_ids": [
+      1,
+      2,
+      4,
+      15,
+      16,
+      23,
+      27,
+      35,
+      51,
+      52,
+      53
+     ],
+     "fact_ids": [],
+     "variant_view": "Downside -3% on the book (ERCOT ~$30 on the open 2028 book) with load 10% below the weighted path; upside +2.5% (more nuclear contracting).",
+     "confidence": "low"
+    },
+    {
+     "input": "driver:fuel_cost",
+     "value": "Realized fuel, purchased power and delivery cost (ex nuclear: 26.02 -> 26/26/26/26 (estimate; quarterly, wmean:gen_twh)",
+     "basis": "estimate",
+     "source": "10-K p.61 segment table: fuel/PP/delivery Texas 1,990 + East 3,807 + West 149, less fuel-side unrealized marks (segment Adj. EBITDA reconciliation less revenue-side marks: +4/-40/-6) less nuclear fuel amortization 487 (p.62 footnote b) = 5,417 / 208.18 TWh https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm",
+     "derivation": "FY2026 26.0 (H1-26 ~$25.4/MWh, gas hedged). FY2027-29 26.0: no fuel guide and no cited heat-rate or gas-price basis for a change; the observed level is flat (FY2025 26.02, FY2026 26.0), so the trend is extended flat on the FY2025 seasonal index. 2026-11-04 gate: the FY2027 25.9 dip (Cogentrix gas ~7.0 MMBtu/MWh x ~$3.5) had no cited source and is removed; gen_price FY2027 carries the same spread, so EBITDA is unchanged (gen_price = spread + fuel). Judgment call: none with value effect (fuel enters EBITDA only through the spread).",
+     "source_ids": [
+      15,
+      16
+     ],
+     "fact_ids": [],
+     "variant_view": "Matters only through the spread: gen_price is built as spread + fuel, so a fuel move alone is a margin move.",
+     "confidence": "medium"
+    },
+    {
+     "input": "driver:cap_rev",
+     "value": "Net capacity revenue (sold less bought for retail load): 227 -> 570.3/544.2/508.5/522.2 (estimate; quarterly, sum)",
+     "basis": "estimate",
+     "source": "PJM positions and cleared prices: Q2 2026 results presentation slide 22 (effective 2026-07-27; zones RTO/ATSI/COMED/DEOK/DOM/EMAAC/MAAC summed: 2026/27 11,746 MW at $329.17; 2027/28 10,567 MW at $333.44; 2028/29 10,926 MW at $325.00, src 52); 2028/29 at the cap, PJM Inside Lines (src 37); FY2025 net 227 = 793 sold - 566 bought and Q1/Q2 FY2026 net 122 / 134 (Note 3 footnote a; driver gates, src 53)",
+     "derivation": "Calendar year = (PJM MW position - 8,117 MW-eq bought for retail load) x cleared price x days per delivery year (Jan-May prior DY, Jun-Dec new DY) + non-PJM sold 189/yr. 2026-11-04 gate: MW from the Q2 deck slide 22 zone sums (11,746 / 10,567 / 10,926) instead of the 10-K/10-Q figures that could not be re-opened (11,527 / 10,566 / 10,924); 2026/27 +219 MW. The 8,117 MW-eq purchase and the 2025/26 net position (11,259 at $269.92) are estimates calibrated on filed quarters: model Q1/Q2 FY2026 123.6 / 132.7 vs filed 122 / 134. FY2026 570.3 / FY2027 544.2 / FY2028 508.5; FY2029 522.2: Jan-May 2029 = DY 2028/29 $325.00 x 10,926 MW; Jun-Dec 2029 = DY 2029/30 at the $325 cap on the same MW (collar through 2029/30, src 7, 8; observed position held, judgment). Load drivers: no effect through FY2029 (cleared / collared); from DY 2030/31 in the post-horizon adjustment on net MW. The netting holds (Note 3 footnote a: FY2025 793 sold - 566 bought = 227).",
+     "source_ids": [
+      7,
+      8,
+      15,
+      16,
+      27,
+      37,
+      49,
+      52,
+      53
+     ],
+     "fact_ids": [],
+     "variant_view": "If retail-load purchases are passed through in retail rates the gross sold (~1,460 / 1,520 / 1,485) would count; the retail margin then falls by the same amount (no net change).",
+     "confidence": "medium"
+    },
+    {
+     "input": "driver:retail_twh",
+     "value": "Retail electricity sales volume: 139.1 -> 131.3/132.6/133.9/135.2 (estimate; quarterly, sum)",
+     "basis": "estimate",
+     "source": "FY2025 139.139 TWh (10-K p.63, driver gate 2026-10-22, src 53); retail volumes 2024 133.4 / 2025 139.1, YTD 2025 66.6 / YTD 2026 61.9 TWh (Q2 2026 presentation slide 17, src 52); Q1/Q2 FY2026 30.109 / 31.800 (10-Q, quarterly gate, src 53)",
+     "derivation": "FY2026 = H1-26 61.9 + H2-25 72.5 x Q2 y/y ratio 0.956 = 131.27. FY2027 / FY2028 / FY2029 +1%/yr each: 131.27 x 1.01 = 132.58, x 1.01 = 133.90, x 1.01 = 135.24 (corrected 2026-11-04: the build had 133.0 / 134.0 / 135.34). Basis: Vistra's ERCOT load-growth view of 4-6%/yr (src 35) with residential retail well below system load; the H1-26 decline (-7% y/y, slide 17) is not extended. Judgment call: flat at FY2026 instead: -0.5%.",
+     "source_ids": [
+      15,
+      16,
+      35,
+      52,
+      53
+     ],
+     "fact_ids": [],
+     "variant_view": "Flat at FY2026: -0.5% on the engine value.",
+     "confidence": "medium"
+    },
+    {
+     "input": "driver:retail_margin",
+     "value": "Retail Adjusted EBITDA per MWh sold: 11.66 -> 11.6/11.6/11.6/11.6 (estimate; quarterly, wmean:retail_twh)",
+     "basis": "estimate",
+     "source": "FY2025 Retail Adj. EBITDA 1,622 (FY2025 results release, src 23) / 139,139 GWh; H1-26 Retail Adj. EBITDA 841 vs 940 (Q2 release, src 1) https://www.sec.gov/Archives/edgar/data/1692819/000119312526073364/d21122dex991.htm https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm",
+     "derivation": "FY2026 = (H1-26 841 + H2-25 682) / 131.3 TWh = 11.6. FY2027-29 11.6: no retail guide; the observed per-MWh level (FY2025 11.66, FY2026 11.6) is held flat (2026-11-04 gate: the 'one-time supply-cost gains' reading cited to 10-K p.63 could not be re-opened and no longer carries the value). Judgment calls: FY2025 level 11.66 -> about +$8M EBITDA; the H1-26 -4% y/y per MWh extended -> about -$60M. Load-driven retail offset (approved proposal) is a separate line ret_off = ret_on x r_ret x 0.57 x retail_twh x s_e x (ercot_ref - ercot_dc_gw): cheaper ERCOT supply on ~57% of retail volume in ERCOT (FY2025 79.2 of 139.1 TWh, exposure.json thread work file from the 10-K MD&A; estimate, confidence medium), kept at half (r_ret 0.5) and from FY2028 (exposure.md: +$70-140M/yr in (b) from FY2028). Judgment call: no retail offset -1.1%.",
+     "source_ids": [
+      15,
+      16,
+      27,
+      51,
+      52,
+      53
+     ],
+     "fact_ids": [],
+     "variant_view": "FY2025 level 11.66 -> +~$10M; H1 trend -4% -> -~$60M.",
+     "confidence": "medium"
+    },
+    {
+     "input": "Horizon roll (bridge values on the valuation date)",
+     "value": "balance.net_debt_horizon_date 2027-10-14; shares.horizon_date 2027-10-14",
+     "basis": "estimate",
+     "source": "the set's own research text (dates and payouts quoted in the derivation)",
+     "derivation": "Each researched bridge value is a point value for the date it was built for; the engine rolls it to the valuation's own horizon (D + 12 months): net debt + the change in the model's cash roll (FCFF earned, interest, dividends and buybacks paid) between the two dates; shares x the share path's ratio between them (shares.path driver, else annual_change). At the stated date the value is unchanged. Dates: \"Net debt at horizon (2027-10-14)\" (driver-linked formula kept: it is a point value for that date); shares 334.6M over 1.2 yr from 2026-08-03"
+    },
+    {
+     "input": "Interest rate on net debt (balance.interest_rate)",
+     "value": 0.058,
+     "basis": "reported",
+     "source_ids": [
+      15
+     ],
+     "fact_ids": [
+      "F81",
+      "F98"
+     ],
+     "derivation": "Anchor pass 2026-11-03 (row was missing): TTM interest expense $1,132M / total debt $19,595M at 2026-06-30 = 5.78%. Q2 2026 alone $312M x 4 / $19,595M = 6.4% after the new notes; the September junior subordinated notes (7.000% / 7.250%) sit above it. Little reads it: net debt at the horizon is stated.",
+     "anchor": {
+      "value": 0.0578,
+      "kind": "reported_history",
+      "as_of": "2026-06-30",
+      "source_ids": [
+       15
+      ],
+      "fact_ids": [
+       "F81",
+       "F98"
+      ],
+      "note": "TTM interest expense $1,132M / debt $19,595M = 5.78%"
+     }
+    },
+    {
+     "input": "Working capital % of revenue increase (years.nwc_pct_incr_rev)",
+     "value": 0.077,
+     "basis": "reported",
+     "source_ids": [
+      16
+     ],
+     "fact_ids": [
+      "F2",
+      "F3"
+     ],
+     "derivation": "Anchor pass 2026-11-03 (row was missing; value was 3% with no stated basis): FY2025 10-K cash-flow changes in operating assets and liabilities (XBRL IncreaseDecrease tags): receivables +$528M, inventories +$3M, other operating assets -$88M, deferred charges -$7M, less payables +$16M, accrued taxes +$27M, employee liabilities -$40M, interest payable -$4M, other operating liabilities +$220M = $217M build, over the revenue increase $17,586M - $14,761M = $2,825M = 7.7%. Moved to the anchor. No leg reads it (EV/EBITDA leg, net debt at horizon stated).",
+     "anchor": {
+      "value": 0.077,
+      "kind": "reported_history",
+      "as_of": "2025-12-31",
+      "source_ids": [
+       16
+      ],
+      "fact_ids": [
+       "F2",
+       "F3"
+      ],
+      "note": "FY2025 working-capital build $217M / revenue increase $2,825M (10-K, XBRL)"
+     }
+    },
+    {
+     "input": "Diluted shares now (shares.diluted_now)",
+     "value": 335.6,
+     "basis": "reported",
+     "source_ids": [
+      15
+     ],
+     "fact_ids": [
+      "F103"
+     ],
+     "derivation": "Anchor pass 2026-11-03 (row was missing): 10-Q cover count 335.6M at 2026-08-03; annual_change 0 because the horizon count is stated (row 'Shares at horizon').",
+     "anchor": {
+      "value": 335.6,
+      "kind": "reported_history",
+      "as_of": "2026-08-03",
+      "source_ids": [
+       15
+      ],
+      "fact_ids": [
+       "F103"
+      ],
+      "note": "10-Q cover count 335.6M"
+     }
+    },
+    {
+     "input": "Net debt link to our earnings (2026-11-04)",
+     "value": "adj_ebitda 2026-06-30..2026-12-31 basis 3,939.0 x 0.6",
+     "basis": "estimate",
+     "source": "the set's own net debt derivation (basis quoted there); model_engine balance.net_debt_horizon_link",
+     "derivation": "Net debt at its stated date += conversion x (basis - our model over the span), so the drivers' near quarters and later years flow into cash. net debt 20,400 takes H2-2026 FCFbG as half the $4,325M guidance midpoint, i.e. the guide's EBITDA midpoint $7,200M; H2 basis = 7,200 - H1 actual 3,261 (1,494 + 1,767) = 3,939 vs our H2 (FY2026 7,300, 'at or above the midpoint'); 60% FCFbG conversion as the set's FY2027 term (4,325 / 7,200); FY2027 stays in the driver_build.set formula"
+    },
+    {
+     "input": "driver:ercot_dc_gw",
+     "basis": "estimate",
+     "value": "ERCOT large load energized (observed non-simultaneous monthl: 3.573 -> 4.102/4.487/5.746/8.14 (estimate; quarterly, mean)",
+     "derivation": "Quarter values: Q2 FY2025 = May-25 3.489; Q4 FY2025 = 3.827; Q1 FY2026 = Feb-26 4.037; Q2 FY2026 = Jun-26 3.966; Q3 FY2026 = Jul-Sep 2026 mean 4.273 (ERCOT data); Q1 FY2025 3.318 back-extrapolated and Q3 FY2025 3.658 interpolated (labelled estimates). Driver set as approved (proposal.md, Kilian card 2026-11-04), levels re-based on the latest ERCOT monthly data: after the 2026-08-03 Abbott letter approvals stay at 9,456 MW (Aug, Sep) and energized peak load falls 4.370 -> 4.316 -> 4.132 GW, so the level from Q4 FY2026 is the latest observation B = 4.132 GW and the backlog is 9.456 - 4.132 = 5.32 GW. (a) no moratorium: ERCOT's own energization pause runs to its 2026-12-10 reports (verify.md), so Q4 FY2026 = B; from 2027 the backlog converts at the proposal's ~1.25 GW/yr (capped at 5.32) and the 6.6 GW Batch Zero loads (UD 2026-08-21) add 1.32 GW/yr from mid-2027 (capped at 6.6). (b) Texas governor-ordered pause (12-24 months from the January 2027 inauguration): flat at B from the letter until the ramp restarts at mid-2028 (the middle, 18 months), then backlog 1.25 + Batch Zero 1.32 GW/yr. (c) includes (b) for Texas. Probability-weighted (approved card: Texas pause 0.45 + PJM-state spread 0.10 = 0.55): ercot = 0.45 x (a) + 0.55 x (b), quarter-mid values. FY averages: reference (a) 4.10 / 4.92 / 7.33 / 9.90, weighted 4.10 / 4.49 / 5.75 / 8.14 GW (FY2026-29). 2026-11-04 gate: the earlier common ramp L0 (+0.6 GW/yr while paused, on the claim that the ramp continued under the letter) is removed; the post-letter data show no ramp.",
+     "source": "ERCOT Monthly Operational Overviews (large loads with Approval to Energize; observed non-simultaneous monthly peak consumption): May-25 3,489 MW, Nov/Dec-25 3,827, Feb-26 4,037, Jun-26 3,966, Jul-26 4,370, Aug-26 4,316, Sep-26 4,132 MW; approved 6,874 -> 9,456 MW, flat at 9,456 in Jul, Aug and Sep 2026 (src 41, 42, 43, 44, 45, 46, 47); Abbott letter 2026-08-03 (src 29); ~87% of the large-load queue is data centers (src 48); 17 loads ~6.6 GW cleared stability review, ramping over ~5 years, not approved to energize (src 36); approved proposal.md scenario (b) (src 51).",
+     "source_ids": [
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      36,
+      30,
+      28,
+      29,
+      26,
+      51
+     ],
+     "fact_ids": [],
+     "variant_view": "If already-approved loads keep energizing during the pause (only Batch Zero paused): +0.1% on the engine value (post-horizon adjustment held).",
+     "confidence": "low",
+     "flag": "Large-load totals include crypto mining; no data-center-only energized series is published. Monthly figures are single-month peaks used as quarter values; the 1.25 GW/yr conversion and 18-month restart are the approved proposal's estimates."
+    },
+    {
+     "input": "driver:pjm_dc_gw",
+     "basis": "estimate",
+     "value": "PJM firm data-center load adjustment to summer peak (2026 LT: 7.082 -> 11.47/15.86/20.92/27.4 (estimate; quarterly, mean)",
+     "derivation": "RTO B-9b total, each year's summer-peak MW placed at mid-year and linearly interpolated to quarter mid-points (FY2025 quarters extrapolated back on the 2026-27 slope, labelled), in GW. These are forecast-table values, not metered load. Reference path (a) and (b) = the B-9b forecast (Texas policy does not move PJM load). (c) spread to PJM states with Vistra plants (OH/PA/IL): growth in the zones serving them (AEP, ATSI, DAYTON for OH; PL, PECO for PA; COMED for IL; AEP spans several states, taken whole) is frozen at its 2027-01-01 level and then resumes 18 months late. Zone sum 3,922 / 6,257 / 9,685 / 13,790 / 21,744 MW (2026-30). Probability-weighted with (c) 0.10: pjm = B-9b - 0.10 x (zones - zones delayed). FY averages: reference 11.47/15.99/21.36/28.03, weighted 11.47/15.86/20.92/27.40 GW (FY2026-29), each year from its B-9b values.",
+     "source": "PJM 2026 Load Report tables, Table B-9b (firm large-load adjustments to summer peak, MW): RTO 11,469 / 15,856 / 21,280 / 27,361 / 38,805 / 46,638 / 53,949 (2026-2032), zones AEP / ATSI / DAYTON / PL / PECO / COMED (src 49); firm = ESO/CC projects, 36-month minimum ramp, 70% utilization (src 50).",
+     "source_ids": [
+      49,
+      50,
+      26,
+      27,
+      51
+     ],
+     "fact_ids": [],
+     "variant_view": "(c) in full: FY2028 -4.6 GW and FY2029 -5.8 GW vs B-9b.",
+     "confidence": "low"
+    },
+    {
+     "input": "driver_build.quarters.lines.dc_adj",
+     "value": "(s_e*open_tx*(ercot_dc_gw-ercot_ref) + s_p*open_east*(pjm_dc_gw-pjm_ref) + aws_prem*(min(1, (ercot_dc_gw-ercot_l0)/max(ercot_ref-ercot_l0, 0.001)) - 1))/gen_twh",
+     "basis": "estimate",
+     "source_ids": [
+      27,
+      51,
+      35,
+      1,
+      16
+     ],
+     "fact_ids": [],
+     "derivation": "Load drivers into the realized price ($/MWh): ERCOT and PJM open volume x per-GW price sensitivity x (path - reference), plus the AWS premium scaled by energized Batch Zero load; divided by gen_twh. See driver:gen_price.",
+     "confidence": "low"
+    },
+    {
+     "input": "driver_build.quarters.lines.gp_eff",
+     "value": "gen_price + dc_adj",
+     "basis": "estimate",
+     "source_ids": [
+      51
+     ],
+     "fact_ids": [],
+     "derivation": "Realized price used by the Generation segment = the gen_price book + dc_adj.",
+     "confidence": "low"
+    },
+    {
+     "input": "driver_build.quarters.lines.ret_off",
+     "value": "ret_on*r_ret*0.57*retail_twh*s_e*(ercot_ref-ercot_dc_gw)",
+     "basis": "estimate",
+     "source_ids": [
+      27,
+      51,
+      16
+     ],
+     "fact_ids": [],
+     "derivation": "Retail offset: cheaper ERCOT supply on the 57% ERCOT share of retail volume, half retained, from FY2028. See driver:retail_margin.",
+     "confidence": "low"
+    },
+    {
+     "input": "driver_build.quarters.segments.Generation",
+     "value": "{\"revenue\": \"gen_twh*20.818*gp_eff/58.665 + cap_rev\", \"ebit\": \"gen_twh*(gp_eff-fuel_cost) + cap_rev - 0.11*(gen_twh*20.818*gp_eff/58.665 + cap_rev)\"}",
+     "basis": "estimate",
+     "source_ids": [
+      51
+     ],
+     "fact_ids": [],
+     "derivation": "gen_price replaced by gp_eff in revenue and EBIT (same form as before).",
+     "confidence": "low"
+    },
+    {
+     "input": "driver_build.quarters.segments.Retail",
+     "value": "{\"revenue\": \"retail_twh*93.611*gen_price/58.665\", \"ebit\": \"retail_twh*retail_margin + ret_off - 0.11*retail_twh*93.611*gen_price/58.665\"}",
+     "basis": "estimate",
+     "source_ids": [
+      51
+     ],
+     "fact_ids": [],
+     "derivation": "Adds ret_off to Retail EBIT (revenue unchanged).",
+     "confidence": "low"
+    },
+    {
+     "input": "quarter constants ercot_ref / ercot_l0 / pjm_ref",
+     "value": "ercot_ref 3.32/3.49/3.66/3.83/4.04/3.97/4.27/4.13/4.29/4.60/5.08/5.72/6.36/7.01/7.65/8.29/8.93/9.58/10.22/10.86; ercot_l0 3.32/3.49/3.66/3.83/4.04/3.97/4.27/4.13/4.13/4.13/4.13/4.13/4.13/4.13/4.13/4.13/4.13/4.13/4.13/4.13; pjm_ref 5.44/6.53/7.63/8.73/9.82/10.92/12.02/13.11/14.21/15.31/16.53/17.89/19.25/20.60/22.04/23.56/25.08/26.60/28.79/31.65",
+     "basis": "estimate",
+     "source_ids": [
+      41,
+      47,
+      36,
+      49
+     ],
+     "fact_ids": [],
+     "derivation": "Reference (no-moratorium) load paths and the flat post-letter floor (ercot_l0 = 4.132 GW from Q4 FY2026; the +0.6 GW/yr common ramp removed 2026-11-04); see driver:ercot_dc_gw and driver:pjm_dc_gw derivations.",
+     "confidence": "low"
+    },
+    {
+     "input": "quarter constants open_tx / open_east",
+     "value": "open_tx 0.00/0.00/0.00/0.00/0.00/0.00/0.00/0.00/1.18/1.16/1.49/1.44/5.65/5.39/6.90/6.70/10.09/9.62/12.33/11.96; open_east 0.00/0.00/0.00/0.00/0.00/0.00/0.00/0.00/1.26/1.24/1.59/1.54/7.14/6.80/8.72/8.46/13.11/12.49/16.01/15.53",
+     "basis": "estimate",
+     "source_ids": [
+      1,
+      52,
+      27,
+      51
+     ],
+     "fact_ids": [],
+     "derivation": "Unhedged TWh per quarter: Texas 88 TWh x 6% / 28% / 50% = 5.28 / 24.64 / 44.0 (FY2027-29: the Aug 2026 ladder ~94% / ~72%, src 1 and Q2 deck slide 9; FY2029 ~50% hedged is the ladder trend, judgment, 47% gives +0.0%); PJM per exposure.md $15M / $50M / $80M per $1/MWh at its 16/45/70% open, rescaled to 6/28/50% (x0.375 / x0.622 / x0.714) = 5.63 / 31.11 / 57.14; spread on gen_twh quarter shares. Judgment call: the Q2 deck's 2027 segment split at 2026-06-30 (Texas 15.2 / East 15.6 TWh open) instead of the fleet 94%: -0.0%.",
+     "confidence": "low"
+    },
+    {
+     "input": "quarter constants aws_prem / s_e / s_p / r_ret / ret_on",
+     "value": "aws_prem 0/15/30 $M a quarter (FY2027/28/29); s_e 1.2; s_p 0.67; r_ret 0.5; ret_on 1 from FY2028",
+     "basis": "estimate",
+     "source_ids": [
+      16,
+      27,
+      51
+     ],
+     "fact_ids": [],
+     "derivation": "AWS premium as in the gen_price book (10-K p.54 ramp); sensitivities per the approved proposal and the same derivation for PJM; retail retention judgment (see judgment_calls_for_kilian).",
+     "confidence": "low"
+    },
+    {
+     "input": "Moratorium scenario weights (load-driver paths)",
+     "value": "Texas governor-ordered pause 12-24 months 0.45; spread to PJM states with Vistra plants 0.10; none 0.45",
+     "basis": "judgment",
+     "source_ids": [
+      26,
+      28,
+      29,
+      31,
+      30,
+      39,
+      34,
+      38,
+      33,
+      51
+     ],
+     "fact_ids": [],
+     "derivation": "0.45 = census's 12-month probability of a governor-ordered Texas pause in force: Abbott's 8-03 letter (audit 'before any additional data centers are approved to move forward', no end date) and the 9-21 TCEQ letter stand; ERCOT paused energization of large loads not yet connected until its reports reach the PUCT by 12-10 (verify.md); the governor-elect pledged a moratorium 'until state lawmakers pass stronger protections' and can re-issue directives without a statute (Texas Tribune 10-30; Fast Company 11-04). 0.10 for a PJM-state spread (OH/PA/IL), above census's 2-4% per state because any of the three counts and Ohio passed 12 local limiting measures on 11-03; no state statute exists anywhere. Weights from the thread addendum; used in the approved driver paths.",
+     "confidence": "low",
+     "variant_view": "The 11-04 de-rating (~0.84x, exposure.md) prices the Texas pause, not a PJM spread."
+    },
+    {
+     "input": "Data-center moratorium beyond the NTM window (FY2029+)",
+     "value": "-494.6 $M at the horizon 2027-11-03",
+     "basis": "estimate",
+     "source_ids": [
+      27,
+      49,
+      36,
+      37,
+      5,
+      7,
+      8
+     ],
+     "fact_ids": [],
+     "derivation": "Same mapping as the quarters, annual at mid-year. Expected EBITDA effect vs the reference paths: FY2029 -73.0 (engine), FY2030 -169.4, FY2031 -158.2, FY2032 -100.5, FY2033+ -50.3/yr. ERCOT terms on the re-based paths: the pause delays the backlog by 18 months and Batch Zero by 12 months vs (a), a gap of 0.55 x 3.195 GW from mid-2028 until the backlog cap (5.32 GW) and the 6.6 GW cap close it (2031-33); FY2030 ERCOT price -1.2 x 68.6 open TWh (78% unhedged, exposure.md) x the gap, retail offset 0.5 x 0.57 x retail TWh x 1.2 x the gap, AWS premium (180 $M by FY2030) x the energized-load ratio above 4.132 GW. PJM (c) and capacity terms unchanged (0.10 x 2,449 net MW x -$112.5/MW-day from DY 2030/31). The 8.9x multiple capitalizes the NTM-window level (-12.2/yr), so only the excess is booked: FY2028 Nov-Dec -0.7, FY2029 -42.1, FY2030-35 -100.0, -85.2, -47.3, -18.7, -17.2, -15.7 (after 20% tax, at 9.0%), and the FY2035 run-rate excess x 8.9x / 1.09^8.16 = -167.7; total -494.6 (-1.48/share). Recomputed 2026-11-04 (was -323.5 on the L0 paths).",
+     "confidence": "low",
+     "variant_view": "None booked: +1.0%."
+    },
+    {
+     "input": "Capacity netting check (cap_rev net vs gross)",
+     "value": "net (sold - bought for retail load) holds",
+     "basis": "estimate",
+     "source_ids": [
+      15,
+      16,
+      27
+     ],
+     "fact_ids": [],
+     "derivation": "Exposure flags model cap_rev ~0.6B/yr vs gross 10-K capacity sold x price ~1.27B (10,566 MW x $333.44 x 365). The 10-K/10-Q Note 3 line 'Capacity revenue from ISO/RTO' (footnote (a)) is net of capacity purchased for retail load (FY2025 793 - 566 = 227; H1-26 667 - 411; gate-checked 2026-10-22; my 2026-11-04 re-fetch of the 10-Q was truncated before the footnote). The level is right either way: fixed_cost is the residual against reported consolidated Ongoing Ops Adj. EBITDA. For a price change only net MW (~2,449 PJM) is exposed while retail rates hold, because the retail-load purchase falls with the price.",
+     "confidence": "medium",
+     "variant_view": "Gross would apply only if retail rates passed a capacity cut through at once, and then retail margin falls by the same amount."
+    }
+   ],
+   "segment_build": [
+    {
+     "name": "Generation",
+     "base_revenue": 4561.0,
+     "years": [
+      {},
+      {},
+      {}
+     ]
+    },
+    {
+     "name": "Retail",
+     "base_revenue": 13025.0,
+     "years": [
+      {},
+      {},
+      {}
+     ]
+    }
+   ],
+   "driver_build": {
+    "set": {
+     "balance.net_debt_horizon": "20400 - 0.6*0.79*((gen_twh_y2*(gen_price_y2-fuel_cost_y2) + cap_rev_y2 + retail_twh_y2*retail_margin_y2 - 3116) - 8100)"
+    },
+    "note": "Ongoing Ops Adjusted EBITDA = gen_twh x (gen_price - fuel_cost) + cap_rev + retail_twh x retail_margin - fixed/other (years[].corporate_ebit, plain). Segment EBIT = contribution - 0.11 x segment revenue so EBITDA = EBIT + D&A (da_pct_rev 0.11) is exact. Revenue = retail_twh x $93.61 + gen_twh x $20.82 (FY2025 retail charge and external wholesale per MWh, 10-K Note 3) scaled by gen_price / FY2025 price (pass-through), + cap_rev. net_debt_horizon keeps the set derivation and moves 60% FCFbG conversion x 0.79 yr on FY2027 EBITDA vs 8,100.",
+    "quarters": {
+     "segments": {
+      "Generation": {
+       "revenue": "gen_twh*20.818*gp_eff/58.665 + cap_rev",
+       "ebit": "gen_twh*(gp_eff-fuel_cost) + cap_rev - 0.11*(gen_twh*20.818*gp_eff/58.665 + cap_rev)"
+      },
+      "Retail": {
+       "revenue": "retail_twh*93.611*gen_price/58.665",
+       "ebit": "retail_twh*retail_margin + ret_off - 0.11*retail_twh*93.611*gen_price/58.665"
+      }
+     },
+     "corporate_ebit": "fixed_cost",
+     "da": "0.11*rev",
+     "note": "Same form as the live annual build per quarter: Generation = gen_twh x (gen_price - fuel_cost) + cap_rev - 0.11 x revenue, Retail = retail_twh x retail_margin - 0.11 x revenue, corporate = fixed_cost, D&A = 0.11 x revenue (forecast quarters; actual quarters carry filed D&A incl. nuclear fuel amortization). The annual driver_build.segments is removed (the engine now fills empty segment_build years when driver_build.quarters sets the segments; the quarter build sets every year's segment growth, margins and corporate_ebit); driver_build.set (net_debt_horizon) kept.",
+     "reported": {
+      "Q1 FY2026": {
+       "revenue": 5001.0,
+       "ebit": 886.0,
+       "da": 608.0,
+       "segments": {
+        "Generation": {
+         "revenue": 1848.0,
+         "ebit": 1571.0
+        },
+        "Retail": {
+         "revenue": 3153.0,
+         "ebit": 58.0
+        }
+       },
+       "corporate_ebit": -743.0,
+       "gaap_operating_income": 1499.0,
+       "ongoing_adj_ebitda": 1494.0,
+       "source": "10-Q 0001692819-26-000014: revenue = total revenue from contracts with customers (the base's basis); adjusted EBIT = Ongoing Ops Adj. EBITDA 1494 (Adj. EBITDA 1475 less Asset Closure -19) less D&A incl. nuclear fuel amortization 608 (reconciliation, ex Asset Closure). GAAP operating income 1499 reconciles via unrealized hedge marks, Asset Closure, insurance, purchase accounting and non-cash comp (segment reconciliation). Segment EBIT on the set's construction: Retail = Retail Adj. EBITDA 68 less Retail D&A 10; Generation = contribution 2151 (gen revenue 3815 - fuel 1786 + capacity 122) less T/E/W D&A 580; fixed costs in corporate."
+      },
+      "Q2 FY2026": {
+       "revenue": 4401.0,
+       "ebit": 1210.0,
+       "da": 557.0,
+       "segments": {
+        "Generation": {
+         "revenue": 1057.0,
+         "ebit": 1248.0
+        },
+        "Retail": {
+         "revenue": 3344.0,
+         "ebit": 763.0
+        }
+       },
+       "corporate_ebit": -801.0,
+       "gaap_operating_income": 553.0,
+       "ongoing_adj_ebitda": 1767.0,
+       "source": "10-Q 0001692819-26-000019: revenue = total revenue from contracts with customers (the base's basis); adjusted EBIT = Ongoing Ops Adj. EBITDA 1767 (Adj. EBITDA 1744 less Asset Closure -23) less D&A incl. nuclear fuel amortization 557 (reconciliation, ex Asset Closure). GAAP operating income 553 reconciles via unrealized hedge marks, Asset Closure, insurance, purchase accounting and non-cash comp (segment reconciliation). Segment EBIT on the set's construction: Retail = Retail Adj. EBITDA 773 less Retail D&A 10; Generation = contribution 1777 (gen revenue 2588 - fuel 945 + capacity 134) less T/E/W D&A 529; fixed costs in corporate."
+      }
+     },
+     "constants": {
+      "fixed_cost": [
+       -647.0,
+       -725.0,
+       -661.0,
+       -700.0,
+       -725.0,
+       -783.0,
+       -666.34,
+       -705.66,
+       -737.67,
+       -826.6,
+       -753.63,
+       -798.1,
+       -763.0,
+       -854.99,
+       -779.51,
+       -825.5,
+       -785.89,
+       -880.64,
+       -802.9,
+       -850.26
+      ],
+      "ercot_ref": [
+       3.318,
+       3.489,
+       3.658,
+       3.827,
+       4.037,
+       3.966,
+       4.2727,
+       4.132,
+       4.2882,
+       4.6007,
+       5.0782,
+       5.7207,
+       6.3632,
+       7.0057,
+       7.6482,
+       8.2907,
+       8.9332,
+       9.5757,
+       10.2182,
+       10.8607
+      ],
+      "ercot_l0": [
+       3.318,
+       3.489,
+       3.658,
+       3.827,
+       4.037,
+       3.966,
+       4.2727,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132,
+       4.132
+      ],
+      "pjm_ref": [
+       5.4369,
+       6.5336,
+       7.6304,
+       8.7271,
+       9.8239,
+       10.9206,
+       12.0174,
+       13.1141,
+       14.2109,
+       15.3076,
+       16.534,
+       17.89,
+       19.246,
+       20.602,
+       22.0401,
+       23.5604,
+       25.0806,
+       26.6009,
+       28.7915,
+       31.6525
+      ],
+      "open_tx": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.184,
+       1.162,
+       1.4892,
+       1.4448,
+       5.6525,
+       5.3861,
+       6.9035,
+       6.6978,
+       10.0938,
+       9.6181,
+       12.3277,
+       11.9604
+      ],
+      "open_east": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.2614,
+       1.2379,
+       1.5865,
+       1.5392,
+       7.137,
+       6.8007,
+       8.7166,
+       8.4569,
+       13.1088,
+       12.491,
+       16.01,
+       15.533
+      ],
+      "aws_prem": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       15.0,
+       15.0,
+       15.0,
+       15.0,
+       30.0,
+       30.0,
+       30.0,
+       30.0
+      ],
+      "ret_on": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "s_e": [
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2,
+       1.2
+      ],
+      "s_p": [
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67,
+       0.67
+      ],
+      "r_ret": [
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5,
+       0.5
+      ],
+      "gp_hist": [
+       67.4387,
+       52.1251,
+       59.5808,
+       55.5437,
+       75.564,
+       51.4953,
+       63.9905,
+       59.6547,
+       74.1947,
+       57.347,
+       65.5496,
+       61.1082,
+       74.34,
+       57.4593,
+       65.6779,
+       61.2278,
+       74.6929,
+       57.6357,
+       65.9403,
+       61.4437
+      ],
+      "zero_hist": [
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "constants_note": {
+      "fixed_cost": {
+       "label": "Fixed and other costs (Ongoing Ops Adj. EBITDA less generation and retail contribution)",
+       "unit": "$M",
+       "basis": "estimate",
+       "agg": "sum",
+       "source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). Residual: Ongoing Ops Adj. EBITDA (consolidated less Asset Closure) - [gen revenue - fuel + capacity] - Retail Adj. EBITDA. FY2025 -647/-725/-661/-700 (Ongoing 5,912); Q1 FY2026 -725 (Ongoing 1,494), Q2 FY2026 -783 (1,767).",
+       "derivation": "New quarterly driver for the live years[].corporate_ebit (-2,880 / -3,116 / -3,223, unchanged), which the quarter build sets from the quarters. Q3/Q4 FY2026 = -2,880 less H1 -1,508 split by FY2025 Q3:Q4 (-661:-700); FY2027-28 by the FY2025 quarter shares (23.7/26.5/24.2/25.6%).",
+       "flag": "Residual on the set's driver construction, not a filed line.",
+       "confidence": "medium"
+      },
+      "FY2029 (2026-11-03)": "fixed_cost: FY2028 quarters x 1.03 (CPI +3.7% y/y, core +2.6%, BLS src 5; the ~3% step used FY2026-28, no plant added in 2029) -> FY2029 -3,319.7. Estimate, confidence medium (CPI is a non-filing source, BLS src 5).",
+      "load mapping (2026-11-03, approved driver set)": {
+       "ercot_ref": "ERCOT large load on the no-moratorium path (a): B 4.132 + backlog 1.25 GW/yr from 2027 + Batch Zero 1.32 GW/yr from mid-2027 (see driver:ercot_dc_gw); actual quarters = observed",
+       "ercot_l0": "flat post-letter level B = 4.132 GW (Sep-26, src 47) from Q4 FY2026: the floor common to every scenario; the AWS term scales with ercot_dc_gw - ercot_l0 (2026-11-04 gate: the +0.6 GW/yr common ramp is removed)",
+       "pjm_ref": "PJM Table B-9b RTO, interpolated (GW)",
+       "open_tx": "unhedged Texas TWh in the quarter: 88 x 6% / 28% / 50% (FY2027-29; Aug 2026 ladder ~94% / ~72%, 2029 the ladder trend) x gen_twh quarter share",
+       "open_east": "unhedged PJM TWh: 5.63 / 31.11 / 57.14 a year (exposure.md $15M / $50M / $80M per $1/MWh at its 16/45/70% open, rescaled to 6/28/50%) x quarter share",
+       "aws_prem": "AWS Comanche Peak premium in the gen_price book: 0 / 15 / 30 $M a quarter (FY2027 / FY2028 / FY2029; 10-K p.54 ramp)",
+       "s_e": "$1.2/MWh per GW (ERCOT)",
+       "s_p": "$0.67/MWh per GW (PJM)",
+       "r_ret": "0.5 retail retention",
+       "ret_on": "1 from FY2028",
+       "gp_hist": "gen_price actual quarters (history for the gp_eff line)",
+       "zero_hist": "zeros (history for dc_adj and ret_off)"
+      }
+     },
+     "lines": {
+      "dc_adj": {
+       "expr": "(s_e*open_tx*(ercot_dc_gw-ercot_ref) + s_p*open_east*(pjm_dc_gw-pjm_ref) + aws_prem*(min(1, (ercot_dc_gw-ercot_l0)/max(ercot_ref-ercot_l0, 0.001)) - 1))/gen_twh",
+       "history": "zero_hist"
+      },
+      "gp_eff": {
+       "expr": "gen_price + dc_adj",
+       "history": "gp_hist"
+      },
+      "ret_off": {
+       "expr": "ret_on*r_ret*0.57*retail_twh*s_e*(ercot_ref-ercot_dc_gw)",
+       "history": "zero_hist"
+      }
+     }
+    }
+   },
+   "drivers": [
+    {
+     "id": "gen_twh",
+     "label": "Generation volume (Texas + East + West)",
+     "unit": "TWh",
+     "base": 208.183,
+     "years": [
+      221.0,
+      236.4557,
+      238.3426,
+      238.3426
+     ],
+     "basis": "estimate",
+     "source": "Base: 10-K FY2025 MD&A pp.63-64 production volumes (Texas 91,286 / East 114,805 / West 2,092 GWh; verified by the driver gate 2026-10-22, src 53) https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm; Q1/Q2 FY2026 volumes 50.487 / 50.257 TWh (10-Q, quarterly gate 2026-11-03, src 53); Cogentrix asset table (src 4) https://www.sec.gov/Archives/edgar/data/1692819/000119312526002589/d62722dex991.htm; Q2 2026 results presentation slides 10, 24 (src 52)",
+     "derivation": "FY2026 = H1-26 actual 100.7 + H2-25 114.5 x 1.05 (Lotus 2,600 MW owned all of H2-26 vs ~2 months of H2-25) = 221.0. FY2027 = 219.0 organic (221.0 - 2.0 for Beaver Falls / Syracuse / Casco Bay, 'pending sale', Q2 deck slide 24, src 52; 754 MW, estimate) + Cogentrix 19.04 TWh/yr x 11/12 (close 'late 2026', Q2 deck slide 10): the Cogentrix release's asset table (src 4) shows ~5,496 MW, of which ~3,798 MW CCGT (Patriot, Hamilton-Liberty, Lakewood, Newington, Bridgeport, Tiverton, Rumford) x 8,760 h x ~55% CF = 18.30 TWh, plus ~1,698 MW peakers x ~5% CF = 0.74 TWh = 236.46. FY2028 = 219.0 + 19.04 + 0.3 Permian peakers ('expected to be online by Q2 2028', slide 10) = 238.34. FY2029 238.34: no owned-capacity change announced for 2029 (the observed fleet held flat). Corrected 2026-11-04 (gate): was ~4,600 MW CCGT / 22.7 TWh/yr (239.8 / 242.0); the release shows 3,798 MW CCGT. EBITDA-neutral: gen_price is built from $ contributions (the Cogentrix 654 is fixed from the deal release), so lower TWh raises the $/MWh spread; revenue and D&A move slightly. Not linked to the load drivers (approved proposal: nuclear runs regardless; exposure.md: volume effect 'small'). Judgment calls: CCGT CF 55% (Q2-26 East CCGT CF 53.7%) and peaker CF 5%: value effect ~0 (EBITDA-neutral).",
+     "variant": "Cogentrix slips to mid-2027: FY2027 ~227 TWh (EBITDA effect only through the Cogentrix $ contribution timing).",
+     "flag": "Cogentrix capacity factors (55% CCGT, 5% peakers) and the disposal volume are estimates (no filing figure).",
+     "agg": "sum",
+     "quarters": [
+      48.014,
+      45.621,
+      58.106,
+      56.442,
+      50.487,
+      50.257,
+      62.0,
+      58.256,
+      53.0253,
+      52.0364,
+      66.6899,
+      64.7041,
+      54.6768,
+      52.1001,
+      66.7776,
+      64.7881,
+      54.6768,
+      52.1001,
+      66.7776,
+      64.7881
+     ],
+     "quarter_source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). Texas+East+West production GWh, MD&A segment tables. FY2025 quarters 48.014/45.621/58.106/56.442 (sum 208.183 = base); Q1 FY2026 50.487, Q2 FY2026 50.257.",
+     "quarter_derivation": "Q3 FY2026 62.0 = Q3 FY2025 58.1 + Lotus (2,600 MW CCGT not owned in Q3-25) ~3.4 TWh at the Q2-26 East CCGT CF 53.7% + Martin Lake return ~0.5 (Texas coal Q2-26 +1.4 TWh y/y) = +6.7% y/y, between the Q1 (+5.2%) and Q2 (+10.2%) y/y run-rates. Q4 FY2026 58.26 = FY2026 221.0 (kept) less H1 100.744 less Q3 (+3.2% y/y: Lotus already ~2 months in Q4-25). FY2027-28: organic 219.0 (221 - 2.0 disposals) by the FY2025 quarter shares 23.1/21.9/27.9/27.1%; Cogentrix 19.04 TWh/yr (3,798 MW CCGT at 55% + 1,698 MW peakers at 5%, corrected 2026-11-04 from 22.7) by the FY2025 gas-fleet shares 21.5/21.2/29.2/28.0% with January 2027 removed from Q1 FY2027 (the live 11/12, close ~end-2026); Permian peakers +0.3 in FY2028 by gas shares. FY2024 shares not used: Energy Harbor closed 2024-03-01, so FY2024 Q1 lacks it.",
+     "confidence": "medium"
+    },
+    {
+     "id": "gen_price",
+     "label": "Realized generation revenue incl. hedges, PTC and retail transfer, ex capacity: book on the no-moratorium load path (the GW terms move it in driver_build.quarters.lines.gp_eff)",
+     "unit": "$/MWh",
+     "base": 58.66473443604906,
+     "years": [
+      62.650018838461534,
+      64.46778406851685,
+      64.65883124607183,
+      64.9105533192136
+     ],
+     "basis": "estimate",
+     "source": "Base: 10-K Note 3 p.97 revenue disaggregation, Texas+East+West = 12,213 / 208.18 TWh (driver gate 2026-10-22, src 53) https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm. Hedge levels: Q2 release (approx. 100% 2026 / 94% 2027 / 72% 2028, as of 2026-08-03, src 1) https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm; forwards and hedge book: Q2 2026 results presentation slides 19-20 (src 52); 2027 opportunity and CFO quotes: src 1, 2, 23; Cogentrix: src 4; AWS ramp: 10-K p.54 (src 53); load mapping: ERCOT monthly overviews, PJM Table B-9b, exposure.md, approved proposal.md (2026-11-04)",
+     "derivation": "Book on the reference (no-moratorium) load path; projected as spread + fuel_cost (26.0). FY2026 (Q3-Q4) unchanged: spread 36.65 = (7,300 - cap - retail + fixed) / TWh: ~100% hedged (src 1) and the CFO's 'at or above the midpoint' (src 2). FY2027 64.47 (spread 38.47): standalone 7,400 (low end of the $7.4-7.8B midpoint opportunity, src 1, 23; CFO: 'we would be trending towards the lower end of that range', src 2) -> 8,290 contribution + Cogentrix 654 (src 4) + Meta premium 150 (estimate: the CFO's 'roughly $700 million' for Cogentrix and the Meta PPAs together, src 2, less Cogentrix ~552 = ~$4.0B net price / ~7.25x 2027 Adj. EBITDA, src 4) = 9,096 / 236.46 TWh; ~94% hedged (src 1). FY2028 64.66 (spread 38.66): 9,096 + Cogentrix December 60 + Comanche Peak AWS +60 (delivery from Q4 2027, ramp to 1,200 MW by 2032, 10-K p.54, src 53; straight-line, judgment) = 9,214 / 238.34 TWh. No hedge roll-off charge: the Q2 2026 presentation (src 52, slides 19-20, at 2026-06-30) shows 2028 forwards at or above 2027 (Texas weighted ATC $50.30 vs $46.32; ERCOT North $50.11 vs $46.26; East weighted $57.47 vs $57.77) and the 2027 generation hedge book $468M below market, so nothing cited shows a lower price on the ~22pt of volume that opens in 2028 (was -160 at an unshown ~$3/MWh gap). Meta held at its 150 (the +50 'full delivery' step cited to 10-K p.53 could not be re-opened and is dropped). FY2029 64.91 (spread 38.91): + AWS +60 (same straight line); 2029 hedge level not disclosed: the ladder's observed trend (100/94/72%, latest step -22pt, src 1) gives ~50% hedged; no roll-off charge, as for FY2028. Judgment calls (engine value effects): roll-off at -$1.81/MWh (ERCOT North realized Q2-26 $30.20 vs FY2025 $32.01, 10-K/10-Q tables, not re-opened) on 22pt in FY2028 and again in FY2029 (-96 each): -1.5%; Meta +50 in FY2028: +0.8%. MORATORIUM (approved driver set, Kilian card 2026-11-04): the realized price used in the build is gp_eff = gen_price + dc_adj, dc_adj = [s_e x open_tx x (ercot_dc_gw - ercot_ref) + s_p x open_east x (pjm_dc_gw - pjm_ref) + aws_prem x (min(1, (ercot_dc_gw - ercot_l0) / (ercot_ref - ercot_l0)) - 1)] / gen_twh, every quarter; ercot_l0 is now the flat post-letter level 4.132 GW (no common ramp). s_e = $1.2/MWh per GW (approved proposal; exposure.md (b) Cal-28 -$2-4 / Cal-29 -$3-5 over the proposal's 2.39 / 3.53 GW gaps); s_p = $0.67/MWh per GW (exposure (c) PJM West over the (c) zone gaps 4.6 / 5.8 GW). Open TWh a year: Texas ~88 TWh ex-AWS (FY2025 Texas 91.3 TWh) x unhedged 6% / 28% / 50% = 5.28 / 24.64 / 44.0 (FY2027-29; Aug 2026 ladder ~94% / ~72%, src 1 and Q2 deck slide 9; 2029 the ladder trend, judgment: 47% hedged +0.0%); PJM: exposure.md's $15M / $50M / $80M per $1/MWh at its 16/45/70% open shares, rescaled to 6/28/50% = 5.63 / 31.11 / 57.14 TWh; spread by quarter on gen_twh shares. Judgment call: the Q2 deck's 2027 segment split at 2026-06-30 (Texas gas 49 TWh x 31% open = 15.2 TWh; East 15.6 TWh) instead of the fleet 94%: -0.0%. AWS premium in the book 0 / 60 / 120 $M (FY2027/28/29) scales with energized load above the flat 4.132 GW vs the reference (CEO 'not affected at this point', src 35). Expected EBITDA effect incl. the retail offset: -3.4 / -14.1 / -73.0 $M FY2027/28/29 (engine, vs the reference paths).",
+     "variant": "Downside -3% on the book (ERCOT ~$30 on the open 2028 book) with load 10% below the weighted path; upside +2.5% (more nuclear contracting).",
+     "flag": "Hedge prices and PPA prices are not disclosed; the per-GW price sensitivities are derived estimates (no cited elasticity); the 2029 hedge level is the ladder trend and the AWS +60/yr a straight-line ramp (judgments).",
+     "agg": "wmean:gen_twh",
+     "quarters": [
+      67.4387,
+      52.1251,
+      59.5808,
+      55.5437,
+      75.564,
+      51.4953,
+      63.9905,
+      59.6547,
+      74.1947,
+      57.347,
+      65.5496,
+      61.1082,
+      74.34,
+      57.4593,
+      65.6779,
+      61.2278,
+      74.6929,
+      57.6357,
+      65.9403,
+      61.4437
+     ],
+     "quarter_source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). Realized gen revenue (Texas+East+West: ISO wholesale + other wholesale + transferable PTC + realized hedges + intersegment less intersegment unrealized marks; capacity excluded) / gen TWh, same construction as the live base (FY2025 12,213 / 208.18 = 58.66 reproduced). FY2025 quarters 67.44/52.13/59.58/55.54; Q1 FY2026 75.56 (3,815), Q2 FY2026 51.50 (2,588).",
+     "quarter_derivation": "FY2026 62.65 kept (FY ~100% hedged): H2 gen revenue = 62.65 x 221.0 - H1 6,403 = 7,443 split Q3:Q4 by the FY2025 relative price (59.58:55.54) -> Q3 63.99, Q4 59.65. FY2027-28 by the FY2025 relative quarter index rescaled to the TWh-weighted year (64.47, 64.66, 64.91; 2026-11-04 gate: no hedge roll-off charge, Meta step dropped, Cogentrix TWh corrected); Comanche Peak AWS (from Q4-2027) kept in FY2028 as in the live set (~$15M Q4-27, not added).",
+     "quarter_guidance_check": {
+      "granularity": "quarter",
+      "note": "Vistra gives no quarterly guide (annual Ongoing Ops Adj. EBITDA only). Quarter record vs the annual guide: H1 FY2025 2,589 = 43.8% of FY2025 5,912; H1 FY2026 3,261 (10-Qs) = 45.3% of the 7,200 midpoint. On the FY2025 H1 share, FY2026 would be ~7,450; the live 7,300 (CFO 'at or above the midpoint') is kept, implying H2 4,039 (+21.5% y/y vs H2 FY2025 3,323) and Q3 FY2026 ~2,010 (+27% y/y, H1 run-rate +26%). Street Q3 FY2026 EBITDA ~$2.1B (8 analysts, TIKR, cited in the round's agent_4.json catalysts[2] / sources[34], runs/2026-10-23/VST); the model is ~4% below."
+     },
+     "guidance_check": "see model_inputs.guidance_check",
+     "confidence": "low"
+    },
+    {
+     "id": "fuel_cost",
+     "label": "Realized fuel, purchased power and delivery cost (ex nuclear fuel amortization)",
+     "unit": "$/MWh",
+     "base": 26.020375924547157,
+     "years": [
+      26.000026494117648,
+      25.999996269237748,
+      25.999989060243532,
+      25.999989060243532
+     ],
+     "basis": "estimate",
+     "source": "10-K p.61 segment table: fuel/PP/delivery Texas 1,990 + East 3,807 + West 149, less fuel-side unrealized marks (segment Adj. EBITDA reconciliation less revenue-side marks: +4/-40/-6) less nuclear fuel amortization 487 (p.62 footnote b) = 5,417 / 208.18 TWh https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm",
+     "derivation": "FY2026 26.0 (H1-26 ~$25.4/MWh, gas hedged). FY2027-29 26.0: no fuel guide and no cited heat-rate or gas-price basis for a change; the observed level is flat (FY2025 26.02, FY2026 26.0), so the trend is extended flat on the FY2025 seasonal index. 2026-11-04 gate: the FY2027 25.9 dip (Cogentrix gas ~7.0 MMBtu/MWh x ~$3.5) had no cited source and is removed; gen_price FY2027 carries the same spread, so EBITDA is unchanged (gen_price = spread + fuel). Judgment call: none with value effect (fuel enters EBITDA only through the spread).",
+     "variant": "Matters only through the spread: gen_price is built as spread + fuel, so a fuel move alone is a margin move.",
+     "agg": "wmean:gen_twh",
+     "quarters": [
+      32.3864,
+      23.8925,
+      22.9925,
+      25.442,
+      35.3754,
+      18.8034,
+      23.8411,
+      26.3811,
+      32.4269,
+      23.9225,
+      23.0213,
+      25.474,
+      32.3738,
+      23.8833,
+      22.9835,
+      25.4322,
+      32.3738,
+      23.8833,
+      22.9835,
+      25.4322
+     ],
+     "quarter_source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). Fuel/PP/delivery Texas+East+West less nuclear fuel amortization (10-Q footnote b) less fuel-side unrealized marks (segment unrealized add-back + revenue-side unrealized), the live base construction (FY2025 5,417 reproduced). FY2025 quarters 32.39/23.89/22.99/25.44; Q1 FY2026 35.38, Q2 18.80.",
+     "quarter_derivation": "FY2026 26.0 kept: H2 fuel = 26.0 x 221 - H1 2,731 = 3,015 split by the FY2025 Q3:Q4 index -> Q3 23.84, Q4 26.38. FY2027-29 by the FY2025 relative index rescaled to 26.0 on the corrected gen_twh weights.",
+     "confidence": "medium"
+    },
+    {
+     "id": "cap_rev",
+     "label": "Net capacity revenue (sold less bought for retail load)",
+     "unit": "$M",
+     "base": 227.0,
+     "years": [
+      570.2986,
+      544.2009,
+      508.539,
+      522.2177
+     ],
+     "basis": "estimate",
+     "source": "PJM positions and cleared prices: Q2 2026 results presentation slide 22 (effective 2026-07-27; zones RTO/ATSI/COMED/DEOK/DOM/EMAAC/MAAC summed: 2026/27 11,746 MW at $329.17; 2027/28 10,567 MW at $333.44; 2028/29 10,926 MW at $325.00, src 52); 2028/29 at the cap, PJM Inside Lines (src 37); FY2025 net 227 = 793 sold - 566 bought and Q1/Q2 FY2026 net 122 / 134 (Note 3 footnote a; driver gates, src 53)",
+     "derivation": "Calendar year = (PJM MW position - 8,117 MW-eq bought for retail load) x cleared price x days per delivery year (Jan-May prior DY, Jun-Dec new DY) + non-PJM sold 189/yr. 2026-11-04 gate: MW from the Q2 deck slide 22 zone sums (11,746 / 10,567 / 10,926) instead of the 10-K/10-Q figures that could not be re-opened (11,527 / 10,566 / 10,924); 2026/27 +219 MW. The 8,117 MW-eq purchase and the 2025/26 net position (11,259 at $269.92) are estimates calibrated on filed quarters: model Q1/Q2 FY2026 123.6 / 132.7 vs filed 122 / 134. FY2026 570.3 / FY2027 544.2 / FY2028 508.5; FY2029 522.2: Jan-May 2029 = DY 2028/29 $325.00 x 10,926 MW; Jun-Dec 2029 = DY 2029/30 at the $325 cap on the same MW (collar through 2029/30, src 7, 8; observed position held, judgment). Load drivers: no effect through FY2029 (cleared / collared); from DY 2030/31 in the post-horizon adjustment on net MW. The netting holds (Note 3 footnote a: FY2025 793 sold - 566 bought = 227).",
+     "variant": "If retail-load purchases are passed through in retail rates the gross sold (~1,460 / 1,520 / 1,485) would count; the retail margin then falls by the same amount (no net change).",
+     "agg": "sum",
+     "quarters": [
+      20.0,
+      30.0,
+      79.0,
+      98.0,
+      122.0,
+      134.0,
+      157.1493,
+      157.1493,
+      154.7602,
+      144.6259,
+      122.4074,
+      122.4074,
+      121.5904,
+      124.4704,
+      131.2391,
+      131.2391,
+      129.4133,
+      130.3262,
+      131.2391,
+      131.2391
+     ],
+     "quarter_source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). Note 3 'Capacity revenue from ISO/RTO' net (sold less bought): FY2025 20/30/79/98 (227 = 793 - 566); Q1 FY2026 122 (321 - 199), Q2 FY2026 134 (346 - 212).",
+     "quarter_derivation": "PJM DY starts June 1: Q1 = 90/91 days of the prior DY, Q2 = 61 days prior DY + 30 days new DY, Q3/Q4 = 92 days new DY; net MW = slide-22 position less 8,117 + non-PJM 47.25/qtr. Q3/Q4 FY2026 157.15 = 3,629 MW x 329.17 x 92 + 47.25.",
+     "confidence": "medium"
+    },
+    {
+     "id": "retail_twh",
+     "label": "Retail electricity sales volume",
+     "unit": "TWh",
+     "base": 139.139,
+     "years": [
+      131.2659,
+      132.578559,
+      133.904344,
+      135.243388
+     ],
+     "basis": "estimate",
+     "source": "FY2025 139.139 TWh (10-K p.63, driver gate 2026-10-22, src 53); retail volumes 2024 133.4 / 2025 139.1, YTD 2025 66.6 / YTD 2026 61.9 TWh (Q2 2026 presentation slide 17, src 52); Q1/Q2 FY2026 30.109 / 31.800 (10-Q, quarterly gate, src 53)",
+     "derivation": "FY2026 = H1-26 61.9 + H2-25 72.5 x Q2 y/y ratio 0.956 = 131.27. FY2027 / FY2028 / FY2029 +1%/yr each: 131.27 x 1.01 = 132.58, x 1.01 = 133.90, x 1.01 = 135.24 (corrected 2026-11-04: the build had 133.0 / 134.0 / 135.34). Basis: Vistra's ERCOT load-growth view of 4-6%/yr (src 35) with residential retail well below system load; the H1-26 decline (-7% y/y, slide 17) is not extended. Judgment call: flat at FY2026 instead: -0.5%.",
+     "variant": "Flat at FY2026: -0.5% on the engine value.",
+     "agg": "sum",
+     "quarters": [
+      33.323,
+      33.267,
+      40.062,
+      32.487,
+      30.109,
+      31.8,
+      38.2993,
+      31.0576,
+      31.751791,
+      31.698461,
+      38.173084,
+      30.955223,
+      32.069315,
+      32.015453,
+      38.554787,
+      31.264789,
+      32.390008,
+      32.335608,
+      38.940335,
+      31.577437
+     ],
+     "quarter_source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). MD&A total retail electricity sales volumes: FY2025 33.323/33.267/40.062/32.487 (139.139); Q1 FY2026 30.109, Q2 FY2026 31.800.",
+     "quarter_derivation": "Q3/Q4 FY2026 = Q3/Q4 FY2025 x 0.956 (the Q2 y/y ratio) -> Q3 38.30, Q4 31.06. FY2027-29 by the FY2025 quarter shares on the corrected years.",
+     "confidence": "medium"
+    },
+    {
+     "id": "retail_margin",
+     "label": "Retail Adjusted EBITDA per MWh sold",
+     "unit": "$/MWh",
+     "base": 11.657409118938615,
+     "years": [
+      11.600017359116114,
+      11.599980908181132,
+      11.59998440088388,
+      11.599984400883882
+     ],
+     "basis": "estimate",
+     "source": "FY2025 Retail Adj. EBITDA 1,622 (FY2025 results release, src 23) / 139,139 GWh; H1-26 Retail Adj. EBITDA 841 vs 940 (Q2 release, src 1) https://www.sec.gov/Archives/edgar/data/1692819/000119312526073364/d21122dex991.htm https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm",
+     "derivation": "FY2026 = (H1-26 841 + H2-25 682) / 131.3 TWh = 11.6. FY2027-29 11.6: no retail guide; the observed per-MWh level (FY2025 11.66, FY2026 11.6) is held flat (2026-11-04 gate: the 'one-time supply-cost gains' reading cited to 10-K p.63 could not be re-opened and no longer carries the value). Judgment calls: FY2025 level 11.66 -> about +$8M EBITDA; the H1-26 -4% y/y per MWh extended -> about -$60M. Load-driven retail offset (approved proposal) is a separate line ret_off = ret_on x r_ret x 0.57 x retail_twh x s_e x (ercot_ref - ercot_dc_gw): cheaper ERCOT supply on ~57% of retail volume in ERCOT (FY2025 79.2 of 139.1 TWh, exposure.json thread work file from the 10-K MD&A; estimate, confidence medium), kept at half (r_ret 0.5) and from FY2028 (exposure.md: +$70-140M/yr in (b) from FY2028). Judgment call: no retail offset -1.1%.",
+     "variant": "FY2025 level 11.66 -> +~$10M; H1 trend -4% -> -~$60M.",
+     "agg": "wmean:retail_twh",
+     "quarters": [
+      5.5217,
+      22.7252,
+      0.9236,
+      19.8541,
+      2.2585,
+      24.3082,
+      0.9656,
+      20.7583,
+      5.4945,
+      22.6133,
+      0.919,
+      19.7563,
+      5.4945,
+      22.6133,
+      0.919,
+      19.7563,
+      5.4945,
+      22.6133,
+      0.919,
+      19.7563
+     ],
+     "quarter_source": "Quarter actuals from the 10-Q/10-K segment tables (MD&A production and retail volumes; Note 3 revenue disaggregation; segment Adjusted EBITDA reconciliation): Q1 FY2025 10-Q 0001692819-25-000035; Q2 = H1 (10-Q 0001692819-25-000085) less Q1; Q3 = 9M (10-Q 0001692819-25-000094) less H1; Q4 = FY (10-K 0001692819-26-000006) less 9M; Q1 FY2026 10-Q 0001692819-26-000014; Q2 FY2026 10-Q 0001692819-26-000019 (three-month columns). Retail segment Adjusted EBITDA / retail TWh: FY2025 184/756/37/645 -> 5.52/22.73/0.92/19.85 $/MWh; Q1 FY2026 68 (2.26), Q2 FY2026 773 (24.31). Strong seasonality from summer supply cost (Q3 near zero).",
+     "quarter_derivation": "FY2026 11.6 kept: H2 retail EBITDA = 11.6 x 131.27 - 841 = 682 (= H2 FY2025) split by the FY2025 Q3:Q4 index -> Q3 37 ($0.97), Q4 645 ($20.76). FY2027-28 by the FY2025 index on 11.6.",
+     "confidence": "medium"
+    },
+    {
+     "id": "ercot_dc_gw",
+     "label": "ERCOT large load energized (observed non-simultaneous monthly peak of loads with Approval to Energize; ~87% of the queue is data centers)",
+     "unit": "GW",
+     "base": 3.573,
+     "years": [
+      4.101925,
+      4.487475,
+      5.74645,
+      8.13975
+     ],
+     "basis": "estimate",
+     "agg": "mean",
+     "quarters": [
+      3.318,
+      3.489,
+      3.658,
+      3.827,
+      4.037,
+      3.966,
+      4.2727,
+      4.132,
+      4.2023,
+      4.3429,
+      4.5578,
+      4.8469,
+      5.1361,
+      5.4252,
+      5.891,
+      6.5335,
+      7.176,
+      7.8185,
+      8.461,
+      9.1035
+     ],
+     "source": "ERCOT Monthly Operational Overviews (large loads with Approval to Energize; observed non-simultaneous monthly peak consumption): May-25 3,489 MW, Nov/Dec-25 3,827, Feb-26 4,037, Jun-26 3,966, Jul-26 4,370, Aug-26 4,316, Sep-26 4,132 MW; approved 6,874 -> 9,456 MW, flat at 9,456 in Jul, Aug and Sep 2026 (src 41, 42, 43, 44, 45, 46, 47); Abbott letter 2026-08-03 (src 29); ~87% of the large-load queue is data centers (src 48); 17 loads ~6.6 GW cleared stability review, ramping over ~5 years, not approved to energize (src 36); approved proposal.md scenario (b) (src 51).",
+     "derivation": "Quarter values: Q2 FY2025 = May-25 3.489; Q4 FY2025 = 3.827; Q1 FY2026 = Feb-26 4.037; Q2 FY2026 = Jun-26 3.966; Q3 FY2026 = Jul-Sep 2026 mean 4.273 (ERCOT data); Q1 FY2025 3.318 back-extrapolated and Q3 FY2025 3.658 interpolated (labelled estimates). Driver set as approved (proposal.md, Kilian card 2026-11-04), levels re-based on the latest ERCOT monthly data: after the 2026-08-03 Abbott letter approvals stay at 9,456 MW (Aug, Sep) and energized peak load falls 4.370 -> 4.316 -> 4.132 GW, so the level from Q4 FY2026 is the latest observation B = 4.132 GW and the backlog is 9.456 - 4.132 = 5.32 GW. (a) no moratorium: ERCOT's own energization pause runs to its 2026-12-10 reports (verify.md), so Q4 FY2026 = B; from 2027 the backlog converts at the proposal's ~1.25 GW/yr (capped at 5.32) and the 6.6 GW Batch Zero loads (UD 2026-08-21) add 1.32 GW/yr from mid-2027 (capped at 6.6). (b) Texas governor-ordered pause (12-24 months from the January 2027 inauguration): flat at B from the letter until the ramp restarts at mid-2028 (the middle, 18 months), then backlog 1.25 + Batch Zero 1.32 GW/yr. (c) includes (b) for Texas. Probability-weighted (approved card: Texas pause 0.45 + PJM-state spread 0.10 = 0.55): ercot = 0.45 x (a) + 0.55 x (b), quarter-mid values. FY averages: reference (a) 4.10 / 4.92 / 7.33 / 9.90, weighted 4.10 / 4.49 / 5.75 / 8.14 GW (FY2026-29). 2026-11-04 gate: the earlier common ramp L0 (+0.6 GW/yr while paused, on the claim that the ramp continued under the letter) is removed; the post-letter data show no ramp.",
+     "variant": "If already-approved loads keep energizing during the pause (only Batch Zero paused): +0.1% on the engine value (post-horizon adjustment held).",
+     "flag": "Large-load totals include crypto mining; no data-center-only energized series is published. Monthly figures are single-month peaks used as quarter values; the 1.25 GW/yr conversion and 18-month restart are the approved proposal's estimates.",
+     "why": "Economic driver (Kilian 2026-11-04): energized data-center load is what the Texas pause moves; mapped into ERCOT open-volume price, the AWS Comanche Peak ramp and the retail offset.",
+     "confidence": "low"
+    },
+    {
+     "id": "pjm_dc_gw",
+     "label": "PJM firm data-center load adjustment to summer peak (2026 LTLF Table B-9b, RTO total), interpolated to quarters",
+     "unit": "GW",
+     "base": 7.082,
+     "years": [
+      11.469000000000001,
+      15.855225,
+      20.9233,
+      27.40135
+     ],
+     "basis": "estimate",
+     "agg": "mean",
+     "quarters": [
+      5.4369,
+      6.5336,
+      7.6304,
+      8.7271,
+      9.8239,
+      10.9206,
+      12.0174,
+      13.1141,
+      14.1817,
+      15.2201,
+      16.3744,
+      17.6447,
+      18.915,
+      20.1853,
+      21.5585,
+      23.0344,
+      24.5241,
+      26.0274,
+      28.153,
+      30.9009
+     ],
+     "source": "PJM 2026 Load Report tables, Table B-9b (firm large-load adjustments to summer peak, MW): RTO 11,469 / 15,856 / 21,280 / 27,361 / 38,805 / 46,638 / 53,949 (2026-2032), zones AEP / ATSI / DAYTON / PL / PECO / COMED (src 49); firm = ESO/CC projects, 36-month minimum ramp, 70% utilization (src 50).",
+     "derivation": "RTO B-9b total, each year's summer-peak MW placed at mid-year and linearly interpolated to quarter mid-points (FY2025 quarters extrapolated back on the 2026-27 slope, labelled), in GW. These are forecast-table values, not metered load. Reference path (a) and (b) = the B-9b forecast (Texas policy does not move PJM load). (c) spread to PJM states with Vistra plants (OH/PA/IL): growth in the zones serving them (AEP, ATSI, DAYTON for OH; PL, PECO for PA; COMED for IL; AEP spans several states, taken whole) is frozen at its 2027-01-01 level and then resumes 18 months late. Zone sum 3,922 / 6,257 / 9,685 / 13,790 / 21,744 MW (2026-30). Probability-weighted with (c) 0.10: pjm = B-9b - 0.10 x (zones - zones delayed). FY averages: reference 11.47/15.99/21.36/28.03, weighted 11.47/15.86/20.92/27.40 GW (FY2026-29), each year from its B-9b values.",
+     "variant": "(c) in full: FY2028 -4.6 GW and FY2029 -5.8 GW vs B-9b.",
+     "flag": "Firm adjustments only (non-firm projects excluded by PJM); interpolation between annual summer peaks is mine.",
+     "why": "Economic driver (Kilian 2026-11-04): data-center load growth in the PJM zones is what a PJM-state spread moves; mapped into PJM open-volume price and, from DY 2030/31, capacity (post-horizon)."
+    }
+   ],
+   "quarters": {
+    "labels": [
+     "Q1 FY2025",
+     "Q2 FY2025",
+     "Q3 FY2025",
+     "Q4 FY2025",
+     "Q1 FY2026",
+     "Q2 FY2026",
+     "Q3 FY2026",
+     "Q4 FY2026",
+     "Q1 FY2027",
+     "Q2 FY2027",
+     "Q3 FY2027",
+     "Q4 FY2027",
+     "Q1 FY2028",
+     "Q2 FY2028",
+     "Q3 FY2028",
+     "Q4 FY2028",
+     "Q1 FY2029",
+     "Q2 FY2029",
+     "Q3 FY2029",
+     "Q4 FY2029"
+    ],
+    "ends": [
+     "2025-03-31",
+     "2025-06-30",
+     "2025-09-30",
+     "2025-12-31",
+     "2026-03-31",
+     "2026-06-30",
+     "2026-09-30",
+     "2026-12-31",
+     "2027-03-31",
+     "2027-06-30",
+     "2027-09-30",
+     "2027-12-31",
+     "2028-03-31",
+     "2028-06-30",
+     "2028-09-30",
+     "2028-12-31",
+     "2029-03-31",
+     "2029-06-30",
+     "2029-09-30",
+     "2029-12-31"
+    ],
+    "actual": 6,
+    "source": "Calendar quarters. Q1 FY2026 (10-Q 0001692819-26-000014, filed 2026-05-08) and Q2 FY2026 (10-Q 0001692819-26-000019, filed 2026-08-10) are filed; Q3 FY2026 reports 2026-11-06: actual = 4 + 2."
+   },
+   "comps_summary": {
+    "peer_count_flag": "3 peers (CEG, TLN, NRG): the only US-listed merchant generators with data-center contracting; regulated utilities earn allowed returns on rate base; European generators sit in different market designs (context only). No more good peers exist; none added to reach 10.",
+    "as_of": "2026-11-04",
+    "median_ev_ebitda_ntm": 10.01,
+    "mean_ev_ebitda_ntm": 9.52,
+    "multiple_used": 8.9,
+    "premium_discount": "-1.1x (~-11.0%) to the IPP median, as at 10-23 and 10-14",
+    "rows": [
+     {
+      "peer": "CEG",
+      "ev_ebitda_ntm": 10.48,
+      "price": 239.98,
+      "price_date": "2026-11-04",
+      "fact_ids": [
+       "CEG.ebitda_ntm",
+       "CEG.mcap",
+       "CEG.ev"
+      ],
+      "source_ids": [
+       17,
+       25
+      ],
+      "fit": {
+       "segment": "whole company: nuclear-heavy merchant generation plus retail supply",
+       "revenue_share": 1.0,
+       "why": "Same integrated generation + retail model with hyperscaler nuclear contracts"
+      }
+     },
+     {
+      "peer": "TLN",
+      "ev_ebitda_ntm": 10.01,
+      "price": 325.69,
+      "price_date": "2026-11-04",
+      "fact_ids": [
+       "TLN.ebitda_ntm",
+       "TLN.mcap",
+       "TLN.ev"
+      ],
+      "source_ids": [
+       17,
+       12,
+       25,
+       40
+      ],
+      "fit": {
+       "segment": "Generation (merchant PJM nuclear + gas, data-center PPA)",
+       "revenue_share": 0.3,
+       "why": "VST Generation = 5,950 of 19,573 FY2028 revenue in this build (retail ~70% of revenue, ~20% of EBITDA); consensus pre-dates TLN's 11-03 print"
+      }
+     },
+     {
+      "peer": "NRG",
+      "ev_ebitda_ntm": 8.08,
+      "price": 82.26,
+      "price_date": "2026-11-04",
+      "fact_ids": [
+       "NRG.ebitda_ntm",
+       "NRG.mcap",
+       "NRG.ev"
+      ],
+      "source_ids": [
+       17,
+       25
+      ],
+      "fit": {
+       "segment": "whole company: ERCOT + East generation with the largest Texas retail book",
+       "revenue_share": 1.0,
+       "why": "Closest Texas-integrated peer"
+      }
+     }
+    ],
+    "pe_note": "not used: P/E NTM figures on different consensus bases"
+   },
+   "guidance_check": [
+    {
+     "metric": "Ongoing Operations Adjusted EBITDA",
+     "fy": "FY2026",
+     "guide_low": 6800,
+     "guide_high": 7600,
+     "guide_basis": "Ongoing Ops Adj. EBITDA, excludes Cogentrix",
+     "guide_as_of": "2026-08-07",
+     "guide_source_ids": [
+      1,
+      23
+     ],
+     "guide_fact_ids": [],
+     "track_record": {
+      "granularity": "annual",
+      "periods": [
+       {
+        "period": "FY2024",
+        "first_guide_low": 4550,
+        "first_guide_high": 5050,
+        "first_guide_date": "2024-05-08",
+        "actual": 5656,
+        "actual_vs_mid_pct": 0.1783,
+        "source_ids": [
+         22,
+         21
+        ],
+        "fact_ids": [],
+        "note": "guide excluded the nuclear PTC; first guide from src 22, actual from src 21 (2026-11-04 gate: each part cited to the release that shows it)",
+        "first_guide_source_ids": [
+         22
+        ],
+        "actual_source_ids": [
+         21
+        ],
+        "actual_source": "FY2024 results release (8-K Ex. 99.1, 2025-02-27) https://www.sec.gov/Archives/edgar/data/1692819/000119312525037636/d126557dex991.htm"
+       },
+       {
+        "period": "FY2025",
+        "first_guide_low": 5500,
+        "first_guide_high": 6100,
+        "first_guide_date": "2025-02-27 (in the FY2024 release; the FY2025 release calls it the original range)",
+        "actual": 5912,
+        "actual_vs_mid_pct": 0.0193,
+        "source_ids": [
+         21,
+         23
+        ],
+        "fact_ids": [],
+        "first_guide_source_ids": [
+         21
+        ],
+        "actual_source_ids": [
+         23
+        ],
+        "actual_source": "FY2025 results release (8-K Ex. 99.1, 2026-02-26) https://www.sec.gov/Archives/edgar/data/1692819/000119312526073364/d21122dex991.htm",
+        "note": "first guide from src 21, actual from src 23 (2026-11-04 gate: each part cited to the release that shows it)"
+       }
+      ],
+      "beat": 1,
+      "inside": 1,
+      "miss": 0,
+      "median_vs_mid_pct": 0.0988,
+      "note": "Two closed periods (FY2024 initiated May 2024 after Energy Harbor; FY2025). FY2024 +17.8% includes the nuclear PTC the guide excluded; FY2025 +1.9% is the cleaner read. Same CEO/CFO. Q3 FY2026 prints 2026-11-06."
+     },
+     "consensus": null,
+     "consensus_as_of": "2026-10-09",
+     "consensus_source_ids": [
+      24
+     ],
+     "record_adjusted_guide": 7911,
+     "drivers_imply": 7313,
+     "our_value": 7313,
+     "position": "inside",
+     "gap_to_mid_pct": 0.0156,
+     "drivers_note": "Hedged part ~100% of 2026 (src 1), open part ~0: H1 actual 3,261 + Q3 2,010 + Q4 2,028. Street Q3 2026 EBITDA ~$2.1B (8 analysts, 10-09, src 24); no FY consensus found. No load-driver effect in 2026.",
+     "why": "7,313 (mid +1.6%; Q3/Q4 capacity +13 on the Q2 deck's 2026/27 position), inside and below the record-adjusted 7,911: the record's median is lifted by FY2024's PTC one-off; FY2025's +1.9% and the CFO's 'at or above the midpoint' support ~7.3-7.35B; Q3 consensus ~2.1B sits ~4% above our Q3. Upside risk to the year; the 11-06 print settles it."
+    },
+    {
+     "metric": "Ongoing Operations Adjusted EBITDA midpoint opportunity (not guidance)",
+     "fy": "FY2027",
+     "guide_low": 7400,
+     "guide_high": 7800,
+     "guide_basis": "Ongoing Ops Adj. EBITDA, excludes Cogentrix and the Meta PPA premium; curves as of 2025-10-31",
+     "guide_as_of": "2026-08-07",
+     "guide_source_ids": [
+      1,
+      2,
+      23
+     ],
+     "guide_fact_ids": [],
+     "track_record": {
+      "granularity": "long-term target",
+      "periods": [
+       {
+        "period": "FY2025 (midpoint opportunity)",
+        "first_guide_low": 5000,
+        "first_guide_high": 5500,
+        "first_guide_date": "2024-05-08",
+        "actual": 5912,
+        "actual_vs_mid_pct": 0.1261,
+        "source_ids": [
+         22,
+         23
+        ],
+        "fact_ids": [],
+        "first_guide_source_ids": [
+         22
+        ],
+        "actual_source_ids": [
+         23
+        ],
+        "actual_source": "FY2025 results release (8-K Ex. 99.1, 2026-02-26) https://www.sec.gov/Archives/edgar/data/1692819/000119312526073364/d21122dex991.htm",
+        "note": "first guide from src 22, actual from src 23 (2026-11-04 gate: each part cited to the release that shows it)"
+       }
+      ],
+      "beat": 1,
+      "inside": 0,
+      "miss": 0,
+      "median_vs_mid_pct": 0.1261,
+      "note": "One closed prior opportunity (FY2025, stated May 2024: +12.6%, a rising-price and PTC year). The FY2026 opportunity ('more than $6,000 million', src 21) is not closed."
+     },
+     "consensus": null,
+     "consensus_as_of": null,
+     "consensus_source_ids": [],
+     "record_adjusted_guide": 8558,
+     "drivers_imply": 7405,
+     "our_value": 7405,
+     "position": "below",
+     "gap_to_mid_pct": -0.0257,
+     "drivers_note": "Build FY2027 8,059 less Cogentrix ~504 and the Meta premium ~150 = 7,405 on the opportunity's basis. ~94% hedged (src 1): the open ~6% carries the load drivers' FY2027 effect (-3.4).",
+     "why": "At / just below the 7,400 low end: CFO 'trending towards the lower end' (src 2) on ERCOT forwards 'meaningfully lower' than the 2025-10-31 curves; the record-adjusted figure rests on one period in a rising-price year and is not credible against 94% hedged at lower curves."
+    },
+    {
+     "metric": "Ongoing Operations Adjusted FCFbG",
+     "fy": "FY2026",
+     "guide_low": 3925,
+     "guide_high": 4725,
+     "guide_basis": "Ongoing Ops Adjusted Free Cash Flow before Growth",
+     "guide_as_of": "2026-08-07",
+     "guide_source_ids": [
+      1,
+      23
+     ],
+     "guide_fact_ids": [],
+     "track_record": {
+      "granularity": "annual",
+      "periods": [
+       {
+        "period": "FY2024",
+        "first_guide_low": 2200,
+        "first_guide_high": 2700,
+        "first_guide_date": "2024-05-08",
+        "actual": 2888,
+        "actual_vs_mid_pct": 0.1788,
+        "source_ids": [
+         22,
+         21
+        ],
+        "fact_ids": [],
+        "first_guide_source_ids": [
+         22
+        ],
+        "actual_source_ids": [
+         21
+        ],
+        "actual_source": "FY2024 results release (8-K Ex. 99.1, 2025-02-27) https://www.sec.gov/Archives/edgar/data/1692819/000119312525037636/d126557dex991.htm",
+        "note": "first guide from src 22, actual from src 21 (2026-11-04 gate: each part cited to the release that shows it)"
+       },
+       {
+        "period": "FY2025",
+        "first_guide_low": 3000,
+        "first_guide_high": 3600,
+        "first_guide_date": "2025-02-27",
+        "actual": 3592,
+        "actual_vs_mid_pct": 0.0885,
+        "source_ids": [
+         21,
+         23
+        ],
+        "fact_ids": [],
+        "first_guide_source_ids": [
+         21
+        ],
+        "actual_source_ids": [
+         23
+        ],
+        "actual_source": "FY2025 results release (8-K Ex. 99.1, 2026-02-26) https://www.sec.gov/Archives/edgar/data/1692819/000119312526073364/d21122dex991.htm",
+        "note": "first guide from src 21, actual from src 23 (2026-11-04 gate: each part cited to the release that shows it)"
+       }
+      ],
+      "beat": 1,
+      "inside": 1,
+      "miss": 0,
+      "median_vs_mid_pct": 0.1336,
+      "note": "FY2024 +17.9% (beat; PTC), FY2025 +8.8% (inside, top of range)."
+     },
+     "consensus": null,
+     "consensus_as_of": null,
+     "consensus_source_ids": [],
+     "record_adjusted_guide": 4903,
+     "drivers_imply": 4380,
+     "our_value": 4380,
+     "position": "inside",
+     "gap_to_mid_pct": 0.0126,
+     "drivers_note": "The set converts EBITDA at the guide's own 60% (4,325 / 7,200) in balance.net_debt_horizon_link; all hedged (2026 ~100%).",
+     "why": "Inside, below the record-adjusted 4,902: the FCFbG beats came with the EBITDA beats (PTC, prices) and working capital; no second beat on top of 7,300. Each +100 of FCFbG is ~+$0.3/share via net debt."
+    }
+   ]
+  },
+  "reasoning": "Primary method (power_ipp): generation build quarterly (gen_twh x (gp_eff - fuel_cost) + net capacity + retail_twh x retail_margin + ret_off - fixed costs), valued on 8.9x NTM adjusted EBITDA (8,016) less horizon net debt and preferred/NCI 2,488, plus the Cogentrix tax NPV 630 and the moratorium post-horizon adjustment -495, over 334.6M shares = $145.81 (citation-gate fix 2026-11-04; was $143.56). Cross-check: IPP peers CEG 10.48x / TLN 10.01x / NRG 8.08x NTM EV/EBITDA at 11-04 midday (median 10.01x). Adjusted EBITDA FY2026-29 7,313 / 8,059 / 8,039 / 7,972; data-center load drivers vs the reference paths -3.4 / -14.1 / -73.0 $M FY2027-29. Guided metrics: FY2026 guide 6.8-7.6B, ours 7,313, inside; FY2027 opportunity 7.4-7.8B ex deals, ours 7,405 on its basis. Earlier text: Primary method (power_ipp): generation build quarterly (gen_twh x (gp_eff - fuel_cost) + net capacity + retail_twh x retail_margin + ret_off - fixed costs), valued on 8.9x NTM adjusted EBITDA (7,913) less net debt 20,208 and preferred/NCI 2,488, plus the Cogentrix tax NPV 630 and the moratorium post-horizon adjustment -324, over 334.6M shares = $143.56. Cross-check: IPP peers CEG 10.48x / TLN 10.01x / NRG 8.08x NTM EV/EBITDA at 11-04 midday (median 10.01x); VST 7.84x at 118.61. No DCF (rule), no P/E leg. Guided metrics: FY2026 Adj. EBITDA guide 6.8-7.6B, record-adjusted 7,911, Q3 consensus ~2.1B (no FY figure), ours 7,299, inside. FY2027 opportunity 7.4-7.8B ex deals, record-adjusted 8,558, no consensus, ours 7,399 on its basis (8,053 total), below. FY2026 FCFbG 3.925-4.725B, record-adjusted 4,903, ours ~4,380, inside. This update (trigger: 11-03 election, VST -15% on 11-04): no Vistra filing since the base round (Q3 is 11-06), so actuals, balance and shares are unchanged. Changes: (1) approved driver set: ercot_dc_gw (ERCOT large load energized, ERCOT monthly data; weighted FY2026-29 4.17/4.87/6.08/7.91 GW vs reference 4.17/4.96/6.72/8.64) and pjm_dc_gw (PJM B-9b firm data-center load; weighted 11.47/15.86/20.92/27.40 vs 11.47/15.99/21.36/28.03 GW), mapped into gen_price through open volume x $/MWh per GW (ERCOT 1.2, PJM 0.67), the AWS Comanche Peak premium and a retail offset; EBITDA effect -3.0 / -30.9 / -66.5 $M FY2027-29; (2) post-horizon adjustment -324; (3) multiple 9.0x -> 8.9x (Kilian card: median 10.01x less 1.1x); (4) every year re-argued: cap_rev FY2029 508.3 -> 522.0, fixed costs FY2029 at CPI; (5) top-level guidance_check, comps_summary with fit rows, reference consensus. Not driver-linked: Cogentrix tax NPV adjustment. Engine value 147.47 (base) -> 143.56 (-2.7%); without the moratorium the same set gives 145.25.",
+  "set_review": [],
+  "driver_led": {
+   "date": "2026-10-22",
+   "source": "valuation/driver_models/VST",
+   "gate": {
+    "clean": true,
+    "checked": 6,
+    "fixes": [
+     {
+      "driver": "cap_rev",
+      "issue": "basis 'filing' on projected FY2026-28 values that are derived: filing PJM prices x MW, but non-PJM sold (~189/yr, H1-26 x2) and retail-load capacity bought (8,117 MW-eq from H1-26 411) are estimates",
+      "fix": "basis -> 'estimate' (derivation already present and checks: 556.8 / 532.8 / 507.9 recomputed); notes.md row updated. No value change."
+     },
+     {
+      "driver": "gen_price",
+      "issue": "source cites 10-K p.57 and 10-Q p.56 for hedge levels; neither filing gives hedge percentages (10-K/10-Q pages carry the ERCOT hub price tables). The 100/94/72% figures are from the Q2 release only",
+      "fix": "source re-pointed: hedge levels = Q2 release (as of 2026-08-03); ERCOT North prices = 10-K p.58 / 10-Q p.57; notes.md source cell updated. No value change."
+     }
+    ],
+    "verified": {
+     "aws_comanche_peak": "10-K p.54 (and p.52), repeated in 10-Q: 20-yr PPA, 1,200 MW, delivery begins Q4-2027, ramps to full capacity by 2032. Matches the set; FY2027 carries no AWS step and FY2028 +60 is a partial-ramp judgment inside the estimate.",
+     "hedge_2028": "Q2-2026 release: as of Aug 3, 2026 ~100% 2026 / ~94% 2027 / ~72% 2028 hedged. Matches; 94-72 = 22pt, x 242 TWh x $3 = 160 checks.",
+     "bases": "gen_twh 208,183 GWh (Texas 91,286 + East 114,805 + West 2,092, 10-K pp.63-64); gen_price 12,213/208.18 = 58.665 (Note 3 p.97: 3,188 + 1,142 + 229 - 627 + 8,427 - 293 Texas intersegment unrealized gain + 147 East loss); fuel 5,946 + 4 - 40 - 6 - 487 = 5,417 -> 26.02; cap_rev 793 - 566 = 227; retail 1,622/139.139 = 11.657.",
+     "projections": "H1-26 volumes 100.7 TWh and H2-25 114.5 recomputed from 10-Q/10-K; FY2026 spread 36.65 -> 7,300; FY2027 9,095 contribution -> 8,055; FY2028 -> 7,943; cap_rev path recomputed from PJM prices/MW and day counts; retail 131.3 TWh / 11.60 recomputed.",
+     "formulas": "driver_build segment revenue/EBIT and net_debt_horizon (20,400 - 0.6 x 0.79 x (FY2027 EBITDA - 8,100), uses FY2027 corporate_ebit 3,116) match notes.md; base residuals -0.01%."
+    },
+    "open": [
+     "2028 hedge-book price and the -$3/MWh roll-off on the open 22%, and the AWS (+60) / Meta (+50) PPA premiums: prices undisclosed; judgment, flagged as estimate with derivation (needs an ERCOT/PJM 2028 forward-strip check).",
+     "Cogentrix ~22.7 TWh/yr (55% CF), disposal group 754 MW -> ~2.0 TWh, Permian +0.3 TWh: estimates, flagged.",
+     "Guidance track record still one period (FY2025 +1.9% vs original mid); FY2022-24 not pulled (no value effect: FY2026 sits at 7,300, below the record-adjusted 7,337).",
+     "fuel_cost FY2028 26.0 does not carry the full-year Cogentrix dilution its FY2027 derivation applies (~25.9); no EBITDA effect (gen_price is spread + fuel), revenue only."
+    ],
+    "fv_before": 159.66,
+    "fv_after": 159.66
+   },
+   "quarterly": {
+    "date": "2026-10-23",
+    "source": "valuation/driver_models/VST/quarterly",
+    "gate": {
+     "clean": true,
+     "checked": 34,
+     "fixes": [
+      {
+       "item": "driver_build.segments",
+       "issue": "Annual segment build kept only as an engine workaround; the engine now fills empty segment_build years when driver_build.quarters sets the segments.",
+       "fix": "Removed driver_build.segments and updated driver_build.quarters.note; research target (12m) 147.09 and FY2026-28 revenue/EBIT unchanged."
+      },
+      {
+       "item": "gen_price.quarter_guidance_check.note / notes.md (Street Q3 FY2026 EBITDA ~$2.1B)",
+       "issue": "Cited as the round's supervisor key_drivers; the figure is in runs/2026-10-23/VST/agent_4.json (catalysts[2], sources[34], 8 analysts, TIKR), not in supervisor key_drivers.",
+       "fix": "Citation location corrected; value unchanged (model Q3 ~2,010, ~4% below)."
+      },
+      {
+       "item": "fixed_cost",
+       "issue": "7th driver (want 4-6)",
+       "fix": "moved unchanged to driver_build.quarters.constants (engine gained per-quarter constants 2026-10-29); same values, same citation and derivation"
+      }
+     ],
+     "verified": [
+      "Quarter grid: calendar quarter ends 2025-03-31..2028-12-31, actual = 6 (Q1/Q2 FY2026 10-Qs 0001692819-26-000014 / -000019; Q3 reports 2026-11-06).",
+      "Reported Q1/Q2 FY2026 revenue from contracts 5,001 / 4,401 (H1 9,402), XBRL RevenueFromContractWithCustomerExcludingAssessedTax; FY2025 base 17,586.",
+      "D&A incl. nuclear fuel 608 / 557 (H1 1,165) = Adj. EBITDA reconciliation D&A(b) 611 / 560 (H1 1,171) less Asset Closure 3 / 3; GAAP D&A 484 / 445 + nuclear fuel 126 / 116.",
+      "Ongoing Ops Adj. EBITDA 1,494 / 1,767 = Adj. EBITDA 1,475 / 1,744 less Asset Closure -19 / -23; adjusted EBIT 886 / 1,210 and segment + corporate sums tie; GAAP operating income 1,499 / 553 (XBRL).",
+      "gen_twh Q1/Q2 FY2026 50.487 / 50.257 (MD&A Texas+East+West production GWh); retail_twh 30.109 / 31.800 and retail_margin 68/30.109, 773/31.800; cap_rev net 122 / 134 (Note 3 footnote a: 321-199, 346-212).",
+      "Base-year quarters aggregate to the base; drivers reproduce the live years (quarter_vs_years none); gen_price / fuel_cost / retail_margin wmeans match years.",
+      "Seasonality: FY2025 shares only (23.06/21.91/27.91/27.11% gen volume), Energy Harbor closed 2024-03-01, flagged in notes.",
+      "PJM delivery-year switch June 1: Q2 = 61 days prior DY + 30 days new DY; Q3 FY2026 150.52 = 3,410 MW x 329.17 x 92d + 47.25; Q1/Q2 FY2027 148.27 / 140.22; Q1 FY2028 91 days (leap year).",
+      "Cogentrix from Feb 2027: FY2027 adds 22.7 x 11/12 = 20.81 TWh by FY2025 gas-fleet shares with one month (1.89 TWh) removed from Q1 FY2027 (estimate; close timing and CF unverified, sound derivation).",
+      "FY2028 hedge roll-off -$160M kept: FY2028 gen_price 63.62 vs 63.83, -0.45% in every FY2028 quarter (pro rata to volume).",
+      "FY2026 moves explained: revenue 18,598 -> 19,211 from filed H1 revenue from contracts 9,402; adjusted EBIT 5,255 -> 5,055 from filed H1 D&A incl. nuclear fuel 1,165."
+     ],
+     "open": [
+      "Street Q3 FY2026 EPS not sourced; Street Q3 EBITDA ~$2.1B is secondary (TIKR via agent_4), not independently verified.",
+      "Generation revenue / fuel construction for Q1/Q2 FY2026 (3,815/1,786 and 2,588/945) checked through the Ongoing Ops Adj. EBITDA tie only, not line by line against Note 3."
+     ],
+     "research_target_before": 147.09,
+     "research_target_after": 147.09,
+     "roll_forward_2026_11_02": {
+      "checked": 4,
+      "by": "thread session (self-check of the FY2029 rows only; FY2026-28 unchanged and passed their earlier gate)",
+      "rows": [
+       "quarters: Q1-Q4 FY2029 calendar ends",
+       "gen_twh 242.0 held; fuel_cost 26.0 held; gen_price FY2028 quarters -0.41 $/MWh: AWS Comanche Peak ramp +60 (to 1,200 MW by 2032, 10-K p.54) and hedge roll-off -160 (hedged ~100/84/58% for 2026/27/28, Q4 2025 release 2026-02-26)",
+       "cap_rev held (no PJM 2029/30 auction, flag); retail_twh +1%; retail_margin held; fixed_cost x3,223/3,116",
+       "guidance check: no 2029 outlook; FY2029 Ongoing Ops EBITDA ~ FY2028 less ~$0.2B (spread -100, fixed -110); engine EPS 10.68 vs FY2028 11.15. Q3 FY2026 print 11-06 updates FY2026-28 and must keep FY2029"
+      ],
+      "research_target": {
+       "at_10_23": 147.09,
+       "at_11_03": 146.98,
+       "at_2027_01_15": 146.44
+      }
+     }
+    },
+    "research_target_before": 147.09,
+    "research_target_after": 147.09
+   },
+   "horizon_roll": {
+    "date": "2026-11-02",
+    "note": "bridge point values roll to D + 12m",
+    "source": "valuation/driver_models/hzroll1102"
+   },
+   "near_quarter_link": {
+    "date": "2026-11-04",
+    "note": "stated net debt follows our earnings; GOOGL Services re-anchored on the exit",
+    "source": "valuation/driver_models/ndlink1104"
+   }
+  }
+ },
+ "citation_audit": {
+  "date": "2026-11-04",
+  "note": "Fix step of the split citation gate for the 2026-11-03 model update (gate/merged.json, 21 of 85 failed). Engine value 143.56 -> 145.81.",
+  "corrections": [
+   {
+    "item": "Net debt 2026-06-30 19,160 (reconciled set)",
+    "from": "basis reported",
+    "to": "basis estimate: 19,595 - 435 = 19,160 (value unchanged)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm"
+   },
+   {
+    "item": "Preferred stock + NCI 2,488 (reconciled set)",
+    "from": "basis reported",
+    "to": "basis estimate: 2,476 + 12 = 2,488 (value unchanged)",
+    "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001692819.json"
+   },
+   {
+    "item": "D&A % revenue 11.0% (reconciled set)",
+    "from": "basis guidance",
+    "to": "basis estimate: 2,150 guided D&A / ~19,520 estimated revenue (value unchanged)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "Cogentrix tax-benefit NPV adjustment 700 x 0.9 (reconciled set)",
+    "from": "basis reported",
+    "to": "basis estimate: 700 reported x 0.9 judged closing probability = 630 (value unchanged)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526002589/d62722dex991.htm"
+   },
+   {
+    "item": "thesis_break_reason: agents' thesis-break range and mean",
+    "from": "$112-$120, mean $116.8",
+    "to": "$112-$118, mean $114.6 (thesis break $115 unchanged)",
+    "source": "/mnt/project-files/valuation/runs/2026-10-14/VST/agent_1..5.json thesis_break_price 115/118/112/116/112"
+   },
+   {
+    "item": "disagreements / changes / feedback: 2027 FCFbG ~$4.86B and ~$9.2B 2026-27 called guided",
+    "from": "guidance",
+    "to": "2026 guidance midpoint 4,325 + 2027 estimate 8,100 x 4,325/7,200 = ~4,860 (values unchanged)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "agent_1 net debt 2026-06-30 $19,160M (EV/EBITDA, DCF, model_inputs)",
+    "from": "basis reported",
+    "to": "basis estimate: 19,595 - 435 = 19,160",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000019/vistra-20260630.htm"
+   },
+   {
+    "item": "agent_1 preferred + NCI $2,488M",
+    "from": "basis reported",
+    "to": "basis estimate: 2,476 + 12 = 2,488",
+    "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001692819.json"
+   },
+   {
+    "item": "agent_1 diluted shares at horizon (its own arithmetic: 335.6 - 7.42 + 5.0 + 1.12)",
+    "from": "334.6M",
+    "to": "334.3M",
+    "source": "arithmetic of agent_1 inputs (F103, src 3, src 5, F46)"
+   },
+   {
+    "item": "agent_1 fair value (engine check, shares 334.3M)",
+    "from": 161.81,
+    "to": 161.96,
+    "source": "model_engine.py check; EV/EBITDA 170.82 -> 170.97, DCF 140.80 -> 140.93; scenarios 110.51/161.81/212.16 -> 110.61/161.96/212.35"
+   },
+   {
+    "item": "agent_2 FY2026 adjusted EBITDA $7.25B",
+    "from": "basis guidance",
+    "to": "basis estimate (inside $6.8-7.6B guidance; guided midpoint $7.2B)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "agent_2 D&A % revenue 10.9% (DCF, model_inputs)",
+    "from": "basis guidance",
+    "to": "basis estimate: 2,150 guided D&A / ~19,700 estimated revenue",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "agent_2 minorities $12M",
+    "from": "cited PreferredStockValue concept (src 25)",
+    "to": "cited MinorityInterest concept (new src 38): $12M at 2026-06-30",
+    "source": "https://data.sec.gov/api/xbrl/companyconcept/CIK0001692819/us-gaap/MinorityInterest.json"
+   },
+   {
+    "item": "agent_3 FY2026 adjusted EBITDA $7.3B (engine $7,301M)",
+    "from": "basis guidance",
+    "to": "basis estimate (inside $6.8-7.6B guidance; guided midpoint $7.2B)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "agent_4 D&A % revenue 11% (DCF)",
+    "from": "basis guidance",
+    "to": "basis estimate: 2,150 guided D&A / ~19,500 estimated revenue",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "agent_4 SBC % revenue 0.7%",
+    "from": "basis guidance",
+    "to": "basis estimate: 137 non-cash comp / ~19,500 estimated revenue",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "agent_4 net debt at horizon (its own sum: 19,160 - 4,623 + 1,133 + 1,742 + 3,800)",
+    "from": "$21,232M",
+    "to": "$21,212M",
+    "source": "arithmetic of agent_4 inputs (F105, F81, F98, src 20/21/31)"
+   },
+   {
+    "item": "agent_4 fair value (engine check, horizon net debt 21,212)",
+    "from": 154.38,
+    "to": 154.44,
+    "source": "model_engine.py check; EV/EBITDA 165.20 -> 165.26, DCF 138.16 -> 138.22; scenarios 95.61/154.38/216.51 -> 95.67/154.44/216.57"
+   },
+   {
+    "item": "agent_5 WACC (its own inputs: 0.70 x 11.19% + 0.30 x 5.135%)",
+    "from": "9.25%",
+    "to": "9.37%",
+    "source": "arithmetic of agent_5 inputs (sources 6, 23, 26; mcap ~$51B / claims ~$22B)"
+   },
+   {
+    "item": "agent_5 fair value (engine check, WACC 9.37%)",
+    "from": 161.58,
+    "to": 160.48,
+    "source": "model_engine.py check; DCF 145.91 -> 142.22 (EV/EBITDA 168.30 unchanged); scenarios 108.06/161.58/210.57 -> 107.24/160.48/209.29"
+   },
+   {
+    "item": "Forecaster mean fair value (fair_value.reason, summary, confidence_reason, changes[0].from)",
+    "from": 158.9,
+    "to": 158.7,
+    "source": "agent fair values 161.96 / 162.84 / 153.87 / 154.44 / 160.48 after the agent arithmetic fixes"
+   },
+   {
+    "item": "dcf_check.agents, set_review, disagreements[1], changes[3], feedback: agent_1/4/5 figures",
+    "from": "agent_1 DCF 140.8, agent_4 claims 23.71, agent_5 DCF 145.9 at 9.25% (-13.3%); DCF gaps 13-27%",
+    "to": "agent_1 DCF 140.93, agent_4 claims 23.69, agent_5 DCF 142.22 at 9.37% (-15.5%); DCF gaps 15-27%",
+    "source": "model_engine.py check of the corrected agent files"
+   },
+   {
+    "item": "guidance_check track record FY2024 actuals 5,656 / 2,888",
+    "from": "cited to the May 2024 release only",
+    "to": "actual_source_ids [21] (FY2024 results release); first guide stays on src 22",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000119312525037636/d126557dex991.htm"
+   },
+   {
+    "item": "guidance_check track record FY2025 actuals 5,912 / 3,592 (EBITDA, opportunity, FCFbG)",
+    "from": "cited to the May 2024 / Feb 2025 releases",
+    "to": "actual_source_ids [23] (FY2025 results release, 8-K Ex. 99.1, 2026-02-26; shows $5,912M and $3,592M, re-opened 2026-11-04)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526073364/d21122dex991.htm"
+   },
+   {
+    "item": "comps_review",
+    "from": "median 10.06x, multiple 9.0x, CEG 10.9 / TLN 10.1 / NRG 8.5 (10-23 close)",
+    "to": "median 10.01x, multiple 8.9x, CEG 10.48 / TLN 10.01 / NRG 8.08 (11-04 midday; Kilian card 2026-11-04)",
+    "source": "src 25 (Twelve Data quotes 11-04), src 17 (peers.json consensus), src 51"
+   },
+   {
+    "item": "CFO quotes (src 2)",
+    "from": "Bigdata.com page (JavaScript only)",
+    "to": "The Motley Fool transcript: quotes confirmed; Meta ~150 relabelled as derived (700 less Cogentrix ~552)",
+    "source": "https://www.fool.com/earnings/call-transcripts/2026/08/14/vistra-vst-q2-2026-earnings-call-transcript/"
+   },
+   {
+    "item": "Cogentrix CCGT MW / gen_twh FY2027-29",
+    "from": "~4,600 MW, 22.7 TWh/yr; 239.81 / 242.00 / 242.00",
+    "to": "3,798 MW CCGT x 55% + 1,698 MW peakers x 5% = 19.04 TWh/yr; 236.46 / 238.34 / 238.34",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526002589/d62722dex991.htm"
+   },
+   {
+    "item": "10-K / 10-Q driver figures not re-openable (www.sec.gov 403 to curl; WebFetch reads ~113k characters)",
+    "from": "cited to 10-K/10-Q pages",
+    "to": "re-sourced: Q2 2026 presentation (hedges, forwards, PJM positions, Permian Q2 2028, pending sale, retail volumes); FY2025 release (retail 1,622); driver gates 2026-10-22 / 11-03 for the 10-K bases and Q1/Q2 volumes; ERCOT North $32.01 / $30.20 and the Meta 'full delivery' step no longer used; 'one-time supply gains' and 'weather' wording removed",
+    "source": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf"
+   },
+   {
+    "item": "PJM capacity positions (cap_rev)",
+    "from": "11,527 / 10,566 / 10,924 MW; FY2026-29 557.0 / 533.2 / 508.3 / 522.0",
+    "to": "11,746 / 10,567 / 10,926 MW (slide 22 zone sums); 570.3 / 544.2 / 508.5 / 522.2",
+    "source": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf"
+   },
+   {
+    "item": "ercot_dc_gw claim and path",
+    "from": "ramp 'continued while the Abbott letter was in force'; L0 +0.6 GW/yr in every scenario; weighted 4.17 / 4.87 / 6.08 / 7.91 GW",
+    "to": "claim removed; approved scenario (b) flat at 4.132 GW (Sep-26) until mid-2028; weighted 4.10 / 4.49 / 5.75 / 8.14 GW",
+    "source": "https://www.ercot.com/files/docs/2026/10/16/ERCOT-Monthly-Operational-Overview-September.pdf"
+   },
+   {
+    "item": "long_dated_review rf / junior notes / OEG-Brattle / older peers.md",
+    "from": "not reopened",
+    "to": "8-K and OEG deck re-opened (ok); rf 5.21% (2026-10-13) from the 2026-10-14 gate; peers.md 2026-10-14 11.8 / 10.6 / 8.9x checked locally; no value change",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000114036126037577/ef20082680_8k.htm"
+   },
+   {
+    "item": "gen_price FY2027-29",
+    "from": "63.83 / 63.62 / 63.21 (roll-off -160 x2 at ~$3/MWh, Meta +50)",
+    "to": "64.47 / 64.66 / 64.91 (no roll-off charge: 2028 forwards at or above 2027; Meta held; Cogentrix TWh corrected)",
+    "source": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf"
+   },
+   {
+    "item": "fuel_cost FY2027",
+    "from": 25.9,
+    "to": 26.0,
+    "source": "observed flat level (FY2025 26.02, FY2026 26.0); EBITDA-neutral"
+   },
+   {
+    "item": "retail_twh FY2027-29",
+    "from": "133.0 / 134.0 / 135.34",
+    "to": "132.58 / 133.90 / 135.24 (+1%/yr)",
+    "source": "arithmetic"
+   },
+   {
+    "item": "open_tx / open_east",
+    "from": "13.2 / 26.4 / 46.64; 15 / 33.3 / 60.6 TWh (15/30/53%% open)",
+    "to": "5.28 / 24.64 / 44.0; 5.63 / 31.11 / 57.14 TWh (6/28/50%%: Aug 2026 ladder, 2029 trend)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm"
+   },
+   {
+    "item": "Adjusted EBITDA path FY2026-29 / quarter constant fixed_cost",
+    "from": "7,299 / 8,053 / 7,913 / 7,710; no confidence",
+    "to": "7,313 / 8,059 / 8,039 / 7,972; confidence low / medium",
+    "source": "engine"
+   },
+   {
+    "item": "Data-center moratorium post-horizon adjustment",
+    "from": -323.5,
+    "to": -494.6,
+    "source": "recomputed on the re-based ERCOT paths (inputs_detail)"
+   },
+   {
+    "item": "fair_value",
+    "from": 143.56,
+    "to": 145.81,
+    "source": "python3 valuation/model_engine.py check supervisor.json"
+   }
+  ],
+  "corrections_2026-10-23": [
+   {
+    "item": "comps_review.reconciled_peer_median_pe_ntm / comps_summary.median_pe_ntm",
+    "from": "11.5 (mixed consensus bases)",
+    "to": "null, with pe_note stating the bases and that P/E is not a leg",
+    "source": "runs/2026-10-23/VST/peers.md"
+   },
+   {
+    "item": "thesis_break_reason peer gaps",
+    "from": "~0.9x below NRG (8.9x); ~1.8x below VST's ~9.8x",
+    "to": "~0.5x below NRG (8.5x, NRG.ev_ebitda_ntm 2026-10-23); ~1.3x below VST's ~9.3x NTM standalone (estimate); $115 unchanged",
+    "source": "runs/2026-10-23/VST/peers.md"
+   }
+  ]
+ },
+ "key_drivers_text_before": [
+  "2027 base ~$8.1B Ongoing Ops Adjusted EBITDA: low end of the $7.4-7.8B midpoint opportunity plus ~$0.7B Cogentrix/Meta (CFO, Q2 call); the Nov 6 update is the test.",
+  "Horizon multiple 9.5x NTM pre-SBC adjusted EBITDA vs the 10.6x IPP median: each 0.25x is ~$6/share.",
+  "FY2028 EBITDA (~79% of the horizon NTM) with only ~72% hedged and ERCOT forwards 'meaningfully lower': no management figure; $8.5B is judgment.",
+  "PJM capacity design after the 2029/30 collar (decision path after PJM's end-2026 stakeholder review; p 0.4 of a continued cap or administrative price): open, not tripped.",
+  "Rates / AI-power factor: the -6.5% on 2026-10-14 was the group on a hot CPI (10-yr 5.21%); the multiples imply an ~8.4% WACC, below a 9.0% build-up."
+ ],
+ "comps_summary": {
+  "peer_count_flag": "3 peers (CEG, TLN, NRG): the only US-listed merchant generators with data-center contracting; regulated utilities earn allowed returns on rate base; European generators sit in different market designs (context only). No more good peers exist; none added to reach 10.",
+  "median_ev_ebitda_ntm": 10.01,
+  "mean_ev_ebitda_ntm": 9.52,
+  "median_pe_ntm": null,
+  "as_of": "2026-11-04",
+  "multiple_used": 8.9,
+  "premium_discount": "-1.1x (~-11.0%) to the IPP median, as at 10-23 and 10-14",
+  "pe_note": "not used: the three P/E NTM figures are on different consensus bases (CEG Nasdaq/Zacks fiscal-year blend; TLN, NRG FMP next-four-quarter sums), so no P/E median is struck; P/E is not a leg in this set",
+  "exit_k_decision": "Exit k=0.8 rule (2026-10-26 12:16Z) not applied to VST: Kilian card 2026-10-26 15:02Z 'Keep the argued 9.0x' (alternatives were 9.21x on standalone EBITDA, own 9.01x, and 8.32x on FMP consensus, own 7.93x). The ERCOT/PJM discount case stands in for the rule. Rejected version kept as *.exitk-rejected.",
+  "rows": [
+   {
+    "peer": "CEG",
+    "ev_ebitda_ntm": 10.48,
+    "price": 239.98,
+    "price_date": "2026-11-04",
+    "fact_ids": [
+     "CEG.ebitda_ntm",
+     "CEG.mcap",
+     "CEG.ev"
+    ],
+    "source_ids": [
+     17,
+     25
+    ],
+    "fit": {
+     "segment": "whole company: nuclear-heavy merchant generation plus retail supply",
+     "revenue_share": 1.0,
+     "why": "Same integrated generation + retail model with hyperscaler nuclear contracts"
+    }
+   },
+   {
+    "peer": "TLN",
+    "ev_ebitda_ntm": 10.01,
+    "price": 325.69,
+    "price_date": "2026-11-04",
+    "fact_ids": [
+     "TLN.ebitda_ntm",
+     "TLN.mcap",
+     "TLN.ev"
+    ],
+    "source_ids": [
+     17,
+     12,
+     25,
+     40
+    ],
+    "fit": {
+     "segment": "Generation (merchant PJM nuclear + gas, data-center PPA)",
+     "revenue_share": 0.3,
+     "why": "VST Generation = 5,950 of 19,573 FY2028 revenue in this build (retail ~70% of revenue, ~20% of EBITDA); consensus pre-dates TLN's 11-03 print"
+    }
+   },
+   {
+    "peer": "NRG",
+    "ev_ebitda_ntm": 8.08,
+    "price": 82.26,
+    "price_date": "2026-11-04",
+    "fact_ids": [
+     "NRG.ebitda_ntm",
+     "NRG.mcap",
+     "NRG.ev"
+    ],
+    "source_ids": [
+     17,
+     25
+    ],
+    "fit": {
+     "segment": "whole company: ERCOT + East generation with the largest Texas retail book",
+     "revenue_share": 1.0,
+     "why": "Closest Texas-integrated peer"
+    }
+   }
+  ]
+ },
+ "judgment_calls_for_kilian": [
+  {
+   "question": "Moratorium weights on the load paths: Texas pause 0.45, PJM-state spread 0.10?",
+   "options": [
+    "0.45 / 0.10 (booked): $145.81",
+    "0.30 / 0.05: $145.96 (+0.1%)",
+    "0.60 / 0.20: $145.55 (-0.2%)",
+    "none: $147.62 (+1.2%)"
+   ],
+   "recommendation": "0.45 / 0.10",
+   "why": "The thread's weights; 0.45 matches census's 12-month probability of a governor-ordered pause in force. The value is not very sensitive because hedges carry FY2027-28. Values from the 2026-11-04 gate-fix set (the post-horizon adjustment held at the booked value except 'none').",
+   "fv_effect_pct": -1.2
+  },
+  {
+   "question": "ERCOT price sensitivity: keep the approved $1.2/MWh per GW, or re-derive it on the re-based GW gap ($2.7)?",
+   "options": [
+    "1.2 (approved proposal): as booked",
+    "2.7: $146.53 (+0.5%)"
+   ],
+   "recommendation": "1.2",
+   "why": "Approved; the value barely moves because the retail offset scales with the same sensitivity (it offsets most of the open-volume loss).",
+   "fv_effect_pct": 0.5
+  },
+  {
+   "question": "PJM price sensitivity $0.67/MWh per GW (derived from exposure (c) over the B-9b zone gaps) vs 1.0?",
+   "options": [
+    "0.67: as booked",
+    "1.0: $145.71 (-0.1%)"
+   ],
+   "recommendation": "0.67",
+   "why": "Same derivation as ERCOT; the PJM market is roughly twice ERCOT by load, so a smaller per-GW effect fits.",
+   "fv_effect_pct": -0.1
+  },
+  {
+   "question": "Retail offset at half retention (r_ret 0.5) from FY2028: keep?",
+   "options": [
+    "Keep: as booked",
+    "Drop (if hedge % already counts retail load): $144.20 (-1.1%)"
+   ],
+   "recommendation": "Keep",
+   "why": "exposure.md evidences +$70-140M/yr in (b); half retention limits double counting with hedges.",
+   "fv_effect_pct": -1.1
+  },
+  {
+   "question": "Post-horizon moratorium adjustment (excess FY2029+ loss over the NTM level, run-rate at 8.9x): keep?",
+   "options": [
+    "Keep: -495 $M",
+    "None: $147.29 (+1.0%)"
+   ],
+   "recommendation": "Keep",
+   "why": "Kilian rule: never ignore effects past 12 months; the expected loss grows to ~-$128M in FY2030 vs ~-$27M in the NTM window.",
+   "fv_effect_pct": 1.0
+  },
+  {
+   "question": "ERCOT paths under the Texas pause: flat at the post-letter 4.132 GW until the ramp restarts mid-2028 (approved scenario (b), booked), or let already-approved loads keep energizing?",
+   "options": [
+    "Flat (approved (b)): $145.81",
+    "Approved backlog keeps ramping 1.25 GW/yr: $145.89 (+0.1%)"
+   ],
+   "recommendation": "Flat",
+   "why": "The post-letter ERCOT data show approvals flat at 9,456 MW (Aug, Sep) and energized load down 4.37 -> 4.13 GW; the earlier +0.6 GW/yr ramp claim was found false by the gate.",
+   "fv_effect_pct": 0.1
+  },
+  {
+   "question": "FY2028-29 hedge roll-off: no charge (Q2 deck 2028 forwards at or above 2027; booked) or -$1.81/MWh on the 22pt that opens each year?",
+   "options": [
+    "No charge: $145.81",
+    "-$1.81/MWh (ERCOT North realized Q2-26 vs FY2025): $143.67 (-1.5%)"
+   ],
+   "recommendation": "No charge",
+   "why": "The company's own 2026-06-30 forwards (slide 20) and its 2027 hedge book $468M below market show no lower price on the volume that opens; the realized-spot gap is not a forward.",
+   "fv_effect_pct": -1.5
+  },
+  {
+   "question": "Meta PPA: hold the derived ~$150M premium flat (booked) or add +$50M from FY2028 for full delivery?",
+   "options": [
+    "Flat 150: $145.81",
+    "+50 from FY2028: $146.92 (+0.8%)"
+   ],
+   "recommendation": "Flat 150",
+   "why": "The +50 step cited 10-K p.53, which could not be re-opened; the observed level is held.",
+   "fv_effect_pct": 0.8
+  },
+  {
+   "question": "2029 hedge level (not disclosed): ~50% from the ladder trend (booked) or ~47%?",
+   "options": [
+    "~50%: $145.81",
+    "~47%: $145.81 (+0.0%)"
+   ],
+   "recommendation": "~50%",
+   "why": "Linear trend of the 100/94/72 ladder; FY2029 sits outside the NTM window, so the value barely moves.",
+   "fv_effect_pct": 0.0
+  },
+  {
+   "question": "2027 open volume: the fleet ~94% (Aug 3, booked) or the deck's 6-30 segment split (Texas 15.2 / East 15.6 TWh open)?",
+   "options": [
+    "Fleet 94%: $145.81",
+    "Segment split: $145.75 (-0.0%)"
+   ],
+   "recommendation": "Fleet 94%",
+   "why": "Thread instruction: the cited Aug 2026 ladder; the segment split is older (6-30) but shows Texas gas less hedged.",
+   "fv_effect_pct": -0.0
+  },
+  {
+   "question": "Retail volume FY2027-29: +1%/yr (booked) or flat at FY2026?",
+   "options": [
+    "+1%/yr: $145.81",
+    "Flat: $145.05 (-0.5%)"
+   ],
+   "recommendation": "+1%/yr",
+   "why": "Vistra's ERCOT load-growth view 4-6%/yr (src 35) with residential retail well below system load; the H1-26 decline is not extended.",
+   "fv_effect_pct": -0.5
+  }
+ ]
+}

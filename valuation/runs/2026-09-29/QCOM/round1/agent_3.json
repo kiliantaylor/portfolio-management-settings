@@ -1,0 +1,82 @@
+{
+  "symbol": "QCOM", "agent_id": "agent_3", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 46, "p": 0.993}, {"K": 74, "p": 0.975}, {"K": 92, "p": 0.935}, {"K": 111, "p": 0.855},
+    {"K": 129, "p": 0.76}, {"K": 148, "p": 0.65}, {"K": 166, "p": 0.545}, {"K": 184, "p": 0.447},
+    {"K": 203, "p": 0.357}, {"K": 221, "p": 0.285}, {"K": 249, "p": 0.197}, {"K": 277, "p": 0.134},
+    {"K": 323, "p": 0.071}, {"K": 369, "p": 0.037}, {"K": 461, "p": 0.01}
+  ],
+  "ladder_1m": [
+    {"K": 147.57, "p": 0.942}, {"K": 156.80, "p": 0.873}, {"K": 166.02, "p": 0.769}, {"K": 171.55, "p": 0.692},
+    {"K": 177.09, "p": 0.608}, {"K": 184.47, "p": 0.493}, {"K": 191.84, "p": 0.383}, {"K": 197.38, "p": 0.308},
+    {"K": 202.91, "p": 0.242}, {"K": 212.13, "p": 0.155}, {"K": 221.36, "p": 0.093}
+  ],
+  "one_month_reasoning": "Qualcomm's fiscal Q4 FY26 report is expected in early-to-mid November (MarketBeat lists Nov 11), i.e. outside the Oct 30 window, so no company earnings fall inside it. In-window items are second-order: Samsung preliminary Q3 results (early Oct), TSMC Q3 results (mid-Oct), Apple's FQ4 report around the end of October (iPhone 18 build/modem commentary), iPhone 18 teardowns confirming Qualcomm's reduced modem share, CPI and the late-October FOMC. The stock just fell ~9% in two sessions (from $201.97 on Sep 25/27 to $184.47) after a September rally on the Amazon deal and Apple license renewal; short-horizon reversal and continued profit-taking roughly offset, and the Sep 29 downgrade plus 10b5-1 insider sales are known. I therefore use a near-symmetric lognormal centred at ~$184 with ~14% monthly sigma (slightly below 54%/3.5 because no earnings print is in the window).",
+  "fair_value": {
+    "value": 165.0,
+    "method": "Blend of forward P/E (NTM EPS at Sep-2027 of ~$10.75 x 15x = $161, weight 0.6) and FCF yield (FY27 FCF ~$9.0B / ~1.08B diluted shares = $8.33/share at a 5% yield = $167, weight 0.4); skeptic haircuts to consensus for the Apple modem cliff, memory-driven handset weakness and QCT margin compression.",
+    "methods": [
+      {"name": "P/E", "value": 161.0, "weight": 0.6,
+       "inputs": "NTM EPS as of Sep 2027 (mostly FY28) $10.75 x 15x",
+       "inputs_detail": [
+         {"input": "FY2027 EPS consensus", "value": "$10.84 (FY26 $10.69)", "basis": "consensus", "source_ids": [7], "derivation": "Zacks consensus, revised down 0.4% in the week to late Sep 2026."},
+         {"input": "NTM normalized EPS", "value": "$9.30 (down from $9.80 in June)", "basis": "consensus", "source_ids": [6], "derivation": "TIKR/S&P normalized NTM figure; shows estimates still falling."},
+         {"input": "NTM EPS at Sep 2027 (skeptic)", "value": "$10.75", "basis": "estimate", "source_ids": [1, 5, 7, 8], "derivation": "Start from FY27 consensus $10.84; FY27 at risk from Apple modem share 'materially below 20%' (Apple chip revenue ~-50% Q/Q into Dec quarter) and QCT EBT margin guided to 23-25%, so I use ~$10.2 for FY27; FY28 recovers to ~$11.0 as data center (revenue from Dec-2026 quarter) and auto (~$7B run rate) scale and price increases flow through; NTM at Sep-27 ~ weighted mostly FY28 = ~$10.75."},
+         {"input": "Target multiple", "value": "15x", "basis": "judgment", "source_ids": [4, 6, 10], "derivation": "Stock currently ~17x FY27 consensus, ~20x normalized NTM and 23.4x trailing; a handset-dependent business with falling EPS historically de-rates toward mid-teens; I allow a modest premium to the low end for data-center optionality but not the current ~20x."}
+       ]},
+      {"name": "FCF yield", "value": 167.0, "weight": 0.4,
+       "inputs": "FY27 FCF $9.0B; diluted shares 1.08B; required FCF yield 5%",
+       "inputs_detail": [
+         {"input": "9-month FY26 FCF", "value": "~$6.8B (OCF $8.4B less capex $1.6B)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY27 FCF", "value": "$9.0B", "basis": "estimate", "source_ids": [1, 8], "derivation": "FY26 annualizes to ~$9.1B; flat for FY27 as margin compression and data-center R&D offset working-capital and growth in auto/IoT."},
+         {"input": "Diluted shares", "value": "1.08B", "basis": "estimate", "source_ids": [1, 4, 11], "derivation": "1.057B diluted at Q3 FY26 plus ~19M shares issued for software acquisition and up to ~$4B of Amazon warrants (~20M shares at ~$185), partly offset by ~$5.6B/yr buybacks."},
+         {"input": "Required FCF yield", "value": "5%", "basis": "judgment", "source_ids": [10, 13], "derivation": "A2-rated, 1.8% dividend yield, ~$10.8B net debt ($15.3B debt less $4.5B cash); ex-growth semis cash-flow compounders trade around 5-6% FCF yield; choose low end for non-handset growth."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 120.0, "prob": 0.3, "story": "Memory crunch persists through 2027 and OEMs keep down-specing to prior-gen chips; Apple modem revenue collapses toward ~$1-2B; QCT margins stay in low-20s; data center revenue is lumpy and the flagship chips slip to 2028+. FY27 EPS ~$9.3, stock de-rates to ~13x = ~$120."},
+    "base": {"price": 175.0, "prob": 0.45, "story": "FY27 EPS ~$10.2 (below consensus $10.84) with a handset trough mid-2027; auto and IoT grow, Amazon/data-center revenue starts but is small; NTM EPS ~$10.9 at ~16x = ~$175."},
+    "bull": {"price": 250.0, "prob": 0.25, "story": "Handset trough passes with price increases restoring margins, Amazon/hyperscaler custom silicon ramps visibly, non-handset growth >60% as guided; market pays ~20x on ~$12.5 forward EPS = ~$250, retesting the 52-week high."}
+  },
+  "thesis_break_price": 120.0,
+  "thesis_break_reason": "Below the $121.99 52-week low and ~11x consensus FY27 EPS; trading there would most likely mean earnings are heading toward ~$9 or lower (handset decline deepening beyond the Apple cliff, QCT margin below 23%, or the Amazon/data-center ramp slipping), not ordinary volatility.",
+  "catalysts": [
+    {"date": "2026-10 (late)", "event": "Apple FQ4 results and iPhone 18 teardowns confirming Qualcomm modem share", "direction": "-"},
+    {"date": "2026-11-11", "event": "Q4 FY26 results and Q1 FY27 guide (first data-center revenue quarter; Apple revenue ~-50% Q/Q)", "direction": "?"},
+    {"date": "2027-02 (early)", "event": "Q1 FY27 results: handset trough and QCT margin trajectory", "direction": "?"},
+    {"date": "2027-04-01", "event": "Renewed Apple patent license takes effect (terms undisclosed)", "direction": "?"},
+    {"date": "2027 (TBD)", "event": "Third Circuit ruling on Arm's appeal; China SAMR Autotalks probe outcome", "direction": "-"},
+    {"date": "2027-04/05", "event": "Q2 FY27 results; memory pricing/allocation update", "direction": "?"},
+    {"date": "2027-07 (late)", "event": "Q3 FY27 results; FY28 non-handset trajectory vs $40B-by-2029 target", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "How far Apple modem revenue falls in FY27 (share already 'materially below' the 20% guide)",
+    "Duration of the AI-driven DRAM shortage and handset OEM down-specing",
+    "Whether price increases restore QCT margins (management says it takes several quarters)",
+    "Timing and margin of Amazon custom-silicon revenue vs dilution from Amazon warrants and M&A shares",
+    "Terms of the renewed Apple license (undisclosed) and QTL stability",
+    "Arm appeal and China regulatory risk"
+  ],
+  "reasoning": "Skeptic lane. Hard facts: Q3 FY26 handsets -20% y/y to $5.1B, QTL -3%, auto +61%; Q4 guide $9.7-10.5B / EPS $2.05-2.25 with QCT EBT margin falling to 23-25% on memory/wafer/packaging costs (sources 1, 8). Apple's iPhone 18 modem share came in materially below 20%, with Apple chip revenue ~halving into the Dec quarter (5). Estimates are drifting down (FY27 consensus $10.84; normalized NTM $9.30 from $9.80) (6, 7), Zacks Rank moved to Strong Sell, a Sep-29 Buy-to-Hold downgrade calls the $18 EPS/2029 target best-case (2), JPMorgan was at Neutral with a $140 target in April (3), and the CEO and CFO sold under 10b5-1 plans in September (9, 10) - weak signals on their own. Dilution: ~19M shares for a software deal and up to $4B of Amazon warrants (4, 11). Offsets I weigh honestly: A2 credit and modest leverage (13), Apple license renewed from Apr-2027 (12), Amazon's up-to-$60B multi-generation commitment and a raised $7B auto run-rate (1, 11), and Arm largely lost at trial (15). I found no short-seller report or accounting red flag. Net: stock at ~17x a consensus I think is 5-6% too high, so fair value ~$165 (P/E 161, FCF 167), about 10% below the price. Scenario mean ~$177 with dividend ~2%. For the distribution I centre the median at ~$174 and use ~42% log-sigma (below the 54% realized, which was inflated by event-driven swings, but above a typical large cap given the binary data-center story), giving P(>= today's $184) ~45%. Research limited: Alpha Vantage rate-limited and Twelve Data price targets paywalled; several paywalled pages (Seeking Alpha news, BofA note) read only via summaries.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "Qualcomm Q3 FY2026 earnings release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/804328/000080432826000085/qcom062826erex991.htm", "date": "2026-07-29", "type": "filing", "in_lane": false},
+    {"title": "Qualcomm: Downgrading For The First Time In Over A Year", "url": "https://seekingalpha.com/article/4950719-qualcomm-downgrading-for-the-first-time-in-over-a-year", "date": "2026-09-29", "type": "newsletter", "in_lane": true},
+    {"title": "JPMorgan downgrades Qualcomm stock rating on datacenter concerns", "url": "https://www.investing.com/news/analyst-ratings/jpmorgan-downgrades-qualcomm-stock-rating-on-datacenter-concerns-93CH-4618128", "date": "2026-04-16", "type": "sell-side", "in_lane": true},
+    {"title": "Qualcomm Selloff Shows the Risk of Paying Early for AI Optionality", "url": "https://www.investing.com/analysis/qualcomm-selloff-shows-the-risk-of-paying-early-for-ai-optionality-200682992", "date": "2026-06-29", "type": "newsletter", "in_lane": true},
+    {"title": "Apple's C2 Modem Arrives Faster Than Qualcomm Expected, Slashing Revenue by Half", "url": "https://www.techtimes.com/articles/322279/20260730/apples-c2-modem-arrives-faster-qualcomm-expected-slashing-revenue-half.htm", "date": "2026-07-30", "type": "press", "in_lane": true},
+    {"title": "Qualcomm Stock Fell 7% in a Day as Its AI and Apple Rally Cooled (TIKR)", "url": "https://finance.yahoo.com/markets/stocks/articles/qualcomm-stock-fell-7-day-143138931.html", "date": "2026-09-29", "type": "press", "in_lane": false},
+    {"title": "Should You Reconsider QCOM Stock Amid Downward Estimate Revisions? (Zacks)", "url": "https://finance.yahoo.com/markets/stocks/articles/reconsider-qcom-stock-amid-downward-135200289.html", "date": "2026-09", "type": "sell-side", "in_lane": true},
+    {"title": "Qualcomm Faces Margin Pressure From Rising Costs: Can it Recover? (Zacks)", "url": "https://finance.yahoo.com/markets/stocks/articles/qualcomm-faces-margin-pressure-rising-154000528.html", "date": "2026-08", "type": "sell-side", "in_lane": true},
+    {"title": "Qualcomm EVP, CFO & COO Palkhiwala sells $457,129 in QCOM stock (Form 4)", "url": "https://www.investing.com/news/insider-trading-news/qualcomm-evp-cfo--coo-palkhiwala-sells-457129-in-qcom-stock-93CH-4898563", "date": "2026-09-11", "type": "filing", "in_lane": true},
+    {"title": "Insider Selling: Qualcomm CEO Sells $2,000,000 in Stock", "url": "https://www.marketbeat.com/instant-alerts/insider-insider-selling-qualcomm-nasdaq-qcom-ceo-sells-200000000-in-stock-2026-09-25/", "date": "2026-09-25", "type": "data", "in_lane": true},
+    {"title": "Qualcomm strikes AI chip deal with Amazon, offers right to buy about $4 billion in stock", "url": "https://www.ksl.com/article/51621373/qualcomm-amazon-to-develop-custom-chips-for-ai-data-centers", "date": "2026-09-08", "type": "press", "in_lane": false},
+    {"title": "Qualcomm Announces Renewal of Global Patent License Agreement with Apple", "url": "https://www.qualcomm.com/news/releases/2026/09/qualcomm-announces-renewal-of-global-patent-license-agreement-wi", "date": "2026-09-24", "type": "company", "in_lane": false},
+    {"title": "Qualcomm's Credit Ratings: A Strong Investment-Grade Profile", "url": "https://rating-evidence.com/2026/01/28/qualcomms-credit-ratings-a-strong-investment-grade-profile-in-a-competitive-sector/", "date": "2026-01-28", "type": "other", "in_lane": true},
+    {"title": "Chinese regulators are investigating Qualcomm's acquisition of Autotalks", "url": "https://www.engadget.com/big-tech/chinese-regulators-are-investigating-qualcomms-acquisition-of-autotalks-121540269.html", "date": "2025-10", "type": "press", "in_lane": true},
+    {"title": "Qualcomm Form 10-Q for quarter ended June 28, 2026 (legal proceedings: Arm appeal)", "url": "https://www.sec.gov/Archives/edgar/data/0000804328/000080432826000086/qcom-20260628.htm", "date": "2026-07", "type": "filing", "in_lane": true},
+    {"title": "Qualcomm (QCOM) Cools Off Amid Broader Tech Pullback and Insider Selling", "url": "https://www.fxleaders.com/news/2026/09/29/qualcomm-qcom-cools-off-amid-broader-tech-pullback-and-insider-selling/", "date": "2026-09-29", "type": "press", "in_lane": false},
+    {"title": "Qualcomm (QCOM) Earnings Date and Reports", "url": "https://www.marketbeat.com/stocks/NASDAQ/QCOM/earnings/", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

@@ -1,0 +1,1372 @@
+{
+ "date": "2026-10-21",
+ "symbol": "SPCX",
+ "clean": true,
+ "checked": 150,
+ "ok": 128,
+ "fixed": 22,
+ "failures": [
+  {
+   "item": "gross margin Q4-FY2026 guide as of 2026-10-20",
+   "value": "0.5527-0.5527",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "mislabelled",
+   "fix": "no numeric guide (guide_low/high null); 0.5527 moved to guide_reading, basis estimate, derivation 1 - 3,495 / 7,814, confidence medium; position and gap against the reading (source: Q3 call transcript (source 19); Q3 Ex.99.1 Q2 column (source 18); 10-Q Q2 (source 14))"
+  },
+  {
+   "item": "Connectivity revenue (long-term target) long-term (no year given) guide as of 2026-10-20",
+   "value": "200000.0-300000.0",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "mislabelled",
+   "fix": "no numeric guide (null); 'several hundred billion' quoted; $200-300B kept as guide_reading, basis estimate, confidence low; record adjustment and gap against the reading (source: Q3 call transcript (source 19); deep/apply_deep.py)"
+  },
+  {
+   "item": "revenue Q3-2026 capex: first guide (2026-08-04) / reported actual",
+   "value": "18369.0-18369.0 / 19593.0",
+   "cited": "https://www.webull.com/news/15387111038133248",
+   "result": "mislabelled",
+   "fix": "first_guide null (qualitative 'very similar to the current quarter'); 18,369 = Q2 actual capex moved to first_guide_reading, basis estimate, confidence medium; actual 19,593 (Q3 Ex.99.1) (source: Q2 call (sources 20, 34); Q3 Ex.99.1 (source 18))"
+  },
+  {
+   "item": "capex Q4-FY2026 consensus as of 2026-10-21",
+   "value": "30525.0",
+   "cited": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "result": "mislabelled",
+   "fix": "consensus null; 30,525 moved to consensus_implied, basis estimate (FY26 consensus 78,594 - 9M actual 48,069), confidence low (source: MarketScreener finances 2026-10-21 (source 23); Q3 Ex.99.1 (source 18))"
+  },
+  {
+   "item": "ARR (December 2026 revenue x 12) FY2026 consensus as of 2026-10-21",
+   "value": "90024.0",
+   "cited": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "result": "mislabelled",
+   "fix": "consensus null; 90,024 moved to consensus_implied, basis estimate (Q4-26 consensus net sales 22,506 x 4), confidence low (source: MarketScreener finances 2026-10-21 (source 23))"
+  },
+  {
+   "item": "ARR (December 2027 revenue x 12) FY2027 consensus as of 2026-10-21",
+   "value": "237648.0",
+   "cited": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "result": "mislabelled",
+   "fix": "consensus null; 237,648 moved to consensus_implied, basis estimate (Q4-27 consensus net sales 59,412 x 4), confidence low (source: MarketScreener finances 2026-10-21 (source 23))"
+  },
+  {
+   "item": "sotp.Connectivity.echostar",
+   "value": "-$50,198M in HY1: $8,500M cash + 261.8M Class A shares at the $159.28 close",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "result": "mislabelled",
+   "fix": "estimate (derived mark-to-market: 261.8M x $159.28 + $8,500M = $50,198M; the filing values the deal at $19.6B), confidence medium (source: 424B4 (source 21); Twelve Data close (source 25))"
+  },
+  {
+   "item": "sotp.SI_fleet.spot_contracts",
+   "value": "Google, Anthropic, Reflection treated as spot capacity (no separate contract value)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm",
+   "result": "mislabelled",
+   "fix": "judgment (estimate): a modelling choice from the 90-day termination terms; Google's $920M/month contract value noted and not counted; confidence medium (source: FWP (source 11); 424B4 (21); CORRESP (12); Mobile World Live (41))"
+  },
+  {
+   "item": "sotp.Connectivity.peers",
+   "value": "Filing EV/EBITDA (TTM, GAAP operating income + D&A): VZ 7.2x, T 6.8x, TMUS 7.7x, IRDM 16.1x; median 7.5x. NTM (MarketScreener): TMUS 6.3x, IRDM 12.0x. ASTS and VSAT n/m",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000732712.json",
+   "result": "not_found",
+   "fix": "median 7.02x on the filing-EV names (VZ 7.24x, T 6.80x); TMUS 7.7x and IRDM 16.1x shown separately (MarketScreener EV, aggregator); TTM windows stated; basis estimate; peer-multiple sensitivity now 7.0x (source: SEC XBRL companyfacts VZ, T, TMUS, IRDM (sources 66-69); MarketScreener (28, 39); deep/peers_conn.py)"
+  },
+  {
+   "item": "MarketScreener consensus 2028 NI $118.2B on EBT $122.8B (~4% tax)",
+   "value": "118.2 / 122.8",
+   "cited": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "result": "wrong",
+   "fix": "2027 NI $46,227M / EBT $50,569M = 8.6%; 2028 NI $127,415M / EBT $122,830M = -3.7%; the consensus-tax variant now uses 8.6% / -3.7% (source: MarketScreener SPCX finances 2026-10-21 (source 23))"
+  },
+  {
+   "item": "Spot $159.28 = ~24.2x today's NTM consensus EBITDA (MarketScreener EV 2026 $1,988.4B / $82.2B)",
+   "value": "24.2x; EV $1,988.4B",
+   "cited": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "result": "wrong",
+   "fix": "~26.1x on EV ~$2,144.4B at $159.28 (MarketScreener EV 2026 $2,144,760M at $159.31, less $0.03 x 13,572.8M) / $82.2B (source: MarketScreener SPCX valuation 2026-10-21 (source 22))"
+  },
+  {
+   "item": "NTM P/E median 20.76x (8 names) / 22.37x without ORCL and NVDA, used against the model's GAAP EPS",
+   "value": "20.76x / 22.37x",
+   "cited": "https://www.marketscreener.com/quote/stock/ORACLE-CORPORATION-13620698/valuation/ (and the seven other P/E peer pages)",
+   "result": "mixed_basis",
+   "fix": "trailing GAAP P/E from SEC XBRL, median 23.60x on eight names (TMUS 15.6x, GOOGL 16.9x, ORCL 20.6x, AMZN 20.9x, META 26.3x, NVDA 27.7x, IRDM 28.8x, MSFT 29.6x); 27x is ~14% above it; NTM aggregator figures kept for information only (source: SEC XBRL companyfacts (sources 44, 45, 46, 47, 69, 70, 75, 76); closes 2026-10-21)"
+  },
+  {
+   "item": "'new IG bonds price near Treasury +2-2.5pts'",
+   "value": "+2-2.5 pts",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "result": "not_found",
+   "fix": "removed; replaced by the ICE BofA AA US Corporate Index effective yield 5.71% (2026-10-20) beside the ~7% Q3 cost of debt; 6% unchanged (source: FRED BAMLC0A2CAAEY (source 53, re-fetched 2026-10-22); Q3 Ex.99.1 (source 18))"
+  },
+  {
+   "item": "Anthropic can be ended on 90 days' notice 'after the first three months, 424B4'",
+   "value": "90 days after first 3 months",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "result": "wrong",
+   "fix": "Anthropic: either party on 90 days' notice (424B4, CORRESP), no initial period; the three-month qualifier is Reflection's (Mobile World Live) (source: 424B4 (source 21); CORRESP (12); Mobile World Live (41))"
+  },
+  {
+   "item": "Ornn H100 +6% in three weeks of Oct-26 ($2.92 -> $3.09)",
+   "value": "2.92",
+   "cited": "https://data.ornn.com/markets",
+   "result": "not_found",
+   "fix": "removed (the page shows only the latest $3.09); sigma 0.30 rests on the SemiAnalysis record (source: Ornn markets page (source 54); SemiAnalysis (55))"
+  },
+  {
+   "item": "Berger & Ofek (1995): 13-15% average value loss vs stand-alone values, 1986-1991",
+   "value": "13-15%",
+   "cited": "https://doi.org/10.1016/0304-405X(94)00798-6",
+   "result": "not_found",
+   "fix": "'about 15 percent' as quoted in Villalonga (2004); 10% kept (source: Villalonga 2004 (source 62, PDF opened 2026-10-22))"
+  },
+  {
+   "item": "horizon_multiples.P/E",
+   "value": "27.0x NTM GAAP EPS, weight 0.30",
+   "cited": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "result": "mixed_basis",
+   "fix": "Premium now measured against one stated basis: trailing GAAP P/E from SEC XBRL, median 23.60x on eight names (27x = ~14% premium), matching the model's GAAP EPS; the aggregator NTM median (unstated forward EPS basis) is information only. Value text corrected to 'weight 0.20' (Kilian 2026-10-22 01:21Z). (source: SEC XBRL companyfacts, supervisor sources 44-47, 69, 70, 75, 76; closes 2026-10-21)"
+  },
+  {
+   "item": "sotp.SI_fleet.capex_per_gw",
+   "value": "$34B/GW (2026), $33B (2027), $30B (2028); 70/30 split",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "result": "arithmetic",
+   "fix": "$38.2B per GW = (9M SI capex $39,995M + Q4 SI ~$34.5B) / 1.95 GW = $74.5B; FY26 SI + Connectivity + Space capex now ties to the $85.6B consolidated row; fleet PV +~$2.5B; fixed in deep/sotp_deep.py (source: Q3 Ex.99.1 (source 18); Q3 call Q4 capex guide (19))"
+  },
+  {
+   "item": "sotp.Connectivity.cash_flows",
+   "value": "HY1-HY9 ... 28,290 / 21,080 (last = steady state); PV $219,917M; TV 72%; 9.7x ($22,641M; 11.9x before EchoStar)",
+   "cited": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "result": "arithmetic",
+   "fix": "HY9 = 0.195 x 2035 + 0.805 x 2036 = $22,048M, HY10 = $21,080M with Gordon; PV $216,138M; Starship risk $-16,210M; implied 9.5x (11.8x before EchoStar, discounted half a year); fixed in deep/sotp_deep.py (source: deep/sotp_deep.py conn_dcf(), re-run 2026-10-22)"
+  },
+  {
+   "item": "sotp.Connectivity.peers (deep/peers_conn.py)",
+   "value": "VZ 7.2x, T 6.8x, TMUS 7.7x, IRDM 16.1x; median 7.5x",
+   "cited": "deep/peers_conn.py -> deep/peers_conn.json",
+   "result": "mixed_basis",
+   "fix": "peers_conn.py now writes the filing-basis median (VZ, T) 7.02x separately; the mixed 7.47x is marked not used (source: deep/peers_conn.py, peers_conn.json)"
+  },
+  {
+   "item": "Deep SOTP 2026-10-22: fair value 113.08 = ~11.6x our horizon-NTM adjusted EBITDA on the same bridge",
+   "value": "11.6x",
+   "cited": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "result": "arithmetic",
+   "fix": "computed in apply_deep.py: (FV x 14,149.3M + $70,000M) / $160,000M; 113.08 would be ~10.4x; now 124.02 = ~11.4x (source: arithmetic)"
+  },
+  {
+   "item": "'beating SPY's Sharpe needs roughly +25-30% (close >~$216)'",
+   "value": "+25-30% / $216",
+   "cited": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "result": "arithmetic",
+   "fix": "+25-30% from the $159.28 spot = close >~$199-207 (source: arithmetic; Twelve Data close (source 25))"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue Q1-FY2027 guide as of 2026-10-20",
+   "value": "33000.0-37000.0",
+   "basis": "GAAP total revenue ($M); guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex Q4-FY2026 guide as of 2026-10-20",
+   "value": "35000.0-40000.0",
+   "basis": "cash purchases of PP&E ($M); guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "ARR (December 2026 revenue x 12) FY2026 guide as of 2026-10-20",
+   "value": "100000.0-100000.0",
+   "basis": "annualised December-2026 revenue ($M), long-term target; guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nameplate compute (GW) FY2026 guide as of 2026-10-20",
+   "value": "2.5-3.0",
+   "basis": "nameplate compute at year end (GW); guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nameplate compute (GW) FY2027 guide as of 2026-10-20",
+   "value": "13.0-13.0",
+   "basis": "nameplate compute at year end (GW); Musk 'highly confident' of +10 GW in 2027, 20 GW incremental power plan; guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "ARR (December 2027 revenue x 12) FY2027 guide as of 2026-10-20",
+   "value": "500000.0-1000000.0",
+   "basis": "annualised revenue run-rate by end-2027 ($M), Musk; guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q1-FY2027 consensus as of 2026-10-21",
+   "value": "33681.0",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "Connectivity revenue (long-term target) FY2025 (target set in January 2017 internal plans): first guide (2017-01-13) / reported actual",
+   "value": "30000.0-30000.0 / 11387.0",
+   "basis": "guidance",
+   "source_url": "https://www.advanced-television.com/?p=102390",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "base.fy_end / base.revenue",
+   "value": "2025-12-31 / $18,674M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Space.base_revenue",
+   "value": "$4,086M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Connectivity.base_revenue",
+   "value": "$11,387M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.SI.base_revenue",
+   "value": "$3,201M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Q3-2026 actuals (print)",
+   "value": "Revenue $14,575M (Space $1,767M, Connectivity $5,248M, SI $7,560M); income from operations $2,791M; adj. EBITDA $8,809M; capex $19,593M; diluted EPS $0.35",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Cursor",
+   "value": "$60,000M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.beta",
+   "value": "Telecom unlevered beta 0.39 (Damodaran Jan-26) -> 8.32% on the engine beta line, vs 9.19% used",
+   "basis": "reported",
+   "source_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Q3-26 revenue $14.6B, adj. EBITDA $8.8B; SI revenue $7.56B (+195% q/q), SI adj. EBITDA $4.95B; nameplate 1.7 GW Sep-30",
+   "value": "14,575 / 8,809 / 7,560 / 4,953 / 1.7 GW",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers / thesis_break_reason / inputs_detail Q3 actuals"
+  },
+  {
+   "item": "CFO/Musk: ~2.2 GW end-Oct, 2.5-3 GW YE26; pricing 'slightly above the high end of the $30 to $50 per watt range'; backlog $63B, $42B in 12 months",
+   "value": "as stated",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers / inputs_detail"
+  },
+  {
+   "item": "Guides: Q1-27 revenue $33-37B; Q4-26 capex $35-40B; $100B Dec-26 ARR reaffirmed; Musk $500B-1T end-2027 ARR; 13 GW YE27 'highly confident' of +10 GW",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers / disagreements"
+  },
+  {
+   "item": "Q4-26 capex guide 'doubled from the Q2-call similar to Q2'",
+   "value": "Q2 capex $18,369M; CFO Q2 call 'next 2 quarters are very similar to the current quarter from a CapEx level perspective'",
+   "basis": "management statement",
+   "source_url": "https://www.webull.com/news/15387111038133248",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "Q2-26 capex $18,369M (Q1 $10,107M, 6M $28,476M)",
+   "value": "18,369",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail guidance_check"
+  },
+  {
+   "item": "MarketScreener SPCX consensus EBITDA FY27 $101.5B / FY28 $216.6B; EPS $3.188 / $9.102; net debt -$17.5B / +$104.5B / +$158.1B; 13,572.8M shares; EBIT margin 30%/38%",
+   "value": "as stated",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers / comps_review / thesis_break_reason"
+  },
+  {
+   "item": "MarketScreener quarterly sales Q4-26 $22,506M, Q1-27 $33,681M, Q4-27 $59,412M; capex 2026 $78,594M / 2027 $226,401M / 2028 $247,217M",
+   "value": "as stated",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail / guidance_check"
+  },
+  {
+   "item": "consensus target $238.55 (38 analysts, mean BUY)",
+   "value": "238.55",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/consensus/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "Spot close 2026-10-21 $159.28 (+7.77% from $147.79); post-IPO low $104.83",
+   "value": "159.28 / 147.79 / 104.83",
+   "basis": "reported price",
+   "source_url": "https://api.twelvedata.com/quote?symbol=SPCX",
+   "checked": "2026-10-22",
+   "feeds": "supervisor sizing / thesis_break_reason / fair_value"
+  },
+  {
+   "item": "NTM EV/EBITDA inputs (EV column, fiscal-year consensus EBITDA) for CRWV, NBIS, IRDM, META, ORCL, MSFT, GOOGL, AMZN, NVDA, TMUS",
+   "value": "CRWV EV 79,825 EBITDA 7.55/16.63B; NBIS 60,654, 1.38/6.62B; IRDM 6,360, 503.7/539.1M; META 1,790,423, 142.6/179.8B; ORCL 514,598, 51.9/74.6B; MSFT 3,897,583, 239.8/295.8B; GOOGL 4,009,451, 233.6/304.2B; AMZN 2,857,601, 216.9/274.5B; NVDA 5,086,075, 273.0/457.6B; TMUS 251,462, 37.3/40.5B",
+   "basis": "consensus (aggregator)",
+   "source_url": "https://www.marketscreener.com/quote/stock/COREWEAVE-INC-185380761/valuation/ (and the nine other peer valuation pages)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor comps_review peer_table"
+  },
+  {
+   "item": "Ten-name NTM EV/EBITDA median 11.21x (CRWV 5.6 ... MSFT 15.3/15.4)",
+   "value": "11.21x",
+   "basis": "consensus (derived)",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "IRDM ~28x NTM (P/E 30.7x / 27.3x; EPS $1.43 / $1.61 at $44.25); NBIS loss-making 2026-27",
+   "value": "28.3x; NBIS n/m",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/IRIDIUM-COMMUNICATIONS-IN-5602836/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor changes / disagreements"
+  },
+  {
+   "item": "RKLB NTM EV/sales ~23.2x (EV 2026 $28,562M / (0.25 x $959.2M + 0.75 x $1,325M))",
+   "value": "23.2x",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/ROCKET-LAB-CORPORATION-126208072/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor comps_review.dropped_peers / inputs_detail sotp.Space.scenarios"
+  },
+  {
+   "item": "Five names re-checked in both rounds: median 10.5x vs 11.1x on 2026-10-06 (-6%)",
+   "value": "10.5x / 11.1x",
+   "basis": "consensus (derived)",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "CFO at Goldman Sachs Communacopia 2026-09-10: new hosting deal $1.11B/month from December (~$13.3B/yr, unnamed); 2027 ambition 5-10 GW",
+   "value": "1.11B/month; 5-10 GW",
+   "basis": "management statement (reported)",
+   "source_url": "https://parameter.io/spacex-spcx-stock-cfo-confirms-stronger-path-to-100b-revenue-milestone/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements / changes"
+  },
+  {
+   "item": "Same CFO remarks reported independently",
+   "value": "1.11B/month from Dec-26",
+   "basis": "management statement (reported)",
+   "source_url": "https://teslanorth.com/2026/09/10/spacex-ai-hosting-deal-13-billion/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "SpaceX IR notice 2026-08-27: CFO at Goldman Sachs Communacopia on Sep 10",
+   "value": "2026-09-10",
+   "basis": "company release",
+   "source_url": "https://s21.q4cdn.com/184289198/files/doc_news/2026/Aug/27/GS-Conference-Update-8-26-2026.pdf",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Disclosed third-party compute run-rate ~$41B/yr = Google $11.0B + Anthropic $15.0B + Reflection $1.8B + new $13.3B",
+   "value": "~41.2B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Reflection AI $150M/month from 1 July through 2029, ~$6.3B full term, 90-day termination after the first three months",
+   "value": "as stated",
+   "basis": "reported (named outlet)",
+   "source_url": "https://www.mobileworldlive.com/ai-cloud/spacex-inks-computing-deal-with-reflection-ai/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements / inputs_detail spot_contracts"
+  },
+  {
+   "item": "Epoch tracks Colossus 2 at only ~1.5 GW by Q1-27",
+   "value": "1,531 MW",
+   "basis": "industry data",
+   "source_url": "https://epoch.ai/data/ai-data-centers/directory/colossus-2",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "MS: compute ~5 GW YE27 (company target); $30-50/W on recent neocloud contracts; testing $100 needs AI slowdown, Starship setback or dilution",
+   "value": "as stated",
+   "basis": "broker",
+   "source_url": "valuation/broker/digests/upload_8498b606.json",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Q3 results released 2026-10-20 (8-K Items 2.02 / 9.01)",
+   "value": "2026-10-20",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spcx-20261020.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements / changes"
+  },
+  {
+   "item": "Lock-up: additional 28% transferable from the second full trading day after the Q3 release (~Oct 22); remainder Dec 8 (180 days); extended steps to the Q2-27 release",
+   "value": "28%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026043288/exhibit11-8xk.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements / sizing / key_drivers"
+  },
+  {
+   "item": "WSH lists next report Tue 2027-02-09 after market, unconfirmed",
+   "value": "2027-02-09",
+   "basis": "calendar data",
+   "source_url": "https://www.wallstreethorizon.com/spacex-earnings-calendar",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Google Sep-30 delivery outcome; grace ends ~Oct 31",
+   "value": "one-month grace after 2026-09-30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor disagreements / sizing.open_flags"
+  },
+  {
+   "item": "Tesla combination: special committees, no terms, Tesla needs a 50%-of-all-shares vote; Flight 15 two-stage catch next month",
+   "value": "as stated",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor thesis_break_reason / key_drivers"
+  },
+  {
+   "item": "Net cash $51.0B at 2026-09-30; ~$8B 800 MHz spectrum purchase",
+   "value": "-51,011; ~$8B",
+   "basis": "reported / named outlet",
+   "source_url": "https://cordcuttersnews.com/?p=257694",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers / inputs_detail net_debt_horizon"
+  },
+  {
+   "item": "800 MHz seller Grain, agreement 2026-10-08, FCC approval needed",
+   "value": "as stated",
+   "basis": "named outlet",
+   "source_url": "https://telcomagazine.com/news/spacex-to-buy-800mhz-rights-from-grain-spectrum",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail net_debt_horizon"
+  },
+  {
+   "item": "Ex.99.1 figures used across segment_build, years.*, balance, shares: 9M revenue $27,083M; Space 9M $3,348M, EBIT -$1,211M, Q3 -$7M, R&D Q3 $1,225M / 9M $3,231M; Connectivity 9M $12,796M, Q3 EBIT $2,367M, 9M EBIT $5,211M, 9M adj. EBITDA $8,183M, SBC $146M, D&A $986M, capex 9M $4,242M; SI Q3 EBIT $431M, Cursor SBC $1,217M, SI D&A $2,473M, cost of revenue $2,675M, R&D $3,183M, SG&A $1,268M; D&A 9M $8,934M / Q3 $3,644M; SBC 9M $3,833M; capex 9M $48,069M; OCF $13,097M",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail Q3 actuals / segment_build"
+  },
+  {
+   "item": "Ex.99.1 balance sheet and shares: cash $51,294M, marketable securities $38,561M, debt $2,698M + $36,146M, PP&E $89,483M, deferred revenue $10,784M + $6,736M = $17.5B, accumulated deficit $37,448M, Class A 8,240M + Class B 5,339M, weighted basic 11,942M / diluted 12,475M; tax -$361M on -$774M (Q3 -$390M on $4,014M); interest expense Q3 $675M",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail"
+  },
+  {
+   "item": "Ex.99.1 KPIs: subscribers 13.6M (+1.6M), ARPU $69 / $66 (Q2) / $83 (Q3-25); consumer 9M $7,754M; E&G 9M $5,042M, Q3 $2,127M (+18% q/q, +91% y/y); >3,800 aircraft; advertising Q3 $538M; Flight 14 26 V3 satellites; Cursor $60B implied, $42.5B purchase consideration, $23.4B post-acquisition awards, $608M revenue Aug 14-Sep 30; 800 MHz close H1-27; NASA Roman; 3 crew / 18 NSSL / 3 Starfall / lunar Starship payload; Louisiana first launch 2029",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail"
+  },
+  {
+   "item": "9M-26 working capital +$0.4B (AR -2.9, inventory -1.4, prepaid -1.3, payables -1.0, deferred revenue +4.9, other +2.0)",
+   "value": "+0.4B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail years.nwc_pct_incr_rev"
+  },
+  {
+   "item": "FY25: Space $4,086M / EBIT -$657M; Connectivity $11,387M / EBIT $4,423M; SI $3,201M; subscribers 2.3 / 4.4 / 8.9 / 10.3M (2023 / 2024 / 2025 / Mar-26); ARPU $99 / $91 / $81 / $66 (Q1-26), decline from international expansion and lower-priced plans; nameplate 0.3 / 0.8 / 1.0 GW (YE24 / YE25 / Mar-26)",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail (424B4 history)"
+  },
+  {
+   "item": "Useful lives: servers and networking 5-6 years, data-centre infrastructure 20-25 years; broadband satellites 5 years, first-generation mobile 3 years; clusters 100,000 H100 ~130 MW, 110,000 GB200 ~210 MW, 110,000 GB300 220 MW; COLOSSUS II construction cost 'considerably lower than industry benchmarks on a per megawatt basis'; growth 'highly dependent on Starship'; Musk ~82.4% of votes; X Premium ~4.4M and SuperGrok ~1.9M (Mar-26); EchoStar $19.6B = 261.8M shares at $42.40 + up to $8.5B, closing Nov-2027; ~7.4M monthly unique devices, ~30 MNOs; satellite cost per Gbps down ~3x V1 to V2 Mini; Grok-5 trained at COLOSSUS II; Starship payload delivery H2-26",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail (424B4 assets and deals)"
+  },
+  {
+   "item": "CORRESP: Anthropic $1.25B/month; capacity 'would easily be redeployed to other customers given the shortage ... or alternatively could be utilized for the Company's own compute initiatives'",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026039278/filename1.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail"
+  },
+  {
+   "item": "Google FWP: $920M/month for ~110,000 GPUs; after 2026-12-31 90 days' notice",
+   "value": "920M/month",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.frontier_price"
+  },
+  {
+   "item": "Musk 50-50 / 60-40 split, rents 'effectively at the spot market rate', 'value of compute per watt will increase', renewals 'at higher dollars per watt'; tried to 'offload some of our inference compute to other cloud providers'; 440,000 Vera Rubin training cluster by end Q2; 'Grok bot may end up being what uses most of our Super Intelligence compute'; Grok Bot 800,000 paid weekly users; CFO 'many customers asking for compute', kits to retail -> 'increased activations in Q4', 'on track to deliver strong growth for the year', ~3pt tariff-refund one-off, Q4 gross margin 'more consistent with the second quarter', Cursor awards over 'roughly the next 3-year vesting period', 'multiple pools of capital', investment grade; Shotwell: Mobile V2 then spectrum 'to turn on service in early 2028', 15,000 Mobile V2 FCC approval, E&G to exceed consumer revenue, aviation 12,000 contracted; Musk 'several hundred billion dollars a year in connectivity revenue', >20 GW 'small possibility'; on-orbit refuelling early next year; weekly Starship cadence H1-27; Flight 15 'more likely than not'",
+   "value": "as stated",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail (Q3 call statements)"
+  },
+  {
+   "item": "Huang: GW AI factory '$50 billion to $60 billion', NVIDIA 'about $35 billion'",
+   "value": "50-60B; 35B",
+   "basis": "management statement",
+   "source_url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q2/NVDA-Q2-2026-Earnings-Call-27-August-2025-5_00-PM-ET.pdf",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.capex_per_gw"
+  },
+  {
+   "item": "Ornn OCPI 2026-10-21: A100 $1.07, H100 $3.09, H200 $5.88, B200 $9.40 per GPU-hour",
+   "value": "as stated",
+   "basis": "industry data",
+   "source_url": "https://data.ornn.com/markets",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.age_curve"
+  },
+  {
+   "item": "SemiAnalysis H100 composite $6.62 (2H23) -> $3.91 (4Q24); $3.34 (2Q25), $2.79 (Jul-25), $2.80 (Mar-26); one-year band $1.70-2.00 (Jul-25) -> $2.10-2.70 (Apr-26)",
+   "value": "as stated",
+   "basis": "industry data",
+   "source_url": "https://gpu-index.semianalysis.com/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.price_states / frontier_price"
+  },
+  {
+   "item": "CCIR executed 90-day medians: H100 80GB $10,850 = 32.3% of launch at 4.0 yrs; A100 80GB $5,200 = 20.9% at 5.9 yrs",
+   "value": "as stated",
+   "basis": "industry data",
+   "source_url": "https://ccir.io/hardware",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.salvage_and_residual"
+  },
+  {
+   "item": "DGX A100 ~6.5 kW (8 GPUs -> 0.81 kW); A100 shipped May 2020",
+   "value": "6.5 kW",
+   "basis": "named outlet",
+   "source_url": "https://hwbusters.com/news/coreweave-booked-nvidia-a100-through-2029-nine-years-of-rent-from-one-2020-gpu/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.age_curve"
+  },
+  {
+   "item": "AMZN cut a subset of servers 6->5 years (2025); CoreWeave 6, Nebius 5 from 2026, IREN 5; Meta Llama 3: 419 interruptions in 54 days on 16,384 H100s",
+   "value": "as stated",
+   "basis": "evidence file",
+   "source_url": "/mnt/project-files/adhoc/gpu_useful_life.md",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.gpu_life / utilisation"
+  },
+  {
+   "item": "Damodaran Jan-26 unlevered betas: Telecom (Wireless) 0.39, Telecom Services 0.38 (cash-corrected), Computer Services 0.96, Semiconductor 1.50, Software (Internet) 1.59",
+   "value": "as stated",
+   "basis": "industry data",
+   "source_url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.Connectivity.beta / comps_review.deep_sotp"
+  },
+  {
+   "item": "Villalonga (2004): diversification premium on BITS census establishment data",
+   "value": "premium",
+   "basis": "academic",
+   "source_url": "https://pages.stern.nyu.edu/~bvillalo/Villalonga_DivPremium_JF2004.pdf",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.holdco_discount"
+  },
+  {
+   "item": "Hund, Monk & Tice: the discount is an artifact of the measurement method",
+   "value": "artifact",
+   "basis": "academic",
+   "source_url": "https://cfr.ivo-welch.info/published/papers/hund-monk-tice.pdf",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.holdco_discount"
+  },
+  {
+   "item": "Cremers, Lauterbach & Pajuste: dual-class IPO premium fades, discount after ~6-9 years",
+   "value": "6-9 years",
+   "basis": "academic",
+   "source_url": "https://ecgi.global/sites/default/files/The%20Life-Cycle%20of%20Dual%20Class%20Firm%20Valuations-%20Paper.pdf",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.holdco_discount"
+  },
+  {
+   "item": "SEC XBRL peer facts: VZ TTM OI $28,530M + D&A $19,037M, net debt $163,479M; T $23,579M + $20,038M, $148,860M; TMUS $18,253M + $14,415M, revenue $92,189M; IRDM $171.6M + $222.4M; RKLB revenue $769.1M, net cash $2,289M; SNAP revenue $6,351M, net debt $1,028M; PINS revenue $4,556M, 562.9M shares; closes 2026-10-21",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000732712.json (and CIKs 732717, 1283699, 1418819, 1819994, 1564408, 1506293)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.Connectivity.peers / X_platform"
+  },
+  {
+   "item": "revenue Q1-FY2027 guidance arithmetic",
+   "value": "1/0/0, median 0.0666, adjusted 37331.0, ours 33500.0 inside -0.0429",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex Q4-FY2026 guidance arithmetic",
+   "value": "adjusted 39997.5, ours 37500.0 inside 0.0",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "ARR (Dec-2026 x 12) FY2026 guidance arithmetic",
+   "value": "adjusted 106660.0, ours 99600.0 below -0.004",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nameplate compute FY2026 guidance arithmetic",
+   "value": "adjusted 2.9331, ours 2.75 inside 0.0",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nameplate compute FY2027 guidance arithmetic",
+   "value": "adjusted 13.8658, ours 8.0 below -0.3846",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "ARR (Dec-2027 x 12) FY2027 guidance arithmetic",
+   "value": "adjusted 799950.0, ours 198000.0 below -0.736",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "gross margin Q4-FY2026 guidance arithmetic",
+   "value": "adjusted 0.5895, ours 0.56 above 0.0132",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "Connectivity revenue long-term guidance arithmetic",
+   "value": "0/0/1, median -0.6204, adjusted 94892.0, ours 92130.0 below -0.6315",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/?p=102390",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "segment_build.Space.years[FY2026].revenue_growth",
+   "value": "0.138",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Space.years[FY2027/FY2028].revenue_growth",
+   "value": "0.18 / 0.25",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Space.ebit_margin",
+   "value": "-0.33 / -0.20 / -0.10",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Connectivity.years[FY2026].revenue_growth",
+   "value": "0.642",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Connectivity.years[FY2027].revenue_growth",
+   "value": "0.449",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Connectivity.years[FY2028].revenue_growth",
+   "value": "0.35",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.Connectivity.ebit_margin",
+   "value": "0.408 / 0.42 / 0.43",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.SI.years[FY2026].revenue_growth",
+   "value": "7.072",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.SI.years[FY2027].revenue_growth",
+   "value": "4.008",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.SI.years[FY2028].revenue_growth",
+   "value": "0.824",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build.SI.ebit_margin",
+   "value": "-0.041 / 0.26 / 0.31",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.tax_rate",
+   "value": "0.05 / 0.12 / 0.16",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.da_pct_rev",
+   "value": "0.279 / 0.235 / 0.265",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.capex_pct_rev",
+   "value": "1.74 / 1.16 / 0.816",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.nwc_pct_incr_rev",
+   "value": "0.0",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.sbc_pct_rev / adj_ebitda_addback_pct_rev",
+   "value": "0.150 / 0.083 / 0.048",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "balance.net_debt (2026-09-30)",
+   "value": "-$51,011M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "balance.interest_rate",
+   "value": "0.06",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "balance.net_debt_horizon (2027-10-21)",
+   "value": "$70,000M",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "shares.diluted_now",
+   "value": "14,112M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "shares.annual_change",
+   "value": "0.0025",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples.EV/EBITDA",
+   "value": "15.0x, weight 0.40",
+   "basis": "judgment",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.weight / leg weights",
+   "value": "0.40 / 0.40 / 0.20",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Q1-2027 revenue (model view)",
+   "value": "$33,500M",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Q4-2026 capex (model view)",
+   "value": "$37,500M",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Nameplate compute YE2027 (model view)",
+   "value": "8 GW",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.discount_rate",
+   "value": "9.19%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/erp/erp.json; model_engine.script_rate",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.tax_path",
+   "value": "5/12/16% then 18/20/21%",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.vintages",
+   "value": "2024 0.3, 2025 0.5, 2026 1.95, 2027 5.25, 2028 7.0; first-year share 0.5 (2026 0.34)",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.gpu_life",
+   "value": "5 years (4 / 6 sensitivities)",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.salvage_and_residual",
+   "value": "10% GPU salvage taxed; facility 30% x (1 - life/22.5)",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.utilisation",
+   "value": "0.95",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.opex_per_w",
+   "value": "$5.0/W-yr",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.frontier_price",
+   "value": "fade 52/46/40/37/35; hold 52 then 50",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.age_curve",
+   "value": "1.0 / 0.867 (1.6y) / 0.417 (3.8y) / 0.231 (6.4y)",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.internal_use",
+   "value": "50/50, internal at spot",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.price_states",
+   "value": "low 0.25 x0.660, base 0.50 x0.962, high 0.25 x1.416",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.low_state_absorption",
+   "value": "70% leased, 80% absorbed",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.cash_flows",
+   "value": "HY1-HY7 52,680 / 242,802 / 213,301 / 152,348 / 120,656 / 87,156 / 15,655; PV $690,236M",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_switching_option",
+   "value": "$20,313M; FV -0.5% when removed",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.method",
+   "value": "DCF 2026-35, steady state 2036, RONIC = WACC",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.subscribers",
+   "value": "15.5 / 22.0 / 28.0 ... 52.5M",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.arpu",
+   "value": "$67 / $68 / $66 ... $60",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.kit_uplift",
+   "value": "1.15 / 1.12 / 1.10 / 1.08 / 1.06",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.enterprise_government",
+   "value": "$7.4B 2026 -> $39.8B 2035",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.mobile",
+   "value": "$0.8B (2028) ... $13.0B (2035); margin -50% ... 40%",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.margins",
+   "value": "64% -> 66%; SBC 2.8%; D&A 19%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.capex",
+   "value": "31/32/34/29/26/24/22/21/20/20%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Space.scenarios",
+   "value": "PV 18,822 / -6,396 / -12,795 -> 6,514",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Space.connectivity_risk",
+   "value": "-$16,494M",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.X_platform",
+   "value": "$2,574M x 2.3x = $5,921M",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Grok_internal_program",
+   "value": "$0",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.holdco_discount",
+   "value": "10%",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.reconciliation_FY26_28",
+   "value": "Residuals stated per year",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "$120 = ~11.0x our horizon-NTM EBITDA and ~9.1x consensus ($194.2B); $160 = ~11.6x and $146.5 = ~10.7x consensus (13,572.8M shares, +$81B)",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor thesis_break_reason / disagreements"
+  },
+  {
+   "item": "Fair value 113.08 = 0.4 x 164.64 + 0.4 x 57.80 + 0.2 x 120.54; ~29% below spot; spot ~14.5x our NTM and ~12.0x consensus; swings 13 GW +5.2%, $50/W +7.9%, both +16.1%, growth option +9.7%, Grok -10.8%; SOTP $103.36 on 13 GW + $50/W",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor key_drivers / sizing / fair_value"
+  },
+  {
+   "item": "SI fixed_dcf 0.6 x 3,276,206 + 0.4 x 1,374,215 = 2,515,410; old SOTP 22.2 x 16 + 1,374.2 + 6.59 x 18 = 1,848.4 -> $125.68; EV/EBITDA leg (160.0 x 15 - 70) / 14.15 = $164.64",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor changes / fair_value.reason (history)"
+  },
+  {
+   "item": "gross margin Q4-FY2026 guide as of 2026-10-20",
+   "value": "fixed: no numeric guide (guide_low/high null); 0.5527 moved to guide_reading, basis estimate, derivation 1 - 3,495 / 7,814, confidence medium; position and gap against the reading (source: Q3 call transcript (source 19); Q3 Ex.99.1 Q2 column (source 18); 10-Q Q2 (source 14))",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "Connectivity revenue (long-term target) long-term (no year given) guide as of 2026-10-20",
+   "value": "fixed: no numeric guide (null); 'several hundred billion' quoted; $200-300B kept as guide_reading, basis estimate, confidence low; record adjustment and gap against the reading (source: Q3 call transcript (source 19); deep/apply_deep.py)",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q3-2026 capex: first guide (2026-08-04) / reported actual",
+   "value": "fixed: first_guide null (qualitative 'very similar to the current quarter'); 18,369 = Q2 actual capex moved to first_guide_reading, basis estimate, confidence medium; actual 19,593 (Q3 Ex.99.1) (source: Q2 call (sources 20, 34); Q3 Ex.99.1 (source 18))",
+   "basis": "estimate",
+   "source_url": "https://www.webull.com/news/15387111038133248",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex Q4-FY2026 consensus as of 2026-10-21",
+   "value": "fixed: consensus null; 30,525 moved to consensus_implied, basis estimate (FY26 consensus 78,594 - 9M actual 48,069), confidence low (source: MarketScreener finances 2026-10-21 (source 23); Q3 Ex.99.1 (source 18))",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "ARR (December 2026 revenue x 12) FY2026 consensus as of 2026-10-21",
+   "value": "fixed: consensus null; 90,024 moved to consensus_implied, basis estimate (Q4-26 consensus net sales 22,506 x 4), confidence low (source: MarketScreener finances 2026-10-21 (source 23))",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "ARR (December 2027 revenue x 12) FY2027 consensus as of 2026-10-21",
+   "value": "fixed: consensus null; 237,648 moved to consensus_implied, basis estimate (Q4-27 consensus net sales 59,412 x 4), confidence low (source: MarketScreener finances 2026-10-21 (source 23))",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "sotp.Connectivity.echostar",
+   "value": "fixed: estimate (derived mark-to-market: 261.8M x $159.28 + $8,500M = $50,198M; the filing values the deal at $19.6B), confidence medium (source: 424B4 (source 21); Twelve Data close (source 25))",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.spot_contracts",
+   "value": "fixed: judgment (estimate): a modelling choice from the 90-day termination terms; Google's $920M/month contract value noted and not counted; confidence medium (source: FWP (source 11); 424B4 (21); CORRESP (12); Mobile World Live (41))",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.peers",
+   "value": "fixed: median 7.02x on the filing-EV names (VZ 7.24x, T 6.80x); TMUS 7.7x and IRDM 16.1x shown separately (MarketScreener EV, aggregator); TTM windows stated; basis estimate; peer-multiple sensitivity now 7.0x (source: SEC XBRL companyfacts VZ, T, TMUS, IRDM (sources 66-69); MarketScreener (28, 39); deep/peers_conn.py)",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000732712.json",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "MarketScreener consensus 2028 NI $118.2B on EBT $122.8B (~4% tax)",
+   "value": "fixed: 2027 NI $46,227M / EBT $50,569M = 8.6%; 2028 NI $127,415M / EBT $122,830M = -3.7%; the consensus-tax variant now uses 8.6% / -3.7% (source: MarketScreener SPCX finances 2026-10-21 (source 23))",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/finances/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail years.tax_rate"
+  },
+  {
+   "item": "Spot $159.28 = ~24.2x today's NTM consensus EBITDA (MarketScreener EV 2026 $1,988.4B / $82.2B)",
+   "value": "fixed: ~26.1x on EV ~$2,144.4B at $159.28 (MarketScreener EV 2026 $2,144,760M at $159.31, less $0.03 x 13,572.8M) / $82.2B (source: MarketScreener SPCX valuation 2026-10-21 (source 22))",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor comps_review.spcx_implied / ntm_ev_ebitda.SPCX_today"
+  },
+  {
+   "item": "NTM P/E median 20.76x (8 names) / 22.37x without ORCL and NVDA, used against the model's GAAP EPS",
+   "value": "fixed: trailing GAAP P/E from SEC XBRL, median 23.60x on eight names (TMUS 15.6x, GOOGL 16.9x, ORCL 20.6x, AMZN 20.9x, META 26.3x, NVDA 27.7x, IRDM 28.8x, MSFT 29.6x); 27x is ~14% above it; NTM aggregator figures kept for information only (source: SEC XBRL companyfacts (sources 44, 45, 46, 47, 69, 70, 75, 76); closes 2026-10-21)",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/ORACLE-CORPORATION-13620698/valuation/ (and the seven other P/E peer pages)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor comps_review / horizon_multiples.P/E / changes"
+  },
+  {
+   "item": "'new IG bonds price near Treasury +2-2.5pts'",
+   "value": "fixed: removed; replaced by the ICE BofA AA US Corporate Index effective yield 5.71% (2026-10-20) beside the ~7% Q3 cost of debt; 6% unchanged (source: FRED BAMLC0A2CAAEY (source 53, re-fetched 2026-10-22); Q3 Ex.99.1 (source 18))",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail balance.interest_rate"
+  },
+  {
+   "item": "Anthropic can be ended on 90 days' notice 'after the first three months, 424B4'",
+   "value": "fixed: Anthropic: either party on 90 days' notice (424B4, CORRESP), no initial period; the three-month qualifier is Reflection's (Mobile World Live) (source: 424B4 (source 21); CORRESP (12); Mobile World Live (41))",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.spot_contracts"
+  },
+  {
+   "item": "Ornn H100 +6% in three weeks of Oct-26 ($2.92 -> $3.09)",
+   "value": "fixed: removed (the page shows only the latest $3.09); sigma 0.30 rests on the SemiAnalysis record (source: Ornn markets page (source 54); SemiAnalysis (55))",
+   "basis": "industry data",
+   "source_url": "https://data.ornn.com/markets",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.SI_fleet.price_states"
+  },
+  {
+   "item": "Berger & Ofek (1995): 13-15% average value loss vs stand-alone values, 1986-1991",
+   "value": "fixed: 'about 15 percent' as quoted in Villalonga (2004); 10% kept (source: Villalonga 2004 (source 62, PDF opened 2026-10-22))",
+   "basis": "academic",
+   "source_url": "https://doi.org/10.1016/0304-405X(94)00798-6",
+   "checked": "2026-10-22",
+   "feeds": "supervisor inputs_detail sotp.holdco_discount"
+  },
+  {
+   "item": "horizon_multiples.P/E",
+   "value": "fixed: 27.0x NTM GAAP EPS, weight 0.20; reference trailing GAAP P/E median 23.60x (SEC XBRL)",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/SPACEX-SPACE-EXPLORATION--209852265/valuation/",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.SI_fleet.capex_per_gw",
+   "value": "fixed: $38.2B per GW = (9M SI capex $39,995M + Q4 SI ~$34.5B) / 1.95 GW = $74.5B; FY26 SI + Connectivity + Space capex now ties to the $85.6B consolidated row; fleet PV +~$2.5B; fixed in deep/sotp_deep.py (source: Q3 Ex.99.1 (source 18); Q3 call Q4 capex guide (19))",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.cash_flows",
+   "value": "fixed: HY9 = 0.195 x 2035 + 0.805 x 2036 = $22,048M, HY10 = $21,080M with Gordon; PV $216,138M; Starship risk $-16,210M; implied 9.5x (11.8x before EchoStar, discounted half a year); fixed in deep/sotp_deep.py (source: deep/sotp_deep.py conn_dcf(), re-run 2026-10-22)",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "sotp.Connectivity.peers (deep/peers_conn.py)",
+   "value": "fixed: peers_conn.py now writes the filing-basis median (VZ, T) 7.02x separately; the mixed 7.47x is marked not used (source: deep/peers_conn.py, peers_conn.json)",
+   "basis": "estimate",
+   "source_url": "deep/peers_conn.py -> deep/peers_conn.json",
+   "checked": "2026-10-22",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Deep SOTP 2026-10-22: fair value 113.08 = ~11.6x our horizon-NTM adjusted EBITDA on the same bridge",
+   "value": "fixed: computed in apply_deep.py: (FV x 14,149.3M + $70,000M) / $160,000M; 113.08 would be ~10.4x; now 124.02 = ~11.4x (source: arithmetic)",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor comps_review.spcx_implied"
+  },
+  {
+   "item": "'beating SPY's Sharpe needs roughly +25-30% (close >~$216)'",
+   "value": "fixed: +25-30% from the $159.28 spot = close >~$199-207 (source: arithmetic; Twelve Data close (source 25))",
+   "basis": "estimate",
+   "source_url": "deep/sotp_deep.py -> deep/sotp_deep_out.json (re-run 2026-10-22, output identical)",
+   "checked": "2026-10-22",
+   "feeds": "supervisor sizing.reason"
+  }
+ ],
+ "scope": "model update (build): changed rows of the reconciled set and its guidance_check (deep SOTP 2026-10-22, gate re-run)",
+ "base_audit": "runs/2026-10-05/SPCX/citation_audit.json",
+ "method": "split gate (run_digest.py gate) + fix agent (gate/brief_fix.md, 2026-10-22)",
+ "engine_check": "model_engine.py check after fixes and Kilian's 2026-10-22 06:39Z build-window decision: base horizon value 124.02 (EV/EBITDA 164.64, P/E 120.54, SOTP 85.14); fair_value.value 124.02",
+ "note": "Model-made figures were fixed in deep/sotp_deep.py, deep/peers_conn.py and deep/apply_deep.py and regenerated (python3 deep/peers_conn.py && python3 deep/sotp_deep.py && python3 deep/apply_deep.py); prose and guidance_check fixes in supervisor.json; every correction is in supervisor.json citation_audit.corrections (tag [gate 2026-10-22]). No model_assumptions.json exists in this build-mode round. Unused corrections: none."
+}

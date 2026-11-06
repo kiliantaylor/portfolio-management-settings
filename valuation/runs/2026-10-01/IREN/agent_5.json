@@ -1,0 +1,982 @@
+{
+ "symbol": "IREN",
+ "agent_id": "agent_5",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 10.16,
+   "p": 0.919
+  },
+  {
+   "K": 16.26,
+   "p": 0.801
+  },
+  {
+   "K": 20,
+   "p": 0.726
+  },
+  {
+   "K": 24,
+   "p": 0.65
+  },
+  {
+   "K": 28,
+   "p": 0.579
+  },
+  {
+   "K": 33,
+   "p": 0.499
+  },
+  {
+   "K": 37,
+   "p": 0.443
+  },
+  {
+   "K": 41,
+   "p": 0.392
+  },
+  {
+   "K": 45,
+   "p": 0.348
+  },
+  {
+   "K": 49,
+   "p": 0.311
+  },
+  {
+   "K": 55,
+   "p": 0.262
+  },
+  {
+   "K": 61,
+   "p": 0.223
+  },
+  {
+   "K": 71,
+   "p": 0.171
+  },
+  {
+   "K": 81,
+   "p": 0.133
+  },
+  {
+   "K": 102,
+   "p": 0.076
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 32.52,
+   "p": 0.773
+  },
+  {
+   "K": 34.55,
+   "p": 0.705
+  },
+  {
+   "K": 36.59,
+   "p": 0.634
+  },
+  {
+   "K": 37.8,
+   "p": 0.591
+  },
+  {
+   "K": 39.02,
+   "p": 0.548
+  },
+  {
+   "K": 40.65,
+   "p": 0.492
+  },
+  {
+   "K": 42.28,
+   "p": 0.438
+  },
+  {
+   "K": 43.5,
+   "p": 0.399
+  },
+  {
+   "K": 44.72,
+   "p": 0.363
+  },
+  {
+   "K": 46.75,
+   "p": 0.307
+  },
+  {
+   "K": 48.78,
+   "p": 0.258
+  }
+ ],
+ "one_month_reasoning": "No earnings in the window: Q1 FY27 results are expected ~Nov 5-6, 2026 (unconfirmed; last year Nov 6) [16]. In-window: Oct 27-28 FOMC (Kalshi/Polymarket ~72-74% hold vs ~27% hike after the Sep 16 hike [8]); September CPI/jobs; possible unscheduled 2027-capacity contract signings (mgmt: late-stage [1,2]) or Horizon 2 acceptance by Microsoft (targeted Q4 CY2026, grace to start of Q2 2027 [3]) as upside skew; ongoing ATM issuance and negative momentum (-10% since Sep 24) as downside drift. Base rate with nothing scheduled: symmetric lognormal around spot at monthly sigma ~0.29 (107%/3.5 trimmed slightly for no earnings) with a tiny downward drift for dilution (median $40.4). The supervisor checked the window and agreed no earnings fall before Oct 31, so this ladder is essentially unchanged from round 1. Rounds 3-4: the GPU-life and site-by-site DCF rebuilds change nothing inside a one-month window (no filing or contract date the market does not already know), so the 1-month ladder is kept as in round 2.",
+ "fair_value": {
+  "value": 21.8,
+  "method": "Blend at Oct-2027 of a site-by-site cohort DCF -$8.0 (25%; split discount rates: Microsoft 7.0%, NVIDIA 7.5%, non-IG contracts 10%, rest 11.5%; single-rate -$9.5), EV/EBITDA $33.3 (45%: NTM EBITDA $6.0bn x 7.5x less $26.5bn debt-like, 555m shares) and EV/contracted ARR $29.4 (30%: $10.7bn incl. NVIDIA x 4.0x) = ~$21.8.",
+  "methods": [
+   {
+    "name": "DCF",
+    "value": -8.0,
+    "weight": 0.25,
+    "inputs": "Site-by-site cohort FCFF, quarterly from 1-Jul-2026 to FY2076 (beyond that <0.5% of value), one row per inventory site [31]. Contracted sites at contract terms: S01 Microsoft 200MW IT at $9.7M/MW-yr (H1 50MW from Aug-26, H2-4 150MW from ~Jan-27), 5 yrs, direct cost $1.45M/MW (85% project margin), remaining capex $4.6bn, new prepayment $0.93bn credited over yrs 3-5 of H2-4; S03 NVIDIA ~43MW IT (60MW gross) at $0.68bn/yr, 5 yrs from ~Feb-27, Dell $1.6bn; S07 Prince George ~28MW IT at $0.5bn/yr, ~2-yr terms; S08 Mackenzie ~44MW IT and S02 Childress air ~28MW IT at $21.7M/MW (=$1.56bn = $4bn less Microsoft and Prince George), 3 yrs from ~Nov-26, B300 capex $2.7bn/$0.8bn, new prepayments $1.25bn credited over the term. Post-contract each cohort rents at its own reference price x round-3 path 1.00/0.82/0.70/0.64/0.59/0.54/0.49/0.44/0.33/0.22 x 90% (Microsoft tail reference $11.6M/MW), then refreshes at the 6-yr life. New and refresh capacity: revenue/GPU capex 0.45 (B300 deal $1.56bn ARR on $3.5bn; NVIDIA $0.68bn on $1.6bn), i.e. GPU $45.5M per $20.5M of revenue; liquid new-build DC $15M/MW IT; 80% contracted 3 yrs, 50% of GPU capex prepaid to FY32 then 25%, credited over the term. Under-construction uncontracted sites (S04 136MW IT air at $21.7M/MW p=0.85; S05 100MW IT, S09 21MW IT, S10 200MW IT liquid at $15M/MW, p=0.75/0.80/0.70; otherwise 1.5 yrs later): DC capex treated as committed; the GPU stage is built only if NPV>0 at WACC, else the shell is leased as colocation at $1.22M/MW-yr for 15 yrs (Cipher/AWS benchmark). Pipeline S11-S16 probability-weighted (0.50/0.40/0.30/0.25/0.30/0.15), built only if NPV>0 at WACC, else carried at acquisition cost. Discounting: Microsoft contract-term flows 7.0%, NVIDIA 7.5%, non-IG contracts 10.0%, everything else 11.5%; value per share rolled to Oct-2027 at Ke 16% as in round 3. EV -$1.3bn (contract-term streams +$1.0bn, all else -$2.3bn) less $1.67bn debt-like = -$3.0bn / 450m x 1.16^1.25 = -$8.0 (single 11.5% rate: -$9.5). Main sensitivities (split): revenue/GPU capex 0.60 (round-3 implicit) -> +$8.2; 0.50 -> -$6.0; price +15% (company's ~$25M talks) -> -$6.7; life 5/7 yrs -> -$11.8/-$5.0; path +/-0.10 -> -$6.6/-$10.3; WACC 10.5/12.5% -> -$6.7/-$9.0; no build floor on the pipeline -> -$51.3.",
+    "inputs_detail": [
+     {
+      "input": "Site list and MW",
+      "value": "17 inventory rows; contracted 345MW IT (S01 200, S02 ~28, S03 ~43, S07 ~28, S08 ~44); under construction uncontracted S04 ~136, S05 100, S09 ~21, S10 200 MW IT; pipeline S11-S16 ~3,060MW IT; S06 mining re-uses BC/Childress MW; S17 excluded",
+      "basis": "reported",
+      "source_ids": [
+       31,
+       35,
+       36,
+       3
+      ],
+      "derivation": "gross MW from the inventory [31]; IT MW where reported (S01, S05, S10) and otherwise from the company's ratios: 2026 program 300MW IT on 480 gross (non-Microsoft 100 IT on 180 gross), 2027 air-cooled ~0.71 IT/gross, liquid 200 IT per 300 gross [35]"
+     },
+     {
+      "input": "Microsoft contract (S01)",
+      "value": "$9.7M/MW-yr x 200MW IT, 5 yrs; H1 Aug-26, H2-4 ~Jan-27; 20% prepayment, $0.93bn still to receive; credited months 25-60",
+      "basis": "reported",
+      "source_ids": [
+       3,
+       14,
+       31,
+       33
+      ],
+      "derivation": "TCV $9.7bn / 5 yrs = $1.94bn [3,14]; only $1,013m of the $1.84bn deferred revenue sits in the Microsoft SPV (F11), so ~$0.93bn is modelled as received before H2-4 delivery and the existing $1.84bn stays debt-like"
+     },
+     {
+      "input": "NVIDIA contract (S03)",
+      "value": "$0.68bn/yr, 5 yrs from ~Feb-27, ~60MW gross = ~43MW IT; Dell $1.6bn",
+      "basis": "reported",
+      "source_ids": [
+       32,
+       34,
+       36
+      ],
+      "derivation": "F01 fixed: the Dell 8-K says the contract lifts ARR from $3.7bn to $4.4bn [32] and the FY26 call says the $4bn excludes the $700m NVIDIA ARR [36], so it is added on top of the $4bn. 60MW taken as gross because it is a slice of the 250MW gross Childress retrofit [35]"
+     },
+     {
+      "input": "Other 2026 contracts (S02, S07, S08)",
+      "value": "Prince George $0.5bn/yr (~2-yr terms); Mackenzie + Childress air $1.56bn/yr ($21.7M/MW IT), 3 yrs",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       31,
+       36
+      ],
+      "derivation": "$4bn 2026 ARR [1] less Microsoft $1.94bn = $2.06bn; Prince George $0.5bn per the latest (Q3 FY26) footnote, chosen over the older ~$0.4bn [31]; remainder to Mackenzie/Childress. Portfolio WA term ~4 yrs [31] implies ~3 yrs for these"
+     },
+     {
+      "input": "Revenue / GPU capex for new and refresh capacity",
+      "value": "0.45 (GPU $45.5M per $20.5M of annual revenue)",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       32,
+       31,
+       14
+      ],
+      "derivation": "B300 order ~$3.5bn [31] vs $1.56bn ARR = 0.45; NVIDIA $0.68bn vs Dell $1.6bn [32] = 0.43; Microsoft $1.94bn vs $5.81bn [14] = 0.33. Round 3 paired $20.5M/MW revenue with $34M/MW GPU capex taken from Microsoft's MW, an implicit 0.60, which the site data do not support"
+     },
+     {
+      "input": "Post-contract path and life",
+      "value": "round-3 path x 90% on each cohort's own reference price; 6-yr economic life; refresh at 0.45 ratio, no salvage on refresh",
+      "basis": "judgment",
+      "source_ids": [
+       25,
+       26,
+       21,
+       28,
+       24,
+       29,
+       38,
+       39
+      ],
+      "derivation": "kept from round 3 (supervisor: 'mostly sound'); Microsoft tail reference $11.6M/MW = contract price x 1.2 (hyperscaler price per GPU ~20% below market), since the $20.5M round-3 reference is on a different MW basis; IREN book life 5 yrs confirmed [38]; no salvage stated, per supervisor [39]"
+     },
+     {
+      "input": "Probabilities for uncontracted sites",
+      "value": "S04 0.85, S09 0.80, S05 0.75, S10 0.70 on schedule (else 1.5 yrs later); S11 0.50, S12 0.40, S13 0.30, S15 0.30, S14 0.25, S16 0.15",
+      "basis": "judgment",
+      "source_ids": [
+       31,
+       35,
+       36
+      ],
+      "derivation": "ranked by power status and build stage in the inventory [31]: energized sites in conversion with late-stage talks highest; Sweetwater 1 energized but Batch Zero allocations only final in spring 2027; Kiowa, Bundey and Spain need grid ramp and permits from 2028"
+     },
+     {
+      "input": "Build decision / fallback",
+      "value": "GPU stage built only if NPV>0 at 11.5%; failing shells leased as colocation at $1.22M/MW-yr x 15 yrs; unbuilt pipeline at acquisition cost (Kiowa $112m, Nostrum $148m pro rata)",
+      "basis": "judgment",
+      "source_ids": [
+       37,
+       31,
+       3
+      ],
+      "derivation": "AWS-Cipher lease $5.5bn / 15 yrs / 300MW [37]; acquisition costs from the 10-K [3,31]. At 0.45 and $15M/MW of DC, a new liquid build has NPV about -$12M/MW at WACC, so the pipeline is worth little more than its land unless pricing improves"
+     },
+     {
+      "input": "Discount rates",
+      "value": "Microsoft 7.0%, NVIDIA 7.5%, non-IG contracted 10.0%, uncontracted/tail/pipeline/terminal 11.5%",
+      "basis": "estimate",
+      "source_ids": [
+       33,
+       1,
+       31,
+       9
+      ],
+      "derivation": "see discounting block: Microsoft secured financing 6.00% (A-rated) [33] + ~1pt completion/operating risk; NVIDIA AA but no closed financing and early-2027 commissioning; non-IG: 9.0% 30-month secured paper at 90% advance [1,31] plus the equity slice; WACC 11.5% as round 3 [9]"
+     },
+     {
+      "input": "Debt-like claims at 30-Jun-26 / shares",
+      "value": "$1.67bn / 450m",
+      "basis": "reported",
+      "source_ids": [
+       1,
+       3,
+       22
+      ],
+      "derivation": "unchanged from round 3 (current restricted cash counted); all $1.84bn deferred revenue debt-like, only new prepayments modelled"
+     },
+     {
+      "input": "Mining wind-down (S06) and corporate",
+      "value": "+$0.1bn (residual mining to Dec-26 + ASIC sales); extra SG&A $0.35bn FY27, $0.2bn FY28",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       3,
+       36
+      ],
+      "derivation": "Q4 FY26 mining revenue $66.7m/qtr, ASICs held for sale $72.5m [3]; SG&A ramp guided +$40-50m q/q [1,2] above the 15%-of-revenue run rate"
+     }
+    ]
+   },
+   {
+    "name": "EV/EBITDA",
+    "value": 33.3,
+    "weight": 0.4,
+    "inputs": "NTM (Oct-27 to Sep-28) EBITDA $6.0bn x 7.5x = EV $45.0bn; less Oct-27 debt-like claims $26.5bn (incl. ~$9.2bn outstanding prepayments/deferred revenue, net of $1.67bn current restricted cash); / 555m diluted shares = $33.3",
+    "inputs_detail": [
+     {
+      "input": "NTM EBITDA at Oct-2027",
+      "value": "$6.0bn",
+      "basis": "estimate",
+      "source_ids": [
+       15,
+       1,
+       2
+      ],
+      "derivation": "0.75 x FY28 ($7.3bn consensus revenue [15] x 68%) + 0.25 x FY29 ($13.0bn x 70%) from my DCF; the secondhand BTIG $3.1bn figure is dropped per supervisor; the cohort rebuild leaves FY28-FY29 essentially unchanged (FY29 $13.7bn vs $13.0bn), so it is kept"
+     },
+     {
+      "input": "Multiple",
+      "value": "7.5x",
+      "basis": "judgment",
+      "source_ids": [
+       5,
+       18,
+       23
+      ],
+      "derivation": "CoreWeave ~7x 2026 and ~7.75x 2027E EBITDA [5,18], Nebius ~15x [18]; IREN at a slight discount to CoreWeave for higher leverage and a 5.29% 10y. The GPU-life evidence [23] does not move it: NTM EBITDA at Oct-27 is almost all contracted (yrs 1-2 of 3-5 yr contracts), and the market multiple already reflects front-loaded GPU value"
+     },
+     {
+      "input": "Debt-like claims at Oct-2027",
+      "value": "$26.5bn",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       3,
+       22
+      ],
+      "derivation": "$1.67bn at Jun-26 (now net of $1.67bn current restricted cash, per round-2 supervisor) [1,3] + FY27 pre-prepayment FCFF deficit $26.1bn + Q1 FY28 $1.7bn + ~$1.2bn cash interest - $4.0bn new equity; prepayments ($1.84bn existing + ~$7.4bn new) are counted as debt because they are credited against future fees [3] while the EBITDA capitalised includes their amortisation (supervisor finding [22])"
+     },
+     {
+      "input": "Diluted shares at Oct-2027",
+      "value": "555m",
+      "basis": "estimate",
+      "source_ids": [
+       3,
+       2,
+       22
+      ],
+      "derivation": "450m fully diluted today [3] + ~$4.0bn ATM equity at ~$38 (~105m shares); $4bn sits in the supervisor's $4-9bn residual gap after $14bn existing cash/committed financing and ~$8bn expected GPU financing/prepayments against $25-30bn capex [2,22]; raised from $2.7bn in round 1"
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 29.4,
+    "weight": 0.3,
+    "inputs": "EV/contracted ARR: Oct-27 contracted ARR $10.7bn x 4.0x = EV $42.8bn; less $26.5bn debt-like; / 555m shares = $29.4. ARR rebuilt by site: $4.0bn 2026 + $0.68bn NVIDIA + S04 136MW x $21.7M x 0.85 + liquid 2027 sites (S05, S09, S10) at $15M/MW x probability = $10.7bn",
+    "inputs_detail": [
+     {
+      "input": "Contracted ARR at Oct-2027",
+      "value": "$10.7bn",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       32,
+       36,
+       31
+      ],
+      "derivation": "$4.0bn [1] + NVIDIA $0.68bn on top (F01: Dell 8-K $3.7bn->$4.4bn [32]; FY26 call [36]) + S04 $2.51bn + S05 $1.13bn + S09 $0.25bn + S10 $2.10bn (probability-weighted) = $10.67bn. Same total as round 3 by coincidence: the NVIDIA addition offsets lower $/MW on liquid IT MW"
+     },
+     {
+      "input": "EV/ARR multiple",
+      "value": "4.0x",
+      "basis": "judgment",
+      "source_ids": [
+       4,
+       1,
+       3,
+       23
+      ],
+      "derivation": "today's fully diluted EV/contracted ARR is ~5.4x ($18.3bn diluted market cap + $3.34bn debt-like on $4bn) [1,3]; IREN's own value/ARR range 6.37x peak to 4.35x, bear 2.79x [4]; 4.0x for Oct-27 as less uncontracted pipeline remains to price and rates are higher. Kept after the GPU-life work: contracted ARR is paid at contract price for 3-5 yrs, and the post-contract decay mainly hits the DCF tail [23]"
+     },
+     {
+      "input": "Debt-like claims / shares at Oct-2027",
+      "value": "$26.5bn / 555m",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       3,
+       22
+      ],
+      "derivation": "same bridge as the EV/EBITDA method, now net of $1.67bn current restricted cash"
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 13.0,
+   "prob": 0.25,
+   "story": "Funding squeeze plus a GPU glut: 2027 capacity signs slowly or below $15M/MW, Horizon 2-4 slips past the Q2-2027 grace period, ATM equity is issued near the lows and ~$26bn of debt-like claims sit ahead of equity; EV/ARR compresses to the ~2.8x bear multiple [4]. Once Blackwell/Rubin supply and power loosen, aged-GPU rents fall toward cash cost faster than the base path (path -0.10 takes the DCF to ~$3) [23,26]. Round 4: the site DCF shows why this is plausible: at observed deal economics (revenue about 0.45x GPU capex, $15M/MW for liquid shells) new builds do not earn an 11.5% WACC, so growth funded with ATM equity destroys value."
+  },
+  "base": {
+   "price": 32.0,
+   "prob": 0.5,
+   "story": "$4bn ARR live by Dec-2026 and NVIDIA's $0.68bn from early 2027; the Childress air-cooled retrofit (S04) signs at ~$21-25M/MW; Sweetwater 1 and Horizons 5-6 sign but at thinner per-MW economics; ~$4bn of ATM dilution to ~555m shares. The market keeps paying above my fair value (~$22) for the 5GW pipeline, but dilution, debt and a DCF near zero keep the stock below spot."
+  },
+  "bull": {
+   "price": 80.0,
+   "prob": 0.25,
+   "story": "All 2027 capacity signed at $20-25M/MW with prepayments, rental indices for prior-generation GPUs stay firm (CoreWeave-style re-contracting within 5% [29]; DCF at a 7-8 yr life and path +0.10 is ~$33-40), 2028 capacity financing lands, and the market re-rates IREN toward Nebius-like ~15x forward EBITDA [18], back toward the $76.87 high. In the site DCF this needs revenue/GPU capex nearer 0.60 (DCF ~+$8) plus pipeline pricing that clears WACC."
+  }
+ },
+ "thesis_break_price": 20.0,
+ "thesis_break_reason": "Kept at $20. At $20 the fully diluted market cap (~$9.0bn) plus $1.67bn of debt-like claims is ~2.3x the $4.68bn of signed ARR (now including NVIDIA, F01) and ~2.7x the $4bn 2026 book, about IREN's own bear multiple [4], ~31% under the $28.93 52-week low. My lower DCF does not move the break: it is a valuation view, not a sign that something has broken. Trading below $20 would most likely mean a funding failure (GPU financing or ATM unavailable), a Microsoft delivery miss beyond the Q2-2027 grace period, a customer default, or a visible collapse in prior-generation GPU rents, not ordinary 107%-vol noise.",
+ "catalysts": [
+  {
+   "date": "2026-10-28",
+   "event": "FOMC decision (Kalshi ~72% hold / ~28% hike)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11-05",
+   "event": "Q1 FY27 results (estimated 5-6 Nov): ARR ramp, Horizon deliveries, FY27 capex and funding mix",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11",
+   "event": "NVIDIA and CoreWeave results: AI capex and GPU pricing read-across",
+   "direction": "?"
+  },
+  {
+   "date": "2026-12",
+   "event": "$4bn contracted ARR targeted operational by 31-Dec-2026; Horizon 2-4 delivery to Microsoft (grace to start of Q2 2027)",
+   "direction": "+"
+  },
+  {
+   "date": "2026-H2 to 2027-H1",
+   "event": "Signing of 2027 capacity contracts (+0.5GW, >$20M/MW talks) and GPU financing",
+   "direction": "+"
+  },
+  {
+   "date": "2027-02",
+   "event": "Q2 FY27 results",
+   "direction": "?"
+  },
+  {
+   "date": "2027-05",
+   "event": "Q3 FY27 results",
+   "direction": "?"
+  },
+  {
+   "date": "2027-08",
+   "event": "FY27 results and FY28 capex/funding guidance",
+   "direction": "?"
+  },
+  {
+   "date": "ongoing",
+   "event": "ATM equity issuance and convertible activity to fund $25-30bn FY27 capex",
+   "direction": "-"
+  },
+  {
+   "date": "2026-10-05",
+   "event": "CME/Silicon Data GPU compute futures launch: first market forward curve for GPU-hour prices (read-across to the post-contract price path)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-02",
+   "event": "NVIDIA contract commissioning at Childress (~60MW gross) and GPU financing for it",
+   "direction": "+"
+  },
+  {
+   "date": "2027-spring",
+   "event": "ERCOT Batch Zero final MW allocations (Sweetwater 1/2)",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Revenue per $ of GPU capex on new and refresh capacity: 0.45 (observed B300/NVIDIA deals) gives a DCF of -$8; 0.60 (round-3 implicit) gives +$8",
+  "Whether the 5GW pipeline (S11-S16) can be priced to clear WACC: at $15M/MW of DC and 0.45 it is worth about its land cost; built regardless, it would cost ~$43 per share",
+  "Post-contract GPU price path (+/-0.10 moves the DCF -$6.6 to -$10.3)",
+  "Economic life: 5 yrs -$11.8, 6 yrs -$8.0, 7 yrs -$5.0 (with prepayments stopped after FY32: -$10.8 / -$9.8 / -$6.5)",
+  "Funding mix of the $25-30bn FY27 capex: equity of $4bn assumed",
+  "Horizon 2-4 delivery to Microsoft, NVIDIA commissioning and Texas build execution",
+  "Rates (10y 5.29%) and the sector multiple (CoreWeave 7-8x EBITDA)"
+ ],
+ "reasoning": "Round 4 (site coverage and split discounting). I rebuilt the DCF as one cash-flow row per inventory site [31]. Contracted sites run at contract terms: Microsoft 200MW IT at $9.7M/MW for 5 yrs; NVIDIA $0.68bn/yr for 5 yrs from early 2027, now added on top of the $4bn (F01: my round-3 claim that the $4bn included NVIDIA was wrong; the Dell 8-K, which I re-read, says ARR goes $3.7bn->$4.4bn [32]); Prince George, Mackenzie and Childress air-cooled at the rest of the $4bn. Under-construction and pipeline sites are probability-weighted net of their capex. Building it site by site exposed an inconsistency in round 3: it paired $20.5M of revenue per MW with $34M of GPU capex per MW measured on Microsoft's MW, an implied revenue/capex of 0.60. The company's own deals show 0.33-0.45 (B300 $1.56bn ARR on ~$3.5bn; NVIDIA $0.68bn on $1.6bn; Microsoft $1.94bn on $5.81bn), and liquid shells cost $14-16M per IT MW [31]. At 0.45 a refresh or a new liquid build does not earn an 11.5% WACC, so I build pipeline only when its NPV is positive (otherwise land at cost; committed shells fall back to colocation at the AWS-Cipher ~$1.22M/MW-yr [37]). Bridge (split basis): round-3 $15.3 -> $11.8 site rebuild at round-3 unit economics -> $6.2 Microsoft tail on its own MW basis -> -$3.4 liquid DC at $15M/MW -> +$8.3 build-only-if-NPV>0 floor and colocation fallback -> -$8.0 revenue/GPU capex 0.45. Split discounting (Microsoft 7.0%, NVIDIA 7.5%, non-IG 10%) adds only +$1.5 over a single 11.5% rate (-$9.5), because contract-term cash flows net of the capex still to be spent on them are small (+$1.0bn PV): the value of the contracts is in the hardware they pay back, not in a surplus. The DCF now says the equity is worth about zero on observed economics, with value depending on better pricing (0.60 -> +$8) or cheaper capital. I cut its weight from 30% to 25% because one disputed ratio swings it by ~$16, and raised EV/EBITDA to 45%. The multiples are unchanged: contracted ARR at Oct-27 is still $10.7bn (NVIDIA +$0.68bn offsets lower $/MW on liquid MW). Blended fair value $21.8 (round 3 $26.7). Base rates as before: one-third log weight on fair value and two-thirds on spot gives a median of ~$33.0 (was ~$35.3), sigma ~0.80, so I shifted the ladder down by 6.5% in strike space: P(>=41) 0.392 (was 0.425). The 1-month ladder and the $20 thesis break are unchanged. Research this round: one fetch of the Dell 8-K (F01 confirmed) and one search for the AWS-Cipher lease.",
+ "lane": "base-rates",
+ "sources": [
+  {
+   "title": "IREN Reports FY26 Results (8-K Ex.99.1): Q4 adj. EBITDA $19.2m (14% margin), deferred revenue $46.5m + $1,796.1m, restricted cash $1,724m, finance leases $243.8m, 0.3GW/0.8GW cumulative targets, $4bn contracted ARR for 2026 capacity",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001878848/000187884826000051/irenreportsfy26results.htm",
+   "date": "2026-08-27",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "IREN Q4 FY2026 earnings call transcript",
+   "url": "https://www.fool.com/earnings/call-transcripts/2026/08/31/iren-iren-q4-2026-earnings-call-transcript/",
+   "date": "2026-08-31",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "IREN Form 10-K FY2026 (394,058,648 shares at 2026-08-14; Note 23 convert prices 2029 $13.64 / 2030 $16.81, trigger met; Note 25 14,989,686 service RSUs; co-CEO RSUs service-vested over 4 yrs; Microsoft 20% prepayment credited after month 24; HPC hardware useful life 5 yrs)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001878848/000187884826000052/iren-20260630.htm",
+   "date": "2026-08-27",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "IREN Stock Prediction: $65 Bull, $26 Bear After a 42% Drop (ARR multiple history 6.37x->4.35x, dilution, convert strike ~$73)",
+   "url": "https://financefeeds.com/iren-limited-iren-stock-prediction-65-bull-26-bear/",
+   "date": "2026-09-28",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "CoreWeave valuation multiples (EV/EBITDA, 2027E 7.75x)",
+   "url": "https://multiples.vc/public-comps/coreweave-valuation-multiples",
+   "date": "2026-09",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Nebius surges, CoreWeave flat on JPM upgrade; IREN slides 4% on Rothschild Neutral $40",
+   "url": "https://247wallst.com/investing/2026/09/24/nebius-surges-6-coreweave-treads-water-as-jpmorgan-upgrade-flags-rising-compute-pricing-iren-slides-4/",
+   "date": "2026-09-24",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Polymarket: AI bubble burst by...? (Dec 31 2026 8%, vol ~$2.42M; Jun 30 2027 18%, vol ~$9k)",
+   "url": "https://polymarket.com/event/ai-bubble-burst-by",
+   "date": "2026-10-02",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Fed rate odds for Oct 2026 FOMC: Kalshi hold 72%/hike 28%, Polymarket 74/27; first hike 2026-09-16",
+   "url": "https://predictionmarketspicks.com/articles/fed-rate-october-2026-odds-warsh-kalshi-polymarket-futures",
+   "date": "2026-10-01",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "FRED DGS10: 10-year Treasury 5.29% on 2026-09-30",
+   "url": "https://fred.stlouisfed.org/series/DGS10",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Twelve Data: IREN monthly OHLC 2021-11 to 2026-10 (rolling 12m return distribution, realized vol)",
+   "url": "https://twelvedata.com/",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Twelve Data: CRWV, CIFR, WULF monthly OHLC (peer 1-year returns, Jun-Oct 2026 drawdown)",
+   "url": "https://twelvedata.com/",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "StockAnalysis IREN forecast: 20 analysts, avg PT $77.69 (low $40, high $131); FY27 revenue $2.81B, EPS -$3.42",
+   "url": "https://stockanalysis.com/stocks/iren/forecast/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "JPMorgan predicts IREN $24B revenue by 2030 (2,065MW, ~$13M/MW, ~65% EBITDA margin, PT $65)",
+   "url": "https://247wallst.com/investing/2026/09/26/jpmorgan-predicts-iren-will-generate-24-billion-in-annual-revenue-by-2030/",
+   "date": "2026-09-26",
+   "type": "sell-side",
+   "in_lane": false
+  },
+  {
+   "title": "IREN signs $9.7B Microsoft contract; Dell GPU purchase ~$5.8B for 200MW",
+   "url": "https://www.investing.com/news/company-news/iren-signs-97-billion-gpu-cloud-services-contract-with-microsoft-93CH-4326523",
+   "date": "2025-11-03",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "TIKR: IREN FY27 consensus revenue ~$2.8B, adj. EBITDA ~$2.1B; FY28 revenue ~$7.3B (17 analysts); BTIG 2028 EBITDA ~$3.1B",
+   "url": "https://www.tikr.com/blog/iren-stock-is-up-17-in-2026-heres-where-the-stock-could-go",
+   "date": "2026-09-28",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "MarketBeat IREN earnings date estimate (Nov 5-6, 2026, unconfirmed)",
+   "url": "https://www.marketbeat.com/stocks/NASDAQ/IREN/earnings/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "From Bitcoin to Blackwell: IREN's $9.7B leap (~85% project EBITDA margin on Microsoft contract)",
+   "url": "https://longyield.substack.com/p/from-bitcoin-to-blackwell-irens-97b",
+   "date": "2025-12-03",
+   "type": "newsletter",
+   "in_lane": false
+  },
+  {
+   "title": "Better AI data center stock: Nebius vs CoreWeave (CRWV ~7x 2026 adj. EBITDA; NBIS ~15x 2027 EBITDA)",
+   "url": "https://www.fool.com/investing/2026/09/21/better-data-center-stock-nebius-vs-coreweave/",
+   "date": "2026-09-21",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "NeoCloud market consolidation 2026 (vendor blog; its $0.89/hr H100 figure is one provider's spot quote - discounted, used only as an example of aged-GPU spot pricing)",
+   "url": "https://clusterbid.com/blog/neocloud-market-consolidation-2026-survival-guide",
+   "date": "2026",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "Dot-com (1995-2000) vs today's AI bubble: telecom 2000-02 analog, defaults lag equity peak 1-2 yrs",
+   "url": "https://liqiqiii.github.io/VLCC-Analysis-2026/ai_bubble/report_en.html",
+   "date": "2026-07-29",
+   "type": "other",
+   "in_lane": true
+  },
+  {
+   "title": "Silicon Data H100 Rental Price Index SDH100RT (neo-cloud): $2.77/GPU-hr on 2026-10-01 (+4.9% 7D); B200 $5.86, B300 $6.78, H200 $3.37, A100 $1.58",
+   "url": "https://www.silicondata.com/products/silicon-index/h100",
+   "date": "2026-10-01",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Round-1 supervisor review (fact-check of diluted shares, prepayments, GPU life, H100 index)",
+   "url": "file:/mnt/project-files/valuation/runs/2026-10-01/IREN/round1/supervisor.json",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "GPU useful lives: research notes for the neocloud DCFs (hyperscaler/neocloud lives, rental-price paths, resale prices, physical vs economic life)",
+   "url": "file:/mnt/project-files/adhoc/gpu_useful_life.md",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Tom's Hardware: CoreWeave CEO says it signed an A100 contract running into 2029 (Q2 2026 call; prior-gen pricing 'at or above' a year earlier)",
+   "url": "https://www.tomshardware.com/tech-industry/coreweave-ceo-mike-intrator-says-it-has-signed-an-a100-contract-running-into-2029",
+   "date": "2026-08-13",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Ornn OCPI transacted spot 2026-10-01: A100 SXM4 $0.93, H100 SXM $2.92, H200 $5.96, B200 $7.96 per GPU-hr (via research notes; ~$3 per PFLOP-hr across A100/H100/B200)",
+   "url": "https://data.ornn.com/markets",
+   "date": "2026-10-01",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "SemiAnalysis GPU rental index: H100 composite $6.62 (2H23) -> $3.91 (4Q24) -> $3.34 (2Q25), flat ~$2.80 Jul-25 to Apr-26 (via research notes)",
+   "url": "https://gpu-index.semianalysis.com/",
+   "date": "2026-04",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Amazon FY2025 10-K: useful life of a subset of servers cut from 6 to 5 years for the pace of AI/ML technology development",
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "date": "2026-02",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Silicon Data A100 Rental Price Index SDA100RT ($1.58/GPU-hr on 2026-09-30 per supervisor verification; the $1.29 FAQ reading in round 3 was a different figure)",
+   "url": "https://www.silicondata.com/products/silicon-index/a100",
+   "date": "2026-10-02",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "CNBC: CoreWeave re-booked an expiring H100 cluster within 5% of original price; Nvidia says A100s still fully utilised (GPU depreciation debate)",
+   "url": "https://www.cnbc.com/2025/11/14/ai-gpu-depreciation-coreweave-nvidia-michael-burry.html",
+   "date": "2025-11-14",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Nvidia moves to a one-year GPU cadence (Computex 2024: Blackwell Ultra 2025, Rubin 2026, Rubin Ultra 2027)",
+   "url": "https://www.techmeme.com/240602/p4",
+   "date": "2024-06-02",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "IREN site inventory and DCF coverage check (sites.md / sites.json, 2026-10-02): 17 rows, contracts_credit, flags F01-F12",
+   "url": "file:/mnt/project-files/valuation/runs/2026-10-01/IREN/sites.md",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "IREN 8-K (May-26-2026): NVIDIA AI cloud contract lifts ARR from $3.7bn to $4.4bn on commissioning; Dell purchase ~$1.6bn incl. GPUs, servers, storage, networking (verified via WebFetch 2026-10-02)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1878848/000187884826000030/irentrgts44bninarrwithbl.htm",
+   "date": "2026-05-26",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "IREN closes $3.65bn investment-grade GPU financing (Microsoft contract; USPP 5.96% + DDTL SOFR+2.25%, blended 6.00%, Fitch A)",
+   "url": "https://www.stocktitan.net/news/IREN/iren-closes-3-65bn-investment-grade-gpu-1t1l1sm57dkt.html",
+   "date": "2026-06-01",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "IREN secures $3.4bn five-year AI cloud contract with NVIDIA (~60MW air-cooled, Childress, early 2027)",
+   "url": "https://www.stocktitan.net/news/IREN/iren-secures-3-4bn-ai-cloud-contract-with-hh8a26euuqhs.html",
+   "date": "2026-05-07",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "IREN Q3 FY2026 call transcript: 2027 Childress 250MW air-cooled retrofit (~60MW for NVIDIA) + 100MW IT Horizons 5-6; Sweetwater 1 initial 200MW IT; Canal Flats 30MW",
+   "url": "https://stockanalysis.com/stocks/iren/transcripts/552743-q3-2026/",
+   "date": "2026-05",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "IREN Q4 FY2026 call transcript: $4bn ARR excludes the $700m NVIDIA ARR; mining decommissioned by Dec-2026; ~$25m per IT MW in 2027 discussions",
+   "url": "https://stockanalysis.com/stocks/iren/transcripts/662889-q4-2026/",
+   "date": "2026-08",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Mining 8-K (Nov-3-2025): ~$5.5bn, 15-year AWS lease for 300MW of turnkey space and power (colocation benchmark ~$1.22M per MW-yr)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998925000110/ciphermining_businessupd.htm",
+   "date": "2025-11-03",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Fact-check of gpu_useful_life.md (company lives: CoreWeave 6, Nebius 5, IREN 5 years)",
+   "url": "file:/mnt/project-files/adhoc/gpu_useful_life_factcheck.md",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Round-3 supervisor verdict (gpu_life_review; agent_5 feedback: prepayment-float caveat, A100 $1.58, salvage)",
+   "url": "file:/mnt/project-files/valuation/runs/2026-10-01/IREN/round3/supervisor.json",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a fact (F01)",
+   "from": "NVIDIA $0.68bn ARR inside the $4bn 2026 ARR (dropped)",
+   "to": "NVIDIA $3.4bn / 5-yr contract added on top: ~43MW IT (60 gross) at $0.68bn/yr from ~Feb-27, at 7.5%",
+   "why": "Dell 8-K: ARR $3.7bn -> $4.4bn on commissioning [32] (re-read 2026-10-02); FY26 call: $4bn excludes the $700m NVIDIA ARR [36]"
+  },
+  {
+   "item": "a method",
+   "from": "DCF $15.3 (pooled cohorts A/B/growth, single 11.5% WACC)",
+   "to": "DCF -$8.0 split / -$9.5 single (one row per site)",
+   "why": "Kilian's two fixes; bridge $15.3 -> $11.8 site rebuild -> $6.2 Microsoft tail -> -$3.4 DC $15M/MW -> +$8.3 NPV>0 build floor -> -$8.0 revenue/capex 0.45"
+  },
+  {
+   "item": "an input",
+   "from": "new/refresh capacity $20.5M revenue on $34M GPU + $10M DC per MW (revenue/GPU capex 0.60)",
+   "to": "revenue/GPU capex 0.45; liquid DC $15M per IT MW",
+   "why": "IREN's own deals: B300 0.45, NVIDIA 0.43, Microsoft 0.33; Horizons DC $14-16M per IT MW [31]"
+  },
+  {
+   "item": "an input",
+   "from": "cohort A blended $13.33M/MW with a $20.5M/MW tail reference",
+   "to": "Microsoft priced separately at $9.7M/MW, 85% project margin, tail reference $11.6M/MW",
+   "why": "Inventory coverage note on S01; Microsoft's MW holds fewer GPUs per MW"
+  },
+  {
+   "item": "an input",
+   "from": "pipeline = generic growth +650MW IT at $20.5M/MW",
+   "to": "S11-S16 by site (~3,060MW IT) with stated probabilities, built only if NPV>0, else land at cost",
+   "why": "Fix 1: every site once, probability-weighted net of capex"
+  },
+  {
+   "item": "an input",
+   "from": "single 11.5% rate",
+   "to": "Microsoft 7.0%, NVIDIA 7.5%, non-IG contracts 10.0%, rest 11.5%",
+   "why": "Fix 2: Microsoft secured financing 6.00% A-rated [33]; Mackenzie 9.0% non-IG paper [1,31]"
+  },
+  {
+   "item": "an input",
+   "from": "new prepayments credited over yrs 3-5 after receipt; $1.84bn called the Microsoft prepayment",
+   "to": "Microsoft credits months 25-60 as contracted, others over the contract term; only $1,013m of deferred revenue is Microsoft's",
+   "why": "F11; crediting terms of other customers not disclosed, so over the term (conservative)"
+  },
+  {
+   "item": "an input",
+   "from": "mining omitted",
+   "to": "S06 wind-down +$0.1bn (residual revenue to Dec-26 and ASIC sales); MW re-used, not added",
+   "why": "F10"
+  },
+  {
+   "item": "a method",
+   "from": "EV/ARR: $10.7bn = $4bn (with NVIDIA assumed inside) + 65% of 0.5GW at $20.5M",
+   "to": "EV/ARR: $10.7bn = $4.0bn + $0.68bn NVIDIA + site-by-site 2027 builds probability-weighted",
+   "why": "F01; value unchanged at $29.4"
+  },
+  {
+   "item": "fair value",
+   "from": "26.7 (DCF 30% / EV/EBITDA 40% / EV/ARR 30%)",
+   "to": "21.8 (25% / 45% / 30%)",
+   "why": "DCF $15.3 -> -$8.0; DCF weight cut because one disputed ratio swings it by ~$16"
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "median ~$35.3: P(>=24) 0.68, P(>=41) 0.425, P(>=81) 0.15",
+   "to": "median ~$33.0: P(>=24) 0.65, P(>=41) 0.392, P(>=81) 0.133",
+   "why": "Fair-value anchor $26.7 -> $21.8 at the same one-third log weight; sigma unchanged"
+  },
+  {
+   "item": "a scenario",
+   "from": "bear $14 / base $34",
+   "to": "bear $13 / base $32",
+   "why": "Lower DCF; bull $80 kept (needs pricing that clears WACC)"
+  },
+  {
+   "item": "a fact",
+   "from": "Silicon Data A100 $1.29",
+   "to": "$1.58 (30-Sep-2026)",
+   "why": "Round-3 supervisor verification [39]"
+  }
+ ],
+ "gpu_life": {
+  "base_economic_life_years": 6,
+  "revenue_decay_path": "Contracted MW earn the contract price for the term (Microsoft $9.7M/MW 5 yrs; NVIDIA $15.9M/MW-IT 5 yrs; Prince George $18M/MW ~2 yrs; Mackenzie/Childress $21.7M/MW 3 yrs). After that each cohort rents at its own reference price (Microsoft $11.6M/MW, others their contract price) x [1.00, 0.82, 0.70, 0.64, 0.59, 0.54, 0.49, 0.44, 0.33, 0.22] by year of service x 90% utilisation (85% spot); refresh generations at revenue/GPU capex 0.45, 80% contracted 3 yrs.",
+  "dcf_at_5y": -11.8,
+  "dcf_at_base": -8.0,
+  "dcf_at_7y": -5.0,
+  "applies": "full",
+  "note": "Split-rate basis, Oct-2027. With prepayments stopping after FY32 (supervisor's request, so the life effect stands alone): 5 yrs -$10.8, 6 yrs -$9.8, 7 yrs -$6.5; the longer-life gain survives (~+$4) because a refresh at 0.45 revenue/capex is NPV-negative at 11.5%, so sweating the GPUs longer adds value. No salvage on refresh (10% salvage: +$1.5). Lives measured from the first full fiscal year (6.5 yrs from commissioning). Company book lives per the fact-check: CoreWeave 6, Nebius 5, IREN 5 [38]; I keep 5-yr tax depreciation."
+ },
+ "site_coverage": [
+  {
+   "site": "S01 Childress - Horizons 1-4 (Microsoft)",
+   "status": "under_construction_contracted (H1 live)",
+   "mw": 300,
+   "treatment": "contracted_cf at contract: 200MW IT x $9.7M/MW x 5 yrs at 7.0%; tail and refresh at 11.5%",
+   "probability": 1.0,
+   "value_per_share": 1.53,
+   "note": "Value is net of $4.6bn capex still to spend; contract alone roughly pays back the GPUs and shells (TCV $9.7bn vs $8.8bn capex); single-rate $0.44"
+  },
+  {
+   "site": "S02 Childress - initial air-cooled retrofit (2026)",
+   "status": "under_construction_contracted",
+   "mw": 50,
+   "treatment": "contracted_cf: ~28MW IT x $21.7M/MW x 3 yrs at 10%; tail at 11.5%",
+   "probability": 1.0,
+   "value_per_share": 1.88,
+   "note": "ARR share of $1.56bn by IT MW; B300 capex ~$0.8bn"
+  },
+  {
+   "site": "S03 Childress - NVIDIA air-cooled halls",
+   "status": "contracted_pipeline",
+   "mw": 60,
+   "treatment": "contracted_cf: ~43MW IT (60 gross) at $0.68bn/yr x 5 yrs from ~Feb-27 at 7.5%",
+   "probability": 1.0,
+   "value_per_share": 0.54,
+   "note": "F01 fixed (was omitted); 60MW taken as gross since it is part of the 250MW gross 2027 retrofit; no financing closed yet, hence 7.5% not 7.0%"
+  },
+  {
+   "site": "S04 Childress - remaining air-cooled retrofit (2027)",
+   "status": "under_construction_uncontracted",
+   "mw": 190,
+   "treatment": "probability-weighted build: ~136MW IT at $21.7M/MW, 3-yr contracts; GPU capex $48M/MW-IT; DC retrofit $0.3bn committed",
+   "probability": 0.85,
+   "value_per_share": 0.79,
+   "note": "Else contracted 1.5 yrs later; only uncontracted site whose GPU stage clears WACC (no new shell needed)"
+  },
+  {
+   "site": "S05 Childress - Horizons 5-6",
+   "status": "under_construction_uncontracted",
+   "mw": 150,
+   "treatment": "DC $1.5bn committed; GPU stage (100MW IT at $15M/MW) built only if NPV>0, else colocation at $1.22M/MW-yr",
+   "probability": 0.75,
+   "value_per_share": -2.23,
+   "note": "GPU stage NPV about -$2.8M/MW at 11.5%, so modelled as colocation; the shell spend is only half recovered"
+  },
+  {
+   "site": "S06 Bitcoin mining fleet - exit",
+   "status": "exiting",
+   "mw": 380,
+   "treatment": "wind-down cash +$0.1bn (residual mining to Dec-26, ASIC sales); MW not counted (re-used by S02-S04, S07-S09)",
+   "probability": 1.0,
+   "value_per_share": 0.25,
+   "note": "F10; business exit, not a site sale"
+  },
+  {
+   "site": "S07 Prince George",
+   "status": "energized_operating, contracted",
+   "mw": 50,
+   "treatment": "contracted_cf: ~28MW IT, $0.5bn/yr, ~2-yr terms at 10%; liquid GB300 install $0.3bn",
+   "probability": 1.0,
+   "value_per_share": 2.06,
+   "note": "Sources conflict ($0.4bn Q2 release vs $0.5bn Q3 footnote); $0.5bn chosen as the latest. 2027 headroom deployments (F09) not modelled: MW undisclosed"
+  },
+  {
+   "site": "S08 Mackenzie",
+   "status": "under_construction_contracted",
+   "mw": 80,
+   "treatment": "contracted_cf: ~44MW IT x $21.7M/MW x 3 yrs at 10%; GPU capex $2.7bn (9% financing at 90%)",
+   "probability": 1.0,
+   "value_per_share": -0.64,
+   "note": "Slightly negative: 3-yr contract revenue about equals GPU capex; value relies on the tail, then a negative-NPV refresh"
+  },
+  {
+   "site": "S09 Canal Flats",
+   "status": "under_construction_uncontracted (inventory: uncontracted pipeline)",
+   "mw": 30,
+   "treatment": "conversion capex $0.2bn committed; liquid GPU stage (~21MW IT at $15M/MW) only if NPV>0, else colocation",
+   "probability": 0.8,
+   "value_per_share": -0.16,
+   "note": "Mining until conversion (counted in S06)"
+  },
+  {
+   "site": "S10 Sweetwater 1 - phase 1",
+   "status": "under_construction_uncontracted",
+   "mw": 300,
+   "treatment": "DC $3.0bn committed; GPU stage (200MW IT at $15M/MW) only if NPV>0, else colocation",
+   "probability": 0.7,
+   "value_per_share": -4.44,
+   "note": "Largest single negative: $3bn of shell with no contract and thin GPU economics; Batch Zero conditional"
+  },
+  {
+   "site": "S11 Sweetwater 1 - remaining capacity",
+   "status": "uncontracted_pipeline",
+   "mw": 1100,
+   "treatment": "probability-weighted build (733MW IT, 2029-32) only if NPV>0; near-term infra $0.4bn",
+   "probability": 0.5,
+   "value_per_share": -0.95,
+   "note": "Build NPV about -$13M/MW at 0.45 revenue/capex and $15M/MW DC, so not built in base; value = committed infra spend"
+  },
+  {
+   "site": "S12 Sweetwater 2",
+   "status": "uncontracted_pipeline",
+   "mw": 600,
+   "treatment": "probability-weighted build (400MW IT, 2030-31) only if NPV>0; substation $0.4bn",
+   "probability": 0.4,
+   "value_per_share": -0.96,
+   "note": "Substation spend counted; build not NPV-positive in base"
+  },
+  {
+   "site": "S13 Kiowa (Oklahoma)",
+   "status": "uncontracted_pipeline",
+   "mw": 1600,
+   "treatment": "probability-weighted build (1,067MW IT, 2030-33) only if NPV>0; else connection rights at cost $112m",
+   "probability": 0.3,
+   "value_per_share": 0.05,
+   "note": "Ownership basis (land purchase rights vs freehold) unresolved in the 10-K; does not change value"
+  },
+  {
+   "site": "S14 Bundey",
+   "status": "uncontracted_pipeline",
+   "mw": 800,
+   "treatment": "probability-weighted build (533MW IT, 2031-32) only if NPV>0; else cost ~$50m",
+   "probability": 0.25,
+   "value_per_share": -0.04,
+   "note": "Energization from 2028 subject to approvals"
+  },
+  {
+   "site": "S15 Badajoz (Nostrum)",
+   "status": "uncontracted_pipeline",
+   "mw": 300,
+   "treatment": "probability-weighted build (200MW IT, 2030) only if NPV>0; else Nostrum cost pro rata ($91m)",
+   "probability": 0.3,
+   "value_per_share": 0.06,
+   "note": "Nostrum price conflict (EUR165m press vs $147.9m 10-K): 10-K figure used as primary"
+  },
+  {
+   "site": "S16 Other Nostrum Spain sites",
+   "status": "uncontracted_pipeline",
+   "mw": 190,
+   "treatment": "probability-weighted build (127MW IT) only if NPV>0; else Nostrum cost pro rata ($57m)",
+   "probability": 0.15,
+   "value_per_share": 0.1,
+   "note": "Sites not named"
+  },
+  {
+   "site": "S17 Unannounced pipeline (Batch Zero, APAC)",
+   "status": "uncontracted_pipeline (not announced)",
+   "mw": null,
+   "treatment": "excluded",
+   "probability": 0.0,
+   "value_per_share": 0.0,
+   "note": "MW undisclosed; IREN adds sites only after grid agreements"
+  },
+  {
+   "site": "Corporate items (not a site)",
+   "status": "n/a",
+   "mw": null,
+   "treatment": "extra SG&A in the FY27-28 ramp (-$1.34) and debt-like claims $1.67bn (-$4.48)",
+   "probability": 1.0,
+   "value_per_share": -5.82,
+   "note": "Site values sum to -$2.2 (incl. S06); less corporate items = -$8.0 per share at Oct-2027 (split basis)"
+  }
+ ],
+ "discounting": {
+  "contracted_rate": "Microsoft 7.0%; NVIDIA 7.5%; non-IG AI-developer contracts 10.0%",
+  "uncontracted_rate": 0.115,
+  "basis": "Microsoft: the $3.65bn A-rated (Fitch) financing secured on this contract prices at 6.00% blended [33]; I add ~1pt for IREN's completion, availability and operating risk and the ~4% unfunded slice, so 7.0% on contract-term cash flows. NVIDIA: AA-rated counterparty, but no financing closed and commissioning not until early 2027, so 7.5%. Non-IG developers (Prince George, Mackenzie, Childress air): marginal secured cost 9.0% fixed on 30-month amortizing paper at a 90% advance with 45-55% prepayments [1,31]; the equity slice is riskier, so ~10% (0.9 x 9% + 0.1 x ~16%). Contract-term flows include their remaining capex and prepayment credits. Post-contract tails, refreshes, uncontracted builds, pipeline and corporate costs stay at the 11.5% WACC. Both figures are rolled to Oct-2027 at Ke 16% (round-3 convention). The split adds only +$1.5 per share: contract-term cash net of the capex still to spend is ~+$1.0bn PV.",
+  "dcf_single_rate": -9.5,
+  "dcf_split_rate": -8.0
+ }
+}

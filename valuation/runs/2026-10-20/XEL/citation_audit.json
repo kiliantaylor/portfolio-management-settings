@@ -1,0 +1,2927 @@
+{
+ "date": "2026-10-20",
+ "symbol": "XEL",
+ "clean": true,
+ "checked": 316,
+ "ok": 271,
+ "fixed": 45,
+ "method": "Split gate: shard agents opened every cited source (gate/merged.json, 271 ok, 45 failures); this fix step corrected supervisor.json and model_assumptions.json and the agent files' sourcing only (labels, derivations, confidence, citations; agent values and ladders not re-run), then re-opened every new source: Q4 2025 release (NSPW 52.5%), FOMC statement 2026-09-16, Denver Post report (repost), Alpha Vantage snapshot data/estimates/XEL.json (2026-10-20T21:17:18Z), METHOD.md, peers.json. model_engine.py check re-run on supervisor.json after the WACC change.",
+ "value_changes": {
+  "fair_value": {
+   "from": 75.01,
+   "to": 75.23,
+   "why": "WACC 5.95% -> 5.93% (arithmetic); DCF leg 46.84 -> 47.97 (weight 0.2)"
+  },
+  "scenarios": {
+   "from": "58.32 / 75.01 / 88.10",
+   "to": "58.49 / 75.23 / 88.41"
+  },
+  "engine_median": {
+   "from": 74.49,
+   "to": 74.72
+  },
+  "ladder": "P(close >= K) K=54..104 +0.001 to +0.007 (shifted by the engine's change); ladder_1m, thesis break $63 and sizing unchanged",
+  "no_value_effect": "equity ratio 53.6% -> 53.71% (ROE re-expressed, same EPS); capex/DCF-weight relabels; peer-weight description; NSPW source; Fed and Colorado wording",
+  "agent_values": "Agent fair values, method values and ladders are not re-run (brief: agent files only for sourcing). Quantified agent-level effects of corrected figures, recorded in the agent files and model_assumptions.json: agent_1 HoldCo drag on its stated basis P/E leg +$2.41 (blend ~$80.2); agent_2 guidance-anchored D&A DCF -$2.45 (blend -$0.49); agent_4 corrected capex rows DCF -$0.27 (blend -$0.06); agent_4 53.71% x 8.75% NTM EPS +$0.07; agent_3/4 relatives on the consistent median -$1.9/-$1.5 on the P/E leg if the relative rather than the multiple were held; agent_5 consensus revenue DCF +$0.04, flat equity ratio ~-$0.7. None enters fair_value (standard model = reconciled set)."
+ },
+ "failures": [
+  {
+   "item": "[agent_1 DCF] Capex",
+   "value": "$13,790M, $16,630M, $15,650M, $12,020M, $8,205M (normalised)",
+   "cited": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "result": "mislabelled",
+   "fix": "agent_1 Capex: relabelled basis guidance -> estimate in the agent file (both copies) and model_assumptions A17: only the deck's base capex by year is guidance; line-of-sight phasing and the FY2030 normalisation are the agent's estimate; arithmetic shown; value unchanged (agent view)."
+  },
+  {
+   "item": "[agent_2 DCF] Capex % revenue",
+   "value": "90%, 94%, 79%, 60%, 38% (2030 normalised)",
+   "cited": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "result": "mislabelled",
+   "fix": "agent_2 Capex % revenue: relabelled basis guidance -> estimate in the agent file (both copies) and model_assumptions A17: only the deck's base capex by year is guidance; line-of-sight phasing and the FY2030 normalisation are the agent's estimate; arithmetic shown; value unchanged (agent view). Ratios on its revenue: 13,790/15,329 = 90.0%, 16,130/17,184 = 93.9%, 15,150/19,143 = 79.1%, 12,520/20,808 = 60.2%, 8,441/22,140 = 38.1%."
+  },
+  {
+   "item": "[agent_3 DCF] Capex % revenue",
+   "value": "88.3% / 88.9% / 68.8% / 45.8% / 41.7% (FY2030 steady state)",
+   "cited": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "result": "mislabelled",
+   "fix": "agent_3 Capex % revenue: relabelled basis guidance -> estimate in the agent file (both copies) and model_assumptions A17: only the deck's base capex by year is guidance; line-of-sight phasing and the FY2030 normalisation are the agent's estimate; arithmetic shown; value unchanged (agent view)."
+  },
+  {
+   "item": "[agent_4 model_inputs] Equity ratio",
+   "value": "53%",
+   "cited": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "result": "wrong",
+   "fix": "Not guidance and not in the deck: relabelled estimate, described as the authorised operating-company blend from rate-case orders (PSCo 54.5% CPUC 8-K; NSPM 52.5%, SPS 54.7% deck; NSPW 52.5% PSCW per Q4 2025 release) = 53.71% on the 2025 mix, explicitly not the consolidated ~41%. The agent's NI build at 53% x 8.75-8.8% equals 53.71% x 8.63-8.68% (same NI); applying 8.75% on 53.71% instead would add ~$0.07 NTM EPS (+~$1.2/sh P/E leg), stated as variant; agent value not changed."
+  },
+  {
+   "item": "[agent_5 DCF] Capex FY2026-FY2030",
+   "value": "$13.79B / $16.13B / $14.15B / $10.52B / $7.70B (88.4% / 94.1% / 76.4% / 53.6% / 37.4% of revenue)",
+   "cited": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "result": "mislabelled",
+   "fix": "agent_5 Capex: relabelled basis guidance -> estimate in the agent file (both copies) and model_assumptions A17: only the deck's base capex by year is guidance; line-of-sight phasing and the FY2030 normalisation are the agent's estimate; arithmetic shown; value unchanged (agent view). Ratios on its revenue recomputed (88.4/94.1/76.4/53.6/37.4%, all right)."
+  },
+  {
+   "item": "[supervisor model] Capex",
+   "value": "$13,790M / $15,130M / $13,650M / $11,020M / $8,870M (FY2030 steady state)",
+   "cited": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "result": "mislabelled",
+   "fix": "Supervisor inputs_detail Capex relabelled guidance -> estimate (confidence high -> medium): FY2026-27 deck figures, FY2028-29 deck base + half the line of sight (judgment), FY2030 steady state $8.87B = D&A ~$5.0B + 3.5% x ~$99B + ~$0.4B AFUDC. Values and engine rows unchanged."
+  },
+  {
+   "item": "[agent_1 DCF] D&A",
+   "value": "$3,113M (2026) rising to $4,600M (2030)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/0000072903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "result": "not_found",
+   "fix": "Relabelled guidance -> estimate: only the 2026 increase (+$140-150M) is guidance (Q2 release Note 7, deck); $3,113M = 2,968 + ~145; later years are the agent's path (+12.4/+12.9/+8.9/+7.0% a year to $4,601M in 2030; the earlier '~11-13%/yr' corrected). Value unchanged."
+  },
+  {
+   "item": "[agent_1 model_inputs] Dividend",
+   "value": "$2.37 annual rate (3.1% yield)",
+   "cited": "https://www.businesswire.com/news/home/20260729671139/en/",
+   "result": "not_found",
+   "fix": "Re-sourced from Business Wire (403) to the Q2 2026 earnings release on sec.gov ($0.5925/share declared); $2.37 = 4 x $0.5925 and 3.09% = 2.37 / 76.68 (Twelve Data close) labelled estimate (annualised, derived), confidence high."
+  },
+  {
+   "item": "[agent_3 DCF] DCF weight",
+   "value": "0.20",
+   "cited": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=XEL",
+   "result": "not_found",
+   "fix": "Relabelled from guidance to a rule-set model parameter (basis estimate): METHOD.md walk-forward DCF weight, 15.0-19.6x -> 0.2; 76.68 / FY2027 consensus $4.5403 (Alpha Vantage snapshot data/estimates/XEL.json, retrieved 2026-10-20T21:17:18Z, matches exactly) = 16.89x. Value unchanged."
+  },
+  {
+   "item": "[agent_5 DCF] Revenue growth FY2026 / FY2027",
+   "value": "+6.35% ($15.6B) / +9.9% ($17.14B)",
+   "cited": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=XEL",
+   "result": "not_found",
+   "fix": "Verified against the project's Alpha Vantage EARNINGS_ESTIMATES snapshot (retrieved 2026-10-20T21:17:18Z): revenue $15,606.4M (13 est.) / $17,150.1M (14 est.) -> +6.39% / +9.89%; the claim now states those exactly (basis consensus) and labels the model rows +6.35% / +9.9% as rounding (within $6M; engine re-run: DCF +$0.04, immaterial; not changed)."
+  },
+  {
+   "item": "[supervisor model] DCF weight",
+   "value": "0.2",
+   "cited": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=XEL",
+   "result": "not_found",
+   "fix": "Same as agent_3: basis guidance -> estimate (METHOD.md rule [19]) with the forward P/E from the consensus snapshot [17] and price [9]; source [17] now points at the saved snapshot. Value unchanged."
+  },
+  {
+   "item": "[supervisor disagreements (peer median)] Which peer rows use which FY weights",
+   "value": "\"8 of 12 ... weight ... 0.504/0.496; EVRG 0.753/0.247\"",
+   "cited": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "result": "wrong",
+   "fix": "Description corrected in disagreements, feedback_for_agents and changes (and model_assumptions A11): WEC, CMS, AEE, ES use 0.504/0.496; LNT, PPL, CNP, EVRG use 0.753/0.247 (peers.json). The 18.45x re-weighted median (verified ok) is unchanged; no value effect."
+  },
+  {
+   "item": "[supervisor disagreements (WSJ) / long_dated_review] Colorado large-load tariff terms",
+   "value": "docket 26V-0048E with deposits, minimum bill, minimum term, collateral, exit fees",
+   "cited": "https://pirg.org/colorado/media-center/consumer-advocates-call-for-data-centers-to-pay-their-way-as-puc-considers-new-tariff/",
+   "result": "not_found",
+   "fix": "CoPIRG page refuses (403) and the docket number 26V-0048E could not be found in any source: docket number, deposits and minimum bill removed. Kept only what The Denver Post (2026-04-03, as reposted) shows: Xcel filed a CO large-load tariff with the CPUC on 2026-04-02 for loads of 50 MW+ with 15-year contracts, financial assurance in cash or credit and substantial exit fees. Source [15] replaced; catalysts and long_dated_review wording aligned. Feeds no number."
+  },
+  {
+   "item": "[supervisor key_drivers / sizing] Fed hiking cycle",
+   "value": "\"the Fed is in a hiking cycle\"",
+   "cited": "",
+   "result": "not_found",
+   "fix": "Replaced the unsourced 'the Fed is in a hiking cycle' with what the FOMC statement of 2026-09-16 shows (federalreserve.gov, new source [20]): target range raised 1/4 point to 3-3/4 to 4 percent, vote 12-0. key_drivers, sizing.reason and the bear story now cite it; bear probability 0.25 and the rates driver unchanged (the hike is sourced)."
+  },
+  {
+   "item": "[supervisor inputs_detail (equity ratio)] Authorised equity ratio NSPW",
+   "value": "52.5% (\"deck rate-case pages [2]\")",
+   "cited": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "result": "not_found",
+   "fix": "Found a primary source: Xcel Energy 2025 year-end earnings release (8-K Ex.99, sec.gov, already source [3]) reports the PSCW decision for NSP-Wisconsin 2026 rates 'based on a ROE of 9.8% and an equity ratio of 52.5%'. Inputs_detail now cites [3] for NSPW."
+  },
+  {
+   "item": "[agent_1 P/E] Equity ratio (regulated)",
+   "value": "53.5%",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "agent_1: Arithmetic corrected in the agent file (both copies) and model_assumptions A5: 0.43x54.5 + 0.35x52.5 + 0.16x54.7 + 0.06x52.5 = 53.71% (53.93% with PSCo at 55%), labelled the authorised operating-company blend (rate-case orders), not the consolidated ~41%. The build ran at 53.5% with ROE calibrated to 2026 guidance on the same ratio, so only the product enters EPS: ROE x 0.996, EPS and value unchanged."
+  },
+  {
+   "item": "[agent_1 model_inputs] Equity ratio (regulated)",
+   "value": "53.5%",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "agent_1: Arithmetic corrected in the agent file (both copies) and model_assumptions A5: 0.43x54.5 + 0.35x52.5 + 0.16x54.7 + 0.06x52.5 = 53.71% (53.93% with PSCo at 55%), labelled the authorised operating-company blend (rate-case orders), not the consolidated ~41%. The build ran at 53.5% with ROE calibrated to 2026 guidance on the same ratio, so only the product enters EPS: ROE x 0.996, EPS and value unchanged."
+  },
+  {
+   "item": "[agent_1 P/E] HoldCo drag",
+   "value": "-$150/-250/-350/-420/-480M",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "Derivation corrected in agent_1 (both copies) and model_assumptions A7: the stated basis (22-24% x $22.8B incremental debt x ~5.5% x 0.79) adds ~$46M a year (path -150/-196/-241/-287/-332M), not ~$100M; the agent's larger path is now labelled its own assumption beyond the stated basis, confidence medium -> low, with the variant quantified by engine re-run (stated-basis path: FY2027 $4.54, FY2028 $5.00, NTM $4.91, P/E leg $84.33 (+$2.41), blend ~$80.2). Not adopted into the agent's values (agent view; brief). The reconciled set uses its own verified drag (-125/-190/-260M), so fair_value is unaffected."
+  },
+  {
+   "item": "[agent_1 model_inputs] HoldCo drag",
+   "value": "-$150/-250/-350/-420/-480M",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "Derivation corrected in agent_1 (both copies) and model_assumptions A7: the stated basis (22-24% x $22.8B incremental debt x ~5.5% x 0.79) adds ~$46M a year (path -150/-196/-241/-287/-332M), not ~$100M; the agent's larger path is now labelled its own assumption beyond the stated basis, confidence medium -> low, with the variant quantified by engine re-run (stated-basis path: FY2027 $4.54, FY2028 $5.00, NTM $4.91, P/E leg $84.33 (+$2.41), blend ~$80.2). Not adopted into the agent's values (agent view; brief). The reconciled set uses its own verified drag (-125/-190/-260M), so fair_value is unaffected."
+  },
+  {
+   "item": "[agent_1 P/E] Horizon P/E",
+   "value": "17.2x",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_1: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. 17.2x = XEL's own multiple; value unaffected."
+  },
+  {
+   "item": "[agent_1 model_inputs] Horizon P/E",
+   "value": "17.2x",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_1: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. 17.2x = XEL's own multiple; value unaffected."
+  },
+  {
+   "item": "[agent_2 P/E] Horizon P/E multiple",
+   "value": "17.2x NTM",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_2: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. Value unaffected."
+  },
+  {
+   "item": "[agent_2 model_inputs] Horizon P/E multiple",
+   "value": "17.2x NTM",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_2: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. Value unaffected."
+  },
+  {
+   "item": "[agent_2 DCF] D&A % revenue",
+   "value": "21.8-22.2%",
+   "cited": "derivation (arithmetic)",
+   "result": "wrong",
+   "fix": "Input replaced with what the source shows: 2026 depreciation +$140-150M (Q2 release Note 7, deck), not ~$350-380M: ~$3,113M = 20.3% of $15,329M. The 21.8-22.2% model rows are labelled the agent's higher assumption (confidence high -> medium) with the effect quantified by engine re-run (guidance-anchored rows: DCF $60.16, -$2.45; blend $77.16, -$0.49); not adopted (agent view)."
+  },
+  {
+   "item": "[agent_2 model_inputs] D&A % revenue",
+   "value": "21.8-22.2%",
+   "cited": "derivation (arithmetic)",
+   "result": "wrong",
+   "fix": "Input replaced with what the source shows: 2026 depreciation +$140-150M (Q2 release Note 7, deck), not ~$350-380M: ~$3,113M = 20.3% of $15,329M. The 21.8-22.2% model rows are labelled the agent's higher assumption (confidence high -> medium) with the effect quantified by engine re-run (guidance-anchored rows: DCF $60.16, -$2.45; blend $77.16, -$0.49); not adopted (agent view)."
+  },
+  {
+   "item": "[agent_3 P/E] Equity ratio (authorised, blended)",
+   "value": "53.5% (53.6% by 2025 mix, 53.7% by 2027 mix)",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "agent_3: Arithmetic corrected in the agent file (both copies) and model_assumptions A5: 0.43x54.5 + 0.35x52.5 + 0.16x54.7 + 0.06x52.5 = 53.71% (53.93% with PSCo at 55%), labelled the authorised operating-company blend (rate-case orders), not the consolidated ~41%. The build ran at 53.5% with ROE calibrated to 2026 guidance on the same ratio, so only the product enters EPS: ROE x 0.996, EPS and value unchanged. 2027 mix (34/40/19/6, sums to 99%) normalised = 53.73%."
+  },
+  {
+   "item": "[agent_3 model_inputs] Equity ratio (authorised, blended)",
+   "value": "53.5% (53.6% by 2025 mix, 53.7% by 2027 mix)",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "agent_3: Arithmetic corrected in the agent file (both copies) and model_assumptions A5: 0.43x54.5 + 0.35x52.5 + 0.16x54.7 + 0.06x52.5 = 53.71% (53.93% with PSCo at 55%), labelled the authorised operating-company blend (rate-case orders), not the consolidated ~41%. The build ran at 53.5% with ROE calibrated to 2026 guidance on the same ratio, so only the product enters EPS: ROE x 0.996, EPS and value unchanged. 2027 mix (34/40/19/6, sums to 99%) normalised = 53.73%."
+  },
+  {
+   "item": "[agent_3 P/E] Horizon P/E",
+   "value": "17.0x",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_3: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. 17.0x = 0.92x; holding 0.90x on the consistent median would be 16.6x (-$1.9/sh P/E leg), stated as a note; the agent's 17.0x is kept."
+  },
+  {
+   "item": "[agent_3 model_inputs] Horizon P/E",
+   "value": "17.0x",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_3: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. 17.0x = 0.92x; holding 0.90x on the consistent median would be 16.6x (-$1.9/sh P/E leg), stated as a note; the agent's 17.0x is kept."
+  },
+  {
+   "item": "[agent_4 P/E] Horizon P/E on NTM EPS",
+   "value": "17.3x on $4.70",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_4: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. 17.3x = 0.94x; holding 0.92x would be 17.0x (-$1.5/sh), stated as a note; the agent's 17.3x is kept."
+  },
+  {
+   "item": "[agent_4 model_inputs] Horizon P/E on NTM EPS",
+   "value": "17.3x on $4.70",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_4: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. 17.3x = 0.94x; holding 0.92x would be 17.0x (-$1.5/sh), stated as a note; the agent's 17.3x is kept."
+  },
+  {
+   "item": "[agent_4 model_inputs] Holdco and other drag",
+   "value": "$0.28/0.45/0.52/0.57/0.62B",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "Bases separated: 2026 on its own formula = 23% x $39.5B x ~5.425% x 0.79 = ~$0.39B (the $0.28B was the residual that calibrates FY2026 NI to the guide midpoint; now stated in the NI row); 2027-30 $0.45/0.52/0.57/0.62B are the same formula on total debt of ~$45.7/52.7/57.8/62.9B, now stated. No value effect (FY2026 outside the NTM window; horizon net debt stated)."
+  },
+  {
+   "item": "[agent_4 model_inputs] Net income path (ongoing)",
+   "value": "$2,550/2,866/3,260/3,580/3,810M",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "Confidence 'medium' added; FY2026 $2,550M stated as the guidance-midpoint calibration; 53% x ROE re-expressed as 53.71% x 8.63-8.68% (same NI)."
+  },
+  {
+   "item": "[agent_4 DCF] Revenue growth",
+   "value": "+6.5/+9.0/+8.5/+6.5/+5.5%",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "agent_4 revenue growth: Confidence 'medium' added (both copies); arithmetic shown; value unchanged. Consensus cross-check cited to the snapshot ($15,606M / $17,150M)."
+  },
+  {
+   "item": "[agent_4 model_inputs] Revenue growth",
+   "value": "+6.5/+9.0/+8.5/+6.5/+5.5%",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "agent_4 revenue growth: Confidence 'medium' added (both copies); arithmetic shown; value unchanged. Consensus cross-check cited to the snapshot ($15,606M / $17,150M)."
+  },
+  {
+   "item": "[agent_4 DCF] EBIT margin",
+   "value": "26.4% -> 31.1% (FY2028 29.3%)",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "agent_4 EBIT margin: Confidence 'medium' added (both copies); arithmetic shown; value unchanged. FY2028 29.3% shown; NI/1.115 vs /1.10 noted as immaterial."
+  },
+  {
+   "item": "[agent_4 model_inputs] EBIT margin",
+   "value": "26.4% -> 31.1% (FY2028 29.3%)",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "agent_4 EBIT margin: Confidence 'medium' added (both copies); arithmetic shown; value unchanged. FY2028 29.3% shown; NI/1.115 vs /1.10 noted as immaterial."
+  },
+  {
+   "item": "[agent_4 DCF] D&A % revenue",
+   "value": "19.9% -> 21.0%",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "agent_4 D&A: Confidence 'medium' added (both copies); arithmetic shown; value unchanged. (2,968 + 145)/15,622 = 19.9%; 21% x 20,758 = $4.36B."
+  },
+  {
+   "item": "[agent_4 model_inputs] D&A % revenue",
+   "value": "19.9% -> 21.0%",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "agent_4 D&A: Confidence 'medium' added (both copies); arithmetic shown; value unchanged. (2,968 + 145)/15,622 = 19.9%; 21% x 20,758 = $4.36B."
+  },
+  {
+   "item": "[agent_4 DCF] Capex % revenue",
+   "value": "80%, 83.4%, 68.2%, 51%, 37.5%",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "Arithmetic corrected in agent_4 (both copies) and model_assumptions A17: 2027 $11.0B + $3.4B = $14.4B (84.6%), 2028 $9.0B + $3.75B = $12.75B (69.0%); confidence medium added. The model rows still carry 83.4% / 68.2%; corrected rows give DCF $50.53 (-$0.27) and blend $74.97 (-$0.06) by engine re-run, stated as variant; not adopted (agent view)."
+  },
+  {
+   "item": "[agent_4 model_inputs] Capex % revenue",
+   "value": "80%, 83.4%, 68.2%, 51%, 37.5%",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "Arithmetic corrected in agent_4 (both copies) and model_assumptions A17: 2027 $11.0B + $3.4B = $14.4B (84.6%), 2028 $9.0B + $3.75B = $12.75B (69.0%); confidence medium added. The model rows still carry 83.4% / 68.2%; corrected rows give DCF $50.53 (-$0.27) and blend $74.97 (-$0.06) by engine re-run, stated as variant; not adopted (agent view)."
+  },
+  {
+   "item": "[agent_5 P/E] Horizon P/E",
+   "value": "17.2x NTM",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_5: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. Value unaffected (XEL's own multiple)."
+  },
+  {
+   "item": "[agent_5 model_inputs] Horizon P/E",
+   "value": "17.2x NTM",
+   "cited": "derivation (arithmetic)",
+   "result": "mixed_basis",
+   "fix": "agent_5: Mixed-basis relative restated: the agent's multiple is kept as its view, and its relative is now expressed against the consistent-basis peer median 18.45x (supervisor re-weighting of peers.json to 0.197/0.803; the 18.85x table median mixes NTM windows): XEL today 0.93x. Value unaffected (XEL's own multiple)."
+  },
+  {
+   "item": "[supervisor model] Authorised equity ratio (blended)",
+   "value": "53.6%",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "Corrected to 53.71% (53.7%) and labelled the authorised operating-company capital structure from rate-case orders (PSCo 54.5% CPUC 8-K [4]; NSPM 52.5%, SPS 54.7% deck [2]; NSPW 52.5% Q4 2025 release [3]), not the consolidated ~41%. Earned ROE re-expressed 8.24% / 8.11% / 8.15% (was 8.26/8.13/8.17) so net income and EPS $4.10/$4.48/$4.85 are unchanged; structure_note, reasoning, model_assumptions A5/A6/A7 updated. No value effect."
+  },
+  {
+   "item": "[supervisor model] WACC",
+   "value": "5.95%",
+   "cited": "derivation (arithmetic)",
+   "result": "arithmetic",
+   "fix": "Recomputed from its stated weights ($50.7B equity / $49.2B net debt = 50.75% / 49.25%): 0.5075 x 7.62% + 0.4925 x 4.19% = 5.93%. discount_rate.wacc 0.0595 -> 0.0593; model_engine check: DCF $46.84 -> $47.97, fair value $75.01 -> $75.23, scenarios 58.49 / 75.23 / 88.41, median 74.72; ladder, dcf_check, gap_note, reasoning, changes, model_assumptions A21 updated."
+  },
+  {
+   "item": "[agent_5 P/E / model_inputs] Equity ratio inside Horizon NTM EPS (found in the fix step's equity-ratio check)",
+   "value": "54% (2026-27), 54.5% (2028)",
+   "cited": "derivation (arithmetic)",
+   "result": "mislabelled",
+   "fix": "Labelled in agent_5 (both copies) and model_assumptions A5 as the agent's forward assumption for the authorised operating-company blend (not consolidated); today's orders give 53.71%, and 54.5% would need ~95% of rate base at PSCo/SPS. 2026 ROE is calibrated on 54%, so only the 2028 step-up matters: ~$0.05 FY2028 EPS, ~-$0.7/sh P/E leg at a flat ratio (stated as a note; agent value unchanged)."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "[agent_1 DCF] Capex",
+   "value": "$13,790M, $16,630M, $15,650M, $12,020M, $8,205M (base plan + agent line-of-sight phasing; FY2030 normalised)",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_2 DCF] Capex % revenue",
+   "value": "90%, 94%, 79%, 60%, 38%",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_3 DCF] Capex % revenue",
+   "value": "88.3% / 88.9% / 68.8% / 45.8% / 41.7%",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Equity ratio",
+   "value": "53.71% authorised OpCo blend (agent build run at 53%)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_5 DCF] Capex FY2026-FY2030",
+   "value": "$13.79B / $16.13B / $14.15B / $10.52B / $7.70B",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor model] Capex",
+   "value": "$13,790M / $15,130M / $13,650M / $11,020M / $8,870M",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 DCF] D&A",
+   "value": "$3,113M (2026) rising to $4,601M (2030)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000072903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 model_inputs] Dividend",
+   "value": "$2.37 annualised (3.1% yield)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000072903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_3 DCF] DCF weight",
+   "value": "0.20",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/METHOD.md",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_5 DCF] Revenue growth FY2026 / FY2027",
+   "value": "Consensus +6.39% ($15,606M) / +9.89% ($17,150M); model rows +6.35% / +9.9%",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/XEL.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor model] DCF weight",
+   "value": "0.2",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/METHOD.md",
+   "checked": "2026-10-20",
+   "feeds": "fair_value",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor disagreements (peer median)] Which peer rows use which FY weights",
+   "value": "WEC, CMS, AEE, ES 0.504/0.496; LNT, PPL, CNP, EVRG 0.753/0.247",
+   "basis": "reported",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (peer median))",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor disagreements (WSJ) / long_dated_review] Colorado large-load tariff terms",
+   "value": "CO large-load tariff filed 2026-04-02: 15-year contracts, financial assurance (cash or credit), exit fees, 50 MW+",
+   "basis": "reported",
+   "source_url": "https://coyotegulch.blog/2026/04/04/proposed-rates-meant-to-make-data-centers-pay-own-way-xcel-energy-says-utility-submits-proposal-to-regulators-for-large-data-centers-other-big-users-of-electricity-the-denver-post/",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (WSJ) / long_dated_review)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor key_drivers / sizing] Fed hiking cycle",
+   "value": "FOMC raised the funds target range 25bp to 3.75-4.00% on 2026-09-16",
+   "basis": "reported",
+   "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (key_drivers / sizing)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor inputs_detail (equity ratio)] Authorised equity ratio NSPW",
+   "value": "52.5% (PSCW decision, 2026 rates)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000006/xcelearningsreleaseq42025.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 P/E] Equity ratio (regulated)",
+   "value": "53.71% authorised OpCo blend (build at 53.5%, ROE calibrated on it)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 model_inputs] Equity ratio (regulated)",
+   "value": "53.71% authorised OpCo blend (build at 53.5%, ROE calibrated on it)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 P/E] HoldCo drag",
+   "value": "-$150M (2026) then agent assumption -$250/-350/-420/-480M; stated basis gives -$196/-241/-287/-332M",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 model_inputs] HoldCo drag",
+   "value": "-$150M (2026) then agent assumption -$250/-350/-420/-480M; stated basis gives -$196/-241/-287/-332M",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 P/E] Horizon P/E",
+   "value": "17.2x (0.93x the consistent 18.45x median)",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 model_inputs] Horizon P/E",
+   "value": "17.2x (0.93x the consistent 18.45x median)",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_2 P/E] Horizon P/E multiple",
+   "value": "17.2x NTM (0.93x the consistent 18.45x median)",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_2 model_inputs] Horizon P/E multiple",
+   "value": "17.2x NTM (0.93x the consistent 18.45x median)",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_2 DCF] D&A % revenue",
+   "value": "20.3% FY2026 on guidance (agent rows 21.8-22.2%)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000072903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_2 model_inputs] D&A % revenue",
+   "value": "20.3% FY2026 on guidance (agent rows 21.8-22.2%)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000072903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_3 P/E] Equity ratio (authorised, blended)",
+   "value": "53.71% (2025 mix) / 53.73% (2027 mix); build at 53.5%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_3 model_inputs] Equity ratio (authorised, blended)",
+   "value": "53.71% (2025 mix) / 53.73% (2027 mix); build at 53.5%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_3 P/E] Horizon P/E",
+   "value": "17.0x (0.92x the consistent 18.45x median)",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_3 model_inputs] Horizon P/E",
+   "value": "17.0x (0.92x the consistent 18.45x median)",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 P/E] Horizon P/E on NTM EPS",
+   "value": "17.3x on $4.70 (0.94x the consistent 18.45x median)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Horizon P/E on NTM EPS",
+   "value": "17.3x on $4.70 (0.94x the consistent 18.45x median)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Holdco and other drag",
+   "value": "$0.39B (2026, formula), $0.45/0.52/0.57/0.62B (2027-30)",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Net income path (ongoing)",
+   "value": "$2,550/2,866/3,260/3,580/3,810M",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 DCF] Revenue growth",
+   "value": "+6.5/+9.0/+8.5/+6.5/+5.5%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/estimates/XEL.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Revenue growth",
+   "value": "+6.5/+9.0/+8.5/+6.5/+5.5%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/estimates/XEL.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 DCF] EBIT margin",
+   "value": "26.4% -> 31.1% (FY2028 29.3%)",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] EBIT margin",
+   "value": "26.4% -> 31.1% (FY2028 29.3%)",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 DCF] D&A % revenue",
+   "value": "19.9% -> 21.0%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000072903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] D&A % revenue",
+   "value": "19.9% -> 21.0%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000072903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 DCF] Capex % revenue",
+   "value": "80.0%, 84.6%, 69.0%, 51.0%, 37.5% (model rows 2027-28 83.4% / 68.2%)",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Capex % revenue",
+   "value": "80.0%, 84.6%, 69.0%, 51.0%, 37.5% (model rows 2027-28 83.4% / 68.2%)",
+   "basis": "estimate",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_5 P/E] Horizon P/E",
+   "value": "17.2x NTM (0.93x the consistent 18.45x median)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 P/E (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_5 model_inputs] Horizon P/E",
+   "value": "17.2x NTM (0.93x the consistent 18.45x median)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor model] Authorised equity ratio (blended)",
+   "value": "53.7% authorised OpCo blend",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[supervisor model] WACC",
+   "value": "5.93%",
+   "basis": "estimate",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026",
+   "checked": "2026-10-20",
+   "feeds": "fair_value",
+   "note": "fixed in the gate fix step"
+  },
+  {
+   "item": "[agent_1 P/E] Shares at horizon",
+   "value": "662M (diluted_now 627M Q2 wavg)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 DCF] Shares at horizon",
+   "value": "662M (diluted_now 627M Q2 wavg)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] AEP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.8 / 10.7 / EPS +10.8%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/AEP.json retrieved 2026-10-14T19:53:13Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] DUK fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.5 / 9.6 / EPS +7.1%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/DUK.json retrieved 2026-10-14T19:55:19Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] SO fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / 10.5 / EPS +12.9%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/SO.json retrieved 2026-10-14T19:54:17Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] ETR fwd P/E / fwd EV/EBITDA / growth",
+   "value": "21.5 / 10.0 / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/ETR.json retrieved 2026-10-14T19:51:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] WEC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.7 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/WEC.json retrieved 2026-10-20T21:18:59Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] CMS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.1 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CMS.json retrieved 2026-10-20T21:20:49Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] AEE fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.9 / None / EPS +8.1%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/AEE.json retrieved 2026-10-20T21:22:29Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] LNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.6 / None / EPS +7.5%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/LNT.json retrieved 2026-10-20T21:24:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] PPL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.4 / None / EPS +8.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/PPL.json retrieved 2026-10-20T21:27:27Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] CNP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.6 / None / EPS +9.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CNP.json retrieved 2026-10-20T21:29:07Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] EVRG fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / None / EPS +6.9%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/EVRG.json retrieved 2026-10-20T21:30:37Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 comps] ES fwd P/E / fwd EV/EBITDA / growth",
+   "value": "13.7 / None / EPS +5.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/ES.json retrieved 2026-10-20T21:32:22Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Shares at horizon",
+   "value": "662M (diluted_now 627M Q2 wavg)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] SBC",
+   "value": "0.31% of revenue ($46M FY2025)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000009/",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 P/E] Diluted share path",
+   "value": "627M (Q2 2026 diluted wavg) -> ~652M avg FY2027 -> 662M at the horizon -> ~693M avg FY2028",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] AEP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.8 / 10.7 / EPS +10.8%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/AEP.json retrieved 2026-10-14T19:53:13Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] DUK fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.5 / 9.6 / EPS +7.1%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/DUK.json retrieved 2026-10-14T19:55:19Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] SO fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / 10.5 / EPS +12.9%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/SO.json retrieved 2026-10-14T19:54:17Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] ETR fwd P/E / fwd EV/EBITDA / growth",
+   "value": "21.5 / 10.0 / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/ETR.json retrieved 2026-10-14T19:51:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] WEC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.7 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/WEC.json retrieved 2026-10-20T21:18:59Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] CMS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.1 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CMS.json retrieved 2026-10-20T21:20:49Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] AEE fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.9 / None / EPS +8.1%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/AEE.json retrieved 2026-10-20T21:22:29Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] LNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.6 / None / EPS +7.5%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/LNT.json retrieved 2026-10-20T21:24:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] PPL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.4 / None / EPS +8.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/PPL.json retrieved 2026-10-20T21:27:27Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] CNP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.6 / None / EPS +9.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CNP.json retrieved 2026-10-20T21:29:07Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] EVRG fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / None / EPS +6.9%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/EVRG.json retrieved 2026-10-20T21:30:37Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 comps] ES fwd P/E / fwd EV/EBITDA / growth",
+   "value": "13.7 / None / EPS +5.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/ES.json retrieved 2026-10-20T21:32:22Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Diluted share path",
+   "value": "627M (Q2 2026 diluted wavg) -> ~652M avg FY2027 -> 662M at the horizon -> ~693M avg FY2028",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Shares now / at horizon",
+   "value": "624.6M / 658M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] AEP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.8 / 10.7 / EPS +10.8%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/AEP.json retrieved 2026-10-14T19:53:13Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] DUK fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.5 / 9.6 / EPS +7.1%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/DUK.json retrieved 2026-10-14T19:55:19Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] SO fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / 10.5 / EPS +12.9%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/SO.json retrieved 2026-10-14T19:54:17Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] ETR fwd P/E / fwd EV/EBITDA / growth",
+   "value": "21.5 / 10.0 / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/ETR.json retrieved 2026-10-14T19:51:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] WEC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.7 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/WEC.json retrieved 2026-10-20T21:18:59Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] CMS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.1 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CMS.json retrieved 2026-10-20T21:20:49Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] AEE fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.9 / None / EPS +8.1%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/AEE.json retrieved 2026-10-20T21:22:29Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] LNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.6 / None / EPS +7.5%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/LNT.json retrieved 2026-10-20T21:24:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] PPL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.4 / None / EPS +8.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/PPL.json retrieved 2026-10-20T21:27:27Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] CNP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.6 / None / EPS +9.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CNP.json retrieved 2026-10-20T21:29:07Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] EVRG fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / None / EPS +6.9%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/EVRG.json retrieved 2026-10-20T21:30:37Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 comps] ES fwd P/E / fwd EV/EBITDA / growth",
+   "value": "13.7 / None / EPS +5.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/ES.json retrieved 2026-10-20T21:32:22Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Shares now / at horizon",
+   "value": "624.6M / 658M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] AEP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.8 / 10.7 / EPS +10.8%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/AEP.json retrieved 2026-10-14T19:53:13Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] DUK fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.5 / 9.6 / EPS +7.1%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/DUK.json retrieved 2026-10-14T19:55:19Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] SO fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / 10.5 / EPS +12.9%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/SO.json retrieved 2026-10-14T19:54:17Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] ETR fwd P/E / fwd EV/EBITDA / growth",
+   "value": "21.5 / 10.0 / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/ETR.json retrieved 2026-10-14T19:51:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] WEC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.7 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/WEC.json retrieved 2026-10-20T21:18:59Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] CMS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.1 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CMS.json retrieved 2026-10-20T21:20:49Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] AEE fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.9 / None / EPS +8.1%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/AEE.json retrieved 2026-10-20T21:22:29Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] LNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.6 / None / EPS +7.5%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/LNT.json retrieved 2026-10-20T21:24:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] PPL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.4 / None / EPS +8.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/PPL.json retrieved 2026-10-20T21:27:27Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] CNP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.6 / None / EPS +9.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CNP.json retrieved 2026-10-20T21:29:07Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] EVRG fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / None / EPS +6.9%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/EVRG.json retrieved 2026-10-20T21:30:37Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 comps] ES fwd P/E / fwd EV/EBITDA / growth",
+   "value": "13.7 / None / EPS +5.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/ES.json retrieved 2026-10-20T21:32:22Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Net debt now",
+   "value": "$37,447M at 2026-06-30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] SBC",
+   "value": "$46M FY2025 (0.3% of revenue)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000009/",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 P/E] Shares at horizon",
+   "value": "658M diluted (from 627.0M Q2-2026 diluted)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] Shares at horizon",
+   "value": "658M diluted (from 627.0M Q2-2026 diluted)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] AEP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.8 / 10.7 / EPS +10.8%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/AEP.json retrieved 2026-10-14T19:53:13Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] DUK fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.5 / 9.6 / EPS +7.1%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/DUK.json retrieved 2026-10-14T19:55:19Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] SO fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / 10.5 / EPS +12.9%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/SO.json retrieved 2026-10-14T19:54:17Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] ETR fwd P/E / fwd EV/EBITDA / growth",
+   "value": "21.5 / 10.0 / EPS +18.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/ETR.json retrieved 2026-10-14T19:51:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] WEC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.7 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/WEC.json retrieved 2026-10-20T21:18:59Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] CMS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.1 / None / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CMS.json retrieved 2026-10-20T21:20:49Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] AEE fwd P/E / fwd EV/EBITDA / growth",
+   "value": "18.9 / None / EPS +8.1%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/AEE.json retrieved 2026-10-20T21:22:29Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] LNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.6 / None / EPS +7.5%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/LNT.json retrieved 2026-10-20T21:24:08Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] PPL fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.4 / None / EPS +8.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/PPL.json retrieved 2026-10-20T21:27:27Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] CNP fwd P/E / fwd EV/EBITDA / growth",
+   "value": "20.6 / None / EPS +9.3%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/CNP.json retrieved 2026-10-20T21:29:07Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] EVRG fwd P/E / fwd EV/EBITDA / growth",
+   "value": "19.1 / None / EPS +6.9%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/EVRG.json retrieved 2026-10-20T21:30:37Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 comps] ES fwd P/E / fwd EV/EBITDA / growth",
+   "value": "13.7 / None / EPS +5.7%",
+   "basis": "estimate",
+   "source_url": "Alpha Vantage EARNINGS_ESTIMATES (consensus EPS and revenue estimates), https://www.alphavantage.co/documentation/#earnings-estimates; snapshot data/estimates/ES.json retrieved 2026-10-20T21:32:22Z",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 comps (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Shares at horizon",
+   "value": "658M diluted (from 627.0M Q2-2026 diluted)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[supervisor model] Shares now / at horizon",
+   "value": "627M diluted Q2 2026 (F26) / 658M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[agent_1 P/E] Rate base path",
+   "value": "$56B (2025), $66B (2026), $77B (2027), $86B (2028), $90B (2029), $94B (2030); +$10B line-of-sight capex lifts 2025-30 CAGR to ~13%",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 P/E] Consolidated rate base path 2025-2030",
+   "value": "$56B / $66B / $77B / $86B / $90B / $94B (base plan, Q2 2026 deck); build adds ~$2B/$5B/$8B by YE2028/29/30 from $10B+ line of sight",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Rate base path (consolidated, $B, 2025-2030)",
+   "value": "56 / 66 / 77 / 86 / 90 / 94 (base $60B plan, ~11% CAGR; $10B+ line of sight would lift CAGR to ~13%+)",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[supervisor model] Rate base path",
+   "value": "$56B (2025), $66B, $77B, $86B, $90B, $94B (2030) base plan; +$2B 2029, +$5B 2030 from half the $10B+ line of sight",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[agent_1 DCF] Base revenue FY2025",
+   "value": "$14,669M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000006/xcelearningsreleaseq42025.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 other] 2025 dividend declared and DPS growth target",
+   "value": "$2.28; 4-6% CAGR, 45-55% payout",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000006/xcelearningsreleaseq42025.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 sbc] SBC last fiscal year ($M)",
+   "value": "46.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000009/xel-20251231.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 sbc (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 DCF] Base revenue FY2025",
+   "value": "$14,669M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000009/xel-20251231.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Base revenue FY2025",
+   "value": "$14,669M",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000072903.json",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Net debt now",
+   "value": "$37,447M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] Net debt now",
+   "value": "$37,447M at 2026-06-30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[supervisor fair_value] P/E leg and blend",
+   "value": "17.2 x $4.78 - $0.17 = $82.05; 0.8 x 82.05 + 0.2 x 46.84 = $75.01; 2% under forecasters mean $76.53",
+   "basis": "derived",
+   "source_url": "supervisor.json / agent_N.json",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor thesis_break_reason] XEL 52-week low and range",
+   "value": "$68.72 low set 2026-09-25; 52w range $68.72-84.23",
+   "basis": "reported",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=XEL&interval=1week",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (thesis_break_reason)"
+  },
+  {
+   "item": "[supervisor fair_value / key_drivers] XEL close 2026-10-20",
+   "value": "$76.68",
+   "basis": "reported",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=XEL&interval=1week",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor sizing] Realised volatility",
+   "value": "~19%",
+   "basis": "derived",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=XEL&interval=1week",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (sizing)"
+  },
+  {
+   "item": "[supervisor disagreements (DCF)] Interest expense TTM",
+   "value": "$1,642M (F67)",
+   "basis": "reported",
+   "source_url": "python3 valuation/secfacts.py show XEL (SEC XBRL, https://data.sec.gov/api/xbrl/companyfacts/CIK0000072903.json)",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (DCF))"
+  },
+  {
+   "item": "[supervisor disagreements (DCF)] 2026 interest guidance",
+   "value": "+$240-250M",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (DCF))"
+  },
+  {
+   "item": "[supervisor disagreements (peer median)] Peer median NTM P/E on one Oct-2026 basis",
+   "value": "18.45x (table 18.85x); WEC 18.35, CMS 16.69, AEE 18.48, LNT 18.78, PPL 16.60, CNP 19.59, EVRG 18.42, ES 13.45; AEP 18.77, DUK 17.55, SO 19.05, ETR 21.49",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.md",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (peer median))"
+  },
+  {
+   "item": "[supervisor disagreements (peer median)] WEC NTM EPS derivation",
+   "value": "0.504 x 5.5975 + 0.496 x 6.0069",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-20/XEL/peers.json",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (peer median))"
+  },
+  {
+   "item": "[supervisor disagreements (peer median)] Peer closes 2026-10-20",
+   "value": "DUK $121.33, AEE $106.23, WEC $108.75",
+   "basis": "reported",
+   "source_url": "Twelve Data time_series 1day (DUK, AEE, WEC, XEL) via connector",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (peer median))"
+  },
+  {
+   "item": "[supervisor disagreements / inputs_detail] XEL consensus EPS",
+   "value": "FY2026 $4.1212, FY2027 $4.5403 (19 analysts); revenue FY26 $15.6B, FY27 $17.15B",
+   "basis": "consensus",
+   "source_url": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=XEL",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements (NTM EPS) / inputs_detail] Management EPS growth through 2030",
+   "value": "CFO: \"9-plus percent EPS growth on average through 2030\"",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/07/30/xcel-energy-xel-q2-2026-earnings-call-transcript/",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements (NTM EPS)] Deck EPS growth objective",
+   "value": "\"6-8+%\"",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (NTM EPS))"
+  },
+  {
+   "item": "[supervisor disagreements (NTM EPS) / inputs_detail] FY2025 ongoing EPS",
+   "value": "$3.80",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000006/xcelearningsreleaseq42025.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements (NTM EPS)] 2026 guidance reaffirmed after the CPUC decision",
+   "value": "$4.04-4.16 reaffirmed",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (NTM EPS))"
+  },
+  {
+   "item": "[supervisor disagreements (WACC) / key_drivers / inputs_detail] US Treasury yields",
+   "value": "10y 5.12% (2026-10-20), 5.31% peak (2026-10-05), 4.75% (2026-07-31); 3m 4.26%",
+   "basis": "reported",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2026",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements (WACC) / inputs_detail] 2026 debt issue coupons",
+   "value": "4.15% 3y, 4.85-5.30% 10y, 5.48-5.875% 15-30y, 5.75% HoldCo junior sub",
+   "basis": "reported",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements (Smokehouse) / sizing / key_drivers / inputs_detail] Smokehouse Creek figures",
+   "value": "$460M est. loss ($503M incl. $43M legal), $404M settled, $56M remaining probable, ~$80M of $525M cover left; TX AG suit seeks damages and civil penalties",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements (net debt, shares) / inputs_detail] Forward sale agreements",
+   "value": "12.2M Dec-2026 to May-2027 ($932M); 15.1M collared Dec-2026 ($1,044M); 21.2M and 21.3M Dec-2027 to Dec-2028",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail (shares)] Shares outstanding",
+   "value": "624.6M at 2026-07-28 (F89); 627M diluted Q2 (F26)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements / inputs_detail] Deck base capex by year",
+   "value": "$13,790 / 15,130 / 12,650 / 9,020 / 9,410M ($60B)",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements / inputs_detail] CFO net of dividends 2026-30",
+   "value": "$30.18B",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor disagreements (Colorado)] 2025 Colorado wildfire-liability trade dropped",
+   "value": "HB25-1302 utility trade dropped after utilities balked",
+   "basis": "reported",
+   "source_url": "https://www.kunc.org/politics/2025-04-09/colorado-ditches-plan-to-reduce-utilities-wildfire-liability-homeowners-may-face-fees-instead",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (Colorado))"
+  },
+  {
+   "item": "[supervisor disagreements (Colorado) / catalysts] Management on Colorado and wildfire plan",
+   "value": "\"Colorado will be a focus area for us in 2027\"; new wildfire mitigation plan filing",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/07/30/xcel-energy-xel-q2-2026-earnings-call-transcript/",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (Colorado) / catalysts)"
+  },
+  {
+   "item": "[supervisor disagreements (WSJ)] Anthropic commitments to Google",
+   "value": "$111B of Anthropic cloud commitments to Google; >$160B TPU lease",
+   "basis": "reported by outlet",
+   "source_url": "https://www.wsj.com/tech/ai/anthropic-revenue-growth-ipo-accaf0f1",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (WSJ))"
+  },
+  {
+   "item": "[supervisor disagreements (WSJ) / long_dated_review / key_drivers] MN AG on the Google ESA",
+   "value": "Oct 1: asks MPUC not to approve as filed; ~$1B net cost vs Xcel $1.1B benefit; stranded cost after 15-year term",
+   "basis": "reported",
+   "source_url": "https://ag.state.mn.us/Office/Communications/2026/10/01_XCEL-Energy.asp",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (WSJ) / long_dated_review / key_drivers)"
+  },
+  {
+   "item": "[supervisor disagreements (WSJ)] Google ESA terms",
+   "value": "Google pays all costs; ~$1.1B customer benefit",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (WSJ))"
+  },
+  {
+   "item": "[supervisor disagreements (WSJ)] MN large-load tariff and terms",
+   "value": "MN 15-year approved tariff",
+   "basis": "reported",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (WSJ))"
+  },
+  {
+   "item": "[supervisor disagreements (WSJ) / long_dated_review] SPS large-load tariffs not yet filed",
+   "value": "SPS TX/NM tariffs still to be filed per the Q2 call",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/07/30/xcel-energy-xel-q2-2026-earnings-call-transcript/",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (disagreements (WSJ) / long_dated_review)"
+  },
+  {
+   "item": "[supervisor sizing / key_drivers] Q3 call date",
+   "value": "Thursday Oct 29, before the open",
+   "basis": "reported",
+   "source_url": "https://finviz.com/news/400116/xcel-energy-2026-third-quarter-earnings-conference-call",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (sizing / key_drivers)"
+  },
+  {
+   "item": "[supervisor sizing / key_drivers / inputs_detail] Credit ratings",
+   "value": "Moody's Baa1 Negative (holdco), A1 Negative (PSCo); S&P PSCo Negative",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000149/xcelearningsreleaseq22026.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor sizing / key_drivers / inputs_detail] Credit metrics",
+   "value": "FFO/debt ~16% planned flat; HoldCo debt 22-24% of total",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor key_drivers / inputs_detail] Equity plan and incremental financing",
+   "value": "$7B base equity ~85% contracted; ~40% equity on incremental capex",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor key_drivers] Data-centre ESAs targeted",
+   "value": "~4 GW more ESAs by YE2027",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (key_drivers)"
+  },
+  {
+   "item": "[supervisor key_drivers / inputs_detail] NSPM rate stability plan",
+   "value": "base-rate freeze 2027-28, accelerated battery ITCs offset, MPUC decision requested by Jan 2027",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000175/xel-20261009.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor key_drivers / inputs_detail] PSCo electric decision",
+   "value": "$157M vs $356M; 13-month average 2025 historical test year; ROE 9.3%; equity 54.5%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000160/xel-20260819.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor long_dated_review] Bull: CO framework value",
+   "value": "+$1.9/sh at 0.96x; x 0.2 = +$0.4",
+   "basis": "derived",
+   "source_url": "supervisor.json",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (long_dated_review)"
+  },
+  {
+   "item": "[supervisor changes] DCF leg mean of agents",
+   "value": "$55.48",
+   "basis": "derived",
+   "source_url": "agent_N.json",
+   "checked": "2026-10-20",
+   "feeds": "supervisor narrative (changes)"
+  },
+  {
+   "item": "[supervisor inputs_detail] Base revenue FY2025",
+   "value": "$14,669M (12,160 + 2,452 + 57)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000006/xcelearningsreleaseq42025.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail] H1 revenue",
+   "value": "$7,140M vs $7,193M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000154/xel-20260630.htm",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail] Rate base path",
+   "value": "$56B, $66B, $77B, $86B, $90B, $94B; ~11% CAGR; ~13+% with $10B+ line of sight; $1B ~ +20-25bp",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail (equity ratio)] 2025 rate-base mix",
+   "value": "PSCo 43% / NSPM 35% / SPS 16% / NSPW 6%",
+   "basis": "reported",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail (equity ratio)] Authorised equity ratios NSPM / SPS / PSCo",
+   "value": "NSPM 52.5%, SPS 54.7% [2]; PSCo 54.5% [4]",
+   "basis": "reported",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail (earned ROE)] TTM ongoing ROE by OpCo",
+   "value": "8.43% total (NSPM 9.59, NSPW 10.31, PSCo 7.22, SPS 8.51)",
+   "basis": "reported",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail (holdco drag)] Holding company and other EPS",
+   "value": "-$0.10 H1 2026 (-$0.17 H1 2025)",
+   "basis": "reported",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail (D&A)] D&A FY2025 and 2026 guidance",
+   "value": "$2,968M (F29); +$140-150M depreciation 2026",
+   "basis": "reported/guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor inputs_detail (dividends)] Dividend growth objective",
+   "value": "4-6%",
+   "basis": "guidance",
+   "source_url": "https://s202.q4cdn.com/586283047/files/doc_financials/2026/q2/Xcel-Energy-Earnings-Presentation-2026-Q2.pdf",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[agent_1 P/E] Earned OpCo ROE path",
+   "value": "8.37/8.28/8.17/8.30/8.70%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Earned OpCo ROE path",
+   "value": "8.37/8.28/8.17/8.30/8.70%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 P/E] EPS path (ongoing)",
+   "value": "$4.11, $4.455, $4.84, $5.29, $5.78",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] EPS path (ongoing)",
+   "value": "$4.11, $4.455, $4.84, $5.29, $5.78",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 P/E] NTM EPS at horizon",
+   "value": "$4.77",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] NTM EPS at horizon",
+   "value": "$4.77",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 other] NTM EPS at horizon",
+   "value": "$4.77",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 P/E] Wildfire adjustment",
+   "value": "-$200M x 40%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Wildfire adjustment",
+   "value": "-$200M x 40%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 DCF] Revenue growth FY26-30",
+   "value": "+4%, +9%, +9%, +7%, +7%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Revenue growth FY26-30",
+   "value": "+4%, +9%, +9%, +7%, +7%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 DCF] WACC",
+   "value": "5.94%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 other] WACC",
+   "value": "5.94%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] WACC",
+   "value": "5.94%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 DCF] Terminal growth",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Terminal growth",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 DCF] Tax rate in engine",
+   "value": "0%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Tax rate in engine",
+   "value": "0%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 DCF] Net debt at horizon",
+   "value": "$50,100M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Net debt at horizon",
+   "value": "$50,100M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Scenario probabilities",
+   "value": "0.25/0.55/0.20",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_1 model_inputs] Forward P/E band for DCF weight",
+   "value": "16.9x -> 0.2",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_1 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 P/E] Rate-base EPS build",
+   "value": "FY26 $4.10, FY27 $4.49, FY28 $4.81; NTM $4.74",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Rate-base EPS build",
+   "value": "FY26 $4.10, FY27 $4.49, FY28 $4.81; NTM $4.74",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 P/E] Effective earned return on rate-base equity",
+   "value": "8.96% (2026), 8.70% (2027-28)",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Effective earned return on rate-base equity",
+   "value": "8.96% (2026), 8.70% (2027-28)",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 P/E] Authorised equity ratio (blended)",
+   "value": "53.7%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Authorised equity ratio (blended)",
+   "value": "53.7%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 P/E] Holdco interest drag (after tax)",
+   "value": "~$370M / $415M / $525M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Holdco interest drag (after tax)",
+   "value": "~$370M / $415M / $525M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 P/E] Texas AG / residual claims",
+   "value": "-$150M x 50% = -$75M (-$0.11/sh)",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Texas AG / residual claims",
+   "value": "-$150M x 50% = -$75M (-$0.11/sh)",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 DCF] Revenue growth FY2026-30",
+   "value": "+4.5%, +12.1%, +11.4%, +8.7%, +6.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Revenue growth FY2026-30",
+   "value": "+4.5%, +12.1%, +11.4%, +8.7%, +6.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 DCF] EBIT margin FY2026-30",
+   "value": "27.5/27.5/29.0/29.2/29.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] EBIT margin FY2026-30",
+   "value": "27.5/27.5/29.0/29.2/29.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 DCF] Tax rate",
+   "value": "-5%, -3%, 0%, +3%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Tax rate",
+   "value": "-5%, -3%, 0%, +3%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 DCF] WACC",
+   "value": "5.97%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] WACC",
+   "value": "5.97%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 DCF] Terminal growth (Gordon)",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Terminal growth (Gordon)",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 DCF] Net debt now / at horizon",
+   "value": "$37,447M / $49,400M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Net debt now / at horizon",
+   "value": "$37,447M / $49,400M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_2 model_inputs] Scenario deltas",
+   "value": "bear/bull deltas",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_2 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Earned return FY2026 (calibration)",
+   "value": "8.33%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Earned return FY2026 (calibration)",
+   "value": "8.33%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Earned return FY2027 / FY2028",
+   "value": "8.25% / 8.20%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Earned return FY2027 / FY2028",
+   "value": "8.25% / 8.20%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Holding company and other drag",
+   "value": "-$138M / -$200M / -$270M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Holding company and other drag",
+   "value": "-$138M / -$200M / -$270M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Diluted shares FY27 avg / FY28 avg / horizon",
+   "value": "653M / 682M / 658M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Diluted shares FY27 avg / FY28 avg / horizon",
+   "value": "653M / 682M / 658M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Rate-base EPS build FY2027",
+   "value": "$4.53",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Rate-base EPS build FY2027",
+   "value": "$4.53",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Rate-base EPS build FY2028",
+   "value": "$4.85",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Rate-base EPS build FY2028",
+   "value": "$4.85",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] NTM EPS at horizon",
+   "value": "$4.79",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] NTM EPS at horizon",
+   "value": "$4.79",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 P/E] Smokehouse Creek adjustment",
+   "value": "-$250M x 50% (-$0.19/sh)",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Smokehouse Creek adjustment",
+   "value": "-$250M x 50% (-$0.19/sh)",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Revenue growth FY2026-30",
+   "value": "+6.5/+9.0/+8/+7/+6%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Revenue growth FY2026-30",
+   "value": "+6.5/+9.0/+8/+7/+6%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Economic EBIT margin path",
+   "value": "27.5/29.7/31.5/31.9/31.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Economic EBIT margin path",
+   "value": "27.5/29.7/31.5/31.9/31.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Tax rate",
+   "value": "0%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Tax rate",
+   "value": "0%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] D&A % revenue",
+   "value": "20.0% -> 23.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] D&A % revenue",
+   "value": "20.0% -> 23.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] WACC (cost of equity 7.75%)",
+   "value": "6.1%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] WACC (cost of equity 7.75%)",
+   "value": "6.1%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Terminal growth",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Terminal growth",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Net debt at horizon",
+   "value": "$49,100M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Net debt at horizon",
+   "value": "$49,100M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Interest rate on net debt",
+   "value": "4.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Interest rate on net debt",
+   "value": "4.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 DCF] Dividends",
+   "value": "$1,450/1,600/1,760/1,920/2,080M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 model_inputs] Dividends",
+   "value": "$1,450/1,600/1,760/1,920/2,080M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 other] TTM dividends per share",
+   "value": "$2.19",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 other] Long-run dividend growth",
+   "value": "4.75%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 other] Cost of equity",
+   "value": "7.75%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 other] Rate base at horizon",
+   "value": "$74.8B",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_3 other] Holdco debt at horizon",
+   "value": "$11.1B",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_3 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 P/E] Rate base path",
+   "value": "$56/66/77/86/90B; own $92B 2029, $98B 2030",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Rate base path",
+   "value": "$56/66/77/86/90B; own $92B 2029, $98B 2030",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 P/E] Earned ROE",
+   "value": "8.75% 2026-28, 8.8% 2029-30",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Earned ROE",
+   "value": "8.75% 2026-28, 8.8% 2029-30",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 P/E] Diluted share path",
+   "value": "622/652/683/703/712M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Diluted share path",
+   "value": "622/652/683/703/712M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 P/E] EPS path (rate-base build)",
+   "value": "$4.10, $4.40, $4.77, $5.09, $5.35",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] EPS path (rate-base build)",
+   "value": "$4.10, $4.40, $4.77, $5.09, $5.35",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 P/E] Smokehouse Creek / Texas AG adjustment",
+   "value": "-$150M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Smokehouse Creek / Texas AG adjustment",
+   "value": "-$150M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 DCF] Tax rate on EBIT",
+   "value": "0%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Tax rate on EBIT",
+   "value": "0%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 DCF] WACC",
+   "value": "6.55%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] WACC",
+   "value": "6.55%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 DCF] Terminal growth",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Terminal growth",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 DCF] Net debt at horizon",
+   "value": "$48,500M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Net debt at horizon",
+   "value": "$48,500M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 DCF] Shares at horizon",
+   "value": "658M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Shares at horizon",
+   "value": "658M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_4 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 P/E] Horizon NTM EPS",
+   "value": "$4.85",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Horizon NTM EPS",
+   "value": "$4.85",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 P/E] Smokehouse Creek adjustment",
+   "value": "-$80M",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 P/E (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Smokehouse Creek adjustment",
+   "value": "-$80M",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] Revenue growth FY2028-30",
+   "value": "+8/+6/+5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Revenue growth FY2028-30",
+   "value": "+8/+6/+5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] EBIT margin FY2026-30",
+   "value": "24.5/25.8/28.6/30.0/31.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] EBIT margin FY2026-30",
+   "value": "24.5/25.8/28.6/30.0/31.5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] Tax rate FY2026-30",
+   "value": "-8/-8/-5/0/+5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Tax rate FY2026-30",
+   "value": "-8/-8/-5/0/+5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] D&A % revenue",
+   "value": "19.9% -> 21.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] D&A % revenue",
+   "value": "19.9% -> 21.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] WACC",
+   "value": "6.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] WACC",
+   "value": "6.4%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] Terminal value (Gordon 3.5%)",
+   "value": "~$102B",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Terminal value (Gordon 3.5%)",
+   "value": "~$102B",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] Net debt at horizon",
+   "value": "$50,200M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Net debt at horizon",
+   "value": "$50,200M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 DCF] Steady-state FY2030 tax rate",
+   "value": "5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 DCF (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Steady-state FY2030 tax rate",
+   "value": "5%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 other] Group total-return framing",
+   "value": "9-11%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 other (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Dividends",
+   "value": "$1.42B FY2026, ~+8%/yr",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[agent_5 model_inputs] Scenario deltas",
+   "value": "bear/bull",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "agent_5 model_inputs (agent view; not in fair_value)"
+  },
+  {
+   "item": "[supervisor model] Revenue growth FY2026-30",
+   "value": "+6.5/+9/+8/+7/+6%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Earned ROE on rate-base equity",
+   "value": "8.26% / 8.13% / 8.17%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Holding company drag",
+   "value": "-$125M / -$190M / -$260M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] EPS path (ongoing)",
+   "value": "$4.10, $4.48, $4.85, ~$5.21, ~$5.48",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] NTM EPS at the horizon",
+   "value": "$4.78",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Horizon P/E",
+   "value": "17.2x NTM",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Smokehouse Creek / Texas AG adjustment",
+   "value": "-$220M x 50% = -$110M",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] D&A % revenue",
+   "value": "19.9% -> 24.0%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] EBIT (NOPAT form) margin",
+   "value": "25.1/26.9/28.5/29.6/30.1%",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Terminal growth",
+   "value": "3.5%",
+   "basis": "judgment",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Net debt now / at horizon",
+   "value": "$37,447M / $49,200M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Dividends (shareholder_returns)",
+   "value": "$1,490/1,630/1,790/1,940/2,080M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "[supervisor model] Shares at horizon",
+   "value": "658M",
+   "basis": "estimate",
+   "source_url": "derivation (arithmetic)",
+   "checked": "2026-10-20",
+   "feeds": "fair_value"
+  }
+ ]
+}

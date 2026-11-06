@@ -1,0 +1,85 @@
+{
+  "symbol": "RMBS", "agent_id": "agent_1", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 28, "p": 0.995}, {"K": 45, "p": 0.972}, {"K": 56, "p": 0.937}, {"K": 67, "p": 0.888},
+    {"K": 78, "p": 0.83}, {"K": 90, "p": 0.75}, {"K": 101, "p": 0.662}, {"K": 112, "p": 0.565},
+    {"K": 123, "p": 0.467}, {"K": 134, "p": 0.378}, {"K": 151, "p": 0.264}, {"K": 168, "p": 0.18},
+    {"K": 196, "p": 0.093}, {"K": 224, "p": 0.046}, {"K": 280, "p": 0.01}
+  ],
+  "ladder_1m": [
+    {"K": 89.58, "p": 0.873}, {"K": 95.17, "p": 0.799}, {"K": 100.77, "p": 0.709}, {"K": 104.13, "p": 0.65},
+    {"K": 107.49, "p": 0.59}, {"K": 111.97, "p": 0.509}, {"K": 116.45, "p": 0.432}, {"K": 119.81, "p": 0.376},
+    {"K": 123.17, "p": 0.325}, {"K": 128.77, "p": 0.25}, {"K": 134.36, "p": 0.187}
+  ],
+  "one_month_reasoning": "The window (to 2026-11-01) very likely contains Q3 2026 earnings (Rambus reported Q1 on Apr 27 and Q2 on Jul 27, so late October is the expected date). Q3 guidance is revenue $210-216M, product $110-116M, non-GAAP EPS $0.75-0.82, which already embeds +11-17% sequential product growth. The stock has had large earnings reactions in 2026 (roughly -16% after Q4 guidance in Feb and ~-21% to -23% after Q1 in April, then a positive reaction to the Q2 beat), so the distribution should be wide. The key swing factor is the Q4 product guide and any commentary on 2027 RDIMM unit risk from DRAM supply tightness, versus MRDIMM/companion-chip ramps. The ~$100M ASR started Aug 4 is mild support. I have no edge on the direction of the print, so I use a near-symmetric lognormal centered at ~$112.5 (tiny positive drift for the ASR and the beat-and-raise record in Q2) with a 20% one-month sigma, close to the 80%/3.5 rule with the earnings event inside the window.",
+  "fair_value": {
+    "value": 117.0,
+    "method": "Blend of forward P/E (NTM EPS at Oct-2027 of ~$3.90 x 30x = $117) and EV/FCF yield (2027E FCF $360M at a 3% yield plus ~$725M net cash = ~$118/share); weights 60/40 give ~$117.",
+    "methods": [
+      {
+        "name": "P/E", "value": 117.0, "weight": 0.6,
+        "inputs": "NTM (Q4'27-Q3'28) non-GAAP EPS ~$3.90 x 30x. 2026E non-GAAP EPS ~$3.03 (Q1 $0.63 + Q2 $0.77 + Q3 guide mid $0.785 + Q4E $0.84); 2027E ~$3.55; 2028E ~$4.10.",
+        "inputs_detail": [
+          {"input": "Q1 2026 non-GAAP EPS", "value": "$0.63", "basis": "reported", "source_ids": [2], "derivation": ""},
+          {"input": "Q2 2026 non-GAAP EPS", "value": "$0.77", "basis": "reported", "source_ids": [1], "derivation": ""},
+          {"input": "Q3 2026 non-GAAP EPS guidance", "value": "$0.75-$0.82 (110M diluted shares, 16% non-GAAP tax rate)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+          {"input": "2027E non-GAAP EPS", "value": "$3.55", "basis": "estimate", "source_ids": [1, 3, 4, 5, 8], "derivation": "Q3'26 guide annualizes to ~$3.15; add ~15% product growth (MRDIMM ramp material in 2027 per management, companion chips to mid-teens % of product revenue) partly offset by flat royalties (~$290M run-rate: Q4'25 $71.6M, Q1'26 $69.6M, Q2'26 $84.2M, Q3 guide $69-75M) and the DRAM-supply risk to RDIMM unit growth flagged by Baird; buyback trims share count ~1%."},
+          {"input": "NTM EPS at horizon", "value": "$3.90", "basis": "estimate", "source_ids": [1, 3, 5], "derivation": "Q4'27-Q3'28 blend of 2027E $3.55 and 2028E ~$4.10 (continued ~15% EPS growth from DDR5/MRDIMM content gains, roughly the 2025-26 product growth rate of 15-22%)."},
+          {"input": "Forward P/E multiple", "value": "30x", "basis": "judgment", "source_ids": [1, 6, 7], "derivation": "Today $111.97 / 2026E $3.03 = ~37x trailing-forward and ~32x 2027E; I assume modest de-rating to 30x on NTM as growth decelerates and DRAM-supply/DOJ overhangs persist; analyst targets ($114-$165, consensus ~$149 in July) bracket this."}
+        ]
+      },
+      {
+        "name": "FCF yield", "value": 118.0, "weight": 0.4,
+        "inputs": "2027E FCF $360M / 3.0% yield = $12.0B EV + net cash ~$0.73B ($825M at 6/30/26 less $100M ASR) = $12.7B / ~108M shares = ~$118.",
+        "inputs_detail": [
+          {"input": "Cash and marketable securities (6/30/26)", "value": "$824.9M, no debt disclosed", "basis": "reported", "source_ids": [1, 3], "derivation": ""},
+          {"input": "ASR prepayment", "value": "$100M (initial delivery ~796k shares)", "basis": "reported", "source_ids": [4], "derivation": ""},
+          {"input": "Operating cash flow", "value": "FY2025 $360.0M; H1 2026 $144.5M (incl. $30.7M inventory build); H1 capex $20.7M", "basis": "reported", "source_ids": [3, 9], "derivation": ""},
+          {"input": "2027E FCF", "value": "$360M", "basis": "estimate", "source_ids": [3, 9, 1], "derivation": "FY2025 CFO $360M, 2026 run-rate depressed by inventory build and taxes; 2027 CFO ~$400M on ~$3.55 EPS-level earnings plus SBC (~$63M/yr from $15.7M/qtr) less ~$40M capex."},
+          {"input": "FCF yield", "value": "3.0%", "basis": "judgment", "source_ids": [1, 6], "derivation": "At today's price, EV ~$11.4B on ~$300M 2026E FCF is ~2.6%; 3.0% reflects modest de-rating consistent with the P/E method."},
+          {"input": "Diluted shares", "value": "~108M (110M Q2 diluted less ASR/buyback)", "basis": "reported", "source_ids": [1, 4], "derivation": "110M diluted guidance less ~1M ASR shares and ongoing buyback offset by SBC."}
+        ]
+      }
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 72.0, "prob": 0.25, "story": "DRAM capacity diverted to HBM caps server RDIMM unit growth in 2027 (Baird's thesis; module-maker DRAM supply sharply down), MRDIMM ramp slips with CPU platforms, royalties stay flat and the DOJ antitrust grand-jury matter produces a fine or business-practice change; 2027 EPS ~$3.1 at ~23x."},
+    "base": {"price": 120.0, "prob": 0.5, "story": "Product revenue grows mid-teens in 2027 on RCD share plus PMIC/SPD/companion chips and early MRDIMM; royalties ~flat; buybacks continue; stock trades ~30x NTM EPS of ~$3.9-4.0."},
+    "bull": {"price": 172.0, "prob": 0.25, "story": "AI inference/agentic CPU demand drives a strong 2027 server cycle; MRDIMM ($600-700M SAM) and SOCAMM2/LPDDR5X server modules ramp; companion chips reach mid-teens % of product revenue; EPS run-rate >$4.3 and multiple back to ~40x, retesting the $174 high."}
+  },
+  "thesis_break_price": 72.0,
+  "thesis_break_reason": "Below the $77.89 52-week low and ~35% under today, a sustained trade near $72 would imply the market sees EPS declining rather than growing (about 23x on a ~$3.1 run-rate): e.g. RDIMM unit contraction from DRAM supply diversion to HBM, share loss in DDR5 RCD to Montage/Renesas, a material DOJ antitrust outcome, or loss of a top customer (Customer A was 22-25% of revenue, Customer B 15-16%).",
+  "catalysts": [
+    {"date": "2026-10 (late, est. ~Oct 26-27)", "event": "Q3 2026 results and Q4 guidance (product guide, 2027 RDIMM/MRDIMM commentary)", "direction": "?"},
+    {"date": "2026-Q4", "event": "Completion of $100M accelerated share repurchase with Mizuho", "direction": "+"},
+    {"date": "2027-02 (early)", "event": "Q4/FY2026 results and first 2027 framing", "direction": "?"},
+    {"date": "2027 H1", "event": "Next-gen server CPU platform launches enabling MRDIMM ramp", "direction": "+"},
+    {"date": "2027 (open)", "event": "DOJ Antitrust Division grand-jury investigation developments", "direction": "-"},
+    {"date": "2027-04 (late)", "event": "Q1 2027 results (seasonally soft quarter; Q1'26 print caused ~-21% day)", "direction": "?"},
+    {"date": "2027-07 (late)", "event": "Q2 2027 results", "direction": "?"},
+    {"date": "ongoing", "event": "DRAM supply allocation to HBM vs. standard server DRAM (memory-maker capex and pricing)", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Whether DRAM supply tightness limits 2027 server RDIMM unit growth (Baird downgrade thesis) despite strong CPU demand",
+    "Timing and size of MRDIMM ramp (management: minimal in Q4'26, material in 2027) and companion-chip share gains",
+    "DOJ antitrust criminal grand-jury subpoena (first disclosed Q1 2026) - scope and outcome unknown",
+    "Royalty lumpiness (Q2'26 $84.2M vs Q3 guide $69-75M) and renewal terms with concentrated DRAM licensees",
+    "Customer concentration: Customer A 22-25% and Customer B 15-16% of revenue; South Korea ~45% of revenue",
+    "Multiple: stock at ~32x 2027E in a high-volatility semis tape (80% realized vol)"
+  ],
+  "reasoning": "Primary-document work: Q2'26 8-K release shows record revenue $207.4M (+20% y/y), product $99.2M (+22%), non-GAAP EPS $0.77, and a Q3 guide of $210-216M revenue with product $110-116M (+11-17% q/q) and EPS $0.75-0.82, so 2H26 is accelerating after a weak Q1 ($180.2M, EPS $0.63) that triggered a ~21% drop and a Baird downgrade on DRAM supply risk for 2027. The 10-Q adds what recaps skip: a DOJ Antitrust Division criminal grand-jury subpoena since Q1'26, Customer A at 25% of H1 revenue, a $30.7M H1 inventory build, cash of $824.9M and no debt; an Aug 4 8-K shows a $100M ASR (~$100/share implied initial delivery) and a Sep 4 8-K a CAO change (benign). I estimate 2026 non-GAAP EPS ~$3.03 and 2027 ~$3.55; at $111.97 the stock is ~32x 2027E. Fair value blends 30x NTM EPS ($117) and a 3% FCF yield ($118) = ~$117, i.e. close to spot, so the expected return is modest and the distribution is dominated by volatility. I model the 12-month distribution as a mixture of bear ($72, 25%), base ($120, 50%) and bull ($172, 25%) lognormals (sigmas 25-35%), giving a median ~$118, mean ~$121 and an effective spread consistent with a stock that has 80% realized vol but whose fundamentals are steadier (I shade below the realized vol because much of it came from three earnings gaps). Research limits: earnings-call transcripts (GuruFocus, Nasdaq, StatementDog) were blocked or empty, so call commentary (MRDIMM SAM ~$600-700M, companion chips low-teens to mid-teens % of product) comes from search snippets/Quartr summary; Alpha Vantage and Twelve Data estimate endpoints were rate-limited or paywalled, so consensus 2027 EPS is not directly cited.",
+  "lane": "primary",
+  "sources": [
+    {"title": "Rambus Reports Second Quarter 2026 Financial Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0000917273/000119312526318063/rmbs-ex99_1.htm", "date": "2026-07-27", "type": "filing", "in_lane": true},
+    {"title": "Rambus Reports First Quarter 2026 Financial Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526182076/rmbs-ex99_1.htm", "date": "2026-04-27", "type": "filing", "in_lane": true},
+    {"title": "Rambus Form 10-Q for quarter ended June 30, 2026", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526321000/rmbs-20260630.htm", "date": "2026-07-28", "type": "filing", "in_lane": true},
+    {"title": "Rambus 8-K: Accelerated share repurchase agreement with Mizuho ($100M)", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526333887/d122300d8k.htm", "date": "2026-08-05", "type": "filing", "in_lane": true},
+    {"title": "Rambus (RMBS) Q2 2026 earnings summary (Quartr)", "url": "https://quartr.com/events/rambus-inc-rmbs-q2-2026_ozjxwPAV", "date": "2026-07-27", "type": "company", "in_lane": true},
+    {"title": "Rambus shares crater after revenue miss, Baird warns of DRAM supply squeeze", "url": "https://finance.yahoo.com/markets/stocks/articles/rambus-shares-crater-revenue-miss-173700183.html", "date": "2026-04-28", "type": "press", "in_lane": false},
+    {"title": "Wall Street Keeps Warming to Rambus Stock. Here's Our Price Target (247 Wall St)", "url": "https://247wallst.com/investing/2026/07/21/wall-street-keeps-warming-to-rambus-stock-heres-our-price-target/", "date": "2026-07-21", "type": "press", "in_lane": false},
+    {"title": "DRAM chip supply to module makers could drop by more than 70% YoY in 2027, says Apacer CEO (Tom's Hardware)", "url": "https://www.tomshardware.com/pc-components/ram/dram-chip-supply-to-module-makers-could-drop-by-more-than-70-percent-year-on-year-in-2027-says-apacer-ceo-demand-for-hbm-and-server-ram-continues-to-devour-manufacturing-capacity", "date": "2026", "type": "trade", "in_lane": false},
+    {"title": "Rambus Reports Fourth Quarter and Fiscal Year 2025 Financial Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526033624/rmbs-ex99_1.htm", "date": "2026-02-02", "type": "filing", "in_lane": true},
+    {"title": "Rambus 8-K: Chief Accounting Officer retirement and successor", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526383630/d80115d8k.htm", "date": "2026-09-04", "type": "filing", "in_lane": true},
+    {"title": "Rambus 8-K: Appointment of CFO Sumeet Gagneja", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526192210/d20390d8k.htm", "date": "2026-04-29", "type": "filing", "in_lane": true}
+  ]
+}

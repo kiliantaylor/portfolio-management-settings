@@ -1,0 +1,81 @@
+{
+  "symbol": "MSFT", "agent_id": "agent_4", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 130, "p": 0.999}, {"K": 207, "p": 0.996}, {"K": 259, "p": 0.988}, {"K": 311, "p": 0.962},
+    {"K": 363, "p": 0.91}, {"K": 415, "p": 0.82}, {"K": 466, "p": 0.705}, {"K": 518, "p": 0.575},
+    {"K": 570, "p": 0.45}, {"K": 622, "p": 0.34}, {"K": 700, "p": 0.21}, {"K": 777, "p": 0.125},
+    {"K": 907, "p": 0.048}, {"K": 1037, "p": 0.017}, {"K": 1296, "p": 0.003}
+  ],
+  "ladder_1m": [
+    {"K": 414.62, "p": 0.99}, {"K": 440.54, "p": 0.958}, {"K": 466.45, "p": 0.87}, {"K": 482.00, "p": 0.785},
+    {"K": 497.55, "p": 0.675}, {"K": 518.28, "p": 0.515}, {"K": 539.01, "p": 0.355}, {"K": 554.56, "p": 0.255},
+    {"K": 570.11, "p": 0.17}, {"K": 596.02, "p": 0.08}, {"K": 621.94, "p": 0.033}
+  ],
+  "one_month_reasoning": "The window contains Microsoft's fiscal Q1 2027 report (TipRanks lists Oct 27 after the close; other trackers say Oct 28 to 30), so it is in the window. Management guided to roughly 45% Azure growth for the quarter, and paid Copilot seats went 15M, then 20M, then 30M over three calls. The stock has also run about 5% in the last week (Stifel upgrade, Copilot app relaunch), so a lot of good news is already in the price. The stock has jumped after the last two prints but traded flat for most of 2026 because of capex worries, so I treat the earnings move as two-sided with a slight upward tilt from positive revision momentum. I used a lognormal with a median of about $520 (+0.3%) and a one-month sigma of about 9.5% (annual 32% / 3.5 = 9.1%, plus a little for earnings). This is close to neutral on purpose.",
+  "fair_value": {
+    "value": 570.0,
+    "method": "Blended $570: 60% P/E ($572 = my FY28 EPS estimate of $22.9 x 25x, the multiple the stock trades at now) and 40% sum of parts ($572 = core at 24x FY28 EPS of $22.9, which is $550, plus the OpenAI stake at $22 a share after a 30% haircut).",
+    "methods": [
+      {"name": "P/E", "value": 572.0, "weight": 0.6,
+       "inputs": "NTM EPS at Sep 2027 of about FY28 EPS $22.9 x 25x",
+       "inputs_detail": [
+         {"input": "FY27 EPS (consensus)", "value": "$19.76", "basis": "consensus", "source_ids": [5], "derivation": ""},
+         {"input": "FY28 EPS (NTM as of Sep 2027)", "value": "$22.9", "basis": "estimate", "source_ids": [1, 5], "derivation": "FY27 consensus of $19.76 grown about 16%. Non-GAAP EPS grew 23% in FY26 Q4, but rising depreciation from $175-190B of capex caps margin expansion, so I assume growth slows to the mid-teens."},
+         {"input": "Forward P/E", "value": "25x", "basis": "judgment", "source_ids": [4, 3, 7], "derivation": "The stock trades at about 26x forward now (518/19.76 = 26.2x), below its 5-year average, and the peak was about 33x. I assume 25x one year out because investor fatigue with capex persists and is only partly offset by Azure acceleration."}
+       ]},
+      {"name": "SOTP", "value": 572.0, "weight": 0.4,
+       "inputs": "Core at 24x FY28 EPS $22.9 = $550, plus 27% OpenAI stake at $852B post-money = $230B, which is $31 a share, less a 30% haircut = $22",
+       "inputs_detail": [
+         {"input": "Core P/E ex-OpenAI", "value": "24x", "basis": "judgment", "source_ids": [4, 3], "derivation": "One turn below the whole-company multiple, because the headline multiple includes some of the OpenAI option value."},
+         {"input": "OpenAI stake", "value": "~27% fully diluted", "basis": "estimate", "source_ids": [3], "derivation": "From the independent newsletter's breakdown of the October 2025 restructuring."},
+         {"input": "OpenAI valuation", "value": "$852B post-money (March 2026)", "basis": "reported", "source_ids": [8, 9], "derivation": "Polymarket and Kalshi coverage cites the March 2026 round. Markets put an IPO at about 67-75% likely by mid-2027."},
+         {"input": "Diluted shares", "value": "7,443M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Haircut on stake", "value": "30%", "basis": "judgment", "source_ids": [3, 8], "derivation": "Private-mark risk, the capped revenue share and IPO timing uncertainty (Kalshi and Polymarket diverge sharply)."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 380.0, "prob": 0.2, "story": "Azure slows into the low 30s as capacity comes online faster than demand, or OpenAI moves spending to other clouds. Depreciation squeezes margins, FY28 EPS comes in around $20, and the multiple falls to 19x, similar to the April 2026 low near $349-416."},
+    "base": {"price": 565.0, "prob": 0.55, "story": "Azure grows 38-45%, Copilot seats keep rising toward 50M, capex growth slows in FY28, EPS is about $22.9 and the multiple holds around 25x."},
+    "bull": {"price": 700.0, "prob": 0.25, "story": "Azure stays above 45% on the $678B backlog, Copilot seats double (30M to 60M+), an OpenAI IPO near $1.5T re-rates the stake, and the stock trades at 29x about $24 EPS."}
+  },
+  "thesis_break_price": 390.0,
+  "thesis_break_reason": "Below about $390 (roughly 20x FY27 consensus and 25% below today) is where the stock sat at the April 2026 capex scare. Trading there again in the next year would most likely mean Azure growth or backlog conversion has actually cracked (for example Azure in the low 30s or lease cancellations spreading beyond the TD Cowen reports), not ordinary volatility.",
+  "catalysts": [
+    {"date": "2026-10-27", "event": "FY27 Q1 earnings (guide was about 45% Azure growth; capex update)", "direction": "?"},
+    {"date": "2026-11", "event": "Ignite conference: Copilot and agent product and pricing announcements", "direction": "+"},
+    {"date": "2027-01", "event": "FY27 Q2 earnings; calendar 2027 capex outlook", "direction": "?"},
+    {"date": "2027-03 to 2027-06", "event": "Possible OpenAI IPO filing (Polymarket and Kalshi put about 67-75% on it by mid-2027)", "direction": "+"},
+    {"date": "2027-04", "event": "FY27 Q3 earnings", "direction": "?"},
+    {"date": "2027-07", "event": "FY27 Q4 earnings and FY28 capex guidance", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Return on $175-190B of annual capex, and how fast depreciation compresses margins",
+    "Whether Azure stays above 40% once capacity constraints ease",
+    "How durable Copilot demand is: seats are growing fast, but Copilot's share of consumer web traffic is only about 1.6-2%",
+    "OpenAI relationship, stake value and IPO timing",
+    "Macro and rate backdrop for long-duration mega-cap tech (bond yields rose in late September)"
+  ],
+  "reasoning": "Basic facts come from the FY26 Q4 8-K: revenue of $90.0B (+18%), non-GAAP EPS of $4.74 (+23%), FY capex of $115.9B, operating cash flow of $182.9B and 7,443M diluted shares. Azure grew 43%, commercial RPO is $678B and the Q1 guide is about 45% Azure growth. The FY27 EPS consensus is $19.76, so at $518 the stock trades at about 26x forward, below its 5-year average. It is roughly flat over the year because the market is weighing capex against growth. Alternative sources are mixed. Independent newsletters (Long Yield, Semicon Alpha) frame MSFT as a compounder the market has stopped trusting, with Copilot seats scaling (15M, 20M, 30M; confirmed by Directions on Microsoft and the Q4 coverage). Similarweb's traffic tracker shows Copilot at only about 1.6-2% of consumer gen-AI traffic, well behind ChatGPT, Gemini and Claude, so the consumer AI position is weak and the value is in enterprise and Azure. TD Cowen channel checks show lease cancellations of a couple of hundred MW and a shift of spending to the US, which I treat as reallocation rather than weakening demand: the 10-K shows uncommenced lease commitments rose to $329B, and management says it is still capacity constrained. Prediction markets (Polymarket, Kalshi) put an OpenAI IPO by mid-2027 at about 67-75%, and Polymarket put about 80% on a valuation of $1.5T or more; I read the IPO as an upside catalyst for the stake. Fair value of about $570 implies about 10% upside. The scenario-weighted mean is about $562. I used a lognormal with a median of $550 and sigma of 0.30 (a bit below the 32% realized vol, since this is a mega-cap with steady growth) and fattened the left tail slightly for a capex bust. Sources are not option-derived. Research was limited: CNBC and one prediction-market news article returned 403, and X posts were not fetched; Similarweb figures come from search snippets of its X posts and trade-press write-ups.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "Microsoft 8-K Ex 99.1 FY26 Q4 press release", "url": "https://www.sec.gov/Archives/edgar/data/0000789019/000119312526323632/msft-ex99_1.htm", "date": "2026-07-29", "type": "filing", "in_lane": false},
+    {"title": "Microsoft Cloud and AI strength fuels fourth quarter results", "url": "https://news.microsoft.com/source/2026/07/29/microsoft-cloud-and-ai-strength-fuels-fourth-quarter-results-4/", "date": "2026-07-29", "type": "company", "in_lane": false},
+    {"title": "Microsoft: The Compounder the Market Stopped Trusting (Long Yield Substack)", "url": "https://longyield.substack.com/p/microsoft-the-compounder-the-market", "date": "2026-04-30", "type": "newsletter", "in_lane": true},
+    {"title": "MSFT Has Gone Nowhere in 2026 - Azure Says That's a Mistake", "url": "https://finance.yahoo.com/markets/stocks/articles/msft-gone-nowhere-2026-azure-135000652.html", "date": "2026-09-07", "type": "press", "in_lane": false},
+    {"title": "Microsoft analyst estimates (Yahoo Finance / aggregators)", "url": "https://finance.yahoo.com/quote/MSFT/analysis/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Microsoft Q3 FY2026: The $190 Billion CapEx Bombshell (Semicon Alpha Substack)", "url": "https://semiconalpha.substack.com/p/microsoft-q3-fy2026-the-190-billion", "date": "2026-04", "type": "newsletter", "in_lane": true},
+    {"title": "Microsoft Rises as One of Last Analyst Holdouts Gets Bullish", "url": "https://www.bloomberg.com/news/articles/2026-09-23/microsoft-rises-as-one-of-last-analyst-holdouts-turns-bullish", "date": "2026-09-23", "type": "press", "in_lane": false},
+    {"title": "Kalshi: When will OpenAI announce IPO", "url": "https://kalshi.com/markets/kxipoopenai/when-will-openai-announce-ipo/kxipoopenai", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket: OpenAI IPO closing market cap", "url": "https://polymarket.com/event/openai-ipo-closing-market-cap", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "Similarweb Gen AI website traffic share update - August 2026 (X)", "url": "https://x.com/Similarweb/status/2096878021378466096", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "ChatGPT claws back web traffic share to 55.5 percent (The Decoder, Similarweb data)", "url": "https://the-decoder.com/chatgpt-claws-back-web-traffic-share-to-55-5-percent-as-geminis-brief-comeback-fades/", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "Microsoft Claims 15 Million Paid M365 Copilot Seats (Directions on Microsoft)", "url": "https://www.directionsonmicrosoft.com/microsoft-claims-15-million-paid-m365-copilot-seats/", "date": "2026-01", "type": "expert", "in_lane": true},
+    {"title": "Microsoft 365 Copilot adoption 2026: seats vs usage (Userlane)", "url": "https://www.userlane.com/blog/microsoft-365-copilot-adoption-2026-measuring-seats-vs-usage/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Microsoft cancels 200MW of AI data center leases - report (DCD, TD Cowen channel checks)", "url": "https://www.datacenterdynamics.com/en/news/microsoft-cancels-200mw-of-ai-data-center-leases-report/", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Microsoft's $329.1bn lease stack is capacity that has not started", "url": "https://btw.media/en/microsoft-329-1bn-uncommenced-datacentre-leases", "date": "2026-09", "type": "trade", "in_lane": true},
+    {"title": "Microsoft Data Center Capacity Plan: 38 GW By 2032 (Global Data Center Hub)", "url": "https://www.globaldatacenterhub.com/p/microsoft-data-center-capacity-38gw-2032", "date": "2026-09", "type": "newsletter", "in_lane": true},
+    {"title": "TipRanks MSFT earnings date", "url": "https://www.tipranks.com/stocks/msft/earnings", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Azure Grows, Stock Tanks (Long Yield Substack)", "url": "https://longyield.substack.com/p/azure-grows-stock-tanks-what-microsofts", "date": "2026", "type": "newsletter", "in_lane": true}
+  ]
+}

@@ -1,0 +1,688 @@
+{
+ "date": "2026-10-23",
+ "symbol": "BE",
+ "clean": true,
+ "checked": 65,
+ "ok": 43,
+ "fixed": 22,
+ "failures": [
+  {
+   "item": "shares.diluted_now",
+   "value": "311.5",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "result": "wrong",
+   "fix": "312.4M diluted shares, basis estimate (confidence high): 295.66M outstanding 2026-10-19 (F81) + 15.61M options/awards (Q3, 10-Q Note 15) + 1.09M 2029 Green Notes if-converted; 2030 notes' 12.82M excluded (carried as debt). Cross-check 324.29 - 12.82 = 311.47."
+  },
+  {
+   "item": "FY2027 revenue consensus as of 2026-09-27",
+   "value": "6790.0",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "Replaced with post-print FY2027 consensus revenue $7,050M (stockanalysis.com forecast page, 'Revenue Next Year 7.05B from 4.53B', last updated 2026-10-23)."
+  },
+  {
+   "item": "balance.net_debt",
+   "value": "42.1",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "result": "wrong",
+   "fix": "Net debt $16.2M, basis estimate (confidence high): 2030 converts principal 2,500.0 + Korean JV loan 2.95 - cash 2,486.7 (10-Q 2026-09-30); 2029 Green Notes treated as equity."
+  },
+  {
+   "item": "reason: \"mean of agent FVs $239/$240/$222/$227/$245\"; \"~$2.45B net cash, converts as equity in ~323-324M shares ... no further correction needed\"",
+   "value": "234.6 / 2.45B net cash",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "fair_value.reason rewritten: build value $185.84 from model_engine check, converts as debt (net debt $16.2M, 312.4M shares); base-agent mean $234.6 kept only as the base-round comparison."
+  },
+  {
+   "item": "$150 = \"-48%\" from the current price",
+   "value": "-48%",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "Recomputed: $150 is 22% below the $193.30 close of 2026-10-23 (Twelve Data)."
+  },
+  {
+   "item": "\"~$7.5/share of net cash\"",
+   "value": "7.5",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "result": "mislabelled",
+   "fix": "Removed the ~$7.5/share net-cash claim; text now states net debt $16.2M with converts as debt."
+  },
+  {
+   "item": "\"Fair value (~$235) is below spot\"",
+   "value": "235",
+   "cited": "",
+   "result": "wrong",
+   "fix": "Replaced with the research target (12m) $185.84, 3.9% below the $193.30 close."
+  },
+  {
+   "item": "tranche \"after the Q3 print (likely Tue Oct 27)\"",
+   "value": "2026-10-27",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "result": "wrong",
+   "fix": "Tranche plan updated: one third now (after the Oct 22 print), one third after the Dec 3 FERC decision, one third after the air permit / Feb 2027 guide."
+  },
+  {
+   "item": "112% realized vol; ~4% cap (~$1,350)",
+   "value": "112%",
+   "cited": "",
+   "result": "not_found",
+   "fix": "Replaced with ~109% annualized 6-month realized volatility, labelled estimate: stdev of daily log returns x sqrt(252), 128 returns Apr 22 - Oct 23, 2026, Twelve Data closes."
+  },
+  {
+   "item": "\"SBC ~$230M (Q3 $57.2M, src 14)\"",
+   "value": "57.2",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "result": "wrong",
+   "fix": "Q3 SBC corrected to $60.1M (Q1 57.0, Q2 56.4); FY ~$234M."
+  },
+  {
+   "item": "FERC EA issued Sep 4, comments Oct 5, decision deadline Dec 3, 2026; fast track lost",
+   "value": "Dec 3, 2026",
+   "cited": "federalregister.gov 2026-18455 / 2026-15286; naturalgasintel.com",
+   "result": "not_found",
+   "fix": "Re-sourced to the official Federal Register copies on govinfo (EA Sep 4, comments Oct 5, 90-day decision deadline Dec 3, 2026, docket CP26-80-000); the NGI 'lost fast track' claim removed."
+  },
+  {
+   "item": "air permit: officer recused Aug 24, stays lifted Sep 17, no new date",
+   "value": "dates",
+   "cited": "sourcenm.com 2026/08/24 and 2026/09/17",
+   "result": "not_found",
+   "fix": "Re-sourced to the Albuquerque Journal: recusal order Aug 22 (reported Aug 24), stays lifted Sep 17; updated with the new hearing officer named Oct 2, no opening date."
+  },
+  {
+   "item": "MS: >half of $8B+ equipment backlog outside Oracle; MS 1.8 GW 2027 / 4.8 GW 2028",
+   "value": " 1.8 GW",
+   "cited": "https://www.thestreet.com/investing/stocks/morgan-stanley-says-bloom-can-withstand-an-oracle-project-delay",
+   "result": "not_found",
+   "fix": "Removed from every derivation, the bull story and the disagreements (no reachable source); only agent_2's view keeps it, marked unverified; FY2027 1.80 GW rests on capacity (90% of 2 GW)."
+  },
+  {
+   "item": "\"fair values $222-245 (mean $234.6), all below the $288.7 spot\"",
+   "value": "288.7",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "Labelled base round: $288.70 is the 2026-09-25 close (Twelve Data); research targets, not fair values."
+  },
+  {
+   "item": "FY2027 consensus revenue $6.79B, EPS $4.93 (2026-09-27)",
+   "value": "6790 / 4.93",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "Replaced with post-print FY2027 consensus $7.05B revenue / $5.31 EPS (stockanalysis.com, 2026-10-23); product_asp no longer uses consensus as an input."
+  },
+  {
+   "item": "nGAAP op income FY2026: 2/0/0, median 0.3515, adj 1344.74, ours 1010 inside +0.0151",
+   "value": "1010",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "Recomputed: GAAP EBIT ~$780M + SBC ~$234M + other ~$2M = ~$1,015M, +2.0% vs midpoint, inside."
+  },
+  {
+   "item": "nGAAP EPS FY2026: ours 3.30 inside +0.0154",
+   "value": "3.30",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "result": "arithmetic",
+   "fix": "Recomputed: 0.44 + 0.78 + 0.94 + Q4 ~1.00-1.05 = ~$3.19, -1.8% vs midpoint, inside."
+  },
+  {
+   "item": "FY2027 revenue: no guide, position \"inside\", ours 6550 vs consensus 6790 (-3.5%)",
+   "value": "6550",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "Position set to n/a (no guide); gap to post-print consensus -7.1%."
+  },
+  {
+   "item": "driver:product_gw FY2026-28 derivation",
+   "value": "1.24/1.80/2.50",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm ; https://eu.36kr.com/de/p/3917481569021574",
+   "result": "arithmetic",
+   "fix": "Derivation corrected: Q3 x ~1.21 labelled a judgment (Q2->Q3 step 1.148, alternative FY2026 1.22 GW shown); FY2027 3% under the FY2027 implied median 1.86 (spread now FY2027 only); 36Kr context only (old guide); MS removed."
+  },
+  {
+   "item": "driver:product_asp 3,100 -> 3,195/3,250/3,250 $/kW",
+   "value": "3195",
+   "cited": "https://eu.36kr.com/de/p/3917481569021574 ; https://www.alphavantage.co/",
+   "result": "wrong",
+   "fix": "Relabelled a flagged judgment estimate (confidence low) with the arithmetic shown; unsupported 36Kr range removed; 36Kr cross-check: Q2 product revenue $935.4M / ~308 MW = ~$3,040/kW; variant $168.99 (-9.1%) recorded as an open judgment call for Kilian (valuation view, not a citation failure)."
+  },
+  {
+   "item": "balance.net_debt 42.1",
+   "value": "42.1",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "result": "arithmetic",
+   "fix": "Recomputed with the JV loan counted once: 16.2 (see balance.net_debt)."
+  },
+  {
+   "item": "horizon_multiples P/E 40x (judgment)",
+   "value": "40",
+   "cited": "runs/2026-10-23/BE/peers.md (+ peers.json)",
+   "result": "arithmetic",
+   "fix": "peer_basis corrected: the agents' ~40x non-GAAP = ~46x GAAP (40 / 0.87); 40x GAAP is ~13% below; decided by Kilian 2026-10-26."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue FY2026 guide as of 2026-10-22 (GAAP)",
+   "value": "4400-4600",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin FY2026 guide as of 2026-10-22",
+   "value": "0.34-0.34",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating income FY2026 guide as of 2026-10-22",
+   "value": "960-1030",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS FY2026 guide as of 2026-10-22",
+   "value": "3.1-3.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue FY2022: first guide (2022-02-10) / reported actual",
+   "value": "1100-1150 / 1199.1",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000166470322000015/ex991be4q2021financialre.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin FY2022: first guide (2022-02-10) / reported actual",
+   "value": "0.24-0.24 / 0.23",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000166470322000015/ex991be4q2021financialre.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue FY2023: first guide (2023-02-09) / reported actual",
+   "value": "1400-1500 / 1333.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828023002960/ex991_q42022financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin FY2023: first guide (2023-02-09) / reported actual",
+   "value": "0.25-0.25 / 0.258",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828023002960/ex991_q42022financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue FY2024: first guide (2024-02-15) / reported actual",
+   "value": "1400-1600 / 1473.9",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828024005031/ex991_q42023financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin FY2024: first guide (2024-02-15) / reported actual",
+   "value": "0.28-0.28 / 0.287",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828024005031/ex991_q42023financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating income FY2024: first guide (2024-02-15) / reported actual",
+   "value": "75-100 / 107.6",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828024005031/ex991_q42023financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue FY2025: first guide (2025-02-27) / reported actual",
+   "value": "1650-1850 / 2024.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828025008626/ex991_q42024financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin FY2025: first guide (2025-02-27) / reported actual",
+   "value": "0.29-0.29 / 0.303",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828025008626/ex991_q42024financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating income FY2025: first guide (2025-02-27) / reported actual",
+   "value": "135-165 / 221.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828025008626/ex991_q42024financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "base.revenue",
+   "value": "2024.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026005798/ex991_q42025financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "fair value and leg blend",
+   "value": "186.20 = 0.6x205.09 + 0.2x166.59 + 0.2x149.13; -20.6% vs 234.60",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "$150 = ~29x NTM GAAP EPS ~$5.1; ~30x FY27 consensus EPS $4.93",
+   "value": "29.4x / 30.4x",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "FY2026 guide path: first $3.1-3.3B (Feb 5) -> $3.4-3.8B (Apr 28) -> $3.9-4.2B (Jul 28) -> $4.4-4.6B (Oct 22); GM ~32% -> ~34%; op inc first $425-475M; EPS first $1.33-1.48",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026005798/ex991_q42025financialresul.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance (note)"
+  },
+  {
+   "item": "first guides and actuals FY2022-25 (rev 1.10-1.15/1.4-1.5/1.4-1.6/1.65-1.85B vs 1199.1/1333.5/1473.9/2024.0; nGAAP GM ~24/25/~28/~29% vs 23.0/25.8/28.7/30.3%; op inc 75-100 / 135-165 vs 107.6/221.0)",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "src 19-22 Ex.99.1",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance (track record)"
+  },
+  {
+   "item": "FY2026 guide as of Oct 22: revenue $4.4-4.6B, nGAAP GM ~34%, nGAAP op inc $960-1,030M, nGAAP EPS $3.10-3.40",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance_check"
+  },
+  {
+   "item": "Q1/Q2/Q3 revenue 751.1/1,065.4/1,235.8 (YTD 3,052.3); contract assets +$614M; Q3 GM 33.8% GAAP / 34.5% nGAAP; nGAAP EPS Q2 $0.78, Q3 $0.94",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance_check why"
+  },
+  {
+   "item": "state-land denials: Mar 20 and Jul 14, 2026 (Garcia Richard)",
+   "value": "dates",
+   "basis": "reported",
+   "source_url": "https://www.nmstatelands.org/wp-content/uploads/2026/07/2026-07-14-Letter-re-Informal-Request-for-Reconsideration_Final.pdf ; https://pgjonline.com/news/2026/july/new-mexico-denies-reconsideration-of-project-jupiter-gas-pipeline",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements/changes"
+  },
+  {
+   "item": "\"~0.63 miles of a ~17.8-mile lateral\"",
+   "value": "0.63 / 17.8 mi",
+   "basis": "reported",
+   "source_url": "https://pgjonline.com/news/2026/july/new-mexico-denies-reconsideration-of-project-jupiter-gas-pipeline",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "BLM rights-of-way May 6, 2026, 16 miles of federal land",
+   "value": "16 mi",
+   "basis": "reported",
+   "source_url": "https://www.blm.gov/press-release/blm-issues-rights-way-green-chile-natural-gas-pipeline",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements/changes"
+  },
+  {
+   "item": "AG backs challengers; Nov 23 deadline extendable for good cause",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.organmountainnews.com/raul-torrez-project-jupiter-water-air-permitting-supreme-court-2026/",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Oracle force-majeure notice (Sep 24)",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://techcrunch.com/2026/09/24/oracle-sends-force-majeure-notice-on-its-new-mexico-stargate-data-center/",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "peer TTM GAAP P/E GEV 22.8, VRT 43.2, ETN 37.1, GNRC 42.7 (med 39.9); EV/EBITDA VRT 29.3, GNRC 18.9 (24.1); EV/sales 5.0/6.5/5.4/2.7 (5.2)",
+   "value": "medians",
+   "basis": "reported",
+   "source_url": "runs/2026-10-23/BE/peers.md (+ peers.json)",
+   "checked": "2026-10-26",
+   "feeds": "supervisor comps_summary / horizon_multiples"
+  },
+  {
+   "item": "revenue FY2026: 2/1/1, median 0.0243, adj 4609.125, ours 4522 inside +0.0049",
+   "value": "4522",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nGAAP GM FY2026: 3/0/1, median 0.0285, adj 0.3497, ours 0.34 inside 0",
+   "value": "0.34",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "driver:product_gw base 0.494 (FY2025 product revenue 1,531.3 / 3,100)",
+   "value": "0.494",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026005798/ex991_q42025financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:product_gm 0.3516 -> 0.37/0.375/0.37",
+   "value": "0.3516",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026005798/ex991_q42025financialresul.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:opex 514.6 -> 723/900/1,060",
+   "value": "514.6",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026005798/ex991_q42025financialresul.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:factory_gw 1 -> 2/3/3",
+   "value": "2.0",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver_build formulas vs notes_drivers.md",
+   "value": "rev = gw x asp; EBIT = rev x gm - opex; capex = 0.045 x rev + 125 x dGW",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "segment_build installation/service/electricity 492.7 -> 560/700/840; margin 6.7/8/9%",
+   "value": "560",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026005798/ex991_q42025financialresul.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "tax_rate 5/10/15%",
+   "value": "0.05",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "da_pct_rev 1.3/1.3/1.4%",
+   "value": "0.013",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "nwc_pct_incr_rev 20/15/15%",
+   "value": "0.20",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "shares.diluted_now 311.5",
+   "value": "311.5",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm ; https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples EV/EBITDA 26x (judgment)",
+   "value": "26",
+   "basis": "judgment",
+   "source_url": "runs/2026-10-23/BE/peers.md (+ peers.json)",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples EV/sales 5.5x (judgment)",
+   "value": "5.5",
+   "basis": "judgment",
+   "source_url": "runs/2026-10-23/BE/peers.md (+ peers.json)",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "base.revenue 2,024.0",
+   "value": "2024.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026005798/ex991_q42025financialresul.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "scenarios bear/base/bull",
+   "value": "84.37/186.20/298.21",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "shares.diluted_now",
+   "value": "fixed: 312.4M diluted shares, basis estimate (confidence high): 295.66M outstanding 2026-10-19 (F81) + 15.61M options/awards (Q3, 10-Q Note 15) + 1.09M 2029 Green Note",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FY2027 revenue consensus as of 2026-09-27",
+   "value": "fixed: Replaced with post-print FY2027 consensus revenue $7,050M (stockanalysis.com forecast page, 'Revenue Next Year 7.05B from 4.53B', last updated 2026-10-23).",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/be/forecast/",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "balance.net_debt",
+   "value": "fixed: Net debt $16.2M, basis estimate (confidence high): 2030 converts principal 2,500.0 + Korean JV loan 2.95 - cash 2,486.7 (10-Q 2026-09-30); 2029 Green Notes trea",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "reason: \"mean of agent FVs $239/$240/$222/$227/$245\"; \"~$2.45B net cash, converts as equity in ~323-324M shares ... no further correction needed\"",
+   "value": "fixed: fair_value.reason rewritten: build value $185.84 from model_engine check, converts as debt (net debt $16.2M, 312.4M shares); base-agent mean $234.6 kept only as",
+   "basis": "estimate",
+   "source_url": "model_engine.py check",
+   "checked": "2026-10-26",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "$150 = \"-48%\" from the current price",
+   "value": "fixed: Recomputed: $150 is 22% below the $193.30 close of 2026-10-23 (Twelve Data).",
+   "basis": "estimate",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=BE&interval=1day&start_date=2026-04-22&end_date=2026-10-24",
+   "checked": "2026-10-26",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "\"~$7.5/share of net cash\"",
+   "value": "fixed: Removed the ~$7.5/share net-cash claim; text now states net debt $16.2M with converts as debt.",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "\"Fair value (~$235) is below spot\"",
+   "value": "fixed: Replaced with the research target (12m) $185.84, 3.9% below the $193.30 close.",
+   "basis": "estimate",
+   "source_url": "model_engine.py check",
+   "checked": "2026-10-26",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "tranche \"after the Q3 print (likely Tue Oct 27)\"",
+   "value": "fixed: Tranche plan updated: one third now (after the Oct 22 print), one third after the Dec 3 FERC decision, one third after the air permit / Feb 2027 guide.",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "112% realized vol; ~4% cap (~$1,350)",
+   "value": "fixed: Replaced with ~109% annualized 6-month realized volatility, labelled estimate: stdev of daily log returns x sqrt(252), 128 returns Apr 22 - Oct 23, 2026, Twelve",
+   "basis": "estimate",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=BE&interval=1day&start_date=2026-04-22&end_date=2026-10-24",
+   "checked": "2026-10-26",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "\"SBC ~$230M (Q3 $57.2M, src 14)\"",
+   "value": "fixed: Q3 SBC corrected to $60.1M (Q1 57.0, Q2 56.4); FY ~$234M.",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance_check why (op income)"
+  },
+  {
+   "item": "FERC EA issued Sep 4, comments Oct 5, decision deadline Dec 3, 2026; fast track lost",
+   "value": "fixed: Re-sourced to the official Federal Register copies on govinfo (EA Sep 4, comments Oct 5, 90-day decision deadline Dec 3, 2026, docket CP26-80-000); the NGI 'los",
+   "basis": "reported",
+   "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-07-29/html/2026-15286.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements/changes/key_drivers"
+  },
+  {
+   "item": "air permit: officer recused Aug 24, stays lifted Sep 17, no new date",
+   "value": "fixed: Re-sourced to the Albuquerque Journal: recusal order Aug 22 (reported Aug 24), stays lifted Sep 17; updated with the new hearing officer named Oct 2, no opening",
+   "basis": "reported",
+   "source_url": "https://www.abqjournal.com/business/new-mexico-supreme-court-lifts-stays-on-project-jupiter-dealing-setback-to-opponents/3124024",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements/changes"
+  },
+  {
+   "item": "MS: >half of $8B+ equipment backlog outside Oracle; MS 1.8 GW 2027 / 4.8 GW 2028",
+   "value": "fixed: Removed from every derivation, the bull story and the disagreements (no reachable source); only agent_2's view keeps it, marked unverified; FY2027 1.80 GW rests",
+   "basis": "estimate",
+   "source_url": "no reachable source",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "\"fair values $222-245 (mean $234.6), all below the $288.7 spot\"",
+   "value": "fixed: Labelled base round: $288.70 is the 2026-09-25 close (Twelve Data); research targets, not fair values.",
+   "basis": "reported",
+   "source_url": "https://api.twelvedata.com/time_series?symbol=BE&interval=1day&start_date=2026-04-22&end_date=2026-10-24",
+   "checked": "2026-10-26",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "FY2027 consensus revenue $6.79B, EPS $4.93 (2026-09-27)",
+   "value": "fixed: Replaced with post-print FY2027 consensus $7.05B revenue / $5.31 EPS (stockanalysis.com, 2026-10-23); product_asp no longer uses consensus as an input.",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/be/forecast/",
+   "checked": "2026-10-26",
+   "feeds": "supervisor reference / src 25"
+  },
+  {
+   "item": "nGAAP op income FY2026: 2/0/0, median 0.3515, adj 1344.74, ours 1010 inside +0.0151",
+   "value": "fixed: Recomputed: GAAP EBIT ~$780M + SBC ~$234M + other ~$2M = ~$1,015M, +2.0% vs midpoint, inside.",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nGAAP EPS FY2026: ours 3.30 inside +0.0154",
+   "value": "fixed: Recomputed: 0.44 + 0.78 + 0.94 + Q4 ~1.00-1.05 = ~$3.19, -1.8% vs midpoint, inside.",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "FY2027 revenue: no guide, position \"inside\", ours 6550 vs consensus 6790 (-3.5%)",
+   "value": "fixed: Position set to n/a (no guide); gap to post-print consensus -7.1%.",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/be/forecast/",
+   "checked": "2026-10-26",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "driver:product_gw FY2026-28 derivation",
+   "value": "fixed: Derivation corrected: Q3 x ~1.21 labelled a judgment (Q2->Q3 step 1.148, alternative FY2026 1.22 GW shown); FY2027 3% under the FY2027 implied median 1.86 (spre",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:product_asp 3,100 -> 3,195/3,250/3,250 $/kW",
+   "value": "fixed: Relabelled a flagged judgment estimate (confidence low) with the arithmetic shown; unsupported 36Kr range removed; 36Kr cross-check: Q2 product revenue $935.4M ",
+   "basis": "estimate",
+   "source_url": "https://eu.36kr.com/de/p/3917481569021574",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "balance.net_debt 42.1",
+   "value": "fixed: Recomputed with the JV loan counted once: 16.2 (see balance.net_debt).",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples P/E 40x (judgment)",
+   "value": "fixed: peer_basis corrected: the agents' ~40x non-GAAP = ~46x GAAP (40 / 0.87); 40x GAAP is ~13% below; decided by Kilian 2026-10-26.",
+   "basis": "judgment",
+   "source_url": "runs/2026-10-23/BE/peers.md",
+   "checked": "2026-10-26",
+   "feeds": "supervisor model"
+  }
+ ],
+ "notes": "Fix step 2026-10-26. Engine value 186.20 -> 185.84 (model_engine check; shares 312.4M at 2026-10-19 and net debt 16.2). Open valuation judgment (not a citation failure): product_asp path, recorded in judgment_calls_for_kilian."
+}

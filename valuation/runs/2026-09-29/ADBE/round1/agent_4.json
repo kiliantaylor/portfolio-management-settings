@@ -1,0 +1,85 @@
+{
+  "symbol": "ADBE", "agent_id": "agent_4", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 59, "p": 0.995}, {"K": 95, "p": 0.98}, {"K": 119, "p": 0.955}, {"K": 143, "p": 0.91},
+    {"K": 167, "p": 0.835}, {"K": 190, "p": 0.745}, {"K": 214, "p": 0.645}, {"K": 238, "p": 0.54},
+    {"K": 262, "p": 0.44}, {"K": 286, "p": 0.35}, {"K": 321, "p": 0.24}, {"K": 357, "p": 0.155},
+    {"K": 416, "p": 0.075}, {"K": 476, "p": 0.035}, {"K": 595, "p": 0.008}
+  ],
+  "ladder_1m": [
+    {"K": 190.36, "p": 0.965}, {"K": 202.26, "p": 0.905}, {"K": 214.16, "p": 0.80}, {"K": 221.30, "p": 0.715},
+    {"K": 228.44, "p": 0.615}, {"K": 237.96, "p": 0.48}, {"K": 247.47, "p": 0.35}, {"K": 254.61, "p": 0.265},
+    {"K": 261.75, "p": 0.195}, {"K": 273.65, "p": 0.11}, {"K": 285.55, "p": 0.055}
+  ],
+  "one_month_reasoning": "No company-scheduled catalyst falls inside 2026-09-30 to 2026-10-30: Q3 FY26 was reported 2026-09-10 (beat, but Q4 revenue guide midpoint $6.825B below ~$6.85B consensus; stock fell ~2-3%), Q4 FY26 earnings are expected mid-December, Adobe MAX is 2026-11-10 to 11-12 (after the window) and the CEO handover to Anil Chakravarthy is 2026-12-01. Post-earnings drift after a 'beat but soft guide' is mildly negative, while the stock sits near the lower part of its 52-week range with a ~$24.5B buyback authorization supporting it; these roughly cancel. Exogenous risk is AI-competitor launches (e.g., the Anthropic Claude Design launch knocked ADBE ~1.5% earlier this year) and peer software prints late October. So I use a near-symmetric lognormal centred at today's price with monthly vol ~41%/3.5 = ~11.7%, very slightly skewed down (median ~$237).",
+  "fair_value": {
+    "value": 292.0,
+    "method": "Blend of forward P/E (FY28E non-GAAP EPS ~$30.5 x 9.5x = $290, weight 0.6) and FCF yield (NTM FCF/share ~$27.5 at a 9.5% required yield = $289 plus ~$0 net debt; weight 0.4 but rounded with a small buyback-accretion adjustment to $295). The multiple is kept near today's depressed ~9-10x because net new ARR is falling ~37% YoY; the fair value does not assume a re-rating.",
+    "methods": [
+      {"name": "P/E", "value": 290.0, "weight": 0.6,
+       "inputs": "NTM (as of Sept 2027, ~FY28) non-GAAP EPS $30.5 x 9.5x",
+       "inputs_detail": [
+         {"input": "FY26 non-GAAP EPS guidance", "value": "$24.45-$24.50", "basis": "guidance", "source_ids": [2, 3], "derivation": ""},
+         {"input": "FY27 non-GAAP EPS consensus", "value": "$27.67", "basis": "consensus", "source_ids": [14], "derivation": ""},
+         {"input": "FY28 non-GAAP EPS (NTM at horizon)", "value": "$30.5", "basis": "estimate", "source_ids": [14, 1, 3], "derivation": "FY27 consensus $27.67 grown ~10%: ~7-8% revenue growth (ARR growth decelerating from 11.2% given net new ARR down ~37% YoY) plus ~2-3% net share-count reduction from the $24.55B authorization (9.5M shares bought in Q3 alone, 391M shares outstanding)."},
+         {"input": "P/E multiple", "value": "9.5x", "basis": "judgment", "source_ids": [5, 7, 14], "derivation": "Stock trades ~9.7x FY26 and ~8.6x FY27 consensus EPS today (StreetSignal cites ~10x); consensus target $278 implies ~10x FY27. I hold roughly today's multiple (slightly above FY27-based) because ARR deceleration and AI-substitution risk (stock-photo cannibalisation, Canva/Claude Design) argue against a re-rating, but 10%+ FCF yield plus buybacks limit further compression."}
+       ]},
+      {"name": "FCF yield", "value": 295.0, "weight": 0.4,
+       "inputs": "NTM FCF ~$10.4B / ~378M shares = ~$27.5/share at 9.5% required yield = ~$289, plus modest accretion from buybacks at sub-fair prices -> ~$295; net debt ~$0.7B (debt $6.36B less cash+ST inv $5.64B) negligible",
+       "inputs_detail": [
+         {"input": "Q3 FY26 operating cash flow", "value": "$2.52B (record)", "basis": "reported", "source_ids": [2, 4], "derivation": ""},
+         {"input": "NTM FCF at horizon", "value": "~$10.4B", "basis": "estimate", "source_ids": [2, 4, 1], "derivation": "Q3 OCF $2.52B annualises to ~$10B; Q4 is seasonally strong and revenue grows ~7-8%; capex is small for Adobe, so ~$10.4B FCF in the year to Sept 2028."},
+         {"input": "Diluted shares at horizon", "value": "~378M", "basis": "estimate", "source_ids": [1, 3], "derivation": "391M outstanding (10-Q cover) and ~400M diluted guide; ~9.5M/quarter buyback pace partly offset by SBC -> ~378M diluted by Sept 2027."},
+         {"input": "Net debt", "value": "~$0.7B", "basis": "reported", "source_ids": [1], "derivation": "Total debt $6.363B less cash and ST investments $5.639B."},
+         {"input": "Required FCF yield", "value": "9.5%", "basis": "judgment", "source_ids": [5, 7], "derivation": "StreetSignal notes ~10% FCF yield today; I use slightly below today's yield (market already prices a lot of disruption) but well above a typical 4-5% software FCF yield because terminal growth is in question."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 170.0, "prob": 0.25, "story": "Net new ARR keeps shrinking in FY27 (freemium MAU fails to convert, stock-content and entry-level creative seats migrate to Canva, Claude Design, and model-native tools), ending-ARR growth falls to ~5-6%, new CEO resets FY27 guide lower at the December print; EPS ~$27 on a 6.5x multiple (value-trap pricing) = ~$175, with overshoot to the $160s."},
+    "base": {"price": 258.0, "prob": 0.50, "story": "ARR growth settles at ~8-9%, Q4 net new ARR bigger than Q3 as guided, AI-first ARR (>$650M, +150%) keeps compounding but does not offset core deceleration; EPS grows ~10-12% with buybacks; multiple stays ~8.5x NTM EPS of ~$30 = ~$255-260."},
+    "bull": {"price": 345.0, "prob": 0.25, "story": "Freemium funnel (>100M creative MAU, +70% YoY; >1B total MAU) converts, net new ARR re-accelerates in 2H FY27, new CEO's agentic/Acrobat/CXO story plus price increases land; market re-rates to ~11x NTM EPS of ~$31 = ~$340-350."}
+  },
+  "thesis_break_price": 175.0,
+  "thesis_break_reason": "Below ~$175 (well under the 52-week low of $190 and ~6x forward EPS / ~15% FCF yield) the price would most likely reflect a fundamental break: FY27 guidance under the new CEO implying ending-ARR growth at or below ~5%, or evidence that AI tools are driving outright seat/ARR churn in Creative Cloud rather than just slower net adds. Ordinary volatility (41% annual) would rarely take a buyback-supported ~10x P/E stock there without that.",
+  "catalysts": [
+    {"date": "2026-11-10", "event": "Adobe MAX (Miami Beach, Nov 10-12): Firefly/agentic product launches, possible pricing changes", "direction": "?"},
+    {"date": "2026-12-01", "event": "Anil Chakravarthy becomes CEO; Shantanu Narayen to Executive Chair", "direction": "?"},
+    {"date": "2026-12 (mid)", "event": "Q4 FY26 results and first FY27 guidance under new CEO (key: FY27 ending-ARR growth target, Q4 net new ARR > Q3 as promised)", "direction": "?"},
+    {"date": "2027-03 (mid)", "event": "Q1 FY27 results; Adobe Summit (spring) for CXO/agentic enterprise updates", "direction": "?"},
+    {"date": "2027-06 (mid)", "event": "Q2 FY27 results; test of freemium-to-paid conversion", "direction": "?"},
+    {"date": "2027-09 (mid)", "event": "Q3 FY27 results just before horizon", "direction": "?"},
+    {"date": "rolling", "event": "AI-native design tool launches (Anthropic Claude Design, Canva AI, OpenAI/Google image-video models) that have hit ADBE on announcement", "direction": "-"},
+    {"date": "rolling", "event": "Buyback execution against $24.55B remaining authorization", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "Whether the ~37% YoY drop in net new ARR is a deliberate freemium investment that converts (management view) or the start of structural share loss to AI-native tools",
+    "New CEO's first FY27 guide in December: kitchen-sink reset vs. continuity",
+    "Pricing power: delayed price increases and stock-photo cannibalisation (~$70M NNARR shortfall attributed to stock earlier in FY26, per newsletter coverage; not independently verified)",
+    "Alt-data is mixed: >1B MAU and 100M+ creative freemium MAU vs. firefly.adobe.com web visits falling ~13% m/m in June 2026 and Canva leading design-category traffic",
+    "Multiple: already ~9-10x EPS; could compress further like other 'AI-disrupted' software or re-rate sharply on any ARR re-acceleration"
+  ],
+  "reasoning": "Reported facts: Q3 FY26 (reported 2026-09-10) revenue $6.76B +13%, non-GAAP EPS $6.13 +15%, ending ARR $27.5B +11.2%, AI-first ARR >$650M +150%, record OCF $2.52B, FY26 guide raised to EPS $24.45-24.50, but Q4 revenue guide slightly below consensus and, per the call and independent newsletters (StreetSignal, Ampel-Update), net new ARR fell ~36-37% YoY and RPO grew only ~8%, the first single-digit print since 2023. CEO handover to Anil Chakravarthy on Dec 1. Balance sheet is near net-cash-neutral (debt $6.36B vs. cash/ST $5.64B), 391M shares, $24.55B buyback left. Lane evidence: Substack writers split between 'cheap compounder at ~10x EPS and ~10% FCF yield' (StreetSignal, Clayton-type pieces) and 'cracks/guilty until proven innocent' (Hated Moats, Pursuit of Compounding, who flagged stock-photo cannibalisation); alt-data shows huge top-of-funnel (>1B MAU, 100M+ creative freemium MAU, Adobe Express 100M+ Play downloads, 4.6 rating) but weak standalone Firefly web traffic (Semrush: 12.3M visits in June 2026, -13% m/m) and Canva leading the design category on Similarweb; job data show ~2,600 open roles and no WARN notice, i.e. quiet attrition rather than crisis; the only ADBE prediction markets were earnings-beat contracts (Polymarket ~92% beat, Sept 2026) with no bearing on the 12m view; X was not fetched. Valuation: ~$290 fair value from 9.5x FY28E EPS and a 9.5% FCF yield, i.e. ~22% above today, but I do not let the median travel there because the leading indicator (net new ARR) is deteriorating and the market has repeatedly de-rated the stock through 2026 (from ~$350 to ~$238). Base rates: 41% realized vol, typical large-cap ±25-35%. I set the 12m distribution as a lognormal with median ~$250 (EPS growth + buyback mostly offset by some multiple risk) and sigma ~0.38, with a slightly fatter left tail for the disruption/CEO-reset path and slightly thinner far-right tail; scenario mean ~$256 (bear $170 25%, base $258 50%, bull $345 25%). P(>=238) ~0.54, P(>=190) ~0.75, P(>=321) ~0.24. Research was limited to ~14 searches/fetches; sec.gov curl download failed so the 10-Q was read via web fetch.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "Adobe Inc. Form 10-Q for quarter ended Aug 28, 2026", "url": "https://www.sec.gov/Archives/edgar/data/0000796343/000079634326000156/adbe-20260828.htm", "date": "2026-09", "type": "filing", "in_lane": false},
+    {"title": "Adobe Q3 Revenue Rises 13% as Q4 Guidance Comes in Below Consensus (Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/adobe-q3-revenue-rises-13-105839953.html", "date": "2026-09-11", "type": "press", "in_lane": false},
+    {"title": "Adobe Q3 FY2026 slides: strong results, CEO transition announced (Investing.com)", "url": "https://www.investing.com/news/company-news/adobe-q3-fy2026-slides-strong-results-ceo-transition-announced-93CH-4897031", "date": "2026-09-10", "type": "press", "in_lane": false},
+    {"title": "Adobe Q3 Earnings Call Highlights (Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/adobe-q3-earnings-call-highlights-230309401.html", "date": "2026-09-10", "type": "press", "in_lane": false},
+    {"title": "Adobe's EPS Q&A - StreetSignal (Substack)", "url": "https://streetsignal.substack.com/p/adobes-eps-q-and-a", "date": "2026-09-10", "type": "newsletter", "in_lane": true},
+    {"title": "Ampel-Update: Adobe Q3 FY2026 (Substack)", "url": "https://marcelzschoernig.substack.com/p/ampel-update-adobe-q3-fy2026", "date": "2026-09-11", "type": "newsletter", "in_lane": true},
+    {"title": "Adobe Stock in 2026: A $25 Billion Buyback, a CEO Exit, and 850 Million MAU (TIKR blog)", "url": "https://www.tikr.com/blog/adobe-stock-in-2026-a-25-billion-buyback-a-ceo-exit-and-850-million-monthly-active-users", "date": "2026-05-19", "type": "newsletter", "in_lane": true},
+    {"title": "canva.com vs adobe.com traffic comparison (Similarweb)", "url": "https://www.similarweb.com/website/canva.com/vs/adobe.com/", "date": "2026-07", "type": "alt-data", "in_lane": true},
+    {"title": "firefly.adobe.com website traffic, June 2026 (Semrush)", "url": "https://www.semrush.com/website/firefly.adobe.com/overview/", "date": "2026-06", "type": "alt-data", "in_lane": true},
+    {"title": "Adobe Layoffs 2026: Creative Cloud & Document Cuts (KORE1) - open roles and WARN check", "url": "https://www.kore1.com/adobe-layoffs-2026/", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "Adobe Earnings Prediction Market Preview (Polymarket/Kalshi, via Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/adobe-earnings-prediction-market-preview-142520851.html", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "ADBE, WIX, FIG, GDDY stocks fall as Anthropic reportedly prepares AI design tool (Stocktwits)", "url": "https://stocktwits.com/news-articles/markets/equity/adbe-wix-fig-gddy-stocks-fall-as-anthropic-reportedly-prepares-to-launch-ai-design-tool/cZJqL7oRIvB", "date": "2026", "type": "social", "in_lane": true},
+    {"title": "Anthropic Launches Claude Design, Figma Stock Immediately Nosedives (Gizmodo)", "url": "https://gizmodo.com/anthropic-launches-claude-design-figma-stock-immediately-nosedives-2000748071", "date": "2026", "type": "press", "in_lane": false},
+    {"title": "Adobe (ADBE) Stock Forecast & Analyst Price Targets (StockAnalysis)", "url": "https://stockanalysis.com/stocks/adbe/forecast/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Adobe Q1 FY2026 Review: Guilty Until Proven Innocent (Hated Moats, Substack)", "url": "https://hatedmoats.substack.com/p/adobe-q1-fy2026-review-guilty-until", "date": "2026-03", "type": "newsletter", "in_lane": true},
+    {"title": "Adobe Q1 2026: Cracks in the Compounder? (The Pursuit of Compounding, Substack)", "url": "https://thepursuitofcompounding.substack.com/p/adobe-q1-2026-cracks-in-the-compounder", "date": "2026-03", "type": "newsletter", "in_lane": true},
+    {"title": "Adobe MAX 2026 Creativity Conference", "url": "https://max.adobe.com/", "date": "2026", "type": "company", "in_lane": false},
+    {"title": "Adobe Express - Google Play listing (100M+ downloads, 4.6 rating)", "url": "https://play.google.com/store/apps/details?id=com.adobe.spark.post&hl=en_IN", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "Adobe Workfront hiring freeze thread (Blind)", "url": "https://www.teamblind.com/post/jzmEiCag", "date": "2026", "type": "forum", "in_lane": true}
+  ]
+}

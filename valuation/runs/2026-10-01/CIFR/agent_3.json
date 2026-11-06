@@ -1,0 +1,1002 @@
+{
+ "symbol": "CIFR",
+ "agent_id": "agent_3",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 3.87,
+   "p": 0.945
+  },
+  {
+   "K": 6.18,
+   "p": 0.83
+  },
+  {
+   "K": 7.73,
+   "p": 0.74
+  },
+  {
+   "K": 9.28,
+   "p": 0.65
+  },
+  {
+   "K": 10.82,
+   "p": 0.565
+  },
+  {
+   "K": 12.37,
+   "p": 0.48
+  },
+  {
+   "K": 13.91,
+   "p": 0.405
+  },
+  {
+   "K": 15.46,
+   "p": 0.34
+  },
+  {
+   "K": 17.01,
+   "p": 0.287
+  },
+  {
+   "K": 18.55,
+   "p": 0.243
+  },
+  {
+   "K": 21,
+   "p": 0.19
+  },
+  {
+   "K": 23,
+   "p": 0.157
+  },
+  {
+   "K": 27,
+   "p": 0.11
+  },
+  {
+   "K": 31,
+   "p": 0.077
+  },
+  {
+   "K": 39,
+   "p": 0.038
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 12.37,
+   "p": 0.76
+  },
+  {
+   "K": 13.14,
+   "p": 0.695
+  },
+  {
+   "K": 13.91,
+   "p": 0.625
+  },
+  {
+   "K": 14.38,
+   "p": 0.585
+  },
+  {
+   "K": 14.84,
+   "p": 0.542
+  },
+  {
+   "K": 15.46,
+   "p": 0.488
+  },
+  {
+   "K": 16.08,
+   "p": 0.437
+  },
+  {
+   "K": 16.54,
+   "p": 0.4
+  },
+  {
+   "K": 17.01,
+   "p": 0.364
+  },
+  {
+   "K": 17.78,
+   "p": 0.31
+  },
+  {
+   "K": 18.55,
+   "p": 0.262
+  }
+ ],
+ "one_month_reasoning": "No CIFR earnings are confirmed in the window to 2026-10-31: no Q3 date has been announced, and last year's Q3 came on Nov 3, so results most likely land just after it. In-window: the Oct-28 FOMC, late-October hyperscaler capex prints (sector beta), and a possible PR on first Barber Lake hall delivery or rent start, which the 8-K guides only to 'Q4 2026' [4]. I no longer tilt for the Oct-23 V3/Bitfury tranche: the Form 4 footnotes show it settles a prepaid variable forward struck and hedged in Nov-2025, so it is not new supply [5]. With no hard catalyst I use a symmetric lognormal with median ~$15.32 (small vol drag) at ~30% monthly vol (112%/3.5), so P(>= spot) is 0.488.",
+ "fair_value": {
+  "value": 7.5,
+  "method": "12m-forward blend of a site-level split-rate DCF ($6.56, 55%) and a split-cap NAV ($8.64, 45%). Every site appears once: three leases at contract terms, Odessa as mining or HPC conversion (mutually exclusive), 10 pipeline sites probability-weighted net of capex ($0.85B, Colchis at 76%), WindHQ sold (Canaan shares $18M credited). Net debt $5.15B, 500M shares. A single 9% rate gives a DCF of $5.33.",
+  "methods": [
+   {
+    "name": "DCF",
+    "value": 6.56,
+    "weight": 0.55,
+    "inputs": "Site-level split-rate DCF (12m-forward). EV $7.08B = Black Pearl term $2.98B (6.5%) + Stingray $1.06B (6.5%) + Barber Lake Fluidstack $2.07B (7.5%, after -$25M refresh EL) + AI-lab follow-on $1.01B (8.5%, 12.5% haircut) + post-expiry renewal/refit/terminal $2.10B (9%) - overhead $2.13B (7%); + Odessa mining $33M + pipeline $0.85B - net debt $5.15B + Canaan $18M = $2.84B / 500M = $5.68 today x1.155 = $6.56. Single 9% rate on the same cash flows: EV $6.55B -> $5.33. Contracted-only: $4.58 split / $3.35 single. GPU life: 4y $6.09, 7y $7.02.",
+    "inputs_detail": [
+     {
+      "input": "Black Pearl contracted NOI",
+      "value": "216 IT MW, yr-1 rent ~$296M ($1.37M/IT MW), +3.0%/yr, 15 yrs per hall from hall rent start (DH1+NH1 50 MW Aug/Sep-26, DH2 Oct-26, DH3 Nov-26, NH2 Dec-26, DH4 81 MW Feb-27), NNN margin 97%; expires 2041-42",
+      "basis": "reported",
+      "source_ids": [
+       34,
+       35,
+       2
+      ],
+      "derivation": "$5.5B base-term value / sum(1.03^k, k=0..14)=18.6 gives $296M yr-1 (inventory). Hall dates from the Jan-26 deck; the Q2-26 update says delivery started 2 months early but did not re-publish later halls, so I keep the published dates (conservative). Pre-Oct-26 rent is ignored."
+     },
+     {
+      "input": "Stingray contracted NOI",
+      "value": "70 IT MW, yr-1 ~$108M, +3%/yr, 15 yrs from ~May-2027 (network hall Apr-1, data hall May-1), NNN 97%; expires ~2042",
+      "basis": "reported",
+      "source_ids": [
+       34,
+       36
+      ],
+      "derivation": "$2.0B base term / 18.6. Tenant is Amazon Data Services, guaranteed by Amazon.com (AA/A1): round 3's 'Fluidstack on Stingray' cap-rate rationale was wrong and is removed."
+     },
+     {
+      "input": "Barber Lake contracted NOI, Fluidstack years 1-10",
+      "value": "207 IT MW (168+39), ~$3.8B over 10 yrs -> yr-1 ~$331M at an assumed 3% escalator, modified gross, 87.5% NOI margin, rent from ~Jan-2027 (halls Q4-26 to Q1-27) to ~Q4-36/Q1-37",
+      "basis": "reported",
+      "source_ids": [
+       34,
+       4,
+       33,
+       28
+      ],
+      "derivation": "Fixes the inventory flag: round 3 used '~244 MW critical' (that is Phase I gross) and ~$3B (Phase I only). Escalator rate is undisclosed; 3% matches the AWS leases (judgment). Margin is the midpoint of the guided 85-90%."
+     },
+     {
+      "input": "Barber Lake AI-lab follow-on, years 11-20",
+      "value": "~$5.2B over 2037-46 -> yr-1 ~$454M at 3% esc, 87.5% margin, less a 12.5% expected-loss haircut",
+      "basis": "reported",
+      "source_ids": [
+       4,
+       7,
+       25
+      ],
+      "derivation": "8-K 2026-09-25: the ten-year lease 'following the term of the Barber Lake Lease with Fluidstack', $5.2B, no backstop disclosed, counterparty unnamed. The haircut is the middle of the supervisor's 10-15% range (judgment): binding commitment, not yet a signed lease, starts in 10 years."
+     },
+     {
+      "input": "Site-level NOI path (check vs company schedule)",
+      "value": "2027 $631M; 2028 $702M; 2029 $723M; 2030 $745M; 2035 $863M; 2037 $923M; 2040 $1,009M; 2042 $538M (AWS expired); 2046 $518M",
+      "basis": "estimate",
+      "source_ids": [
+       34,
+       2,
+       4
+      ],
+      "derivation": "Built from contract terms, not the Q2-26 deck schedule (flagged stale: it predates the Barber Lake re-phasing and the AI-lab lease). 2028 is ~3% below the deck's $727M, probably because of the undisclosed Barber Lake escalator/margin; I keep the lower figure."
+     },
+     {
+      "input": "Fluidstack refresh-window expected loss",
+      "value": "default prob 15% at 5-yr GPU life (22% at 4y, 8% at 7y), ~2032; 1.5 yrs of rent lost then re-let at 80%, 50% recovered via Google's ~$1.73B backstop; applied to the site-level Barber Lake cash flows (~42-45% of NOI, up from the 35% I used before)",
+      "basis": "judgment",
+      "source_ids": [
+       27,
+       28,
+       32,
+       33
+      ],
+      "derivation": "Round-3 term kept and rescaled to the site-level Barber Lake share, as the supervisor asked. PV -$25M at 7.5%."
+     },
+     {
+      "input": "Post-expiry renewal (replaces the 8.5% exit cap on 2037 NOI)",
+      "value": "At each lease expiry (BP halls 2041-42, Stingray 2042, Barber Lake 2047): 75% renew at 85% of final rent with refit capex $1.0M/IT MW; 25% vacant 1.5 yrs then re-let at 85% with $2.0M/IT MW refit; then an 8.5% cap on post-renewal NOI (2% growth), 10% tax; all at the 9.0% WACC. 4y life: 70% / $2.5M / 8.75%; 7y: 80% / $1.5M / 8.25%",
+      "basis": "judgment",
+      "source_ids": [
+       17,
+       27,
+       29,
+       24
+      ],
+      "derivation": "Supervisor round 3: my exit cap capitalized the leases 4-9 years before expiry. Mechanics follow the supervisor's reference (renewal odds, rent cut, refit for rack density 6.5 kW to 120-140 kW, then ~8.5% cap on an aged shell). Post-expiry value is ~25% of contracted asset value, in the supervisor's 20-31% range."
+     },
+     {
+      "input": "Corporate overhead (cash)",
+      "value": "$130M/yr +3% to 2046, then capitalized at the exit cap; discounted at 7.0% in the split case",
+      "basis": "estimate",
+      "source_ids": [
+       3
+      ],
+      "derivation": "Same $130M as round 3 (Q2-26 cash G&A + RSU withholding). Overhead is a near-certain cost supporting the contracted streams, so in the split DCF I discount it at about the blended contracted rate (7.0%), not the 9% WACC. Discounting a cost at a high rate would inflate value."
+     },
+     {
+      "input": "Maintenance capex and taxes",
+      "value": "3% of NOI; cash tax 0% to 2030, 10% from 2031",
+      "basis": "judgment",
+      "source_ids": [
+       3
+      ],
+      "derivation": "Unchanged from round 3 (NOLs: $1.39B accumulated deficit)."
+     },
+     {
+      "input": "Discount rates (split)",
+      "value": "AWS term (BP, Stingray) 6.5%; Fluidstack term (BL 2027-36) 7.5%; AI-lab follow-on (2037-46) 8.5%; overhead 7.0%; post-expiry, pipeline, terminal 9.0% WACC",
+      "basis": "estimate",
+      "source_ids": [
+       34,
+       3,
+       26,
+       20,
+       23,
+       40,
+       41
+      ],
+      "derivation": "AWS: Black Pearl 6.125% notes at par and Stingray 6.0% at 99.75 (~6.06%), both Ba2/BB- and secured on AA-guaranteed leases, plus ~40bp because the cash flows run to 2041-42 against 2031 note maturities and the equity carries operating risk (Amazon bears Stingray overruns). Fluidstack: Cipher Compute 7.125% notes (Ba3/BB-, ~+190bp over the 5.24% 10y) plus ~40bp for tenor past 2030; the unrated tenant is only ~45% Google-backstopped, but the refresh default is modelled as an explicit cash-flow loss, so the rate does not double count it. AI lab: unrated, unnamed, no debt priced against it, so the rate sits between 7.5% and the WACC, with a 12.5% expected-loss haircut on top. WACC 9.0% unchanged from round 3 (10y 5.24% + secured coupons; equity 15.2%)."
+     },
+     {
+      "input": "Odessa BTC mining",
+      "value": "$33M PV",
+      "basis": "estimate",
+      "source_ids": [
+       34,
+       3
+      ],
+      "derivation": "Q2-26 mining revenue $24.8M/qtr; cash margin ~$8M/qtr after ~2.8c/kWh Luminant power and site opex; -25%/yr from difficulty and halved after the Apr-2028 halving. In the HPC-conversion branch (40%) mining stops at the start of construction (~early 2027); otherwise it runs to ~2029. Mutually exclusive with the HPC value, so the 207 MW is not counted twice."
+     },
+     {
+      "input": "Pipeline (probability-weighted, net of capex)",
+      "value": "$854M today: Odessa HPC $166M, Reveille $68M, Ulysses $160M, Colchis (76%) $132M, Mikeska $87M, McLennan $87M, Apollo $58M, Milsing $32M, Barber Lake expansion $48M, Stingray expansion $19M",
+      "basis": "judgment",
+      "source_ids": [
+       34,
+       2,
+       24,
+       35,
+       36,
+       4
+      ],
+      "derivation": "Per site: gross MW x 0.70 IT/gross x ownership x P(lease) x NPV per IT MW at 9% WACC. NPV/IT MW: 15-yr lease at $1.45M/IT MW yr-1 (signed leases $1.37-1.6M), 93% margin, 3% esc, renewal tail as above; minus capex $11M/IT MW near-term or $12M greenfield GW (BP $9.5M, Stingray $10.5M, BL overrun ~$1.7M/MW, datacenterHawk $11-20M) +2% issuance cost, spent over 2 yrs before rent; minus a $0.5M/IT MW tenant concession (Google warrants on Barber Lake). Result: ~$2.9-3.1M near-term, $1.65M Batch Zero, ~$1.3M 2030+. Probabilities: Odessa 40% (energized power, 'active negotiations', but finance-leased site, Luminant PPA to Jul-27); Reveille 45% (ERCOT approved, Q3-27); Ulysses 40% (PJM approved, Q4-27); Batch Zero 15% (ERCOT results ~Apr-27, GW-scale financing); 2030+ 7%, adjacent expansions 10%. Unlevered NPV at WACC nets the full capex, so financing cost is in the rate."
+     },
+     {
+      "input": "Adjusted net debt and other assets",
+      "value": "$5,150M net debt; + $18M Canaan shares",
+      "basis": "estimate",
+      "source_ids": [
+       3,
+       4,
+       34,
+       38
+      ],
+      "derivation": "6,016 debt - 172.5 deep-ITM 2030 converts (in share count) - 832 unrestricted cash - 38 BTC = 4,974; current restricted cash $3,188M treated as fully consumed by construction ($2,169.3M commitments, 10-Q Note 13, + $646M AP/accrued; the ~$370M remainder assumed absorbed by uncommitted scope); + $359.3M Barber Lake overrun Cipher absorbs (8-K 9/24, announced after the 6/30 commitment figure); + ~$200M H2-26 parent cash G&A and pre-rent interest carry; - ~$400M credit for the $540M noncurrent debt-service/collateral cash (discounted for being locked until notes amortize). = ~$5.13B, rounded to $5.15B. ROUND-1 ERROR CORRECTED: I previously subtracted all $4.56B of cash ($1,755M net debt) without deducting the build capex it funds. ROUND 4: credit the 806.4M Canaan Class A shares (53.76M ADS) received for the sold WindHQ JV stakes at $0.34/ADS = $18M. The 10-Q carrying value is $29.4M; the stock has fallen since. Holding is assumed, since no sale has been disclosed."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "500M",
+      "basis": "estimate",
+      "source_ids": [
+       3
+      ],
+      "derivation": "414.25M outstanding 6/30 (415.03M on 8/3) + 38.8M 2030 converts (224.9213/1000 x $172.5M, $4.45 conv.) + 24.18M Google $0.01 warrants + ~3.6M make-whole shares ($430M guarantee at $15.46) + 18.6M unvested RSUs/PSUs (round 1 counted only the 10.57M service RSUs) + ~1M post-6/30 ATM. 2031 $1.3B converts ($16.03, capped call) kept as debt; they dilute only in the bull case."
+     },
+     {
+      "input": "12-month roll-forward",
+      "value": "x1.155",
+      "basis": "estimate",
+      "source_ids": [
+       23
+      ],
+      "derivation": "Equity rolled at the ~15.5% cost of equity, unchanged."
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 8.64,
+    "weight": 0.45,
+    "inputs": "Cap-rate NAV (12m-forward): $420M/6.5% + $305M/7.5% - $142M/7.0% = $8.50B - $0.135B deductions - $4.95B net debt + $0.854B pipeline + $0.05B mining/Canaan = ~$4.32B / 500M = $8.64.",
+    "inputs_detail": [
+     {
+      "input": "2029 site-level NOI by credit",
+      "value": "AWS (BP + Stingray) ~$420M; Barber Lake (Fluidstack) ~$305M; overhead $142M",
+      "basis": "estimate",
+      "source_ids": [
+       34,
+       35,
+       36,
+       4,
+       3
+      ],
+      "derivation": "From the contract-based NOI path above (2029 total $723M vs deck $749M)."
+     },
+     {
+      "input": "Cap rates",
+      "value": "AWS-leased 6.5%; Barber Lake 7.5%; overhead 7.0%",
+      "basis": "judgment",
+      "source_ids": [
+       17,
+       34,
+       26,
+       40,
+       41
+      ],
+      "derivation": "JLL 5.5-6.5% stabilized hyperscale (second-hand); AWS shells at the top of the band given Texas location, a first-time developer and a 5.24% 10y; Barber Lake +100bp for the unrated Fluidstack tenant with partial Google backstop and an unbacked follow-on (the secured notes trade ~100bp wider). Replaces the single 7.0%, whose rationale wrongly put Fluidstack on Stingray."
+     },
+     {
+      "input": "Deductions",
+      "value": "ramp shortfall -$50M; Fluidstack refresh EL -$25M; AI-lab follow-on haircut -$60M",
+      "basis": "estimate",
+      "source_ids": [
+       4,
+       28
+      ],
+      "derivation": "As in the DCF, discounted to Oct-27."
+     },
+     {
+      "input": "Net debt at Oct-27",
+      "value": "~$4.95B",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       3
+      ],
+      "derivation": "Unchanged from round 3: $5.15B less ~$0.2B of 2027 free cash after interest."
+     },
+     {
+      "input": "Pipeline, mining, Canaan",
+      "value": "$854M + $33M + $18M",
+      "basis": "judgment",
+      "source_ids": [
+       34,
+       38
+      ],
+      "derivation": "Same site-by-site values as the DCF (no other pipeline bucket, so nothing is counted twice)."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "500M",
+      "basis": "estimate",
+      "source_ids": [
+       3
+      ],
+      "derivation": "414.25M outstanding 6/30 (415.03M on 8/3) + 38.8M 2030 converts (224.9213/1000 x $172.5M, $4.45 conv.) + 24.18M Google $0.01 warrants + ~3.6M make-whole shares ($430M guarantee at $15.46) + 18.6M unvested RSUs/PSUs (round 1 counted only the 10.57M service RSUs) + ~1M post-6/30 ATM. 2031 $1.3B converts ($16.03, capped call) kept as debt; they dilute only in the bull case."
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 1.31,
+    "weight": 0.0,
+    "inputs": "EV/contracted-MW comp, still at weight 0: 700 MW x $7.0M/MW = $4.9B - $5.15B net debt + $0.854B pipeline + $0.05B mining/Canaan = $0.65B / 500M = $1.31. Shown only for transparency.",
+    "inputs_detail": [
+     {
+      "input": "EV per contracted MW",
+      "value": "$7.0M/MW",
+      "basis": "consensus",
+      "source_ids": [
+       15,
+       24
+      ],
+      "derivation": "The round-1 peer average came from a Feb-2026 Substack; the supervisor flagged it as secondary and stale. The only dated 2026 comps I found (datacenterHawk) span $6.4-8M/MW for platform deals to ~$27M/MW for stabilized leased NoVA assets, against $11-20M/MW build cost. A comp below build cost cannot value a fully financed, leased build, and the range is too wide to pick a point, so the method gets zero weight."
+     },
+     {
+      "input": "Contracted HPC capacity",
+      "value": "700 MW gross",
+      "basis": "reported",
+      "source_ids": [
+       2
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "Adjusted net debt",
+      "value": "$5,150M",
+      "basis": "estimate",
+      "source_ids": [
+       3,
+       4
+      ],
+      "derivation": "6,016 debt - 172.5 deep-ITM 2030 converts (in share count) - 832 unrestricted cash - 38 BTC = 4,974; current restricted cash $3,188M treated as fully consumed by construction ($2,169.3M commitments, 10-Q Note 13, + $646M AP/accrued; the ~$370M remainder assumed absorbed by uncommitted scope); + $359.3M Barber Lake overrun Cipher absorbs (8-K 9/24, announced after the 6/30 commitment figure); + ~$200M H2-26 parent cash G&A and pre-rent interest carry; - ~$400M credit for the $540M noncurrent debt-service/collateral cash (discounted for being locked until notes amortize). = ~$5.13B, rounded to $5.15B. ROUND-1 ERROR CORRECTED: I previously subtracted all $4.56B of cash ($1,755M net debt) without deducting the build capex it funds."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "500M",
+      "basis": "estimate",
+      "source_ids": [
+       3
+      ],
+      "derivation": "414.25M outstanding 6/30 (415.03M on 8/3) + 38.8M 2030 converts (224.9213/1000 x $172.5M, $4.45 conv.) + 24.18M Google $0.01 warrants + ~3.6M make-whole shares ($430M guarantee at $15.46) + 18.6M unvested RSUs/PSUs (round 1 counted only the 10.57M service RSUs) + ~1M post-6/30 ATM. 2031 $1.3B converts ($16.03, capped call) kept as debt; they dilute only in the bull case."
+     },
+     {
+      "input": "Pipeline option value",
+      "value": "$900M",
+      "basis": "judgment",
+      "source_ids": [
+       2,
+       24
+      ],
+      "derivation": "270 MW Reveille/Ulysses ('in discussions', deck) x $1.2M/MW + Odessa 207 MW ('active negotiations', still mining under Luminant PPA) x $0.5M/MW + ~2 GW ERCOT-batch sites x $0.2M/MW + rest ~0. Kept at the low end of the supervisor's $1.0-2.0B range (slightly below): no lease is signed, GW sites wait on ERCOT batch study results (~Apr-2027), and each lease needs ~$10M/MW build (build $11-20M/MW per datacenterHawk) with parent equity likely raised by ATM near today's price."
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 6.2,
+   "prob": 0.31,
+   "story": "Leases ramp but no new lease signs by Oct-27. ERCOT Batch Zero results slip; AI-capex and credit sentiment sour (Rothschild warning); 10y stays above 5%. The stock converges toward contracted value plus a token pipeline (~$5-7). Further Barber Lake overruns (50% shared above $359M) or an ATM raise add dilution."
+  },
+  "base": {
+   "price": 12.3,
+   "prob": 0.48,
+   "story": "Barber Lake halls deliver Q4-26/Q1-27; Black Pearl DH4 (Feb-27) and Stingray (Apr/May-27) start rent; 2028 NOI ~$700-727M. One near-term lease (Odessa, Reveille or Ulysses) may sign. The market keeps paying ~$2-3B for pipeline above my $7.50, but less than today."
+  },
+  "bull": {
+   "price": 25.5,
+   "prob": 0.21,
+   "story": "Odessa plus Reveille/Ulysses or a Batch Zero site sign at AWS-like economics and the AI-infrastructure trade re-rates. The 2031 converts ($16.03) go in the money and add up to ~81M shares before the capped call."
+  }
+ },
+ "thesis_break_price": 6.5,
+ "thesis_break_reason": "Lowered from $7.0. My contracted-only value is now $4.6 (split-rate DCF) to ~$6.9 (NAV), ~$5.6 blended. $6.5 is that plus ~$0.45B of pipeline (half my $0.85B). A sustained close below it would most likely mean the market is impairing the signed leases themselves, not just pricing the pipeline out: Fluidstack stress beyond the ~45% Google backstop, Barber Lake delays or overruns beyond $359.3M, a forced parent raise, or covenant pressure. $7.0 now sits within 7% of my $7.50 fair value, so ordinary volatility could reach it.",
+ "catalysts": [
+  {
+   "date": "2026-10-28",
+   "event": "FOMC decision (10y at 5.24%; rate-sensitive long-lease valuation)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10 (late)",
+   "event": "Hyperscaler Q3 capex guidance (sector beta)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11 (early)",
+   "event": "Q3 2026 results: Black Pearl rent ramp, Barber Lake delivery status, cost-to-complete update",
+   "direction": "?"
+  },
+  {
+   "date": "2026-Q4",
+   "event": "First Barber Lake hall delivery and rent commencement (8-K: 'Q4 2026')",
+   "direction": "+"
+  },
+  {
+   "date": "2027-Q1",
+   "event": "Final Barber Lake halls; Q4-26 results and 2027 NOI outlook",
+   "direction": "?"
+  },
+  {
+   "date": "2027-04",
+   "event": "ERCOT batch study results for the GW pipeline sites",
+   "direction": "?"
+  },
+  {
+   "date": "2027 H1",
+   "event": "Possible leases on Reveille (70 MW, Q3-27) / Ulysses (200 MW, Q4-27) / Odessa",
+   "direction": "+"
+  },
+  {
+   "date": "2027 H1",
+   "event": "Stingray completion (targeted 1H-27); note amortization begins",
+   "direction": "?"
+  },
+  {
+   "date": "ongoing",
+   "event": "ATM issuance to fund pipeline equity; V3 still holds ~56.5M shares (unscheduled overhang)",
+   "direction": "-"
+  }
+ ],
+ "key_uncertainties": [
+  "Pipeline conversion: at $15.46 the market pays ~$4-5B over my contracted value; my site-by-site probability-weighted pipeline is $0.85B (Odessa 40%, Reveille 45%, Ulysses 40%, Batch Zero 15%, 2030+ 7-10%).",
+  "Discount rate for contracted cash flows: split (AWS 6.5%, Fluidstack 7.5%, AI lab 8.5%) vs a single 9% moves the DCF by $1.23/share. The AWS-backed secured notes price at ~6.0-6.1%, but no debt is priced against the 2036-46 follow-on or the post-expiry years.",
+  "Post-expiry renewal (2041-47): 70-80% renewal, 85% rent, $1.5-2.5M/IT MW refit; ~25% of contracted asset value.",
+  "Barber Lake tenant chain: Fluidstack (unrated, ~45% Google backstop) to ~2036, then an unnamed AI lab (no backstop) to 2046; ~42-45% of NOI.",
+  "Remaining build fits the $3.19B current restricted cash only if no further overruns beyond the $359.3M layer; Stingray overruns above $10.5M/IT MW sit with Amazon.",
+  "Dilution: 2031 converts ($1.3B at $16.03), ATM, and V3's ~56.5M shares.",
+  "Odessa: the site is under a finance lease with Luminant affiliates (10-Q), so HPC conversion likely needs Luminant's cooperation; PPA to Jul-2027."
+ ],
+ "reasoning": "Round 4: site-by-site coverage and split-rate discounting. (1) I rebuilt contracted cash flows from each lease's terms (inventory figures) instead of the stale Q2-26 deck schedule. Black Pearl: 216 IT MW, $296M yr-1, 3%, hall-by-hall 15 yrs. Stingray: AWS (not Fluidstack, round-3 error), 70 MW, $108M from May-27. Barber Lake: 207 IT MW (not 244), $3.8B Fluidstack term (not $3B), then the $5.2B AI-lab follow-on with a 12.5% haircut. The site-level path ($702M in 2028 vs the deck's $727M) is slightly below the company's. (2) Per the round-3 supervisor, the 8.5% exit cap on 2037 NOI is replaced by explicit expiries with 75% renewal at 85% rent, refit capex, and an 8.5% cap on post-renewal NOI. The Fluidstack refresh-default term is rescaled to Barber Lake's ~44% share. (3) Split discounting: AWS term 6.5% (anchored on the 6.0-6.125% Ba2 secured notes against AA-guaranteed leases), Fluidstack term 7.5% (7.125% Ba3 notes plus tenor), AI lab 8.5%, overhead 7.0%, everything post-contract at the 9% WACC. DCF: split $6.56, single-rate $5.33 (round 3 $7.20 single). The drop at a single rate comes from the expiry-based terminal plus overhead carried through it (~-$1.1), the follow-on haircut (~-$0.3) and lower site NOI (~-$0.4), partly offset by site-level pipeline, mining and Canaan. (4) Every inventory site appears once. The pipeline is valued site by site, net of capex and concessions, at stated probabilities: $0.85B incl. Apollo, Milsing and both expansions (previously ~0), with Colchis at 76%. Odessa is mining ($33M) or HPC conversion (40%), never both. WindHQ is excluded and its Canaan shares are credited ($18M). NAV with split caps: $8.64. Fair value $8.05 -> $7.50. Ladder: the scenarios shift down modestly (bear $6.2/31%, base $12.3/48%, bull $25.5/21%), P(>= spot) 0.355 -> 0.34. The 1-month ladder is unchanged: nothing in this round moves a 1-month horizon. Thesis break $7.0 -> $6.5. Research this round: one data lookup (Canaan quote); the rest came from the inventory and filings already cited.",
+ "lane": "skeptic",
+ "sources": [
+  {
+   "title": "Cipher Digital Q2 2026 earnings press release (8-K Ex.99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000038/q226_earningsxprxdraftxvf.htm",
+   "date": "2026-08-04",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Digital Q2 2026 business update presentation (8-K)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001819989/000181998926000038/cipherdigital_businessup.htm",
+   "date": "2026-08-04",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Digital Form 10-Q for quarter ended 2026-06-30 (debt, converts, Google warrants, covenants, liquidity language)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001819989/000181998926000041/cifr-20260630.htm",
+   "date": "2026-08-04",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Cipher Digital 8-K: Barber Lake lease amendment, delivery slip to Q4'26-Q1'27, $359.3M cost overrun borne by Cipher",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000043/cifr-20260924.htm",
+   "date": "2026-09-25",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Form 4: Bitfury/V3 Holding variable prepaid forward settlement (tranches 9/25, 10/23, 11/30/2026)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001819989/000112329226001333/form4.xml",
+   "date": "2026-09-30",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Form 4: Bitfury Top HoldCo open-market sales at $25-28 (June 2026)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000112329226000807/form4.xml",
+   "date": "2026-06-04",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Cipher Digital Slips 3% Despite 20-year Barber Lake Lease Extension (24/7 Wall St)",
+   "url": "https://247wallst.com/investing/2026/09/30/cipher-digital-slips-3-despite-20-year-barber-lake-lease-extension-terawulf-retreats-2-iren-limited-treads-water/",
+   "date": "2026-09-30",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Why Cipher Digital Stock Plummeted 30.6% Last Month But Is Rebounding in September (Motley Fool)",
+   "url": "https://www.fool.com/investing/2026/09/04/why-cipher-digital-stock-plummeted-306-last-month/",
+   "date": "2026-09-04",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Leopold Aschenbrenner (Situational Awareness) Sells Stake in Cipher Digital (Yahoo/Insider Monkey)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/cipher-digital-inc-cifr-leopold-194150376.html",
+   "date": "2026-05-30",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Cipher Digital Is Down 6.5% After Q2 Losses Surge - Has The Bull Case Changed? (Simply Wall St; insider selling, short interest)",
+   "url": "https://simplywall.st/stocks/us/software/nasdaq-cifr/cipher-digital/news/cipher-digital-cifr-is-down-65-after-q2-losses-surge-on-fall",
+   "date": "2026-08",
+   "type": "other",
+   "in_lane": true
+  },
+  {
+   "title": "CIFR Stock Pulls Back As Traders Weigh Heavy Losses And High Valuation (StocksToTrade)",
+   "url": "https://stockstotrade.com/news/cipher-digital-inc-cifr-news-2026_09_30/",
+   "date": "2026-09-30",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Despite Downward Target Price Revision, Cipher Digital Remains A Top Mid-Cap AI Stock (Morgan Stanley PT $53.5->$48.5)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/despite-downward-target-price-revision-092405647.html",
+   "date": "2026-06-10",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "CRWV, NBIS get Sell ratings as Rothschild flags credit-market warning; CIFR initiated Neutral (Stocktwits)",
+   "url": "https://stocktwits.com/news-articles/markets/equity/crwv-nbis-corz-wulf-stock-get-sell-ratings-rothschild-credit-market-warning/cZMRLruRB4v",
+   "date": "2026-09-21",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "Rothschild & Co Redburn initiates coverage on Cipher (Neutral, $18 PT, DCF with 22% cost of equity) - Defense World summary via search",
+   "url": "https://www.defenseworld.net/2026/09/23/rothschild-co-redburn-initiates-coverage-on-cipher-mining-nasdaqcifr.html",
+   "date": "2026-09-23",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "Bitcoin Mining's AI Pivot: 2026 Thesis Update (insights4vc Substack; $8-11M/MW build cost, EV/MW $4M vs $7M peer avg, concentration risk)",
+   "url": "https://insights4vc.substack.com/p/bitcoin-minings-ai-pivot-2026-thesis",
+   "date": "2026-02-11",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Treasury Yield Curve Today - 10-Year at 5.29% (Sep 30, 2026)",
+   "url": "https://treasuryratewatch.com/daily/treasury-yield-curve",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Data Center Cap Rates 2026: What Investors Need to Know (Dominus Capital; JLL Q1 2026 5.5-6.5% stabilized hyperscale band)",
+   "url": "https://dominuscapitalgroup.com/insights/data-center-cap-rates-2026-what-investors-need-to-know/",
+   "date": "2026",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Digital Q2 2026 slides show $11.4B pipeline amid earnings miss (Investing.com; 2026 NOI $97M, 2035 NOI $894M)",
+   "url": "https://www.investing.com/news/company-news/cipher-digital-q2-2026-slides-show-114b-pipeline-amid-earnings-miss-93CH-4834719",
+   "date": "2026-08-04",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Digital consensus target ~$32.5, range $23-$69; UBS $23, Wells Fargo $25 initiations (MarketScreener)",
+   "url": "https://www.marketscreener.com/quote/stock/CIPHER-DIGITAL-INC-116169050/consensus/",
+   "date": "2026-09",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher seeks $810m in senior secured notes for Stingray data center (DCD)",
+   "url": "https://www.datacenterdynamics.com/en/news/cipher-seeks-810m-in-senior-secured-notes-for-stingray-data-center-in-west-texas/",
+   "date": "2026-06",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "Fluidstack, the Pentagon, and the Creditworthiness Layer (FourWeekMBA)",
+   "url": "https://fourweekmba.com/ai-fluidstack-pentagon-dod-loan-creditworthiness-ai-infrastruct/",
+   "date": "2026",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "TheValueist on X: CIFR call summary, AWS 15-yr 300 MW ~$5.5B lease",
+   "url": "https://x.com/TheValueist/status/1985365919191715994",
+   "date": "2025-11-03",
+   "type": "social",
+   "in_lane": false
+  },
+  {
+   "title": "US Treasury daily par yield curve (10-yr 5.24% on 2026-10-01)",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "2026 Data Center Deal Trends (datacenterHawk): platform deals ~$6.4-8M/MW, stabilized leased NoVA ~$27M/MW, build $11-20M/MW",
+   "url": "https://datacenterhawk.com/resources/market-insights/2026-data-center-deal-trends",
+   "date": "2026",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "CIFR Stock Gains After Cipher Extends Barber Lake Lease To 20 Years (Fluidstack 10-yr initial term ~$3B, AI-lab follow-on 2036-46 $5.2B, Google backstop)",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/cifr-stock-gains-cipher-extends-123533388.html",
+   "date": "2026-09-25",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Digital prices $810M 6.000% Stingray senior secured notes at 99.75 (GuruFocus)",
+   "url": "https://www.gurufocus.com/news/8907255/cifr-cipher-digital-prices-810-million-in-senior-secured-notes",
+   "date": "2026-06",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "GPU useful lives: research notes (hyperscaler/neocloud lives, rental-price paths, Ornn/Silicon Data/SemiAnalysis indices, physical vs economic life)",
+   "url": "file:///mnt/project-files/adhoc/gpu_useful_life.md",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Fluidstack signs additional 39MW lease with Cipher Mining in Texas, backed by Google (DCD; Google backstop of Fluidstack lease obligations, total ~$1.73B)",
+   "url": "https://www.datacenterdynamics.com/en/news/fluidstack-signs-additional-39mw-lease-with-cipher-mining-in-texas-backed-by-google/",
+   "date": "2025-11",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "CoreWeave CEO says it has signed an A100 contract running into 2029 (Tom's Hardware)",
+   "url": "https://www.tomshardware.com/tech-industry/coreweave-ceo-mike-intrator-says-it-has-signed-an-a100-contract-running-into-2029",
+   "date": "2026-08",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "SemiAnalysis GPU rental index (H100 -50% in ~18 months after successor, flat ~$2.80 since Jul-2025)",
+   "url": "https://gpu-index.semianalysis.com/",
+   "date": "2026",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Ornn OCPI GPU spot prices (B200 $7.96, H100 $2.92, A100 $0.93 on 2026-10-01)",
+   "url": "https://data.ornn.com/markets",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Kerrisdale Capital short report on CoreWeave (GPU economics at 4-5 vs 6-year lives)",
+   "url": "https://www.kerrisdalecap.com/wp-content/uploads/2025/09/Kerrisdale-CoreWeave.pdf",
+   "date": "2025-09",
+   "type": "other",
+   "in_lane": true
+  },
+  {
+   "title": "Cipher Mining Signs Additional 56 MW, 10-Year AI Hosting agreement (8-K Ex.99.1, Fluidstack / Google backstop)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000095010325015073/dp237633_ex9901.htm",
+   "date": "2025",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "CIFR site inventory and coverage matrix (sites.md / sites.json; compiled from 10-K FY25, 10-Q Q2-26, 8-Ks, decks)",
+   "url": "file:///mnt/project-files/valuation/runs/2026-10-01/CIFR/sites.md",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Black Pearl investor presentation (AWS 15-yr lease, ~$5.5B, 3% escalator, hall schedule DH1 2026-09-30 to DH4 2027-02-28, $9.5M/IT MW max cost)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000095010326001480/dp240991_ex9901.htm",
+   "date": "2026-01",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Stingray presentation (AWS 15-yr lease ~$2.0B, 3% escalator, rent Apr/May-2027, Amazon covers overruns above $10.5M/IT MW)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000095010326008635/dp248110_ex9901.htm",
+   "date": "2026-06",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Cipher Digital Form 10-K FY2025 (properties, Odessa, pipeline sites, Milsing 500 MW)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000009/cifr-20251231.htm",
+   "date": "2026-02",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Twelve Data quote: Canaan Inc. ADR (CAN) close $0.34 on 2026-10-01",
+   "url": "https://twelvedata.com/markets/quote/CAN",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Fact-check of the GPU useful-life note (CoreWeave 6y, Nebius 5y, IREN 5y; hyperscaler lives confirmed from 10-Ks)",
+   "url": "file:///mnt/project-files/adhoc/gpu_useful_life_factcheck.md",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Amazon credit ratings: S&P AA, Moody's A1, Fitch AA- (dealcharts)",
+   "url": "https://dealcharts.org/blog/amazon-credit-rating",
+   "date": "2026",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Alphabet receives Aa2 rating from Moody's on new debt (Investing.com)",
+   "url": "https://www.investing.com/news/stock-market-news/alphabet-stock-receives-aa2-rating-from-moodys-on-new-debt-93CH-4693306",
+   "date": "2025",
+   "type": "press",
+   "in_lane": true
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a method",
+   "from": "DCF $7.20 (single 9% rate, company NOI schedule, 8.5% exit cap on 2037 NOI)",
+   "to": "DCF $6.56 split-rate ($5.33 single-rate)",
+   "why": "Brief fix 2 (split discounting) and supervisor round 3 (expiry-based terminal, AI-lab haircut, BL share ~44%); site-level NOI from contract terms."
+  },
+  {
+   "item": "a method",
+   "from": "Cap-rate NAV $9.08 (single 7.0% cap)",
+   "to": "$8.64 (AWS 6.5%, BL 7.5%)",
+   "why": "Credit-split caps; site-level 2029 NOI $723M vs deck $749M; AI-lab haircut."
+  },
+  {
+   "item": "fair value",
+   "from": "8.05",
+   "to": "7.5",
+   "why": "55/45 blend of the revised DCF and NAV."
+  },
+  {
+   "item": "a fact",
+   "from": "Barber Lake ~244 MW critical, Fluidstack term ~$3B",
+   "to": "207 IT MW (168+39), ~$3.8B",
+   "why": "Inventory flag; 244 MW is Phase I gross (Nov-25 release, 8-K)."
+  },
+  {
+   "item": "a fact",
+   "from": "Fluidstack on Barber Lake/Stingray in the NAV cap rationale",
+   "to": "Stingray = Amazon Data Services, guaranteed by Amazon.com",
+   "why": "Inventory flag; Stingray deck/8-K Jun-2026."
+  },
+  {
+   "item": "pipeline",
+   "from": "$900M ($/MW options; Apollo, Milsing, expansions ~0; Colchis at 100%)",
+   "to": "$854M site by site, probability-weighted net of capex, all 10 sites, Colchis at 76%",
+   "why": "Brief fix 1 and inventory flags (omission; Colchis NCI)."
+  },
+  {
+   "item": "other assets",
+   "from": "Odessa mining and Canaan shares omitted",
+   "to": "Mining $33M (exclusive of the HPC branch); Canaan $18M",
+   "why": "Inventory flags (low)."
+  },
+  {
+   "item": "terminal",
+   "from": "8.5% exit cap on 2037 NOI",
+   "to": "Explicit expiries 2041-47, 75% renewal at 85% rent, refit $1-2M/IT MW, then 8.5% cap",
+   "why": "Round-3 supervisor: the old cap capitalized the leases before expiry."
+  },
+  {
+   "item": "Fluidstack EL",
+   "from": "applied to 35% NOI share",
+   "to": "applied to site-level Barber Lake cash flows (~44%)",
+   "why": "Round-3 supervisor correction."
+  },
+  {
+   "item": "ladder",
+   "from": "P(>=15.46) 0.355; bear 6.5/30%, base 12.8/48%, bull 26/22%",
+   "to": "0.34; bear 6.2/31%, base 12.3/48%, bull 25.5/21%",
+   "why": "Fair value -7% and contracted-only value -$0.5; modest shift only, since sector beta and pipeline headlines dominate 12 months."
+  },
+  {
+   "item": "thesis break",
+   "from": "7.0",
+   "to": "6.5",
+   "why": "Contracted-only value ~$5.6 plus half the pipeline; $7 is now within 7% of fair value."
+  }
+ ],
+ "gpu_life": {
+  "base_economic_life_years": 5,
+  "revenue_decay_path": "Applied to tenant (Fluidstack) GPUs, not to Cipher's rent: contract price for the contract term; then about -35%/yr for ~2 years after the next Nvidia generation ships (H100 index -50% in ~18 months); then -10%/yr toward the $/PFLOP-hr floor. The tail stays cash-positive (B200-class ~$1.6/hr at year 12 vs ~$0.49/hr power plus Cipher rent). Cipher's own revenue stays at contract rent for the lease terms (AWS 15y; Barber Lake 10y + AI-lab 2036-46).",
+  "dcf_at_5y": 6.56,
+  "dcf_at_base": 6.56,
+  "dcf_at_7y": 7.02,
+  "applies": "minimal",
+  "note": "Unchanged approach: CIFR owns no GPUs. Tenant life enters through (1) the Fluidstack first-refresh default (~2032; 15%/22%/8% at 5/4/7y, now on site-level Barber Lake cash flows) and (2) post-expiry renewal odds, refit capex and cap (5y: 75%, $2.0M/IT MW, 8.5%; 4y: 70%, $2.5M, 8.75%; 7y: 80%, $1.5M, 8.25%), applied also to pipeline NPVs. 4y stress DCF $6.09 (split). The 5-yr base matches the fact-checked Nebius and IREN lives (CoreWeave 6y), so no fact changed. Single-rate: 4y $4.86, 5y $5.33, 7y $5.79."
+ },
+ "site_coverage": [
+  {
+   "site": "Black Pearl",
+   "status": "energized (partial) / under construction; contracted",
+   "mw": "300 gross / 216 IT",
+   "treatment": "Contracted cash flows at lease terms (AWS, Amazon.com guarantee): $296M yr-1, 3%, 15 yrs per hall, discounted at 6.5%; post-expiry renewal at 9%",
+   "probability": 1.0,
+   "value_per_share": 9.15,
+   "note": "Term PV $2.98B + post-expiry $0.98B (gross of overhead and debt). Hall dates per the Jan-26 deck; the 2-month acceleration is not credited. Debt: $2.0B 6.125% notes, in net debt."
+  },
+  {
+   "site": "Barber Lake",
+   "status": "under construction; contracted",
+   "mw": "300 gross / 207 IT",
+   "treatment": "Fluidstack years 1-10 ($3.8B, ~$331M yr-1) at 7.5% with the refresh-default EL; AI-lab years 11-20 ($5.2B) at 8.5% with a 12.5% haircut; post-2047 renewal at 9%",
+   "probability": 1.0,
+   "value_per_share": 8.88,
+   "note": "Fluidstack pays Cipher; Google backstops ~$1.73B (~45%) of Fluidstack obligations; Cipher bears the first $359.3M of overruns (in net debt). The inventory's 207 IT MW and $3.8B are used, replacing my 244 MW / $3B."
+  },
+  {
+   "site": "Stingray",
+   "status": "under construction; contracted",
+   "mw": "100 gross / 70 IT",
+   "treatment": "Contracted cash flows (AWS, Amazon.com guarantee): $108M yr-1 from ~May-2027, 3%, 15 yrs at 6.5%; post-expiry at 9%",
+   "probability": 1.0,
+   "value_per_share": 3.26,
+   "note": "Round-3 error (Fluidstack named as Stingray tenant) corrected. Amazon absorbs overruns above $10.5M/IT MW. Equity reimbursement conflict ($61.5M vs $56.7M) is immaterial; I use the 8-K figure."
+  },
+  {
+   "site": "Odessa",
+   "status": "energized (BTC mining); HPC conversion in negotiation",
+   "mw": "207 gross",
+   "treatment": "Mining cash flow $33M PV in the no-conversion branch / until conversion; HPC conversion 40% x $2.86M/IT MW x 145 IT MW = $166M, net of $11M/IT MW capex",
+   "probability": 0.4,
+   "value_per_share": 0.46,
+   "note": "Mining and HPC are mutually exclusive on the same 207 MW. Inventory says site/infrastructure is finance-leased from Luminant affiliates (10-Q); I did not re-check the primary source, but I treat it as a constraint on conversion (part of why P=40%). Luminant PPA is a cost contract (Cipher pays Luminant)."
+  },
+  {
+   "site": "Reveille",
+   "status": "uncontracted pipeline",
+   "mw": "70 gross",
+   "treatment": "Probability-weighted NPV net of capex ($11M/IT MW) and concession; rent from ~2028",
+   "probability": 0.45,
+   "value_per_share": 0.16,
+   "note": "ERCOT approved, substation started, Q3-27 energization, 'in discussions'. Leased land."
+  },
+  {
+   "site": "Ulysses",
+   "status": "uncontracted pipeline",
+   "mw": "200 gross",
+   "treatment": "Probability-weighted NPV net of capex; rent from ~mid-2028",
+   "probability": 0.4,
+   "value_per_share": 0.37,
+   "note": "PJM (AEP Ohio), not ERCOT; interconnection approved; land options only."
+  },
+  {
+   "site": "Colchis",
+   "status": "uncontracted pipeline (ERCOT Batch Zero)",
+   "mw": "1000 gross (76% owned)",
+   "treatment": "Probability-weighted NPV at $12M/IT MW capex, rent from ~2029-30, x76% ownership",
+   "probability": 0.15,
+   "value_per_share": 0.3,
+   "note": "Valued at Cipher's 76% (10-Q 6/30/26), so the $25.7M redeemable NCI is not deducted again. The ~95% figure was an expectation (Q3-25 release)."
+  },
+  {
+   "site": "Mikeska",
+   "status": "uncontracted pipeline (ERCOT Batch Zero)",
+   "mw": "500 gross",
+   "treatment": "Probability-weighted NPV at $12M/IT MW capex, rent ~2029-30",
+   "probability": 0.15,
+   "value_per_share": 0.2,
+   "note": "Batch Zero results ~Apr-2027."
+  },
+  {
+   "site": "McLennan",
+   "status": "uncontracted pipeline (ERCOT Batch Zero)",
+   "mw": "500 gross",
+   "treatment": "Probability-weighted NPV at $12M/IT MW capex, rent ~2029-30",
+   "probability": 0.15,
+   "value_per_share": 0.2,
+   "note": "Option exercised Feb-2026; land secured."
+  },
+  {
+   "site": "Apollo",
+   "status": "uncontracted pipeline (2030+)",
+   "mw": "900 gross",
+   "treatment": "Probability-weighted NPV at $12M/IT MW capex, rent ~2031-32",
+   "probability": 0.07,
+   "value_per_share": 0.13,
+   "note": "Previously omitted (~0). Option only; studied load in Batch Zero."
+  },
+  {
+   "site": "Milsing",
+   "status": "uncontracted pipeline (2030+)",
+   "mw": "500 gross",
+   "treatment": "Probability-weighted NPV, rent ~2031-32",
+   "probability": 0.07,
+   "value_per_share": 0.07,
+   "note": "Previously omitted. Timing slipped from 2028-29 (10-K) to 2030+ (deck); I use the later date."
+  },
+  {
+   "site": "Barber Lake expansion",
+   "status": "uncontracted pipeline (2030+)",
+   "mw": "500 gross",
+   "treatment": "Probability-weighted NPV, rent ~2031",
+   "probability": 0.1,
+   "value_per_share": 0.11,
+   "note": "Previously omitted. Adjacent to an operating campus with a 20-yr tenant chain, so slightly higher probability than greenfield 2030+. Single-source."
+  },
+  {
+   "site": "Stingray expansion",
+   "status": "uncontracted pipeline (2030+)",
+   "mw": "200 gross",
+   "treatment": "Probability-weighted NPV, rent ~2031",
+   "probability": 0.1,
+   "value_per_share": 0.04,
+   "note": "Previously omitted. Adjacent to the AWS-leased Stingray. Single-source."
+  },
+  {
+   "site": "Alborz, Bear and Chief Mountain (WindHQ JVs)",
+   "status": "sold 2026-02-19",
+   "mw": "120 gross (49% stakes)",
+   "treatment": "Excluded from operations; Canaan shares received credited in the net-debt bridge at market ($0.34/ADS x 53.76M ADS = $18M)",
+   "probability": 1.0,
+   "value_per_share": 0.04,
+   "note": "I use the market value rather than the $29.4M carrying value or the ~$39.75M announced value, since Canaan has fallen. I assume the shares are still held after the Aug-23 lock-up expiry."
+  }
+ ],
+ "discounting": {
+  "contracted_rate": 0.065,
+  "uncontracted_rate": 0.09,
+  "basis": "Contracted rate 6.5% applies to the AWS-backed term cash flows (Black Pearl, Stingray; Amazon.com AA/A1 guarantee), anchored on Cipher's secured project notes against those leases: Black Pearl 6.125% at par (Feb-26) and Stingray 6.0% at 99.75 (~6.06%), both Ba2/BB-, ~+80-90bp over the 5.24% 10y, plus ~40bp for tenor beyond the 2031 notes and residual operating risk. Fluidstack term (Barber Lake 2027-36; unrated tenant, ~45% Google Aa2 backstop): 7.5% = Cipher Compute 7.125% notes (Ba3/BB-) + ~40bp tenor, with the refresh default as an explicit cash-flow loss. AI-lab follow-on 2037-46 (unnamed, unrated, no backstop, no debt priced): 8.5% plus a 12.5% expected-loss haircut. Corporate overhead at 7.0% (blended contracted rate) in the split case. Post-contract renewal, terminal, pipeline and mining at the 9.0% WACC. Single-rate case: everything at 9.0%. DCF values are 12m-forward per share including pipeline; contracted-only: $4.58 split / $3.35 single.",
+  "dcf_single_rate": 5.33,
+  "dcf_split_rate": 6.56
+ }
+}

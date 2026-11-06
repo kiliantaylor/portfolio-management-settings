@@ -1,0 +1,78 @@
+{
+  "symbol": "LITE", "agent_id": "agent_5", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 271, "p": 0.96}, {"K": 434, "p": 0.88}, {"K": 543, "p": 0.81}, {"K": 651, "p": 0.735},
+    {"K": 760, "p": 0.66}, {"K": 868, "p": 0.585}, {"K": 977, "p": 0.515}, {"K": 1085, "p": 0.455},
+    {"K": 1194, "p": 0.40}, {"K": 1303, "p": 0.35}, {"K": 1465, "p": 0.29}, {"K": 1628, "p": 0.24},
+    {"K": 1899, "p": 0.175}, {"K": 2171, "p": 0.13}, {"K": 2714, "p": 0.07}
+  ],
+  "ladder_1m": [
+    {"K": 868.34, "p": 0.81}, {"K": 922.61, "p": 0.735}, {"K": 976.88, "p": 0.655}, {"K": 1009.44, "p": 0.605},
+    {"K": 1042.00, "p": 0.555}, {"K": 1085.42, "p": 0.49}, {"K": 1128.84, "p": 0.43}, {"K": 1161.40, "p": 0.385},
+    {"K": 1193.96, "p": 0.345}, {"K": 1248.23, "p": 0.28}, {"K": 1302.50, "p": 0.225}
+  ],
+  "one_month_reasoning": "The next scheduled company catalyst, fiscal Q1 FY27 results, is expected around 2026-11-03, just after the 2026-11-01 horizon (Nov 1 is a Sunday, so the effective mark is the Oct 30 close). Inside the window: peer prints (e.g. hyperscaler Q3 capex commentary in late October, which has been supportive per Goldman/Moody's capex upgrades), the usual pre-earnings positioning, and macro prints (CPI, FOMC late Oct). The stock is at its 52-week high after +533% in a year; short-horizon base rates offer offsetting momentum (continuation) and post-spike reversal, and the July 2026 episode showed 33-43% drawdowns can happen with no fundamental news. With no decisive event in the window I use a near-symmetric lognormal centred just below spot (~$1080) at about annual vol / 3.5 (sigma ~25% for the month), giving P(>= spot) of about 0.49.",
+  "fair_value": {
+    "value": 990.0,
+    "method": "Blend of (a) NTM-at-horizon EPS of ~$28 x 32x (LITE's ~31x five-year average forward P/E, a cycle-peak discount to today's ~42-45x) = ~$896, weight 0.6, and (b) a base-rate anchor of spot plus roughly market-like drift (~5%) = ~$1,140, reflecting Bessembinder's finding that extreme 5x winners show ~zero subsequent market-adjusted returns, weight 0.4. Blended ~$990.",
+    "methods": [
+      {"name": "P/E", "value": 896.0, "weight": 0.6,
+       "inputs": "NTM EPS as of Oct-2027 (Oct27-Sep28) ~$28 x 32x forward P/E",
+       "inputs_detail": [
+         {"input": "Q1 FY27 non-GAAP EPS guidance", "value": "$4.05-$4.35 (mid $4.20)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY26 non-GAAP EPS / Q4 FY26 EPS", "value": "$8.67 / $3.23", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY27 EPS consensus range", "value": "$16.67 (consensus) to $25.89 (BNP 2027)", "basis": "consensus", "source_ids": [3], "derivation": ""},
+         {"input": "NTM EPS at horizon (Oct 2027 - Sep 2028)", "value": "$28", "basis": "estimate", "source_ids": [1, 3, 7], "derivation": "Q1 FY27 guide $4.20 grown ~10-12%/quarter through FY27 gives ~$20-21 FY27 (between consensus $16.7 and BNP $25.9); hyperscaler capex growth slowing from ~100% (2026) to ~54% (2027) and ~12% (2028) per Goldman implies decelerating growth, so next-12-month EPS at horizon ~$28 (~+35%)."},
+         {"input": "Forward P/E multiple", "value": "32x", "basis": "judgment", "source_ids": [5, 6], "derivation": "LITE 5-year average forward P/E ~31x with range 10x (2019 trough) to 54x (2024, depressed earnings); currently ~42-45x. Growth decelerating into 2028 and peak-margin (pricing-driven GM) risk argues for reverting toward the historical average rather than holding today's premium."},
+         {"input": "Diluted share count", "value": "101.1M non-GAAP diluted", "basis": "reported", "source_ids": [1], "derivation": ""}
+       ]},
+      {"name": "other", "value": 1140.0, "weight": 0.4,
+       "inputs": "Base-rate anchor: spot $1085 x (1 + ~5% drift); extreme winners show ~zero market-adjusted follow-on returns",
+       "inputs_detail": [
+         {"input": "Post-5x-winner market-adjusted 12m return", "value": "~0%", "basis": "estimate", "source_ids": [4], "derivation": "Bessembinder et al. study of 3,615 US stocks that hit 5x (1973-2020): little or no positive market-adjusted return in subsequent months; I add ~5% equity drift, trimmed for a 2027 recession market priced in the ~25-40% range."},
+         {"input": "Last close", "value": "$1085.42", "basis": "reported", "source_ids": [1], "derivation": "given in brief; scale of company confirmed by the release"},
+         {"input": "Recession odds 2027", "value": "Kalshi 'Recession in 2027' (~$545K volume) cited at ~41c in 2026 commentary", "basis": "judgment", "source_ids": [9, 10], "derivation": "Used only to trim the drift; exact current price not verifiable (aggregator page returned 503)."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 500.0, "prob": 0.25, "story": "AI optics cycle turns: hyperscaler capex growth decelerates faster than expected (Goldman already sees 2027 +54% slowing to +12% in 2028), supply loosens, pricing-driven gross margins (47-50%) mean-revert toward the low-40s, and the multiple compresses to ~20-25x on ~$22 EPS. The 2001 JDSU precedent (revenue $3.2B to $1.1B in a year, stock -98%) is the tail of this case; a recession in 2027 accelerates it."},
+    "base": {"price": 1050.0, "prob": 0.5, "story": "Growth continues (revenue run-rate toward $1.6-1.8B/quarter by mid-2027, CPO/OCS ramps) but the multiple de-rates from ~45x forward to ~32-38x as growth slows; EPS gains roughly offset multiple compression, consistent with the base rate that 5x winners deliver ~market returns afterwards."},
+    "bull": {"price": 1800.0, "prob": 0.25, "story": "2027 capex lands near Goldman's $1.2-1.4T, 1.6T transceivers/EMLs stay supply-constrained, CPO and OCS add a second engine, EPS run-rate reaches $40+ and the market keeps a ~45x multiple; ~30% of 5x winners go on to another big multiple per Bessembinder."}
+  },
+  "thesis_break_price": 560.0,
+  "thesis_break_reason": "Below ~$560 (roughly half today's price, ~25x a ~$22 FY27 EPS, and well below the July 2026 panic low of ~$720 that happened with no fundamental damage), the move would most likely reflect a real break: a guidance cut, gross-margin reversal as laser/EML supply catches up, a hyperscaler capex pause, or share loss in transceivers/CPO, rather than ordinary 97%-vol noise.",
+  "catalysts": [
+    {"date": "2026-11-03", "event": "Fiscal Q1 FY27 results and Q2 guide (vs $1.225-1.275B / $4.05-4.35 EPS guidance)", "direction": "?"},
+    {"date": "2026-10 to 2026-11", "event": "Hyperscaler Q3 earnings and 2027 capex guidance (MSFT, GOOGL, META, AMZN, ORCL)", "direction": "+"},
+    {"date": "2027-02", "event": "Fiscal Q2 FY27 results", "direction": "?"},
+    {"date": "2027-03", "event": "OFC 2027 conference: CPO/1.6T pricing and competitive signals", "direction": "?"},
+    {"date": "2027-05", "event": "Fiscal Q3 FY27 results", "direction": "?"},
+    {"date": "2027-08", "event": "Fiscal Q4 FY27 results and FY28 outlook", "direction": "?"},
+    {"date": "2027 (rolling)", "event": "US macro: recession risk for 2027 priced on Kalshi/Polymarket; Fed path", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "Durability of pricing-driven gross margins (33% to ~50%) once laser/EML supply catches up",
+    "Slope of hyperscaler capex growth in 2027-2028 (Goldman +54% then +12%) and AI financing strain",
+    "Whether CPO/OCS adds a second growth engine or cannibalises pluggable transceivers",
+    "Dilution and share count after the convertible-note exchange (101M non-GAAP diluted)",
+    "Macro: 2027 recession odds in prediction markets are materially higher than for 2026"
+  ],
+  "reasoning": "Lane: base rates. Company facts: Q4 FY26 revenue $1.01B (+109% y/y), non-GAAP EPS $3.23, Q1 FY27 guide $1.25B and $4.20 EPS, cash $2.7B vs ~$1.6B current debt, 101M diluted shares, so ~$110B market cap at ~45x forward. Base rates: (1) Bessembinder's study of 5x winners finds ~zero subsequent market-adjusted returns but ~30% go on to repeat, i.e. a wide, roughly centred distribution rather than continued drift; (2) the optical precedent (JDSU FY01-02: revenue -66%, stock -98%) shows how violent the left tail is when telecom/datacom capex turns; (3) LITE's own forward P/E history ranges 10-54x with ~31x five-year average, and July 2026 already saw a 33-43% drawdown without bad news; (4) hyperscaler capex forecasts still rise in 2027 (+54% to ~$1.2T per Goldman) but growth slows sharply into 2028, which is exactly when the market will price LITE at the horizon. Valuation blend gives ~$990. I set a lognormal-like distribution with median ~$1,010 and sigma ~0.68 (below the trailing 97% realized vol, as vol after a parabolic year typically mean-reverts but remains extreme), with a slightly fatter left tail for the bust scenario. P(>= spot) ~0.455; P(>= half of spot) ~0.81; P(>= 2.5x spot) ~0.07. Research limited to ~12 queries; prediction-market current prices could not be fetched directly (aggregator 503), so recession odds are used qualitatively only. No option data was consulted.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Lumentum Q4 and FY2026 results press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0001633978/000162828026055726/lite_ex991xq4fy26.htm", "date": "2026-08-11", "type": "filing", "in_lane": false},
+    {"title": "Lumentum Q4 FY26 earnings date / next report Nov 3 (OpenCapital earnings page)", "url": "https://www.opencapital.sh/stocks/lite/earnings/q1-2027", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Analysts upping price targets on Lumentum; FY27 EPS estimates (consensus $16.67, BNP $25.89, MS PT $1,000)", "url": "https://www.barchart.com/story/news/3875971/analysts-are-upping-their-price-targets-on-lumentum-stock-here-s-why", "date": "2026-08", "type": "sell-side", "in_lane": false},
+    {"title": "Extreme stock market performers (Bessembinder et al.) summary: 5x winners 1973-2020 and subsequent returns", "url": "https://www.evidenceinvestor.com/?p=20119", "date": "2021", "type": "expert", "in_lane": true},
+    {"title": "GuruFocus LITE forward P/E (41.57 as of Aug 25, 2026)", "url": "https://www.gurufocus.com/term/forward-pe-ratio/LITE", "date": "2026-08-25", "type": "data", "in_lane": true},
+    {"title": "Macrotrends Lumentum P/E history 2013-2025", "url": "https://macrotrends.net/stocks/charts/LITE/lumentum-holdings/pe-ratio", "date": "2026", "type": "data", "in_lane": true},
+    {"title": "Goldman Sachs projects Big Tech AI infrastructure spending $1.2T in 2027", "url": "https://www.pymnts.com/?p=4233514", "date": "2026-09", "type": "press", "in_lane": true},
+    {"title": "Moody's hyperscaler capex forecasts marked up, nearing $1T by 2027", "url": "https://datacenterdynamics.com/en/news/moodys-hyperscaler-capex-forecasts-marked-up-by-85bn-to-close-in-on-1trn-by-2027/", "date": "2026", "type": "press", "in_lane": true},
+    {"title": "Oddpool recession prediction markets (Kalshi 'Recession in 2027' $545K volume; Polymarket 2026 $2.2M)", "url": "https://www.oddpool.com/explore/recession", "date": "2026-10-03", "type": "prediction-market", "in_lane": true},
+    {"title": "SimpleFunctions: recession worries shift to 2027 (Kalshi 2027 ~41c, 2026 ~9-26c)", "url": "https://simplefunctions.dev/predictions/recession/recession-worries-shift-to-2027-as-fed-holds-firm-3bd7a3", "date": "2026", "type": "prediction-market", "in_lane": true},
+    {"title": "JDS posts big loss, warns (2001 optical bust)", "url": "https://money.cnn.com/2001/07/26/technology/earns_jdsu/", "date": "2001-07-26", "type": "press", "in_lane": true},
+    {"title": "EDN: JDS Uniphase revenue fell from $3.2B (FY01) to $1.1B (FY02), stock -98% from peak", "url": "https://www.edn.com/?p=4045165", "date": "2003", "type": "trade", "in_lane": true},
+    {"title": "TIKR: Lumentum fell 33% from its high (July 2026 drawdown, valuation 46x fwd P/E)", "url": "https://www.tikr.com/blog/lumentum-stock-has-fallen-33-from-its-high-is-the-optics-selloff-a-gift-or-a-warning", "date": "2026-07", "type": "newsletter", "in_lane": true}
+  ]
+}

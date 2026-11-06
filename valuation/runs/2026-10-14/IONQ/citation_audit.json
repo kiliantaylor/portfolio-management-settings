@@ -1,0 +1,2890 @@
+{
+ "date": "2026-10-14",
+ "symbol": "IONQ",
+ "clean": true,
+ "checked": 297,
+ "ok": 296,
+ "ok_first_pass": 248,
+ "failures_fixed": 55,
+ "method": "split gate (run_digest.py gate) + fix step (gate/brief_fix.md): failures re-sourced, relabelled or removed in supervisor.json, model_assumptions.json and the agents' sourcing; every figure re-opened or recomputed by the fix step",
+ "fair_value_effect": "none: supervisor fair value stays $12.37 (methods 10.15 / 10.56 / 11.59 / 19.83 / 12.83 unchanged); no agent fair value moves (agent_4 net cash fix touches only its weight-0 reverse DCF)",
+ "failures": [
+  {
+   "item": "[agent_4 other] 2035 quantum computing TAM",
+   "value": "$43B / $57B / $71B",
+   "cited": "https://postquantum.com/industry-news/mckinsey-quantum-monitor-2026/",
+   "result": "mislabelled",
+   "fix": "agent_4: basis set to estimate; $43B/$71B reported by PostQuantum (McKinsey QTM 2026), $57B = (43+71)/2 labelled as derived midpoint"
+  },
+  {
+   "item": "[agent_1 other] Realized volatility",
+   "value": "92%",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001824920.json",
+   "result": "not_found",
+   "fix": "agent_1: labelled as the run brief's one-year realized volatility (run market statistic, not a published page), basis estimate, XBRL citation removed; context only (sigma/vol inputs are judgments); no option data used"
+  },
+  {
+   "item": "[agent_1 other] Current price",
+   "value": "$31.545",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001824920.json",
+   "result": "not_found",
+   "fix": "agent_1: re-sourced to the IONQ 1-minute bars (closes $31.545 at 16:16 and 16:28 UTC on 2026-10-14) and the run brief"
+  },
+  {
+   "item": "[agent_1 other] Risk-free",
+   "value": "5.24%",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "agent_1: alphavantage.co homepage replaced by treasury.gov daily par yield curve: 10-year 5.24% on 10/09/2026"
+  },
+  {
+   "item": "[agent_2 SOTP] Computing at acquisition cost",
+   "value": "$1,895.9M",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "result": "mislabelled",
+   "fix": "agent_2: basis estimate; derivation 1,589.67 + 306.21 = 1,895.88 (R57 shows each consideration, not the sum)"
+  },
+  {
+   "item": "[agent_4 SOTP] Computing at cost",
+   "value": "$1,896M",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "result": "mislabelled",
+   "fix": "agent_4: basis estimate; derivation 1,589.67 + 306.21 = 1,895.88"
+  },
+  {
+   "item": "[agent_1 other] QNT price",
+   "value": "$33.59 (2026-10-14)",
+   "cited": "https://twelvedata.com",
+   "result": "not_found",
+   "fix": "agent_1 src 21 re-sourced: QNT 17:17 UTC 1-minute bar low $33.59 (close $33.60)"
+  },
+  {
+   "item": "[agent_3 other: transaction/listed mark (Quantinuum)] QNT price",
+   "value": "$33.46",
+   "cited": "https://twelvedata.com",
+   "result": "not_found",
+   "fix": "agent_3 src 16 re-sourced: QNT 17:54 UTC 1-minute close $33.46"
+  },
+  {
+   "item": "[agent_4 other] QNT price",
+   "value": "$33.46 (2026-10-14)",
+   "cited": "https://twelvedata.com",
+   "result": "not_found",
+   "fix": "agent_4 src 13 re-sourced: QNT 17:54 UTC 1-minute close $33.46"
+  },
+  {
+   "item": "[agent_1 comps] INFQ fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a; mcap $2.1B",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "result": "not_found",
+   "fix": "agent_1 INFQ row re-sourced at Infleqtion's 10-Q (225,357,052 shares) x $9.10-$9.32 traded 2026-10-14 = $2.05-2.10B (secfacts.py peers INFQ:2007825); GFS URL dropped"
+  },
+  {
+   "item": "[agent_1 comps] BKSY fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a; EV/sales ttm 6.40x",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "result": "not_found",
+   "fix": "agent_1 BKSY row re-sourced at BlackSky's 10-Q via secfacts.py peers BKSY:1753539: EV $697M / TTM revenue $108.9M = 6.40x"
+  },
+  {
+   "item": "[agent_1 model_inputs] FY2026 revenue",
+   "value": "$455M (+250%)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "result": "mislabelled",
+   "fix": "agent_1: basis estimate; $455M guide midpoint, growth = 455 / 130.0 - 1 = 2.50 (derived; $455M = midpoint of the $450-460M guide; FY2025 revenue $130.0M, F3)"
+  },
+  {
+   "item": "[agent_3 model_inputs] FY2026 revenue growth",
+   "value": "250%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "result": "mislabelled",
+   "fix": "agent_3: basis estimate; growth = 455 / 130.0 - 1 = 2.50 (derived; $455M = midpoint of the $450-460M guide; FY2025 revenue $130.0M, F3)"
+  },
+  {
+   "item": "[agent_5 model_inputs] FY2026 revenue growth",
+   "value": "+250% (to $455M)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "result": "mislabelled",
+   "fix": "agent_5: basis estimate; growth = 455 / 130.0 - 1 = 2.50 (derived; $455M = midpoint of the $450-460M guide; FY2025 revenue $130.0M, F3)"
+  },
+  {
+   "item": "[agent_2 other] Warrants (claim, not shares)",
+   "value": "179.05M: A 36.04M @ $99.88 (to 2032-07-09), B 43.01M @ $155 (to 2032-10-14), C 100M @ $69.46 (to 2033-10-16)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R22.htm",
+   "result": "not_found",
+   "fix": "agent_2: sources reordered and split by part: Series C 100M @ $69.46 to 2033-10-16 (seven years) from the 2026-10-14 424B5 (opened); A/B expiries from R23; A/B counts and strikes from R22; 179.05M = 36.04 + 43.01 + 100 derived; public (expired 2026-09-30) and customer warrants noted as outside the claim"
+  },
+  {
+   "item": "[agent_2 other] Quantinuum price",
+   "value": "$33.46",
+   "cited": "https://twelvedata.com/",
+   "result": "not_found",
+   "fix": "agent_2 src 22 re-sourced: QNT 17:54 UTC 1-minute close $33.46"
+  },
+  {
+   "item": "[agent_2 model_inputs] FY2026 revenue growth",
+   "value": "2.50 (to $455M)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/0001824920/000119312526384388/ionq-ex99_1.htm",
+   "result": "mislabelled",
+   "fix": "agent_2: basis estimate; growth = 455 / 130.0 - 1 = 2.50 (derived; $455M = midpoint of the $450-460M guide; FY2025 revenue $130.0M, F3)"
+  },
+  {
+   "item": "[agent_4 model_inputs] Revenue growth FY2026",
+   "value": "250%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/0001824920/000119312526384388/ionq-ex99_1.htm",
+   "result": "mislabelled",
+   "fix": "agent_4: basis estimate; growth = 455 / 130.0 - 1 = 2.50 (derived; $455M = midpoint of the $450-460M guide; FY2025 revenue $130.0M, F3)"
+  },
+  {
+   "item": "[agent_2 comps] QNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / FY26 revenue guide $28-32M; loss-making (no EPS/EBITDA multiple); EV ~$6.83B on 263.31M filed shares",
+   "cited": "https://www.quantinuum.com/press-releases/quantinuum-reports-second-quarter-2026-results",
+   "result": "not_found",
+   "fix": "agent_2 QNT row: shares cited to the QNT 10-Q cover (src 39 first), price to the 1-minute feed, derivation added: 263.31M x $33.46 = $8,810M - net cash $1,981.8M = $6,828M ~ $6.83B"
+  },
+  {
+   "item": "[agent_2 comps] RGTI fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a (no consensus snapshot); Q2-26 revenue $5.1M vs $1.8M",
+   "cited": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "result": "not_found",
+   "fix": "agent_2 RGTI row: Q2-26 revenue $5.138M vs $1.801M cited to the Rigetti 10-Q (XBRL) ahead of peers.md"
+  },
+  {
+   "item": "[agent_2 comps] QBTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a; Q2-26 revenue $3.1M flat, RPO $40.7M",
+   "cited": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "result": "not_found",
+   "fix": "agent_2 QBTS row: Q2-26 revenue $3.076M vs $3.095M and RPO $40.7M cited to the D-Wave 10-Q (XBRL)"
+  },
+  {
+   "item": "[agent_5 comps] RGTI fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a (losses); P/S ~291x trailing ($3.9B/$13.4M)",
+   "cited": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "result": "not_found",
+   "fix": "agent_5 RGTI row re-sourced at the Rigetti 10-Q (333.77M shares; TTM revenue $13.35M) x $11.64-11.83 = $3.88-3.95B -> P/S 291-296x"
+  },
+  {
+   "item": "[agent_2 comps] GFS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a (no consensus snapshot)",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000928876.json",
+   "result": "not_found",
+   "fix": "agent_2 GFS row re-cited to GlobalFoundries (CIK 1709048, 20-F FY2025): mcap $27.3B = 555.89M x $49.17, P/E ttm 30.9x; the CIK 928876 (Tower) source is kept only for the TSEM row; no forward figures because GFS has no row in peers.md"
+  },
+  {
+   "item": "[agent_3 SOTP] SkyWater EV paid",
+   "value": "~$1.8B equity + $264.8M debt",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R30.htm",
+   "result": "not_found",
+   "fix": "agent_3: relabelled ~$1.8B as total consideration (24,135,775 shares + $741.3M cash, R30) and cited the $264.8M debt principal (192.3 + 32.9 + 39.5) to the SkyWater 10-Q"
+  },
+  {
+   "item": "[agent_5 comps] PL fwd P/E / fwd EV/EBITDA / growth = None / None / P/S ~13.5x ($5.1B/$378.3M); FCF yield 0.5% (estimate)",
+   "value": "P/S ~13.5x ($5.1B numerator)",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001836833.json",
+   "result": "not_found",
+   "fix": "agent_5 PL row: $5.1B = market cap (359.59M shares, 10-Q XBRL, x $14.185) cited to the Planet 10-Q and the price feed; P/S 5,101 / 378.3 = 13.5x"
+  },
+  {
+   "item": "[agent_5 comps] PL fwd P/E / fwd EV/EBITDA / growth = None / None / P/S ~13.5x ($5.1B/$378.3M); FCF yield 0.5% (estimate)",
+   "value": "FCF yield 0.5%",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001836833.json",
+   "result": "not_found",
+   "fix": "agent_5 PL row: FCF yield = TTM FCF $24.7M / mcap $5,101M = 0.48%, denominator now sourced"
+  },
+  {
+   "item": "[supervisor model] Elisity expected close = Q4 2026 (outside date 2027-01-07)",
+   "value": "outside date 2027-01-07",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526419609/ionq-ex99_1.htm",
+   "result": "not_found",
+   "fix": "supervisor inputs_detail and sources: outside date cited to the merger agreement (Ex. 2.1 Section 7.1(b): End Date = 90 days after the 2026-10-09 Agreement Date = 2027-01-07) and the 8-K Item 1.01, which states January 7, 2027"
+  },
+  {
+   "item": "[supervisor fair_value (a)] IonQ reset its earlier >4,000-qubit 2026 forecast",
+   "value": ">4,000 physical qubits by 2026 (earlier forecast)",
+   "cited": "https://benzinga.com/trading-ideas/movers/25/03/44307671/is-high-flying-ionq-stock-a-disaster-in-the-making-shares-slide-as-short-seller-raises-red-f",
+   "result": "not_found",
+   "fix": "supervisor (a): claim removed (Benzinga 403; no primary source found); no number used it; p(S1) 0.80 unchanged -> post_gate_flags"
+  },
+  {
+   "item": "[supervisor fair_value (b) / long_dated_review] Stage C teams span five modalities",
+   "value": "5 modalities",
+   "cited": "https://www.darpa.mil/news/2026/four-more-teams-enter-quantum-benchmarking-initiative-final-stage",
+   "result": "not_found",
+   "fix": "supervisor (b) and A10: text corrected to what the DARPA page shows (four approaches named for the new teams, Microsoft and PsiQuantum unstated); p 0.36 unchanged"
+  },
+  {
+   "item": "[supervisor fair_value (d) / disagreements] SkyWater Q2 2026 adj. EBITDA $28.7M (x4 = $115M run-rate)",
+   "value": "$28.7M",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1819974/000181997426000031/skyt-20260628.htm",
+   "result": "not_found",
+   "fix": "confirmed in the SkyWater 10-Q MD&A: 'Adjusted EBITDA increased $26.4 million to $28.7 million for the second quarter of 2026' (read in full through the Bigdata.com copy of the same EDGAR filing; WebFetch renders only the notes); supervisor src 10 retitled"
+  },
+  {
+   "item": "[supervisor disagreements / changes] Public warrants expired 2026-09-30 (cited \"10-K, src 10\")",
+   "value": "2026-09-30",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1819974/000181997426000031/skyt-20260628.htm",
+   "result": "not_found",
+   "fix": "re-cited to IonQ 10-K FY2025 (new src 32), which states 'The public warrants expire on September 30, 2026.'"
+  },
+  {
+   "item": "[supervisor disagreements] IonQ announced its Q3 2025 date on 2025-10-14 for 2025-11-05",
+   "value": "2025-10-14 / 2025-11-05",
+   "cited": "https://www.businesswire.com/news/home/20251014382305/en/IonQ-to-Report-Third-Quarter-2025-Financial-Results-on-November-5-2025",
+   "result": "not_found",
+   "fix": "replaced by the IonQ 8-K Item 2.02 of 2025-11-05 (Q3 2025 results reported on 2025-11-05); the 2025-10-14 announcement date is dropped (src 25 replaced)"
+  },
+  {
+   "item": "[supervisor sizing] ~44% combined U.S.-government upper bound",
+   "value": "~44%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm",
+   "result": "not_found",
+   "fix": "arithmetic added in sizing.open_flags: (140 x 0.40 + 170 x 0.48) / 310 = 44.4%, inputs from the Q2 release, the 2026-09-08 outlook and the SkyWater 10-K"
+  },
+  {
+   "item": "[supervisor sizing / fair_value (e)] One-year realized volatility 92%",
+   "value": "92%",
+   "cited": " ",
+   "result": "not_found",
+   "fix": "labelled as the run brief's statistic everywhere it appears (fair_value (e), sizing, key_drivers, summary, A16, new supervisor src 34 and inputs_detail row); sigma 90% stays a judgment; no option data used"
+  },
+  {
+   "item": "[supervisor comps_review] Listed quantum pure plays trade at 150-330x sales",
+   "value": "150-330x",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "result": "not_found",
+   "fix": "range restated from filings: QUBT P/S 146x ($1.44B / $9.8M), RGTI P/S ~291x ($3.88B / $13.35M), QBTS EV/sales 316-326x -> ~146-326x (new supervisor src 35-37); weight 0"
+  },
+  {
+   "item": "[agent_2 other] Quantinuum net cash",
+   "value": "$2,041.7M",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2: value set to $1,981.8M net cash = $2,041.7M cash after Q3 burn - $59.9M license payable (4,607 + 55,345 thousand, QNT 10-Q); EV unchanged at $6,829M"
+  },
+  {
+   "item": "[agent_2 EV/sales] Peer sales multiples",
+   "value": "QBTS 325.73x ttm; TSEM 14.69x ttm; IBM 3.83x, HON 4.50x NTM",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_2: derivation added (QBTS 325.73x EV/TTM revenue from secfacts; TSEM 14.69x from Tower filings CIK 928876 at ~$213.2 traded that day, 14.49x at $210.42; IBM 3.83x / HON 4.50x NTM from peers.md)"
+  },
+  {
+   "item": "[agent_3 other: market share of TAM (McKinsey QTM 2026)] Terminal margin and multiple",
+   "value": "22% / 15% EBIT, 18x NOPAT, niche 2x sales",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_3: derivation added (22% between HON 21.7% and Cisco 24.3%; 18x between IBM 17.8x and HON 22.0x NTM P/E, peers.md ids); contender 15% and niche 2x sales stated as judgments"
+  },
+  {
+   "item": "[agent_3 other: transaction/listed mark (Quantinuum)] IonQ / QNT ratio",
+   "value": "0.85",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_3: stated reason copied into the derivation (listed trapped-ion pure play; IonQ in DARPA Stage C; no full-system data); the Benzinga-based 'reset target' point flagged as not relied on"
+  },
+  {
+   "item": "[agent_4 SOTP | agent_4 other] Net cash now / at horizon",
+   "value": "$3,810M (2026-10-16) / $3,256M (2027-10-14)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_4: net cash now corrected to its own bridge, $3,806M (2,000 - 72.5 + 12.6 - 135 + 12.2 + 1,988.5 = 3,805.8) in all five method inputs, model_inputs.balance and the reverse-DCF text (implied computing $12,356M -> $12,360M); horizon $3,256M unchanged"
+  },
+  {
+   "item": "[agent_4 model_inputs] Net cash now / horizon",
+   "value": "-$3,810M / -$3,256M net debt",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_4 model_inputs: -$3,806M / -$3,256M (as item 39); model_assumptions A2 agent_4 3,810 -> 3,805.8"
+  },
+  {
+   "item": "[agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (e) cash floor plus computing option] Post-horizon computing development spend incl. stock comp (PV at horizon)",
+   "value": "winner $2.6B; late winner $3.4B; contender $2.6B; niche $1.2B; failure $1.0B",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "agent_5: values kept (its view); derivation restated so the arithmetic holds: $480M adj. EBITDA loss + $450M SBC = $930M/yr, ~$0.9B (~97%) attributed to computing; $0.9B x 2.855 = $2.57B, x 3.784 = $3.41B; the earlier '~80%' (which gives $744M/yr and PVs $2.1B/$2.8B) was the slip -> post_gate_flags"
+  },
+  {
+   "item": "[model A7 reconciled] Series A/B/C warrant claim (179.05M warrants, $69.46-$155)",
+   "value": "None $M",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "A7 reconciled value filled: 264.0 ($M, probability-weighted rNPV claim; per state $140M-$1,243M)"
+  },
+  {
+   "item": "[model A9 reconciled] Probability IonQ becomes a fault-tolerant leader (on time + late), rNPV tree",
+   "value": "0.144 %",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "A9 unit set to fraction (0.144 = 14.4%)"
+  },
+  {
+   "item": "[model A10 reconciled] Probability another modality wins (obsolete/failure state), TAM tree",
+   "value": "0.36 %",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "A10 unit set to fraction (0.36 = 36%); modality wording corrected"
+  },
+  {
+   "item": "[model A11 reconciled] Leader terminal EBIT margin (2035)",
+   "value": "0.25 %",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "A11 unit set to fraction (0.25 = 25%)"
+  },
+  {
+   "item": "[model A13 reconciled] Venture discount rate from 2035 back to the horizon",
+   "value": "0.15 %",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "A13 unit set to fraction (0.15 = 15%)"
+  },
+  {
+   "item": "[model A15 reconciled] Option strike: PV of development spend to fault tolerance",
+   "value": "2000.0 $M",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "A15 and supervisor (e): 'PV' dropped; K = ~4 x $480M = $1,920M undiscounted, rounded to $2,000M (judgment); value unchanged -> post_gate_flags"
+  },
+  {
+   "item": "[model A16 reconciled] Volatility of the computing option",
+   "value": "0.9 %",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "A16 unit set to fraction (0.9 = 90%); 92% labelled as the run brief statistic"
+  },
+  {
+   "item": "[supervisor fair_value (f) / disagreements / key_drivers] QNT $33.51 (day low $33.46), prev close $36.76, 52-week high $86.79; -61% from high",
+   "value": "$33.51",
+   "cited": "https://twelvedata.com",
+   "result": "not_found",
+   "fix": "passed its shard but cited the twelvedata.com homepage (not a source): re-sourced to QNT 1-minute bars ($33.51 = 17:31 UTC close; prev close $36.76; 52-week high $86.79); supervisor src 30 and A17 updated; value unchanged"
+  },
+  {
+   "item": "agent_2 src 33: 10-year Treasury Sep-2026 4.99% (discount rate / WACC inputs)",
+   "value": "4.99%",
+   "cited": "https://www.alphavantage.co/",
+   "result": "not_found",
+   "fix": "re-sourced: https://www.alphavantage.co/ needs an API key or is a provider homepage (not a source; no key used) -> https://fred.stlouisfed.org/data/GS10.txt; figure unchanged"
+  },
+  {
+   "item": "agent_5 src 24: QNT price $33.46 (Quantinuum EV $6,765M, QNT comps)",
+   "value": "$33.46",
+   "cited": "https://api.twelvedata.com/quote?symbol=QNT",
+   "result": "not_found",
+   "fix": "re-sourced: https://api.twelvedata.com/quote?symbol=QNT needs an API key or is a provider homepage (not a source; no key used) -> https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m; figure unchanged"
+  },
+  {
+   "item": "agent_5 src 25: IONQ monthly prices (beta 2.94, ~97% vol since 2021, own calc)",
+   "value": "beta 2.94; ~97% vol",
+   "cited": "https://api.twelvedata.com/time_series?symbol=IONQ&interval=1month",
+   "result": "not_found",
+   "fix": "re-sourced: https://api.twelvedata.com/time_series?symbol=IONQ&interval=1month needs an API key or is a provider homepage (not a source; no key used) -> https://query1.finance.yahoo.com/v8/finance/chart/IONQ?period1=1609459200&period2=1792011600&interval=1mo; figure unchanged"
+  },
+  {
+   "item": "agent_5 src 26: SPY monthly prices (beta)",
+   "value": "monthly prices",
+   "cited": "https://api.twelvedata.com/time_series?symbol=SPY&interval=1month",
+   "result": "not_found",
+   "fix": "re-sourced: https://api.twelvedata.com/time_series?symbol=SPY&interval=1month needs an API key or is a provider homepage (not a source; no key used) -> https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1609459200&period2=1792011600&interval=1mo; figure unchanged"
+  },
+  {
+   "item": "agent_5 src 27: 10-year Treasury 5.24% on 2026-10-09",
+   "value": "5.24%",
+   "cited": "https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=daily&maturity=10year",
+   "result": "not_found",
+   "fix": "re-sourced: https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=daily&maturity=10year needs an API key or is a provider homepage (not a source; no key used) -> https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610; figure unchanged"
+  }
+ ],
+ "open_failures": [],
+ "post_gate_flags": [
+  {
+   "item": "Supervisor (a) rNPV: P(S1 = 256-qubit system by end-2027) = 0.80",
+   "reason_affected": "One of four stated supports ('IonQ reset its earlier >4,000-qubit 2026 forecast', Benzinga, src 24) was removed: the page returned HTTP 403 and no primary source was found. The other three supports (system-level testing since May 2026, QPUs fabricated / deliveries planned 2027, roadmap) stand.",
+   "effect": "No number changed; supervisor to confirm 0.80 without that support."
+  },
+  {
+   "item": "Supervisor (e) cash floor + option: strike K = $2,000M (A15)",
+   "reason_affected": "The stated basis 'PV of development spend' does not hold: $2,000M exceeds even the undiscounted 4 x $480M = $1,920M. Wording now says undiscounted, rounded up.",
+   "effect": "If a PV strike was intended: K $1,722M (4.5%) -> (e) $11.68, fair value +$0.02; K $1,370M (15%) -> (e) $11.81, fair value +$0.04. Not applied; supervisor to choose."
+  },
+  {
+   "item": "agent_5 post-horizon development spend PVs (agent view, not used in the supervisor value)",
+   "reason_affected": "The agent's stated '~80% attributable to computing' gives $744M/yr, not the ~$0.9B/yr its PVs use; derivation restated to ~97% attribution so its values stand.",
+   "effect": "At 80% its PVs would be $2.1B (4y) / $2.8B (6y) and its own fair value would rise; supervisor fair value unaffected. Raise with agent_5 next round."
+  }
+ ],
+ "verified": [
+  {
+   "item": "[agent_4 other] 2035 quantum computing TAM",
+   "value": "$43B / $57B (derived) / $71B",
+   "basis": "estimate",
+   "source_url": "https://postquantum.com/industry-news/mckinsey-quantum-monitor-2026/",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 TAM states",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 other] Realized volatility",
+   "value": "92%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/brief_agent_1.md",
+   "checked": "2026-10-14",
+   "feeds": "context (agent_1 option leg)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 other] Current price",
+   "value": "$31.545",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IONQ?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 reverse DCF (weight 0)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 other] Risk-free",
+   "value": "5.24%",
+   "basis": "reported",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 warrant/option legs",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 SOTP] Computing at acquisition cost",
+   "value": "$1,895.9M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_4 SOTP] Computing at cost",
+   "value": "$1,896M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 SOTP",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 other] QNT price",
+   "value": "$33.59",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 Quantinuum mark",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_3 other: transaction/listed mark (Quantinuum)] QNT price",
+   "value": "$33.46",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 Quantinuum mark",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_4 other] QNT price",
+   "value": "$33.46",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 Quantinuum mark",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 comps] INFQ fwd P/E / fwd EV/EBITDA / growth",
+   "value": "mcap ~$2.1B ($2.05-2.10B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2007825/000162828026057508/",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 comps] BKSY fwd P/E / fwd EV/EBITDA / growth",
+   "value": "6.40x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1753539/000175353926000124/",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 model_inputs] FY2026 revenue",
+   "value": "$455M (+250%)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 model inputs (DCF weight 0)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_3 model_inputs] FY2026 revenue growth",
+   "value": "250%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model inputs",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_5 model_inputs] FY2026 revenue growth",
+   "value": "+250% (to $455M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model inputs",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 other] Warrants (claim, not shares)",
+   "value": "179.05M (A 36.04M @ $99.88 to 2032-07-09; B 43.01M @ $155 to 2032-10-14; C 100M @ $69.46 to 2033-10-16)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526421074/d165327d424b5.htm ; https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R23.htm ; https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R22.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 all legs",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 other] Quantinuum price",
+   "value": "$33.46",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 Quantinuum mark",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 model_inputs] FY2026 revenue growth",
+   "value": "2.50 (to $455M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model inputs",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Revenue growth FY2026",
+   "value": "250%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 model inputs",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 comps] QNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "EV ~$6.83B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm ; https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 comps",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 comps] RGTI fwd P/E / fwd EV/EBITDA / growth",
+   "value": "$5.1M vs $1.8M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1838359/000110465926091993/",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 comps] QBTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "$3.1M flat; RPO $40.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1907982/000190798226000129/",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_5 comps] RGTI fwd P/E / fwd EV/EBITDA / growth",
+   "value": "P/S ~291x ($3.9B / $13.4M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1838359/000110465926091993/",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 comps] GFS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "P/E ttm 30.9x; forward n/a",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1709048/000170904826000022/",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_3 SOTP] SkyWater EV paid",
+   "value": "~$1.8B total consideration + $264.8M debt",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R30.htm ; https://www.sec.gov/Archives/edgar/data/1819974/000181997426000031/skyt-20260628.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP context",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_5 comps] PL fwd P/E / fwd EV/EBITDA / growth = None / None / P/S ~13.5x ($5.1B/$378.3M); FCF yield 0.5% (estimate)",
+   "value": "P/S ~13.5x ($5.1B mcap)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1836833/000119312526382016/",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_5 comps] PL fwd P/E / fwd EV/EBITDA / growth = None / None / P/S ~13.5x ($5.1B/$378.3M); FCF yield 0.5% (estimate)",
+   "value": "0.5%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1836833/000119312526382016/",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps (not load-bearing)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor model] Elisity expected close = Q4 2026 (outside date 2027-01-07)",
+   "value": "2027-01-07",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526419609/ionq-ex2_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "sizing / one-month window context",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor fair_value (b) / long_dated_review] Stage C teams span five modalities",
+   "value": "four named approaches + two unstated",
+   "basis": "reported",
+   "source_url": "https://www.darpa.mil/news/2026/four-more-teams-enter-quantum-benchmarking-initiative-final-stage",
+   "checked": "2026-10-14",
+   "feeds": "TAM states obsolete-state context",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor fair_value (d) / disagreements] SkyWater Q2 2026 adj. EBITDA $28.7M (x4 = $115M run-rate)",
+   "value": "$28.7M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1819974/000181997426000031/skyt-20260628.htm",
+   "checked": "2026-10-14",
+   "feeds": "SOTP SkyWater value -> operating units (all legs)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor disagreements / changes] Public warrants expired 2026-09-30 (cited \"10-K, src 10\")",
+   "value": "2026-09-30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/ionq-20251231.htm",
+   "checked": "2026-10-14",
+   "feeds": "share count (no double count)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor disagreements] IonQ announced its Q3 2025 date on 2025-10-14 for 2025-11-05",
+   "value": "2025-11-05",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312525266878/ionq-20251105.htm",
+   "checked": "2026-10-14",
+   "feeds": "one-month window context",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor sizing] ~44% combined U.S.-government upper bound",
+   "value": "~44%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm ; https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm ; https://www.sec.gov/Archives/edgar/data/1819974/000181997426000009/skyt-20251228.htm",
+   "checked": "2026-10-14",
+   "feeds": "sizing open flag",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor sizing / fair_value (e)] One-year realized volatility 92%",
+   "value": "92%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/brief_agent_1.md",
+   "checked": "2026-10-14",
+   "feeds": "context for sigma (judgment)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[supervisor comps_review] Listed quantum pure plays trade at 150-330x sales",
+   "value": "~146-326x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1758009/000162828026055218/ ; https://www.sec.gov/Archives/edgar/data/1838359/000110465926091993/ ; https://www.sec.gov/Archives/edgar/data/1907982/000190798226000129/",
+   "checked": "2026-10-14",
+   "feeds": "peer EV/sales diagnostic (weight 0)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 other] Quantinuum net cash",
+   "value": "$1,981.8M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 Quantinuum mark",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_2 EV/sales] Peer sales multiples",
+   "value": "QBTS 325.73x; TSEM 14.69x; IBM 3.83x; HON 4.50x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/928876/000117891326002318/ ; /mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 EV/sales (weight 0)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_3 other: market share of TAM (McKinsey QTM 2026)] Terminal margin and multiple",
+   "value": "22% / 15% EBIT, 18x NOPAT, niche 2x sales",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000858877.json ; https://www.sec.gov/Archives/edgar/data/773840/000077384026000013/hon-20251231.htm ; /mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 TAM states",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_3 other: transaction/listed mark (Quantinuum)] IonQ / QNT ratio",
+   "value": "0.85",
+   "basis": "judgment",
+   "source_url": "https://www.darpa.mil/news/2026/four-more-teams-enter-quantum-benchmarking-initiative-final-stage",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 Quantinuum mark",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_4 SOTP | agent_4 other] Net cash now / at horizon",
+   "value": "$3,806M / $3,256M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm ; https://www.sec.gov/Archives/edgar/data/1824920/000119312526421074/d165327d424b5.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 reverse DCF only (weight 0)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_4 model_inputs] Net cash now / horizon",
+   "value": "-$3,806M / -$3,256M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526421074/d165327d424b5.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 DCF (weight 0)",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (e) cash floor plus computing option] Post-horizon computing development spend incl. stock comp (PV at horizon)",
+   "value": "winner $2.6B; late $3.4B; contender $2.6B; niche $1.2B; failure $1.0B",
+   "basis": "judgment",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001824920.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 rNPV/TAM/option legs",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[model A7 reconciled] Series A/B/C warrant claim (179.05M warrants, $69.46-$155)",
+   "value": "264.0 $M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R23.htm ; https://www.sec.gov/Archives/edgar/data/1824920/000119312526421074/d165327d424b5.htm",
+   "checked": "2026-10-14",
+   "feeds": "model engine input",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[model A9 reconciled] Probability IonQ becomes a fault-tolerant leader (on time + late), rNPV tree",
+   "value": "0.144 fraction",
+   "basis": "judgment",
+   "source_url": "https://ionq.com/roadmap",
+   "checked": "2026-10-14",
+   "feeds": "rNPV / option",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[model A10 reconciled] Probability another modality wins (obsolete/failure state), TAM tree",
+   "value": "0.36 fraction",
+   "basis": "judgment",
+   "source_url": "https://www.darpa.mil/news/2026/four-more-teams-enter-quantum-benchmarking-initiative-final-stage",
+   "checked": "2026-10-14",
+   "feeds": "TAM states",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[model A11 reconciled] Leader terminal EBIT margin (2035)",
+   "value": "0.25 fraction",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000858877.json",
+   "checked": "2026-10-14",
+   "feeds": "rNPV / TAM",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[model A13 reconciled] Venture discount rate from 2035 back to the horizon",
+   "value": "0.15 fraction",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "rNPV / TAM",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[model A15 reconciled] Option strike: PV of development spend to fault tolerance",
+   "value": "2000.0 $M (undiscounted)",
+   "basis": "judgment",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "cash floor + option",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[model A16 reconciled] Volatility of the computing option",
+   "value": "0.9 fraction",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/brief_agent_1.md",
+   "checked": "2026-10-14",
+   "feeds": "cash floor + option",
+   "note": "fixed by the citation gate fix step"
+  },
+  {
+   "item": "[agent_1 other] Current share anchor",
+   "value": "IonQ FY2025 revenue $130.0M vs >$1B 2025 QC revenue",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 comps] IBM fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.8 / 12.4 / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/IBM.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "[agent_1 comps] HON fwd P/E / fwd EV/EBITDA / growth",
+   "value": "22.0 / 14.8 / EPS +11.6%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/HON.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "[agent_1 comps] RGTI fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/RGTI",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "[agent_1 comps] QBTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a; EV/sales ttm 325.7x",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "[agent_1 comps] QUBT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +64.5% (thin coverage, flagged odd in peers.md)",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/QUBT.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "[agent_1 model_inputs] Base revenue FY2025",
+   "value": "$130.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "[agent_2 comps] QUBT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +64.5% (thin coverage, flagged in peer table)",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/QUBT.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 comps"
+  },
+  {
+   "item": "[agent_2 comps] IBM fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.8 / 12.4 / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/IBM.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 comps"
+  },
+  {
+   "item": "[agent_2 comps] HON fwd P/E / fwd EV/EBITDA / growth",
+   "value": "22.0 / 14.8 / EPS +11.6%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/HON.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 comps"
+  },
+  {
+   "item": "[agent_2 model_inputs] Base revenue FY2025",
+   "value": "$130.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_3 comps] QUBT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +64.5% (flagged odd in peers.md)",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/QUBT.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "[agent_3 comps] IBM fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.8 / 12.4 / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/IBM.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "[agent_3 comps] HON fwd P/E / fwd EV/EBITDA / growth",
+   "value": "22.0 / 14.8 / EPS +11.6%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/HON.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "[agent_3 model_inputs] Base revenue FY2025",
+   "value": "$130.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_4 EV/sales] Peer EV/sales",
+   "value": "IBM 3.83x, HON 4.50x NTM; QBTS 325.7x ttm",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 EV/sales"
+  },
+  {
+   "item": "[agent_4 comps] QBTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/m (losses); EV $4.0B, EV/sales ttm 325.7x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_4 comps] QUBT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +64.5% (flagged odd in the peer table)",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/QUBT.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_4 comps] IBM fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.8 / 12.4 / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/IBM.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_4 comps] HON fwd P/E / fwd EV/EBITDA / growth",
+   "value": "22.0 / 14.8 / EPS +11.6%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/HON.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_4 model_inputs] Base revenue FY2025",
+   "value": "$130.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "[agent_5 comps] QBTS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a (losses); EV/sales 325.7x trailing",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_5 comps] QUBT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +64.5% fwd (thin); P/S ~153x ($1.5B/$9.8M)",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/QUBT.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_5 comps] IBM fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.8 / 12.4 / EPS +7.3%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/IBM.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_5 comps] HON fwd P/E / fwd EV/EBITDA / growth",
+   "value": "22.0 / 14.8 / EPS +11.6%",
+   "basis": "estimate",
+   "source_url": "Bigdata.com company tearsheet, analyst_estimates (provider FMP consensus), https://bigdata.com; snapshot data/estimates/HON.json retrieved 2026-10-14T16:48:36Z",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_5 model_inputs] Base revenue FY2025",
+   "value": "$130.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_1 other] Roadmap milestones",
+   "value": "2026 100-256+ physical/12 logical; 2027 10,000/800; 2028 20,000/1,600; 2029 200,000/8,000; 2030 2M/80,000",
+   "basis": "guidance",
+   "source_url": "https://ionq.com/roadmap",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_3 other: milestone rNPV (roadmap probability tree)] Roadmap stages",
+   "value": "2026: 100-256+ physical / 12 logical; 2027: 10,000 / 800",
+   "basis": "reported",
+   "source_url": "https://ionq.com/roadmap",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: milestone rNPV (roadmap probability tree)"
+  },
+  {
+   "item": "[agent_4 other] Roadmap stages",
+   "value": "2026: 100-256+ physical, 12 logical; 2027: 10,000 physical, 800 logical; 2029: 200,000 / 8,000; 2030: 2,000,000 / 80,000",
+   "basis": "reported",
+   "source_url": "https://ionq.com/roadmap",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_1 other] 2035 quantum computing market",
+   "value": "$43-71B (mid $57B)",
+   "basis": "consensus",
+   "source_url": "https://postquantum.com/industry-news/mckinsey-quantum-monitor-2026/",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_3 other: market share of TAM (McKinsey QTM 2026)] 2035 quantum computing market",
+   "value": "$43-71B",
+   "basis": "reported",
+   "source_url": "https://postquantum.com/industry-news/mckinsey-quantum-monitor-2026/",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: market share of TAM (McKinsey QTM 2026)"
+  },
+  {
+   "item": "[agent_4 other] 2035 quantum computing market",
+   "value": "$43-71B (midpoint $57B)",
+   "basis": "reported",
+   "source_url": "https://postquantum.com/industry-news/mckinsey-quantum-monitor-2026/",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_1 sbc] SBC last fiscal year ($M)",
+   "value": "312.0",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001824920.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 sbc"
+  },
+  {
+   "item": "[agent_5 sbc] SBC last fiscal year ($M)",
+   "value": "312.0",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001824920.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 sbc"
+  },
+  {
+   "item": "[agent_1 SOTP] Prices paid for computing",
+   "value": "Oxford Ionics $1,589.7M; Lightsynq $306.2M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 SOTP"
+  },
+  {
+   "item": "[agent_3 SOTP] Oxford Ionics + Lightsynq consideration",
+   "value": "$1,589.7M + $306.2M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP"
+  },
+  {
+   "item": "[agent_1 other] QNT shares and cash",
+   "value": "263.31M shares; $2,106.7M cash",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 comps] QNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a (loss-making)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "[agent_2 other] Quantinuum share count",
+   "value": "263.31M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_4 other] QNT shares, cash, license payable",
+   "value": "263.31M; $2,106.7M; $60.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 comps] QNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/m (losses; Q2-26 revenue $8.0M; EV ~$6.8B)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_1 comps] GFS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a; P/E ttm 30.9x",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "[agent_4 comps] GFS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in run data; trailing P/E 30.9x, ~4.0x sales, 28.9% EBITDA margin",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_5 comps] GFS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / P/E ttm 30.9x; P/S ~4.0x ($27.3B/$6,791M)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[supervisor model] FY2026 revenue",
+   "value": "$455M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[agent_2 EV/sales] FY26 revenue guide",
+   "value": "$450-460M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 EV/sales"
+  },
+  {
+   "item": "[agent_3 comps] RGTI fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a (no consensus snapshot)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "[agent_4 comps] RGTI fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/m (losses; no consensus snapshot)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_4 comps] TSEM fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in run data; trailing EV/EBITDA 46.3x, EV/sales 14.7x, P/E 108.8x",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000928876.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_4 comps] ZS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in run data; ~10.9x sales, FCF yield 2.3%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001713683.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_5 comps] ZS fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / P/S ~10.9x ($36.4B/$3,352.5M)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001713683.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_4 comps] OKTA fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / n/a in run data; ~12.6x sales, FCF yield 2.5%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001660134.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 comps"
+  },
+  {
+   "item": "[agent_5 comps] OKTA fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / P/S ~12.6x ($38.6B/$3,073M); P/E ttm 130.3x",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001660134.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_2 sbc] SBC last fiscal year ($M)",
+   "value": "312.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/ionq-20251231.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 sbc"
+  },
+  {
+   "item": "[agent_4 sbc] SBC last fiscal year ($M)",
+   "value": "312.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/ionq-20251231.htm",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 sbc"
+  },
+  {
+   "item": "[agent_5 comps] QNT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / loss-making; H1-26 revenue -38% y/y; EV ~$6.8B at $33.46",
+   "basis": "estimate",
+   "source_url": "https://app.bigdata.com/documents/7F6791B4D2812C2A3F1CF5835E89B50A",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_5 comps] PL fwd P/E / fwd EV/EBITDA / growth = None / None / P/S ~13.5x ($5.1B/$378.3M); FCF yield 0.5% (estimate)",
+   "value": "fwd P/E / fwd EV/EBITDA / growth = None / None",
+   "basis": "(none given)",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001836833.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[agent_5 comps] PL fwd P/E / fwd EV/EBITDA / growth = None / None / P/S ~13.5x ($5.1B/$378.3M); FCF yield 0.5% (estimate)",
+   "value": "TTM revenue $378.3M (P/S denominator)",
+   "basis": "(filing-derived)",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001836833.json",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "[supervisor model] Shares outstanding 2026-10-13 = 408.908M",
+   "value": "408.908M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526421074/d165327d424b5.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Offering shares + pre-funded warrants = 50.0M (20.5M + 29.5M)",
+   "value": "50.0M (20.5M + 29.5M)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526421074/d165327d424b5.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Elisity expected close = Q4 2026 (outside date 2027-01-07)",
+   "value": "Q4 2026",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526419609/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor fair_value (a) / disagreements] Integrated system-level testing of the 256-qubit system had begun by May 2026",
+   "value": "begun (Q1 2026 release)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526208923/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a) / disagreements"
+  },
+  {
+   "item": "[supervisor fair_value (a)/(f) / disagreements / key_drivers] Superion 256: QPUs fabricated at SkyWater; no full-system fidelity published; customer deliveries planned for 2027",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.eweek.com/news/ionq-superion-256-data-centers/",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a)/(f) / disagreements / key_drivers"
+  },
+  {
+   "item": "[supervisor fair_value (a)/(e) / long_dated_review] Roadmap: 2027 10,000 physical / 800 logical; 2029-30 fault-tolerance targets",
+   "value": "10,000 / 800 (2027); FT 2029-30",
+   "basis": "guidance",
+   "source_url": "https://ionq.com/roadmap",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a)/(e) / long_dated_review"
+  },
+  {
+   "item": "[supervisor fair_value (a)/(b)/(f) / long_dated_review] DARPA QBI Stage C: IonQ entered 2026-10-07; six teams; Quantinuum not named",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.darpa.mil/news/2026/four-more-teams-enter-quantum-benchmarking-initiative-final-stage",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a)/(b)/(f) / long_dated_review"
+  },
+  {
+   "item": "[supervisor fair_value (e) / long_dated_review] DARPA utility-scale test by 2033",
+   "value": "2033",
+   "basis": "reported",
+   "source_url": "https://www.darpa.mil/news/2026/four-more-teams-enter-quantum-benchmarking-initiative-final-stage",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (e) / long_dated_review"
+  },
+  {
+   "item": "[supervisor fair_value (a)/(b) / key_drivers] McKinsey QTM 2026: quantum computing $43-71B by 2035 (mid $57B); >$1B sector revenue in 2025; April 2026",
+   "value": "$43-71B; >$1B",
+   "basis": "reported (secondary)",
+   "source_url": "https://postquantum.com/industry-news/mckinsey-quantum-monitor-2026/",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a)/(b) / key_drivers"
+  },
+  {
+   "item": "[supervisor fair_value (a) / model] Cisco FY2026 GAAP operating margin 24.3%",
+   "value": "24.3% (15,368/63,325)",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000858877.json",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a) / model"
+  },
+  {
+   "item": "[supervisor fair_value (a) / comps_review] IBM 17.8x and HON 22.0x NTM P/E",
+   "value": "17.8x / 22.0x",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/IONQ/peers.md",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a) / comps_review"
+  },
+  {
+   "item": "[supervisor fair_value (a)/(e) / disagreements] Q2 2026 adj. EBITDA -$120.3M (-$95.6M ex SkyWater spend); ~$480M/yr",
+   "value": "-$120.3M/qtr",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a)/(e) / disagreements"
+  },
+  {
+   "item": "[supervisor fair_value (a) / long_dated_review] TTM SBC ~$450M (F46)",
+   "value": "$450.0M",
+   "basis": "derived from reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001824920.json",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a) / long_dated_review"
+  },
+  {
+   "item": "[supervisor fair_value (a) / disagreements / changes / long_dated_review] Series A exercisable through 2032-07-09, Series B through 2032-10-14 (T 4.74y / 5.0y at horizon)",
+   "value": "2032-07-09 / 2032-10-14",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R23.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a) / disagreements / changes / long_dated_review"
+  },
+  {
+   "item": "[supervisor fair_value (a) / key_drivers / long_dated_review] Series C: 100M warrants @ $69.46 expiring 2033-10-16; 20.5M shares + 29.5M pre-funded at $40.00; net proceeds ~$1,988.5M; 408,907,678 shares 2026-10-13; settlement 2026-10-16",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526421074/d165327d424b5.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a) / key_drivers / long_dated_review"
+  },
+  {
+   "item": "[supervisor fair_value (a) / disagreements] Kalshi useful QC before 2030 33%, before 2035 48%, before 2040 58% (thin)",
+   "value": "33% / 48% / 58%",
+   "basis": "market data",
+   "source_url": "https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXQUANTUM",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (a) / disagreements"
+  },
+  {
+   "item": "[supervisor fair_value (b)] IonQ FY2025 revenue $130.0M (F3)",
+   "value": "$130.0M",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001824920.json",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (b)"
+  },
+  {
+   "item": "[supervisor fair_value (f) / disagreements] Quantinuum 263.31M shares (36.89M A + 226.41M B), cash $2,106.7M at 6/30, H1 operating cash use $129.1M",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2110105/000162828026056743/qnt-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (f) / disagreements"
+  },
+  {
+   "item": "[supervisor fair_value (f) / disagreements / key_drivers] QNT $33.51 (day low $33.46), prev close $36.76, 52-week high $86.79; -61% from high",
+   "value": "$33.51",
+   "basis": "market data",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (f) / disagreements / key_drivers",
+   "note": "re-sourced from twelvedata.com by the fix step"
+  },
+  {
+   "item": "[supervisor fair_value (d)/(f) / thesis_break_reason] Oxford Ionics $1,589.7M + Lightsynq $306.2M = $1,895.9M (~$1.9B)",
+   "value": "$1,895.9M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d)/(f) / thesis_break_reason"
+  },
+  {
+   "item": "[supervisor fair_value (d) / disagreements / model] FY2026 outlook $450-460M incl. SkyWater from 7/31, \"reflects elimination of estimated intercompany revenues\", no standalone figure",
+   "value": "$450-460M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526384388/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d) / disagreements / model"
+  },
+  {
+   "item": "[supervisor fair_value (d) / disagreements] Standalone FY2026 guide $280-290M (midpoint $285M), 2026-08-05",
+   "value": "$280-290M",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d) / disagreements"
+  },
+  {
+   "item": "[supervisor fair_value (d) / disagreements / comps_review] GFS ~4.0x sales, ~13.9x EBITDA, 28.9-29% EBITDA margin ($27.3B mcap / $6,791M revenue / $1,965M EBITDA)",
+   "value": "4.03x / 13.9x / 28.9%",
+   "basis": "derived from filings",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d) / disagreements / comps_review"
+  },
+  {
+   "item": "[supervisor fair_value (d)] Infineon 43% of SkyWater FY2025 revenue",
+   "value": "43%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1819974/000181997426000009/skyt-20251228.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d)"
+  },
+  {
+   "item": "[supervisor fair_value (d) / long_dated_review / key_drivers] IonQ paid ~$1.8B + debt = ~$2.05B EV for SkyWater ($741.3M cash, 24.14M shares)",
+   "value": "~$1.8B equity; ~$2.05B EV",
+   "basis": "reported + derived",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R30.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d) / long_dated_review / key_drivers"
+  },
+  {
+   "item": "[supervisor fair_value (d)] Capella $21.5M + IDQ $18.8M + Vector Atomic $8.7M FY25 partial-year revenue; ~$785M paid for other units",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526071562/R57.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d)"
+  },
+  {
+   "item": "[supervisor fair_value (d) / comps_review] Profitable security software 10.9-12.6x sales (ZS 10.85x, OKTA 12.55x)",
+   "value": "10.85x / 12.55x",
+   "basis": "derived from filings",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d) / comps_review"
+  },
+  {
+   "item": "[supervisor fair_value (d) / disagreements / changes / sizing] Elisity: no revenue/ARR disclosed; \"doubling\" language; >100 deployments; close expected Q4 2026",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526419609/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value (d) / disagreements / changes / sizing"
+  },
+  {
+   "item": "[supervisor disagreements / sizing / key_drivers] Elisity deal: $1,150M in stock, collar $33.07-$49.61, earnout up to $150M through 2028-01-31, $100M retention RSUs, outside date 2027-01-07",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526419609/ionq-20261009.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor disagreements / sizing / key_drivers"
+  },
+  {
+   "item": "[supervisor disagreements / fair_value bridge] Public-warrant cash $12.2M (1,065,043 @ $11.50)",
+   "value": "$12.2M",
+   "basis": "derived from reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/R22.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor disagreements / fair_value bridge"
+  },
+  {
+   "item": "[supervisor disagreements / thesis_break_reason] Pro forma cash and investments $2.0B after SkyWater; 6/30 cash $1,235.7M + ST $883.2M + LT $840.4M",
+   "value": "$2.0B; $2,959.3M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor disagreements / thesis_break_reason"
+  },
+  {
+   "item": "[supervisor disagreements] SkyWater residual debt VIE $32.9M + tool loans $39.5M; revolver $192.3M; cash $12.6M; Q2 revenue $156.4M; Q2 operating income $1.9M",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1819974/000181997426000031/skyt-20260628.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "[supervisor disagreements] Q2 interest income $32.0M (src 3)",
+   "value": "$32.0M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526341001/ionq-20260630.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "[supervisor long_dated_review] Wolfpack: up to 86% of 2022-24 revenue from Pentagon earmarks, $54.6M unfunded bookings, ~$400M insider sales; IonQ calls the claims false",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://fortune.com/2026/02/04/ionq-wolfpack-research-short-seller-says-quantum-computing-company-misled-investors-about-cancelled-government-backdoor-earmarks",
+   "checked": "2026-10-14",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "[supervisor long_dated_review / sizing] U.S. government up to ~40% of standalone revenue (from ~60% commercial)",
+   "value": "<= ~40%",
+   "basis": "derived from reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526335040/ionq-ex99_1.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor long_dated_review / sizing"
+  },
+  {
+   "item": "[supervisor key_drivers] SkyWater ~$626M gross revenue run-rate",
+   "value": "$626M",
+   "basis": "derived from reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1819974/000181997426000031/skyt-20260628.htm",
+   "checked": "2026-10-14",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "[supervisor comps_review] IBM EV/sales ttm 4.01x; HON 2.39x (peers.md NTM 4.50x); QBTS 325.73x",
+   "value": "4.01x / 2.39x / 325.73x",
+   "basis": "derived from filings",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001709048.json",
+   "checked": "2026-10-14",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "[supervisor fair_value / thesis_break / methods arithmetic] Supervisor prose arithmetic",
+   "value": "$12.37",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor fair_value / thesis_break / methods arithmetic"
+  },
+  {
+   "item": "[agent_1 other] Probability tree",
+   "value": "S1 (256-qubit/12 logical) eventually 0.95; S2 (10,000-qubit chip) on time 0.25 / late 0.40 / never 0.35; FT given S2 on time: on time 0.40 / late 0.30 / never 0.30; given S2 late: late 0.40 / never 0…",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 other] Terminal EBIT margins",
+   "value": "leader 28%, major 22%, subscale 8%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 other] Venture discount rate",
+   "value": "18% (rNPV); 15% (TAM states)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 other] Post-horizon development spend incl. stock comp",
+   "value": "$680M/yr = ~$380M cash (adj. EBITDA loss ex SkyWater-related R&D -$95.6M/qtr, src 8) + ~$300M SBC (2/3 of TTM $450M, F46); leader 4 yrs, late/major 6 yrs, subscale $250M/yr x 4, failure $500M/yr x 2 …",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 SOTP | agent_1 model_inputs | agent_1 other] Net cash now / at horizon",
+   "value": "$3,806M on 2026-10-16 / $3,256M on 2027-10-14",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 SOTP | agent_1 model_inputs | agent_1 other"
+  },
+  {
+   "item": "[agent_1 SOTP | agent_1 model_inputs | agent_1 other] Diluted share-equivalents now / at horizon",
+   "value": "514.1M (incl. Elisity and existing awards) / 536.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 SOTP | agent_1 model_inputs | agent_1 other"
+  },
+  {
+   "item": "[agent_1 SOTP | agent_1 model_inputs | agent_1 other] Operating units (non-computing)",
+   "value": "$2,500M = SkyWater $1,300M + acquired networking/space/sensing units $510M + Elisity $690M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 SOTP | agent_1 model_inputs | agent_1 other"
+  },
+  {
+   "item": "[agent_1 SOTP | agent_1 model_inputs | agent_1 other] Warrant claim (Series A/B/C)",
+   "value": "100M @ $69.46 (T 6.0y at horizon), 36.04M @ $99.88 and 43.01M @ $155.00 (T 4y, judgment); vol 70%; r 5.24%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 SOTP | agent_1 model_inputs | agent_1 other"
+  },
+  {
+   "item": "[agent_1 other] Leader NOPAT multiple",
+   "value": "22x",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 other] State probabilities",
+   "value": "leader 0.10, major 0.22, subscale 0.30, failure 0.38",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 other] Gordon multiple",
+   "value": "14.0x NOPAT",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "[agent_1 model_inputs] FY2027 revenue",
+   "value": "~$780M (+71%)",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "[agent_1 model_inputs] FY2028-29 growth",
+   "value": "+20% / +15%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "[agent_1 model_inputs] Adjusted EBIT margins",
+   "value": "-120% / -60% / -40% / -25%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "[agent_1 model_inputs] SBC % revenue",
+   "value": "120% -> 40%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "[agent_1 model_inputs] WACC",
+   "value": "13.6%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_1 model_inputs"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] Net cash at 2026-10-16",
+   "value": "$3,772.7M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] Cash use 2026-10-16 to 2027-10-14 (excludes SBC)",
+   "value": "~$550M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] Net cash at horizon",
+   "value": "$3,220M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] Horizon share-equivalents",
+   "value": "537.5M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] Operating units",
+   "value": "$2,164M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] SkyWater value",
+   "value": "$1,064M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] Other acquired units (IDQ, Capella, Vector Atomic, Qubitekk, Market Intelligence)",
+   "value": "$500M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 SOTP | agent_2 other] Elisity",
+   "value": "$600M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 SOTP | agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] 2035 quantum computing market",
+   "value": "$43-71B (mid $57B)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Mature EBIT margin (leader)",
+   "value": "25%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] NOPAT multiple in 2035",
+   "value": "18x (niche 15x)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Discount rate",
+   "value": "15%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Post-horizon development spend incl. stock comp (PV)",
+   "value": "leader $2.6B, leader-late $3.0B, contender $2.4B, niche $1.0B, fail $0.8B wind-down",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] S1: 256-qubit/12-logical system commissioned by end-2027",
+   "value": "p 0.70",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] S2 given S1: 10,000-physical/800-logical (2027 target)",
+   "value": "by 2029 0.35 / 2030-32 0.30 / never 0.35",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Market outcome given S2",
+   "value": "on time: leader 0.50/contender 0.35/niche 0.15; late: 0.15/0.40/0.45; no S2 or S1 fails: niche 0.35/fail 0.65",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] End-state probabilities",
+   "value": "leader-early 0.1225, leader-late 0.0315, contender 0.1697, niche 0.322, fail 0.3543",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] State probabilities",
+   "value": "leader 0.13 / major 0.25 / niche 0.27 / obsolete 0.35",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Option volatility",
+   "value": "90%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Option strike and term",
+   "value": "K $2,400M, T 4 years",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] IonQ / Quantinuum ratio",
+   "value": "0.85",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Share-equivalents today",
+   "value": "515.2M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 other] Expected 2035 computing EBIT",
+   "value": "~$0.44B",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 other"
+  },
+  {
+   "item": "[agent_2 model_inputs] FY2026 EBIT margin",
+   "value": "-2.6",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_2 model_inputs] FY2027 revenue growth",
+   "value": "1.26 (to ~$1,030M)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_2 model_inputs] D&A, capex, SBC % revenue",
+   "value": "0.50/0.10/1.2 FY26 declining",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_2 model_inputs] Net debt now",
+   "value": "-$3,772.7M (2026-10-16, after the offering)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_2 model_inputs] Net debt at horizon",
+   "value": "-$3,220M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_2 model_inputs] Diluted shares now / horizon",
+   "value": "515.2M / 537.5M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_2 model_inputs] WACC",
+   "value": "0.13",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_2 model_inputs] Terminal growth",
+   "value": "0.03",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 model_inputs"
+  },
+  {
+   "item": "[agent_3 other: milestone rNPV (roadmap probability tree)] P(S1 by end-2027)",
+   "value": "0.75",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: milestone rNPV (roadmap probability tree)"
+  },
+  {
+   "item": "[agent_3 other: milestone rNPV (roadmap probability tree)] P(S2 on time / late / never | S1)",
+   "value": "0.25 / 0.30 / 0.45",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: milestone rNPV (roadmap probability tree)"
+  },
+  {
+   "item": "[agent_3 other: milestone rNPV (roadmap probability tree)] Terminal EBIT margin",
+   "value": "22% leader, 15% contender",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: milestone rNPV (roadmap probability tree)"
+  },
+  {
+   "item": "[agent_3 other: milestone rNPV (roadmap probability tree)] NOPAT multiple 2035",
+   "value": "18x",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: milestone rNPV (roadmap probability tree)"
+  },
+  {
+   "item": "[agent_3 other: milestone rNPV (roadmap probability tree)] Discount rate",
+   "value": "15%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: milestone rNPV (roadmap probability tree)"
+  },
+  {
+   "item": "[agent_3 other: milestone rNPV (roadmap probability tree)] Post-horizon development spend incl. SBC (PV)",
+   "value": "leader $2.8B, late $3.2B, contender $2.5B, niche/fail $1.0B",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: milestone rNPV (roadmap probability tree)"
+  },
+  {
+   "item": "[agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)] Horizon share-equivalents",
+   "value": "536.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)"
+  },
+  {
+   "item": "[agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)] Net cash now (2026-10-16)",
+   "value": "$3,805.8M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)"
+  },
+  {
+   "item": "[agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)] Cash use to horizon (ex SBC)",
+   "value": "$650M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)"
+  },
+  {
+   "item": "[agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)] Net cash at horizon",
+   "value": "$3,155.8M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)"
+  },
+  {
+   "item": "[agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)] Operating units (non-computing)",
+   "value": "$2,118M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)"
+  },
+  {
+   "item": "[agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)] Warrant claim per state",
+   "value": "Series A 36.04M @ $99.88 (T 5y at horizon), Series B 43.01M @ $155 (T 5y), Series C 100M @ $69.46 (T 6y)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 SOTP | agent_3 other: cash floor plus computing option (Black-Scholes) | agent_3 other: market share of TAM (McKinsey QTM 2026) | agent_3 other: milestone rNPV (roadmap probability tree) | agent_3 other: transaction/listed mark (Quantinuum)"
+  },
+  {
+   "item": "[agent_3 other: market share of TAM (McKinsey QTM 2026)] State probabilities",
+   "value": "leader 0.10, major 0.22, niche 0.30, obsolete 0.38",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: market share of TAM (McKinsey QTM 2026)"
+  },
+  {
+   "item": "[agent_3 other: market share of TAM (McKinsey QTM 2026)] Shares of market",
+   "value": "15% / 6% / 2%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: market share of TAM (McKinsey QTM 2026)"
+  },
+  {
+   "item": "[agent_3 other: cash floor plus computing option (Black-Scholes)] Option underlying S",
+   "value": "$1,286M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: cash floor plus computing option (Black-Scholes)"
+  },
+  {
+   "item": "[agent_3 other: cash floor plus computing option (Black-Scholes)] Strike K",
+   "value": "$2,000M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: cash floor plus computing option (Black-Scholes)"
+  },
+  {
+   "item": "[agent_3 other: cash floor plus computing option (Black-Scholes)] Volatility",
+   "value": "90%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: cash floor plus computing option (Black-Scholes)"
+  },
+  {
+   "item": "[agent_3 other: cash floor plus computing option (Black-Scholes)] Term",
+   "value": "4 years",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: cash floor plus computing option (Black-Scholes)"
+  },
+  {
+   "item": "[agent_3 other: transaction/listed mark (Quantinuum)] QNT cash",
+   "value": "$2,106.7M at 6/30, ~$2,032M after Q3 burn",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: transaction/listed mark (Quantinuum)"
+  },
+  {
+   "item": "[agent_3 EV/sales] NTM revenue at horizon",
+   "value": "~$1,044M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 EV/sales"
+  },
+  {
+   "item": "[agent_3 EV/sales] EV/sales",
+   "value": "8.0x",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 EV/sales"
+  },
+  {
+   "item": "[agent_3 other: reverse DCF (diagnostic, weight 0)] Share-equivalents now",
+   "value": "514.1M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 other: reverse DCF (diagnostic, weight 0)"
+  },
+  {
+   "item": "[agent_3 model_inputs] FY2027-30 revenue growth",
+   "value": "80%, 35%, 30%, 25%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_3 model_inputs] EBIT margins FY2026-30",
+   "value": "-285% to -25%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_3 model_inputs] WACC",
+   "value": "15%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_3 model_inputs] Net debt now",
+   "value": "-$3,805.8M (2026-10-16)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_3 model_inputs] Net debt at horizon",
+   "value": "-$3,155.8M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_3 model_inputs] Shares now / horizon",
+   "value": "514.1M / 536.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_3 model_inputs] Custom legs",
+   "value": "9.34 / 9.78 / 10.73 / 19.10 / 12.68",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_3 model_inputs] Scenario deltas",
+   "value": "custom_pct bear -0.067, base 0.956, bull 3.444",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "[agent_4 other] P(S1 by end-2027)",
+   "value": "0.75; P(S2 on time | S1) = 0.30 = 0.75 / 0.30",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] Competition: P(leader | S2 on time) 0.45",
+   "value": "0.45 / 0.35 / 0.20",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] Leader terminal EBIT margin",
+   "value": "24.3%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] Terminal NOPAT multiples",
+   "value": "20x leader / 18x contender / 15x niche",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] Discount rate",
+   "value": "16%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] Post-horizon development spend incl. SBC",
+   "value": "leader $2.6B, late $3.1B, contender $2.4B, niche $1.2B, fail $0.9B (PV at horizon)",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 SOTP | agent_4 other] Horizon share-equivalents",
+   "value": "536.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 SOTP | agent_4 other"
+  },
+  {
+   "item": "[agent_4 SOTP | agent_4 other] Operating units (non-computing)",
+   "value": "$2,450M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 SOTP | agent_4 other"
+  },
+  {
+   "item": "[agent_4 SOTP | agent_4 other] Warrant claim",
+   "value": "Series A 36.04M @ $99.88 (T 4.75y), B 43.01M @ $155 (T 5.0y), C 100M @ $69.46 (T 6.0y at horizon)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 SOTP | agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] State probabilities",
+   "value": "leader 0.12 / major 0.25 / niche 0.30 / obsolete 0.33",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] Margins and multiples",
+   "value": "24.3% / 18% / 10% EBIT; 20x / 18x / 15x NOPAT; tax 21%; 16% discount",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] Option inputs",
+   "value": "S $1745M, K $2,400M, T 4y, sigma 90%, r 5.24%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] QNT EV",
+   "value": "$6829M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 other] IonQ/QNT ratio",
+   "value": "0.8",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 SOTP] GFS sales multiple and margin",
+   "value": "~4.0x sales, 28.9% EBITDA margin",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 SOTP"
+  },
+  {
+   "item": "[agent_4 SOTP] Software peers",
+   "value": "ZS 10.9x, OKTA 12.6x sales",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 SOTP"
+  },
+  {
+   "item": "[agent_4 other] Share-equivalents today",
+   "value": "519.44M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 other"
+  },
+  {
+   "item": "[agent_4 model_inputs] Revenue growth FY2027-28",
+   "value": "60%, 25%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "[agent_4 model_inputs] GAAP EBIT margins",
+   "value": "-200%, -110%, -80%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "[agent_4 model_inputs] WACC",
+   "value": "16%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "[agent_4 model_inputs] Shares now / horizon",
+   "value": "519.44M / 536.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "[agent_4 model_inputs] Custom legs",
+   "value": "$10.61 / $11.16 / $11.99 / $19.29 / $13.39",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "[agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)] Diluted share-equivalents at horizon (SBC as dilution)",
+   "value": "534.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)"
+  },
+  {
+   "item": "[agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0) | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)] Net cash now (2026-10-16, after offering settlement)",
+   "value": "$3,806M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0) | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)"
+  },
+  {
+   "item": "[agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)] Horizon-year cash use (SBC excluded: it is counted as dilution)",
+   "value": "-$602M (net cash at horizon $3,200M)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)"
+  },
+  {
+   "item": "[agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0) | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)] Series A/B/C warrant claim (179.05M)",
+   "value": "solved per state: $282M (failure) to $2,075M (winner); $653M at the fair value",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0) | agent_5 other: (e) cash floor plus computing option | agent_5 other: (f) transaction / listed marks (Quantinuum)"
+  },
+  {
+   "item": "[agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0) | agent_5 other: (f) transaction / listed marks (Quantinuum)] Operating units (non-computing) at horizon",
+   "value": "$2,052M = SkyWater $820M + networking/QKD/space/sensing $600M + Elisity $632M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 SOTP (units on own peers, computing at IonQ's acquisition cost) | agent_5 model_inputs | agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0) | agent_5 other: (f) transaction / listed marks (Quantinuum)"
+  },
+  {
+   "item": "[agent_5 other: (a) milestone rNPV on IonQ's roadmap] Stage tree probabilities",
+   "value": "A on-time winner 0.13 / B late winner 0.06 / C contender 0.15 / D niche 0.26 / E failure 0.40",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (a) milestone rNPV on IonQ's roadmap"
+  },
+  {
+   "item": "[agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states] Winner economics",
+   "value": "winner 25% share x 25% EBIT; late 15% x 20% (2037); contender 6% x 15%; niche 2% x 5%; tax 21%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states"
+  },
+  {
+   "item": "[agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0)] Exit multiple on 2035 NOPAT",
+   "value": "15.3x",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (a) milestone rNPV on IonQ's roadmap | agent_5 other: (b) market-share-of-TAM states | agent_5 other: (c) reverse DCF (diagnostic, weight 0)"
+  },
+  {
+   "item": "[agent_5 other: (a) milestone rNPV on IonQ's roadmap] Discount rate to horizon",
+   "value": "15%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (a) milestone rNPV on IonQ's roadmap"
+  },
+  {
+   "item": "[agent_5 other: (b) market-share-of-TAM states] State probabilities",
+   "value": "0.15 / 0.25 / 0.25 / 0.35",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (b) market-share-of-TAM states"
+  },
+  {
+   "item": "[agent_5 other: (e) cash floor plus computing option] Distressed unit multiples",
+   "value": "SkyWater 1.0x sales; other units 2.0x; Elisity 30% of price",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (e) cash floor plus computing option"
+  },
+  {
+   "item": "[agent_5 other: (e) cash floor plus computing option] Option volatility",
+   "value": "90%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (e) cash floor plus computing option"
+  },
+  {
+   "item": "[agent_5 other: (f) transaction / listed marks (Quantinuum)] Quantinuum EV",
+   "value": "$6,765M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (f) transaction / listed marks (Quantinuum)"
+  },
+  {
+   "item": "[agent_5 other: (f) transaction / listed marks (Quantinuum)] IonQ computing vs Quantinuum",
+   "value": "1.0x",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 other: (f) transaction / listed marks (Quantinuum)"
+  },
+  {
+   "item": "[agent_5 model_inputs] FY2027 revenue growth",
+   "value": "+82% (to ~$830M)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] FY2028-30 revenue growth",
+   "value": "+25%/yr",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] Adjusted EBIT margin path (ex-SBC)",
+   "value": "-115% / -60% / -40% / -22% / -8%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] SBC % revenue (dilution basis, informational)",
+   "value": "100% -> 28%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] Tax rate",
+   "value": "0%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] WACC",
+   "value": "17.5%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] Interest rate on cash",
+   "value": "4.3%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] Shares now (2026-10-16)",
+   "value": "517.2M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] Warrant adjustment",
+   "value": "-$653M at the fair value",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[agent_5 model_inputs] EV/sales multiple (weight 0)",
+   "value": "7.0x NTM",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "[supervisor model] Elisity closing shares",
+   "value": "34.775M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Elisity earnout + retention RSUs",
+   "value": "2.27M + 3.02M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Existing awards and small warrants",
+   "value": "20.46M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] New SBC grants to horizon",
+   "value": "15.0M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Small all-stock tuck-ins",
+   "value": "2.0M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Diluted shares at horizon",
+   "value": "536.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Net cash 2026-10-16",
+   "value": "$3,806M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Cash use 2026-10 to 2027-10 (SBC excluded)",
+   "value": "-$550M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Net cash at horizon",
+   "value": "$3,256M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Operating units",
+   "value": "$2,100M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Warrant claim",
+   "value": "$140M-$1,243M by state",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Mature terminal EBIT margin",
+   "value": "25% leader / 18% contender / 10% niche",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Terminal NOPAT multiple",
+   "value": "18x (niche 15x)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Post-horizon discount rate",
+   "value": "15%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] FY2027-29 revenue growth / adjusted EBIT margins",
+   "value": "0.70/0.25/0.25; -0.55/-0.35/-0.20",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] Quantinuum EV",
+   "value": "$6,792M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[supervisor model] SkyWater external revenue run-rate",
+   "value": "~$410M/yr",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "[model A1 reconciled] Diluted share-equivalents at the horizon (2027-10-14)",
+   "value": "536.4 M shares",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A1 reconciled"
+  },
+  {
+   "item": "[model A2 reconciled] Net cash now (2026-10-16, after the offering settles)",
+   "value": "3806.0 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A2 reconciled"
+  },
+  {
+   "item": "[model A3 reconciled] Net cash at the horizon",
+   "value": "3256.0 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A3 reconciled"
+  },
+  {
+   "item": "[model A4 reconciled] Non-computing operating units (SkyWater, networking/space/sensing units, Elisity)",
+   "value": "2100.0 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A4 reconciled"
+  },
+  {
+   "item": "[model A5 reconciled] SkyWater value",
+   "value": "1000.0 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A5 reconciled"
+  },
+  {
+   "item": "[model A6 reconciled] Elisity value (pending all-stock acquisition)",
+   "value": "600.0 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A6 reconciled"
+  },
+  {
+   "item": "[model A8 reconciled] 2035 quantum computing market (McKinsey QTM 2026)",
+   "value": "57.0 $B",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A8 reconciled"
+  },
+  {
+   "item": "[model A12 reconciled] Terminal NOPAT multiple for a 2035 leader",
+   "value": "18.0 x",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A12 reconciled"
+  },
+  {
+   "item": "[model A14 reconciled] Post-horizon development spend incl. SBC, leader state (PV at horizon)",
+   "value": "2800.0 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A14 reconciled"
+  },
+  {
+   "item": "[model A17 reconciled] Quantinuum enterprise value (listed trapped-ion mark)",
+   "value": "6792.0 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A17 reconciled"
+  },
+  {
+   "item": "[model A18 reconciled] IonQ computing value as a fraction of Quantinuum's EV",
+   "value": "0.9 x",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A18 reconciled"
+  },
+  {
+   "item": "[model A19 reconciled] Computing technology at IonQ's acquisition cost (Oxford Ionics + Lightsynq)",
+   "value": "1895.9 $M",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-10-14",
+   "feeds": "model A19 reconciled"
+  },
+  {
+   "item": "agent_2 src 33: 10-year Treasury Sep-2026 4.99% (discount rate / WACC inputs)",
+   "value": "4.99%",
+   "basis": "reported",
+   "source_url": "https://fred.stlouisfed.org/data/GS10.txt",
+   "checked": "2026-10-14",
+   "feeds": "agent_2 discount rate (judgment 15%) and WACC 0.13",
+   "note": "re-sourced by the fix step"
+  },
+  {
+   "item": "agent_5 src 24: QNT price $33.46 (Quantinuum EV $6,765M, QNT comps)",
+   "value": "$33.46",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/QNT?period1=1791982800&period2=1792011600&interval=1m",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 Quantinuum mark",
+   "note": "re-sourced by the fix step"
+  },
+  {
+   "item": "agent_5 src 25: IONQ monthly prices (beta 2.94, ~97% vol since 2021, own calc)",
+   "value": "beta 2.94; ~97% vol",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IONQ?period1=1609459200&period2=1792011600&interval=1mo",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 discount rate (judgment 15%), option vol (judgment 90%)",
+   "note": "re-sourced by the fix step"
+  },
+  {
+   "item": "agent_5 src 26: SPY monthly prices (beta)",
+   "value": "monthly prices",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1609459200&period2=1792011600&interval=1mo",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 beta",
+   "note": "re-sourced by the fix step"
+  },
+  {
+   "item": "agent_5 src 27: 10-year Treasury 5.24% on 2026-10-09",
+   "value": "5.24%",
+   "basis": "reported",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610",
+   "checked": "2026-10-14",
+   "feeds": "agent_5 exit multiple / discount rate",
+   "note": "re-sourced by the fix step"
+  }
+ ],
+ "notes": [
+  "Prices are 2026-10-14 intraday prints on the Yahoo chart feed (no key); re-open them if reused, they are not fixed records.",
+  "Twelve Data and Alpha Vantage homepages are not sources; no API key was used.",
+  "No option prices or implied volatility were looked up.",
+  "agent_5 beta (2.94) and ~97% long-run vol are its own calculations on public monthly prices; the gate recompute gives 3.07 / ~114% on simple monthly returns. Both feed only judgments (15% rate, 90% sigma) that the supervisor sets independently; nothing moves.",
+  "agent_3 P(S1) 0.75 (judgment) still lists the Benzinga page (HTTP 403) among its sources; it is agent context, not used in the supervisor value."
+ ],
+ "removed": 1,
+ "ok_note": "296 of the 297 gate figures end ok or as labelled estimates/judgments with arithmetic (248 passed the shards, 48 fixed here); 1 claim removed (no number used it). verified also lists 5 agent sources re-sourced from key-gated APIs (figures unchanged).",
+ "additional_resourced": 5
+}

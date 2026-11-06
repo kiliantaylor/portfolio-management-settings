@@ -1,0 +1,80 @@
+{
+  "symbol": "FCX", "agent_id": "agent_4", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 17.64, "p": 0.995}, {"K": 28, "p": 0.98}, {"K": 35, "p": 0.95}, {"K": 42, "p": 0.89},
+    {"K": 49, "p": 0.81}, {"K": 56, "p": 0.72}, {"K": 64, "p": 0.615}, {"K": 71, "p": 0.525},
+    {"K": 78, "p": 0.44}, {"K": 85, "p": 0.365}, {"K": 95, "p": 0.275}, {"K": 106, "p": 0.195},
+    {"K": 124, "p": 0.11}, {"K": 141, "p": 0.063}, {"K": 176, "p": 0.02}
+  ],
+  "ladder_1m": [
+    {"K": 56.46, "p": 0.95}, {"K": 59.99, "p": 0.885}, {"K": 63.52, "p": 0.785}, {"K": 65.64, "p": 0.71},
+    {"K": 67.76, "p": 0.625}, {"K": 70.58, "p": 0.51}, {"K": 73.40, "p": 0.395}, {"K": 75.52, "p": 0.315},
+    {"K": 77.64, "p": 0.245}, {"K": 81.17, "p": 0.155}, {"K": 84.70, "p": 0.09}
+  ],
+  "one_month_reasoning": "In-window events: FCX Q3 2026 results (expected ~Oct 22, 2026, historical pattern; some calendars say Oct 15) with first 2027 volume/cost color and Grasberg Block Cave ramp status; Escondida supervisors' union strike vote (Sept 28-30) outcome and any strike; unresolved US refined-copper tariff decision (Comex carries a tariff premium over LME). Q2 was a clean beat (adj EPS $0.74 vs $0.59) and H2 volumes are guided >20% above H1, so an operational beat is plausible, but copper sits at record highs ($6.83/lb Comex Sept 22) with LME stocks rebuilding ~20% since mid-August, and the stock jumped 4.5% on Sept 30, so near-term reversal risk offsets. Net: roughly symmetric, a small positive drift (median ~$70.9) at monthly vol ~13.5% (48%/3.5), slightly widened for the earnings print.",
+  "fair_value": {
+    "value": 72.0,
+    "method": "Blend of forward P/E (2027E EPS ~$4.30 x 17x = $73) and EV/EBITDA (2028 run-rate EBITDA ~$17B at mid-cycle ~$5.75/lb copper x 7x, less ~$5.3B net debt incl. downstream and ~$15B NCI value, /1.443B shares = ~$69), weighted 60/40 toward P/E.",
+    "methods": [
+      {"name": "P/E", "value": 73.0, "weight": 0.6,
+       "inputs": "2027E EPS $4.30 x 17x",
+       "inputs_detail": [
+         {"input": "2027E EPS", "value": "$4.30", "basis": "estimate", "source_ids": [3, 4, 2],
+          "derivation": "Consensus 2027 EPS $4.14 (24/7 Wall St., Sept 2026) nudged up because copper spot (~$6.6-6.8/lb) is above the $6.00 guidance deck; cross-check: management EBITDA ~$16.5B at $6 copper interpolated from ~$13B at $5 / ~$20B at $7, less ~$2.4B DD&A and ~$0.3B interest, ~40% tax, ~25% minority share => ~$6.2B / 1.443B shares = ~$4.30."},
+         {"input": "Diluted shares", "value": "1,443M", "basis": "reported", "source_ids": [2], "derivation": ""},
+         {"input": "Target P/E", "value": "17x", "basis": "judgment", "source_ids": [4],
+          "derivation": "FCX trades at ~18x forward (24/7 Wall St.); applied a slight discount because 2027 earnings are on near-record copper that sell-side (Goldman ~$11,500/t avg) does not expect to persist."}
+       ]},
+      {"name": "EV/EBITDA", "value": 69.0, "weight": 0.4,
+       "inputs": "2028 run-rate EBITDA $17B x 7x = $119B; less net debt $2.1B + downstream debt $3.2B and ~$15B NCI market value => $99B / 1.443B = ~$69",
+       "inputs_detail": [
+         {"input": "Run-rate EBITDA (full Grasberg, 2028)", "value": "$17B", "basis": "estimate", "source_ids": [4, 5, 6],
+          "derivation": "Management sensitivity ~$13B at $5 and ~$20B at $7 copper (~$390M per 10c); Grasberg reaching full capacity by end-2027 (PTFI avg 1.6B lbs 2027-29) lifts volume; applied at mid-cycle ~$5.75/lb given Goldman's view that >$13,000/t is not sustained."},
+         {"input": "EV/EBITDA multiple", "value": "7x", "basis": "judgment", "source_ids": [4, 6],
+          "derivation": "Mid-cycle multiple for a diversified copper major; current ~7.5x on 2027 by same arithmetic; no premium for jurisdiction risk (Indonesia IUPK post-2041 still under negotiation)."},
+         {"input": "Net debt", "value": "$2.1B + $3.2B downstream", "basis": "reported", "source_ids": [2], "derivation": ""},
+         {"input": "Noncontrolling interests value", "value": "~$15B", "basis": "estimate", "source_ids": [2, 10],
+          "derivation": "FCX owns 48.76% of PTFI (economic share higher until 2022 cost recovery closed) plus minorities at Cerro Verde/Morenci; approximated as ~25% of equity-level earnings capitalised at the same multiple."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 45.0, "prob": 0.25, "story": "Copper mean-reverts toward $4.75-5.00/lb as tariff premium unwinds, LME stocks rebuild and the AI data-center capex story cools; Grasberg Block Cave ramp slips again (as in Q1 2026 guide cut). 2027 EPS ~$2.60 at 17x."},
+    "base": {"price": 75.0, "prob": 0.5, "story": "Copper holds $5.75-6.50/lb on Chilean supply problems (Codelco H1 output -10%, Escondida labor, acid shortage) and electrification demand; Grasberg reaches ~80% by mid-2027 on schedule; EPS run-rate ~$4.3-4.6 at 16-17x."},
+    "bull": {"price": 115.0, "prob": 0.25, "story": "Structural deficit persists, copper $7+/lb, Grasberg at full capacity by late 2027, leach program adds volume, buybacks accelerate; EPS ~$5.7 (street high) at ~20x."}
+  },
+  "thesis_break_price": 48.0,
+  "thesis_break_reason": "Below ~$48 (-32%) the market would be pricing either a collapse in copper back below ~$5/lb or a second major Grasberg setback / adverse Indonesian permit terms; that is beyond ordinary 48%-vol noise over a few months and would mean the ramp-plus-price thesis failed.",
+  "catalysts": [
+    {"date": "2026-10-22", "event": "Q3 2026 results; first 2027 volume/cost outlook; Grasberg ramp update", "direction": "?"},
+    {"date": "2026-10", "event": "Escondida supervisors' strike vote outcome / possible strike", "direction": "+"},
+    {"date": "2026-Q4", "event": "US decision on refined-copper tariff (Comex premium)", "direction": "?"},
+    {"date": "2027-01", "event": "Q4 2026 results and 2027 guidance", "direction": "?"},
+    {"date": "2027 H1", "event": "Indonesia IUPK post-2041 extension decision", "direction": "?"},
+    {"date": "2027-07", "event": "Grasberg district ~80% capacity milestone (mid-2027)", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "Copper price path from record highs; tariff-driven Comex premium versus LME fundamentals",
+    "Grasberg Block Cave ramp execution (already delayed once in 2026)",
+    "Indonesian permit/ownership terms beyond 2041",
+    "Durability of AI/data-center copper demand narrative"
+  ],
+  "reasoning": "Alternative-lane research (Substack newsletters, independent analysis sites, prediction-market check, Indonesian-language press) points to a copper market at record highs ($14,779-14,833/t LME, $6.83/lb Comex in Sept 2026) driven by Chilean supply problems, an acid bottleneck and a US tariff premium, with visible fragility: LME stocks up ~20% since mid-August and Comex holding ~69% of exchange stocks. Kalshi lists short-dated copper contracts (~$6.6/lb) but no 12-month market I could use. FCX fundamentals (company filings): Q2 adj EPS $0.74 beat, 2026 copper 3.1B lbs, unit cost $1.90, net debt $2.1B ex-downstream, Grasberg ramp to ~80% mid-2027 and full by end-2027. At $70.58 the stock is ~17x my 2027E EPS of ~$4.30 and ~7.5x EV/EBITDA, i.e. roughly fair: blended fair value $72. The volume ramp is real upside but mostly known; the main swing factor is copper, which is at a record that major banks expect to fade. I centered the 12-month distribution at a ~$73.5 median (fair value plus small carry from ramp/buybacks), used ~43% vol (slightly below 48% realized as Grasberg de-risks) and fattened the left tail modestly for copper mean-reversion. X/Twitter and Reddit were not reached directly; social-style claims (e.g., data-center skepticism in a digest) were treated as sentiment only. Research was limited to ~12 queries.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "FCX Q1 2026 10-Q (Grasberg guidance cut)", "url": "https://www.sec.gov/Archives/edgar/data/0000831259/000083125926000025/fcx-20260331.htm", "date": "2026-04", "type": "filing", "in_lane": false},
+    {"title": "FCX Q2 2026 results press release (8-K Ex 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0000831259/000083125926000033/a2q2026exhibit991.htm", "date": "2026-07", "type": "company", "in_lane": false},
+    {"title": "FCX Q2 2026 earnings beat (TradingView/Investing summaries)", "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-freeportmcmoran-tops-q2-2026-estimates-shares-fall-93CH-4809566", "date": "2026-07", "type": "press", "in_lane": false},
+    {"title": "Freeport-McMoRan Has Ripped 44% in 2026. What Would It Take to Get FCX to $100? (24/7 Wall St.)", "url": "https://247wallst.com/investing/2026/09/07/freeport-mcmoran-has-ripped-44-in-2026-what-would-it-take-to-get-fcx-stock-up-to-100/", "date": "2026-09-07", "type": "newsletter", "in_lane": true},
+    {"title": "FCX Q2 Earnings Call Highlights Grasberg Ramp", "url": "https://finance.yahoo.com/markets/stocks/articles/fcx-q2-earnings-call-highlights-140000464.html", "date": "2026-07", "type": "press", "in_lane": false},
+    {"title": "Copper Price Outlook: Record Highs, Fragile Rally (Discovery Alert)", "url": "https://discoveryalert.com/analysis/copper-price-outlook-september-2026/", "date": "2026-09", "type": "trade", "in_lane": true},
+    {"title": "Copper Price Hits All-Time High of $14,779 (Under the Market Lens Substack)", "url": "https://underthemarketlens.substack.com/p/copper-price-14779-record-high-2026", "date": "2026-09-16", "type": "newsletter", "in_lane": true},
+    {"title": "Daily digest 2026-09-30 (No1's Daily Digest Substack)", "url": "https://no1sdailydigest.substack.com/p/daily-digest-2026-09-30", "date": "2026-09-30", "type": "newsletter", "in_lane": true},
+    {"title": "Kalshi copper monthly price markets", "url": "https://kalshi.com/category/commodities/metals", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "Freeport Resmi Ajukan Perpanjangan IUPK Setelah 2041 (CNBC Indonesia)", "url": "https://www.cnbcindonesia.com/news/20260804172749-4-756548/freeport-resmi-ajukan-perpanjangan-izin-tambang--iupk--setelah-2041", "date": "2026-08-04", "type": "press", "in_lane": true},
+    {"title": "FCX moved up 4.52% on Sep 30 (TradingKey)", "url": "https://www.tradingkey.com/news/market-movers/262194324-market-movers-fcx-20260930", "date": "2026-09-30", "type": "other", "in_lane": true},
+    {"title": "Fatal Accident Halts Escondida as BHP Strike Vote Looms (Discovery Alert)", "url": "https://discoveryalert.com/news/bhp-escondida-copper-strike-accident-september-2026/", "date": "2026-09", "type": "trade", "in_lane": true},
+    {"title": "Copper price outlook incl. Goldman/JPM views (Oregon Group Substack)", "url": "https://theoregongroup.substack.com/p/can-copper-hit-15000-in-2026", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "FCX earnings date (MarketBeat)", "url": "https://www.marketbeat.com/stocks/NYSE/FCX/earnings/", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

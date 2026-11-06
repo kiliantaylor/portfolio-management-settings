@@ -1,0 +1,80 @@
+{
+  "symbol": "ETN", "agent_id": "agent_5", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 108, "p": 0.998}, {"K": 173, "p": 0.99}, {"K": 216, "p": 0.972}, {"K": 259, "p": 0.926},
+    {"K": 303, "p": 0.845}, {"K": 346, "p": 0.735}, {"K": 389, "p": 0.607}, {"K": 432, "p": 0.48},
+    {"K": 476, "p": 0.362}, {"K": 519, "p": 0.265}, {"K": 584, "p": 0.158}, {"K": 648, "p": 0.09},
+    {"K": 756, "p": 0.033}, {"K": 865, "p": 0.011}, {"K": 1081, "p": 0.002}
+  ],
+  "ladder_1m": [
+    {"K": 345.83, "p": 0.98}, {"K": 367.44, "p": 0.93}, {"K": 389.05, "p": 0.835}, {"K": 402.02, "p": 0.75},
+    {"K": 414.99, "p": 0.65}, {"K": 432.28, "p": 0.505}, {"K": 449.57, "p": 0.365}, {"K": 462.54, "p": 0.273},
+    {"K": 475.51, "p": 0.197}, {"K": 497.12, "p": 0.105}, {"K": 518.74, "p": 0.05}
+  ],
+  "one_month_reasoning": "Eaton's Q3 2026 report (Nov 3) falls just OUTSIDE the window ending Oct 30, so no company print lands inside it. Events inside the window: FOMC Oct 27-28, where Polymarket (Sep 26) priced a 67% chance of a further 25bp hike after the Sep 16 hike, with the 10-year near 5.2%; a hike is largely priced, but a hawkish surprise hurts long-duration multiples like ETN's ~28x. Also late-October hyperscaler earnings (Microsoft/Alphabet/Meta/Amazon), whose 2027 capex commentary is the main short-term driver for data-center power names; sell-side already expects ~50%+ capex growth in 2027, so the bar is high. Pre-earnings drift after a guidance raise and September's +7.7% momentum are small positives, offset by rate risk. Net: about symmetric, median ~$433, lognormal at monthly vol 0.11 (39%/3.5).",
+  "fair_value": {
+    "value": 440.0,
+    "method": "Blend of forward P/E (NTM EPS at Sep 2027 of ~$16.8 for Eaton ex-Mobility x 26x = $437, weight 0.6) and FCF yield (NTM FCF/share ~$16.0 at a 3.6% yield = $444, weight 0.4). This is on the post-separation share: ETN holders also get Dana-combination shares worth roughly $13/share, which leave the ETN price when the deal closes in Q1 2027.",
+    "methods": [
+      {"name": "P/E", "value": 437.0, "weight": 0.6,
+       "inputs": "NTM EPS (Q4'27-Q3'28) ex-Mobility $16.8 x 26x forward P/E",
+       "inputs_detail": [
+         {"input": "FY2026 adjusted EPS guidance", "value": "$13.40-$13.60 (mid $13.50)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY2027 consensus EPS", "value": "~$15.6-15.8", "basis": "consensus", "source_ids": [6], "derivation": ""},
+         {"input": "NTM EPS at Sep 2027 (ex-Mobility)", "value": "$16.8", "basis": "estimate", "source_ids": [1, 2, 5, 6], "derivation": "2027 consensus ~$15.7 grown ~13% (management's 12%+ EPS CAGR target through 2030, backlog up 33-103%) for a Q4'27-Q3'28 window gives ~$17.6; minus ~$0.8/share of Mobility earnings (Q2 sales $841M at 13% margin, about $0.43B/yr of operating profit after tax over ~390M shares) that leaves in the Dana RMT, partly offset by paying down debt with the $1.1B cash distribution."},
+         {"input": "Forward P/E multiple", "value": "26x", "basis": "judgment", "source_ids": [4, 9, 14], "derivation": "10-year median TTM P/E ~26.6x (range 10.8-41.7x); today's forward ~28-30x. Cut toward the long-run median because the 10-year yield is ~5.2% with further Fed hikes priced, and AI capex growth is expected to slow sharply in 2028. Kept above the historical ~20x mid-cycle multiple because the business mix is now more electrical, data-center and aerospace, a mix the market prices at a premium (Vertiv ~49x)."}
+       ]},
+      {"name": "FCF yield", "value": 444.0, "weight": 0.4,
+       "inputs": "NTM FCF/share ~$16.0 (95-100% conversion of ~$16.8 EPS) / 3.6% FCF yield",
+       "inputs_detail": [
+         {"input": "FCF conversion", "value": "95-100% of adjusted earnings", "basis": "guidance", "source_ids": [5], "derivation": "2030 target from investor day"},
+         {"input": "NTM FCF per share", "value": "$16.0", "basis": "estimate", "source_ids": [1, 5], "derivation": "$16.8 EPS x 95% conversion (the low end, because working capital builds with a backlog growing 33%+ and YTD FCF of $874M is back-half weighted)"},
+         {"input": "FCF yield", "value": "3.6%", "basis": "judgment", "source_ids": [4, 9], "derivation": "Equivalent to ~27-28x FCF, consistent with the 26x P/E choice; the spread over the 5.2% 10-year is justified by 12%+ EPS growth"},
+         {"input": "Net debt", "value": "~$20.1B (debt $20.6B, cash $0.48B) after Boyd Thermal", "basis": "reported", "source_ids": [1], "derivation": "Context for leverage risk; not used directly in the per-share value"}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 290.0, "prob": 0.25, "story": "By mid-2027 the market prices 2028 AI capex growth slowing to single digits (UBS sees 6%). Orders roll over from the +41% pace, rates stay above 5%, and the multiple falls to ~19-20x on ~$15 EPS. This repeats the DeepSeek/tariff drawdown of Jan-Apr 2025 (-38% from high to low) and the Jul-Dec 2025 slide (-22%)."},
+    "base": {"price": 445.0, "prob": 0.5, "story": "Eaton delivers ~12-13% EPS growth, completes the Mobility RMT in Q1 2027 (price drops ~$13 when the Dana shares are distributed), and Boyd integrates. The multiple drifts down to ~26x while the backlog converts."},
+    "bull": {"price": 580.0, "prob": 0.25, "story": "Hyperscaler capex beats the $1.2T 2027 forecasts, margins move toward the 28% target early, and the multiple holds at ~32x on ~$18 EPS as the market re-rates Eaton toward the Vertiv/Schneider premium."}
+  },
+  "thesis_break_price": 320.0,
+  "thesis_break_reason": "About 26% below spot and near the Dec 2025 low of $312. At $320, ETN trades at ~19x its ~$16.8 NTM EPS, which only makes sense if the market expects earnings to fall: data-center orders cancelled or pushed out, Boyd margins breaking, or a recession (Polymarket 35% / Kalshi 24% by end-2027). A normal multiple swing with rates at 5%+ would not take it that low.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "FOMC decision (Polymarket 67% odds of a 25bp hike)", "direction": "-"},
+    {"date": "2026-10 late", "event": "Hyperscaler Q3 earnings and 2027 capex guides", "direction": "?"},
+    {"date": "2026-11-03", "event": "Eaton Q3 2026 earnings (guide $3.46-3.56 EPS, 13.5-15.5% organic growth)", "direction": "+"},
+    {"date": "2026-12", "event": "FOMC; Polymarket 72% odds of another hike", "direction": "-"},
+    {"date": "2027-02 early", "event": "Q4 2026 results and first FY2027 guidance", "direction": "?"},
+    {"date": "2027 Q1", "event": "Close of Mobility/Dana RMT: ~$1.1B cash to Eaton, Dana-combination shares to ETN holders (ETN price drops ex-distribution)", "direction": "?"},
+    {"date": "2027-05 / 2027-08", "event": "Q1 and Q2 2027 earnings; orders and backlog trends", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "How much AI data-center capex slows in 2028 and when the market prices it in (sell-side sees 2028 growth of 6-14%)",
+    "Rate path: 10-year near 5.2% with Fed hikes priced; high-multiple industrials are exposed",
+    "Exact per-share value of the Dana-combination distribution, and the resulting drop in the ETN price",
+    "Boyd Thermal integration and margins on liquid cooling; leverage of ~$20B net debt",
+    "Recession odds for 2027: 24-35% on prediction markets"
+  ],
+  "reasoning": "Anchor: ETN's own 12-month returns since 2011 (145 monthly windows, Twelve Data) have a median of +14%, 5th-95th percentile of -15% to +69%, and are negative 32% of the time. That sample comes from a 15-year re-rating from ~12x to ~30x, so it is biased upward and I did not use its median. Long-run monthly vol is 24-28%, recent realized vol 39%, and drawdowns of 22-38% happened twice in 2025 alone. Valuation: at ~28-30x forward the stock sits near its 10-year high multiple (41.7x TTM high, ~26.6x median), while 10-year yields at 5.2% and priced Fed hikes argue for slow multiple compression. Fundamentals are strong: Q2 organic growth +14%, FY26 EPS guide raised to $13.50, Americas orders +41%, backlog up 33-103%, 2027 consensus ~$15.7. Fair value ~$440 on the post-Mobility share is about flat versus spot. The Q1 2027 Dana RMT distribution (~$13/share) mechanically lowers the unadjusted 2027-09-30 price, which is why the median sits slightly below spot (~$427). The distribution mixes 80% lognormal (median $445, sigma 0.30) with 20% bear regime (median $340, sigma 0.35, for a 2028 capex-cliff or recession re-rating). That gives an effective vol of ~35%, a fatter left tail, and a scenario mean of ~$440. Research was limited: Twelve Data estimates and targets were paywalled, and one Polymarket page returned 403, so its figure comes from the search snippet.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Eaton Q2 2026 earnings release (8-K Ex.99)", "url": "https://www.sec.gov/Archives/edgar/data/0001551182/000155118226000027/etn06302026exhibit99.htm", "date": "2026-08", "type": "filing", "in_lane": false},
+    {"title": "Eaton to separate Mobility Group and combine with Dana (8-K Ex.99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0001551182/000095014226001733/eh260792115_ex9901.htm", "date": "2026-06-11", "type": "filing", "in_lane": true},
+    {"title": "ETN monthly price history 2011-2026 (Twelve Data time series)", "url": "https://twelvedata.com/", "date": "2026-09-30", "type": "data", "in_lane": true},
+    {"title": "ETN PE Ratio (TTM) 10-year history", "url": "https://www.gurufocus.com/term/pettm/ETN", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Eaton's growth targets look achievable (BofA; investor day 2030 targets)", "url": "https://finance.yahoo.com/news/eatons-growth-targets-look-achievable-173523706.html", "date": "2025-03-17", "type": "sell-side", "in_lane": true},
+    {"title": "Eaton (ETN) stock forecast and analyst estimates", "url": "https://stockanalysis.com/stocks/etn/forecast/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Kalshi: Recession next year? (2027) - 24%", "url": "https://kalshi.com/markets/kxrecssnber/recession/kxrecssnber-27", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket prices 35% chance of U.S. recession by end of 2027 (page 403; figure from search snippet, volume not available)", "url": "https://predictionnews.com/story/polymarket-prices-35-chance-of-u-s-recession-by-end-of-2027", "date": "2026-09-24", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket puts an October Fed hike at 67% and a 2026 rate cut at 3%", "url": "https://financefeeds.com/polymarket-puts-an-october-fed-hike-at-67-and-a-2026-rate-cut-at-3/", "date": "2026-09-26", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi: Fed rate cut in 2026?", "url": "https://kalshi.com/markets/kxratecut/fed-rate-cut/kxratecut-26dec31", "date": "2026-09-30", "type": "prediction-market", "in_lane": true},
+    {"title": "X post summarizing Goldman: hyperscaler capex +50% to $1.2T in 2027, +12% in 2028", "url": "https://x.com/ParadisLabs/status/2103469689586295103", "date": "2026-09", "type": "social", "in_lane": true},
+    {"title": "6 hyperscalers projected to spend $1.3T on capex in 2027", "url": "https://www.fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow/", "date": "2026-09-06", "type": "press", "in_lane": true},
+    {"title": "Eaton is trying to become Schneider before the AI factory standardises", "url": "https://electroneconomics.substack.com/p/eaton-is-trying-to-become-schneider", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Eaton vs. Vertiv: which industrials stock is a better buy in 2026 (peer multiples)", "url": "https://www.aol.com/articles/eaton-vs-vertiv-industrials-stock-135223000.html", "date": "2026-08", "type": "press", "in_lane": true},
+    {"title": "Eaton stock dips as analysts diverge on 2026 data-center outlook", "url": "https://parameter.io/eaton-etn-stock-2026-data-center-outlook/", "date": "2025-12-18", "type": "press", "in_lane": true},
+    {"title": "Eaton earnings date (Q3 2026 call Nov 3)", "url": "https://www.marketbeat.com/stocks/NYSE/ETN/earnings/", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

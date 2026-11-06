@@ -1,0 +1,644 @@
+{
+ "symbol": "BTDR",
+ "agent_id": "agent_3",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 2.66,
+   "p": 0.929
+  },
+  {
+   "K": 4.26,
+   "p": 0.81
+  },
+  {
+   "K": 5.32,
+   "p": 0.726
+  },
+  {
+   "K": 6.38,
+   "p": 0.646
+  },
+  {
+   "K": 7.45,
+   "p": 0.571
+  },
+  {
+   "K": 8.51,
+   "p": 0.505
+  },
+  {
+   "K": 9.58,
+   "p": 0.446
+  },
+  {
+   "K": 10.64,
+   "p": 0.395
+  },
+  {
+   "K": 11.7,
+   "p": 0.35
+  },
+  {
+   "K": 12.77,
+   "p": 0.311
+  },
+  {
+   "K": 14.36,
+   "p": 0.261
+  },
+  {
+   "K": 15.96,
+   "p": 0.22
+  },
+  {
+   "K": 18.62,
+   "p": 0.167
+  },
+  {
+   "K": 21,
+   "p": 0.132
+  },
+  {
+   "K": 27,
+   "p": 0.076
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 8.51,
+   "p": 0.758
+  },
+  {
+   "K": 9.04,
+   "p": 0.691
+  },
+  {
+   "K": 9.58,
+   "p": 0.62
+  },
+  {
+   "K": 9.9,
+   "p": 0.578
+  },
+  {
+   "K": 10.21,
+   "p": 0.537
+  },
+  {
+   "K": 10.64,
+   "p": 0.482
+  },
+  {
+   "K": 11.07,
+   "p": 0.43
+  },
+  {
+   "K": 11.38,
+   "p": 0.394
+  },
+  {
+   "K": 11.7,
+   "p": 0.359
+  },
+  {
+   "K": 12.24,
+   "p": 0.305
+  },
+  {
+   "K": 12.77,
+   "p": 0.257
+  }
+ ],
+ "one_month_reasoning": "Window 2026-10-02 to 2026-10-31. Scheduled: September production/operations update (~mid-October, as August's came 2026-09-17), which will show hashrate (~80+ EH/s self-mining) and BTC output; with hashprice up from ~$28 to ~$40/PH/day in September it should read decently but it is largely known. Q3 results are expected around mid-November (outside the window). No lock-up or index event identified. The main driver is BTC beta (BTC ~$83.5k) and possible further ATM/financing news (new $1B shelf, Tydal ~$500M project financing pending), which skews slightly negative; 25-30% short interest adds squeeze risk the other way. I therefore stay near a symmetric lognormal: median $10.50 (slight downward tilt for dilution overhang), monthly sigma ~30% (108%/3.5).",
+ "fair_value": {
+  "value": 6.23,
+  "method": "Blend of DCF ($2.27, 30%), SOTP ($7.75, 40%) and EV/NTM sales 3.0x ($8.16, 30%) = $6.23. All methods deduct ~$1.35B of current net debt (converts + 13%-cost related-party loans + BTC loan, less cash) growing to ~$1.75B with 12 months of burn; the equity is a thin slice on top of a leveraged, mostly-mining EV.",
+  "methods": [
+   {
+    "name": "DCF",
+    "value": 2.27,
+    "weight": 0.3,
+    "inputs": "FCFF 2027-31; revenue $1,440/1,450/1,500/1,650/1,800M; EBITDA margin 25/30/32/35/37%; capex $800/450/350/300/250M; cash tax 5-12% of EBITDA; WACC 12.5%; terminal growth 3%; EV ~$1.97B less net debt $1.35B over 315M shares = $1.97, rolled forward 12m at 15% cost of equity = $2.27. Sensitivity: WACC 11.5-13.5% / g 2-3% gives $1.1-$4.0.",
+    "inputs_detail": [
+     {
+      "input": "2027 revenue",
+      "value": "$1,440M",
+      "basis": "consensus",
+      "source_ids": [
+       21
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "2028-2031 revenue path",
+      "value": "$1,450M / $1,500M / $1,650M / $1,800M",
+      "basis": "estimate",
+      "source_ids": [
+       15,
+       16,
+       14
+      ],
+      "derivation": "April-2028 halving cuts block subsidy (~mining is 75% of revenue per H1), offset by full-year Tydal (~$294M/yr = $2.4M/MW x 121 MW) and AI cloud growth from ~$86M ARR and 206.5 MW pipeline"
+     },
+     {
+      "input": "EBITDA margin",
+      "value": "25% (2027) rising to 37% (2031)",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       14,
+       15
+      ],
+      "derivation": "Q2-2026 adj. EBITDA margin 13.6% ($31.1M/$228.8M); improves with hashprice ~$38-40 vs ~$28-32 in Q2 and mix shift toward Tydal at ~90% NOI margin; capped because CoinShares puts BTDR all-in cost ($89.7k/BTC) above spot BTC"
+     },
+     {
+      "input": "Capex",
+      "value": "$800M 2027, falling to $250M by 2031",
+      "basis": "estimate",
+      "source_ids": [
+       4,
+       15,
+       1,
+       2
+      ],
+      "derivation": "Tydal ~$500M remaining + mining infra guidance $200-280M + GPUs in 2027; thereafter AI build and ASIC refresh at lower run-rate; Q2-26 capex was $266M/quarter"
+     },
+     {
+      "input": "WACC",
+      "value": "12.5%",
+      "basis": "judgment",
+      "source_ids": [
+       17,
+       3,
+       5,
+       6,
+       7
+      ],
+      "derivation": "Cost of equity ~15.3% = 10Y UST 5.29% + beta ~2.0 x 5% ERP (108% realized vol, BTC beta); pre-tax debt cost ~8% blend of 4-5% converts and 13% effective related-party loans; ~60/40 equity/debt"
+     },
+     {
+      "input": "Terminal growth",
+      "value": "3%",
+      "basis": "judgment",
+      "source_ids": [
+       15,
+       17
+      ],
+      "derivation": "Inflation-like escalation on long-dated colocation lease; below nominal rates (10Y 5.29%)"
+     },
+     {
+      "input": "Convertible notes principal",
+      "value": "$1,215M ($65M Nov-2024, $375M Jun-2025 @ $15.88, $400M Nov-2025 @ $17.77, $375M Feb-2026 @ $9.93)",
+      "basis": "reported",
+      "source_ids": [
+       2,
+       5,
+       6,
+       7
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "Related-party (BIT Group) debt",
+      "value": "~$729M ($423.3M asset-collateralized loans + 3,669 BTC loan x ~$83.5k)",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       3,
+       18
+      ],
+      "derivation": "Outstanding balances as of 2026-09-29 from the H1 6-K; BTC loan marked at the 2026-10-01 BTC price"
+     },
+     {
+      "input": "Cash at 2026-09-30",
+      "value": "~$250M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       16
+      ],
+      "derivation": "$456.8M at 6/30 less ~$250M Q3 capex (Q2 run-rate $266M, $252.6M 12-mo commitments) and $100M Rockdale land, plus ~$96M net new BIT borrowing and modest operating cash after BTC sales"
+     },
+     {
+      "input": "Net debt today (Feb-2026 in-the-money convert treated as equity)",
+      "value": "~$1,350M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       5
+      ],
+      "derivation": "1,215 + 729 + 27 bank - 250 cash = ~$1,720M; less $375M Feb-2026 notes (conv. $9.93 < $10.64 spot) moved to share count"
+     },
+     {
+      "input": "Diluted shares",
+      "value": "~315M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       5
+      ],
+      "derivation": "271.8M at 6/30 + 37.8M from Feb-2026 notes (100.7557 sh/$1,000 x $375M) + ~5M ATM/RSU"
+     }
+    ]
+   },
+   {
+    "name": "SOTP",
+    "value": 7.75,
+    "weight": 0.4,
+    "inputs": "Tydal $2.47B (NOI ~$261M at 9% cap, 15% execution haircut) + AI cloud $0.26B (3x ~$86M ARR) + mining $0.87B (3x ~$290M cash margin) + 1,228 MW pipeline $0.49B ($0.4M/MW) + SEALMINER $0.10B = EV $4.19B; less forward net debt $1.75B; / 315M shares.",
+    "inputs_detail": [
+     {
+      "input": "Tydal run-rate NOI",
+      "value": "~$261M/yr",
+      "basis": "guidance",
+      "source_ids": [
+       15
+      ],
+      "derivation": "$2.4M revenue per IT MW x 121 MW x ~90% NOI margin"
+     },
+     {
+      "input": "Tydal cap rate and haircut",
+      "value": "9.0% cap; 15% haircut",
+      "basis": "judgment",
+      "source_ids": [
+       15,
+       17,
+       10
+      ],
+      "derivation": "16-yr lease with ~$1.3B LC backstop but non-IG tenant (Volta) and construction risk; cap rate set ~370bp over 10Y UST 5.29%; haircut for delivery risk Needham flagged (pipeline weaker)"
+     },
+     {
+      "input": "AI cloud value",
+      "value": "$260M (3x ARR $86M)",
+      "basis": "judgment",
+      "source_ids": [
+       16,
+       14
+      ],
+      "derivation": "GPU cloud is capex-heavy with short asset lives; multiple well below the 12.9x EV/NTM sales of contracted-HPC peers"
+     },
+     {
+      "input": "Mining cash margin",
+      "value": "~$290M/yr",
+      "basis": "estimate",
+      "source_ids": [
+       14,
+       16,
+       18
+      ],
+      "derivation": "~13,200 self-mined BTC/yr (Aug-26: 1,310 BTC incl. co-mining) x (~$83.5k BTC - $61.1k cash cost)"
+     },
+     {
+      "input": "Mining multiple",
+      "value": "3x cash margin",
+      "basis": "judgment",
+      "source_ids": [
+       14
+      ],
+      "derivation": "All-in cost above BTC spot and April-2028 halving within 6 months of the valuation date; mining-led peers trade ~3.7x EV/NTM sales"
+     },
+     {
+      "input": "Pipeline power",
+      "value": "1,228 MW x $0.4M/MW",
+      "basis": "judgment",
+      "source_ids": [
+       1,
+       10
+      ],
+      "derivation": "Un-energized pipeline needs tenant and capex; Needham notes Rockdale on hold and Clarington dedicated to mining"
+     },
+     {
+      "input": "SEALMINER ASIC business",
+      "value": "$100M",
+      "basis": "judgment",
+      "source_ids": [
+       1,
+       11,
+       9
+      ],
+      "derivation": "Q2 external sales only $0.4M; KBW flags inventory buildup; SEAL04 delays subject of class action"
+     },
+     {
+      "input": "Net debt at Oct-2027 (forward)",
+      "value": "~$1,750M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       4,
+       15
+      ],
+      "derivation": "$1,350M today plus ~$400M net burn over 12 months: Tydal ~$500M remaining build (project-financed), mining infra capex $200-280M guidance, interest on 13% related-party debt, partly offset by EBITDA"
+     },
+     {
+      "input": "Diluted shares",
+      "value": "~315M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       5
+      ],
+      "derivation": "271.8M at 6/30 + 37.8M from Feb-2026 notes (100.7557 sh/$1,000 x $375M) + ~5M ATM/RSU"
+     }
+    ]
+   },
+   {
+    "name": "EV/sales",
+    "value": 8.16,
+    "weight": 0.3,
+    "inputs": "NTM revenue ~$1,440M x 3.0x = EV $4.32B; less forward net debt $1.75B; / 315M shares.",
+    "inputs_detail": [
+     {
+      "input": "NTM revenue at Oct-2027",
+      "value": "$1,440M",
+      "basis": "consensus",
+      "source_ids": [
+       21
+      ],
+      "derivation": "2027 consensus used as proxy: 2028 halving drag roughly offset by full Tydal run-rate"
+     },
+     {
+      "input": "EV/NTM sales multiple",
+      "value": "3.0x",
+      "basis": "judgment",
+      "source_ids": [
+       14
+      ],
+      "derivation": "BTDR trades 2.9x today; mining-led peers 3.7x; AI-contracted peers 12.9x. Skeptic keeps near current given mining ~75% of revenue and financing overhang"
+     },
+     {
+      "input": "Net debt at Oct-2027 (forward)",
+      "value": "~$1,750M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       4,
+       15
+      ],
+      "derivation": "$1,350M today plus ~$400M net burn over 12 months: Tydal ~$500M remaining build (project-financed), mining infra capex $200-280M guidance, interest on 13% related-party debt, partly offset by EBITDA"
+     },
+     {
+      "input": "Diluted shares",
+      "value": "~315M",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       5
+      ],
+      "derivation": "271.8M at 6/30 + 37.8M from Feb-2026 notes (100.7557 sh/$1,000 x $375M) + ~5M ATM/RSU"
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 4.0,
+   "prob": 0.3,
+   "story": "BTC slides toward $65-70k, hashprice back below $30 and BTDR's all-in cost (~$90k/BTC) leaves mining cash-negative after interest; Tydal slips or project financing comes on bad terms; more converts/ATM at lower prices and the $373M current BIT related-party loans get rolled at 13%. Market starts discounting the April-2028 halving. Equity rerated to ~1.5x sales after dilution."
+  },
+  "base": {
+   "price": 9.0,
+   "prob": 0.45,
+   "story": "Tydal phases come online Q4-26 to H2-27 roughly on time, hashprice holds high-$30s, AI cloud grows modestly; but ongoing capex and refinancing keep dilution flowing (share count up ~10-15%) and the halving looms. Stock trades near the blended fair value plus some optionality on the 3 GW power portfolio."
+  },
+  "bull": {
+   "price": 20.0,
+   "prob": 0.25,
+   "story": "BTC rallies above $110k and a second large HPC lease (Rockdale/Clarington) is signed with an investment-grade tenant; market rerates BTDR toward contracted-HPC peers (12.9x EV/NTM sales), short covering from ~25-30% of float amplifies the move toward the ~$22 consensus target."
+  }
+ },
+ "thesis_break_price": 5.0,
+ "thesis_break_reason": "Below ~$5 (under the Feb-2026 direct offering at $7.94 and the Aug-2026 insider buys at $8.84-9.04, and roughly where equity is worth only Tydal net of debt), the stock would most likely be signalling a fundamental problem rather than noise: failed or punitive Tydal project financing, a Volta/tenant problem, inability to roll the 13% related-party loans, or a distressed equity raise. At that level my base case (orderly but dilutive funding) is broken.",
+ "catalysts": [
+  {
+   "date": "2026-10 (mid)",
+   "event": "September 2026 production and operations update",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11 (mid, est.)",
+   "event": "Q3 2026 results: gross margin, cash burn, SEALMINER inventory, financing update",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11-15",
+   "event": "Coupon on 4.00% notes due 2031; continued interest burden on ~$1.2B converts",
+   "direction": "-"
+  },
+  {
+   "date": "2026-Q4",
+   "event": "Tydal phase 1 delivery to Volta (first lease revenue)",
+   "direction": "+"
+  },
+  {
+   "date": "2026-Q4 to 2027-H1",
+   "event": "~$500M Tydal project-level debt financing (terms/dilution risk)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-2027 (SDNY schedule)",
+   "event": "Ruling on motion to dismiss SEAL04/A4 securities class action",
+   "direction": "?"
+  },
+  {
+   "date": "2027-03/04",
+   "event": "FY2026 results and first US-GAAP 20-F; auditor and related-party disclosures",
+   "direction": "?"
+  },
+  {
+   "date": "2027-04 onward",
+   "event": "Maturities of 24-month BIT Assets collateralized loans ($373.5M current at 6/30) \u2014 refinance at ~13% or repay",
+   "direction": "-"
+  },
+  {
+   "date": "2027-H2",
+   "event": "Tydal full 121 MW online; possible additional HPC lease at Rockdale (200 acres bought Aug-26)",
+   "direction": "+"
+  },
+  {
+   "date": "2027 (ongoing)",
+   "event": "Market starts pricing April-2028 Bitcoin halving into miner valuations",
+   "direction": "-"
+  }
+ ],
+ "key_uncertainties": [
+  "Bitcoin price and hashprice path (mining is ~75% of revenue; all-in cost ~$90k/BTC vs ~$83.5k spot)",
+  "Whether Tydal is delivered on time and financed without heavy equity dilution; Volta's credit and the $1.3B LC backstop",
+  "Ability to sign further investment-grade HPC leases that would justify a rerating toward 12.9x contracted-peer multiples",
+  "Refinancing of ~$730M related-party (BIT Group/Jihan Wu-linked) loans at ~13% and governance/related-party opacity raised by Callisto",
+  "SEALMINER/SEAL04 execution and inventory; outcome of the securities class action",
+  "Pace of ATM/convert dilution under the new $1B shelf"
+ ],
+ "reasoning": "Facts: Q2-26 revenue $228.8M (+47%), gross loss $8.5M, net loss $92.3M, adj. EBITDA $31.1M; H1 operating cash flow -$505M and capex $360M; ~$1.2B of converts plus ~$730M of related-party BIT Group loans (13% effective on the asset loans, 3,669 BTC borrowed) against ~$250M estimated cash. CoinShares puts BTDR's all-in cost at $89.7k/BTC versus BTC ~$83.5k today, and the 10Y Treasury is 5.29%, which makes long-duration, cash-burning equity expensive. The bull case is real (Tydal $4.7B/16-yr lease at ~90% NOI, AI cloud ARR $86M, ~3 GW power, consensus PT ~$22, CFO/CSO open-market buys near $9, 25-30% short interest), but every dollar of it sits behind leverage and a long pipe of dilution (converts at $9.93-$17.77, $1B shelf, Tydal's $500M build). My DCF of contracted+existing cash flows gives only ~$2/share because 2027 FCFF is about -$460M and terminal FCF is ~$340M at a 12.5% WACC; SOTP ($7.75) and EV/sales at BTDR's own ~3x ($8.16) give more credit to Tydal and the power portfolio. Blended fair value ~$6.2. Bear-lane findings (Callisto governance allegations from 2025, the SEAL04 class action, KBW's $10 target citing inventory, cash burn and related-party debt, Needham's pipeline cut) are mostly known to the market, so I do not treat them as an imminent collapse. I set the 12-month distribution as a lognormal with median $8.60 (between fair value and spot, reflecting expected dilution and halving overhang but also ongoing AI-optionality pricing) and sigma 0.80 (somewhat below 108% realized vol), giving P(>=$10.64) ~40% and ~7% tail below $2.66 for financing distress. Scenario mean (~$10.25) is a bit below spot. Research limits: Twelve Data and Alpha Vantage endpoints were paywalled/rate-limited, so consensus estimates came from web aggregators; Simply Wall St and some sites blocked fetching, and the Basis Report article's date/context is inconsistent (insider buy itself corroborated by a second source).",
+ "lane": "skeptic",
+ "sources": [
+  {
+   "title": "Bitdeer Reports Unaudited Financial Results for Q2 2026 (6-K ex99-1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001899123/000121390026086938/ea030131301ex99-1.htm",
+   "date": "2026-08-10",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Bitdeer H1 2026 interim financial statements / MD&A (6-K ex99-2): debt schedule, BIT Group loans, 3,669 BTC loan, cash flow, commitments",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001899123/000121390026104638/ea030647301ex99-2.htm",
+   "date": "2026-09-29",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer H1 2026 unaudited consolidated financial statements (6-K ex99-1): BIT Assets collateralized loans, 13.0% effective rate, capped calls, note settlements",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001899123/000121390026104638/ea030647301ex99-1.htm",
+   "date": "2026-09-29",
+   "type": "filing",
+   "in_lane": true
+  },
+  {
+   "title": "Earnings call transcript: Bitdeer misses Q2 2026 estimates (Investing.com)",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-bitdeer-misses-q2-2026-estimates-but-shares-rise-93CH-4849328",
+   "date": "2026-08-10",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Bitdeer Announces Pricing of Upsized US$325.0M 5.00% Convertible Senior Notes due 2032 (conv. price ~$9.93)",
+   "url": "https://www.manilatimes.net/2026/02/20/tmt-newswire/globenewswire/bitdeer-announces-pricing-of-upsized-us3250-million-convertible-senior-notes-offering/2281865",
+   "date": "2026-02-20",
+   "type": "company",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer Announces Pricing of US$400.0M 4.00% Convertible Senior Notes due 2031 (conv. price ~$17.77)",
+   "url": "https://www.manilatimes.net/2025/11/13/tmt-newswire/globenewswire/bitdeer-announces-pricing-of-us4000-million-convertible-senior-notes-offering/2223290",
+   "date": "2025-11-13",
+   "type": "company",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer prices $330 million convertible notes offering at 4.875% (conv. price ~$15.88) - Investing.com",
+   "url": "https://www.investing.com/news/company-news/bitdeer-prices-330-million-convertible-notes-offering-at-4875-93CH-4100654",
+   "date": "2025-06-18",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer stock falls on short-seller report (Callisto Research) - Investing.com",
+   "url": "https://www.investing.com/news/stock-market-news/bitdeer-stock-falls-on-shortseller-report-93CH-4068249",
+   "date": "2025-05-28",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Keefe, Bruyette & Woods cuts Bitdeer price target to $10.00 (market perform); consensus 11 buy/3 hold, avg PT $24.82",
+   "url": "https://www.dailypolitical.com/2026/08/13/keefe-bruyette-woods-cuts-bitdeer-technologies-group-nasdaqbtdr-price-target-to-10-00.html",
+   "date": "2026-08-13",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "Needham cuts Bitdeer stock price target on weaker pipeline outlook - Investing.com",
+   "url": "https://www.investing.com/news/analyst-ratings/needham-cuts-bitdeer-stock-price-target-on-weaker-pipeline-outlook-93CH-4851473",
+   "date": "2026-08-11",
+   "type": "sell-side",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer Lawsuit: Company Seeks Dismissal of Investor Claims Over SEAL04 Chip Roadmap - TipRanks",
+   "url": "https://www.tipranks.com/news/class-action/bitdeer-technologies-group-lawsuit-company-seeks-dismissal-of-investor-claims-over-seal04-chip-roadmap",
+   "date": "2026-07",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer Securities Fraud Class Action: Undisclosed Production Problems and 14% Stock Decline - Kahn Swick & Foti (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/01/21/3222386/6713/en/Bitdeer-Technologies-Group-Securities-Fraud-Class-Action-Result-of-Undisclosed-Production-Problems-and-14-Stock-Decline-Investors-may-Contact-Lewis-Kahn-Esq-at-Kahn-Swick-Foti-LLC.html",
+   "date": "2026-01-21",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer Drops 17% on $300M Notes as Insiders Buy - Basis Report (insider purchases by CFO and CSO; article date/context partly inconsistent, insider buy corroborated by source 9)",
+   "url": "https://www.basisreport.com/news/btdr-bitdeer-drops-17-insiders-buy",
+   "date": "2026-09-14",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "CoinShares Bitcoin Mining Report - Q2 2026 (BTDR all-in cost $89,737/BTC, cash cost $61,051/BTC; EV/NTM sales 2.9x vs 3.7x mining-led and 12.9x AI-contracted)",
+   "url": "https://coinshares.com/us/insights/research-data/bitcoin-mining-report-q2-2026/",
+   "date": "2026-09-15",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "Bitdeer Announces $4.7 Billion, 16-Year AI/HPC Data Center Lease for Tydal, Norway Campus",
+   "url": "https://ir.bitdeer.com/news-releases/news-release-details/bitdeer-announces-47-billion-16-year-aihpc-data-center-lease",
+   "date": "2026-08",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Bitdeer August 2026 Production and Operations Update (6-K)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001899123/000121390026100537/ea030523501ex99-1.htm",
+   "date": "2026-09-17",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "FRED: 10-Year Treasury Constant Maturity (DGS10), 5.29% on 2026-09-30",
+   "url": "https://fred.stlouisfed.org/series/DGS10",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Current price of Bitcoin for Oct. 1, 2026 - Fortune (~$83.4k)",
+   "url": "https://fortune.com/article/price-of-bitcoin-10-01-2026/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Bitdeer Technologies Group: Target Price Consensus - MarketScreener (14 analysts, avg $21.79, low $10, high $35)",
+   "url": "https://www.marketscreener.com/quote/stock/BITDEER-TECHNOLOGIES-GROU-153541576/consensus/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Bitdeer (BTDR) Short Interest - MarketBeat (57.9M shares short, 24.6% of float as of 2026-07-31)",
+   "url": "https://www.marketbeat.com/stocks/NASDAQ/BTDR/short-interest/",
+   "date": "2026-08",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer Technologies Group Stock Forecast - Simply Wall St (2027 consensus revenue ~$1,437M)",
+   "url": "https://simplywall.st/stocks/us/software/nasdaq-btdr/bitdeer-technologies-group/future",
+   "date": "2026-09",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Bitcoin miner Bitdeer tumbles 17% as $300M convertible note offering spurs dilution fears - CoinDesk",
+   "url": "https://www.coindesk.com/business/2026/02/19/bitcoin-miner-bitdeer-tumbles-17-as-usd300-million-convertible-note-offering-spurs-dilution-fears",
+   "date": "2026-02-19",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Bitdeer Form F-3ASR automatic shelf registration (new $1B shelf)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001899123/000121390026087012/ea0300737-f3asr_bitdeer.htm",
+   "date": "2026-08",
+   "type": "filing",
+   "in_lane": true
+  }
+ ]
+}

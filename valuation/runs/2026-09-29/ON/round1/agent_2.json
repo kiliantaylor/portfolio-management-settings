@@ -1,0 +1,93 @@
+{
+  "symbol": "ON", "agent_id": "agent_2", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 18.99, "p": 0.99}, {"K": 30, "p": 0.97}, {"K": 38, "p": 0.93}, {"K": 46, "p": 0.87},
+    {"K": 53, "p": 0.80}, {"K": 61, "p": 0.72}, {"K": 68, "p": 0.64}, {"K": 76, "p": 0.56},
+    {"K": 84, "p": 0.48}, {"K": 91, "p": 0.42}, {"K": 103, "p": 0.32}, {"K": 114, "p": 0.25},
+    {"K": 133, "p": 0.165}, {"K": 152, "p": 0.105}, {"K": 190, "p": 0.045}
+  ],
+  "ladder_1m": [
+    {"K": 60.76, "p": 0.92}, {"K": 64.56, "p": 0.845}, {"K": 68.36, "p": 0.745}, {"K": 70.63, "p": 0.675},
+    {"K": 72.91, "p": 0.60}, {"K": 75.95, "p": 0.50}, {"K": 78.99, "p": 0.405}, {"K": 81.27, "p": 0.34},
+    {"K": 83.55, "p": 0.28}, {"K": 87.34, "p": 0.195}, {"K": 91.14, "p": 0.13}
+  ],
+  "one_month_reasoning": "onsemi's own Q3 report is not confirmed but is expected around Nov 2, 2026 (the pattern in past years), so it probably falls just outside the window ending Oct 29. What falls inside are read-throughs from the value chain: Tesla Q3 deliveries (~Oct 2) and Tesla Q3 earnings (~late Oct); TI (~Oct 20-21), STMicro and NXP (~Oct 22-28) Q3 reports and Q4 guides; and US/China/Europe September EV sales data (mid-Oct). The peer tone is constructive (TI Q2 +23% y/y with a higher Q3 guide; NXP raised its Q3 revenue range; Infineon raised its FY guide and saw automotive orders pick up). Against that, North American EV sales fell 33% y/y in August and Infineon flagged weak high-voltage EV drivetrain power, which is onsemi's SiC exposure. These roughly cancel. The stock has bounced ~14% from the $66.60 close on analyst day (Sep 16) after a ~44% three-month drawdown driven by the sector, so I see no clear drift. I use a symmetric lognormal centred on $76 with ~16% one-month sigma, a little below the 64%/3.5 realized figure because no company-specific print is in the window.",
+  "fair_value": {
+    "value": 89.0,
+    "method": "Blend of forward P/E (NTM EPS at Sep-2027 of ~$4.80 x 19x = $91), FCF yield (FY27 FCF/share ~$4.80 at 5% = $96) and EV/sales (2027 revenue $7.42B x 4.0x less ~$0.85B net debt = $74), weighted 50/30/20 to give ~$89.",
+    "methods": [
+      {"name": "P/E", "value": 91.0, "weight": 0.5,
+       "inputs": "NTM EPS as of Sep-2027 $4.80 x 19x",
+       "inputs_detail": [
+         {"input": "2027 consensus EPS", "value": "$4.53", "basis": "consensus", "source_ids": [5], "derivation": ""},
+         {"input": "2026 consensus EPS", "value": "$3.20", "basis": "consensus", "source_ids": [5], "derivation": ""},
+         {"input": "NTM EPS at Sep-2027 (Q4'27-Q3'28)", "value": "$4.80", "basis": "estimate", "source_ids": [3, 5, 9, 10, 13], "derivation": "Consensus has 2027 EPS at $4.53, up 41%. I cut it about 7% to ~$4.20 because Q2 automotive fell 2% q/q, North American EV sales fell 33% y/y in August and Infineon cites weak high-voltage EV power, then add one year of mid-teens growth to roll it forward to NTM. That growth follows the Q3 guide ($0.81-0.93 vs $0.74) and the upturn peers report (TI +23% y/y, NXP raised its guide). I assume the Synaptics deal (closes mid-2027, ~12% dilution, accretive within 18 months) is roughly EPS-neutral in the NTM window."},
+         {"input": "Target P/E", "value": "19x", "basis": "judgment", "source_ids": [6, 5], "derivation": "The current forward P/E is 19.6x (stockanalysis). Analog/power peers trade in the high-teens to high-20s. I keep ~19x: it sits between a trough-cycle derating (Fed hike, SiC price war) and mid-cycle recovery multiples."}
+       ]},
+      {"name": "FCF yield", "value": 96.0, "weight": 0.3,
+       "inputs": "FY2027 FCF ~$1.85B / ~385M shares = $4.80/share at a 5.0% FCF yield",
+       "inputs_detail": [
+         {"input": "TTM FCF", "value": "$1.50B", "basis": "reported", "source_ids": [6], "derivation": ""},
+         {"input": "LTM FCF margin", "value": "24.2%", "basis": "reported", "source_ids": [3], "derivation": ""},
+         {"input": "FY2027 FCF", "value": "$1.85B", "basis": "estimate", "source_ids": [3, 5], "derivation": "$7.42B consensus 2027 revenue x ~25% FCF margin (LTM 24.2%, rising as utilization climbs from 68% to 83%)."},
+         {"input": "Share count", "value": "~385M", "basis": "estimate", "source_ids": [6, 3], "derivation": "389M shares outstanding, minus buybacks (105% of FCF YTD, $6B authorization). Synaptics shares are excluded until the mid-2027 close."},
+         {"input": "FCF yield", "value": "5.0%", "basis": "judgment", "source_ids": [6], "derivation": "The current $29.6B market cap on $1.5B TTM FCF is a ~5.1% yield. I hold that yield on forward FCF."}
+       ]},
+      {"name": "EV/sales", "value": 74.0, "weight": 0.2,
+       "inputs": "2027 revenue $7.42B x 4.0x = $29.7B EV, less $0.85B net debt, / 389M shares",
+       "inputs_detail": [
+         {"input": "2027 revenue", "value": "$7.42B", "basis": "consensus", "source_ids": [5], "derivation": ""},
+         {"input": "Net debt", "value": "$0.84B", "basis": "reported", "source_ids": [6], "derivation": ""},
+         {"input": "EV/sales multiple", "value": "4.0x", "basis": "judgment", "source_ids": [6, 5], "derivation": "The current EV ($30.4B) is ~4.1x 2027 consensus revenue. I keep ~4.0x because margins are recovering, not yet at the 53% 2030 target."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 48.0, "prob": 0.25, "story": "The EV slowdown deepens (North America already -33% y/y, China -11%). Chinese 150/200mm SiC pricing (6-inch wafers at ~$500 vs $1,500) erodes onsemi's SiC margins, and the auto recovery that peers see bypasses high-voltage power. The Fed tightens further and semis derate again. 2027 EPS ~$3.30 at ~14x."},
+    "base": {"price": 88.0, "prob": 0.5, "story": "The analog/power upcycle confirmed by TI, NXP, Infineon and STMicro carries onsemi's gross margin into the low-to-mid 40s. AI data-center revenue keeps doubling off a small base, automotive is flat to up modestly, and the Synaptics deal closes mid-2027 with little EPS effect. NTM EPS ~$4.6-4.8 at 18-19x."},
+    "bull": {"price": 128.0, "prob": 0.25, "story": "Consensus proves too low: utilization rises past 85%, gross margin passes 45%, and 800V HVDC design wins pull AI data-center expectations forward. The semis multiple recovers toward the June-2026 peak, when ON traded at $135. NTM EPS ~$5.5 at 23x."}
+  },
+  "thesis_break_price": 52.0,
+  "thesis_break_reason": "Below ~$52 (about 11-12x consensus 2027 EPS, and under the $66.60 analyst-day low by a wide margin), the market would be pricing a new EPS downturn, not just a derating. That would most likely mean the cycle recovery reported by peers is failing for onsemi specifically: lost SiC traction-inverter share to Chinese or European rivals, a reversed gross-margin path, or the Synaptics deal destroying value.",
+  "catalysts": [
+    {"date": "2026-10-02", "event": "Tesla Q3 deliveries (large SiC customer read-through)", "direction": "?"},
+    {"date": "2026-10-21", "event": "TI Q3 results / Q4 guide (analog cycle read)", "direction": "?"},
+    {"date": "2026-10-27", "event": "NXP and STMicro Q3 results; auto demand read-through", "direction": "?"},
+    {"date": "2026-11-02", "event": "onsemi Q3 2026 results and Q4 guide (estimated date)", "direction": "+"},
+    {"date": "2026-11", "event": "Infineon FY26 Q4 results and FY27 outlook incl. SiC/HV automotive", "direction": "?"},
+    {"date": "2027-02", "event": "onsemi Q4 2026 results and 2027 commentary", "direction": "?"},
+    {"date": "2027 H1", "event": "Synaptics shareholder vote and regulatory approvals (incl. China SAMR)", "direction": "?"},
+    {"date": "2027 mid", "event": "Synaptics deal close (~12% share issuance)", "direction": "-"},
+    {"date": "2027 H2", "event": "First 800V HVDC data-center ramps (per analyst day, late 2027)", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "Automotive/EV demand: North American EV sales -33% y/y in August and China -11%. onsemi's automotive revenue fell 2% q/q in Q2.",
+    "SiC pricing and share versus Chinese substrate/device suppliers and Infineon/ST moving to 200mm.",
+    "Whether onsemi wins meaningful 800V HVDC share in AI data centers. Nvidia's named partners include Navitas, Infineon, ROHM, ST and TI.",
+    "Synaptics integration, dilution and regulatory timing.",
+    "Macro and sector multiple: the Fed hiked in September 2026, and the SOX fell up to 29% from its June peak."
+  ],
+  "reasoning": "Basic facts: Q2 2026 revenue $1.60B, non-GAAP EPS $0.74, GM 39.3%, and a Q3 guide of $1.65-1.75B and EPS $0.81-0.93. Consensus EPS is $3.20 for 2026 and $4.53 for 2027. There are 389M shares and ~$0.84B net debt, and TTM FCF is $1.5B. An all-stock Synaptics deal (~$7B EV, ~12% dilution) was announced Jun 25 and is due to close mid-2027. The 3-month ~44% drop from the $134.92 high was mostly a sector event: the SOX fell up to 29% from its June peak on valuation, a Broadcom guide, yields and China competition, and the Fed hiked on Sep 16, the day of the analyst day. It was not an onsemi miss. The value chain gives mixed signals. On the positive side, the analog/power cycle has turned (TI Q2 +23% y/y with a higher Q3 guide, NXP raised its Q3 revenue range, Infineon posted record revenue, raised FY guidance and cites a clear pickup in automotive orders, ST's Q2 revenue rose 12.7% q/q), and AI 800V power is a real content driver that Wolfspeed and Infineon also cite. On the negative side, onsemi's specific niche (high-voltage SiC for EV traction) is the weak spot: Infineon calls out weak HV drivetrain power, NA EV sales fell 33% y/y and China 11% y/y in August, and Chinese SiC wafer pricing has collapsed. Wolfspeed's revenue is still tiny and its gross margin negative, which shows SiC is oversupplied. Nvidia's 800V partner list is crowded, and onsemi's HVDC revenue ramp starts only in late 2027. I therefore haircut consensus EPS ~7% and use mid-cycle multiples, which gives a blended fair value of ~$89 (P/E $91, FCF yield $96, EV/sales $74). Scenarios are 25% bear at $48, 50% base at $88 and 25% bull at $128, a mean of ~$88. The distribution is a lognormal with median ~$82 (fair value discounted for the execution and cycle risks above) and sigma ~0.50, below the 64% realized vol, which is inflated by a sector crash, but fat enough for a high-beta semi. That puts P(≥$76) at ~0.56 and P(≥$91) at ~0.42. Research was limited to web sources: onsemi's IR site returned 503, and Twelve Data statistics and estimates were paywalled.",
+  "lane": "industry",
+  "sources": [
+    {"title": "ON Semiconductor Stock Fell 9% After Its Analyst Day (TIKR via Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/semiconductor-stock-fell-9-analyst-145422594.html", "date": "2026-09-17", "type": "press", "in_lane": false},
+    {"title": "onsemi Q2 2026 earnings: beat and Q3 guide (Investing.com)", "url": "https://ng.investing.com/news/stock-market-news/onsemi-beats-q2-estimates-guides-q3-revenue-above-consensus-2634650", "date": "2026-08-03", "type": "press", "in_lane": false},
+    {"title": "onsemi Q2 2026 slides: margins expand, AI data center revenue doubles (Investing.com)", "url": "https://www.investing.com/news/company-news/onsemi-q2-2026-slides-margins-expand-ai-data-center-revenue-doubles-93CH-4832507", "date": "2026-08-03", "type": "company", "in_lane": false},
+    {"title": "onsemi to acquire Synaptics - press release (Synaptics 8-K Ex 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0000817720/000114036126026434/ef20076748_ex99-1.htm", "date": "2026-06-25", "type": "filing", "in_lane": true},
+    {"title": "ON Semiconductor stock forecast (stockanalysis.com)", "url": "https://stockanalysis.com/stocks/on/forecast/", "date": "2026-09-29", "type": "data", "in_lane": false},
+    {"title": "ON Semiconductor statistics (stockanalysis.com)", "url": "https://stockanalysis.com/stocks/on/statistics/", "date": "2026-09-29", "type": "data", "in_lane": false},
+    {"title": "Texas Instruments Q2 2026 earnings release (8-K Ex 99)", "url": "https://www.sec.gov/Archives/edgar/data/0000097476/000009747626000148/q22026txnex99-eredgar.htm", "date": "2026-07-22", "type": "filing", "in_lane": true},
+    {"title": "NXP Q3 2026 guidance raised (Benzinga earnings)", "url": "https://www.benzinga.com/quote/NXPI/earnings-forecasts", "date": "2026-07-28", "type": "data", "in_lane": true},
+    {"title": "Infineon: Q3 FY2026 record sales; raises full-year outlook", "url": "https://www.infineon.com/press-release/2026/infpr202608-125", "date": "2026-08-05", "type": "company", "in_lane": true},
+    {"title": "Global EV sales reach 1.8 million units in August 2026 (Benchmark Mineral Intelligence)", "url": "https://source.benchmarkminerals.com/article/global-ev-sales-reach-1-8-million-units-in-august-2026", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "STMicroelectronics Q2 2026 results (Form 6-K)", "url": "https://www.sec.gov/Archives/edgar/data/0000932787/000093278726000058/stm-6k_q2x2026.htm", "date": "2026-07", "type": "filing", "in_lane": true},
+    {"title": "Wolfspeed Q4 FY26 results and Q1 FY27 outlook (Morningstar/Business Wire)", "url": "https://www.morningstar.com/news/business-wire/20260819859398/wolfspeed-reports-financial-results-for-the-fourth-quarter-of-fiscal-2026", "date": "2026-08-19", "type": "company", "in_lane": true},
+    {"title": "Wolfspeed deep analysis: Chinese 6-inch SiC wafer price collapse (Capital Blueprint Substack)", "url": "https://capitalblueprint.substack.com/p/wolfspeed-nyse-wolf-deep-analysis", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Wolfspeed device revenue rebound driven by AI data center business (Semiconductor Today)", "url": "https://www.semiconductor-today.com/news_items/2026/aug/wolfspeed-250826.shtml", "date": "2026-08-25", "type": "trade", "in_lane": true},
+    {"title": "Navitas collaborates with NVIDIA MGX ecosystem to accelerate 800VDC (Semiconductor Today)", "url": "https://www.semiconductor-today.com/news_items/2026/jun/navitas-030626.shtml", "date": "2026-06-03", "type": "trade", "in_lane": true},
+    {"title": "Nvidia GTC: More support for 800-VDC data centers (Embedded)", "url": "https://www.embedded.com/nvidia-gtc-more-support-for-800-vdc-data-centers/", "date": "2026-03", "type": "trade", "in_lane": true},
+    {"title": "The 2026 Semiconductor Selloff Creates an Opportunity (Leverage Shares)", "url": "https://leverageshares.com/en-eu/insights/the-2026-semiconductor-selloff-creates-an-opportunity/", "date": "2026-08", "type": "newsletter", "in_lane": true},
+    {"title": "ON Semiconductor stock is already half off its high (Trefis)", "url": "https://www.trefis.com/stock/on/articles/615701/on-semiconductor-stock-is-already-half-off-its-high-so-how-low-could-a-market-shock-take-it/2026-09-17", "date": "2026-09-17", "type": "press", "in_lane": false},
+    {"title": "onsemi (ON) earnings date (MarketBeat)", "url": "https://www.marketbeat.com/stocks/NASDAQ/ON/earnings/", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

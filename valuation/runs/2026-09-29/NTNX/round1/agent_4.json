@@ -1,0 +1,86 @@
+{
+  "symbol": "NTNX", "agent_id": "agent_4", "as_of": "2026-10-01", "horizon": "2027-10-01",
+  "ladder": [
+    {"K": 17.68, "p": 0.997}, {"K": 28, "p": 0.985}, {"K": 35, "p": 0.96}, {"K": 42, "p": 0.91},
+    {"K": 49, "p": 0.835}, {"K": 57, "p": 0.73}, {"K": 64, "p": 0.63}, {"K": 71, "p": 0.53},
+    {"K": 78, "p": 0.435}, {"K": 85, "p": 0.355}, {"K": 95, "p": 0.26}, {"K": 106, "p": 0.18},
+    {"K": 124, "p": 0.10}, {"K": 141, "p": 0.055}, {"K": 177, "p": 0.017}
+  ],
+  "ladder_1m": [
+    {"K": 56.56, "p": 0.95}, {"K": 60.09, "p": 0.885}, {"K": 63.63, "p": 0.78}, {"K": 65.75, "p": 0.70},
+    {"K": 67.87, "p": 0.61}, {"K": 70.70, "p": 0.49}, {"K": 73.53, "p": 0.37}, {"K": 75.65, "p": 0.29},
+    {"K": 77.77, "p": 0.225}, {"K": 81.30, "p": 0.135}, {"K": 84.84, "p": 0.08}
+  ],
+  "one_month_reasoning": "No scheduled company catalyst falls inside 2026-10-01 to 2026-10-31: Q1 FY27 results (quarter ends Oct 31) are normally reported in late November/early December, outside the window. The Q4 beat and +6.8% post-earnings move (Aug 27) and subsequent target raises are already a month old, so post-earnings drift is largely spent; the stock is near the top of its 52-week range after a >30% YTD run and an independent downgrade on valuation (Sep 21), which slightly offsets residual momentum. Ryax tuck-in (Sep 22) is immaterial. The Broadcom VDDK download removal (late Aug) is a slow-burn migration-friction story, not a one-month price driver. So I use a near-symmetric lognormal centred about 0.4% below spot (small skew for mean reversion from highs) with monthly vol ~13% (47%/3.5).",
+  "fair_value": {
+    "value": 72.0,
+    "method": "Blend of forward P/E (FY28E non-GAAP EPS $2.65 x 27x = $71.5), FCF yield (FY28E FCF/share $3.50 x 20x + $3.4 net cash = $73.4) and EV/sales (FY28E revenue $3.6B x 5.5x + $1.0B net cash over 294M shares = $70.8); weighted ~$72, roughly in line with the $70.7 price and the $76.8 analyst average.",
+    "methods": [
+      {"name": "P/E", "value": 71.5, "weight": 0.4,
+       "inputs": "FY28E (NTM at horizon) non-GAAP EPS $2.65 x 27x",
+       "inputs_detail": [
+         {"input": "FY27 consensus non-GAAP EPS", "value": "$2.31", "basis": "consensus", "source_ids": [3], "derivation": ""},
+         {"input": "FY26 non-GAAP EPS", "value": "$2.04", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY28E non-GAAP EPS", "value": "$2.65", "basis": "estimate", "source_ids": [1, 2, 3], "derivation": "FY27 consensus $2.31 grown ~15%: ~12% revenue growth (FY27 guide midpoint) plus modest margin leverage from 24-25% op-margin guide and flat ~294M share count from buybacks"},
+         {"input": "Forward P/E multiple", "value": "27x", "basis": "judgment", "source_ids": [3, 9], "derivation": "Current price $70.7 / FY27 EPS $2.31 = 30.6x; an independent analyst notes NTNX trades in line with low-teens-growth software peers, so I assume modest de-rating to ~27x NTM by Oct 2027 as growth stays low-teens"}
+       ]},
+      {"name": "FCF yield", "value": 73.4, "weight": 0.35,
+       "inputs": "FY28E FCF $1.03B / 294M shares = $3.50 x 20x + net cash $3.4/share",
+       "inputs_detail": [
+         {"input": "FY27 FCF guidance", "value": "$850M-$950M", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY28E FCF", "value": "$1.03B", "basis": "estimate", "source_ids": [1], "derivation": "FY27 guide midpoint $900M grown ~14%, consistent with 12% revenue growth and FCF margin ~28-29% (FY26 29%)"},
+         {"input": "Diluted shares", "value": "~294M", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "Net cash", "value": "$1.01B ($2.36B cash/investments less $1.35B convertible notes)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "P/FCF multiple", "value": "20x", "basis": "judgment", "source_ids": [9], "derivation": "Stock trades ~18.7x EV/FY27 FCF per independent analysis; 20x on FCF (which includes heavy SBC) for a low-teens grower with 16% ARR growth"}
+       ]},
+      {"name": "EV/sales", "value": 70.8, "weight": 0.25,
+       "inputs": "FY28E revenue $3.6B x 5.5x EV/sales + $1.0B net cash / 294M shares",
+       "inputs_detail": [
+         {"input": "FY27 revenue guidance", "value": "$3.18B-$3.23B", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY28E revenue", "value": "$3.6B", "basis": "estimate", "source_ids": [1, 3], "derivation": "FY27 consensus $3.22B grown ~12%, in line with ARR growth of 16% decelerating"},
+         {"input": "EV/sales multiple", "value": "5.5x", "basis": "judgment", "source_ids": [9], "derivation": "Current ~5.7x EV/FY27 revenue per independent analysis; slight compression on NTM basis"}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 45.0, "prob": 0.25, "story": "Server supply constraints and elevated hardware/memory prices persist longer than guided, more orders shift to future start dates, Broadcom keeps raising migration friction (VDDK pulled, vSphere Standard reintroduced) and revenue-quality concerns (unbilled receivables) resurface; FY27 guide cut, EPS ~$2.2 on 20x."},
+    "base": {"price": 76.0, "prob": 0.50, "story": "FY27 delivered near guide (rev ~$3.2B, FCF ~$900M), ARR mid-teens, external storage (Dell PowerStore, Pure, NetApp) widens funnel; buybacks hold share count; FY28 EPS ~$2.65 at ~28x."},
+    "bull": {"price": 105.0, "prob": 0.25, "story": "Supply normalises and deferred-start orders convert, VMware renewal wave accelerates large G2000 migrations, Dell PowerStore channel scales, ARR growth re-accelerates to high-teens and op margin beats; FY28 EPS ~$3.0 at 35x."}
+  },
+  "thesis_break_price": 48.0,
+  "thesis_break_reason": "Below ~$48 (about -32%, under 21x FY27 consensus EPS and ~15x EV/FCF) the market would be pricing a guidance cut or ARR decel to ~low-teens, i.e. that VMware-exit demand is stalling (Broadcom friction or competitive loss to Proxmox/OpenShift/hyperscalers) or that supply-delayed orders are not converting - a fundamental break rather than volatility.",
+  "catalysts": [
+    {"date": "2026-12 (late Nov/early Dec)", "event": "Q1 FY27 results; guide $755-765M rev, 26-28% op margin", "direction": "?"},
+    {"date": "2027-02 (late Feb/early Mar)", "event": "Q2 FY27 results", "direction": "?"},
+    {"date": "2027-04/05", "event": ".NEXT 2027 user conference: AI/agentic, external storage, partner updates", "direction": "+"},
+    {"date": "2027-05 (late May)", "event": "Q3 FY27 results", "direction": "?"},
+    {"date": "2027-08 (late Aug)", "event": "Q4 FY27 results and FY28 guidance", "direction": "?"},
+    {"date": "ongoing", "event": "Broadcom VMware licensing/tooling changes (VDDK removal, vSphere Standard return) affecting migration pace", "direction": "?"},
+    {"date": "ongoing", "event": "Server supply / memory price normalisation", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "Duration of server supply constraints and hardware price inflation delaying project starts",
+    "Pace of VMware migrations vs Broadcom counter-moves and cheaper alternatives (Proxmox)",
+    "Revenue quality / unbilled receivables and timing of future-start orders",
+    "Valuation multiple after >30% YTD run in a volatile (47% realized vol) software tape",
+    "Ramp of Dell PowerStore / Pure / NetApp external storage channels"
+  ],
+  "reasoning": "Reported facts from the Q4 FY26 release: revenue $757M (+16%), FY26 $2.85B (+12%), ARR $2.55B (+16%), non-GAAP EPS FY26 $2.04, FCF $841M, net cash ~$1.0B, FY27 guide $3.18-3.23B rev, 24-25% op margin, $850-950M FCF, ~294M shares. At $70.7 the stock is ~30.6x FY27 consensus EPS ($2.31) and ~22x EV/FY27 FCF. Three methods (P/E, FCF yield, EV/sales on FY28 estimates) cluster at $71-73, so fair value ~$72, close to spot; analyst average $76.8 (range $60-90). Alt-lane evidence is mixed: community/trade sources show live VMware-exit demand and AHV positioned as the primary exit destination, but also new friction (Broadcom pulling VDDK downloads in late Aug 2026, reported via Nutanix community and Virtualization Howto) and cheaper Proxmox alternatives; an independent Substack has flagged revenue-quality (unbilled receivables) concerns and a Seeking Alpha author downgraded on valuation after the >30% YTD run; job postings show continued hiring in AHV and agentic AI (directional only). Management itself warned supply constraints and hardware prices persist through FY27. I set a lognormal-ish distribution with median ~$73 (modest drift: fair value plus ~2% growth to horizon offset by de-rating risk) and sigma ~0.41 (below the 47% realized, which was inflated by the late-2025 crash and recovery, but above a typical large-cap), with slightly fatter tails. Scenario mean (bear $45/25%, base $76/50%, bull $105/25%) ~$75.5, consistent. Research was limited: X/Reddit threads were not directly retrievable via search, and no prediction markets exist on NTNX events.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "Nutanix Reports Fourth Quarter and Fiscal 2026 Financial Results", "url": "https://www.globenewswire.com/news-release/2026/08/26/3351672/0/en/nutanix-reports-fourth-quarter-and-fiscal-2026-financial-results.html", "date": "2026-08-26", "type": "company", "in_lane": false},
+    {"title": "Nutanix Q4 Earnings Call Highlights (Yahoo Finance)", "url": "https://finance.yahoo.com/markets/stocks/articles/nutanix-q4-earnings-call-highlights-230417635.html", "date": "2026-08-26", "type": "press", "in_lane": false},
+    {"title": "Nutanix (NTNX) Stock Forecast & Analyst Price Targets - StockAnalysis", "url": "https://stockanalysis.com/stocks/ntnx/forecast/", "date": "2026-10-01", "type": "data", "in_lane": false},
+    {"title": "Leaving VMware Just Got Harder After Broadcom Pulled VDDK Downloads - Virtualization Howto", "url": "https://www.virtualizationhowto.com/2026/09/leaving-vmware-just-got-harder-after-broadcom-pulled-vddk-downloads/", "date": "2026-09", "type": "trade", "in_lane": true},
+    {"title": "Nutanix (NTNX): After the Drop, the Risks Aren't Gone - Behind the Numbers Substack", "url": "https://peekbehindthenumbers.substack.com/p/nutanix-ntnx-after-the-drop-the-risks", "date": "2025-12-29", "type": "newsletter", "in_lane": true},
+    {"title": "NTNX: Revenue Recognized... But Not Yet Earned? - Behind the Numbers Substack", "url": "https://peekbehindthenumbers.substack.com/p/ntnx-revenue-recognized-but-not-yet", "date": "2025-10-30", "type": "newsletter", "in_lane": true},
+    {"title": "Nutanix .NEXT 2026: The great replatforming has begun - SiliconANGLE (theCUBE Research)", "url": "https://siliconangle.com/2026/04/07/nutanix-next-2026-great-replatforming-begun/", "date": "2026-04-07", "type": "expert", "in_lane": true},
+    {"title": "VCF Renewal vs Nutanix vs Proxmox for UK Enterprises (cites r/sysadmin pricing)", "url": "https://www.comparethecloud.net/articles/renew-vmware-cloud-foundation-move-to-nutanix-or-migrate-to-proxmox-ve", "date": "2026", "type": "forum", "in_lane": true},
+    {"title": "Nutanix: Profit Taking Is Appropriate Here (Downgrade) - Seeking Alpha contributor", "url": "https://seekingalpha.com/article/4948444-nutanix-profit-taking-is-appropriate-here-downgrade", "date": "2026-09-21", "type": "newsletter", "in_lane": true},
+    {"title": "Nutanix AHV Licensing Guide: Cost, Editions, VMware Exit", "url": "https://intelligentvisibility.com/guides/what-is-nutanix-ahv-hypervisor-licensing-guide", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Nutanix buys Ryax in Agentic AI-focused tuck-in acquisition - Blocks & Files", "url": "https://www.blocksandfiles.com/ai-ml/2026/09/22/nutanix-buys-ryax-in-agentic-ai-focused-tuck-in-acquisition/5298096", "date": "2026-09-22", "type": "trade", "in_lane": true},
+    {"title": "Nutanix Jobs (ZipRecruiter listings)", "url": "https://www.ziprecruiter.com/Jobs/Nutanix", "date": "2026-09", "type": "alt-data", "in_lane": true},
+    {"title": "Simply Wall St community narrative: Nutanix", "url": "https://simplywall.st/community/narratives/us/software/nasdaq-ntnx/nutanix/g0c59f6s-update-for-nutanix", "date": "2026", "type": "forum", "in_lane": true},
+    {"title": "NTNX Q4 2026 Earnings: EPS Beat & Key Numbers - AllInvestView", "url": "https://www.allinvestview.com/earnings/NTNX/q4-2026/", "date": "2026-08", "type": "data", "in_lane": false}
+  ]
+}

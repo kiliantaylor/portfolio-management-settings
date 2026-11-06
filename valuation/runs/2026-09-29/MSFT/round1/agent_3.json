@@ -1,0 +1,86 @@
+{
+  "symbol": "MSFT", "agent_id": "agent_3", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 130, "p": 0.998}, {"K": 207, "p": 0.995}, {"K": 259, "p": 0.982}, {"K": 311, "p": 0.935},
+    {"K": 363, "p": 0.845}, {"K": 415, "p": 0.72}, {"K": 466, "p": 0.578}, {"K": 518, "p": 0.437},
+    {"K": 570, "p": 0.315}, {"K": 622, "p": 0.217}, {"K": 700, "p": 0.116}, {"K": 777, "p": 0.059},
+    {"K": 907, "p": 0.017}, {"K": 1037, "p": 0.005}, {"K": 1296, "p": 0.001}
+  ],
+  "ladder_1m": [
+    {"K": 414.62, "p": 0.985}, {"K": 440.54, "p": 0.952}, {"K": 466.45, "p": 0.865}, {"K": 482.0, "p": 0.775},
+    {"K": 497.55, "p": 0.665}, {"K": 518.28, "p": 0.5}, {"K": 539.01, "p": 0.345}, {"K": 554.56, "p": 0.245},
+    {"K": 570.11, "p": 0.165}, {"K": 596.02, "p": 0.078}, {"K": 621.94, "p": 0.033}
+  ],
+  "one_month_reasoning": "The main event in the window is Microsoft's fiscal Q1 2027 earnings, expected about Oct 27-28, 2026 after the close (date not yet confirmed, so it lands before the Oct 30 scoring close). Management guided revenue of $89.85-90.95B, Azure +45% cc and capex above $50B for the quarter; FY27 EPS consensus is about $4.72 for Q1. The stock has run from a ~$349 low to $518, near a 10-month high, on the Copilot relaunch and a Stifel upgrade, so the bar is high. The skeptic risks for the print are capex above $50B, a lower capex-to-revenue payoff, and any softening of OpenAI-linked bookings, weighed against a guide that is usually beaten. I see no edge on the direction, so the distribution is centred on today's price. It uses monthly sigma of about 9.5% (32%/3.5 = 9.1%, widened slightly for the earnings gap), with a bit of extra tail mass on both sides.",
+  "fair_value": {
+    "value": 485.0,
+    "method": "Blend of 70% P/E (skeptic FY28 EPS $21.50 x 24x = $516) and 30% FCF yield (FY28 FCF ~$85B at a 2.75% yield, 7.43B shares = $412), giving about $485 as the fair value a year out.",
+    "methods": [
+      {"name": "P/E", "value": 516.0, "weight": 0.7,
+       "inputs": "FY2028 (Jun-28) EPS $21.50 x 24x forward P/E applied at Sep-2027",
+       "inputs_detail": [
+         {"input": "FY2026 non-GAAP diluted EPS", "value": "$17.28", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY2027 consensus EPS", "value": "$19.76 (+14%)", "basis": "consensus", "source_ids": [7], "derivation": ""},
+         {"input": "FY2028 EPS (skeptic)", "value": "$21.50", "basis": "estimate", "source_ids": [3, 4, 7, 13, 14], "derivation": "Consensus FY27 $19.76 grown at ~14% would give ~$22.5 for FY28. I cut about 4.5% because D&A ($39B in FY26) has to catch up with capex ($116B in FY26, >$50B per quarter now). The sec-api analysis projects depreciation rising from 11.6% to 16.7% of revenue by FY29. The 15-to-25-year useful-life change for buildings and the shift to operating leases flatter reported D&A, and I treat that as low quality rather than as earnings."},
+         {"input": "Forward P/E", "value": "24x", "basis": "judgment", "source_ids": [7, 8, 3], "derivation": "The stock is on ~26x FY27 consensus today ($518/$19.76). July PT cuts (Citi, Mizuho) cited software-wide multiple compression. Capex at ~35% of revenue (vs 23% before) and falling FCF justify a turn or two below today, and that is a discount to the ~28-30x the stock carried in 2023-25."}
+       ]},
+      {"name": "FCF yield", "value": 412.0, "weight": 0.3,
+       "inputs": "FY2028 FCF ~$85B / 2.75% yield = $3.09T; less ~$30B net debt incl. finance leases; / 7.43B diluted shares",
+       "inputs_detail": [
+         {"input": "FY2026 operating cash flow / capex / FCF", "value": "$182.9B / $115.9B / $67.0B", "basis": "reported", "source_ids": [1, 3], "derivation": ""},
+         {"input": "Net debt incl. finance leases", "value": "~$30B", "basis": "reported", "source_ids": [3], "derivation": "sec-api analysis of the FY26 10-K: finance lease liabilities of $66.6B take the balance sheet from +$5.2B net cash to about -$30B net debt"},
+         {"input": "FY2028 FCF", "value": "~$85B", "basis": "estimate", "source_ids": [1, 3, 16, 4], "derivation": "OCF grows ~17% a year to about $250B. Capex is ~$160-170B (Q1 FY27 guide >$50B per quarter, CY26 ~$175B). The shift to operating leases moves some spend into OCF, so I use about $85B rather than the headline gap."},
+         {"input": "Required FCF yield", "value": "2.75%", "basis": "judgment", "source_ids": [3, 11, 12], "derivation": "Around MSFT's historic 2.5-3% FCF yield. AAA credit and near-Treasury spreads argue against a larger discount, but AI-debt supply is widening sector spreads (~115bp), so I do not use a premium yield."},
+         {"input": "Diluted shares", "value": "7,443M", "basis": "reported", "source_ids": [1], "derivation": ""}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 360.0, "prob": 0.22, "story": "OpenAI (~$24B, 7% of FY26 revenue; ~1/3 of the $678B backlog) has trouble raising the capital it needs to keep burning cash, or moves spend to other clouds under the loosened April-2026 terms. Azure falls toward 30%, capex is already committed and depreciation eats into margins, while HLBV equity losses return. FY28 EPS comes in around $18.5 and the multiple falls to ~19-20x, back toward the $349 low."},
+    "base": {"price": 525.0, "prob": 0.53, "story": "Azure grows 35-40% while capacity constrained. Copilot seat growth offsets a gradual rise in depreciation, and EPS grows low-to-mid teens to ~$21.5-22. The multiple drifts down slightly to ~24x, so the price is roughly flat to slightly up."},
+    "bull": {"price": 690.0, "prob": 0.25, "story": "Copilot bundling lifts Office ARPU, the backlog converts on time, OpenAI IPOs strongly (Polymarket prices a >$1T listing by 2027 as likely), the equity stake is marked up and concentration fears fade. EPS reaches ~$24 at 28-29x."}
+  },
+  "thesis_break_price": 400.0,
+  "thesis_break_reason": "Below ~$400 (about -23%, under the post-earnings April-May range, and 20x FY27 consensus) the move would most likely reflect a fundamental break rather than volatility. The likely cause is OpenAI cutting or delaying Azure commitments (32% of RPO), an Azure deceleration below 30%, or a capex guide that keeps rising while revenue guidance falls, which would signal an impaired return on the ~$175B/yr build.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "FQ1 2027 earnings (est. Oct 27-29): Azure vs 45% cc guide, capex >$50B, operating lease commitments", "direction": "?"},
+    {"date": "2026-11", "event": "Copilot super-app / Autopilot rollout and October volume-discount pricing take effect; early seat and ARPU read", "direction": "+"},
+    {"date": "2026-12", "event": "OpenAI funding round / restructuring news; Polymarket prices 'AI bubble burst by Dec 31 2026' at 9%", "direction": "?"},
+    {"date": "2027-01-27", "event": "FQ2 2027 earnings (est.)", "direction": "?"},
+    {"date": "2027 (ongoing)", "event": "FTC cloud/AI licensing antitrust probe: a possible complaint on licensing penalties for rival clouds", "direction": "-"},
+    {"date": "2027-04-28", "event": "FQ3 2027 earnings (est.) and first CY27 capex framing", "direction": "?"},
+    {"date": "2027-07-28", "event": "FQ4 2027 earnings and FY28 guidance on margins and depreciation", "direction": "?"},
+    {"date": "2027 H1-H2", "event": "Possible OpenAI IPO: marks up MSFT's ~27% stake but shows OpenAI's economics and multi-cloud spend", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether OpenAI can fund its projected ~$280B 2026-2030 cash burn and keep its Azure commitments now that it may use any cloud",
+    "The size and timing of the depreciation wave: FY26 D&A was $39B against $116B capex, and useful-life extensions and the shift to operating leases flatter near-term EPS",
+    "$329B of lease commitments that have not yet commenced sit off the balance sheet",
+    "Software-wide multiple compression versus AI-winner premium",
+    "Whether the FTC probe on licensing and bundling becomes a formal complaint"
+  ],
+  "reasoning": "Reported base: FY26 revenue $331.8B (+18%), non-GAAP EPS $17.28, Azure +43%, and Q1 FY27 guided Azure +45%. The bear case has substance. (1) Concentration: OpenAI was $24.1B of revenue and roughly a third of the $678B commercial RPO; ex-OpenAI, backlog grew 25% versus 84% headline. OpenAI burns cash and in April 2026 won the right to use any cloud. (2) Earnings quality: capex runs at ~3x D&A. Microsoft just extended building lives from 15 to 25 years and is shifting data-center leases to operating treatment, which moved ~$15B out of the capex guide without changing spending. That echoes the Burry critique that hyperscaler earnings are overstated, and depreciation could reach ~17% of revenue by FY29. FCF has fallen two years in a row to $67B while the company went from net cash to ~$30B net debt including finance leases, with $329B of uncommenced leases. (3) Sell-side trimmed targets in July (Citi 620 to 570, Mizuho 515 to 490) on multiple compression, not on the business. Weighing it honestly: credit is pristine (AAA; bonds near Treasuries; least funding need of the hyperscalers per BofA), and insider selling is routine (Nadella's $43M 10b5-1 sale, still holding 487k shares). There are 0 Sells among 55 analysts (avg PT $577, low $440), so the consensus is crowded long, which is itself a skeptic's point. My fair value of ~$485 is below spot. The distribution is a mixture: 80% lognormal (median ~$525, sigma 0.27) plus a 20% bear component (median ~$380, sigma 0.25) for an OpenAI or AI-capex unwind. That gives P(>=518) of about 0.44, a median of about $500 and a fatter left tail than a symmetric 32%-vol lognormal. Research used ~12 searches and 5 fetches. X/Twitter was not tried. The Polymarket resolution rules were not visible in the fetch.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "Microsoft FY26 Q4 earnings press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0000789019/000119312526323632/msft-ex99_1.htm", "date": "2026-07-29", "type": "filing", "in_lane": false},
+    {"title": "Microsoft Form 10-K FY2026", "url": "https://www.sec.gov/Archives/edgar/data/0000789019/000119312526323660/msft-20260630.htm", "date": "2026-07-29", "type": "filing", "in_lane": true},
+    {"title": "Financial analysis of Microsoft, FY2026: capital intensity against a record margin", "url": "https://sec-api.io/insights/financial-analysis-of-microsoft-fy2026-capital-intensity-against-a-record-margin", "date": "2026-08", "type": "other", "in_lane": true},
+    {"title": "Did Microsoft Really Cut Its Capex? Here's the Accounting Move Behind the Headline", "url": "https://www.tikr.com/blog/did-microsoft-really-cut-its-capex-heres-the-accounting-move-behind-the-headline", "date": "2026-09-29", "type": "press", "in_lane": true},
+    {"title": "Microsoft's Biggest AI Customer Is Also Its Biggest Risk", "url": "https://www.fool.com/investing/2026/09/22/microsoft-s-biggest-ai-customer-is-also-its-biggest-risk/", "date": "2026-09-22", "type": "press", "in_lane": true},
+    {"title": "Microsoft's $678B Backlog Suggests Massive OpenAI Exposure", "url": "https://www.benzinga.com/trading-ideas/long-ideas/26/07/60816147/microsofts-backlog-just-hit-678b-almost-a-third-traces-to-a-single-customer", "date": "2026-07", "type": "press", "in_lane": true},
+    {"title": "Microsoft (MSFT) Stock Forecast & Analyst Price Targets", "url": "https://stockanalysis.com/stocks/msft/forecast/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Analysts Cut Microsoft (MSFT) Price Targets", "url": "https://finance.yahoo.com/news/analysts-cut-microsoft-msft-price-115534415.html", "date": "2026-07", "type": "sell-side", "in_lane": true},
+    {"title": "FTC Ratchets Up Microsoft Probe, Queries Rivals on Cloud, AI", "url": "https://news.bloomberglaw.com/antitrust/ftc-ratchets-up-microsoft-probe-queries-rivals-on-cloud-ai", "date": "2026-02", "type": "press", "in_lane": true},
+    {"title": "Microsoft Stock: Why Nadella's $44M Sale May Not Spook Investors", "url": "https://www.benzinga.com/trading-ideas/insider-trades/26/09/61633915/microsoft-stock-nadella-sale", "date": "2026-09", "type": "press", "in_lane": true},
+    {"title": "Corporate Bond Buyers Get Picky With Flood of AI Debt", "url": "https://money.usnews.com/investing/news/articles/2026-09-22/corporate-bond-buyers-get-picky-with-flood-of-ai-debt", "date": "2026-09-22", "type": "press", "in_lane": true},
+    {"title": "Microsoft Is Now a Safer Borrower Than the U.S. Government", "url": "https://www.riotimesonline.com/hyperscaler-bonds-treasury-yields-historic-shift-may-2026/", "date": "2026-05", "type": "press", "in_lane": true},
+    {"title": "Michael Burry sends stark warning on AI hyperscalers", "url": "https://www.thestreet.com/investing/stocks/michael-burry-sends-stark-warning-on-ai-hyperscalers", "date": "2025-11", "type": "expert", "in_lane": true},
+    {"title": "Depreciation of GPUs: between useful lives and useful myths", "url": "https://deepquarry.substack.com/p/depreciation-of-gpus-between-useful", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Polymarket: AI bubble burst by...? (Dec 31 2026: 9%, Jun 30 2027: 17%; total volume ~$3.0M)", "url": "https://polymarket.com/event/ai-bubble-burst-by", "date": "2026-09-30", "type": "prediction-market", "in_lane": true},
+    {"title": "Microsoft (MSFT) Q4 earnings report 2026 (guidance: Q1 FY27 Azure +45% cc, revenue $89.85-90.95B, capex >$50B)", "url": "https://www.cnbc.com/2026/07/29/microsoft-msft-q4-earnings-report-2026.html", "date": "2026-07-29", "type": "press", "in_lane": false},
+    {"title": "Why is Microsoft stock rallying 4% today?", "url": "https://invezz.com/news/2026/09/25/why-is-microsoft-stock-rallying-4-today/", "date": "2026-09-25", "type": "press", "in_lane": false},
+    {"title": "MSFT Earnings Dates (next unconfirmed ~2026-10-28)", "url": "https://marketchameleon.com/Overview/MSFT/Earnings/Earnings-Dates/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Microsoft obscures OpenAI's $11.5 billion loss last quarter", "url": "https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/microsoft-obscures-openais-usd11-5-billion-loss", "date": "2025-10", "type": "press", "in_lane": true},
+    {"title": "Microsoft (MSFT) Stock Prediction: $870 Bull Case, $440 Bear Case", "url": "https://financefeeds.com/microsoft-msft-stock-prediction-870-bull-440-bear/", "date": "2026", "type": "other", "in_lane": true}
+  ]
+}

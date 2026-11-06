@@ -1,0 +1,97 @@
+{
+  "symbol": "ETN", "agent_id": "agent_5", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 108, "p": 0.998}, {"K": 173, "p": 0.992}, {"K": 216, "p": 0.975}, {"K": 259, "p": 0.931},
+    {"K": 303, "p": 0.853}, {"K": 346, "p": 0.747}, {"K": 389, "p": 0.623}, {"K": 432, "p": 0.497},
+    {"K": 476, "p": 0.379}, {"K": 519, "p": 0.28}, {"K": 584, "p": 0.169}, {"K": 648, "p": 0.098},
+    {"K": 756, "p": 0.037}, {"K": 865, "p": 0.013}, {"K": 1081, "p": 0.002}
+  ],
+  "ladder_1m": [
+    {"K": 345.83, "p": 0.975}, {"K": 367.44, "p": 0.923}, {"K": 389.05, "p": 0.826}, {"K": 402.02, "p": 0.742},
+    {"K": 414.99, "p": 0.645}, {"K": 432.28, "p": 0.506}, {"K": 449.57, "p": 0.372}, {"K": 462.54, "p": 0.283},
+    {"K": 475.51, "p": 0.208}, {"K": 497.12, "p": 0.115}, {"K": 518.74, "p": 0.058}
+  ],
+  "one_month_reasoning": "Nov 3 for Eaton's Q3 report is an aggregator estimate that Eaton has not confirmed. EDGAR shows no new 8-K since Jul 31. Eaton reported Q3 on Oct 31 in 2023 and 2024, so I put roughly 25-30% odds on a print inside the window (supervisor finding, which I accept). Management said at Laguna on Sep 16 that it is tracking toward the high end of the Q3 guide, so an in-window print leans slightly positive but mostly adds variance. The other in-window events are two-sided: the FOMC on Oct 27-28 (Polymarket, Sep 26: 67% odds of another 25bp hike after the Sep 16 hike, with the 10-year at 5.24%), late-October hyperscaler capex commentary, and Q3 prints from VRT, GEV and Schneider. Net: about symmetric around ~$433. I use lognormal monthly vol of 0.115, slightly above 39%/3.5 = 0.111, for the chance of an earnings print in the window.",
+  "fair_value": {
+    "value": 440.0,
+    "method": "Blend of forward P/E (NTM EPS at Sep 2027 of ~$16.8, pro-forma ex-Mobility on ~380M post-split-off shares, x 26x = $437, weight 0.6) and FCF yield (NTM FCF/share ~$16.0 at a 3.6% yield = $444, weight 0.4). This is the ETN share price itself. The Mobility/Dana deal is a split-off that retires tendered ETN shares, so no ~$13 distribution comes out of the price in the base case (round-1 error corrected).",
+    "methods": [
+      {"name": "P/E", "value": 437.0, "weight": 0.6,
+       "inputs": "NTM EPS (Q4'27-Q3'28), pro-forma ex-Mobility on ~380M shares, $16.8 x 26x forward P/E",
+       "inputs_detail": [
+         {"input": "FY2026 adjusted EPS guidance", "value": "$13.40-$13.60 (mid $13.50)", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY2027 consensus EPS (includes Mobility for most estimates)", "value": "~$15.5-15.8", "basis": "consensus", "source_ids": [6, 17], "derivation": ""},
+         {"input": "Mobility after-tax profit lost", "value": "~$350M/yr", "basis": "estimate", "source_ids": [1, 2], "derivation": "Q2 Mobility operating profit $109M x 4 = ~$436M pre-tax, at a ~20% tax rate = ~$350M"},
+         {"input": "ETN shares retired in split-off", "value": "~8-10M (to ~380M diluted)", "basis": "estimate", "source_ids": [2, 16], "derivation": "The exchange offer swaps ETN shares for SpinCo shares. The Eaton-holder stake (>=50.1% of the combined company, which I valued at ~$4-5B, or ~$13/share in round 1) retires ~$4-5B of ETN shares at ~$430-450, less an exchange discount"},
+         {"input": "Interest saved on $1.1B cash distribution used for debt paydown", "value": "~$45M/yr pre-tax", "basis": "estimate", "source_ids": [16, 18], "derivation": "$1.1B x ~4-4.5% CP/short-term rates (Fed funds upper bound 4.00%)"},
+         {"input": "NTM EPS at Sep 2027 (ex-Mobility, pro-forma)", "value": "$16.8", "basis": "estimate", "source_ids": [1, 2, 5, 6, 16], "derivation": "With Mobility: 0.25 x 2027 $15.7 + 0.75 x 2028 $17.74 (+13%, management's 12%+ EPS CAGR target, backlog +33-103%) = $17.23 x 389.5M = $6.71B net income. Subtract ~$0.38B of Mobility profit (grown) and add ~$0.04B of interest saved, giving ~$6.38B / ~380M shares = ~$16.8. Net split-off dilution is ~2.5-3%, in line with the supervisor's ~$0.5."},
+         {"input": "Forward P/E multiple", "value": "26x", "basis": "judgment", "source_ids": [4, 14, 18, 19], "derivation": "10-year median TTM P/E ~26.6x (range 10.8-41.7x). Today's forward is ~27.5-28x. With the 10-year at 5.24% after the Sep 17 Fed hike (FRED-verified by the supervisor) and 2028 AI capex growth expected to slow, I see no case for re-rating above the median. The electrical/data-center mix keeps it above the ~20x historical mid-cycle multiple."}
+       ]},
+      {"name": "FCF yield", "value": 444.0, "weight": 0.4,
+       "inputs": "NTM FCF/share ~$16.0 (95% conversion of ~$16.8 EPS) / 3.6% FCF yield",
+       "inputs_detail": [
+         {"input": "FCF conversion", "value": "95-100% of adjusted earnings", "basis": "guidance", "source_ids": [5], "derivation": "2030 target from investor day"},
+         {"input": "NTM FCF per share", "value": "$16.0", "basis": "estimate", "source_ids": [1, 5], "derivation": "$16.8 EPS x 95% (low end, because working capital builds with backlog growth)"},
+         {"input": "FCF yield", "value": "3.6%", "basis": "judgment", "source_ids": [4, 18], "derivation": "~28x FCF, consistent with 26x P/E. It sits below the 5.24% 10-year, which 12%+ EPS growth justifies."},
+         {"input": "Net debt", "value": "~$19.9B at Jun 30, 2026; ~$17-18B by Sep 2027", "basis": "reported", "source_ids": [16], "derivation": "Debt $20.61B less cash and short-term investments $0.70B. No buybacks in 2026 per the 10-Q. RMT cash goes to debt. Context only."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 290.0, "prob": 0.25, "story": "By mid-2027 the market prices 2028 AI capex growth slowing to single digits. Orders roll over from the +41% pace, rates stay above 5%, and the multiple compresses to ~18-19x on ~$15.5-16 pro-forma NTM EPS. This repeats the Jan-Apr 2025 (-38%) and Jul-Dec 2025 (-22%) drawdowns."},
+    "base": {"price": 450.0, "prob": 0.5, "story": "~12-13% EPS growth, H2 2026 margin step-up delivered, the Mobility split-off closes in Q1 2027 (retiring ~8-10M shares, $1.1B to debt, ~3% EPS dilution, no price drop), and Boyd integrates. The multiple holds ~26-27x on ~$16.8 NTM EPS."},
+    "bull": {"price": 590.0, "prob": 0.25, "story": "Hyperscaler 2027 capex beats the ~$1.3T forecasts and 2028 guides stay strong. Price/cost turns into a tailwind and margins reach the 28% target early. Buybacks resume in 2027 and the multiple re-rates to ~33x on ~$17.8 EPS."}
+  },
+  "thesis_break_price": 320.0,
+  "thesis_break_reason": "About 26% below spot and near the Dec 2025 low / 52-week low of $312. At $320, ETN is ~19x pro-forma ex-Mobility NTM EPS of ~$16.8, which only fits falling earnings: data-center order cancellations, a negative Electrical Americas rolling-order print, a failed H2 margin step-up, or a recession (Kalshi ~24% for 2027). I keep $320 rather than the supervisor's $330 because, with the 10-year at 5.24% and Fed hikes priced, a pure de-rating to ~20x could reach ~$335 with no fundamental damage. A break should be confirmed with order data.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "FOMC decision (Polymarket 67% odds of a 25bp hike)", "direction": "-"},
+    {"date": "2026-10 late", "event": "Hyperscaler Q3 earnings and 2027 capex guides; VRT/GEV/Schneider Q3 prints", "direction": "?"},
+    {"date": "2026-11-03 (unconfirmed; ~27% odds by Oct 30)", "event": "Eaton Q3 2026 earnings (guide $3.46-3.56 EPS; management tracking to high end)", "direction": "+"},
+    {"date": "2026-12", "event": "FOMC", "direction": "-"},
+    {"date": "2027-02 early", "event": "Q4 2026 results and first FY2027 guidance, including 2027 buyback intent", "direction": "?"},
+    {"date": "2027 Q1", "event": "Mobility/Dana split-off exchange offer closes: ETN shares retired, $1.1B cash for debt paydown", "direction": "?"},
+    {"date": "2027-05 / 2027-08", "event": "Q1 and Q2 2027 earnings; orders and backlog trends", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "How much AI data-center capex slows in 2028 and when the market prices it in",
+    "Rate path: 10-year at 5.24%, Fed hiked Sep 17 with more priced; high-multiple industrials are exposed",
+    "Exchange-offer take-up: undersubscription would trigger a pro-rata clean-up distribution that lowers the ETN price (I put ~15% on a partial clean-up)",
+    "H2 2026 margin step-up (Q3 guide 24.6-25.0% vs Q2 23.1%) and Boyd Thermal integration",
+    "~$20B net debt and no buybacks in 2026"
+  ],
+  "reasoning": "Base rates: ETN's 12-month returns since 2011 have a median of +14% and a 5th-95th percentile of -15% to +69%, and are negative 32% of the time. That sample is biased up by a 15-year re-rating from ~12x to ~30x, so I do not anchor on its median. Two 22-38% drawdowns in 2025 support a fat left tail. Round-2 corrections: (1) The supervisor showed, and I confirmed in the Jul 31 Form 425, that the Mobility/Dana RMT is a split-off by exchange offer with a pro-rata distribution only as a clean-up if needed. My round-1 ~$13/share mechanical price drop was wrong. I now value per share on ~380M post-split-off shares. Net EPS dilution is ~3%, which leaves NTM EPS at ~$16.8, since share retirement offsets part of my round-1 $0.8 haircut. (2) Rates were verified (Fed funds upper bound 4.00% effective Sep 17, 10-year 5.24%), so I keep 26x. (3) I drop the exact Goldman capex numbers from an X summary and the Polymarket recession figure from a snippet, and rely on Kalshi and Fool instead. Fair value is ~$440, ~2% above spot. The distribution mixes 80% lognormal (median $452, sigma 0.30) with 20% bear regime (median $345, sigma 0.35), and puts 15% on a partial clean-up distribution (~$6 average drop). That gives a median of ~$431, a mean of ~$451 and P(>=spot) of 0.50. Round 1's median of ~$427 was biased down by the phantom distribution. I did not go further above 0.50 because rates, leverage and the 2028 capex cliff keep the left tail heavy. Research was limited to 2 SEC fetches this round.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Eaton Q2 2026 earnings release (8-K Ex.99)", "url": "https://www.sec.gov/Archives/edgar/data/0001551182/000155118226000027/etn06302026exhibit99.htm", "date": "2026-07-31", "type": "filing", "in_lane": false},
+    {"title": "Eaton Form 425: Mobility split-off exchange offer, clean-up distribution if necessary, $1.1B cash, Q1 2027 close", "url": "https://www.sec.gov/Archives/edgar/data/1551182/000095014226002234/eh260815207_425.htm", "date": "2026-07-31", "type": "filing", "in_lane": true},
+    {"title": "ETN monthly price history 2011-2026 (Twelve Data time series)", "url": "https://twelvedata.com/", "date": "2026-09-30", "type": "data", "in_lane": true},
+    {"title": "ETN PE Ratio (TTM) 10-year history", "url": "https://www.gurufocus.com/term/pettm/ETN", "date": "2026-09", "type": "data", "in_lane": true},
+    {"title": "Eaton's growth targets look achievable (BofA; investor day 2030 targets)", "url": "https://finance.yahoo.com/news/eatons-growth-targets-look-achievable-173523706.html", "date": "2025-03-17", "type": "sell-side", "in_lane": true},
+    {"title": "Eaton (ETN) stock forecast and analyst estimates", "url": "https://stockanalysis.com/stocks/etn/forecast/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Kalshi: Recession next year? (2027) - 24%", "url": "https://kalshi.com/markets/kxrecssnber/recession/kxrecssnber-27", "date": "2026-09", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket prices 35% chance of U.S. recession by end of 2027 (snippet only; discounted, not used for numbers)", "url": "https://predictionnews.com/story/polymarket-prices-35-chance-of-u-s-recession-by-end-of-2027", "date": "2026-09-24", "type": "prediction-market", "in_lane": true},
+    {"title": "Polymarket puts an October Fed hike at 67% and a 2026 rate cut at 3%", "url": "https://financefeeds.com/polymarket-puts-an-october-fed-hike-at-67-and-a-2026-rate-cut-at-3/", "date": "2026-09-26", "type": "prediction-market", "in_lane": true},
+    {"title": "Kalshi: Fed rate cut in 2026?", "url": "https://kalshi.com/markets/kxratecut/fed-rate-cut/kxratecut-26dec31", "date": "2026-09-30", "type": "prediction-market", "in_lane": true},
+    {"title": "X post summarizing Goldman hyperscaler capex (second-hand; direction only, numbers not used)", "url": "https://x.com/ParadisLabs/status/2103469689586295103", "date": "2026-09", "type": "social", "in_lane": true},
+    {"title": "6 hyperscalers projected to spend $1.3T on capex in 2027", "url": "https://www.fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow/", "date": "2026-09-06", "type": "press", "in_lane": true},
+    {"title": "Eaton is trying to become Schneider before the AI factory standardises", "url": "https://electroneconomics.substack.com/p/eaton-is-trying-to-become-schneider", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Eaton vs. Vertiv: which industrials stock is a better buy in 2026 (peer multiples)", "url": "https://www.aol.com/articles/eaton-vs-vertiv-industrials-stock-135223000.html", "date": "2026-08", "type": "press", "in_lane": true},
+    {"title": "Eaton stock dips as analysts diverge on 2026 data-center outlook", "url": "https://parameter.io/eaton-etn-stock-2026-data-center-outlook/", "date": "2025-12-18", "type": "press", "in_lane": true},
+    {"title": "Eaton 10-Q for quarter ended June 30, 2026 (debt, cash, no 2026 buybacks)", "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118226000030/etn-20260630.htm", "date": "2026-07-31", "type": "filing", "in_lane": false},
+    {"title": "MarketBeat ETN earnings page (Q3 Nov 3 estimated, not confirmed; FY27 EPS $15.83)", "url": "https://www.marketbeat.com/stocks/NYSE/ETN/earnings/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "FRED DFEDTARU Fed funds target upper bound (4.00% from Sep 17, 2026)", "url": "https://fred.stlouisfed.org/series/DFEDTARU", "date": "2026-09-17", "type": "data", "in_lane": true},
+    {"title": "FRED DGS10 10-year Treasury yield (5.24% Sep 28, 2026)", "url": "https://fred.stlouisfed.org/series/DGS10", "date": "2026-09-28", "type": "data", "in_lane": true},
+    {"title": "SEC EDGAR submissions for Eaton (8-K 2.02 dates; no new 8-K since Jul 31, 2026)", "url": "https://data.sec.gov/submissions/CIK0001551182.json", "date": "2026-09-30", "type": "filing", "in_lane": true}
+  ],
+  "revisions": [
+    {"item": "a fact", "from": "Mobility/Dana RMT is a pro-rata distribution of ~$13/share of Dana-combination stock that mechanically lowers the ETN price in Q1 2027", "to": "A split-off by exchange offer that retires ~8-10M tendered ETN shares, with a pro-rata clean-up only if undersubscribed (~15% odds of a partial clean-up in my ladder)", "why": "Supervisor RMT disagreement resolution; I confirmed it in the Jul 31, 2026 Form 425 text"},
+    {"item": "P(close >= K)", "from": "P(>=432) 0.48; median ~$427", "to": "P(>=432) 0.497; median ~$431, mean ~$451", "why": "Removed the phantom distribution drop: regime medians raised $445->$452 and $340->$345, with a small clean-up-distribution term added"},
+    {"item": "a method", "from": "P/E: NTM EPS $16.8 after ~$0.8 Mobility haircut on 389.5M shares", "to": "P/E: NTM EPS $16.8 pro-forma on ~380M shares (Mobility profit out, ~9M shares retired, ~$45M interest saved; net dilution ~3%)", "why": "Supervisor: share retirement offsets part of the Mobility loss. The value is unchanged because my round-1 NTM growth base was slightly low."},
+    {"item": "fair value", "from": "$440 on the post-distribution share (ETN holders also receive ~$13 of Dana shares)", "to": "$440 as the ETN share price itself (no distribution deducted)", "why": "Split-off mechanics per Form 425 / supervisor"},
+    {"item": "a scenario", "from": "Base $445 (incl. ~$13 drop); bull $580", "to": "Base $450 (no drop); bull $590", "why": "Removed the distribution drop and added 2027 buyback resumption to the bull case; no 2026 buybacks per the 10-Q (supervisor leverage finding)"},
+    {"item": "a fact", "from": "Q3 report Nov 3, outside the 1-month window (0% odds inside)", "to": "Nov 3 unconfirmed; ~27% odds of a print by Oct 30; 1-month vol raised 0.110 -> 0.115", "why": "Supervisor Q3-date finding (EDGAR 8-K dates: Oct 31 in 2023 and 2024). I found no new 8-K on EDGAR."},
+    {"item": "a fact", "from": "Net debt ~$20.1B (cash $0.48B)", "to": "~$19.9B (cash plus short-term investments $0.70B); no 2026 buybacks", "why": "Supervisor leverage resolution citing the Q2 10-Q"},
+    {"item": "thesis break", "from": "$320 citing Polymarket 35% / Kalshi 24% recession odds", "to": "$320 citing Kalshi 24% only; kept below the supervisor's $330", "why": "Supervisor discounted the snippet-only Polymarket figure. I keep $320 because a pure de-rating to ~20x with a 5.24% 10-year could reach ~$335 with no fundamental damage."}
+  ]
+}

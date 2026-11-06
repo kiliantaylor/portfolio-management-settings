@@ -1,0 +1,850 @@
+{
+ "date": "2026-11-05",
+ "symbol": "GOOGL",
+ "clean": true,
+ "checked": 94,
+ "ok": 94,
+ "failures": [
+  {
+   "item": "Capex % revenue FY2026 / FY2027 / FY2028 / FY2029 anchor (company_stated, as of 2026-10-28): FY2026 capex guide $195-205B (CFO, Q3 2026 call), midpoint $200B o\u2026",
+   "value": "0.4037",
+   "cited": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "result": "mislabelled",
+   "fix": "Anchor relabelled kind 'derived_estimate', basis estimate: guide midpoint $200B (company-stated, src 69) / model FY2026 revenue $495.4B = 40.37%."
+  },
+  {
+   "item": "capex Q4 FY2026 guide as of 2026-10-28 (implied: FY2026 $195-205B (reaffirmed, Q3 call 2026-10-28, sources 68/69) less YTD 131,953 (release))",
+   "value": "63047.0-73047.0",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "guide_basis relabelled 'implied (derived estimate, not a company guide)', basis estimate, confidence high; sources 69/70/62 (guide, release YTD 131,953); 195,000-131,953 = 63,047; 205,000-131,953 = 73,047."
+  },
+  {
+   "item": "capex Q4 FY2025: first guide (None) / reported actual",
+   "value": "None-None / 27851.0",
+   "cited": "",
+   "result": "not_found",
+   "fix": "Q4 FY2025 period: first_guide None (no quarterly guide exists, stated); actual 27,851 derived = FY2025 91,447 (10-K, F50) - 9M 2025 63,596 (10-Q accn 0001652044-25-000091); fact_ids F50, source_ids 3/62, basis estimate."
+  },
+  {
+   "item": "D&A % revenue FY2026",
+   "value": "6.35% (quarter build: Q1-Q3 reported, Q4 capex-vintage)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "result": "mislabelled",
+   "fix": "Basis -> estimate (Q1-Q3 reported + modelled Q4): (21,955 + 9,481) / 495,393 = 6.35%, confidence low."
+  },
+  {
+   "item": "Working capital % of revenue increase",
+   "value": "36.7%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "result": "mislabelled",
+   "fix": "Basis -> estimate (derived TTM ratio from XBRL cash-flow tags, src 3), confidence medium; derivation states the inputs."
+  },
+  {
+   "item": "Stock comp % revenue (information only; EBIT is GAAP after stock comp)",
+   "value": "6.31%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+   "result": "mislabelled",
+   "fix": "Basis -> estimate (derived TTM ratio, F39 / F6), confidence medium; 9/30 TTM 6.45% noted; information only."
+  },
+  {
+   "item": "Interest rate on net debt / cash",
+   "value": "2.25%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+   "result": "mislabelled",
+   "fix": "Basis -> estimate (derived ratio F74 / F97), confidence medium; 9/30 2.44% noted; unused by the engine."
+  },
+  {
+   "item": "P/E and SOTP method values and blend",
+   "value": "P/E 338.79, SOTP 319.52, blend 329.15",
+   "cited": "supervisor.json model.reasoning",
+   "result": "arithmetic",
+   "fix": "Methods rewritten from the engine after the gate fixes and Kilian's card: P/E $313.00, SOTP $294.91, blend $303.96 = fair_value.value (engine on supervisor.json, as_of 2026-11-05; $303.57 was the engine at the 2026-10-28 as_of)."
+  },
+  {
+   "item": "Google Cloud revenue / opening backlog line",
+   "value": "0.6299 -> 0.445/0.3152/0.3347/0.3347",
+   "cited": "supervisor.json model.reconciled_inputs.drivers",
+   "result": "wrong",
+   "fix": "key_drivers regenerated from the current drivers: cloud_conv 0.6299 -> 0.445/0.3117/0.3171/0.3426 (FY2028-29 Cloud labelled Kilian's judgment)."
+  },
+  {
+   "item": "Capex line",
+   "value": "91.45 -> 196/301/339.5/361.1",
+   "cited": "supervisor.json model.reconciled_inputs.drivers",
+   "result": "wrong",
+   "fix": "key_drivers regenerated: capex 91.4 -> 196.0/279.5/340.3/360.0."
+  },
+  {
+   "item": "Sizing text: fair value $370 (+6.4%); note 'current research target is $320.11'",
+   "value": "$370 / $320.11",
+   "cited": "supervisor.json fair_value",
+   "result": "wrong",
+   "fix": "Sizing: current research target (12m) $303.96 stated; the $370 / +6.4% / $383 arithmetic labelled 2026-10-06 history; $320.11 note corrected."
+  },
+  {
+   "item": "Cloud SOTP median (MSFT 24.45x, AMZN 23.29x, ORCL 17.57x re-based)",
+   "value": "23.3x",
+   "cited": "https://api.nasdaq.com/api/analyst/ORCL/earnings-forecast ; comps_review.basis_check",
+   "result": "mixed_basis",
+   "fix": "Median stated as invariant to ORCL's basis (raw 15.48x, re-based 17.57x, range 16.2-19.1x all below AMZN 23.29x and MSFT 24.45x): median AMZN 23.29x takes no figure from the re-based row; ORCL coverage only (labelled estimate, confidence medium)."
+  },
+  {
+   "item": "cpc FY2027-FY2029",
+   "value": "106.6 / 109.8 / 113.1",
+   "cited": "supervisor.json drivers.cpc",
+   "result": "unsupported",
+   "fix": "CPC rebased on the reported FY2026 103.98 at +4% y/y per quarter (Q3 10-Q: CPC +4% Q3 and 9M, src 76): 108.14 / 112.47 / 116.97. No forward CPC evidence exists; judgment call added (value effect 0: Search revenue path held, clicks recomputed)."
+  },
+  {
+   "item": "cloud_backlog YE2027-YE2029",
+   "value": "702.6 / 820.2 / 957.4",
+   "cited": "supervisor.json drivers.cloud_backlog",
+   "result": "unsupported",
+   "fix": "Book-to-bill 1.5 replaced by the reported Q2-Q3 2026 bookings mean $76.99B a quarter (10-Q backlog roll, src 2/76) held flat: YE2027 718.9, YE2028 798.9, YE2029 833.1; judgment call added (value effect 0)."
+  },
+  {
+   "item": "cloud_conv FY2028",
+   "value": "0.3245 (2028 Cloud = 2027 x 1.20)",
+   "cited": "supervisor.json drivers.cloud_conv",
+   "result": "unsupported",
+   "fix": "No outside evidence settles FY2028 Cloud; the gate's capacity path (+51.6%, $327.84) went to Kilian, who decided to keep the +20% step as his judgment (Kilian card 2026-11-06 02:31Z 'Keep +20% step as your call'). FY2028 pre-delay Cloud 235.17 $B (227.99 after dc_mor), labelled Kilian's judgment with a low confidence, re-expressed as conversion 0.3171 on the new backlog; judgment call 1 recorded as decided. Capacity-share study to follow."
+  },
+  {
+   "item": "cloud_conv FY2029",
+   "value": "0.3337 (FY2028 quarters held)",
+   "cited": "supervisor.json drivers.cloud_conv",
+   "result": "unsupported",
+   "fix": "FY2029 Cloud: FY2028-quarter conversion held on the old backlog (pre-delay ~274.5 $B, 273.73 after dc_mor) as Kilian's judgment (Kilian card 2026-11-06 02:31Z 'Keep +20% step as your call'); re-expressed as conversion 0.3426 on the new backlog. Outside the NTM window."
+  },
+  {
+   "item": "dc_mor PJM spread and Georgia components",
+   "value": "PJM 0.2585 x 0.30 Aug 2027-May 2028; GA +0.009 Jan-Oct 2028",
+   "cited": "driver_models/shared/dc_mor.json",
+   "result": "unsupported",
+   "fix": "Windows kept on driver_models/shared/dc_mor.json by owner decision (Kilian card 2026-11-06 02:31Z, shared timing for consistency with NVDA/AVGO/MOD); labelled estimates, confidence low. Evidence added to the row: Virginia bill pausing approvals 3 years from July 1, 2027 (WTVR src 78) and Ohio's Acton (src 79/80) as a note for a shared-file review (Virginia timing -0.01%); Georgia window on Bottoms projected win, 'We need to pause' and Jan 2027 inauguration (src 81-83), Texas length borrowed (stated); Georgia out +0.08%."
+  },
+  {
+   "item": "capex FY2029",
+   "value": "381.7 (339.451 x 1.0639 + 20.6 dc_mor shift)",
+   "cited": "supervisor.json drivers.capex",
+   "result": "unsupported",
+   "fix": "FY2029 capex re-set: no FY2029 consensus (MarketScreener ends 2028, src 77) and no company figure; Q3 10-Q commitments $924.4B mostly through 2031 and $130.5B leases commencing 2026-2031 (src 76) -> held flat at the FY2028 consensus 339.451 pre-delay; 360.0 after the dc_mor shift (shared windows). Judgment call (value effect 0)."
+  },
+  {
+   "item": "capex Q4 FY2026 guidance arithmetic",
+   "value": "counts None/None/None; median -0.0195; adjusted 66,722; ours 64,000 inside, gap None",
+   "cited": "arithmetic",
+   "result": "mislabelled",
+   "fix": "Counts and gap stated: beat/inside/miss 0/1/0, gap 64,000 / 68,047 - 1 = -0.059; guide sources corrected to 69/70 (plus 62)."
+  },
+  {
+   "item": "D&A % revenue FY2027 / FY2028 / FY2029",
+   "value": "8.45% / 11.29% / 14.10%",
+   "cited": "driver_build.quarters recomputed on the current drivers",
+   "result": "arithmetic",
+   "fix": "D&A % FY2027-29 recomputed from the engine rows on the current drivers: 8.21% / 11.49% / 14.08%."
+  },
+  {
+   "item": "D&A % revenue FY2026",
+   "value": "6.35% (quarter build)",
+   "cited": "arithmetic",
+   "result": "mislabelled",
+   "fix": "Labelled estimate (duplicate of the D&A FY2026 row fix): 6.35% = (21,955 + 9,481) / 495,393, confidence low."
+  },
+  {
+   "item": "Capex % revenue FY2026-FY2029",
+   "value": "39.56% / 49.44% / 49.52% / 48.03% (driver:capex)",
+   "cited": "driver_build.quarters recomputed on the current drivers",
+   "result": "arithmetic",
+   "fix": "Capex % recomputed from the engine rows: 39.56% / 46.08% / 50.17% / 47.93%; confidences added (medium FY2026-28, low FY2029)."
+  },
+  {
+   "item": "Working capital % of revenue increase",
+   "value": "36.7%",
+   "cited": "arithmetic",
+   "result": "mislabelled",
+   "fix": "Labelled estimate (duplicate of the working-capital row fix), confidence medium."
+  },
+  {
+   "item": "Stock comp % revenue",
+   "value": "6.31%",
+   "cited": "arithmetic",
+   "result": "mislabelled",
+   "fix": "Labelled estimate (duplicate of the stock-comp row fix), confidence medium."
+  },
+  {
+   "item": "Interest rate on net debt / cash",
+   "value": "2.25%",
+   "cited": "arithmetic",
+   "result": "mislabelled",
+   "fix": "Labelled estimate (duplicate of the interest-rate row fix), confidence medium."
+  },
+  {
+   "item": "dc_mor (GOOGL): expected paused share of new capacity",
+   "value": "0.1551 (+0.009 Georgia 2028)",
+   "cited": "arithmetic",
+   "result": "mislabelled",
+   "fix": "Confidence 'low' and variant_view added; h 0.1551 (Texas/NY 0.1146 + PJM 0.0405, Aug 2027-May 2028) + Georgia 0.0090 Jan-Oct 2028 on the shared windows, arithmetic checked."
+  },
+  {
+   "item": "D&A % revenue FY2027-29 vs anchor 6.15%",
+   "value": "8.45% / 11.29% / 14.10%",
+   "cited": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey ; https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/R11.htm ; https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json (secfacts.py show GOOGL)",
+   "result": "arithmetic",
+   "fix": "Bridge kept (capex path, CFO 'increase significantly in 2027', six-year server life) and values recomputed from the engine rows: 8.21% / 11.49% / 14.08%."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "capex FY2025: first guide (2025-02-04) / reported actual",
+   "value": "75000.0-75000.0 / 91447.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "remaining items 2026-10-19: diluted shares at 6/30 (point in time) anchor (reported_history, as of 2026-06-30): Q2 10-Q: 12,230M outstanding + 142M RSU and con\u2026",
+   "value": "12423.0",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Diluted shares now / at the horizon",
+   "value": "12,368M (Q3-26 diluted weighted average) / 12,486.5M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex FY2026 guide as of 2026-10-28 (purchases of property and equipment ($M))",
+   "value": "195000.0-205000.0",
+   "basis": "guidance",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "capex FY2026 consensus as of 2026-10-26",
+   "value": "202078.0",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Research target (12m) after dc_mor",
+   "value": "303.57 = 0.5 x P/E 312.53 + 0.5 x SOTP 294.62 (was 303.87)",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reasoning (recomputed)",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "8-K 2026-11-05: EUR 6B senior notes closed",
+   "value": "EUR 6B (750M FRN 2028 ... 1.0B 5.25% 2045)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526449835/d174184d8k.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "2026-10-28 close",
+   "value": "$324.89",
+   "basis": "reported",
+   "source_url": "https://twelvedata.com/markets/stocks/GOOGL",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q3 Search +12%, query growth five-year high, Cloud backlog $561B, revenue +103%, op margin 31.8%, Alphabet-level -$7.66B, FCF -$9.1B",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "10-06 disagreement figures (CY2027 EPS $14.95, CY2028 $17.89, capex 300,979/339,451, 6/30 balance sheet, peer median 21.7x)",
+   "value": "as stated",
+   "basis": "consensus / reported",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex FY2026 guide reaffirmed; consensus",
+   "value": "195,000-205,000; consensus 202,078",
+   "basis": "guidance / consensus",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "10-K Note 15 US long-lived assets / total (source 71) -> us_share",
+   "value": "195,337 / 261,818 = 0.746",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Servers and network equipment depreciated over six years",
+   "value": "6 years",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/R11.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q3 / 9M figures: Cloud 30,709, OI 11,121; capex Q2 44,924, Q3 51,355, YTD 131,953; 9M dep 21,955, Q3 8,369; tax 47,281; OI&E 127,478; OI 121,042; revenue 9M 357,269; diluted 12,368",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M Services revenue / OI; Cloud 9M",
+   "value": "280,479 / 119,290; 75,505 / 26,533",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY2025 tax 26,656, OI 129,039, pretax 158,826; TTM SBC / revenue / interest to 6/30",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json (secfacts.py show GOOGL)",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "paid_clicks FY2026",
+   "value": "109.82",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "paid_clicks FY2027-FY2029 deceleration",
+   "value": "115.93 / 120.00 / 123.00 (+5.6% / +3.5% / +2.5%)",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "cpc FY2026",
+   "value": "103.98",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "cloud_backlog YE2026",
+   "value": "597.06",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "cloud_conv FY2026",
+   "value": "0.4450",
+   "basis": "estimate",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "cloud_conv FY2027",
+   "value": "0.3117",
+   "basis": "estimate",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "dc_mor Texas part (cloud_conv and capex, Aug 2027-May 2028)",
+   "value": "h TX part 0.746 x 0.70 x 0.2692 x 0.75",
+   "basis": "estimate",
+   "source_url": "https://www.eenews.net/articles/texas-governor-puts-data-center-grid-approvals-on-hold/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex FY2026",
+   "value": "195.953",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex FY2027 / FY2028",
+   "value": "279.5 / 340.3 (consensus 301.0 / 339.5 less/plus dc_mor shift)",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex FY2026 guidance arithmetic",
+   "value": "1/0/0; median 0.219; adjusted 243,800; ours 196,000 inside -0.02",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Tax on operations 2026 YTD / FY2025",
+   "value": "0.169 / 0.158",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "D&A % revenue anchor FY2026 / FY2027-29",
+   "value": "0.0615",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Working capital anchor",
+   "value": "0.367",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "SBC anchor",
+   "value": "0.0631",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Interest rate anchor",
+   "value": "0.0225",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Diluted shares anchor",
+   "value": "12,368",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Tax rate",
+   "value": "17.00%",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Diluted shares at 6/30 (remaining items 2026-10-19)",
+   "value": "12,423M; -$1.08",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:cloud_conv",
+   "value": "0.445 / 0.3117 / 0.3245 / 0.3337",
+   "basis": "estimate",
+   "source_url": "arithmetic (quarters recomputed)",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:capex",
+   "value": "196.0 / 279.5 / 340.3 / 381.7",
+   "basis": "estimate",
+   "source_url": "arithmetic (quarters recomputed)",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "2% below midpoint, 3% below pre-print consensus $202.1B; FY2025 +22% vs first guide",
+   "value": "as stated",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Q4 64.0B +25% q/q; 6% below 68.0B; 4% below 66.7B",
+   "value": "as stated",
+   "basis": "claim",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "CFO: infrastructure investment 'will continue to weigh on the P&L in the form of higher depreciation'; Q4 D&A 9,481 (+13% q/q)",
+   "value": "quote",
+   "basis": "claim",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "CFO guided to a 'meaningful revenue ramp in 2027' for TPU systems",
+   "value": "quote",
+   "basis": "claim",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Base round's method; capacity case the main risk",
+   "value": "judgment",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q3 rose +71% y/y on shared AI R&D (Gemini 4)",
+   "value": "+71%",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Nothing on the call says this spend levels off",
+   "value": "negative claim",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M Services margin 42.5% vs H1 43.5%; CFO flags near-term Cloud margin headwinds",
+   "value": "42.5% / 43.5%",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "TPU product margins are not disclosed",
+   "value": "disclosure",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q3 ATM 2.3x Q3 RSU tax payments; 10-Q 'primarily for tax obligations' wording",
+   "value": "12,371 / 5,368",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Shares are in the 9/30 count, so their cash goes in too",
+   "value": "reasoning",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "CY2028E starts 69 days after the horizon as CY2027 after 10-23",
+   "value": "69 days",
+   "basis": "claim",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Kilian asked for a P/E and SOTP leg like AMZN's",
+   "value": "owner decision",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "No segment D&A split is disclosed",
+   "value": "disclosure",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "README keeps NFLX out of the P/E leg",
+   "value": "internal",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q3 update y1-y3 (H1 44.796 + Q3 30.709 + Q4 34.4; 55% of 561 in 24 months; +27.6; x1.20)",
+   "value": "0.4527 / 0.3289 / 0.3392",
+   "basis": "claim",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Capacity limit (Kilian 2026-10-29) and roll forward FY2029",
+   "value": "internal",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "h = 0.746 x 0.70 x (...) = 0.1551; source 71; shared-file states/weights/windows",
+   "value": "0.1551",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Texas grid approvals halted Aug 2026 (source 73)",
+   "value": "Aug 2026",
+   "basis": "claim",
+   "source_url": "https://www.eenews.net/articles/texas-governor-puts-data-center-grid-approvals-on-hold/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Governor-elect keeps the pause (source 72)",
+   "value": "statement",
+   "basis": "claim",
+   "source_url": "https://www.texastribune.org/2026/11/04/data-center-texas-pause-gina-hinojosa-governor-policies/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Google $40B Texas build through 2027 (source 74)",
+   "value": "$40B",
+   "basis": "claim",
+   "source_url": "https://www.bloomberg.com/news/articles/2025-11-14/google-to-invest-40-billion-in-new-data-centers-in-texas",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Cloud is capacity-limited (Q3 call)",
+   "value": "statement",
+   "basis": "claim",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Delay, not loss: backlog unchanged",
+   "value": "reasoning",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Delayed Cloud by quarter and years",
+   "value": "0.502 ... 0.055; 0.3117/0.3245/0.3337",
+   "basis": "claim",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Q3 update, FY2026 196.0, Q4 68.0 needed (+32% q/q), Q2->Q3 +14%",
+   "value": "as stated",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Call adds no 2027 number ('increase significantly'); MarketScreener pre-print 308.0 / 352.4 = +2.3% / +3.8%",
+   "value": "as stated",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "60/40 vintages; Q3 call 65/35 split",
+   "value": "~65%",
+   "basis": "claim",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "9M-26 depreciation 21,955 + Q4 ~9.0B = ~31B vs ~32B",
+   "value": "21,955",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "FY2029 = 339.451 x 1.0639 (half the +12.78% step)",
+   "value": "361.1",
+   "basis": "claim",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "dc_mor h, real-world case, delay not loss (same text as cloud_conv)",
+   "value": "as cloud_conv",
+   "basis": "claim",
+   "source_url": "https://www.eenews.net/articles/texas-governor-puts-data-center-grid-approvals-on-hold/ ; https://www.texastribune.org/2026/11/04/data-center-texas-pause-gina-hinojosa-governor-policies/ ; https://www.bloomberg.com/news/articles/2025-11-14/google-to-invest-40-billion-in-new-data-centers-in-texas ; https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "h of Q3-27..Q2-28 capex = $41.2B moved to Q3-28..Q2-29; years -> 196.0/279.5/340.3/381.7",
+   "value": "41.2",
+   "basis": "claim",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:cpc FY2027-29 (rebased, +4%/yr)",
+   "value": "108.14 / 112.47 / 116.97",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:cloud_backlog YE2027-29 (bookings $76.99B/qtr = Q2-Q3 2026 mean)",
+   "value": "718.9 / 798.9 / 833.1",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:cloud_conv FY2027-29 (FY2028-29 Cloud on the +20% step, Kilian judgment; re-expressed on the new backlog)",
+   "value": "0.3117 / 0.3171 / 0.3426 (FY2028-29 Cloud: Kilian's judgment, card 2026-11-06 02:31Z)",
+   "basis": "estimate",
+   "source_url": "Kilian card 2026-11-06 02:31Z; supervisor.json.before_fix Cloud path",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:capex FY2027-29 (FY2029 flat at FY2028 consensus; dc_mor shifts)",
+   "value": "279.5 / 340.3 / 360.0",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/ ; https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "dc_mor (GOOGL) h on the shared windows",
+   "value": "0.1551 (TX/NY 0.1146 + PJM 0.0405 Aug 2027-May 2028) + GA 0.0090 Jan-Oct 2028",
+   "basis": "estimate",
+   "source_url": "driver_models/shared/dc_mor.json; Kilian card 2026-11-06 02:31Z",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "D&A % revenue FY2026 / FY2027 / FY2028 / FY2029",
+   "value": "6.35% / 8.21% / 11.49% / 14.08%",
+   "basis": "estimate",
+   "source_url": "engine rows; https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/R11.htm",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Capex % revenue FY2026-FY2029",
+   "value": "39.56% / 46.08% / 50.17% / 47.93%",
+   "basis": "estimate",
+   "source_url": "engine rows; driver:capex",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Working capital % of revenue increase",
+   "value": "36.7%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Stock comp % revenue",
+   "value": "6.31%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Interest rate on net debt / cash",
+   "value": "2.25%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex Q4 FY2026 implied range (FY2026 guide less YTD)",
+   "value": "63,047-73,047",
+   "basis": "estimate",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "capex Q4 FY2025 actual (FY2025 less 9M)",
+   "value": "27,851",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "fair_value methods: P/E / SOTP / blend (engine)",
+   "value": "313.00 / 294.91 / 303.96",
+   "basis": "estimate",
+   "source_url": "model_engine.py check supervisor.json",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Cloud SOTP median (AMZN, invariant to ORCL basis)",
+   "value": "23.3x",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/AMZN/earnings-forecast",
+   "checked": "2026-11-05",
+   "feeds": "comps"
+  }
+ ],
+ "note": "27 of 94 failed at the shards and were fixed in supervisor.json (corrections in citation_audit.corrections). Research target (12m) 303.96 (engine at as_of 2026-11-05; the stated 303.57 was the engine at 2026-10-28). Cloud FY2028-29 kept on the +20% step as Kilian's judgment (card 2026-11-06 02:31Z; capacity path 327.84 not booked); dc_mor on the shared windows by owner decision; remaining carried years re-set from evidence with judgment calls."
+}

@@ -1,0 +1,87 @@
+{
+  "symbol": "NTNX", "agent_id": "agent_3", "as_of": "2026-10-01", "horizon": "2027-10-01",
+  "ladder": [
+    {"K": 17.68, "p": 0.99}, {"K": 28, "p": 0.965}, {"K": 35, "p": 0.92}, {"K": 42, "p": 0.855},
+    {"K": 49, "p": 0.765}, {"K": 57, "p": 0.65}, {"K": 64, "p": 0.55}, {"K": 71, "p": 0.46},
+    {"K": 78, "p": 0.375}, {"K": 85, "p": 0.305}, {"K": 95, "p": 0.225}, {"K": 106, "p": 0.16},
+    {"K": 124, "p": 0.09}, {"K": 141, "p": 0.052}, {"K": 177, "p": 0.017}
+  ],
+  "ladder_1m": [
+    {"K": 56.56, "p": 0.945}, {"K": 60.09, "p": 0.88}, {"K": 63.63, "p": 0.77}, {"K": 65.75, "p": 0.69},
+    {"K": 67.87, "p": 0.605}, {"K": 70.70, "p": 0.485}, {"K": 73.53, "p": 0.375}, {"K": 75.65, "p": 0.3},
+    {"K": 77.77, "p": 0.23}, {"K": 81.30, "p": 0.145}, {"K": 84.84, "p": 0.085}
+  ],
+  "one_month_reasoning": "No earnings in the window: Q1 FY27 results (guided rev $755-765M, non-GAAP op margin 26-28%) should come in late November 2026, after 2026-10-31. Things in the window: President/CCO Tarkan Maner leaves effective 2026-10-02, with sales moving under the CEO. I count that as a small negative for execution, but it is already public. The stock is up about 46% in 90 days and sits near its $78.45 high, so a little mean reversion is possible, but momentum is also positive. These roughly cancel. I used a nearly symmetric lognormal centred at about $70.4 (tiny downward tilt) with monthly sigma of about 13.5% (47% annual vol / 3.5).",
+  "fair_value": {
+    "value": 66.0,
+    "method": "Blend of NTM (FY28) non-GAAP P/E (about $2.65 x 25x = $66), SBC-adjusted FCF yield (about $58.6) and unadjusted FCF multiple (about $73.4), weighted 45/30/25, giving about $66. That is a skeptic's haircut to the sell-side average target of $76.76.",
+    "methods": [
+      {"name": "P/E", "value": 66.25, "weight": 0.45,
+       "inputs": "FY28 (Jul-2028, roughly NTM as of Oct-2027) non-GAAP EPS $2.65 x 25x",
+       "inputs_detail": [
+         {"input": "FY26 non-GAAP diluted EPS", "value": "$2.22", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY27 consensus EPS", "value": "$2.31", "basis": "consensus", "source_ids": [10], "derivation": ""},
+         {"input": "FY28 EPS", "value": "$2.65", "basis": "estimate", "source_ids": [1, 10], "derivation": "FY27 consensus $2.31 grown about 15%. That is 12% revenue growth from FY27 guidance ($3.18-3.23B), plus modest operating leverage (FY27 guide 24-25% margin vs 23.7% FY26), with roughly flat diluted shares at about 294M per the Q1 guide."},
+         {"input": "P/E multiple", "value": "25x", "basis": "judgment", "source_ids": [3, 8, 6, 2], "derivation": "Today is about 30.6x FY27 consensus. I de-rate to 25x because ARR growth is slowing (18% to 16%/15%), revenue growth is low-teens, memory and server constraints delay deployments, and SBC is about 12.5% of revenue. In April 2026, when JPMorgan downgraded, the stock traded at about 17x forward."}
+       ]},
+      {"name": "FCF yield", "value": 58.6, "weight": 0.30,
+       "inputs": "FY28 FCF about $1.03B less SBC about $380M = $650M / 294M sh = $2.21/sh at a 4% yield = $55.2, plus net cash $3.4/sh",
+       "inputs_detail": [
+         {"input": "FY27 FCF guidance", "value": "$850-950M", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "FY28 FCF", "value": "$1.03B", "basis": "estimate", "source_ids": [1], "derivation": "FY27 midpoint $900M plus about $38M of non-recurring restructuring added back, grown about 10%"},
+         {"input": "SBC", "value": "$380M", "basis": "estimate", "source_ids": [1], "derivation": "FY26 SBC $357.7M (12.5% of $2.85B revenue), grown about 6%"},
+         {"input": "Net cash", "value": "about $1.01B ($3.4/sh)", "basis": "reported", "source_ids": [1], "derivation": "Cash $777M + ST investments $1,584M - convertible notes $1,349M at 2026-07-31"},
+         {"input": "Required SBC-adjusted FCF yield", "value": "4%", "basis": "judgment", "source_ids": [8, 10], "derivation": "For a low-teens grower with dilution risk. That is about 25x owner earnings, in line with the P/E method."}
+       ]},
+      {"name": "other", "value": 73.4, "weight": 0.25,
+       "inputs": "Unadjusted FCF/share FY28 $3.50 x 20x + net cash $3.4",
+       "inputs_detail": [
+         {"input": "FY28 FCF/share", "value": "$3.50", "basis": "estimate", "source_ids": [1], "derivation": "$1.03B / 294M diluted shares (Q1 FY27 guide)"},
+         {"input": "P/FCF multiple", "value": "20x", "basis": "judgment", "source_ids": [10, 5], "derivation": "5% headline FCF yield. Sell-side targets of $60-90 imply about 17-26x FY27 FCF, and I take the middle."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 42.0, "prob": 0.25, "story": "ARR growth slows to about 11-12% as easy VMware displacements are used up. DRAM and server shortages (no new memory capacity until late 2027) keep pushing deployments out. Sales disruption after the CCO exit. FY28 EPS of about $2.35 gets about 18x, close to the April 2026 trough when the stock was $34-36 and AMD bought stock at $36.26."},
+    "base": {"price": 70.0, "prob": 0.5, "story": "FY27 guide is met (revenue about $3.2B, FCF about $900M). Growth holds at about 12% and the multiple compresses from about 30x to about 26x forward EPS as earnings rise. The stock roughly flat."},
+    "bull": {"price": 98.0, "prob": 0.25, "story": "VMware migrations speed up as Broadcom renewals come due, the memory crunch eases, and AI/Kubernetes (NVIDIA/AMD partnerships, Ryax) adds growth. FY28 EPS about $3.0 at about 32x."}
+  },
+  "thesis_break_price": 45.0,
+  "thesis_break_reason": "Below about $45 (about 36% below today and below the 20x multiple on even trough FY27 EPS), the market would be saying the 12% FY27 growth/$850-950M FCF guide is not credible. Likely causes: a guide cut from supply constraints, an ARR slowdown into single digits, or losses to Broadcom/VMware retention pricing or hyperscalers. That would be a fundamental break, not ordinary 47%-vol noise.",
+  "catalysts": [
+    {"date": "2026-10-02", "event": "President/CCO Tarkan Maner departs; sales consolidated under CEO", "direction": "-"},
+    {"date": "2026-11 (late)", "event": "Q1 FY27 earnings (guide rev $755-765M, op margin 26-28%)", "direction": "?"},
+    {"date": "2027-02 (late)", "event": "Q2 FY27 earnings; first read on FY27 guide durability amid memory pricing", "direction": "?"},
+    {"date": "2027-05", "event": ".NEXT conference / Q3 FY27 earnings", "direction": "?"},
+    {"date": "2027-08 (late)", "event": "Q4 FY27 results and FY28 guidance", "direction": "?"},
+    {"date": "2027-10", "event": "0.25% 2027 convertible notes mature; cash settlement vs dilution", "direction": "?"},
+    {"date": "ongoing 2026-2027", "event": "DRAM/server supply constraints and pricing; Broadcom VMware renewal cycle", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "How long the DRAM/server supply crunch delays customer deployments and license timing",
+    "Pace of VMware-to-Nutanix migrations, which are lumpy and multi-quarter",
+    "Sales execution after the CCO departure and the 5% workforce reduction",
+    "Whether ARR growth stabilises around 15% or keeps slowing",
+    "SBC (about 12.5% of revenue) and share dilution vs buybacks",
+    "Whether AI/agentic infrastructure (NVIDIA, AMD, Ryax) becomes a real revenue stream"
+  ],
+  "reasoning": "Facts: FY26 revenue was $2.85B (+12%), ARR $2.55B (+16%), non-GAAP EPS $2.22 and FCF $841M. The FY27 guide is revenue $3.18-3.23B, op margin 24-25% and FCF $850-950M. Net cash is about $1.0B. At $70.7 the stock trades at about 30.6x FY27 consensus EPS of $2.31, and the sell-side average target is $76.76 (range $60-90). Skeptic findings: (1) Hardware and memory constraints are a disclosed, ongoing risk that delays customer projects. The 10-Q flags it, management assumes it continues into FY27, and industry sources see no new DRAM capacity until late 2027. (2) VMware migration revenue has come in slower than expected; the CFO admitted this in January, after a 17% drop on Q1. (3) ARR growth slowed over several quarters, and the ARR methodology was changed in FY26. (4) JPMorgan downgraded in April 2026 on macro/IT budget pressure, and the stock bottomed near $34. AMD bought $150M of stock at $36.26 in May. (5) The CCO leaves on Oct 2, 2026. (6) Insiders bought nothing over 12 months; the CFO sold $2.7M at $70 in Sep-2026, which is modest. (7) Short interest is only about 4%. I found no short-seller report or new class action; the 2023 software-usage case is settled. (8) Leverage is not a concern: net cash, low-coupon converts, $1B+ in FCF. So the bear case is about valuation and growth, not solvency. After a roughly 100% rally from the April low on a Q4 beat, the multiple is no longer cheap. I put fair value at about $66 (P/E, SBC-adjusted FCF and plain FCF methods), slightly below the current price. Scenarios at 42/70/98 with 25/50/25 weights give a mean of about $70 and a median near $68. The ladder is a lognormal centred at $68 with sigma about 0.45, close to the 47% realized vol, with a slightly fatter left tail because the stock traded at $34 six months ago. I relied on web search/fetch; some sites were blocked (intellectia 403), and no X/Twitter sources were used."
+  ,
+  "lane": "skeptic",
+  "sources": [
+    {"title": "Nutanix Reports Fourth Quarter and Fiscal 2026 Financial Results (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/1618732/000117184326005752/exh_991.htm", "date": "2026-08-26", "type": "filing", "in_lane": false},
+    {"title": "Nutanix Form 10-Q for quarter ended 2026-04-30 (risk factors: hardware supply constraints)", "url": "https://www.sec.gov/Archives/edgar/data/0001618732/000119312526248282/ntnx-20260430.htm", "date": "2026-06", "type": "filing", "in_lane": true},
+    {"title": "Nutanix falls 6% after JPMorgan downgrades over near-term growth fears", "url": "https://seekingalpha.com/news/4574086-nutanix-falls-6-after-jpmorgan-downgrades-over-near-term-growth-fears", "date": "2026-04", "type": "sell-side", "in_lane": true},
+    {"title": "Nutanix (NTNX) slides as investors weigh recent share issuance to AMD and a tougher near-term setup", "url": "https://www.quiverquant.com/news/Nutanix+(NTNX)+slides+as+investors+weigh+recent+share+issuance+to+AMD+and+a+tougher+near-term+setup", "date": "2026-05-20", "type": "press", "in_lane": true},
+    {"title": "Investment Analysts' Recent Ratings Changes for Nutanix (NTNX)", "url": "https://www.thestockobserver.com/2026/09/16/investment-analysts-recent-ratings-changes-for-nutanix-ntnx.html", "date": "2026-09-16", "type": "sell-side", "in_lane": true},
+    {"title": "Nutanix CFO notes stock nicked by VMware migration velocity, hints at acquisition appetite", "url": "https://www.sdxcentral.com/news/nutanix-cfo-notes-stock-nicked-by-vmware-migration-velocity-hints-at-acquisition-appetite/", "date": "2026-01-23", "type": "trade", "in_lane": true},
+    {"title": "Nutanix (NTNX) Insider Trading Activity", "url": "https://www.marketbeat.com/stocks/NASDAQ/NTNX/insider-trades/", "date": "2026-09-17", "type": "data", "in_lane": true},
+    {"title": "Nutanix's Growth Story Faces High Expectations And Stiff Competition (short interest, ARR deceleration)", "url": "https://finimize.com/content/ntnx-asset-snapshot", "date": "2026", "type": "newsletter", "in_lane": true},
+    {"title": "Nutanix Announces Leadership Transition as CCO Steps Down", "url": "https://www.tipranks.com/news/company-announcements/nutanix-announces-leadership-transition-as-cco-steps-down", "date": "2026-09-24", "type": "press", "in_lane": true},
+    {"title": "Nutanix (NTNX) Stock Forecast & Analyst Price Targets", "url": "https://stockanalysis.com/stocks/ntnx/forecast/", "date": "2026-09-28", "type": "data", "in_lane": false},
+    {"title": "Nutanix Class Action Settlement, Voluntary Dismissal Greenlit", "url": "https://news.bloomberglaw.com/litigation/nutanix-class-action-settlement-voluntarily-dismissal-greenlit", "date": "n/a", "type": "press", "in_lane": true},
+    {"title": "AI-Driven Hardware Supply Constraints Dent CIO Plans", "url": "https://www.nutanix.com/theforecastbynutanix/news/ai-driven-hardware-supply-constraints-dent-cio-plans", "date": "2026", "type": "company", "in_lane": true},
+    {"title": "Nutanix (NTNX) Is Getting Fresh Attention, So What Is Behind It?", "url": "https://finance.yahoo.com/markets/stocks/articles/nutanix-ntnx-getting-fresh-attention-231447600.html", "date": "2026-09", "type": "press", "in_lane": false},
+    {"title": "When Will DRAM Prices Normalise? Analysing the Timeline for Memory Market Recovery", "url": "https://www.softwareseni.com/when-will-dram-prices-normalise-analysing-the-timeline-for-memory-market-recovery/", "date": "2026", "type": "trade", "in_lane": true}
+  ]
+}

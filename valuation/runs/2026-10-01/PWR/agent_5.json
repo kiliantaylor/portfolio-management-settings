@@ -1,0 +1,516 @@
+{
+ "symbol": "PWR",
+ "agent_id": "agent_5",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 166.0,
+   "p": 0.998
+  },
+  {
+   "K": 265.0,
+   "p": 0.993
+  },
+  {
+   "K": 331.0,
+   "p": 0.969
+  },
+  {
+   "K": 398.0,
+   "p": 0.926
+  },
+  {
+   "K": 464.0,
+   "p": 0.871
+  },
+  {
+   "K": 530.0,
+   "p": 0.797
+  },
+  {
+   "K": 596.0,
+   "p": 0.693
+  },
+  {
+   "K": 663.0,
+   "p": 0.564
+  },
+  {
+   "K": 729.0,
+   "p": 0.435
+  },
+  {
+   "K": 795.0,
+   "p": 0.32
+  },
+  {
+   "K": 895.0,
+   "p": 0.189
+  },
+  {
+   "K": 994.0,
+   "p": 0.105
+  },
+  {
+   "K": 1160.0,
+   "p": 0.034
+  },
+  {
+   "K": 1325.0,
+   "p": 0.009
+  },
+  {
+   "K": 1656.0,
+   "p": 0.001
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 530.08,
+   "p": 0.951
+  },
+  {
+   "K": 563.21,
+   "p": 0.887
+  },
+  {
+   "K": 596.34,
+   "p": 0.782
+  },
+  {
+   "K": 616.22,
+   "p": 0.7
+  },
+  {
+   "K": 636.1,
+   "p": 0.609
+  },
+  {
+   "K": 662.6,
+   "p": 0.485
+  },
+  {
+   "K": 689.1,
+   "p": 0.362
+  },
+  {
+   "K": 708.98,
+   "p": 0.282
+  },
+  {
+   "K": 728.86,
+   "p": 0.215
+  },
+  {
+   "K": 761.99,
+   "p": 0.129
+  },
+  {
+   "K": 795.12,
+   "p": 0.074
+  }
+ ],
+ "one_month_reasoning": "Two scheduled events are likely inside the window. The first is the FOMC on Oct 27-28, after the Sep 16 hike to 3.75-4.00% (confirmed by the supervisor); Kalshi had 65% hold / 33% hike on Sep 30. The second is Quanta's Q3 2026 print, which data vendors put on Oct 29. It is not yet on the IR calendar, but the prior pattern was Oct 30 2025 and Oct 31 2024, so it is ~85-90% likely before the Oct 30 close. Consensus for Q3 is $4.99 adj. EPS on $10.86B revenue, with 19 up-revisions and 0 down-revisions in 30 days (Alpha Vantage), so the bar is high after the Q2 raise. Base rate for the reaction: +17.3% on Jul 30 2026 (the close-to-close move the supervisor verified), about -2.5% after a clean beat in Q3 2025, and a ~16% slide 2.5-3.5 weeks after the Q2 print. That points to large moves with no reliable sign. I used a near-symmetric lognormal centred on spot with +0.4% drift: a 50/50 mix of 11% and 15% monthly vol, about 13% overall, against a 12.6% baseline (44%/3.5). The fatter tails reflect the earnings event. The round-1 ladder is essentially unchanged because no new information gives a directional edge.",
+ "fair_value": {
+  "value": 659.0,
+  "method": "Blend of two methods, weighted 60/40, giving ~$659 (about spot). P/E: 30x Oct-2027 NTM adj. EPS of $22.16 (0.25 x 2027E $19.77 + 0.75 x 2028E $22.96, now sourced) = $665. EV/EBITDA: 20x NTM EBITDA of ~$5.25B, less ~$5.9B net debt (raised from $5.0B), over 152.4M shares = $650.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 665.0,
+    "weight": 0.6,
+    "inputs": "NTM EPS at Oct-2027 $22.16 (0.25 x 2027E $19.77 + 0.75 x 2028E $22.96) x 30x",
+    "inputs_detail": [
+     {
+      "input": "2027 adj. EPS consensus",
+      "value": "$19.77 (26 analysts; range $17.48-22.02)",
+      "basis": "consensus",
+      "source_ids": [
+       2,
+       20
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "2028 adj. EPS consensus",
+      "value": "$22.96 (range $19.73-28.14)",
+      "basis": "consensus",
+      "source_ids": [
+       19
+      ],
+      "derivation": "Named consensus page (WallStreetZen) replaces the round-1 search-summary figure of $23.22. It implies +16% over 2027, in line with management's ~18% CAGR target. A search snippet also showed a stale $19.92 that predates the July raise, so I ignored it."
+     },
+     {
+      "input": "2026 adj. EPS guidance",
+      "value": "$16.45-$16.95",
+      "basis": "guidance",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "Target forward P/E",
+      "value": "30x",
+      "basis": "judgment",
+      "source_ids": [
+       3,
+       4,
+       5,
+       9,
+       11
+      ],
+      "derivation": "Forward P/E history: 19x (2021), 21x (2022), 26x (2023), 31x (2024), 35x (2025), ~34-35x now, with a June 2026 peak of ~50x. EME and MTZ trade at ~18-21x. Premium multiples usually compress as growth matures, and the Sep 16 Fed hike (with one more signalled) makes holding 35x harder, so I use 30x: below today's level and above the ~28x 5-year average. The hike supports compression but does not argue for going below 30x, because backlog growth of +49% YoY is stronger than I had weighted."
+     }
+    ]
+   },
+   {
+    "name": "EV/EBITDA",
+    "value": 650.0,
+    "weight": 0.4,
+    "inputs": "NTM EBITDA at Oct-2027 ~$5.25B x 20x = EV $105.0B, less net debt ~$5.9B = equity $99.1B / 152.4M shares",
+    "inputs_detail": [
+     {
+      "input": "2026 adj. EBITDA guidance",
+      "value": "$4.09-$4.21B (midpoint $4.15B, ~10.5% of $39.6B revenue)",
+      "basis": "guidance",
+      "source_ids": [
+       1,
+       2
+      ],
+      "derivation": ""
+     },
+     {
+      "input": "2027 / 2028 adj. EBITDA",
+      "value": "~$4.79B / ~$5.40B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       19,
+       20
+      ],
+      "derivation": "The 2026 guidance midpoint grown at consensus revenue growth at a constant ~10.5% margin: 2027 revenue $45.69B (+15.5%, Alpha Vantage), and 2028 revenue +12.7% (ratio of WallStreetZen's 2028 to 2027 revenue forecasts). This replaces the round-1 search-summary 2028 EBITDA of $5.26B. NTM at Oct-2027 = 0.25 x 4.79 + 0.75 x 5.40 = ~$5.25B."
+     },
+     {
+      "input": "Forward EV/EBITDA multiple",
+      "value": "20x",
+      "basis": "judgment",
+      "source_ids": [
+       3,
+       12
+      ],
+      "derivation": "~24x forward today (TIKR, Aug 2026). Wolfe used 27x on 2028 at peak multiples. I assume compression consistent with the 30x P/E."
+     },
+     {
+      "input": "Net debt",
+      "value": "~$5.9B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       21
+      ],
+      "derivation": "From the 424B5 capitalization table: Jun-30-2026 cash $506M, debt $6,105M (net $5.6B). The August notes were net-neutral, refinancing CP and revolver debt into $1.4B cash against $7.0B debt. CP rose from $448M to $728M by Jul 30 as Enerfab closed, and M&A continues at ~$1.2B+/yr, so FCF goes to M&A and buybacks rather than deleveraging. Changed from $5.0B per the supervisor's fact check."
+     },
+     {
+      "input": "Diluted shares",
+      "value": "152.4M",
+      "basis": "reported",
+      "source_ids": [
+       1
+      ],
+      "derivation": ""
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 440.0,
+   "prob": 0.2,
+   "story": "AI and hyperscaler capex gets cut or deferred, or a 2027 recession hits. I now take the recession odds from Kalshi's 2027 market (21%, $538k volume) instead of the thin $10k Polymarket market; the Polymarket 'AI downturn by Jun-2027' market is ~18%. Rates stay higher after the Sep hike. The multiple compresses toward the EME/MTZ range of ~20-22x on ~$21 EPS. Base rates: PWR's down years were -23% to -29% (2008, 2015, 2018), with a 22% one-month slide in Jul 2026 and the -48%/-78% telecom-bust analogue in 2001-02. I lowered the probability from 22% to 20% because the deep market prices recession well below the thin one, direct data-center exposure is only ~10% of revenue, and backlog is +49% YoY."
+  },
+  "base": {
+   "price": 690.0,
+   "prob": 0.57,
+   "story": "Backlog of $53.4B (+49% YoY; 12-month backlog +61%) converts, and EPS compounds ~16-18% toward ~$22-23 NTM by late 2027, while the forward P/E drifts from ~34x to ~30-31x under a tighter Fed. Price ends flat to up mid-single digits, the usual pattern for a premium compounder after a +60% year."
+  },
+  "bull": {
+   "price": 930.0,
+   "prob": 0.23,
+   "story": "Large transmission, generation and NiSource awards enter backlog in 2H26-2027, Q2's 7.3% EBIT margin proves structural, hyperscaler capex beats consensus for a third year, and the multiple holds at ~38-40x on ~$23-24 NTM EPS, near the Street-high targets."
+  }
+ },
+ "thesis_break_price": 450.0,
+ "thesis_break_reason": "Around $450 the stock trades at ~20x Oct-2027 NTM EPS ($22.2), or ~23x 2027 consensus: the peer and pre-2023 multiple. A price there would most likely mean the market sees earnings at risk (backlog cancellations or deferrals from cuts to data-center or utility capex, a margin reversal, or a 2027 recession), not just rate-driven de-rating. That de-rating is already priced into my 30x base and would take the stock to ~$560-600, not $450. I keep $450 rather than the supervisor's $455, because the difference is within noise.",
+ "catalysts": [
+  {
+   "date": "2026-10-28",
+   "event": "FOMC decision after the Sep 16 hike to 3.75-4.00% (Kalshi 65% hold / 33% hike as of Sep 30)",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10-29",
+   "event": "Q3 2026 results (vendor estimate, not yet confirmed by IR; consensus $4.99 EPS, $10.86B revenue): margin, FY26 guide, NiSource and other large awards into backlog",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10/2026-11",
+   "event": "Hyperscaler Q3 earnings and 2027 capex guides",
+   "direction": "+"
+  },
+  {
+   "date": "2026-12-09",
+   "event": "FOMC (dot plot signals one more 2026 hike)",
+   "direction": "-"
+  },
+  {
+   "date": "2027-02",
+   "event": "Q4 2026 results and first 2027 guidance",
+   "direction": "?"
+  },
+  {
+   "date": "2027-04/2027-05",
+   "event": "Q1 2027 results",
+   "direction": "?"
+  },
+  {
+   "date": "2027-07",
+   "event": "Q2 2027 results and mid-year backlog",
+   "direction": "?"
+  },
+  {
+   "date": "2027 (rolling)",
+   "event": "Recession risk (Kalshi 2027 recession 21%) and signs of AI-capex digestion; Texas data-center permitting pause",
+   "direction": "-"
+  }
+ ],
+ "key_uncertainties": [
+  "Durability of hyperscaler and AI capex into 2027-28 (consensus ~$0.93-1.1T; Goldman ~$1.2T). The direct hit is limited because Technology & Load Centers is ~10% of revenue, but the indirect effect through utility load growth is large.",
+  "Multiple compression: 34-35x forward now vs a ~28x 5-year average and ~20x for peers, with the Fed now hiking",
+  "Whether the Q2 2026 margin step-up is structural",
+  "Rate path after the September 2026 hike; recession odds (Kalshi 21% for 2027)",
+  "Labor availability: a bottleneck that supports pricing but caps volume"
+ ],
+ "reasoning": "Round 2. The supervisor confirmed my +49% backlog growth and the Sep 16 Fed hike. It corrected my net debt from $5.0B to ~$5.9B, which I verified in the 424B5 capitalization table (CP rose from $448M to $728M by Jul 30 as Enerfab closed). It also flagged that my 2028 figures and the thin Polymarket recession market should not drive numbers. Follow-ups: (1) WallStreetZen's named consensus has 2028 EPS at $22.96 (vs my $23.22 search summary), and Alpha Vantage has 2027 at $19.77 (26 analysts, 24 up-revisions and 0 down in 30 days). I rebuilt 2027/28 EBITDA from consensus revenue growth at the guided ~10.5% margin, so it no longer rests on a summary. (2) I replaced the Polymarket recession market (35%, ~$10k volume) with Kalshi KXRECSSNBER-27, 'recession in 2027' (two negative GDP quarters, Q4-26 to Q4-27): 21% last trade on Oct 2 2026, $538k volume, ~274k contracts open interest. (3) Q3 date still unconfirmed by IR; Oct 29 is the vendor estimate. Valuation: 30x on $22.16 NTM EPS = $665, and 20x on $5.25B NTM EBITDA less $5.9B net debt = $650. Blended 60/40 that gives $659 (round 1: $658). The higher net debt and slightly lower 2028 EPS roughly offset higher derived EBITDA. The rate hike supports, but does not deepen, the de-rating I already assumed. Distribution: a three-scenario lognormal mixture: bear $440 (20%, down from 22%, σ 28%), base $690 (57%, σ 20%), bull $930 (23%, σ 20%). Median ~$680, mean ~$695-700. P(≥$663) moves from 0.555 to 0.564. I disagree with the supervisor on one point: I keep thesis break at $450 rather than $455, which is immaterial. I agree that the macro and rates backdrop adds no extra downside beyond multiple compression. Research limits: fintel and chartmill returned 403; StockAnalysis paywalls 2028 estimates.",
+ "lane": "base-rates",
+ "sources": [
+  {
+   "title": "Quanta Services Q2 2026 earnings release (8-K Ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001050915/000119312526324855/d56853dex991.htm",
+   "date": "2026-07-30",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services (PWR) Stock Forecast & Analyst Price Targets",
+   "url": "https://stockanalysis.com/stocks/pwr/forecast/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services Posted a Record Quarter and a $53 Billion Backlog. Why Is the Stock Cheaper Than in May? (TIKR)",
+   "url": "https://www.tikr.com/blog/quanta-services-posted-a-record-quarter-and-a-53-billion-backlog-why-is-the-stock-cheaper-than-in-may",
+   "date": "2026-08-10",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Quanta Services Won a Bernstein Upgrade After a 12% Slide (TIKR)",
+   "url": "https://www.tikr.com/blog/quanta-services-won-a-bernstein-upgrade-after-a-12-slide-heres-where-the-stock-could-go",
+   "date": "2026-09-25",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "GuruFocus: Quanta Services PE Ratio (TTM) 10-year range and forward PE history",
+   "url": "https://www.gurufocus.com/term/pettm/PWR",
+   "date": "2026-08-08",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Quanta Services stock price history / annual returns 1998-2026",
+   "url": "https://companiesmarketcap.com/quanta-services/stock-price-history/",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Polymarket: US recession by end of 2027? (thin, ~$10k volume; discounted in round 2, kept for reference only)",
+   "url": "https://polymarket.com/event/us-recession-by-end-of-2027-20260807185409760",
+   "date": "2026-10-02",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Polymarket 'AI bubble burst' market via CryptoSlate tracker",
+   "url": "https://cryptoslate.com/predictions/market/ai-bubble-burst-in-2026/",
+   "date": "2026-10-02",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Kalshi News: Fed rate odds flip to October hold at 65% after PCE report",
+   "url": "https://news.kalshi.com/p/fed-rate-odds-traders-flip-to-october-hold-at-65-after-pce-report",
+   "date": "2026-09-30",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "The Motley Fool: 6 hyperscalers projected to spend $1.3T on capex in 2027 (S&P Global data)",
+   "url": "https://www.fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow/",
+   "date": "2026-09-06",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "EMCOR / peer forward P/E (GuruFocus EME forward PE; Zacks via Globe and Mail on MTZ)",
+   "url": "https://www.gurufocus.com/term/forward-pe-ratio/EME",
+   "date": "2026-09-07",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Wolfe Research raises Quanta Services price target (Investing.com)",
+   "url": "https://www.investing.com/news/analyst-ratings/wolfe-research-raises-quanta-services-stock-price-target-on-growth-outlook-93CH-4652386",
+   "date": "2026-05-01",
+   "type": "sell-side",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services Stock Jumps 17% After Topping Consensus and Raising Guidance (TIKR)",
+   "url": "https://www.tikr.com/blog/quanta-services-stock-jumps-after-q2-earnings-beat-guidance-raise",
+   "date": "2026-07-30",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Earnings call transcript: Quanta Services Q3 2025 sees earnings beat, stock dips (Investing.com)",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-quanta-services-q3-2025-sees-earnings-beat-stock-dips-93CH-4320426",
+   "date": "2025-10-30",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "Telecoms crash (Wikipedia) - context for Quanta's 2001-2002 -48%/-78% years",
+   "url": "https://en.wikipedia.org/wiki/Telecoms_crash",
+   "date": "n/a",
+   "type": "other",
+   "in_lane": true
+  },
+  {
+   "title": "Quanta Services investor presentation (Nov 2025) / multi-year EPS CAGR target and 2028 street estimates (search summary)",
+   "url": "https://investors.quantaservices.com/_assets/_9d70d8accf8a2b445b31103b9b21b717/quantaservices/db/894/10416/pdf/PWR+Investor+Deck+-+Nov+25+vF.pdf",
+   "date": "2025-11",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "ad-hoc-news: Quanta Services stock last trades at USD 644.25 on September 28, 2026",
+   "url": "https://www.ad-hoc-news.de/boerse/news/nachboerse/quanta-services-stock-last-trades-at-usd-644-25-on-september-28-2026/70195094",
+   "date": "2026-09-28",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Kalshi market KXRECSSNBER-27 'Will there be a recession in 2027?' (API: last $0.21, volume ~538k, OI ~274k)",
+   "url": "https://kalshi.com/markets/kxrecssnber/recession/kxrecssnber-27",
+   "date": "2026-10-02",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "WallStreetZen: Quanta Services stock forecast (EPS 2026 $16.90, 2027 $19.83, 2028 $22.96; revenue and earnings forecasts)",
+   "url": "https://www.wallstreetzen.com/stocks/us/nyse/pwr/stock-forecast",
+   "date": "2026-09-28",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Alpha Vantage EARNINGS_ESTIMATES PWR (FY27 $19.77, 26 analysts; Q3-26 $4.99; revision counts)",
+   "url": "https://www.alphavantage.co/query?function=EARNINGS_ESTIMATES&symbol=PWR",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Quanta Services 424B5 prospectus supplement (capitalization table, Jun-30-2026 actual and as adjusted)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1050915/000119312526335074/d115922d424b5.htm",
+   "date": "2026-08-05",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Kalshi on X: odds of a recession next year at all-time low of 20%",
+   "url": "https://x.com/Kalshi/status/2103869731660869941",
+   "date": "2026-09-26",
+   "type": "social",
+   "in_lane": true
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a fact",
+   "from": "Net debt ~$5.0B by Oct-2027",
+   "to": "~$5.9B",
+   "why": "Supervisor net-debt resolution; verified in the 424B5 capitalization table (net $5.6B at Jun-30, CP up $280M by Jul 30 on Enerfab) and continued M&A"
+  },
+  {
+   "item": "a fact",
+   "from": "2028 EPS $23.22 / EBITDA $5.26B (search summary)",
+   "to": "2028 EPS $22.96 (WallStreetZen consensus); 2028 EBITDA ~$5.40B derived from consensus revenue at the guided margin",
+   "why": "Supervisor feedback: source the 2028 Street figures directly"
+  },
+  {
+   "item": "a method",
+   "from": "P/E $669 (NTM EPS $22.3 x 30x)",
+   "to": "P/E $665 (NTM EPS $22.16 x 30x)",
+   "why": "Sourced 2028 EPS; 30x kept, with the Fed hike cited as support for compression"
+  },
+  {
+   "item": "a method",
+   "from": "EV/EBITDA $642 (NTM $5.14B, net debt $5.0B)",
+   "to": "EV/EBITDA $650 (NTM $5.25B, net debt $5.9B)",
+   "why": "Rebuilt EBITDA from consensus revenue growth; higher net debt per supervisor"
+  },
+  {
+   "item": "fair value",
+   "from": "658",
+   "to": "659",
+   "why": "Net effect of the two method changes; essentially unchanged"
+  },
+  {
+   "item": "a fact",
+   "from": "Recession odds 35% (Polymarket, ~$10k volume)",
+   "to": "21% (Kalshi 2027 recession, $538k volume)",
+   "why": "Supervisor discounted the thin Polymarket market; replaced with a deeper market"
+  },
+  {
+   "item": "a scenario",
+   "from": "bear 22% / base 55% / bull 23%",
+   "to": "bear 20% / base 57% / bull 23%",
+   "why": "Lower recession odds in the deep market, ~10% direct data-center exposure and +49% backlog confirmed by supervisor, partly offset by the Fed hike"
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "P(>=663) 0.555, P(>=530) 0.785, P(>=464) 0.86",
+   "to": "P(>=663) 0.564, P(>=530) 0.797, P(>=464) 0.871",
+   "why": "Smaller bear weight in the mixture"
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "1-month P(>=662.6) 0.49",
+   "to": "0.485, with slightly fatter tails",
+   "why": "Earnings date ~85-90% likely inside the window (supervisor); Q3 consensus $4.99 is a high bar after 19 up-revisions; no directional edge"
+  },
+  {
+   "item": "thesis break",
+   "from": "450",
+   "to": "450 (unchanged)",
+   "why": "Supervisor uses $455; I keep $450 (~20x NTM EPS) because the difference is noise and rate-driven de-rating alone points to ~$560-600"
+  }
+ ]
+}

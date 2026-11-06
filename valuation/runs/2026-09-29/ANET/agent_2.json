@@ -1,0 +1,102 @@
+{
+  "symbol": "ANET", "agent_id": "agent_2", "as_of": "2026-09-30", "horizon": "2027-09-30",
+  "ladder": [
+    {"K": 51, "p": 0.99}, {"K": 82, "p": 0.976}, {"K": 102, "p": 0.947}, {"K": 122, "p": 0.898},
+    {"K": 143, "p": 0.835}, {"K": 163, "p": 0.762}, {"K": 184, "p": 0.665}, {"K": 204, "p": 0.565},
+    {"K": 224, "p": 0.46}, {"K": 245, "p": 0.362}, {"K": 275, "p": 0.245}, {"K": 306, "p": 0.152},
+    {"K": 357, "p": 0.072}, {"K": 408, "p": 0.031}, {"K": 510, "p": 0.006}
+  ],
+  "ladder_1m": [
+    {"K": 163.22, "p": 0.935}, {"K": 173.42, "p": 0.866}, {"K": 183.62, "p": 0.765}, {"K": 189.74, "p": 0.692},
+    {"K": 195.86, "p": 0.612}, {"K": 204.02, "p": 0.502}, {"K": 212.18, "p": 0.397}, {"K": 218.30, "p": 0.324},
+    {"K": 224.42, "p": 0.259}, {"K": 234.62, "p": 0.17}, {"K": 244.82, "p": 0.106}
+  ],
+  "one_month_reasoning": "Arista's Q3 2026 report date has not been announced (no 8-K or date release as of Sep 30). Arista has reported on Tuesdays (Nov 4 2025, May 5 and Aug 4 2026), so Tue Nov 3 is the likely date. Nov 2, which I used in round 1, is a Monday. Either date falls after the Oct 30 window, so no company print lands inside it. The in-window industry read-throughs are two-sided: late-October hyperscaler Q3 prints (Microsoft is 26% and Meta 16% of Arista revenue) with 2027 capex commentary, and Celestica's Q3 (late Oct). Celestica's own Q2 release (source 16) already told investors that 2027 growth will accelerate beyond 2026's 65%, so a reaffirmation is mostly priced in. Realized vol over the last 20/40 trading days is ~40-45%, below the 54% one-year figure. I therefore use a lognormal centred just above spot (median ~$204.3) with ~14.5% monthly sigma, a little tighter than the 15.4% I used in round 1.",
+  "fair_value": {
+    "value": 213.0,
+    "method": "The P/E leg is NTM EPS at Sep-2027 of ~$6.02 (0.25 x FY27 consensus $5.20 + 0.75 x FY28E $6.24) x 33x = ~$199, weight 0.6. The FCF-yield leg is FY28E FCF ~$7.8B at 2.8% = ~$279B EV, plus ~$19.5B projected Sep-2027 net cash, over 1.276B shares = ~$234, weight 0.4. The blend is ~$213.",
+    "methods": [
+      {"name": "P/E", "value": 199.0, "weight": 0.6,
+       "inputs": "NTM (Q4'27-Q3'28) non-GAAP EPS at Sep-2027 ~$6.02 = 0.25 x FY27 $5.20 + 0.75 x FY28E $6.24 (+20%); x 33x forward multiple",
+       "inputs_detail": [
+         {"input": "FY2026E revenue", "value": "$12.6B guide (+40%); consensus $12.67B", "basis": "guidance", "source_ids": [2, 13], "derivation": ""},
+         {"input": "Q2 2026 non-GAAP EPS / Q3 guide", "value": "$1.02 / $1.06-1.08", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY2026 / FY2027 consensus non-GAAP EPS", "value": "$4.11 / $5.20 (29 analysts; FY27 range $4.66-5.73; FY27 revenue $16.29B, +28.6%)", "basis": "consensus", "source_ids": [13],
+          "derivation": "My own round-1 industry build gave ~$5.05. It haircut Arista for relative share loss (DC +37.6% vs market +64.5%, IDC). Dell'Oro says the AI back-end gap is largely deferred-revenue timing ($6.87B deferred, +$1.5B in H1), so I drop most of that haircut and use consensus."},
+         {"input": "FY2028E EPS growth", "value": "+20% (FY28E $6.24)", "basis": "judgment", "source_ids": [9, 10, 11, 16],
+          "derivation": "Broadcom sees AI semis roughly doubling again, DC capex is heading to ~$1.3-1.5T in 2027-28, and Celestica (a white-box competitor and supply-chain bellwether) says in its own release that 2027 growth accelerates beyond 65%. I haircut to ~20% EPS growth for a decelerating base and share pressure from Nvidia and Cisco."},
+         {"input": "Forward P/E at horizon", "value": "33x NTM", "basis": "judgment", "source_ids": [13, 3, 5, 12],
+          "derivation": "Spot is ~41x NTM (~$4.93) and 39x FY27. Growth decelerates from ~40% to ~20-25% by Sep 2027, so the multiple compresses. I use 33x, one turn above round 1's 32x, because the Dell'Oro deferred-revenue qualification makes the share data less bearish. That is still below the ~34x five-year average, because Nvidia leads branded DC share."}
+       ]},
+      {"name": "FCF yield", "value": 234.0, "weight": 0.4,
+       "inputs": "FY2028E FCF ~$7.8B / 2.8% = ~$279B EV; + ~$19.5B projected Sep-2027 net cash; / 1.276B diluted shares",
+       "inputs_detail": [
+         {"input": "Cash + marketable securities at 6/30/26, no debt", "value": "$13.34B", "basis": "reported", "source_ids": [1, 17], "derivation": ""},
+         {"input": "Projected net cash at Sep-2027", "value": "~$19.5B (~$15/share)", "basis": "estimate", "source_ids": [17],
+          "derivation": "$13.34B plus ~5 quarters of ~$1.3-1.5B normalised FCF, less modest buyback (~$818M authorisation left, none used in H1 2026). Round 1 added only today's $13.3B at a Sep-2027 horizon, which undercounted by ~$4.5/share."},
+         {"input": "Diluted shares", "value": "1,276M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY2028E FCF", "value": "$7.8B", "basis": "estimate", "source_ids": [1, 13, 17],
+          "derivation": "FY28E net income ~$8.0B ($6.24 x 1.276B) at ~95-100% conversion (capex tiny, H1 capex $84M). Trimmed for inventory and purchase-commitment builds, which held H1 OCF ex-deferred revenue to ~22% of revenue."},
+         {"input": "FCF yield", "value": "2.8%", "basis": "judgment", "source_ids": [12, 6],
+          "derivation": "Equivalent to ~33-35x earnings for a net-cash franchise with 60%+ gross margin. Memory-driven component inflation (Dell'Oro campus ASP +19%) has so far been passed through; management targets margin-neutral into 2027."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 135.0, "prob": 0.23, "story": "Signs of 2028 AI capex digestion appear by mid-2027, or Arista's share loss to Nvidia Spectrum-X, Cisco and Celestica white boxes proves structural rather than deferred-revenue timing. 2027 growth slows to ~15%, memory costs squeeze gross margin, and the multiple de-rates to ~23x on ~$5.8B NTM EPS."},
+    "base": {"price": 218.0, "prob": 0.52, "story": "The industry keeps growing fast (hyperscaler capex toward ~$1T+ in 2027, 1.6T ramps, Celestica guiding acceleration). Arista grows ~28% in 2027, in line with the $16.29B consensus, as deferred AI revenue converts. NTM EPS is ~$6.0 at ~33-35x, plus ~$15/share cash."},
+    "bull": {"price": 295.0, "prob": 0.25, "story": "The supply-constrained market (Dell'Oro: 1-2 years) favours the vendor with secured supply. Scale-across and 1.6T win big at Microsoft, Meta and OpenAI-class customers, deferred revenue releases, and 2027 growth reaches 35%+. CY28 EPS ~$7.3 at ~40x."}
+  },
+  "thesis_break_price": 140.0,
+  "thesis_break_reason": "Below ~$140 the stock trades near 27x FY27 consensus EPS ($5.20), well under the ~34x five-year average forward multiple. That price implies the market sees either a 2028 hyperscaler capex cut or a structural share loss at Microsoft or Meta (42% of revenue combined) to Nvidia or white-box, visible as deferred revenue unwinding rather than converting. Ordinary volatility rarely takes it there without such news. It is also just below the May 2026 post-Q1 lows of $136-142.",
+  "catalysts": [
+    {"date": "2026-10 (late)", "event": "Hyperscaler Q3 earnings (MSFT, GOOGL, META, AMZN) with 2027 capex commentary", "direction": "?"},
+    {"date": "2026-10 (late)", "event": "Celestica Q3 results: reaffirm 2027 acceleration beyond 65%; 800G/1.6T and white-box share read", "direction": "?"},
+    {"date": "2026-11-03 (likely; unannounced)", "event": "Arista Q3 2026 results and first 2027 color; deferred revenue conversion", "direction": "?"},
+    {"date": "2026-11", "event": "Nvidia Q3 FY27: Spectrum-X networking growth (competitive read)", "direction": "-"},
+    {"date": "2026-12", "event": "IDC / Dell'Oro 3Q26 switch trackers: branded DC share and AI back-end ranking", "direction": "?"},
+    {"date": "2027-02", "event": "Arista Q4 2026 results and 2027 guide", "direction": "?"},
+    {"date": "2027 H1", "event": "1.6T production ramps at hyperscalers", "direction": "+"},
+    {"date": "2027-09 (possible)", "event": "Arista analyst day (2025's was Sep 11; no 2026/2027 date announced)", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Share: reported branded DC share (IDC 2Q26 Nvidia 20.4% vs Arista 18.7%, Arista +37.6% vs market +64.5%) versus shipment share. Deferred revenue of $6.87B may close much of the gap (Dell'Oro).",
+    "How durable hyperscaler capex is into 2028; Microsoft (26%) and Meta (16%) 2027 budgets",
+    "Memory and component inflation vs pricing power on gross margin (non-GAAP GM down ~220bp YoY)",
+    "White-box displacement: Celestica guides 2027 growth above 65% and ranks #1 in AI back-end",
+    "Supply constraints may cap near-term upside but lengthen the cycle"
+  ],
+  "reasoning": "Round 2 corrections. (1) I replaced the discredited tickergate $5.28 with current consensus (Yahoo, verified: FY26 $4.11 and FY27 $5.20 from 29 analysts, FY27 revenue $16.29B). (2) I re-read Dell'Oro's 2Q26 release. Arista ranked 3rd in AI back-end 'but would have been more closely tied if deferred AI revenue were included', and the market stays supply-constrained for 1-2 years. So I weight the share-loss narrative less and use consensus EPS instead of my haircut ~$5.05. IDC's branded-vendor data still show Nvidia ahead, so the bear case stays. (3) I verified the Celestica 2027 claim in its own Q2 release (8-K): revenue growth in 2027 accelerates beyond 65%, and EPS grows faster. That confirms strong industry demand, and also that a direct white-box competitor is growing faster than Arista. (4) I projected horizon net cash (~$19.5B, ~$15/share) instead of adding today's $13.3B. (5) I also fixed a method inconsistency: round 1 applied the multiple to full FY28 EPS, and I now use true NTM at Sep-2027 (~$6.02). Net effect: the P/E leg moves $200 to $199, the FCF leg $228 to $234, and the blend $211 to $213. I shifted scenario weights slightly toward base (bear 25% to 23%, base price $215 to $218), giving a mean of ~$218. The 12-month ladder rises ~1 point through the middle, and I keep round 1's fat tails because the stock is a levered bet on AI capex with 54% realized vol. The 1-month ladder is tightened to ~14.5% sigma because recent realized vol is 40-45% and there is no Arista print in the window. Analyst targets ($231-242 mean) are evidence only; I sit below them because I expect multiple compression from ~41x NTM.",
+  "lane": "industry",
+  "sources": [
+    {"title": "Arista Networks Q2 2026 earnings release (8-K Ex.99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0001596532/000159653226000174/ex991q226-earningsrelease.htm", "date": "2026-08-04", "type": "filing", "in_lane": false},
+    {"title": "Arista Q2 2026 earnings call summary: 2026 outlook raised to $12.6B", "url": "https://finance.biggo.com/news/US_ANET_2026-08-04", "date": "2026-08-04", "type": "press", "in_lane": false},
+    {"title": "IDC: Ethernet switch market surges 43.4% to $18.9B in 2Q26", "url": "https://www.idc.com/resource-center/blog/ethernet-switch-market-surges-43-4-to-18-9b-in-2q26-as-ai-infrastructure-demand-drives-record-datacenter-spending/", "date": "2026-09-11", "type": "data", "in_lane": true},
+    {"title": "IDC: NVIDIA becomes #1 in datacenter Ethernet switching as 1Q26 market surges", "url": "https://www.idc.com/resource-center/blog/nvidia-becomes-1-in-datacenter-ethernet-switching-as-1q26-market-surges-39-8-to-15-4-billion/", "date": "2026-06", "type": "data", "in_lane": true},
+    {"title": "Dell'Oro: AI back-end network switch sales surpass front-end for first time in 2Q2026 (re-read: deferred revenue qualification, 1-2 years supply-constrained)", "url": "https://www.delloro.com/news/ai-back-end-networks-switch-sales-surpass-front-end-networks-for-the-first-time-in-2q2026/", "date": "2026-09", "type": "trade", "in_lane": true},
+    {"title": "Dell'Oro: Market prices skyrocket, driving campus switch market to growth in 2Q 2026", "url": "https://www.delloro.com/news/market-prices-skyrocket-driving-campus-switch-market-to-growth-in-2q-2026/", "date": "2026-09-08", "type": "trade", "in_lane": true},
+    {"title": "Celestica Q2 2026 earnings call summary", "url": "https://finance.yahoo.com/markets/stocks/articles/celestica-inc-q2-2026-earnings-123000225.html", "date": "2026-07", "type": "press", "in_lane": true},
+    {"title": "NVIDIA Q2 FY2027 results press release (networking, Spectrum-X 2.6x YoY)", "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000073/q2fy27pr.htm", "date": "2026-08-26", "type": "filing", "in_lane": true},
+    {"title": "Broadcom Q3 FY2026 earnings call transcript (AI networking 2.5x, Tomahawk 6/7)", "url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/", "date": "2026-09-09", "type": "press", "in_lane": true},
+    {"title": "Cisco AI infrastructure revenue targets $7.5B in FY27 after $9.3B hyperscaler orders", "url": "https://pulse2.com/cisco-ai-infrastructure-revenue-targets-7-5-billion-after-hyperscaler-orders-reach-9-3-billion/", "date": "2026-08-12", "type": "press", "in_lane": true},
+    {"title": "2026 hyperscaler capex tops US$700bn", "url": "https://www.tmtfinance.com/intel/2026-hyperscaler-capex-tops-us700bn-analysis", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Ticker Nerd ANET forecast (targets, forward P/E 39.1x)", "url": "https://tickernerd.com/stock/anet-forecast/", "date": "2026-09-29", "type": "data", "in_lane": false},
+    {"title": "Yahoo Finance ANET analysis: EPS/revenue consensus and EPS trend (FY26 $4.11, FY27 $5.20, 29 analysts) - replaces tickergate", "url": "https://finance.yahoo.com/quote/ANET/analysis/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Arista Networks to Announce Q2 2026 Financial Results on Tuesday, August 4, 2026 (reporting-day pattern)", "url": "https://www.arista.com/en/company/news/press-release/24143-pr-20260706", "date": "2026-07-06", "type": "company", "in_lane": false},
+    {"title": "TheValueist on X: read-throughs from Celestica Q2 2026 call (lead only; not used for numbers)", "url": "https://x.com/TheValueist/status/2082130655282933820", "date": "2026-07", "type": "social", "in_lane": true},
+    {"title": "Celestica Q2 2026 press release (8-K): 2026 revenue $20.5B (+65%), 2027 growth to accelerate beyond 65%, CCS +84%", "url": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000043/cls-20260630prcondensedfs.htm", "date": "2026-07-27", "type": "filing", "in_lane": true},
+    {"title": "Arista Form 10-Q for quarter ended June 30, 2026 (cash $2,290.2M + securities $11,053.1M; deferred revenue; no buybacks)", "url": "https://www.sec.gov/Archives/edgar/data/1596532/000159653226000175/anet-20260630.htm", "date": "2026-08-05", "type": "filing", "in_lane": false}
+  ],
+  "revisions": [
+    {"item": "a fact", "from": "FY27 consensus EPS $5.28 (tickergate)", "to": "$5.20 (Yahoo, 29 analysts; FY26 $4.11)", "why": "Supervisor discounted tickergate as stale and inconsistent; I verified Yahoo directly."},
+    {"item": "a method", "from": "P/E: CY2028E EPS $6.20 x 32x = $200", "to": "P/E: NTM EPS at Sep-2027 $6.02 x 33x = $199", "why": "Used consensus $5.20 FY27 and a true NTM blend. Raised the multiple one turn because Dell'Oro says Arista's AI back-end gap is largely deferred-revenue timing (supervisor feedback), which makes the share data less bearish."},
+    {"item": "a method", "from": "FCF yield: $228 (adding today's $13.3B cash)", "to": "$234 (adding projected ~$19.5B Sep-2027 net cash)", "why": "Supervisor net-cash resolution: ~5 quarters of FCF accrue before the horizon (~$15/share vs $10.5)."},
+    {"item": "fair value", "from": "211", "to": "213", "why": "The net of the two method changes above."},
+    {"item": "a scenario", "from": "bear 135/25%, base 215/50%, bull 295/25%", "to": "bear 135/23%, base 218/52%, bull 295/25%", "why": "Deferred-revenue qualification of the share loss and the verified Celestica 2027 acceleration (industry demand) shift a little weight from bear to base; base price follows the higher fair value and horizon cash."},
+    {"item": "P(close >= K)", "from": "K=163-275: 0.755/0.655/0.555/0.45/0.355/0.24", "to": "0.762/0.665/0.565/0.46/0.362/0.245", "why": "Higher fair value and a lower bear weight; tails kept."},
+    {"item": "P(close >= K)", "from": "1m: 0.915 at 163.22 ... 0.485 at 204.02 ... 0.11 at 244.82", "to": "0.935 ... 0.502 ... 0.106", "why": "Supervisor: recent 20/40-day realized vol is 40-45%, and the Q3 print (likely Nov 3) falls outside the window. Sigma tightened from 15.4% to ~14.5% and centred at spot rather than slightly below it."},
+    {"item": "a fact", "from": "Q3 report Nov 2, 2026; analyst day historically November", "to": "Q3 unannounced, likely Tue Nov 3; 2025 analyst day was Sep 11, none announced", "why": "Supervisor finding: Arista reports on Tuesdays and the 2025 analyst day was in September. Removed the November analyst-day catalyst."},
+    {"item": "a fact", "from": "Celestica 2027 growth above 65% (Yahoo recap + X post)", "to": "Confirmed in Celestica's own Q2 2026 8-K press release", "why": "Supervisor asked for primary verification; now cited to the SEC filing, and the X post is kept as a lead only."},
+    {"item": "thesis break", "from": "140 (~22x my CY27 EPS)", "to": "140 (~27x consensus FY27 EPS $5.20)", "why": "Level unchanged. The rationale is re-anchored on consensus EPS and the 42% Microsoft/Meta concentration confirmed by the supervisor."}
+  ]
+}

@@ -1,0 +1,952 @@
+{
+ "date": "2026-10-05",
+ "symbol": "UBER",
+ "clean": true,
+ "checked": 101,
+ "ok": 48,
+ "failures": [
+  {
+   "item": "Supervisor peer NTM P/E table (10 peers)",
+   "value": "DASH 28.05, LYFT 7.9, GRAB 18.07, CART 17.68, ABNB 28.81, BKNG 14.3, EXPE 11.71, MELI 40.28, SE 22.37, TCOM 9.79",
+   "cited": "stockanalysis statistics pages (page-printed forward P/E)",
+   "result": "mislabelled",
+   "fix": "Aggregator page multiples labelled 'consistent NTM adjusted'; they are not reproducible from the pages' own estimates (CART 17.65x vs 9.7x). Rebuilt as Oct-5 close / (0.25 x FY26E + 0.75 x FY27E S&P Global adjusted EPS): DASH 25.05, LYFT 7.89, GRAB 23.38, CART 9.69, ABNB 27.51, BKNG 13.32, EXPE 10.99, MELI 35.97, SE 19.81, TCOM 9.63; basis estimate with arithmetic in comps_review.peers."
+  },
+  {
+   "item": "Supervisor peer NTM EV/EBITDA table (10 peers)",
+   "value": "DASH 17.5, LYFT 6.4, GRAB 8.5, CART 6.8, ABNB 15.5, BKNG 10.2, EXPE 6.8, MELI 19.0, SE 11.6, TCOM 6.3",
+   "cited": "round-1 reconciliation (EV from stockanalysis, an aggregator)",
+   "result": "not_found",
+   "fix": "Peer EV must come from filings. Rebuilt from each company's Q2 2026 release (diluted shares x Oct-5 close + debt - cash and investments) over MarketScreener NTM EBITDA: DASH 17.39, LYFT 6.31, GRAB 7.93, CART 7.26, ABNB 16.75, BKNG 10.46, EXPE 6.80, MELI 18.64, SE 10.97, TCOM 4.77."
+  },
+  {
+   "item": "Peer median NTM P/E (all / core-7)",
+   "value": "17.88x / 17.68x",
+   "cited": "stockanalysis forward P/E",
+   "result": "wrong",
+   "fix": "16.56x / 13.32x on the rebuilt table; fair_value P/E text, key_drivers, disagreements, feedback, summary and confidence_reason updated; ladder upper-tail trim recomputed (bull ~$87 vs ~$94)."
+  },
+  {
+   "item": "Peer median NTM EV/EBITDA (all / core-7)",
+   "value": "9.35x (9.4x) / 8.5x",
+   "cited": "round-1 reconciliation",
+   "result": "wrong",
+   "fix": "9.20x / 7.93x; fair_value EV/EBITDA leg $70 -> $69.0, EV/EBITDA-premium sensitivity ~$6 leg / ~$1.5 blend."
+  },
+  {
+   "item": "UBER NTM P/E and 'verified NTM-blended' basis",
+   "value": "16.79x; $69.62/16.79 = $4.15 = 0.25 x $3.35 + 0.75 x $4.42",
+   "cited": "https://stockanalysis.com/stocks/uber/statistics/",
+   "result": "mislabelled",
+   "fix": "Page figure is not an NTM blend (page now 17.03x at $68.57 = $4.03 EPS). Set basis estimate: $69.48 / $4.158 = 16.71x."
+  },
+  {
+   "item": "UBER NTM EV/EBITDA",
+   "value": "11.1x",
+   "cited": "round-1 reconciliation (stockanalysis EV)",
+   "result": "wrong",
+   "fix": "11.33x: EV $149.78B from the Q2 8-K / NTM EBITDA $13.22B (MarketScreener)."
+  },
+  {
+   "item": "UBER price labelled the Oct-5 price / 'last close'",
+   "value": "$69.62",
+   "cited": "stockanalysis",
+   "result": "wrong",
+   "fix": "Oct-5 close $69.48 (stockanalysis history; Twelve Data); used in comps, yields and upside."
+  },
+  {
+   "item": "LYFT price",
+   "value": "$15.60",
+   "cited": "https://stockanalysis.com/stocks/lyft/forecast/",
+   "result": "wrong",
+   "fix": "Oct-5 close $15.73; NTM adj. P/E 7.89x (unchanged ~7.9x)."
+  },
+  {
+   "item": "TCOM CNY/USD rate",
+   "value": "7.12",
+   "cited": "round-1 supervisor",
+   "result": "wrong",
+   "fix": "USD/CNY 6.7052 on 2026-10-05 (Twelve Data); TCOM 9.63x P/E, 4.77x EV/EBITDA."
+  },
+  {
+   "item": "UBER FY27 consensus FCF",
+   "value": "~$13.7-13.8B",
+   "cited": "MarketScreener (agents' citation)",
+   "result": "wrong",
+   "fix": "MarketScreener shows $13,082M (FY26 $10,487M, FY28 $14,961M); forward FCF $12.43B."
+  },
+  {
+   "item": "UBER forward pre-SBC FCF yield",
+   "value": "~9% (~$12.9B / ~$142B)",
+   "cited": "stockanalysis statistics; agents' FY27 FCF",
+   "result": "wrong",
+   "fix": "8.76% ($12.43B / $141.9B); agent_5 leg at today's yield ~$71 (was $69), corrected agent_5 blend ~$76.3 (was $75.5)."
+  },
+  {
+   "item": "UBER forward post-SBC FCF yield in fair_value FCF leg",
+   "value": "~7.5%",
+   "cited": "none (agents' inputs)",
+   "result": "wrong",
+   "fix": "7.33% ($10.41B / $141.9B); FCF leg $74.3."
+  },
+  {
+   "item": "Fair-value FCF leg arithmetic",
+   "value": "~$11B at 7.5% / 2.02B = ~$76",
+   "cited": "supervisor fair_value",
+   "result": "wrong",
+   "fix": "$11B / 7.5% / 2.02B is $72.6; with the corrected 7.33% yield the leg is $74.3. Blended fair value $76.0 -> $75.2; sizing upside ~9% -> ~8%."
+  },
+  {
+   "item": "Listed stakes offsetting net debt",
+   "value": "~$8B (or $8-9B) listed stakes",
+   "cited": "stockanalysis / agents",
+   "result": "wrong",
+   "fix": "10-Q: $8,759M of non-DH investments at carrying value, of which $4,596M marketable; EV/EBITDA leg uses $8.76B."
+  },
+  {
+   "item": "2026 SBC guide citation",
+   "value": "$1.95-2.10B (Q2 8-K)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "result": "not_found",
+   "fix": "Not in the 8-K; re-cited to the Q2 2026 prepared remarks, which show it."
+  },
+  {
+   "item": "Supervisor net debt, total debt, shares evidence",
+   "value": "cash $5.39B, total debt $14.73B, 2.04B shares",
+   "cited": "https://stockanalysis.com/stocks/uber/statistics/",
+   "result": "mislabelled",
+   "fix": "Leverage must come from filings; re-cited to the Q2 8-K balance sheet and 10-Q cover (values confirmed)."
+  },
+  {
+   "item": "Q3 2026 earnings date",
+   "value": "Oct 29 after the close or Nov 3 pre-market; 'Uber IR has not confirmed'",
+   "cited": "MarketBeat / TipRanks / Wall Street Horizon",
+   "result": "wrong",
+   "fix": "Uber IR event: Nov 4, 2026 (before the open). ladder_1m tails, one_month_reasoning, sizing.entry updated."
+  },
+  {
+   "item": "Earnings-day base rate",
+   "value": "6 of the last 8 prints fell, average move ~5.8%",
+   "cited": "none in supervisor (agent_5: MarketChameleon, access denied)",
+   "result": "wrong",
+   "fix": "7 of the last 8 fell, mean absolute move 5.45% (Twelve Data closes). ladder_1m tails recomputed."
+  },
+  {
+   "item": "Volatility in sizing",
+   "value": "~35% volatility",
+   "cited": "none",
+   "result": "mislabelled",
+   "fix": "Labelled estimate: 6-month realized 37.1% (stockanalysis daily closes); text now ~35-37%."
+  },
+  {
+   "item": "agent_1: FY27 consensus $4.56",
+   "value": "see agent file note",
+   "cited": "agent_1.json fair_value / comps_summary",
+   "result": "not_found",
+   "fix": "Claim not on the cited page; replaced with the figure a source shows (or withdrawn) in a dated citation-gate note in the agent file; it enters no supervisor number."
+  },
+  {
+   "item": "agent_1: Target P/E medians",
+   "value": "see agent file note",
+   "cited": "agent_1.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_1: Target P/E round-1 leftover",
+   "value": "see agent file note",
+   "cited": "agent_1.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_1: FY27 consensus FCF $13.7B",
+   "value": "see agent file note",
+   "cited": "agent_1.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_1: today forward post-SBC yield",
+   "value": "see agent file note",
+   "cited": "agent_1.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_1: EV/EBITDA medians",
+   "value": "see agent file note",
+   "cited": "agent_1.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_1: comps table basis",
+   "value": "see agent file note",
+   "cited": "agent_1.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_2: Target P/E medians",
+   "value": "see agent file note",
+   "cited": "agent_2.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_2: UBER EV/TTM FCF 14.2x",
+   "value": "see agent file note",
+   "cited": "agent_2.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_2: Net debt labelled reported",
+   "value": "see agent file note",
+   "cited": "agent_2.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_2: investments ex-DH composition",
+   "value": "see agent file note",
+   "cited": "agent_2.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_2: EV/EBITDA medians",
+   "value": "see agent file note",
+   "cited": "agent_2.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_2: comps table basis",
+   "value": "see agent file note",
+   "cited": "agent_2.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_3: Current NTM EPS from page P/E",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_3: consensus 2027 EPS ~$4.56",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "not_found",
+   "fix": "Claim not on the cited page; replaced with the figure a source shows (or withdrawn) in a dated citation-gate note in the agent file; it enters no supervisor number."
+  },
+  {
+   "item": "agent_3: Target P/E medians",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_3: current EV/FCF 14.2x",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_3: $11.7B term loans",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "not_found",
+   "fix": "Claim not on the cited page; replaced with the figure a source shows (or withdrawn) in a dated citation-gate note in the agent file; it enters no supervisor number."
+  },
+  {
+   "item": "agent_3: listed stakes $8.8B label",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_3: 2027 EBITDA ~$14.0B",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_3: EV/EBITDA medians",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_3: comps table basis",
+   "value": "see agent file note",
+   "cited": "agent_3.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_4: Target P/E medians",
+   "value": "see agent file note",
+   "cited": "agent_4.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_4: Q1 mobility take rate ~4pts",
+   "value": "see agent file note",
+   "cited": "agent_4.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_4: EV/EBITDA medians",
+   "value": "see agent file note",
+   "cited": "agent_4.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_4: Target EV/EBITDA round-1 leftover",
+   "value": "see agent file note",
+   "cited": "agent_4.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_4: comps table basis",
+   "value": "see agent file note",
+   "cited": "agent_4.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_5: 2027E EPS $4.45 labelled consensus",
+   "value": "see agent file note",
+   "cited": "agent_5.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  },
+  {
+   "item": "agent_5: 2026 EPS consensus cut $4.15->$3.30",
+   "value": "see agent file note",
+   "cited": "agent_5.json fair_value / comps_summary",
+   "result": "not_found",
+   "fix": "Claim not on the cited page; replaced with the figure a source shows (or withdrawn) in a dated citation-gate note in the agent file; it enters no supervisor number."
+  },
+  {
+   "item": "agent_5: Target P/E medians",
+   "value": "see agent file note",
+   "cited": "agent_5.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_5: EV/EBITDA medians and BKNG 10.2x",
+   "value": "see agent file note",
+   "cited": "agent_5.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_5: net debt $4.7B derivation / buyback source",
+   "value": "see agent file note",
+   "cited": "agent_5.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_5: 2027 FCF ~$13.8B",
+   "value": "see agent file note",
+   "cited": "agent_5.json fair_value / comps_summary",
+   "result": "wrong",
+   "fix": "Corrected figure and source written into a dated citation-gate note in the agent file; agent judgment unchanged; supervisor numbers use the corrected figure."
+  },
+  {
+   "item": "agent_5: comps table basis",
+   "value": "see agent file note",
+   "cited": "agent_5.json fair_value / comps_summary",
+   "result": "mislabelled",
+   "fix": "Basis/label corrected (estimate with arithmetic, or aggregator figure flagged and superseded) in a dated citation-gate note; agent values and view unchanged."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "UBER Q2 2026 gross bookings growth",
+   "value": "+22% cc ($58.0B, +24% reported)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "key_drivers"
+  },
+  {
+   "item": "UBER Q2 2026 non-GAAP EPS",
+   "value": "$0.81, +35% YoY",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value (agent EPS bases), key_drivers"
+  },
+  {
+   "item": "UBER Q2 2026 adjusted EBITDA",
+   "value": "$2,819M, +33% YoY; 4.9% of GB",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value (EBITDA bases), key_drivers"
+  },
+  {
+   "item": "UBER Q1 2026 non-GAAP EPS",
+   "value": "$0.72",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000019/uberq126earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value (agent_1 FY26 estimate)"
+  },
+  {
+   "item": "UBER FY2025 non-GAAP EPS",
+   "value": "$2.45",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1543151/000154315126000011/uberq425earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value (agent_1)"
+  },
+  {
+   "item": "UBER FY2025 free cash flow",
+   "value": "$9,763M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1543151/000154315126000011/uberq425earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value (FCF bases)"
+  },
+  {
+   "item": "UBER TTM free cash flow at Q2 2026",
+   "value": "$10.12B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value FCF legs; derivation: FY25 $9,763M - H1'25 $4,725M + H1'26 $5,078M = $10,116M (Q4 and Q2 8-Ks); prepared remarks state $10.1B"
+  },
+  {
+   "item": "UBER Q3 2026 outlook",
+   "value": "GB $58.25-60.25B (+18-22% cc); non-GAAP EPS $0.84-0.88 (+28-35%); adj. EBITDA $2.86-2.96B",
+   "basis": "guidance",
+   "source_url": "https://s23.q4cdn.com/407969754/files/doc_earnings/2026/q2/transcript/Uber-Q2-26-Prepared-Remarks.pdf",
+   "checked": "2026-10-07",
+   "feeds": "ladder_1m, fair_value (EPS bases)"
+  },
+  {
+   "item": "UBER 2026 stock-based compensation guide",
+   "value": "$1.95-2.10B",
+   "basis": "guidance",
+   "source_url": "https://s23.q4cdn.com/407969754/files/doc_earnings/2026/q2/transcript/Uber-Q2-26-Prepared-Remarks.pdf",
+   "checked": "2026-10-07",
+   "feeds": "fair_value FCF leg (post-SBC), EV/EBITDA discussion"
+  },
+  {
+   "item": "UBER H1 2026 SBC",
+   "value": "$1,022M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "agent_1 SBC estimate"
+  },
+  {
+   "item": "UBER Q2 2026 diluted shares",
+   "value": "2,050.2M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value share counts, UBER EV"
+  },
+  {
+   "item": "UBER shares outstanding at 2026-07-31",
+   "value": "2,042,560,121",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000032/uber-20260630.htm",
+   "checked": "2026-10-07",
+   "feeds": "market cap, FCF yield"
+  },
+  {
+   "item": "UBER diluted share count change and buyback authorization",
+   "value": "-~4% YoY; ~$16B remaining",
+   "basis": "reported",
+   "source_url": "https://s23.q4cdn.com/407969754/files/doc_earnings/2026/q2/transcript/Uber-Q2-26-Prepared-Remarks.pdf",
+   "checked": "2026-10-07",
+   "feeds": "share-count estimates"
+  },
+  {
+   "item": "UBER buyback policy and YTD buybacks",
+   "value": "~50% of FCF to buybacks; ~$3.5B bought back in H1 2026 (Q1 $3.0B + Q2 $0.51B)",
+   "basis": "reported",
+   "source_url": "https://s23.q4cdn.com/407969754/files/doc_events/2026/Aug/05/Uber-Q2-26-Earnings-Call-Transcript.pdf",
+   "checked": "2026-10-07",
+   "feeds": "share-count estimates (agents 1, 5)"
+  },
+  {
+   "item": "UBER non-GAAP operating margin",
+   "value": "3.7% of GB, +40bp YoY",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "agent_1 EPS growth estimate"
+  },
+  {
+   "item": "UBER Q2 equity revaluation gain",
+   "value": "$1.6B net pre-tax",
+   "basis": "reported",
+   "source_url": "https://s23.q4cdn.com/407969754/files/doc_earnings/2026/q2/transcript/Uber-Q2-26-Prepared-Remarks.pdf",
+   "checked": "2026-10-07",
+   "feeds": "agent_4 EPS haircut rationale"
+  },
+  {
+   "item": "UBER debt at 2026-06-30",
+   "value": "$1,997M short-term + $10,726M long-term = $12,723M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value EV/EBITDA leg, UBER EV"
+  },
+  {
+   "item": "UBER cash and ST investments at 2026-06-30",
+   "value": "$4,870M + $521M = $5,391M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value EV/EBITDA leg, UBER EV"
+  },
+  {
+   "item": "UBER net debt ex-leases",
+   "value": "$7.33B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value EV/EBITDA leg; derivation $12,723M - $5,391M"
+  },
+  {
+   "item": "UBER total debt incl. operating leases",
+   "value": "$14.73B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "disagreements (net debt); derivation $12,723M + $178M + $1,830M lease liabilities"
+  },
+  {
+   "item": "UBER investments at 2026-06-30",
+   "value": "$8,759M (marketable $4,596M: Grab $2,020M, Aurora $1,763M, other $813M; non-marketable $4,163M incl. Didi $1,900M); equity-method (DH) $3,773M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000032/uber-20260630.htm",
+   "checked": "2026-10-07",
+   "feeds": "fair_value EV/EBITDA leg, thesis break"
+  },
+  {
+   "item": "UBER H1 2026 operating cash flow growth",
+   "value": "+6.6% ($5,213M vs $4,888M)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "agent_3 FCF growth judgment"
+  },
+  {
+   "item": "Blacklane acquisition",
+   "value": "~$550M cash",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000032/uber-20260630.htm",
+   "checked": "2026-10-07",
+   "feeds": "agent_3 net debt"
+  },
+  {
+   "item": "Delivery Hero offer terms",
+   "value": "EUR41.50/share; equity value $14.8B ($13.7B net of stake); ~EUR14bn bridge; 24.77% direct stake; close 2H27; gross leverage <2x; HSD EPS accretion by year 3",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1543151/000155278126000382/e26302_ex99-1.htm",
+   "checked": "2026-10-07",
+   "feeds": "key_drivers, thesis break, net debt treatment"
+  },
+  {
+   "item": "Delivery Hero acceptance period end",
+   "value": "2026-11-05 24:00 Frankfurt",
+   "basis": "reported",
+   "source_url": "https://investor.uber.com/news-events/news/press-release-details/2026/Uber-Publishes-Offer-Document-for-its-Takeover-Offer-for-Delivery-Hero/default.aspx",
+   "checked": "2026-10-07",
+   "feeds": "ladder_1m, sizing.entry"
+  },
+  {
+   "item": "DH term loan",
+   "value": "two-tranche term loan reducing bridge commitments by EUR4.0bn (2026-08-06)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000155278126000414/e26328_uber-8k.htm",
+   "checked": "2026-10-07",
+   "feeds": "agent_3 net debt note"
+  },
+  {
+   "item": "CEO open-market purchase",
+   "value": "141,000 sh @ $70.9642 = $10.01M (2026-09-10)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1184237/000118423726000008/xslF345X06/primarydocument.xml",
+   "checked": "2026-10-07",
+   "feeds": "key_drivers, thesis break"
+  },
+  {
+   "item": "COO open-market purchase",
+   "value": "54,325 @ $75.6526 + 15,675 @ $76.4425 = 70,000 sh, $5.31M (avg $75.83, 2026-09-04)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1543151/000207176126000011/primarydocument.xml",
+   "checked": "2026-10-07",
+   "feeds": "key_drivers"
+  },
+  {
+   "item": "Waymo own app in Austin/Atlanta",
+   "value": "January 2028; Waymo fleet stays on Uber through at least May 2028; Uber spokesperson confirmed",
+   "basis": "reported",
+   "source_url": "https://thenextweb.com/news/waymo-uber-exclusivity-ends-austin-atlanta-robotaxi",
+   "checked": "2026-10-07",
+   "feeds": "key_drivers, scenarios"
+  },
+  {
+   "item": "Uber AV program size",
+   "value": "over $10 billion over the coming years",
+   "basis": "reported",
+   "source_url": "https://s23.q4cdn.com/407969754/files/doc_earnings/2026/q2/transcript/Uber-Q2-26-Prepared-Remarks.pdf",
+   "checked": "2026-10-07",
+   "feeds": "key_drivers, thesis break"
+  },
+  {
+   "item": "California insurance savings",
+   "value": "significant recurring savings beginning in 2027",
+   "basis": "reported",
+   "source_url": "https://s23.q4cdn.com/407969754/files/doc_earnings/2026/q2/transcript/Uber-Q2-26-Prepared-Remarks.pdf",
+   "checked": "2026-10-07",
+   "feeds": "agent EPS estimates"
+  },
+  {
+   "item": "Uber layoffs",
+   "value": "~3,300 corporate jobs (~10%); savings reinvested in lower prices",
+   "basis": "reported",
+   "source_url": "https://fortune.com/2026/09/14/uber-ceo-dara-khosrowshahi-cheaper-rides-3300-job-cuts-layoffs/",
+   "checked": "2026-10-07",
+   "feeds": "agent_1 EPS estimate"
+  },
+  {
+   "item": "UBER 52-week low",
+   "value": "$65.41 (intraday 2026-07-27)",
+   "basis": "reported",
+   "source_url": "Twelve Data time_series (UBER 1day; USD/CNY 1day)",
+   "checked": "2026-10-07",
+   "feeds": "thesis break text"
+  },
+  {
+   "item": "UBER consensus FY2026 non-GAAP EPS (S&P Global)",
+   "value": "$3.354",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/uber/forecast/",
+   "checked": "2026-10-07",
+   "feeds": "NTM EPS, comps"
+  },
+  {
+   "item": "UBER consensus FY2027 non-GAAP EPS (S&P Global, page data)",
+   "value": "$4.426",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/uber/forecast/",
+   "checked": "2026-10-07",
+   "feeds": "NTM EPS, comps"
+  },
+  {
+   "item": "UBER consensus FY27/FY28 EPS (MarketScreener, updated 2026-02-04)",
+   "value": "$4.538 / $5.80",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/UBER-TECHNOLOGIES-INC-57860975/finances/",
+   "checked": "2026-10-07",
+   "feeds": "fair_value P/E leg (~$5.3-5.5 NTM consensus)"
+  },
+  {
+   "item": "UBER consensus EBITDA FY26/27/28 (MarketScreener)",
+   "value": "$11,378M / $13,835M / $16,479M; Oct-2027 NTM $15.8B",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/UBER-TECHNOLOGIES-INC-57860975/finances/",
+   "checked": "2026-10-07",
+   "feeds": "fair_value EV/EBITDA leg, UBER EV/EBITDA"
+  },
+  {
+   "item": "UBER consensus net debt FY26/FY27 (MarketScreener)",
+   "value": "$2,464M / -$4,333M",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/UBER-TECHNOLOGIES-INC-57860975/finances/",
+   "checked": "2026-10-07",
+   "feeds": "agent net-debt estimates"
+  },
+  {
+   "item": "UBER EPS growth forecast 3Y",
+   "value": "31.04%",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/uber/statistics/",
+   "checked": "2026-10-07",
+   "feeds": "agent_1 EPS estimate"
+  },
+  {
+   "item": "WallStreetZen FY27 EPS",
+   "value": "$4.65",
+   "basis": "consensus",
+   "source_url": "https://www.wallstreetzen.com/stocks/us/nyse/uber/stock-forecast",
+   "checked": "2026-10-07",
+   "feeds": "agent_4 cross-check"
+  },
+  {
+   "item": "TIKR NTM levered FCF yield",
+   "value": "8.4%",
+   "basis": "consensus",
+   "source_url": "https://www.tikr.com/blog/uber-stock-near-52-week-lows-is-the-robotaxi-fear-overdone",
+   "checked": "2026-10-07",
+   "feeds": "agent_5 FCF yield judgment"
+  },
+  {
+   "item": "TIKR AV program split",
+   "value": "~$7.5B fleets, >$2.5B equity",
+   "basis": "reported",
+   "source_url": "https://www.tikr.com/blog/uber-has-fallen-25-from-its-high-its-10-billion-robotaxi-bet-could-change-that",
+   "checked": "2026-10-07",
+   "feeds": "agent_3 AV capex estimate"
+  },
+  {
+   "item": "Wolfe gig/OTA P/FCF",
+   "value": "20x FY26E (report 2025-09-04)",
+   "basis": "reported",
+   "source_url": "https://www.wolferesearch.com/wp-content/uploads/2026/03/Uber-Lyft-Deep-Dive-Updated-AV-Market-Model-and-Share-Shifts.pdf",
+   "checked": "2026-10-07",
+   "feeds": "agent_2 EV/FCF judgment"
+  },
+  {
+   "item": "Dolphin valuation",
+   "value": "~15-16x 2027 GAAP net income",
+   "basis": "estimate",
+   "source_url": "https://dolphinresearch.substack.com/p/uber-in-line-robotaxi-risk-lingers",
+   "checked": "2026-10-07",
+   "feeds": "agent_4 P/E cross-check"
+  },
+  {
+   "item": "LYFT NTM P/E on GAAP consensus",
+   "value": "~18.1x ($15.6 / 0.25 x $0.554 + 0.75 x $0.966)",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/LYFT-INC-56481539/finances/",
+   "checked": "2026-10-07",
+   "feeds": "agents 3, 5 (Lyft ~18x GAAP)"
+  },
+  {
+   "item": "Agents' fair values, scenario means, ladder medians, thesis-break mean",
+   "value": "FV mean $78.4; scenario means $76.5/$77.0/$74.7/$74.5/$76.7; ladder medians $76.6/$75.8/$76.1/$74.5/$73.2; thesis break mean $52.6",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-05/UBER/agent_1.json (to agent_5.json)",
+   "checked": "2026-10-07",
+   "feeds": "fair_value, thesis_break, ladder"
+  },
+  {
+   "item": "Sizing inputs",
+   "value": "portfolio ~$9,976 (brief); GOOGL rho 0.284 (~0.29); 5% = ~$500 = ~7 shares at $69.48",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-10-05/UBER/allocation.json",
+   "checked": "2026-10-07",
+   "feeds": "sizing"
+  },
+  {
+   "item": "Agent arithmetic estimates",
+   "value": "agent_1 FY26 $3.32 (0.72+0.81+0.86+0.93); agent_2 NTM $4.80; agent_4 NTM $5.48 and EBITDA $15.8B; agent_5 NTM $5.31",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm",
+   "checked": "2026-10-07",
+   "feeds": "agent fair values"
+  },
+  {
+   "item": "DASH NTM adj. P/E and NTM EV/EBITDA",
+   "value": "25.05x / 17.39x (EV $80,698M, NTM EBITDA $4,640.8M, NTM EPS $7.6565)",
+   "basis": "estimate",
+   "source_url": "https://ir.doordash.com/news/news-details/2026/DoorDash-Releases-Second-Quarter-2026-Financial-Results/default.aspx ; https://www.marketscreener.com/quote/stock/DOORDASH-INC-137630468/finances/ ; https://stockanalysis.com/stocks/dash/forecast/ ; https://stockanalysis.com/stocks/dash/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "LYFT NTM adj. P/E and NTM EV/EBITDA",
+   "value": "7.89x / 6.31x (EV $5,273M, NTM EBITDA $835.3M, NTM EPS $1.9934)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1759509/000162828026054305/lyft-20260630xpressrelease.htm ; https://www.marketscreener.com/quote/stock/LYFT-INC-56481539/finances/ ; https://stockanalysis.com/stocks/lyft/forecast/ ; https://stockanalysis.com/stocks/lyft/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "GRAB NTM adj. P/E and NTM EV/EBITDA",
+   "value": "23.38x / 7.93x (EV $7,813M, NTM EBITDA $985.4M, NTM EPS $0.1356)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001855612/000185561226000123/a2026q2-earningspressrelea.htm ; https://www.marketscreener.com/quote/stock/GRAB-HOLDINGS-LIMITED-130340709/finances/ ; https://stockanalysis.com/stocks/grab/forecast/ ; https://stockanalysis.com/stocks/grab/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "CART NTM adj. P/E and NTM EV/EBITDA",
+   "value": "9.69x / 7.26x (EV $10,484M, NTM EBITDA $1,444.2M, NTM EPS $4.7107)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001579091/000157909126000040/q22026pressrelease.htm ; https://www.marketscreener.com/quote/stock/INSTACART-MAPLEBEAR-159414518/finances/ ; https://stockanalysis.com/stocks/cart/forecast/ ; https://stockanalysis.com/stocks/cart/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "ABNB NTM adj. P/E and NTM EV/EBITDA",
+   "value": "27.51x / 16.75x (EV $93,700M, NTM EBITDA $5,593.2M, NTM EPS $5.9636)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001559720/000119312526337928/d70413dex991.htm ; https://www.marketscreener.com/quote/stock/AIRBNB-INC-116310849/finances/ ; https://stockanalysis.com/stocks/abnb/forecast/ ; https://stockanalysis.com/stocks/abnb/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "BKNG NTM adj. P/E and NTM EV/EBITDA",
+   "value": "13.32x / 10.46x (EV $124,432M, NTM EBITDA $11,901.0M, NTM EPS $11.8856)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001075531/000107553126000036/q2-26bkngearningsrelease.htm ; https://www.marketscreener.com/quote/stock/BOOKING-HOLDINGS-INC-41613106/finances/ ; https://stockanalysis.com/stocks/bkng/forecast/ ; https://stockanalysis.com/stocks/bkng/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "EXPE NTM adj. P/E and NTM EV/EBITDA",
+   "value": "10.99x / 6.8x (EV $30,216M, NTM EBITDA $4,443.8M, NTM EPS $23.6688)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001324424/000132442426000051/earningsrelease-q22026.htm ; https://www.marketscreener.com/quote/stock/EXPEDIA-GROUP-INC-9677748/finances/ ; https://stockanalysis.com/stocks/expe/forecast/ ; https://stockanalysis.com/stocks/expe/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "MELI NTM adj. P/E and NTM EV/EBITDA",
+   "value": "35.97x / 18.64x (EV $97,508M, NTM EBITDA $5,232.0M, NTM EPS $51.7196)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001099590/000109959026000021/meli-20260805xex991.htm ; https://www.marketscreener.com/quote/stock/MERCADOLIBRE-INC-187636950/finances/ ; https://stockanalysis.com/stocks/meli/forecast/ ; https://stockanalysis.com/stocks/meli/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "SE NTM adj. P/E and NTM EV/EBITDA",
+   "value": "19.81x / 10.97x (EV $51,816M, NTM EBITDA $4,723.0M, NTM EPS $4.8878)",
+   "basis": "estimate",
+   "source_url": "https://cdn.sea.com/investor/2Q2026/wFBC39MbqnfLb3MGY6LP/2026.08.11%20Sea%20Second%20Quarter%202026%20Results.pdf ; https://www.marketscreener.com/quote/stock/SEA-LIMITED-38150303/finances/ ; https://stockanalysis.com/stocks/se/forecast/ ; https://stockanalysis.com/stocks/se/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "TCOM NTM adj. P/E and NTM EV/EBITDA",
+   "value": "9.63x / 4.77x (EV $13,474M, NTM EBITDA $2,823.7M, NTM EPS $4.0285)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001269238/000119312526392473/d167816dex991.htm ; https://www.marketscreener.com/quote/stock/TRIP-COM-GROUP-LIMITED-40311225/finances/ ; https://stockanalysis.com/stocks/tcom/forecast/ ; https://stockanalysis.com/stocks/tcom/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps medians -> fair_value EV/EBITDA leg, ladder trim"
+  },
+  {
+   "item": "Peer medians",
+   "value": "NTM P/E 16.56x all / 13.32x core-7; NTM EV/EBITDA 9.20x all / 7.93x core-7",
+   "basis": "estimate",
+   "source_url": "supervisor.json comps_review.peers",
+   "checked": "2026-10-07",
+   "feeds": "fair_value EV/EBITDA leg, ladder upper tail"
+  },
+  {
+   "item": "UBER NTM P/E and EV/EBITDA",
+   "value": "16.71x / 11.33x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000027/uberq226earningspressrelea.htm ; https://stockanalysis.com/stocks/uber/forecast/ ; https://www.marketscreener.com/quote/stock/UBER-TECHNOLOGIES-INC-57860975/finances/",
+   "checked": "2026-10-07",
+   "feeds": "comps_review, key_drivers"
+  },
+  {
+   "item": "UBER 2026-10-05 close",
+   "value": "$69.48",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/uber/history/",
+   "checked": "2026-10-07",
+   "feeds": "comps, FCF yield, upside"
+  },
+  {
+   "item": "USD/CNY 2026-10-05",
+   "value": "6.7052",
+   "basis": "reported",
+   "source_url": "Twelve Data time_series (UBER 1day; USD/CNY 1day)",
+   "checked": "2026-10-07",
+   "feeds": "TCOM comps"
+  },
+  {
+   "item": "UBER forward FCF yields",
+   "value": "pre-SBC 8.76% ($12.43B / $141.9B); post-SBC 7.33% ($10.41B / $141.9B)",
+   "basis": "estimate",
+   "source_url": "https://www.marketscreener.com/quote/stock/UBER-TECHNOLOGIES-INC-57860975/finances/ ; https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000032/uber-20260630.htm ; https://s23.q4cdn.com/407969754/files/doc_earnings/2026/q2/transcript/Uber-Q2-26-Prepared-Remarks.pdf",
+   "checked": "2026-10-07",
+   "feeds": "fair_value FCF leg, agent_5 critique"
+  },
+  {
+   "item": "MarketScreener UBER FCF FY26/27/28 (updated 2026-02-04)",
+   "value": "$10,487M / $13,082M / $14,961M",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/UBER-TECHNOLOGIES-INC-57860975/finances/",
+   "checked": "2026-10-07",
+   "feeds": "fair_value FCF leg"
+  },
+  {
+   "item": "Fair value legs and blend",
+   "value": "P/E 16.5 x $4.80 = $79.2; EV/EBITDA (9.2 x $15.0B - $7.33B + $8.76B)/2.02B = $69.0; FCF $11.0B / 7.33% / 2.02B = $74.3; 0.45/0.25/0.30 blend = $75.2",
+   "basis": "estimate",
+   "source_url": "supervisor.json fair_value",
+   "checked": "2026-10-07",
+   "feeds": "fair_value, sizing"
+  },
+  {
+   "item": "Thesis break cross-checks",
+   "value": "$52.6 = 10.96x $4.80; ($52.6 x 2.02B + $7.33B - $8.76B)/$15.0B = 6.99x; -25.9% vs $70.96",
+   "basis": "estimate",
+   "source_url": "supervisor.json thesis_break_reason",
+   "checked": "2026-10-07",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "Q3 2026 earnings date",
+   "value": "2026-11-04, before market open (confirmed by Uber IR on 2026-10-05)",
+   "basis": "reported",
+   "source_url": "https://investor.uber.com/rss/event.aspx",
+   "checked": "2026-10-07",
+   "feeds": "ladder_1m, sizing.entry"
+  },
+  {
+   "item": "UBER earnings-day base rate (last 8 prints)",
+   "value": "7 of 8 negative; mean absolute move 5.45% (-9.29, -7.56, -2.54, -0.19, -5.06, -5.15, +8.53, -5.29%)",
+   "basis": "estimate",
+   "source_url": "Twelve Data time_series (UBER 1day; USD/CNY 1day)",
+   "checked": "2026-10-07",
+   "feeds": "ladder_1m"
+  },
+  {
+   "item": "UBER realized volatility",
+   "value": "37.1% annualized, 6 months to 2026-10-05",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/uber/history/",
+   "checked": "2026-10-07",
+   "feeds": "sizing (~35-37%)"
+  },
+  {
+   "item": "Ladder upper-tail trim",
+   "value": "K=77..139: 0.465/0.347/0.213/0.124/0.044/0.014 (bull at 16.56 x $5.25 = ~$87; trim scale 2.13)",
+   "basis": "estimate",
+   "source_url": "supervisor.json citation_audit.corrections",
+   "checked": "2026-10-07",
+   "feeds": "ladder"
+  },
+  {
+   "item": "Ladder_1m tails",
+   "value": "0.977/0.930/0.836 and 0.204/0.111/0.055 (jump variance 29.7 vs 32.0; 33% of the widening kept)",
+   "basis": "estimate",
+   "source_url": "supervisor.json citation_audit.corrections",
+   "checked": "2026-10-07",
+   "feeds": "ladder_1m"
+  }
+ ],
+ "notes": "Gate run 2026-10-07. MarketScreener consensus tables (UBER and peers) were last updated Feb-Mar 2026 and must be re-opened on reuse. sec.gov refused a generic User-Agent, so SEC pages were read with WebFetch. Agent files carry dated sourcing notes only; supervisor.json citation_audit.corrections lists every number change."
+}

@@ -1,0 +1,77 @@
+{
+  "symbol": "ON", "agent_id": "agent_4", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 18.99, "p": 0.99}, {"K": 30, "p": 0.97}, {"K": 38, "p": 0.94}, {"K": 46, "p": 0.875},
+    {"K": 53, "p": 0.80}, {"K": 61, "p": 0.71}, {"K": 68, "p": 0.63}, {"K": 76, "p": 0.54},
+    {"K": 84, "p": 0.46}, {"K": 91, "p": 0.39}, {"K": 103, "p": 0.30}, {"K": 114, "p": 0.23},
+    {"K": 133, "p": 0.145}, {"K": 152, "p": 0.09}, {"K": 190, "p": 0.035}
+  ],
+  "ladder_1m": [
+    {"K": 60.76, "p": 0.905}, {"K": 64.56, "p": 0.83}, {"K": 68.36, "p": 0.73}, {"K": 70.63, "p": 0.665},
+    {"K": 72.91, "p": 0.595}, {"K": 75.95, "p": 0.50}, {"K": 78.99, "p": 0.41}, {"K": 81.27, "p": 0.345},
+    {"K": 83.55, "p": 0.29}, {"K": 87.34, "p": 0.205}, {"K": 91.14, "p": 0.145}
+  ],
+  "one_month_reasoning": "Q3 2026 earnings are expected around 2026-11-02 (not yet confirmed), so they probably fall just outside the window ending 2026-10-29. The main scheduled event inside the window is the 2026-10-28 FOMC. Kalshi and Polymarket price about 44% for a 25bp hike and 55% for a hold (DeFiRate, 2026-09-30; volume not shown). A hike would add to the pressure on a high-beta semi that already fell 9% on the day of the September hike and analyst day, but hike odds fell 21 points this week, so the outcome is close to a coin flip. There may also be early Synaptics deal filings or proxy news, which I expect to have little effect. Short-horizon signals conflict: the stock rebounded about 14% from its 2026-09-16 low of $65.80 after the analyst day, while the 3-month trend is sharply down. The CFO's $8.2M sale leans slightly negative. With no clear edge, I use a symmetric lognormal centred on $76 with sigma of about 0.17, near annual realized vol / 3.5.",
+  "fair_value": {
+    "value": 80.0,
+    "method": "A 60/40 blend of forward P/E (NTM EPS at Sep-2027 of about $4.90 x 16.5x = $81) and FCF yield (about $4.30 FCF/share x 18x, a 5.5% yield, = $78), giving about $80 per share 12 months out.",
+    "methods": [
+      {"name": "P/E", "value": 81.0, "weight": 0.6,
+       "inputs": "NTM EPS as of Sep-2027 (weighted 25% CY27, 75% CY28, pro forma for Synaptics) about $4.90 x 16.5x",
+       "inputs_detail": [
+         {"input": "CY2027 consensus EPS", "value": "$4.53 (range $3.98-$5.40, 30 analysts)", "basis": "consensus", "source_ids": [6], "derivation": ""},
+         {"input": "CY2027 EPS used", "value": "$4.20", "basis": "estimate", "source_ids": [6, 7, 8, 1], "derivation": "Consensus of $4.53 cut about 7% for Chinese SiC price pressure (wafers about $400 vs $1,200 Western cost) and the auto/China exposure. That puts it near the Q3 guide run-rate ($0.87 midpoint x 4 = $3.48) plus growth."},
+         {"input": "CY2028 pro forma EPS", "value": "$5.15", "basis": "estimate", "source_ids": [3], "derivation": "The Substack base case of $5.72 pro forma (standalone consensus about $6.02), cut about 10% for integration and PPA drag and because management puts margin gains mostly in 2028-30."},
+         {"input": "P/E multiple", "value": "16.5x", "basis": "judgment", "source_ids": [3, 2, 10], "derivation": "Low end of the 16-18x 'cyclical auto/industrial' range in the Substack framework. Discounted because the NTM EV/EBITDA is already only about 12x and the Fed is hiking (prediction markets put about 74% on a December hike)."}
+       ]},
+      {"name": "FCF yield", "value": 78.0, "weight": 0.4,
+       "inputs": "NTM FCF about $1.7B / 395M shares = about $4.30 per share x 18x (5.5% yield)",
+       "inputs_detail": [
+         {"input": "Q2 2026 FCF", "value": "$425.4M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "NTM FCF at Sep-2027", "value": "$1.7B", "basis": "estimate", "source_ids": [1, 2], "derivation": "Q2 run-rate of about $1.7B a year, held flat because capex and SiC restructuring offset growth. Consistent with the analyst-day plan to more than double FCF by 2030, since most of that growth is back-end loaded."},
+         {"input": "Diluted share count", "value": "395M (non-GAAP Q3 guide)", "basis": "guidance", "source_ids": [1], "derivation": "The 13.45% Synaptics share issuance is assumed roughly FCF-neutral per share because management targets accretion within 18 months (sources 4, 12)."},
+         {"input": "FCF yield / multiple", "value": "5.5% / 18x", "basis": "judgment", "source_ids": [2, 3], "derivation": "Between the current depressed NTM EV/EBITDA of about 12x (TIKR) and the 18-22x P/E range in the Substack scenarios. It sits below TI's 18.5x EV/EBITDA to reflect cyclicality."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 48.0, "prob": 0.25, "story": "Auto and China demand stays weak and the Chinese SiC price war squeezes margins. The Fed keeps hiking. 2027 EPS comes in around $3.50 and Synaptics integration drags, so the stock rerates to about 13.5x and retests the 52-week low of $44.56."},
+    "base": {"price": 82.0, "prob": 0.50, "story": "Gross margin moves into the low 40s as utilization rises and fab divestitures proceed. AI data center revenue doubles to about $1B in 2027 and the Synaptics deal closes mid-2027 without surprises. EPS runs at about $4.9 NTM x 16.5x."},
+    "bull": {"price": 120.0, "prob": 0.25, "story": "The AI power ramp plus an auto and industrial recovery push EPS toward the high end of the 2027 range (about $5.40), with visible progress toward the 2030 targets ($11B revenue, 53% gross margin). The multiple returns to about 22x, taking the stock back toward the pre-deal level of about $115-120."}
+  },
+  "thesis_break_price": 52.0,
+  "thesis_break_reason": "Below about $52 the stock would trade at under 11x consensus 2027 EPS, about 20% under the April lows before the AI data center rerating. That level would most likely mean a real earnings reset: gross margin guided back below 38%, AI data center revenue failing to double in 2027, a SiC impairment, or a bad Synaptics integration or dilution surprise. Ordinary volatility is unlikely to explain it.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "FOMC decision (about 44% hike / 55% hold per Kalshi and Polymarket)", "direction": "?"},
+    {"date": "2026-11-02", "event": "Q3 2026 earnings and Q4 guide (estimated date; guide was $1.65-1.75B revenue and $0.81-0.93 EPS)", "direction": "?"},
+    {"date": "2026-12-09", "event": "FOMC (about 74% hike odds)", "direction": "-"},
+    {"date": "2027-02", "event": "Q4 2026 earnings and 2027 AI data center outlook", "direction": "?"},
+    {"date": "H1 2027", "event": "Synaptics shareholder vote and regulatory approvals, including possible China SAMR review", "direction": "?"},
+    {"date": "mid-2027", "event": "Synaptics deal close, about 13.45% share issuance, first integration disclosures", "direction": "?"},
+    {"date": "2027-08", "event": "Q2 2027 earnings, the first test of the analyst-day margin path", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether the Chinese SiC substrate price collapse (about $400 vs $1,200 per wafer) erodes onsemi's SiC device pricing and margins",
+    "The rate path: the Fed is hiking in 2026, which pressures the multiples of cyclical semis",
+    "Synaptics integration, dilution and consumer/phone exposure; the deal may also be blocked or delayed",
+    "Whether AI data center revenue actually doubles in 2027 from more than $500M",
+    "Timing of the auto and industrial cycle recovery and the China auto exposure (Barclays equal-weight, $75)"
+  ],
+  "reasoning": "ON has round-tripped from $58 in March 2026 to $134.92 in June (AI power rerating), then fell to $66 by mid-September. The drivers were the all-stock Synaptics deal (1.35 ON shares per SYNA share, about 13.45% dilution, stock -20-25%), a sell-the-news Q2 print, and the 2026-09-16 analyst day, which put most margin gains in 2028-30 (2030 targets: $11B revenue, 53% gross margin). A Fed hike landed the same day. Fundamentals are actually improving: Q2 revenue +9% YoY, non-GAAP gross margin 39.3%, FCF $425M, and the Q3 guide is for a 40-42% gross margin and $0.87 EPS. Consensus 2027 EPS is $4.53 and the street target is about $104. Alternative and lane sources add several points. TrendForce and Evertiq both report Czech SiC job cuts, with onsemi calling in-house wafers uneconomic against Chinese $400 wafers, which cuts both ways: lower cost but a price war. Workopia shows about 466 open postings, mostly fab and operations, with no sign of a hiring freeze. Prediction markets price more Fed hikes, a macro headwind for the multiple. Insider flow is only selling (CFO $8.2M). The independent Substack puts pro forma CY28 EPS at about $5.72 and values the stock at $82-139, with a base of $104. I haircut consensus and use a 16.5x P/E and an 18x FCF multiple, which gives a fair value of about $80, slightly above spot. The scenarios are bear $48 / base $82 / bull $120 at 25/50/25 (mean about $83). The ladder is a lognormal with median about $80 and sigma about 0.48, below the 64% realized vol, because that realized figure is inflated by the one-off deal gap but still well above a typical large-cap. Research limits: X/Twitter was not searched directly, the Castellano Substack was paywalled, and the prediction-market volume was not visible.",
+  "lane": "alternative",
+  "sources": [
+    {"title": "onsemi Reports Second Quarter 2026 Results", "url": "https://investor.onsemi.com/news-releases/news-release-details/onsemi-reports-second-quarter-2026-results", "date": "2026-08-03", "type": "company", "in_lane": false},
+    {"title": "ON Semiconductor Stock Fell 9% After Its Analyst Day (TIKR blog)", "url": "https://www.tikr.com/blog/on-semiconductor-stock-fell-9-after-its-analyst-day-heres-where-the-stock-could-go-in-2026", "date": "2026-09-17", "type": "newsletter", "in_lane": true},
+    {"title": "ON Semiconductor (ON) - We Draw Tree (Substack)", "url": "https://90spminvestingeng.substack.com/p/on-semiconductor-on-we-draw-tree", "date": "2026-07-11", "type": "newsletter", "in_lane": true},
+    {"title": "onsemi Rises as Investors Digest AI-Power Growth Plans and Synaptics Deal (QuiverQuant insider/institutional data)", "url": "https://www.quiverquant.com/news/onsemi+Rises+as+Investors+Digest+AI-Power+Growth+Plans+and+Synaptics+Deal", "date": "2026-09-25", "type": "alt-data", "in_lane": true},
+    {"title": "Twelve Data ON weekly OHLCV series", "url": "https://twelvedata.com", "date": "2026-09-29", "type": "data", "in_lane": false},
+    {"title": "ON Semiconductor Stock Forecast & Analyst Price Targets (stockanalysis.com)", "url": "https://stockanalysis.com/stocks/on/forecast/", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Onsemi Reportedly Plans Up to 300 Job Cuts in Czech Plant as Low-Cost Chinese SiC Competition Intensifies (TrendForce)", "url": "https://www.trendforce.com/news/2026/06/08/news-onsemi-reportedly-plans-up-to-300-job-cuts-in-czech-plant-as-low-cost-chinese-sic-competition-intensifies/", "date": "2026-06-08", "type": "trade", "in_lane": true},
+    {"title": "Onsemi reportedly plans up to 300 job cuts at Czech facility (Evertiq)", "url": "https://evertiq.com/design/2026-06-09-onsemi-reportedly-plans-up-to-300-job-cuts-at-czech-facility", "date": "2026-06-09", "type": "trade", "in_lane": true},
+    {"title": "onsemi open jobs tracker (Workopia)", "url": "https://workopia.io/hi/companies/onsemi-2", "date": "2026-09-30", "type": "alt-data", "in_lane": true},
+    {"title": "Fed Rate Decision Odds: Oct. 28 FOMC (Kalshi/Polymarket via DeFiRate)", "url": "https://defirate.com/prediction-markets/fed-decision-odds/", "date": "2026-09-30", "type": "prediction-market", "in_lane": true},
+    {"title": "Onsemi's Investor Day Next Week Could Change Everything (Seeking Alpha contributor)", "url": "https://seekingalpha.com/article/4944124-onsemi-stock-investor-day-next-week-could-change-everything", "date": "2026-09", "type": "newsletter", "in_lane": true},
+    {"title": "Onsemi to Buy Synaptics in $7 Billion All-Stock Deal (US News/Reuters)", "url": "https://money.usnews.com/investing/news/articles/2026-06-25/onsemi-to-buy-synaptics-in-7-billion-all-stock-deal", "date": "2026-06-25", "type": "press", "in_lane": false},
+    {"title": "onsemi (ON) Earnings Date and Reports (MarketBeat)", "url": "https://www.marketbeat.com/stocks/NASDAQ/ON/earnings/", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

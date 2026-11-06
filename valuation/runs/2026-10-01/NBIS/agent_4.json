@@ -1,0 +1,1118 @@
+{
+ "symbol": "NBIS",
+ "agent_id": "agent_4",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "ladder": [
+  {
+   "K": 58.0,
+   "p": 0.966
+  },
+  {
+   "K": 93.0,
+   "p": 0.875
+  },
+  {
+   "K": 116.0,
+   "p": 0.805
+  },
+  {
+   "K": 139.0,
+   "p": 0.736
+  },
+  {
+   "K": 163.0,
+   "p": 0.665
+  },
+  {
+   "K": 186.0,
+   "p": 0.599
+  },
+  {
+   "K": 209.0,
+   "p": 0.537
+  },
+  {
+   "K": 232.0,
+   "p": 0.479
+  },
+  {
+   "K": 256.0,
+   "p": 0.425
+  },
+  {
+   "K": 279.0,
+   "p": 0.377
+  },
+  {
+   "K": 314.0,
+   "p": 0.315
+  },
+  {
+   "K": 348.0,
+   "p": 0.264
+  },
+  {
+   "K": 406.0,
+   "p": 0.197
+  },
+  {
+   "K": 465.0,
+   "p": 0.147
+  },
+  {
+   "K": 581.0,
+   "p": 0.085
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 185.82,
+   "p": 0.775
+  },
+  {
+   "K": 197.44,
+   "p": 0.707
+  },
+  {
+   "K": 209.05,
+   "p": 0.634
+  },
+  {
+   "K": 216.02,
+   "p": 0.59
+  },
+  {
+   "K": 222.99,
+   "p": 0.546
+  },
+  {
+   "K": 232.28,
+   "p": 0.489
+  },
+  {
+   "K": 241.57,
+   "p": 0.435
+  },
+  {
+   "K": 248.54,
+   "p": 0.396
+  },
+  {
+   "K": 255.51,
+   "p": 0.359
+  },
+  {
+   "K": 267.12,
+   "p": 0.302
+  },
+  {
+   "K": 278.74,
+   "p": 0.252
+  }
+ ],
+ "one_month_reasoning": "No confirmed Nebius event inside the window. The investor-events page lists no Q3 date; Q1/Q2 were reported May 13 / Aug 12, so mid-November is most likely, and I put ~15% on an in-window report (an unconfirmed Oct 22 estimate exists). Events in the window: (1) CME/NYMEX Silicon Data H100/B200 rental-index futures, targeted for 2026-10-05 (src 14). They give the first public forward curve for GPU rent. Spot indices are near highs (Ornn H100 $2.92, B200 $7.96 on Oct 1, src 7) but flat over 30 days (src 15), so I call this neutral. (2) Hyperscaler Q3 earnings and capex guides in the last week of October (dates are judgment). This is the largest sentiment swing for neoclouds and leans mildly positive given repeated upward capex revisions. (3) Possible ATM supply (up to 12.3M shares left at 6/30, src 1) and the 10Y at 5.29%, up ~30bp in a week (src 17), are mild headwinds. Net: close to symmetric. Median ~$230.5 (a hair below spot for ATM supply), lognormal sigma 28.5%: the usual ~28% monthly vol, nudged up for the small chance earnings land inside the window. P(>=spot) 0.49. Rounds 3-4: the GPU-life rebuild, the site-by-site model and the split discount rate change long-run cash flows, not anything inside the next month, so the 1-month ladder is unchanged. The AIB 50 MW lease (30-Sep) and the Meta/Microsoft delivery milestones are already public.",
+ "fair_value": {
+  "value": 228.0,
+  "method": "Blend of a site-built cohort DCF ($188 12-month forward at split discount rates: IG contracted flows 8.5%, everything else WACC 12.8%; $184 at one rate) at 45%, 8.5x 2028E EBITDA of $12.5B ($257) at 35%, and 4.9x NTM EV/sales ($266) at 20%. Result ~$228, ~2% below spot (round 3: $206). The DCF rise ($140 -> $188) comes mostly from dropping the colo charge on owned campuses (F2), not from the split rate (+$4).",
+  "methods": [
+   {
+    "name": "DCF",
+    "value": 188.0,
+    "weight": 0.45,
+    "inputs": "Site-built cohort FCFF model, Q4-2026 to 2035 plus steady-state terminal. Each of the 25 inventory sites is a layer with its own MW ramp, ownership and probability (sites.json, src 39). Signed contracts are explicit streams at their own terms: Microsoft 300 MW at Vineland, ~$3.48B/yr ($11.6M/MW) from Q4-26 to ~Apr-2031 (src 35); Meta-2025 $2.9B on 48 MW of Mantsala 1, to ~Dec-2030 (src 38); Meta-2026 dedicated $12B = 150 MW at $16M/MW, mid-2027 to mid-2032 (Mantsala 2 + Lappeenranta phase 1, src 36); Meta backstop on 190 MW at Lappeenranta from mid-2028, 85% of a $16.5M vintage price floored by Meta for 5 years (src 36); Q2-26 neolab deals 71 MW at $22.5M/MW for ~2.5 years at Bethune (src 1). Everything else (existing own-cloud fleet, uncontracted construction and pipeline) uses round 3's cohort engine: vintage yields $12M (<=2026), $13M 2027, $16.5M 2028-29, $15.5M 2030, $15M after; existing-fleet mix 80% ~2-yr / 20% on-demand (IG contracts now explicit); new vintages 30% 5-yr (unsigned) / 55% 2-yr / 15% on-demand; post-contract market index by age 1.00/0.70/0.52/0.45/0.41/0.37/0.33/0.29; 5-year economic life, refresh at 70% of unit capex, resale at 30% of CCIR levels. Costs (F2 fix): leased sites $2.5M per MW-yr power+colo and capex 75% of the $25M/MW unit (IT only; the host funds the shell); owned sites $1.1M per MW-yr (power $0.70M at $0.08/kWh + $0.4M site O&M) and capex 114% of unit ($17.5M IT + ~$11M facility). Overhead 39%->24% of revenue as round 3. Probability-weighted MW reach 3.7 GW in 2035 (2.76 GW owned): revenue $12.5B 2027, $25.9B 2028, $36.6B 2029, ~$44B 2031-33; EBITDA margin 49% 2027 -> 63% 2035. Tax 21%; WACC 12.8%, g 3%; terminal capex $11.5B > D&A. Single rate (all at 12.8%): EV $56.9B -> $184/share 12-month forward. Split rate: IG contracted flows (Microsoft, Meta) at 8.5%, Meta backstop floor at 9.5%, unrated Q2 deals at 11.0%, everything else at 12.8%: contracted PV rises $2.1B (IG $13.5B -> $14.9B; backstop $1.1B -> $1.75B; unrated $1.93B -> $1.97B) -> $188/share (contracted value rolled forward at ~9%, the rest at the 13.6% cost of equity). Bridge from round 3 ($140): site-by-site capacity with explicit contracts, round-3 costs -> $131 (3.7 GW probability-weighted by 2035 vs my old 4.8 GW, partly offset by faster owned-campus timing and a correct Q4-26 run-rate); leased capex IT-only -> $138; owned-site cost and capex (F2) -> $182; Meta backstop floor -> $184; split discounting -> $188. Sensitivities (single / split): life 4y 170/174, 6y 168/172, 7y 157/161; steep path 156/160, flat 252/256; ERP 4.65% 157/163, 5.0% 144/150; yield -10/+10% 130/134, 236/241; capex $22M/$28M 220/224, 146/151; owned cost $1.6M 160/164; owned capex 130% of unit 158/163; uncontracted-pipeline probabilities x0.7 156/160; no unnamed-gap layer 174/178; IG rate 7.5%/10% -> split 190/185; long-term mix 45%/15% 213/154; no resale 171/175.",
+    "inputs_detail": [
+     {
+      "input": "Capacity by site (replaces the aggregate GW path)",
+      "value": "25 inventory sites + an unnamed ~0.7 GW gap layer (p 0.5); probability-weighted active MW ~0.55 GW Q4-26, ~1.3 GW 2027 avg, 3.7 GW 2035 (2.76 owned / 0.96 leased)",
+      "basis": "estimate",
+      "source_ids": [
+       39,
+       37,
+       40,
+       1,
+       35,
+       36
+      ],
+      "derivation": "Per-site MW and dates from the inventory (src 39) and its company sources (Q1-26 letter, src 37; Lappeenranta PR, src 40). Where sources conflict: Vineland 300 MW (Nebius PR) over 315/350 MW (secondary); Birmingham operational 2027 (Q1 letter) over Q4-26 energization (site page); Bethune treated as leased (Azur developer; not among the five owned sites in the Q1 letter). Undisclosed allocations are judgment: Longcross 15 MW (~9,000 B300), Newport 16 MW and UK fourth site 12 MW (GBP1.7B program = 65 MW across four sites less Harlow 22 and Longcross), Modi'in and Woodbury 5 MW each, Oklahoma 300 MW. Probabilities: 0.9-0.95 for leased construction (Bethune, Israel, Estonia, Harlow, AIB), 0.85 for the first phase of Independence/Highridge (power secured), 0.65-0.70 for later phases, 0.75 Birmingham (resident lawsuits), 0.7 unnamed UK site, 0.5 Oklahoma and the ~1 GW of the 5 GW contracted-power target not tied to a named site. Net of build capex and, through WACC, financing."
+     },
+     {
+      "input": "Vintage contract yield and post-contract price path",
+      "value": "Age-0 yield $12M (2024-26 vintages), $13M 2027, $16.5M 2028-29, $15.5M 2030, $15M later; market index by age 1.00/0.70/0.52/0.45/0.41/0.37/0.33/0.29",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       7,
+       24,
+       29,
+       23,
+       28,
+       20
+      ],
+      "derivation": "Near-term vintage yields keep round 2's revenue anchors (2027 revenue $12.3B = S&P consensus $12.30B, src 20; Q2 deals at $20-25M/MW ACV, src 1, so 2028-29 vintages step up to $16.5M before fading). The age index is fitted to rental history: SemiAnalysis H100 composite $6.62 (2H23) -> $3.34 (2Q25) = -50% in ~18 months, then flat ~$2.80 = ~0.42-0.44 at age 3 (src 24, 28); A100 at $0.93-1.58 = 23-39% of launch at ~6 years (src 7, 29, 28). Ornn spot puts A100/H100/B200 at ~equal $ per PFLOP-hr (src 7, 28), so old chips reprice with the falling cost of compute rather than to scrap. My index sits slightly below the 2026 H100 level because that evidence comes from a supply-constrained market."
+     },
+     {
+      "input": "Signed contracts (explicit streams)",
+      "value": "Microsoft $17.4B/5 yrs, 300 MW Vineland, ~$3.48B/yr to ~Apr-2031; Meta-2025 $2.9B/5 yrs on 48 MW to ~Dec-2030; Meta-2026 $12B dedicated, 150 MW at $16M/MW, mid-2027 to mid-2032; Meta backstop up to $15B on 190 MW, 85% floor; Q2-26 deals 71 MW at $22.5M/MW for 2.5 yrs",
+      "basis": "reported",
+      "source_ids": [
+       35,
+       36,
+       38,
+       1,
+       39
+      ],
+      "derivation": "TCVs, terms and tranche dates reported (src 35, 36, 38, 1). Derived: Microsoft ~$1.4B recognised before Q4-26 (tranches Nov-25 to Aug-26), remaining ~$16B at $3.48B/yr; Meta-2025 $2.9B (6-K figure chosen over the letter's ~$3B because the filing is more precise) on ~48 MW at $12M/MW, assigned to Mantsala 1 (judgment: existing fleet, sites undisclosed). Meta-2026 $16M/MW is judgment (between my $13M 2027 vintage and $20-25M neolab ACV, src 1), giving 150 MW on Finland sites named in press. Backstop: Meta must buy unsold capacity on specified clusters for 5 years (src 36); I size it at $3B/yr = 190 MW and floor 85% of revenue (pre-agreed terms undisclosed, judgment). Direction: all are customer pays Nebius; leases (Harlow 10 yr, AIB 12 yr) are Nebius pays landlord and sit in the fixed $2.5M/MW-yr leased cost. Future (unsigned) contracts stay in the 30/55/15 vintage mix at WACC."
+     },
+     {
+      "input": "Cost structure (EBITDA margin)",
+      "value": "Leased: $2.5M per MW-yr power + colo; owned: $1.1M per MW-yr power + site O&M; overhead 39% (2026) -> 24% (2034+) of revenue; margin 49% 2027, 55% 2028, 63% 2035",
+      "basis": "estimate",
+      "source_ids": [
+       28,
+       1,
+       37,
+       39
+      ],
+      "derivation": "Research note: power $0.08/kWh (PUE included in the all-in draw) and colo ~$150/kW-month = ~$2.5M per MW-yr (src 28). Flag F2: owned sites (>75% of contracted power, src 37) should not pay colo on top of facility capex, so owned MW carry power ($0.70M) + $0.4M site O&M/insurance/property tax (judgment; Independence PILOT is only ~$0.03M/MW-yr, src 39). Overhead calibration unchanged from round 3 (Q2-26 AI-cloud 49.7% adj. EBITDA margin on mostly leased capacity, src 1)."
+     },
+     {
+      "input": "Capex per MW",
+      "value": "Unit $25M/MW in 2026, -3%/yr; owned sites 114% of unit (~$28.5M), leased 75% (~$18.75M, IT only); spent one year ahead of activation",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       39
+      ],
+      "derivation": "2026 capex guide $20-25B for ~0.8-1.0 GW connected (src 1) gives the ~$25M blended unit. Leased hosts fund the shell (Mega Or ~$880M for 80 MW, Azur ~EUR1.5B, AIB with project debt; src 39), so Nebius pays IT plus fit-out. Owned: IT $17.5M + ~$11M facility (judgment; above the 30% facility share I used before so the F2 fix does not flatter owned sites). Sensitivity: owned 130% of unit -> $158/$163."
+     },
+     {
+      "input": "GPU economic life and refresh",
+      "value": "Base economic life 5 years (refresh at age 5, 70% of unit capex); sensitivities 4/6/7 years; book D&A stays 5 years",
+      "basis": "judgment",
+      "source_ids": [
+       2,
+       1,
+       28,
+       25,
+       30,
+       23
+      ],
+      "derivation": "Nebius's accounting life is 5 years (4->5 from Jan-2026, src 2, 1). In the cohort model, with scarce power and new-vintage yields above aged-cohort market prices, refreshing at 5 years maximises value (4y $117, 5y $140, 6y $119, 7y $103): a MW holding a 6-7 year old GPU earns ~0.33-0.37 of a new vintage while bearing the same power and colo cost. Physical/cash life is longer (A100 contracted into 2029, src 25; cash-positive tail to ~7 years at $2.5M/MW cost), and I capture that tail through resale. The research note recommends 5 years as base for neoclouds (src 28), and Amazon's 6->5 cut for AI servers points the same way (src 30)."
+     },
+     {
+      "input": "Terminal capex",
+      "value": "$11.5B vs D&A ~$11.3B: GPUs 70% of unit / 5 yrs net of resale + facilities (owned 44% / leased 5% of unit) / 20 yrs + half of 3% growth",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       23
+      ],
+      "derivation": "Steady-state replacement of the 3.8 GW fleet at a 5-year economic life, net of resale at 30% x 26% of GPU capex (CCIR, src 23). Terminal capex stays at or above D&A, as the supervisor required."
+     },
+     {
+      "input": "Discount rates (split)",
+      "value": "WACC 12.8% for uncontracted, post-contract, pipeline and terminal flows; 8.5% for Microsoft/Meta contracted flows; 9.5% Meta backstop floor; 11.0% unrated Q2-26 deals",
+      "basis": "estimate",
+      "source_ids": [
+       17,
+       21,
+       22,
+       33,
+       31,
+       32,
+       34,
+       41,
+       42
+      ],
+      "derivation": "WACC: 10Y 5.29% (src 17) + beta 2.0 x ERP 4.14% (src 21) = 13.6% cost of equity, ~7% debt (src 22). Contracted IG rate: the only secured financing against such a contract is the $775M facility at SOFR+2.50% (src 33); SOFR 3.87% (src 32) gives 6.4% floating, and the 5-yr Treasury at 5.09% (src 31) puts a fixed-rate equivalent at ~7.6%. Meta's own 2031 notes at 4.55% (src 34) bound the pure credit piece (Microsoft Aaa, Meta Aa3; src 42, 41). The facility covers only the debt slice of capex, and the residual cash flows carry Nebius's delivery/termination risk (late-delivery discounts, Microsoft termination right), so I add ~0.9pt: 8.5%. Backstop floor 9.5%: Meta credit, but contingent and at undisclosed pre-agreed prices. Unrated neolab deals 11.0%: private counterparties, partly de-risked by prepayments covering 50-60% of capex (src 1). Contracted flows = contract revenue - site cost - 10% direct operating overhead - tax (with build-capex D&A shield) - build capex; the rest of corporate overhead stays at WACC."
+     },
+     {
+      "input": "Terminal growth",
+      "value": "3%",
+      "basis": "judgment",
+      "source_ids": [
+       12,
+       17
+      ],
+      "derivation": "Below nominal yields (src 17). Hated Moats uses 4% (src 12); I haircut for compute commoditisation. Sensitivity: 2% -> $141, 4% -> $160."
+     },
+     {
+      "input": "Diluted share count",
+      "value": "370M now (DCF, ITM converts as equity); ~395M by Oct-2027 (multiples)",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       3,
+       4
+      ],
+      "derivation": "271.86M A+B outstanding at 6/30/26 (src 2) + 15.8M shares from the Aug-2026 exchange of $800M 2029/2031 notes (src 3) + ~21M NVIDIA pre-funded warrants (counted in basic EPS: Q2 basic weighted 280.4M vs 271.9M outstanding, src 2) + ~49.6M shares for the remaining in-the-money converts (65.4M anti-dilutive convert shares at Q2 less the 15.8M exchanged, src 2; Sep-2025 notes alone are $3.16B x 7.2072/1,000 = 22.8M, src 4) + ~10M awards (src 2) = ~368M, rounded to 370M. The Aug-2026 $5B notes convert at ~$313-325 (src 3), out of the money at $232, so they stay as debt. Q3 ATM sales (up to 12.3M shares left at 6/30, src 1) are not added because their proceeds (~$2.8B at ~$230) would offset them roughly one-for-one at this value. Oct-2027: +~25M shares for ~$6B of equity/equity-linked funding of the 2027 cash burn (H1-26 ATM precedent: 12.7M sh at $223.6, src 1)."
+     },
+     {
+      "input": "Net debt excluding ITM converts",
+      "value": "~$3.9B net cash at 2026-09-30 less a $4.5B deferred-revenue unwind in the DCF bridge; ~$8B net debt by Oct-2027 (multiples)",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       3,
+       22
+      ],
+      "derivation": "Borrowings $8.55B at 6/30 (src 2), almost all convertible notes; remove the ~$7.7B of ITM converts still outstanding after the exchange (counted as shares instead), add the $5.0B Aug-2026 notes (src 3) and the $775M SOFR+2.50% secured facility (src 1) = ~$5.8B debt. Cash: $8.04B at 6/30 (src 2) + $4.94B net note proceeds (src 3) + $0.775B facility + ~$2B Q3 prepayments/operating cash - ~$6B Q3 capex (2026 guide $20-25B, src 1) = ~$9.7B, so ~$3.9B net cash. Oct-2027: DCF burn from Q4-26 to Q3-27 of ~$19.5B, less ~$6B prepayments (>$9B in 2026, covering 50-60% of deal capex, src 1), less ~$6B equity = ~$7.6B net debt, rounded to $8B. Round 3: the Aug-2026 notes are $5.75B after the greenshoe (src 22), adding ~$0.75B to both debt and cash, so net cash is unchanged. Per the supervisor, the DCF deducts the ~$4.5B net unwind of deferred revenue ($5.98B at 6/30, src 2; >$9B 2026 prepayments, src 1) because that cash is in net cash and the revenue is also in FCFF."
+     },
+     {
+      "input": "Equity stakes (ClickHouse + Toloka/other)",
+      "value": "$3.5B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       6
+      ],
+      "derivation": "ClickHouse $15B Jan-2026 round confirmed in the Q2 letter, stake described only as a 'significant minority' (src 1); book value $1.6B (src 2). Supervisor's reconciled ~$3.5B adopted (round 2: $4.0B)."
+     }
+    ]
+   },
+   {
+    "name": "EV/EBITDA",
+    "value": 257.0,
+    "weight": 0.35,
+    "inputs": "Oct-2027 value on 2028E EBITDA: revenue $26B x 48% = $12.5B x 8.5x = $106B EV - $8B net debt (ex-ITM converts) + $3.5B stakes = $101.5B / 395M diluted = $257. Unchanged by the GPU-life work: 2028 revenue is still mostly under contract (the cohort DCF gives $27.7B), and the CoreWeave multiple already prices market views of GPU life. Round 4: unchanged; the site build gives 2028 revenue $25.9B, consistent with $26B. I keep the 48% margin (reported AI-cloud margin on mostly leased capacity) rather than the DCF's 55% so the owned-cost fix is not counted in both legs.",
+    "inputs_detail": [
+     {
+      "input": "2028E revenue",
+      "value": "$26B",
+      "basis": "estimate",
+      "source_ids": [
+       20,
+       1
+      ],
+      "derivation": "Replaces round 1's '$25B consensus', which I had backed out of a Substack-reported BNP ratio (unverified). Directly fetched 2027 consensus is $12.30B (S&P Global via StockAnalysis, src 20; 2028 is paywalled). 2027 consensus x 2.0x my avg active capacity growth (1.0 -> 2.0 GW, src 1) = $24.6B, plus a modest uplift because new capacity is contracted at $20-25M/MW (src 1) = ~$26B. This is below the DCF's $30B path, which assumes a $15M/MW 2028 fleet yield."
+     },
+     {
+      "input": "2028E EBITDA margin",
+      "value": "48%",
+      "basis": "estimate",
+      "source_ids": [
+       1
+      ],
+      "derivation": "AI cloud segment 49.7%, group 41% in Q2-26 (src 1); group overhead keeps it slightly below segment as capacity scales."
+     },
+     {
+      "input": "EV/EBITDA multiple",
+      "value": "8.5x one-year-forward",
+      "basis": "judgment",
+      "source_ids": [
+       19,
+       5
+      ],
+      "derivation": "CoreWeave EV ~$95B at ~25x trailing EBITDA (src 19), which implies a much lower forward multiple at its growth rate. NBIS gets a modest premium for lower leverage and prepayment funding (src 5), but forward multiples should compress as growth slows in 2028."
+     },
+     {
+      "input": "Diluted share count",
+      "value": "370M now (DCF, ITM converts as equity); ~395M by Oct-2027 (multiples)",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       3,
+       4
+      ],
+      "derivation": "271.86M A+B outstanding at 6/30/26 (src 2) + 15.8M shares from the Aug-2026 exchange of $800M 2029/2031 notes (src 3) + ~21M NVIDIA pre-funded warrants (counted in basic EPS: Q2 basic weighted 280.4M vs 271.9M outstanding, src 2) + ~49.6M shares for the remaining in-the-money converts (65.4M anti-dilutive convert shares at Q2 less the 15.8M exchanged, src 2; Sep-2025 notes alone are $3.16B x 7.2072/1,000 = 22.8M, src 4) + ~10M awards (src 2) = ~368M, rounded to 370M. The Aug-2026 $5B notes convert at ~$313-325 (src 3), out of the money at $232, so they stay as debt. Q3 ATM sales (up to 12.3M shares left at 6/30, src 1) are not added because their proceeds (~$2.8B at ~$230) would offset them roughly one-for-one at this value. Oct-2027: +~25M shares for ~$6B of equity/equity-linked funding of the 2027 cash burn (H1-26 ATM precedent: 12.7M sh at $223.6, src 1)."
+     },
+     {
+      "input": "Net debt excluding ITM converts",
+      "value": "~$3.9B net cash at 2026-09-30 (DCF start, before the $4.5B deferred-revenue unwind); ~$8B net debt by Oct-2027 (multiples)",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       3
+      ],
+      "derivation": "Borrowings $8.55B at 6/30 (src 2), almost all convertible notes; remove the ~$7.7B of ITM converts still outstanding after the exchange (counted as shares instead), add the $5.0B Aug-2026 notes (src 3) and the $775M SOFR+2.50% secured facility (src 1) = ~$5.8B debt. Cash: $8.04B at 6/30 (src 2) + $4.94B net note proceeds (src 3) + $0.775B facility + ~$2B Q3 prepayments/operating cash - ~$6B Q3 capex (2026 guide $20-25B, src 1) = ~$9.7B, so ~$3.9B net cash. Oct-2027: DCF burn from Q4-26 to Q3-27 of ~$19.5B, less ~$6B prepayments (>$9B in 2026, covering 50-60% of deal capex, src 1), less ~$6B equity = ~$7.6B net debt, rounded to $8B."
+     },
+     {
+      "input": "Equity stakes (ClickHouse + Toloka/other)",
+      "value": "$3.5B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       6
+      ],
+      "derivation": "ClickHouse $15B Jan-2026 round confirmed in the Q2 letter, stake only a 'significant minority' (src 1); book $1.6B (src 2). Supervisor's reconciled ~$3.5B adopted (round 2: $4.0B)."
+     }
+    ]
+   },
+   {
+    "name": "EV/sales",
+    "value": 266.0,
+    "weight": 0.2,
+    "inputs": "Oct-2027 NTM revenue ~$22.3B x 4.9x (CoreWeave EV/NTM sales) = $109B EV - $8B net debt + $3.5B stakes = $104.5B / 395M = $266. Round 4: unchanged; the site build gives 2028 revenue $25.9B, consistent with $26B. I keep the 48% margin (reported AI-cloud margin on mostly leased capacity) rather than the DCF's 55% so the owned-cost fix is not counted in both legs.",
+    "inputs_detail": [
+     {
+      "input": "NTM revenue at Oct-2027",
+      "value": "$22.3B",
+      "basis": "estimate",
+      "source_ids": [
+       20,
+       1
+      ],
+      "derivation": "Q4-27 ~$4.6B + ~3 quarters of the $26B 2028E at a below-average early-year run rate (~$17.7B)."
+     },
+     {
+      "input": "EV/NTM sales multiple",
+      "value": "4.9x",
+      "basis": "estimate",
+      "source_ids": [
+       19
+      ],
+      "derivation": "CoreWeave market cap $48.85B at 2.5x forward P/S implies NTM revenue ~$19.5B; EV $94.9B / $19.5B = ~4.9x (src 19). NBIS grows faster but faces the same GPU repricing risk, so I use no premium."
+     },
+     {
+      "input": "Diluted share count",
+      "value": "370M now (DCF, ITM converts as equity); ~395M by Oct-2027 (multiples)",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       3,
+       4
+      ],
+      "derivation": "271.86M A+B outstanding at 6/30/26 (src 2) + 15.8M shares from the Aug-2026 exchange of $800M 2029/2031 notes (src 3) + ~21M NVIDIA pre-funded warrants (counted in basic EPS: Q2 basic weighted 280.4M vs 271.9M outstanding, src 2) + ~49.6M shares for the remaining in-the-money converts (65.4M anti-dilutive convert shares at Q2 less the 15.8M exchanged, src 2; Sep-2025 notes alone are $3.16B x 7.2072/1,000 = 22.8M, src 4) + ~10M awards (src 2) = ~368M, rounded to 370M. The Aug-2026 $5B notes convert at ~$313-325 (src 3), out of the money at $232, so they stay as debt. Q3 ATM sales (up to 12.3M shares left at 6/30, src 1) are not added because their proceeds (~$2.8B at ~$230) would offset them roughly one-for-one at this value. Oct-2027: +~25M shares for ~$6B of equity/equity-linked funding of the 2027 cash burn (H1-26 ATM precedent: 12.7M sh at $223.6, src 1)."
+     },
+     {
+      "input": "Net debt excluding ITM converts",
+      "value": "~$3.9B net cash at 2026-09-30 (DCF start, before the $4.5B deferred-revenue unwind); ~$8B net debt by Oct-2027 (multiples)",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       3
+      ],
+      "derivation": "Borrowings $8.55B at 6/30 (src 2), almost all convertible notes; remove the ~$7.7B of ITM converts still outstanding after the exchange (counted as shares instead), add the $5.0B Aug-2026 notes (src 3) and the $775M SOFR+2.50% secured facility (src 1) = ~$5.8B debt. Cash: $8.04B at 6/30 (src 2) + $4.94B net note proceeds (src 3) + $0.775B facility + ~$2B Q3 prepayments/operating cash - ~$6B Q3 capex (2026 guide $20-25B, src 1) = ~$9.7B, so ~$3.9B net cash. Oct-2027: DCF burn from Q4-26 to Q3-27 of ~$19.5B, less ~$6B prepayments (>$9B in 2026, covering 50-60% of deal capex, src 1), less ~$6B equity = ~$7.6B net debt, rounded to $8B."
+     },
+     {
+      "input": "Equity stakes (ClickHouse + Toloka/other)",
+      "value": "$3.5B",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       6
+      ],
+      "derivation": "ClickHouse $15B Jan-2026 round confirmed in the Q2 letter, stake only a 'significant minority' (src 1); book $1.6B (src 2). Supervisor's reconciled ~$3.5B adopted (round 2: $4.0B)."
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "bear": {
+   "price": 100.0,
+   "prob": 0.25,
+   "story": "GPU rents follow the steep path once Rubin supply arrives (post-contract ~0.3x within 3 years), new-deal yields fall ~10%, and the later phases of Independence, Highridge, Oklahoma and the unnamed capacity get delayed or cancelled (pipeline probabilities x0.7): site DCF ~$98 (split), ~$78 at a 5% ERP. Microsoft/Meta contracts hold (~$60/share of the split DCF), which floors the bear above round 3's $90. Funding gets expensive and multiples compress toward CoreWeave lows on ~400M shares."
+  },
+  "base": {
+   "price": 228.0,
+   "prob": 0.5,
+   "story": "Sites ramp on the inventory schedule: ~0.55 GW active in Q4-26, Meta dedicated tranches from mid-2027, Highridge 260 MW by Oct-2027, owned campuses carrying lower per-MW cost than colocation. 2027 revenue ~$12.3-12.5B with ~45-49% margins; ~25M more shares fund the build. GPU rents ease along the base index, the Microsoft/Meta contracts run to term, and the stock trades near ~8.5x forward EBITDA, close to the blended fair value."
+  },
+  "bull": {
+   "price": 410.0,
+   "prob": 0.25,
+   "story": "Scarcity lasts into 2028: re-contracting runs near original prices (flat-path site DCF ~$256), Meta's backstop clusters sell to third parties at full price, the full 1.2 GW at Independence and Highridge lands by 2030-32, and the market pays 10-12x 2028 EBITDA. Above ~$313-325 the $5.75B Aug-2026 notes convert (~17.7M shares), capping per-share upside a little."
+  }
+ },
+ "thesis_break_price": 120.0,
+ "thesis_break_reason": "Below ~$120 (about -48%) the market would most likely be pricing a fundamental failure, not 100%-vol noise. It is ~25% below the site DCF on the steep rental path ($156-160) and between that and the combined bear case (~$98), and below the $138.75 Sep-25 conversion price. Signs: GPU rental indices falling toward ~0.3x launch within 2-3 years of each generation; mid-term contracts re-leasing well below original prices; new deals below ~$12M/MW; a delivery failure that triggers Microsoft's termination right or Meta's late-delivery discounts; Highridge missing 260 MW by Oct-2027 or Independence power slipping past 2029; or financing markets closing. Raised from $110 because the contracted Microsoft/Meta streams (~$60/share in the split DCF) and the lower owned-site costs lift the steep-path value.",
+ "catalysts": [
+  {
+   "date": "2026-10-05",
+   "event": "CME/NYMEX Silicon Data H100/B200 rental-index futures target listing: first public forward curve for GPU rent, i.e. the market's own post-contract price-decay path",
+   "direction": "?"
+  },
+  {
+   "date": "2026-10 (last week)",
+   "event": "Hyperscaler Q3 earnings and 2027 capex commentary (MSFT, META, GOOGL, AMZN)",
+   "direction": "+"
+  },
+  {
+   "date": "2026-11 (mid, est.; ~15% chance Oct 22)",
+   "event": "Nebius Q3 2026 results; expected formal 2027 guidance (ARR, revenue, capex)",
+   "direction": "+"
+  },
+  {
+   "date": "2026-12-31",
+   "event": "YE26 checks: 800MW-1GW connected, 5GW contracted power, $7-9B ARR guide",
+   "direction": "?"
+  },
+  {
+   "date": "2027-08 to 2027-12",
+   "event": "AIB southeastern US 50 MW halls (Aug/Dec-2027), Harlow and UK program fully ramped",
+   "direction": "+"
+  },
+  {
+   "date": "2027-10",
+   "event": "Highridge (PA) first 260 MW due; Meta-2026 dedicated tranches ramping on Finland sites",
+   "direction": "?"
+  },
+  {
+   "date": "2027-Q1",
+   "event": "Second Meta agreement capacity due online; Vera Rubin production offering",
+   "direction": "+"
+  },
+  {
+   "date": "2027-02 (est.)",
+   "event": "Q4 2026 results and FY2027 guidance update",
+   "direction": "?"
+  },
+  {
+   "date": "2027 (H1-H2)",
+   "event": "First renewals of mid-term (1-3 yr) contracts signed in 2025-26: re-leasing price vs original is the direct test of the GPU decay path",
+   "direction": "?"
+  },
+  {
+   "date": "2027-05 (est.)",
+   "event": "Q1 2027 results: first quarter with YE26 capacity active",
+   "direction": "?"
+  },
+  {
+   "date": "2027-06",
+   "event": "Polymarket 'AI bubble burst by June 30, 2027' resolution (thin market; sentiment only)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-08 (est.)",
+   "event": "Q2 2027 results; ARR run-rate vs ~$22B exit-2027 bull framing",
+   "direction": "?"
+  },
+  {
+   "date": "rolling",
+   "event": "Further convertible/ATM/secured financing for 2027 capex (dilution risk)",
+   "direction": "-"
+  }
+ ],
+ "key_uncertainties": [
+  "Durability of $20-25M/MW contract yields once 2027-28 industry supply arrives; rental indices are firm but flat over the last 30 days",
+  "GPU economic life and post-contract price path: 5/6/7-year life gives a split DCF of $188/172/161; steep vs flat rental decay gives $160 vs $256",
+  "Owned-campus economics (F2): the DCF depends on owned MW costing ~$1.1M/MW-yr plus ~$11M/MW of facility capex; owned cost $1.6M or facility capex 30% higher each takes ~$24 off",
+  "Delivery on the big owned campuses: Independence and Highridge (1.2 GW each) and Birmingham (lawsuits) are ~$74/share of value on probabilities of 0.65-0.85; later phases depend on utility power by 2029",
+  "Re-leasing risk: ~55% of capacity sits on ~2-year mid-term contracts, so 2028-29 renewals reprice to the market index; only the Microsoft/Meta 5-year deals are long-dated",
+  "2027 capex size and funding mix (equity/convert dilution vs prepayments and secured debt); Q3 ATM usage unknown",
+  "Execution on >1GW/yr deployment: power, construction, GPU delivery",
+  "Customer concentration (Meta, Microsoft, a few neolabs) and AI-lab credit quality",
+  "Rates and ERP: 10Y 5.29%, 5Y 5.09%; ERP 4.14% / 4.65% / 5.0% moves the split DCF $188 / $163 / $151; the contracted rate (7.5-10%) moves it only $185-190"
+ ],
+ "reasoning": "Round 4 makes two fixes Kilian asked for. (1) Sites: the DCF is now built from the 25-site inventory. Each site is one layer with its own ramp, ownership and probability. Signed contracts are explicit streams at their own price and dates: Microsoft at Vineland, Meta-2025 on Mantsala 1, Meta-2026 dedicated on Mantsala 2 + Lappeenranta, the Meta backstop on Lappeenranta, and the Q2 neolab deals at Bethune. They no longer sit inside a 30% IG share of every vintage. Uncontracted construction and pipeline are probability-weighted, net of capex. The F2 flag (colo charged on owned MW that also carry facility capex) was the largest change. Owned campuses now carry $1.1M/MW-yr and ~$28.5M/MW capex, and leased sites $2.5M/MW-yr and IT-only capex. The F3 backstop is a floor on 190 MW. The F7 timing lag is fixed: Highridge and Independence follow company dates. Total probability-weighted MW is lower than my old path, 3.7 GW in 2035 vs 4.8. Bridge: $140 -> $131 (site layout) -> $138 (leased capex) -> $182 (owned costs) -> $184 (backstop). (2) Discounting: IG contracted flows at 8.5%, anchored on the $775M facility at SOFR+2.50% (SOFR 3.87%, 5Y 5.09%) plus a delivery-risk premium. The backstop floor is at 9.5%, unrated deals at 11%, and the rest at WACC 12.8%. The split adds only ~$4 ($184 -> $188), because the contracts are at most 5 years long and much of their early cash goes to build capex. Most of the value is in uncontracted capacity and the terminal value, which stay at WACC. Blend 45/35/20 unchanged, multiples unchanged: fair value $228 (round 3 $206). Scenarios: bear $100 / base $228 / bull $410 at 25/50/25. The bear is floored a bit higher by the contracted streams; the bull adds the backstop sold at full price and the full owned build. Ladder: same construction (equal blend of the scenario lognormal mixture and a single lognormal, median $224, 80% sigma), giving P(>=232) 0.479 (round 3 0.442). Thesis break $110 -> $120. The 1-month ladder is unchanged. Limits: the per-MW split of owned vs leased costs and Meta-2026 $/MW are judgment. Several site MW figures are undisclosed (Longcross, Newport, UK fourth site, Oklahoma, Modi'in, Woodbury). The 20-F property table could not be read in full. Overhead is still calibrated on round-2 margins.",
+ "lane": "alternative",
+ "sources": [
+  {
+   "title": "Nebius Group Letter to shareholders Q2 2026 (5-year server life; $20-25M/MW deals, 1y10m payback; >1GW/yr from 2027; ATM 12.7M sh sold, 12.3M left; $775M SOFR+2.50% facility; capex guide $20-25B)",
+   "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf",
+   "date": "2026-08-12",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius Group 6-K Ex.99.2 H1 2026 unaudited condensed consolidated financial statements (271.86M A+B shares; borrowings $8,545.7M; cash $8,042.1M; useful life 4->5 years; 65.4M anti-dilutive convert shares, 10.0M awards; basic weighted 280.4M incl. pre-funded warrants)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812xex99d2.htm",
+   "date": "2026-08-12",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius Group 6-K Ex.99.1: $5.0B convertible notes due 2030 (0.50%, conv. ~$313.46) and 2034 (4.50%, conv. ~$324.7); ~$4.94B net proceeds; exchange of $800M 2029/2031 notes",
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926098924/tm2623617d1_ex99-1.htm",
+   "date": "2026-08-19",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius 6-K (Sep 2025): convertible notes due 2030/2032, 7.2072 sh per $1,000 (~$138.75), ~$3.16B incl. greenshoe (terms as verified in the supervisor review)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000141057825002149/tm2525503d8_ex99-2.htm",
+   "date": "2025-09",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "MVC Investing (Substack): Nebius Group (NBIS) Q2 2026 Earnings Review",
+   "url": "https://mvcinvesting.substack.com/p/nebius-group-nbis-q2-2026-earnings",
+   "date": "2026-08-12",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Exencial Research (Substack): Scarce Compute Is Repricing Nebius, and BNP Paribas Now Wants In (BNP model details unverified; only $399 target and ~$22B exit-2027 ARR corroborated)",
+   "url": "https://exencialrp.substack.com/p/scarce-compute-is-repricing-nebius",
+   "date": "2026-09-24",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Ornn Compute Price Index (OCPI): H100/H200/B200 rental index",
+   "url": "https://data.ornn.com/preview",
+   "date": "2026-10-01",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Silicon Data: H200 vs H100 rental prices, May-July 2026",
+   "url": "https://www.silicondata.com/blog/h200-vs-h100-rental-prices-may-july-2026",
+   "date": "2026-07-28",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "SemiAnalysis newsletter: The Great GPU Shortage - rental capacity",
+   "url": "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity",
+   "date": "2026-04-02",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Polymarket: AI bubble burst by...? (2027 leg ~$9k volume)",
+   "url": "https://polymarket.com/event/ai-bubble-burst-by",
+   "date": "2026-10-02",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "AltIndex: Nebius job postings hit an all-time high",
+   "url": "https://altindex.com/news/nebius-job-postings-nvidia-stake",
+   "date": "2026-07-21",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Hated Moats (Substack): Nebius deep dive analysis (DCF framework)",
+   "url": "https://hatedmoats.substack.com/p/nebius-deep-dive-analysis",
+   "date": "2025-11-19",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Revelio Labs: Nebius Group employees and job postings",
+   "url": "https://www.reveliolabs.com/companies/nebius-group/employees",
+   "date": "2026",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Spheron: Compute futures - what CME's GPU contracts mean (Silicon Data H100/B200 futures, target listing 2026-10-05)",
+   "url": "https://www.spheron.network/blog/compute-futures-cme-gpu-contracts-ai-buyers/",
+   "date": "2026-08",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "Mercatus GPU Index: GPU rental prices by provider",
+   "url": "https://www.mercatus-ai.com/blog/gpu-rental-prices",
+   "date": "2026-09-13",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Thunder Compute: AI GPU rental market trends (September 2026)",
+   "url": "https://www.thundercompute.com/blog/ai-gpu-rental-market-trends",
+   "date": "2026-09",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "FRED DGS10: 10-year Treasury yield 5.29% on 2026-09-30",
+   "url": "https://fred.stlouisfed.org/series/DGS10",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Damodaran: Historical implied equity risk premiums for the US (4.23% at start of 2026, Jan-2026 update)",
+   "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histimpl.html",
+   "date": "2026-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis: CoreWeave (CRWV) statistics and valuation",
+   "url": "https://stockanalysis.com/stocks/crwv/statistics/",
+   "date": "2026-10-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis: NBIS forecast (S&P Global consensus: 2026 revenue $3.34B, 2027 revenue $12.30B, 20 analysts)",
+   "url": "https://stockanalysis.com/stocks/nbis/forecast/",
+   "date": "2026-09-25",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Damodaran Online home page: implied ERP on September 1, 2026 = 4.14%",
+   "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm",
+   "date": "2026-09-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius: closing of convertible senior notes offering, aggregate gross proceeds ~$5.75B ($3.45B 2030 0.50%, $2.3B 2034 4.50%)",
+   "url": "https://nebius.com/newsroom/nebius-group-announces-closing-of-private-offering-of-convertible-senior-notes-with-aggregate-gross-proceeds-of-approximately-5-75-billion",
+   "date": "2026-08",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "CCIR: GPU secondary-market executed prices, trailing 90 days (H100 SXM $11,700 = 34.8% of launch, n=7; A100 40GB $3,621 = 14.6%, n=41; V100 32GB 3.5%)",
+   "url": "https://ccir.io/hardware",
+   "date": "2026-09-28",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "SemiAnalysis GPU rental index (H100 $6.62 2H23 -> $3.91 4Q24 -> $3.34 2Q25 -> ~$2.80 Jul-25 to Apr-26)",
+   "url": "https://gpu-index.semianalysis.com/",
+   "date": "2026-10",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Tom's Hardware: CoreWeave CEO says it signed an A100 contract running into 2029",
+   "url": "https://www.tomshardware.com/tech-industry/coreweave-ceo-mike-intrator-says-it-has-signed-an-a100-contract-running-into-2029",
+   "date": "2026-08",
+   "type": "trade",
+   "in_lane": false
+  },
+  {
+   "title": "Reuters via Investing.com: Nebius signs AI infrastructure deals with Meta worth up to $27 billion over 5 years",
+   "url": "https://www.investing.com/news/stock-market-news/nebius-signs-ai-infrastructure-deals-with-meta-worth-up-to-27-billion-over-5-years-4562491",
+   "date": "2026-03",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Redmondmag: Microsoft strikes $17.4 billion (five-year) deal with Nebius",
+   "url": "https://redmondmag.com/articles/2025/09/10/microsoft-strikes-billion-deal-with-nebius.aspx",
+   "date": "2025-09-10",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Internal research note: GPU useful lives, accounting vs economic life, rental-price paths, resale and cash margin after power (three lanes, sourced)",
+   "url": "file:///mnt/project-files/adhoc/gpu_useful_life.md",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": true
+  },
+  {
+   "title": "Silicon Data A100 rental index ($1.58 neocloud, 30 Sep 2026)",
+   "url": "https://www.silicondata.com/products/silicon-index/a100",
+   "date": "2026-09-30",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Amazon FY2025 10-K: useful life of a subset of servers shortened from 6 to 5 years (pace of AI/ML technology development)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "date": "2026-02",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "FRED DGS5: 5-year Treasury constant-maturity yield 5.09% on 2026-09-30",
+   "url": "https://fred.stlouisfed.org/series/DGS5",
+   "date": "2026-09-30",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "FRED SOFR: Secured Overnight Financing Rate 3.87% on 2026-10-01",
+   "url": "https://fred.stlouisfed.org/series/SOFR",
+   "date": "2026-10-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius: raises $775 million in first secured debt financing (SOFR+2.50%, matures 31-Oct-2030; collateral GPUs + one investment-grade customer contract)",
+   "url": "https://nebius.com/newsroom/nebius-raises-775-million-in-first-secured-debt-financing-to-accelerate-global-buildout",
+   "date": "2026-07-17",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Meta Platforms free-writing prospectus: senior notes 4.550% due 2031, 4.875% 2033, 5.250% 2036 (Aa3/AA-)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001326801/000119312526197902/d148113dfwp.htm",
+   "date": "2026-04-30",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius 6-K (Sep 2025): Microsoft agreement, ~$17.4B over 5 years (up to ~$19.4B), Vineland, termination/liquidated-damages terms, intent to raise debt secured against the contract",
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465925088312/tm2525580d1_6k.htm",
+   "date": "2025-09-08",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius 6-K (Mar 2026): Meta agreement, $12B dedicated capacity from early 2027 plus up to $15B purchase obligation on unsold capacity of specified clusters for 5 years",
+   "url": "https://www.sec.gov/Archives/edgar/data/1513845/000110465926027886/tm268879d1_6k.htm",
+   "date": "2026-03-16",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius Group Letter to shareholders Q1 2026 (five owned sites ~3 GW, >75% of contracted power; Independence/Birmingham/Lappeenranta operational 2027; 5 GW contracted power target)",
+   "url": "https://assets.nebius.com/assets/4f7f76ee-aa57-41d9-935b-cac74898469d/Nebius%20SHL_Q1%202026.pdf",
+   "date": "2026-05-13",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius Group Letter to shareholders Q3 2025 (Meta ~$3B 5-year agreement; Microsoft served from New Jersey)",
+   "url": "https://assets.nebius.com/assets/94ab89ea-f954-4516-89f0-1c137e0edd56/Nebius%20Group%20Q3%20Shareholder%20Letter.pdf",
+   "date": "2025-11-11",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Internal site inventory and contract-credit table for NBIS (sites.md / sites.json, 25 sites with per-row primary sources)",
+   "url": "file:///mnt/project-files/valuation/runs/2026-10-01/NBIS/sites.json",
+   "date": "2026-10-02",
+   "type": "other",
+   "in_lane": false
+  },
+  {
+   "title": "Nebius: to construct 310 MW AI factory in Lappeenranta, Finland (owned; first capacity 2027; Mantsala expansion complete)",
+   "url": "https://nebius.com/newsroom/nebius-to-construct-310-mw-ai-factory-in-finland",
+   "date": "2026-03-31",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Investing.com: Moody's affirms Meta Aa3 rating",
+   "url": "https://www.investing.com/news/stock-market-news/moodys-affirms-meta-aa3-rating-on-strong-performance-93CH-4532317",
+   "date": "2026",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Yahoo Finance: Moody's assigns Aaa to Microsoft Corporation notes",
+   "url": "https://finance.yahoo.com/news/microsoft-corporation-moodys-assigns-aaa-225907217.html",
+   "date": "2026",
+   "type": "press",
+   "in_lane": false
+  }
+ ],
+ "revisions": [
+  {
+   "item": "a method",
+   "from": "DCF $140: aggregate GW path (4.8 GW by 2035), 30% of every vintage on 5-yr IG contracts, $2.5M/MW cost on all MW, one WACC",
+   "to": "DCF $188 (split) / $184 (single): 25 sites as layers, signed contracts as explicit streams, probability-weighted pipeline, owned vs leased costs, split discount rates",
+   "why": "Kilian: every site accounted for and contracted flows discounted at a fitting rate. Bridge $140 -> $131 site layout -> $138 leased capex -> $182 owned costs (F2) -> $184 backstop (F3) -> $188 split rate."
+  },
+  {
+   "item": "a fact",
+   "from": "Colo-equivalent $2.5M per MW-yr on all MW",
+   "to": "$2.5M leased / $1.1M owned per MW-yr; capex 75% (leased) / 114% (owned) of the $25M unit",
+   "why": "Flag F2: five owned sites hold ~3 GW (>75% of contracted power); colo on owned MW double-counts facility cost."
+  },
+  {
+   "item": "a fact",
+   "from": "Meta $3B + $12B (up to $27B) cited only as support for a 30% IG share",
+   "to": "Meta-2025 $2.9B (to Dec-2030), Meta-2026 $12B dedicated (150 MW, mid-2027 to mid-2032), backstop as an 85% floor on 190 MW",
+   "why": "Flags F3/F4: the backstop is a purchase obligation; the $12B starts in 2027 on new Finland capacity."
+  },
+  {
+   "item": "a fact",
+   "from": "Average active 3.8 GW 2030 / 4.8 GW 2035",
+   "to": "Probability-weighted 3.3 GW 2030 / 3.7 GW 2035, owned campuses on company dates (Highridge 260 MW Oct-2027, 1,000+ MW Nov-2029)",
+   "why": "Flag F7 timing; F1 site build. Named sites plus a p=0.5 unnamed 0.7 GW gap layer cap the total below my old judgment path."
+  },
+  {
+   "item": "a method",
+   "from": "All flows at WACC 12.8%",
+   "to": "IG contracted 8.5%, backstop 9.5%, unrated 11.0%, rest 12.8%",
+   "why": "Flag F8; anchored on the $775M SOFR+2.50% facility (src 33), SOFR 3.87% (src 32), 5Y 5.09% (src 31)."
+  },
+  {
+   "item": "a fact",
+   "from": "Q4-26 revenue ~$0.8B (a quarter of the 2026 average)",
+   "to": "Q4-26 revenue ~$1.6B (annualised ~$6.5B, near the low end of the $7-9B YE26 ARR guide) from site run-rates (~0.55 GW active, Microsoft fully delivered)",
+   "why": "Site ramp; Microsoft tranches all delivered by Aug-2026."
+  },
+  {
+   "item": "fair value",
+   "from": "206",
+   "to": "228",
+   "why": "DCF $140 -> $188 at 45% weight; multiples unchanged."
+  },
+  {
+   "item": "a scenario",
+   "from": "bear $90 (27%) / base $210 (48%) / bull $395 (25%)",
+   "to": "bear $100 (25%) / base $228 (50%) / bull $410 (25%)",
+   "why": "Contracted streams floor the bear; base follows fair value; bull adds backstop sold at full price and full owned build."
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "P(>=232) 0.442, P(>=279) 0.34, P(>=406) 0.171",
+   "to": "P(>=232) 0.479, P(>=279) 0.377, P(>=406) 0.197",
+   "why": "Single-lognormal median $213 -> $224 and the scenario shifts."
+  },
+  {
+   "item": "thesis break",
+   "from": "110",
+   "to": "120",
+   "why": "Steep-path site DCF rose to ~$160; break stays ~25% below it and below the $138.75 conversion price."
+  }
+ ],
+ "gpu_life": {
+  "base_economic_life_years": 5,
+  "revenue_decay_path": "Signed contracts at contract price for their actual terms (Microsoft to ~Apr-2031, Meta-2025 to ~Dec-2030, Meta-2026 dedicated mid-2027 to mid-2032, backstop floor 85% to mid-2033, neolab deals ~2.5 yrs); everything else in vintages (existing fleet 80% ~2-yr / 20% on-demand; new vintages 30% 5-yr / 55% 2-yr / 15% on-demand); after expiry, market index by age 1.00/0.70/0.52/0.45/0.41/0.37/0.33/0.29 of the vintage price; GPUs refreshed at age 5 (70% of unit capex) with resale at 30% of CCIR executed levels.",
+  "dcf_at_5y": 187.8,
+  "dcf_at_base": 187.8,
+  "dcf_at_7y": 161.5,
+  "applies": "full",
+  "note": "Nebius self-operates its GPU cloud (company life 5 years, fact-checked against the FY25 20-F), so the research applies fully. Split-rate DCF 4y 175 / 5y 188 / 6y 172 / 7y 162; single-rate 184 at 5y. A 5-year refresh still maximises value because power, not GPUs, is the binding constraint. The price path matters more than the life: steep $160, flat $256 (split). Contract terms now match the actual contracts, and the 5-year Microsoft/Meta terms coincide with the 5-year refresh."
+ },
+ "site_coverage": [
+  {
+   "site": "FI-MAN1",
+   "status": "energized (owned)",
+   "mw": "75",
+   "treatment": "27 MW own-cloud merchant cohort (existing-fleet mix) + 48 MW Meta-2025 contract ($2.9B, to ~Dec-2030) at 8.5%; owned cost $1.1M/MW-yr",
+   "probability": 1.0,
+   "value_per_share": 7.3,
+   "note": "Meta-2025 sites undisclosed; assigning it to Mantsala 1 is judgment (existing fleet at signing). Value = merchant $2.2 + Meta-2025 $5.1."
+  },
+  {
+   "site": "FI-MAN2",
+   "status": "under construction (owned)",
+   "mw": "70",
+   "treatment": "Meta-2026 dedicated contract capacity (70 of 150 MW), $16M/MW, mid-2027 to mid-2032, discounted at 8.5%; build capex at the contract rate",
+   "probability": 1.0,
+   "value_per_share": 9.6,
+   "note": "Contracted (Meta order covers Finland per press); single-source 70 MW. Share of the Meta-2026 stream pro rata to MW."
+  },
+  {
+   "site": "FI-LPR",
+   "status": "under construction (owned)",
+   "mw": "310",
+   "treatment": "80 MW Meta-2026 dedicated (8.5%), 190 MW Meta backstop floor (85% at 9.5%, upside at WACC) from mid-2028, 40 MW uncontracted merchant at p=0.85",
+   "probability": 0.85,
+   "value_per_share": 23.1,
+   "note": "Which clusters carry the backstop is undisclosed; Lappeenranta is my judgment. p applies to the 40 MW merchant layer only. Value = merchant $1.3 + backstop $10.9 + Meta-2026 share $10.9."
+  },
+  {
+   "site": "IS-KEF",
+   "status": "energized (colocated)",
+   "mw": "10",
+   "treatment": "Existing-fleet merchant cohort, leased cost $2.5M/MW-yr",
+   "probability": 1.0,
+   "value_per_share": 0.5,
+   "note": "Region closed to new users; existing deployments only."
+  },
+  {
+   "site": "FR-PAR",
+   "status": "energized (colocated)",
+   "mw": "5",
+   "treatment": "Existing-fleet merchant cohort, leased",
+   "probability": 1.0,
+   "value_per_share": 0.2,
+   "note": "~5 MW from a secondary tracker (single-source)."
+  },
+  {
+   "site": "FR-BET",
+   "status": "under construction (leased)",
+   "mw": "240",
+   "treatment": "71 MW Q2-26 neolab deals ($22.5M/MW, ~2.5 yrs, unrated, 11%) + 169 MW uncontracted merchant at p=0.95",
+   "probability": 0.95,
+   "value_per_share": 17.2,
+   "note": "Treated as leased: Azur is the developer, and the Q1 letter's five owned sites exclude it (conflict resolved toward the company letter). Placing the Q2 deals here is judgment (capacity arriving late 2026)."
+  },
+  {
+   "site": "ES-MAD",
+   "status": "contracted pipeline (lease)",
+   "mw": "18 IT",
+   "treatment": "Uncontracted merchant from 2027 at p=0.85, leased",
+   "probability": 0.85,
+   "value_per_share": 0.9,
+   "note": "18 MW single-source; lease signed, no customer."
+  },
+  {
+   "site": "EE-TLL",
+   "status": "under construction (colocated)",
+   "mw": "22 IT",
+   "treatment": "Uncontracted merchant at p=0.9, leased",
+   "probability": 0.9,
+   "value_per_share": 1.2,
+   "note": "First phase before end-2026."
+  },
+  {
+   "site": "UK-LCX",
+   "status": "energized (colocated)",
+   "mw": "15 (judgment)",
+   "treatment": "Existing-fleet merchant cohort, leased",
+   "probability": 1.0,
+   "value_per_share": 0.8,
+   "note": "MW undisclosed; ~9,000 B300 at ~1.6 kW all-in = ~15 MW (judgment)."
+  },
+  {
+   "site": "UK-HLW",
+   "status": "under construction (leased)",
+   "mw": "22 IT",
+   "treatment": "Uncontracted merchant ramping 2027 at p=0.9; 10-yr lease inside the fixed leased cost",
+   "probability": 0.9,
+   "value_per_share": 1.1,
+   "note": "Nebius pays Kao Data (10-yr lease)."
+  },
+  {
+   "site": "UK-NWP",
+   "status": "contracted pipeline (lease)",
+   "mw": "16 (judgment)",
+   "treatment": "Uncontracted merchant from 2027 at p=0.85",
+   "probability": 0.85,
+   "value_per_share": 0.8,
+   "note": "MW undisclosed: 65 MW UK program less Harlow 22, Longcross 15 and the fourth site 12."
+  },
+  {
+   "site": "UK-4TH",
+   "status": "contracted pipeline",
+   "mw": "12 (judgment)",
+   "treatment": "Uncontracted merchant from 2027 at p=0.7",
+   "probability": 0.7,
+   "value_per_share": 0.5,
+   "note": "Unnamed site; lower probability."
+  },
+  {
+   "site": "IL-MOD",
+   "status": "energized (colocated)",
+   "mw": "5 (judgment)",
+   "treatment": "Existing-fleet merchant cohort, leased",
+   "probability": 1.0,
+   "value_per_share": 0.2,
+   "note": "MW undisclosed."
+  },
+  {
+   "site": "IL-BSH",
+   "status": "under construction (leased)",
+   "mw": "58 IT",
+   "treatment": "Uncontracted merchant Q3-26 to Q1-27 at p=0.9",
+   "probability": 0.9,
+   "value_per_share": 3.2,
+   "note": "Mega Or funds the shell; geopolitical haircut in p."
+  },
+  {
+   "site": "IL-MAS",
+   "status": "under construction (leased)",
+   "mw": "22 IT",
+   "treatment": "Uncontracted merchant from Q4-26 at p=0.9",
+   "probability": 0.9,
+   "value_per_share": 1.1,
+   "note": ""
+  },
+  {
+   "site": "US-VNL",
+   "status": "energized (leased build-to-suit)",
+   "mw": "300",
+   "treatment": "Microsoft contract: ~$3.48B/yr ($11.6M/MW) Q4-26 to ~Apr-2031 at 8.5%, then refreshed merchant vintages at WACC; leased cost $2.5M/MW-yr",
+   "probability": 1.0,
+   "value_per_share": 25.4,
+   "note": "300 MW (Nebius PR) chosen over 315/350 MW (secondary). Phase 2 is approved but has no MW or contract disclosed, so it is not valued. ~$1.4B of TCV is recognised before Q4-26."
+  },
+  {
+   "site": "US-KC",
+   "status": "energized (colocated)",
+   "mw": "40",
+   "treatment": "Existing-fleet merchant cohort, leased",
+   "probability": 1.0,
+   "value_per_share": 2.1,
+   "note": "Allocation 'up to 40 MW' not updated since 2025."
+  },
+  {
+   "site": "US-IND",
+   "status": "under construction (owned)",
+   "mw": "1200",
+   "treatment": "Uncontracted merchant: first 400 MW 2027-29 at p=0.85, remaining 800 MW 2029-33 at p=0.65; owned costs",
+   "probability": 0.72,
+   "value_per_share": 30.7,
+   "note": "Four buildings over 5-7 years (company FAQ, over press 'up to ten'). Meta-2026 candidate, but not assigned, to avoid double counting. Probability shown is MW-weighted (0.72)."
+  },
+  {
+   "site": "US-PA",
+   "status": "under construction (owned)",
+   "mw": "1200",
+   "treatment": "Uncontracted merchant: 260 MW by Oct-2027 at p=0.85, rest to 1.2 GW by 2031 at p=0.70; owned costs",
+   "probability": 0.73,
+   "value_per_share": 32.1,
+   "note": "Company phase dates (260 MW Oct-2027, 660 MW Jan-2029, 1,000+ MW Nov-2029); probability MW-weighted."
+  },
+  {
+   "site": "US-BHM",
+   "status": "under construction (owned)",
+   "mw": "300",
+   "treatment": "Uncontracted merchant 2027-29 at p=0.75; owned costs",
+   "probability": 0.75,
+   "value_per_share": 10.9,
+   "note": "Operational 2027 (Q1 letter) chosen over Q4-26 energization (site page); 300 MW press-only; resident lawsuits pending."
+  },
+  {
+   "site": "US-OK",
+   "status": "contracted pipeline",
+   "mw": "300 (judgment)",
+   "treatment": "Uncontracted merchant 2028-30 at p=0.5, leased costs",
+   "probability": 0.5,
+   "value_per_share": 5.4,
+   "note": "MW and ownership undisclosed; city conflicting."
+  },
+  {
+   "site": "US-MN",
+   "status": "energized (colocated)",
+   "mw": "5 (judgment)",
+   "treatment": "Existing-fleet merchant cohort, leased",
+   "probability": 1.0,
+   "value_per_share": 0.2,
+   "note": "Private region; MW undisclosed."
+  },
+  {
+   "site": "US-AIB",
+   "status": "contracted pipeline (lease)",
+   "mw": "50 IT",
+   "treatment": "Uncontracted merchant from Aug/Dec-2027 at p=0.9; 12-yr lease in the fixed leased cost; Nebius prepayments to AIB are inside leased capex",
+   "probability": 0.9,
+   "value_per_share": 2.1,
+   "note": "Nebius pays AIB (12-yr lease + renewals). Signed after round 3."
+  },
+  {
+   "site": "GL-ASSETLIGHT",
+   "status": "uncontracted pipeline",
+   "mw": "n/a",
+   "treatment": "Not valued: no MW, dates or economics disclosed; minimal Nebius capex",
+   "probability": 0.0,
+   "value_per_share": 0.0,
+   "note": "Upside option only (flag F10)."
+  },
+  {
+   "site": "GL-PLTR",
+   "status": "uncontracted pipeline",
+   "mw": "n/a",
+   "treatment": "Not valued: no capacity commitment",
+   "probability": 0.0,
+   "value_per_share": 0.0,
+   "note": "Upside option only (flag F10)."
+  },
+  {
+   "site": "UNNAMED-GAP (not an inventory site)",
+   "status": "contracted power not tied to a named site",
+   "mw": "~700 (judgment)",
+   "treatment": "Owned-cost merchant 2029-31 at p=0.5",
+   "probability": 0.5,
+   "value_per_share": 9.6,
+   "note": "~1 GW of the 5 GW YE26 contracted-power target is not tied to a named site (inventory summary). Shown separately so no inventory site is counted twice; excluding it gives single/split $174/$178. Site values are marginal 12-month-forward split-rate $/share (each site removed in turn). They sum to $186 against the $188 DCF; the gap is net cash, stakes and the deferred-revenue unwind less the 2026 capex guide not allocated to sites."
+  }
+ ],
+ "discounting": {
+  "contracted_rate": 0.085,
+  "uncontracted_rate": 0.128,
+  "basis": "IG contracted (Microsoft Aaa, Meta Aa3) 8.5%: Nebius's $775M facility secured on an IG contract is SOFR+2.50%, i.e. 6.4% floating at SOFR 3.87% and ~7.6% fixed-equivalent at the 5Y Treasury 5.09%. Meta's own 2031 notes at 4.55% bound the pure credit piece. I add ~0.9pt for Nebius delivery and termination risk on the equity slice. Meta backstop floor 9.5% (contingent, undisclosed prices). Unrated Q2-26 neolab deals 11.0% (private counterparties, prepayments cover 50-60% of capex). Uncontracted, post-contract, pipeline and terminal flows at WACC 12.8%. Contracted flows = contract revenue - site cost - 10% direct overhead - tax - build capex; contracted PV is rolled forward at ~9%, the rest at the 13.6% cost of equity.",
+  "dcf_single_rate": 183.6,
+  "dcf_split_rate": 187.8
+ }
+}

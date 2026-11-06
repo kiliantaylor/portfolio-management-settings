@@ -1,0 +1,85 @@
+{
+  "symbol": "MTRN", "agent_id": "agent_5", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 78, "p": 0.994}, {"K": 125, "p": 0.936}, {"K": 156, "p": 0.859}, {"K": 187, "p": 0.765},
+    {"K": 219, "p": 0.662}, {"K": 250, "p": 0.565}, {"K": 281, "p": 0.475}, {"K": 312, "p": 0.395},
+    {"K": 343, "p": 0.326}, {"K": 375, "p": 0.266}, {"K": 421, "p": 0.197}, {"K": 468, "p": 0.144},
+    {"K": 546, "p": 0.085}, {"K": 624, "p": 0.05}, {"K": 780, "p": 0.018}
+  ],
+  "ladder_1m": [
+    {"K": 249.73, "p": 0.888}, {"K": 265.34, "p": 0.808}, {"K": 280.94, "p": 0.707}, {"K": 290.31, "p": 0.639},
+    {"K": 299.67, "p": 0.57}, {"K": 312.16, "p": 0.477}, {"K": 324.65, "p": 0.389}, {"K": 334.01, "p": 0.328},
+    {"K": 343.38, "p": 0.273}, {"K": 358.98, "p": 0.196}, {"K": 374.59, "p": 0.136}
+  ],
+  "one_month_reasoning": "The one scheduled event in the window is Q3 2026 earnings, expected around 2026-10-28 (stockanalysis). Over the last three quarters Materion has beaten and raised guidance, and Q2 adjusted EPS of $1.90 came in well above the $1.52 FactSet estimate. That argues for a likely beat and some positive drift after earnings. Against that, the stock rose about 16% in the first two sessions of October (from $269.59 to $312.16, including +9.5% on Oct 2) to an all-time high with no company-specific news I could find, and it trades about 3% above the mean analyst target. Its earnings and theme reactions have been violent in both directions: -29% in July 2026 despite a beat, and a gap up in August. Those factors roughly offset. I centre the distribution near spot (median about $309, a small give-back of the 2-day spike) with monthly sigma of about 17.5%, a little above 59%/3.5 because earnings fall inside the window.",
+  "fair_value": {
+    "value": 265.0,
+    "method": "A blend of three methods. A premium P/E on 2028E EPS of about $9.80 x 28 = $274 (weight 0.5). Reversion to the historical P/E range, $9.80 x 22 = $216 (weight 0.25). EV/EBITDA on 2027E EBITDA of about $330M x 20, less about $422M net debt, over 20.8M shares = $297 (weight 0.25). Blended fair value 12 months out is about $265.",
+    "methods": [
+      {"name": "P/E", "value": 274.0, "weight": 0.5,
+       "inputs": "2028E adj EPS $9.80 x 28x (a premium to history for the critical-minerals, defense and semis mix)",
+       "inputs_detail": [
+         {"input": "FY2026 adj EPS guidance", "value": "$6.80-$7.20 (mid $7.00)", "basis": "guidance", "source_ids": [1, 2], "derivation": ""},
+         {"input": "FY2027 EPS", "value": "$8.40", "basis": "consensus", "source_ids": [4, 3], "derivation": "One forecast aggregator lists FY2027 EPS of $8.39. Stockanalysis shows a 39.4x forward P/E at $312.16, which implies about $7.9 of next-year EPS, so the two are consistent."},
+         {"input": "FY2028 EPS", "value": "$9.80", "basis": "estimate", "source_ids": [1, 2, 4], "derivation": "FY2027 $8.40 grown about 17%. Backlog is up 30% y/y, defense beryllium capacity comes online by end-2027 (source 9), and the 2026 guide implies +30% growth. I fade that toward mid-teens."},
+         {"input": "Target P/E", "value": "28x", "basis": "judgment", "source_ids": [5, 3], "derivation": "From monthly closes and adjusted EPS, MTRN historically traded at about 18-25x (e.g. end-2024 $98.88 on about $5.4 EPS is 18x; end-2023 $130 on about $5.7 is 23x). Today it is about 45x 2026E (stockanalysis trailing P/E 72.7x, forward 39.4x). 28x keeps part of the re-rating."}
+       ]},
+      {"name": "P/E", "value": 216.0, "weight": 0.25,
+       "inputs": "2028E EPS $9.80 x 22x (midpoint of the 10-year historical range)",
+       "inputs_detail": [
+         {"input": "FY2028 EPS", "value": "$9.80", "basis": "estimate", "source_ids": [1, 4], "derivation": "As in the first method."},
+         {"input": "Historical P/E", "value": "22x", "basis": "judgment", "source_ids": [5, 3], "derivation": "The midpoint of the roughly 18-25x range seen in year-end closes from 2021 to 2024 against adjusted EPS."}
+       ]},
+      {"name": "EV/EBITDA", "value": 297.0, "weight": 0.25,
+       "inputs": "2027E adj EBITDA $330M x 20x = $6.60B EV, less $422M net debt = $6.18B, over 20.8M shares",
+       "inputs_detail": [
+         {"input": "Q2 2026 adj EBITDA", "value": "$71.8M (23.3% margin on VA sales)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FY2027 adj EBITDA", "value": "$330M", "basis": "estimate", "source_ids": [1, 2], "derivation": "2026 run-rate of about $280M (Q2 $71.8M annualised, adjusted for H1 seasonality), grown about 18% in line with the EPS path."},
+         {"input": "Net debt", "value": "$422M", "basis": "reported", "source_ids": [6], "derivation": "Total long-term debt of $442.3M less cash of $20.0M at 2026-07-03 (10-Q XBRL)."},
+         {"input": "Shares outstanding", "value": "20.83M", "basis": "reported", "source_ids": [3], "derivation": ""},
+         {"input": "EV/EBITDA multiple", "value": "20x", "basis": "judgment", "source_ids": [3, 6], "derivation": "Today's EV is about $6.92B ($6.50B market cap + $0.42B net debt), or about 25x 2026E EBITDA. I assume partial de-rating as growth normalises."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 170.0, "prob": 0.25, "story": "The theme unwinds, as it did in 2007-08 and 2011 and in July 2026 (-37% peak to trough in a month). A semis or AI capex pause, or a 2027 recession (Kalshi 23%), plus de-rating toward about 20x of roughly $8.5 EPS."},
+    "base": {"price": 285.0, "prob": 0.5, "story": "Earnings compound mid-teens: 2027 EPS of about $8.4-8.8, with defense beryllium capacity coming online late 2027. The multiple compresses from about 45x to about 30x, so the price drifts roughly flat to slightly down from today's spike."},
+    "bull": {"price": 430.0, "prob": 0.25, "story": "Beat-and-raise continues (2027 EPS above $9.5) and the scarcity premium for the critical-mineral and defense supplier holds at about 35-40x 2028E. Precedent: the stock rose +155% over the past year."}
+  },
+  "thesis_break_price": 175.0,
+  "thesis_break_reason": "Below about $175 (-44%), the stock would be back under its pre-re-rating level of about 20x the $8.4 2027 consensus. That would most likely mean earnings expectations are being cut (semis or defense orders rolling over, or a guidance cut), not just theme volatility. The July 2026 drawdown bottomed at $188.51, so a break below that low would confirm it.",
+  "catalysts": [
+    {"date": "2026-10-28", "event": "Q3 2026 earnings and possible FY26 guidance raise", "direction": "?"},
+    {"date": "2027-02", "event": "Q4 2026 results and first FY2027 guidance", "direction": "?"},
+    {"date": "2027-04", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-07/08", "event": "Q2 2027 results", "direction": "?"},
+    {"date": "2026-2027", "event": "Possible Section 232 tariff or other action on processed critical minerals (paused Jan 2026 pending negotiations)", "direction": "+"},
+    {"date": "2027", "event": "US recession risk (Kalshi 'Recession in 2027' at 23%)", "direction": "-"},
+    {"date": "end-2027", "event": "Defense-prime-funded beryllium capacity expansion coming online", "direction": "+"}
+  ],
+  "key_uncertainties": [
+    "How much of the multiple expansion (P/E from about 20x to about 45x 2026E) survives once growth normalises",
+    "Durability of the semiconductor and AI data-center demand cycle (semis +23% y/y in Q2)",
+    "The sustainability of the Electronic Materials EBITDA margin of about 32%",
+    "Macro and recession risk in 2027, and defense budget timing",
+    "Thin coverage (5 analysts) and heavy institutional ownership (about 94%) amplify moves; insiders sold about $8.3M over 3 months with no buys"
+  ],
+  "reasoning": "Base-rate lens. MTRN is a cyclical specialty-materials name that has re-rated from its historical 18-25x adjusted P/E to about 45x 2026 guidance midpoint EPS ($7.00) after a +155% year. Its own history after parabolic runs is poor: in 2007 the stock peaked near $52 and fell to about $12 by late 2008. In 2011 it peaked at $44 and was at $19.5 within months. In 2026 alone it went $297 (June) to $188 (July) and back to $312. Academic momentum evidence cuts both ways. Stocks at 52-week highs tend to keep drifting up, but extreme winners carry crash risk in roughly 14% of months historically. Fundamentals are strong and accelerating: record Q2 sales of $614M, adj EPS $1.90 versus $1.52 expected, guidance raised to $6.80-7.20, backlog +30%, and a defense-funded beryllium expansion. Leverage is modest, with about $422M net debt against EBITDA of about $280M. My fair value of about $265 sits below spot because I assume partial multiple compression even as EPS compounds mid-teens. The mean analyst target ($304) is also about at spot. Kalshi prices a 2027 US recession at 23% (KXRECSSNBER-27, $545k volume, read 2026-10-03), which is a fair proxy for the bear tail on a cyclical. The distribution is a mixture of 85% lognormal (median $295, sigma 0.48, below the trailing 59% realized because that included a regime-change re-rating) and 15% crash component (median $170). That puts the overall median near $270, P(>= spot) at about 40%, and a fat right tail (P(>= $468) 14%). Research was limited: Twelve Data fundamentals were paywalled, and I could not verify the cause of the +16% move on Oct 1-2.",
+  "lane": "base-rates",
+  "sources": [
+    {"title": "Materion (MTRN) Q2 2026 earnings summary", "url": "https://quartr.com/events/materion-corporation-mtrn-q2-2026_ofweQZo0", "date": "2026-08-05", "type": "press", "in_lane": false},
+    {"title": "MTRN Q2 2026 Earnings Call Summary", "url": "https://stocktaper.com/earningsCallSummary/MTRN/2026/Q2", "date": "2026-08-06", "type": "press", "in_lane": false},
+    {"title": "Materion Corporation (MTRN) overview and forecast", "url": "https://stockanalysis.com/stocks/MTRN/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "MTRN estimates search results (FY2027 EPS $8.39 forecast) / stockanalysis forecast page", "url": "https://stockanalysis.com/stocks/MTRN/forecast/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "MTRN monthly price history 2006-2026 (Twelve Data time series)", "url": "https://twelvedata.com/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "SEC XBRL company facts, Materion (CIK 1104657), 10-Q for period ended 2026-07-03", "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001104657.json", "date": "2026-08", "type": "filing", "in_lane": false},
+    {"title": "Kalshi: Will there be a recession in 2027? (KXRECSSNBER-27), last 23c, volume ~545k", "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXRECSSNBER-27", "date": "2026-10-03", "type": "prediction-market", "in_lane": true},
+    {"title": "Oddpool recession prediction markets overview", "url": "https://www.oddpool.com/explore/recession", "date": "2026-10", "type": "prediction-market", "in_lane": true},
+    {"title": "Why Materion (MTRN) Is Up 5.5% After Q4 Profit Rebound and 2026 Guidance Update ($65M defense beryllium investment)", "url": "https://finance.yahoo.com/news/why-materion-mtrn-5-5-031339078.html", "date": "2026-02", "type": "press", "in_lane": false},
+    {"title": "No Section 232 tariff now on processed critical minerals and their derivative products", "url": "https://www.thompsonhinesmartrade.com/2026/01/no-section-232-tariff-now-on-processed-critical-minerals-and-their-derivative-products/", "date": "2026-01", "type": "expert", "in_lane": true},
+    {"title": "Risk of momentum crashes (Byun & Jeon, 52-week high and momentum crashes, FAJ 2023)", "url": "https://alphaarchitect.com/risk-of-momentum-crashes/", "date": "2023", "type": "expert", "in_lane": true},
+    {"title": "Materion trading down 10.7% (MarketBeat; ownership, insider sales, short interest)", "url": "https://www.marketbeat.com/instant-alerts/materion-nysemtrn-trading-down-107-whats-next-2026-07-28/", "date": "2026-10-02", "type": "press", "in_lane": true},
+    {"title": "Why Materion Corporation's (MTRN) Stock Is Down (July 2026 -29%)", "url": "https://www.aaii.com/investingideas/article/520866-why-materion-corporation8217s-mtrn-stock-is-down-661", "date": "2026-07", "type": "press", "in_lane": true},
+    {"title": "Jefferies starts Materion at Buy, $314 target", "url": "https://www.streetinsider.com/entities/Mark+Zuckerberg/mtrn", "date": "2026-09-02", "type": "sell-side", "in_lane": false}
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "symbol": "RMBS", "agent_id": "agent_3", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 28, "p": 0.99}, {"K": 45, "p": 0.925}, {"K": 56, "p": 0.86}, {"K": 67, "p": 0.78},
+    {"K": 78, "p": 0.695}, {"K": 90, "p": 0.605}, {"K": 101, "p": 0.53}, {"K": 112, "p": 0.46},
+    {"K": 123, "p": 0.40}, {"K": 134, "p": 0.345}, {"K": 151, "p": 0.275}, {"K": 168, "p": 0.215},
+    {"K": 196, "p": 0.145}, {"K": 224, "p": 0.10}, {"K": 280, "p": 0.045}
+  ],
+  "ladder_1m": [
+    {"K": 89.58, "p": 0.85}, {"K": 95.17, "p": 0.77}, {"K": 100.77, "p": 0.675}, {"K": 104.13, "p": 0.615},
+    {"K": 107.49, "p": 0.555}, {"K": 111.97, "p": 0.475}, {"K": 116.45, "p": 0.40}, {"K": 119.81, "p": 0.345},
+    {"K": 123.17, "p": 0.295}, {"K": 128.77, "p": 0.225}, {"K": 134.36, "p": 0.165}
+  ],
+  "one_month_reasoning": "The window (to 2026-11-01) very likely contains Q3 2026 earnings: Rambus has reported Q3 on the last Monday of October in 2024 and 2025, and third-party calendars show about Oct 26-29, 2026 [15]. Guidance is revenue $210-216M, product $110-116M, royalties $69-75M (down from $84.2M in Q2) and non-GAAP EPS $0.75-0.82 [1]. Rambus usually meets or beats its guide, but the last two prints both drew sharp selloffs: -23% on Q1 (a miss plus the Baird downgrade) and about -9% on Q2 even though it beat [5][14]. The stock has also run about 30% off its late-August low near $86 into the print [12][15], which leaves room for 'sell the news', and the Q4 guide will be read through the DRAM-supply lens [10]. I see no reliable edge in either direction, so I use a near-symmetric lognormal with a small downside tilt: median about $110.5 and sigma about 20% for the month. That is a little below annual vol/3.5 (about 23%), because realized vol of 80% includes two earnings crashes and one of those is already inside this window.",
+  "fair_value": {
+    "value": 103.0,
+    "method": "60% P/E: skeptic-haircut NTM EPS (Oct-2027 forward) of $3.90 x 28x = $109. 40% FCF yield: NTM FCF of $310M at a 3.25% yield = $9.5B, or $88/share, plus about $7/share net cash = $95. Blend about $103, a little below the $111.97 close.",
+    "methods": [
+      {"name": "P/E", "value": 109.0, "weight": 0.6,
+       "inputs": "NTM (Oct-2027 forward, roughly 3/4 FY2027 + 1/4 FY2028) non-GAAP EPS $3.90 x 28x",
+       "inputs_detail": [
+         {"input": "FY2027 consensus EPS", "value": "$3.72", "basis": "consensus", "source_ids": [11], "derivation": ""},
+         {"input": "Skeptic FY2027 EPS", "value": "$3.50", "basis": "estimate", "source_ids": [5, 10, 11], "derivation": "About 6% haircut to the $3.72 consensus, because Baird models RDIMM unit growth slowing to 12-15% in 2027 and module makers warn of a severe 2027 commodity DRAM shortage that caps Rambus's unit-driven chip revenue."},
+         {"input": "NTM EPS at horizon", "value": "$3.90", "basis": "estimate", "source_ids": [1, 11], "derivation": "Rolls forward from the $3.50 skeptic FY2027 at the roughly 15-20% growth implied by the consensus 2026-to-2027 path ($3.04 to $3.72) and by Q3 guidance of $0.75-0.82/quarter, so FY2028 is about $4.10, blended 3/4 FY27 and 1/4 FY28 for the Oct-2027 forward year."},
+         {"input": "Target P/E", "value": "28x", "basis": "judgment", "source_ids": [8, 7, 14], "derivation": "Below the roughly 36x three-year average forward P/E [8] because of the open DOJ criminal antitrust probe [7], margin compression [14] and evidence of share loss to Montage and Renesas [8]. Still a premium to the semis group for a cash-rich, high-margin IP-plus-chip model."}
+       ]},
+      {"name": "FCF yield", "value": 95.0, "weight": 0.4,
+       "inputs": "NTM FCF $310M at a 3.25% yield = $9.5B / about 108M shares = $88, plus about $7/share net cash",
+       "inputs_detail": [
+         {"input": "Q2 2026 operating cash flow", "value": "$61.2M", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "NTM FCF", "value": "$310M", "basis": "estimate", "source_ids": [1, 2, 11], "derivation": "Q2 OCF of $61.2M annualizes to about $245M. I grow it about 25% with the consensus revenue path ($825M in 2026 to $989M in 2027), then subtract about $25M of capex and the working capital tied up as inventory builds (inventory rose from $44M to $75M in H1 2026 [2])."},
+         {"input": "Cash and marketable securities", "value": "$824.9M (Q2), less about $100M ASR", "basis": "reported", "source_ids": [1, 3], "derivation": "$725M / about 108M shares = about $6.7/share. No funded debt is disclosed."},
+         {"input": "Diluted shares", "value": "110M guided for Q3; about 108M after the ASR", "basis": "guidance", "source_ids": [1, 3], "derivation": ""},
+         {"input": "FCF yield", "value": "3.25%", "basis": "judgment", "source_ids": [8, 11], "derivation": "Roughly consistent with a high-20s P/E, given that SBC widens the gap between non-GAAP EPS and FCF. I take a premium yield versus the consensus-implied view because of customer concentration (Customer A 22%, B 16% of revenue [2]) and legal risk."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 65.0, "prob": 0.25, "story": "In 2027 the DRAM shortage starves RDIMM units (supply diverted to HBM), and Montage and Renesas keep taking RCD and PMIC share. Royalties drift down from Q2's $84M run rate, and the inventory build (+70% in H1 2026) turns into write-downs. The DOJ grand-jury probe ends in charges or a settlement that limits licensing practices. EPS of about $3.0 at roughly 21x, near the 52-week low area."},
+    "base": {"price": 110.0, "prob": 0.5, "story": "Product revenue grows mid-to-high teens and is held back by unit supply. Companion chips (PMIC, SPD/TS) and MRDIMM offset part of that, and royalties stay flat. The DOJ matter stays a lingering overhang with no charges. NTM EPS of about $3.9 at 28x."},
+    "bull": {"price": 165.0, "prob": 0.25, "story": "AI inference and agentic workloads drive x86 server and memory content growth. DRAM makers prioritize server RDIMM and MRDIMM, the DDR5-9600 and MRDIMM ramps arrive in 2027, and the DOJ probe closes quietly. EPS of about $4.6 at 35x, back toward the 52-week high of $174."}
+  },
+  "thesis_break_price": 72.0,
+  "thesis_break_reason": "Below about $72 the stock would sit well under its August 2026 low of about $86 and below 20x even the skeptic EPS. With about $7/share of net cash and buybacks underway, a price that low most likely means something fundamental has happened: a guided decline in product revenue (DRAM allocation or share loss), an inventory write-down, a royalty or licensing renewal shortfall, or an adverse DOJ development (indictment or forced change in licensing practices), not ordinary 80%-vol noise.",
+  "catalysts": [
+    {"date": "2026-10-26 (approx; late Oct)", "event": "Q3 2026 earnings and Q4 guide; watch product revenue against the $110-116M guide, the royalty step-down, inventory and DRAM supply commentary", "direction": "?"},
+    {"date": "2026-Q4", "event": "Further disclosures in the 10-Q on the DOJ Antitrust Division grand jury investigation", "direction": "-"},
+    {"date": "2027-02 (early Feb)", "event": "Q4 2026 results and 2027 outlook; first read on 2027 RDIMM unit growth under DRAM shortage", "direction": "?"},
+    {"date": "2027 H1", "event": "DRAM maker capacity allocation (HBM vs commodity), SK hynix/Samsung/Micron earnings commentary on 2027 supply", "direction": "-"},
+    {"date": "2027 (ongoing)", "event": "DDR5-9600 / MRDIMM / next-gen server CPU platform ramps; Montage/Renesas competitive wins", "direction": "?"},
+    {"date": "ongoing", "event": "Continued 10b5-1 insider selling (Form 144s filed through 2026-10-02) and buyback execution", "direction": "-"}
+  ],
+  "key_uncertainties": [
+    "How much the 2027 commodity DRAM shortage limits RDIMM unit growth, which drives Rambus's per-unit chip revenue, given that Rambus does not benefit from DRAM price increases",
+    "The outcome and timing of the DOJ criminal antitrust investigation (subpoena disclosed in Q1 2026)",
+    "Share trends against Montage and Renesas in the DDR5 RCD and companion-chip markets",
+    "Royalty sustainability: Q3 guide of $69-75M versus $84.2M in Q2, and concentration in Korea-based customers (Customer A 22%)",
+    "Whether inventory ($75M, up 70% in H1) is a supply hedge or a sign of demand mismatch",
+    "Finance bench turnover: CAO retired in September 2026, and a CFO vacancy was reported earlier in 2026"
+  ],
+  "reasoning": "Bear evidence: (1) a criminal DOJ Antitrust Division grand jury subpoena, ongoing since Q1 2026 and repeated in the Q2 10-Q risk factors; (2) Baird's April downgrade thesis that Rambus is unit-driven and is hurt by DRAM shortages without the pricing benefit, with RDIMM units slowing to 12-15% in 2027, which industry sources back with warnings of a severe 2027 commodity DRAM shortage; (3) product growth (15-22% YoY) lagging a roughly 30% CAGR interface-chip TAM, implying share loss to Montage and Renesas; (4) inventory up 70% in six months, royalties guided down about $12M quarter on quarter, and two large customers at 38% of revenue; (5) steady insider selling with no buys, plus Form 144s as recent as 2026-10-02 and churn among accounting officers. Offsets: record Q2 beat-and-raise, no debt, about $825M of cash, a $100M ASR, consensus EPS growth of roughly 23% in both 2026 and 2027, and a 6-Buy/2-Hold consensus with an average target of about $148. Net, I think consensus underweights the 2027 unit-supply risk and the legal tail, but none of this is a broken story. Fair value is about $103, a little below the $111.97 close, so my median is about $106. Width: realized vol is 80%, but two of its biggest moves were earnings shocks. For the 12-month ladder I use a lognormal with sigma about 0.60 (wider than a typical large cap's 25-35% because of the stock's history) and a median of $106. That matches the scenario mix (25% at $65, 50% at $110, 25% at $165, mean about $112). The deep tail at $28 is very unlikely given about $7/share of cash and profitability. Research limits: Alpha Vantage was rate-limited and Twelve Data analyst targets were paywalled, so consensus figures come from stockanalysis.com. One page (Sahm Capital) returned 404 on fetch, so it is cited from its search snippet only.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "Rambus Reports Second Quarter 2026 Financial Results (incl. Q3 guidance)", "url": "https://www.rambus.com/second-quarter-2026-financial-results/", "date": "2026-07-27", "type": "company", "in_lane": false},
+    {"title": "Rambus Form 10-Q for quarter ended June 30, 2026 (DOJ grand jury subpoena, inventory, customer concentration)", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526321000/rmbs-20260630.htm", "date": "2026-07-28", "type": "filing", "in_lane": true},
+    {"title": "Rambus 8-K: $100M accelerated share repurchase with Mizuho", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526333887/d122300d8k.htm", "date": "2026-08-05", "type": "filing", "in_lane": false},
+    {"title": "Rambus 8-K: Chief Accounting Officer retirement and successor", "url": "https://www.sec.gov/Archives/edgar/data/917273/000119312526383630/d80115d8k.htm", "date": "2026-09-04", "type": "filing", "in_lane": true},
+    {"title": "Rambus shares crater after revenue miss, Baird warns of DRAM supply squeeze", "url": "https://finance.yahoo.com/markets/stocks/articles/rambus-shares-crater-revenue-miss-173700183.html", "date": "2026-04-28", "type": "press", "in_lane": true},
+    {"title": "Rambus (RMBS) falls as legal overhang and chip-sector weakness pressure shares", "url": "https://www.quiverquant.com/news/Rambus+(RMBS)+falls+as+legal+overhang+and+chip-sector+weakness+pressure+shares", "date": "2026-06-23", "type": "press", "in_lane": true},
+    {"title": "Rambus targeted in US DOJ criminal antitrust probe (MLex)", "url": "https://www.mlex.com/mlex/articles/2471162/rambus-targeted-in-us-doj-criminal-antitrust-probe", "date": "2026-04", "type": "press", "in_lane": true},
+    {"title": "Is Rambus Stock An AI Growth Mirage? (Trefis)", "url": "https://www.trefis.com/stock/rmbs/articles/597622/is-rambus-stock-an-ai-growth-mirage/2026-04-28", "date": "2026-04-28", "type": "newsletter", "in_lane": true},
+    {"title": "Rambus CEO sells shares (10b5-1) - InsiderTrades", "url": "https://www.insidertrades.com/alerts/nasdaq-rmbs-insider-buying-and-selling-2026-04-04", "date": "2026-04-04", "type": "data", "in_lane": true},
+    {"title": "DRAM chip supply to module makers could drop by more than 70% YoY in 2027, says Apacer CEO", "url": "https://www.tomshardware.com/pc-components/ram/dram-chip-supply-to-module-makers-could-drop-by-more-than-70-percent-year-on-year-in-2027-says-apacer-ceo-demand-for-hbm-and-server-ram-continues-to-devour-manufacturing-capacity", "date": "2026", "type": "trade", "in_lane": true},
+    {"title": "Rambus (RMBS) analyst forecast and estimates - StockAnalysis", "url": "https://stockanalysis.com/stocks/rmbs/forecast/", "date": "2026-10-02", "type": "data", "in_lane": false},
+    {"title": "Rambus jumps after Baird ups price target on growth catalysts (TheFly)", "url": "https://www.tipranks.com/news/the-fly/rambus-jumps-after-baird-ups-price-target-on-growth-catalysts-thefly", "date": "2026-09", "type": "sell-side", "in_lane": false},
+    {"title": "SEC EDGAR filing index for Rambus (Form 4 / Form 144 insider sale notices through 2026-10-02)", "url": "https://data.sec.gov/submissions/CIK0000917273.json", "date": "2026-10-02", "type": "filing", "in_lane": true},
+    {"title": "Rambus (RMBS) Stock Drops As Record Growth Meets Margin Pressure (Sahm Capital)", "url": "https://www.sahmcapital.com/news/content/rambus-rmbs-stock-drops-as-record-growth-meets-margin-pressure-2026-07-29", "date": "2026-07-29", "type": "press", "in_lane": true},
+    {"title": "Rambus Inc. (RMBS) Stock Forecast - tickflow (Aug-28 price, Oct earnings date)", "url": "https://tickflow.io/stock/RMBS/forecast", "date": "2026-09", "type": "data", "in_lane": false}
+  ]
+}

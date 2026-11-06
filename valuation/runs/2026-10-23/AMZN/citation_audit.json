@@ -1,0 +1,407 @@
+{
+ "date": "2026-10-23",
+ "symbol": "AMZN",
+ "clean": true,
+ "checked": 35,
+ "ok": 35,
+ "method": "split gate (run_digest.py gate): script check + shard agents by source URL; fix step 2026-10-27 re-checked the changed rows against the S-1 text and model_engine",
+ "scope": "Anthropic public S-1 update (2026-10-27) of the 2026-10-23 update round: changed rows of the reconciled set, guidance_check and prose",
+ "prior_audit": "citation_audit.json.bak-anthropic_s1_1027 (2026-10-26, clean, 92 figures: peer refresh + exit k)",
+ "failures": [
+  {
+   "item": "Anthropic: IPO valuation used - variant_view arithmetic",
+   "value": "$1.92T: +$50.3B after tax and lock-up; ~$1.0T (bear): -$59.9B",
+   "cited": "(derivation in the row)",
+   "result": "arithmetic",
+   "fix": "recomputed on 18.6122% and the 11.50% staged lock-up: $1.924T +$53.1B (+$4.3 FV net of the overlay, engine), $1.0T -$62.6B (-$5.1 FV); recorded in supervisor.json citation_audit.corrections"
+  },
+  {
+   "item": "Anthropic: tax and lock-up - S-1 lock-up terms",
+   "value": "holders above 0.5% of fully diluted locked to the earlier of the 2nd trading day after Q3-2027 results and the 365th day; 'Staged early releases exist but their percentages are blank in the S-1'",
+   "cited": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "result": "wrong",
+   "fix": "'percentages are blank' claim removed; the S-1 Underwriting staged-release schedule (pp. 322-323) now drives a tranche-weighted Finnerty discount of 11.50% (was 14.36%); Amazon in the >0.5% group labelled an inference. Stake $185,404M -> $191,607M, overlay -$26,204M -> -$26,824M, research target (12m) $266.70 (engine); fair_value prose and variants updated"
+  },
+  {
+   "item": "Anthropic stake - variant_view arithmetic",
+   "value": "$1.92T: $237.3B",
+   "cited": "(derivation in the row)",
+   "result": "arithmetic",
+   "fix": "recomputed without scaling the fixed $18.0B cost: $1.924T $244.7B (on the new 11.50% lock-up); other variants $185.4B / $194.0B / $185.0B verified"
+  },
+  {
+   "item": "Anthropic stake (AMZN deep model 2026-10-19) - derivation: scenario re-mark effect",
+   "value": "'on the new value they would move by under $0.10/share'",
+   "cited": "(derivation in the row)",
+   "result": "arithmetic",
+   "fix": "found in the fix-step re-check: with the stake +$7.91B the bear re-mark moves -$0.24/share and the bull +$0.20/share (prob.-weighted ~-$0.01); text corrected, base and mean unaffected"
+  },
+  {
+   "item": "Conglomerate overlay 10% - variant_view",
+   "value": "No discount: +$2.4 FV; 25%: -$5.9 FV",
+   "cited": "(derivation in the row)",
+   "result": "arithmetic",
+   "fix": "found in the fix-step re-check (25% figure was on the pre-S-1 $260.3B base): now 'No discount +$2.4 FV; 25% -$3.6 FV vs the 10% base (-$67.1B, -$6.1/share in all)' from the engine"
+  },
+  {
+   "item": "fair_value.reason - net effect of the S-1 update",
+   "value": "net +$7.13B",
+   "cited": "model_engine.py check 2026-10-27: 266.70 (P/E 285.40, SOTP 247.99; bear 176.42 / base 266.70 / bull 328.63)",
+   "result": "arithmetic",
+   "fix": "(191,607 - 183,692) + (-26,824 + 26,033) = +$7,124M -> 'net +$7.12B'"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "net sales Q3 FY2026 guide as of 2026-07-30",
+   "value": "197000.0-202000.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Q3 2026 guidance: net sales expected between $197.0B and $202.0B (release dated July 30, 2026)"
+  },
+  {
+   "item": "operating income Q3 FY2026 guide as of 2026-07-30",
+   "value": "22500.0-26500.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Q3 2026 guidance: operating income expected between $22.5B and $26.5B"
+  },
+  {
+   "item": "net sales Q3 FY2024: first guide (2024-08-01) / reported actual",
+   "value": "154000.0-158500.0 / 158900.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000128/amzn-20240630xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $154.0B-$158.5B"
+  },
+  {
+   "item": "operating income Q3 FY2024: first guide (2024-08-01) / reported actual",
+   "value": "11500.0-15000.0 / 17400.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000128/amzn-20240630xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $11.5B-$15.0B"
+  },
+  {
+   "item": "net sales Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "181500.0-188500.0 / 187800.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000158/amzn-20240930xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $181.5B-$188.5B"
+  },
+  {
+   "item": "operating income Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "16000.0-20000.0 / 21200.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000158/amzn-20240930xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $16.0B-$20.0B"
+  },
+  {
+   "item": "net sales Q1 FY2025: first guide (2025-02-06) / reported actual",
+   "value": "151000.0-155500.0 / 155700.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000002/amzn-20241231xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $151.0B-$155.5B"
+  },
+  {
+   "item": "operating income Q1 FY2025: first guide (2025-02-06) / reported actual",
+   "value": "14000.0-18000.0 / 18400.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000002/amzn-20241231xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $14.0B-$18.0B"
+  },
+  {
+   "item": "net sales Q2 FY2025: first guide (2025-05-01) / reported actual",
+   "value": "159000.0-164000.0 / 167700.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000034/amzn-20250331xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $159.0B-$164.0B"
+  },
+  {
+   "item": "operating income Q2 FY2025: first guide (2025-05-01) / reported actual",
+   "value": "13000.0-17500.0 / 19200.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000034/amzn-20250331xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $13.0B-$17.5B"
+  },
+  {
+   "item": "net sales Q3 FY2025: first guide (2025-07-31) / reported actual",
+   "value": "174000.0-179500.0 / 180200.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000084/amzn-20250630xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $174.0B-$179.5B"
+  },
+  {
+   "item": "operating income Q3 FY2025: first guide (2025-07-31) / reported actual",
+   "value": "15500.0-20500.0 / 17400.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000084/amzn-20250630xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $15.5B-$20.5B"
+  },
+  {
+   "item": "net sales Q4 FY2025: first guide (2025-10-30) / reported actual",
+   "value": "206000.0-213000.0 / 213400.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $206.0B-$213.0B"
+  },
+  {
+   "item": "operating income Q4 FY2025: first guide (2025-10-30) / reported actual",
+   "value": "21000.0-26000.0 / 25000.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $21.0B-$26.0B"
+  },
+  {
+   "item": "net sales Q1 FY2026: first guide (2026-02-05) / reported actual",
+   "value": "173500.0-178500.0 / 181500.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20251231xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $173.5B-$178.5B"
+  },
+  {
+   "item": "operating income Q1 FY2026: first guide (2026-02-05) / reported actual",
+   "value": "16500.0-21500.0 / 23900.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20251231xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $16.5B-$21.5B"
+  },
+  {
+   "item": "net sales Q2 FY2026: first guide (2026-04-29) / reported actual",
+   "value": "194000.0-199000.0 / 200600.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000012/amzn-20260331xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: net sales expected between $194.0B-$199.0B"
+  },
+  {
+   "item": "operating income Q2 FY2026: first guide (2026-04-29) / reported actual",
+   "value": "20000.0-24000.0 / 27500.0",
+   "basis": "guidance",
+   "basis_note": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000012/amzn-20260331xex991.htm",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Guidance: operating income expected between $20.0B-$24.0B"
+  },
+  {
+   "item": "net sales Q3 FY2026 consensus as of 2026-10-06",
+   "value": "202030.0",
+   "basis": "consensus",
+   "basis_note": "consensus",
+   "source_url": "https://finance.yahoo.com/quote/AMZN/analysis/",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "Revenue Estimate, Current Qtr (Sep 2026): Avg. Estimate $202.24B, 49 analysts, low $199.37B, high $205.36B (page at close Oct 26)"
+  },
+  {
+   "item": "Anthropic: Amazon investments and form",
+   "value": "$8.0B convertible notes (2023-25) + $5.0B Series G + $5.0B Series H preferred (Q2-26) = $18.0B cash; carrying notes $97.9B + preferred $92.5B = $190.4B at 6/30",
+   "basis": "reported",
+   "basis_note": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "Amazon 10-Q Q2 2026, Note on Non-Marketable Investments: 'From Q3 2023 to Q4 2025, we invested $8.0 billion in convertible notes from Anthropic'; 'In Q2 2026, we invested $5.0 billion in Anthropic Series G nonvoting preferred stock'; under the up-to-$20.0B financing arrangement 'in Q2 2026, we exercised our option ... investing $5.0 billion in Anthropic Series H nonvoting preferred stock'; MD&A: 'In Q2 2026, we also invested $10.0 billion in Anthropic nonvoting preferred stock'. 'As of December 31, 2025 and June 30, 2026, the amounts recorded on our consolidated balance sheets for nonvoting preferred stock were approximately $14.8 billion and $92.5 billion'; 'the estimated fair value of our convertible notes recorded on our consolidated balance sheets was approximately $45.8 billion and $97.9 billion' (unrealized gain in AOCI $92.0B)."
+  },
+  {
+   "item": "net sales Q3 FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "7/1/0 beat/inside/miss, median 1.91, adjusted 203300.5, ours 209183.1 above 4.85",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "recomputed: all 8 actual_vs_mid match (1.70/1.51/1.60/3.84/1.95/1.86/3.12/2.09); 7 beat / 1 inside (Q4 FY2024) / 0 miss; median 1.9067%; 199,500 x 1.019067 = 203,304.0; gap 209,183.1 / 199,500 - 1 = 4.85%; above 202,000"
+  },
+  {
+   "item": "operating income Q3 FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "6/2/0 beat/inside/miss, median 21.39, adjusted 29740.5, ours 24820.2 inside 1.31",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "guidance_check",
+   "page_shows": "recomputed: all 8 actual_vs_mid match; 6 beat / 2 inside (Q3 FY2025, Q4 FY2025) / 0 miss; median 21.389%; 24,500 x 1.21389 = 29,740.3; gap 24,820.2 / 24,500 - 1 = 1.31%; inside 22,500-26,500"
+  },
+  {
+   "item": "Anthropic: Amazon fully diluted ownership (arithmetic)",
+   "value": "19.59% pre-IPO after the PBF; 18.61% at the IPO",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "pre-split (5,000/259.1364 = 19.295; 5,000/589.0095 = 8.489) 95.282 + 20.740 + 20.563 + 19.295 + 8.489 = 164.369 x 10 = 1,643.7M; + 1,840.4M = 3,484.1M; FD 846.84096 / 0.05 = 16,936.8M + 846.8M PBF = 17,783.7M; 3,484.1 / 17,783.7 = 19.592%; x 0.95 = 18.612%"
+  },
+  {
+   "item": "Anthropic: Amazon fully diluted ownership - S-1 share counts and prices",
+   "value": "E-2 95.282M, F-2 20.740M, G-3 20.563M (pre-split); G-2 $5.0B at $259.1364 (19.3M); Series H $5.0B at $589.0095; 10-for-1 split 2026-09-17; notes 1,840,444,962 Class N",
+   "basis": "estimate",
+   "basis_note": "reported (in an estimate row)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "Preferred table (F-46): Series E-2 95,282 / F-2 20,740 / G-3 20,563 thousand at $20.93; G-2 and G-1 at $259.1364; H-1/H-2 at $589.0095. 'Amazon purchased 19.3 million shares of ... Series G-2 ... for approximately $5.0 billion'; 'In May 2026 ... Amazon invested $5.0 billion in the Company's Series H'; 'a 10-for-one forward split of our Class A common stock and Class N common stock effected on September 17, 2026'; notes table: $2,186M at $2.0928 (1,044,716,970) + $4,017M at $5.0478 (795,727,992) = $6,203M, 1,840,444,962 Class N"
+  },
+  {
+   "item": "Anthropic: fully diluted base - Initial Public Benefit Issuance and cap-table cross-check",
+   "value": "846,840,960 Class N = 5% of fully diluted at 6/30/26 incl. full Amazon notes -> 16,936.8M; components preferred 853.394M x 10 + Class A 2,157.4M + Class N 30.6M + options/RSUs 2,846.7M + notes 1,840.4M + donation reserve 933.7M + pool 569.1M = 16,911M",
+   "basis": "estimate",
+   "basis_note": "reported / derived",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "'we contributed 846,840,960 shares of our Class N common stock, representing 5% of our fully diluted shares as of June 30, 2026 (assuming full conversion of the Amazon Notes)'; equity statement 6/30/26: preferred 853,394, Class A 2,157,398, Class N 30,643 (thousand); reserved table: donation matching 933,698, options and RSUs 2,846,697, available 569,059; preferred as-converted (12,908,323 - 933,698 - 2,846,697 - 569,059) = 8,558,869 thousand"
+  },
+  {
+   "item": "Anthropic: x 0.95 primary dilution - WSJ via Yahoo Finance",
+   "value": "debut week of Nov. 16, raising '$100 billion or more' at '$1.5 trillion to $2 trillion'; S-1 leaves price and share count blank",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-publicly-files-ipo-ant-155552280.html",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "Article (Benzinga, Piero Cingari, 2026-10-26, on Yahoo Finance) citing WSJ: 'raising $100 billion or more', '$1.5 trillion to $2 trillion', 'targeting a debut in the week of Nov. 16'; S-1 leaves share count and price range blank"
+  },
+  {
+   "item": "Anthropic: IPO valuation used",
+   "value": "$1,500B (variant $1,924B)",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-publicly-files-ipo-ant-155552280.html",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "'$1.5 trillion to $2 trillion' (WSJ via Benzinga/Yahoo); base $1.5T = bottom of the range"
+  },
+  {
+   "item": "Anthropic: tax and lock-up (arithmetic)",
+   "value": "24% on gain over $18.0B; 11.50% lock-up (tranche-weighted, S-1 staged releases); 1.0 yr 14.36%, 0.5 yr 10.37%",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "Finnerty at 65% vol recomputed: 1.0 yr 14.362%, 0.5 yr 10.370%, tranche-weighted 11.497% (weighted 0.658 yr) on the S-1 pp. 322-323 schedule (90.9% staged)",
+   "note": "figure moved with the lock-up fix; re-verified in the fix step"
+  },
+  {
+   "item": "Anthropic stake (AMZN deep model 2026-10-19) (arithmetic)",
+   "value": "$191,607M after tax and lock-up; was $183,692M",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "18.6122% x 1,500 = 279.183; tax 0.24 x 261.183 = 62.684; 216.499 x (1 - 0.11497) = 191.607; adjustment value 191,607.25 = row",
+   "note": "figure moved with the lock-up fix; re-verified in the fix step"
+  },
+  {
+   "item": "Conglomerate overlay 10% on non-core parts (AMZN deep model 2026-10-19)",
+   "value": "-26,824M (was -26,033M)",
+   "basis": "estimate",
+   "basis_note": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "0.10 x (260.328 - 183.692 + 191.607) = 26.824; adjustment value -26,824.3 = row",
+   "note": "figure moved with the lock-up fix; re-verified in the fix step"
+  },
+  {
+   "item": "Anthropic: Amazon investments and form - S-1 additions to the derivation",
+   "value": "2023 NPA $1.2B (Sep 2023) + $3.4B principal (Mar 2024, $2.8B proceeds); 2024 NPA $1.3B + $1.3B + $1.4B; E-2 95.3M, F-2 20.7M, G-3 20.6M at $20.928; G-2 19.3M ~$5.0B (Apr 2026); Series H $5.0B (May 2026); $2,186M + $4,017M = $6,203M -> 1,840,444,962 Class N; 12% cap waivable; rollover quarterly; 2026 NPA $15.0B undrawn at 30-day VWAP",
+   "basis": "reported",
+   "basis_note": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "checked": "2026-10-26",
+   "feeds": "fair_value (reconciled inputs, stakes block)",
+   "page_shows": "All shown: first tranche $1.2B Sep 2023, second $3.4B Mar 2024 'reflecting an issuance premium to the $2.8 billion in proceeds'; 2024 NPA $1.3B Nov 2024, $1.3B May 2025, $1.4B Nov 2025; E-2 95.3M, F-2 20.7M, G-3 20.6M at $20.9280; G-2 19.3M ~$5.0B; Series H $5.0B; notes table $6,203M / 1,840,444,962; 'more than 12% of our capitalization' unless waived; remaining notes convert at the end of each fiscal quarter; Amazon 2026 NPA $15.0B available, $0 outstanding, draws settled at the 30-day trailing VWAP"
+  },
+  {
+   "item": "fair_value, thesis_break_price/reason, disagreements, changes, comps_review, long_dated_review, sizing, key_drivers",
+   "value": "fair_value.reason updated to the engine result (266.70, net +$7.12B); thesis break, sizing, key drivers unchanged",
+   "basis": "estimate",
+   "basis_note": "",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "fair_value, thesis_break, sizing (prose)",
+   "page_shows": "model_engine.py check 2026-10-27: 266.70 (P/E 285.40, SOTP 247.99; bear 176.42 / base 266.70 / bull 328.63)"
+  },
+  {
+   "item": "Anthropic: tax and lock-up - S-1 lock-up terms",
+   "value": "11.50% lock-up discount (tranche-weighted Finnerty, 65% vol, S-1 staged releases)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "checked": "2026-10-27",
+   "feeds": "fair_value (stakes block)",
+   "page_shows": "S-1 Underwriting - Lock-up pp. 322-323: 'Certain of our stockholders holding more than 0.5%': earlier of the 2nd trading day after the Q3-2027 results and day 365; staged 1.8% (days 27, 48), 2.1% (62, 76), 3.75% (FY26 results), 2.85% x5, 4.2% (earlier of Q1 results / day 180), 5.6% x4, 7.0% (Q2 results), 6.3% x5 = 90.9%; results dates estimated; Amazon in this group is an inference (labelled)"
+  },
+  {
+   "item": "Anthropic: IPO valuation used - variant_view arithmetic",
+   "value": "$1.924T: +$53.1B (+$4.3 FV net of overlay); ~$1.0T: -$62.6B (-$5.1 FV)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "variant_view",
+   "page_shows": "18.6122% x 424 x 0.76 x 0.8850 = 53.08; 18.6122% x 500 x 0.76 x 0.8850 = 62.59; engine 271.03 / 261.59 vs 266.70"
+  },
+  {
+   "item": "Anthropic stake - variant_view arithmetic",
+   "value": "$1.924T: $244.7B; no early release $185.4B; 180-day group $194.0B; cap view $185.0B",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-27",
+   "feeds": "variant_view",
+   "page_shows": "(279.18 x 1.2827 - 0.24 x (358.11 - 18.0)) x 0.8850 = 244.69 (fixed $18.0B cost not scaled); 216.50 x 0.8564 = 185.40; x 0.8963 = 194.05; 191.61 - 6.60 = 185.01"
+  }
+ ]
+}

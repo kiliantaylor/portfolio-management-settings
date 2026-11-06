@@ -1,0 +1,99 @@
+{
+  "symbol": "LSCC", "agent_id": "agent_5", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 34, "p": 0.994}, {"K": 54, "p": 0.965}, {"K": 67, "p": 0.915}, {"K": 80, "p": 0.845},
+    {"K": 94, "p": 0.755}, {"K": 107, "p": 0.668}, {"K": 121, "p": 0.578}, {"K": 134, "p": 0.499},
+    {"K": 147, "p": 0.427}, {"K": 161, "p": 0.358}, {"K": 181, "p": 0.278}, {"K": 201, "p": 0.212},
+    {"K": 234, "p": 0.136}, {"K": 268, "p": 0.086}, {"K": 335, "p": 0.036}
+  ],
+  "ladder_1m": [
+    {"K": 107.20, "p": 0.912}, {"K": 113.90, "p": 0.84}, {"K": 120.60, "p": 0.742}, {"K": 124.62, "p": 0.674},
+    {"K": 128.64, "p": 0.602}, {"K": 134.00, "p": 0.505}, {"K": 139.36, "p": 0.411}, {"K": 143.38, "p": 0.346},
+    {"K": 147.40, "p": 0.286}, {"K": 154.10, "p": 0.202}, {"K": 160.80, "p": 0.138}
+  ],
+  "one_month_reasoning": "The window ends with the close on Fri 2026-10-30. Q3 2026 results are not yet scheduled. Lattice usually announces the date about 12 days ahead, and both Q3 2025 (Nov 3, 2025) and the calendars (Nov 3, 2026) point to after the window, so I no longer widen for an early print. Inside the window: (1) the first AMI lock-up tranche of ~1.19M shares (25% of 4,741,352), tradable from Mon 2026-10-26. That is ~0.8% of shares, a minor overhang, and THL holds block-trade rights. (2) The AMI financials 8-K/A, due around mid-October. (3) Peer and hyperscaler earnings in late October. (4) Section 232 Phase-2 tariff headlines, which are real but undated. These roughly balance against pre-earnings positioning after a +16% bounce from the September low. I have no directional edge, so I use a lognormal with median $134.3 and sigma 0.165, close to the stock's usual monthly vol (61%/3.5 = 0.174), trimmed slightly because no earnings event falls inside the window.",
+  "fair_value": {
+    "value": 139.0,
+    "method": "60/40 blend. Forward P/E is ~$140: horizon NTM EPS $3.55 x 40x = $142, cross-checked against 2027E $3.05 x 45x = $137. FCF yield is ~$138: NTM FCF/share $3.60 at 2.6%. That gives a 12-month fair value of ~$139. The rise from $136 comes from the guided 4-6% non-GAAP tax rate and the corrected share count, partly offset by more diluted shares (146M).",
+    "methods": [
+      {"name": "P/E", "value": 140.0, "weight": 0.6,
+       "inputs": "Horizon NTM EPS (Q4'27-Q3'28) $3.55 x 40x = $142; cross-check CY2027E EPS $3.05 x 45x = $137; average ~$140",
+       "inputs_detail": [
+         {"input": "Q3 2026 non-GAAP guide", "value": "Revenue $245-265M; opex $83-90M; tax 4-6%; EPS $0.54-0.58", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "Diluted shares", "value": "~146M", "basis": "reported", "source_ids": [3, 6], "derivation": "142,030,272 shares outstanding on 7/30/2026 already include the 4,741,352 AMI shares. RSUs and dilution add ~4M."},
+         {"input": "Term loan", "value": "$925M drawn, SOFR+1.00-1.75%, matures 2031-06-30, 1.25%/qtr amortization", "basis": "reported", "source_ids": [3, 6], "derivation": ""},
+         {"input": "CY2027E non-GAAP EPS", "value": "$3.05", "basis": "estimate", "source_ids": [1, 3, 7, 16],
+          "derivation": "Revenue ~$1.30B, slightly below S&P Global consensus of $1.33B and ~+8% on the call-only $1.2B exit run rate, which I discount. 70% GM = $910M. Less ~$400M opex = ~$510M operating income. Less ~$42M interest on an amortizing $925M. Tax 5.5% (guide 4-6%). 146M shares. Result: ~$3.03, rounded to $3.05. Consensus is $3.21."},
+         {"input": "Horizon NTM EPS", "value": "$3.55", "basis": "estimate", "source_ids": [7, 16], "derivation": "2027E $3.05 grown ~17% (AMI +25% guided for 2027 on the call; FPGA growth slowing from +62%), blended to Q4'27-Q3'28. Does not use the $3B-by-2030 'aspirational' figure."},
+         {"input": "Forward P/E at horizon", "value": "40x (45x on 2027E cross-check)", "basis": "judgment", "source_ids": [4, 5, 8, 14],
+          "derivation": "TIKR cites a historical mean P/E of ~49x (single source, so I treat it as soft). I discount ~20% for leverage, the lower-multiple software mix and slowing growth by late 2027. In the 2023-24 down-cycle the stock fell from $97 to $45 (Twelve Data), which shows how hard the multiple can compress."}
+       ]},
+      {"name": "FCF yield", "value": 138.0, "weight": 0.4,
+       "inputs": "Horizon NTM revenue ~$1.50B x 35% FCF margin = ~$525M / 146M shares = $3.60 FCF/share; at a 2.6% FCF yield = ~$138",
+       "inputs_detail": [
+         {"input": "Q2 2026 FCF margin", "value": "40.4% ($81.3M)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FCF margin assumed", "value": "35%", "basis": "estimate", "source_ids": [1, 3], "derivation": "40% FPGA FCF margin plus AMI at ~40% EBITDA, less ~3 points of after-tax cash interest on $925M and integration costs."},
+         {"input": "Horizon NTM revenue", "value": "~$1.50B", "basis": "estimate", "source_ids": [7, 16], "derivation": "2027E $1.30B grown ~15-17% into Q4'27-Q3'28."},
+         {"input": "FCF yield", "value": "2.6%", "basis": "judgment", "source_ids": [5, 14], "derivation": "Inverse of a ~38-40x FCF multiple, consistent with the P/E leg and LSCC's non-bust-year valuation history. Net debt falls from ~$0.8B toward ~$0.5B by Oct-2027 and is reflected in a yield slightly above the ~2.0-2.5% implied by the 49x mean."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 82.0, "prob": 0.22, "story": "Distributor destock: distributors are 95% of revenue and two hold 88% of receivables, so 'booked' 2027 proves to be channel fill. AI-server digestion and AMI attrition push 2027 EPS to ~$2.7 and the multiple to ~30x, a repeat of 2023-24. LSCC's own history (Twelve Data, 2015-2026) shows a monthly close >35% below the start within 12 months in 12-14% of windows, and a 12-month return below -35% in 5-7%."},
+    "base": {"price": 142.0, "prob": 0.53, "story": "2027 revenue ~$1.30B and EPS ~$3.05, near consensus. Growth slows toward ~15-17% and the stock de-rates to ~40x horizon NTM EPS of ~$3.55. Net debt falls to ~$0.5B. The stock ends roughly where fair value sits."},
+    "bull": {"price": 220.0, "prob": 0.25, "story": "AI data-center attach (board management, security FPGAs, AMI firmware) keeps compounding. 2027 revenue beats $1.4B, horizon NTM EPS is ~$4.0, and the stock holds ~55x. Of 41 historical LSCC windows that followed a >50% one-year gain, the median next-12-month return was +49%."}
+  },
+  "thesis_break_price": 88.0,
+  "thesis_break_reason": "$88 is ~29x corrected 2027E EPS of ~$3.05, the bottom of LSCC's post-2020 multiple range, and ~20% below the Aug-Sep 2026 lows ($104-112). Trading there would most likely mean a Q3/Q4 guide-down that exposes the 2027 visibility as distributor stocking, an AI-server capex pause, or AMI customer losses. Ordinary 55-60% volatility would not usually take it there.",
+  "catalysts": [
+    {"date": "2026-10-26", "event": "First AMI lock-up tranche (~1.19M shares) becomes tradable; THL block-trade rights", "direction": "-"},
+    {"date": "2026-10", "event": "AMI financial statements 8-K/A", "direction": "?"},
+    {"date": "2026-11-03", "event": "Q3 2026 results and Q4 guide, first quarter including AMI (expected date, not yet announced)", "direction": "?"},
+    {"date": "2026-Q4 to 2027", "event": "Section 232 Phase-2 semiconductor and electronics tariffs (confirmed coming, no rate or date)", "direction": "-"},
+    {"date": "2027-01-23", "event": "Second AMI lock-up tranche", "direction": "-"},
+    {"date": "2027-02", "event": "Q4 2026 results and 2027 outlook; test of the $1.2B exit rate", "direction": "?"},
+    {"date": "2027-05", "event": "Q1 2027 results", "direction": "?"},
+    {"date": "2027-07-27", "event": "Full AMI lock-up release", "direction": "-"},
+    {"date": "2027-08", "event": "Q2 2027 results; first year-over-year comparison including AMI", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether +62% FPGA growth is end demand or distributor fill (95% distributor mix, 88% of receivables with two distributors)",
+    "The multiple a slowing AI-levered semiconductor earns at the horizon; no data resolves 35x vs 50x",
+    "AMI growth (25% guided for 2027, call only) and how the market values the software mix",
+    "Macro: Kalshi 2027 recession ~22% (supervisor-verified) and tariff escalation",
+    "Whether the bullish visibility claims ($1.2B exit rate, '2027 pretty much booked') hold; they come from a single earnings call"
+  ],
+  "reasoning": "Base rates anchor the distribution. From LSCC's monthly closes 2015-2026 (Twelve Data, 142 rolling 12-month windows): median forward return +23%, 10th-90th percentile -28% to +129%, P(negative) 40%. Since 2019: P(negative) 34%, P(below -35%) 6%, and P(a monthly close >35% below start within 12 months) 12%. After >50% one-year gains (41 windows), the median next-year return was +49%, P(negative) 37% and P(below -35%) 7%. Most of those strong follow-ons came from the 2019-21 re-rating, which I discount. On fundamentals, the supervisor's corrections all check out or are filing-based: the non-GAAP tax guide is 4-6% (verified in the Q2 Ex.99.1), the loan is $925M maturing in 2031 with no bridge refinancing, diluted shares are ~146M, and Kalshi prices a 2027 recession at ~22%, not 41%. Redone, 2027E EPS is $3.05 (consensus $3.21; I stay slightly below because the $1.2B exit rate is call-only and 95% of sales go through distributors). Horizon NTM EPS is $3.55. Fair value is ~$139, so at $134 the stock is ~44x 2027E and ~38x horizon NTM. Ladder: an 88/12 mixture of a lognormal (median $143, sigma 0.48) and a bust component (median $85, sigma 0.35). The bust weight was 15% and is now 12%, re-sized from LSCC's own 12-14% frequency of >35% drawdowns within 12 months rather than the discredited 41% recession figure. Result: median ~$134 and mean ~$148, versus a scenario mean of ~$149. Compared with round 1, P(>=K) rises ~1-2 points at $54-121 and is roughly flat above $134: the higher EPS and lighter bust weight are offset by a wider share count and by keeping the upside multiple disciplined. Where I differ from the supervisor: I keep 2027E at $3.05 rather than consensus $3.21 and hold the median at ~$134, not above it. Research was limited: two new queries (SEC Ex.99.1, Twelve Data monthly history). I did not re-verify Kalshi myself and rely on the supervisor's API check.",
+  "lane": "base-rates",
+  "revisions": [
+    {"item": "a fact", "from": "Term loan $950M with a 364-day acquisition loan to refinance by 2026-11-09", "to": "$925M drawn, 5-year secured term loan maturing 2031-06-30, no bridge refinancing", "why": "Supervisor disagreement 'AMI deal terms' (8-K 7/27, 10-Q Note 5); Nov-9 catalyst removed"},
+    {"item": "a fact", "from": "Shares ~143M (137M + 5.2-6.1M AMI)", "to": "~146M diluted (142.03M outstanding already includes 4.74M AMI shares)", "why": "Supervisor feedback, 10-Q cover and 8-K Item 3.02"},
+    {"item": "a fact", "from": "Non-GAAP tax 13%", "to": "5.5% (guide 4-6%)", "why": "Supervisor feedback; verified in Q2 8-K Ex.99.1"},
+    {"item": "a fact", "from": "Kalshi 2027 recession ~41%", "to": "~22%", "why": "Supervisor's Kalshi API check; the aggregator source is discounted and dropped"},
+    {"item": "a method", "from": "P/E $134 (2028E $3.30 x 40x; 2027E $2.75 x 49x)", "to": "P/E $140 (horizon NTM $3.55 x 40x; 2027E $3.05 x 45x)", "why": "Corrected tax and share count lift 2027E EPS from $2.75 to $3.05. I trimmed the cross-check multiple because the 49x mean is single-source (TIKR, flagged as a repeated claim)."},
+    {"item": "a method", "from": "FCF yield $138 (143M shares, $1.45B revenue)", "to": "FCF yield $138 ($1.50B revenue, 146M shares)", "why": "Higher revenue base offset by more shares"},
+    {"item": "fair value", "from": "136", "to": "139", "why": "EPS corrections; I remain slightly below the supervisor's $140 because I hold 2027E under consensus"},
+    {"item": "a scenario", "from": "Bear $78 @25% / base $140 @50% / bull $215 @25%", "to": "Bear $82 @22% / base $142 @53% / bull $220 @25%", "why": "Higher EPS base raises all three levels. Bear probability is cut because the 41% recession input was wrong, but kept above the base rate because of the 95% distributor concentration (supervisor, 10-Q Note 1)."},
+    {"item": "P(close >= K)", "from": "Bust weight 15%, median $142 core; P(>=94)=0.735, P(>=121)=0.555, P(>=134)=0.48", "to": "Bust weight 12%, median $143 core, sigma 0.48; P(>=94)=0.755, P(>=121)=0.578, P(>=134)=0.499", "why": "Bust weight re-sized from LSCC's own 12-14% frequency of >35% drawdowns within 12 months, as the supervisor asked; plus corrected EPS"},
+    {"item": "P(close >= K)", "from": "1-month: sigma 0.17, allowing for an early earnings date", "to": "1-month: sigma 0.165, median $134.3; lock-up tranche in window", "why": "Supervisor: Q3 very likely Nov 3, outside the window; the 1.19M-share lock-up on Oct 26 is inside it"},
+    {"item": "thesis break", "from": "88 (~32x $2.75)", "to": "88 (~29x $3.05)", "why": "Same price, re-based on corrected EPS; still ~20% below the Aug-Sep lows"}
+  ],
+  "sources": [
+    {"title": "Lattice Q2 2026 earnings press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926025650/ex_971139.htm", "date": "2026-08-04", "type": "filing", "in_lane": false},
+    {"title": "Lattice Semiconductor (LSCC) Q2 2026 earnings summary", "url": "https://quartr.com/events/lattice-semiconductor-corp-lscc-q2-2026_ofUC4zBe", "date": "2026-08-04", "type": "data", "in_lane": false},
+    {"title": "Lattice Form 10-Q, quarter ended July 4, 2026 (Note 5 debt, Note 1 concentrations, cover share count; via supervisor check)", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926025657/lscc20260704_10q.htm", "date": "2026-08-04", "type": "filing", "in_lane": false},
+    {"title": "Lattice Semiconductor Stock Surges 50% in 2026 and the AMI Deal Can Push It Even Higher", "url": "https://www.tikr.com/blog/lattice-semiconductor-stock-surges-50-in-2026-and-the-ami-deal-can-push-it-even-higher", "date": "2026-05", "type": "newsletter", "in_lane": true},
+    {"title": "Lattice Semiconductor stock is up 150% over the past year: can LSCC reach $170 by 2028", "url": "https://www.tikr.com/blog/lattice-semiconductor-stock-is-up-150-over-the-past-year-can-lscc-reach-170-by-2028", "date": "2026-05-01", "type": "newsletter", "in_lane": true},
+    {"title": "8-K: AMI acquisition completion, $925M term-loan draw, 4,741,352 shares issued, lock-up", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926024519/lscc20260723_8k.htm", "date": "2026-07-27", "type": "filing", "in_lane": false},
+    {"title": "StockAnalysis LSCC forecast (S&P Global consensus 2027 EPS $3.21, revenue $1.33B)", "url": "https://stockanalysis.com/stocks/lscc/forecast/", "date": "2026-08-25", "type": "data", "in_lane": false},
+    {"title": "LSCC monthly closes 2014-2026 (Twelve Data time series; own rolling 12-month return and drawdown base rates)", "url": "https://twelvedata.com/", "date": "2026-10-02", "type": "data", "in_lane": true},
+    {"title": "Lattice Semiconductor trading down 8.4% (analyst targets, market cap)", "url": "https://www.marketbeat.com/instant-alerts/lattice-semiconductor-nasdaqlscc-trading-down-84-heres-what-happened-2026-08-05/", "date": "2026-08-05", "type": "data", "in_lane": false},
+    {"title": "Kalshi US recession 2027 market (~22c on 2026-10-02, per supervisor's API check; not independently re-verified)", "url": "https://kalshi.com/", "date": "2026-10-02", "type": "prediction-market", "in_lane": true},
+    {"title": "TechTimes: Chip tariff Phase Two confirmed", "url": "https://www.techtimes.com/articles/326474/20260903/chip-tariff-phase-two-confirmed-build-america-pay-lutnick-announces.htm", "date": "2026-09-03", "type": "press", "in_lane": true},
+    {"title": "Section 232 semiconductor tariff July 2026 Phase 2 guide", "url": "https://www.tarifflens.ai/blog/section-232-semiconductor-tariff-july-2026-phase-2-guide", "date": "2026-07", "type": "trade", "in_lane": true},
+    {"title": "Lattice Semiconductor shares decline 5.4% to $130.68 amid sector weakness", "url": "https://kalkine.com/news/technology/lattice-semiconductor-nasdaq-lscc-shares-decline-54-to-13068-amid-market-recovery", "date": "2026-07-24", "type": "press", "in_lane": true},
+    {"title": "LSCC enterprise value history", "url": "https://wisesheets.io/enterprise-value/LSCC", "date": "2026", "type": "data", "in_lane": true},
+    {"title": "LSCC earnings date (Q3 2026 expected Nov 3)", "url": "https://beta.earningswhispers.com/go/w/LSCC", "date": "2026-10", "type": "data", "in_lane": true},
+    {"title": "Q2 2026 Lattice earnings call (transcript quotes: $1.2B exit rate, AMI +25% in 2027)", "url": "https://allmind.ai/earnings/event/2947085", "date": "2026-08-04", "type": "company", "in_lane": false}
+  ]
+}

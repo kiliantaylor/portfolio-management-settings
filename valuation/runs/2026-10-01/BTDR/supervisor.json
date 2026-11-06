@@ -1,0 +1,499 @@
+{
+ "symbol": "BTDR",
+ "as_of": "2026-10-01",
+ "horizon": "2027-10-01",
+ "disagreements": [
+  {
+   "topic": "Why agent 5's DCF ($5.19 split / $4.25 single) sits $3-7 above the rest (-$2.27 to $1.63)",
+   "positions": "Agent 5: Tydal LC years at 7.0% and years 6-10 at 9.5%; A202 +$475M; A201 +$786M; refresh cohorts at 80% of today's revenue per $ of capex; corporate cost only -$805M (G&A assumed inside the CoinShares cash cost, R&D cut from ~$110M to $60M after the halving); mining terminal growth +1.5%; a 65/35 weighting of rising BTC ($115-125k in 2029-31) vs flat $85k. Agents 1, 2 and 4: corporate cost $214-220M/yr (-$1.5B to -$2.2B PV), mining terminal -3%/yr, A202 between -$144M and +$106M.",
+   "resolution": "Five of agent 5's choices make it the outlier, and one goes the other way. (1) The 7.0% rate is below the only market evidence. TeraWulf's 7.75% notes were fully covered by a Google backstop and priced on 2025-10-16, when the 5-year Treasury was ~3.6%. At today's 5.09% 5Y / 5.29% 10Y that is ~9%, and Tydal's LCs are still 'anticipated' and the halls are unbuilt. Re-anchoring to 9.0%/11.0% costs -$0.34. (2) The refresh cycles are positive-NPV by construction. At NPV-zero (its own 60% sensitivity) the cost is -$1.72. Most of A202's $475M is that refresh chain: its first cohort nets to about zero. (3) The A202 facility fee is Bitdeer's fixed obligation but is discounted at the 12.5% WACC, not ~10%: -$0.20. (4) +1.5% mining terminal growth ignores the 2032 and 2036 halvings; at -3% (agents 1, 2, 4) the rising path loses -$0.68. (5) Cutting R&D to $60M against $112M/yr actual (H1-26 $56.3M) is unsupported; at ~$90M the cost is -$0.70. Against these, CoinShares' cash cost, which agent 5 uses, includes allocated net interest ($9,751 of the $61,051/BTC ex-tax in Q2-26). An FCFF that also deducts net debt therefore counts interest twice, which is conservative: about +$2.75 on the rising path and +$1.5 on the flat path. G&A does sit inside the CoinShares figure (allocated by self-mining revenue share), so on that point agent 5 is right. The BTC weighting rests on Polymarket odds; with BTC at $86.9k and no checked edge I weight 50/50. Corrected: rising $5.77, flat $1.01, central $3.39 at 50/50 ($4.10 at 65/35). Single-rate ~$2.99.",
+   "evidence": "Treasury daily par yield curve CSV (9/30/2026 10Y 5.29%, 5Y 5.09%; Oct-2025 10Y ~4.05%); TeraWulf 8-K/press 2025-10-16 ($3.2B 7.75% due 2030, $3.2B Google backstop covers debt); CoinShares Bitcoin Mining Report Q2-2026 (cash cost = cost of revenue ex-D&A + SG&A ex-SBC + net interest + tax, allocated; Bitdeer $61,051 ex-tax, interest $9,751, R&D $11.3k excluded); Bitdeer H1-26 FS 6-K Ex.99.1 (G&A $58.9M, R&D $56.3M, selling $5.1M, SBC $13.5M)."
+  },
+  {
+   "topic": "Contract discount rates and their anchors",
+   "positions": "LC-backed Tydal rent: agent 1 8.5% (on the 28% LC share of in-term cash), agent 2 8.75%, agent 3 8.0%, agent 4 9.0%, agent 5 7.0%. Volta-only in-term rent: 11.0 / 10.5 / 10.5 / 11.0 / 9.5%. GPU offtakes: 10.5-12%. All five keep Tydal years 11-16 (no-fee walk), tails, pipeline and terminal at WACC.",
+   "resolution": "No contract-level debt is priced (sites.json contracts_credit), so the anchor is HPC project debt with a backstop: TeraWulf 7.75% (Oct-2025) and Cipher 7.125% (Nov-2025), ~3.4-4.1pp over Treasuries at the time. Re-based to today's curve that is ~8.5-9.2%. Agents 1, 2 and 4 are sound. Agent 3's 8.0% adds only 25bp to the old coupon and skips the ~1.2pp rise in Treasuries, so it should be ~9% (-$0.10). Agent 5's 7.0%/9.5% are unsound (-$0.34). Every agent applies the contract rate only inside the firm term. A201 'commitments' get contract rates at 80-95% probability although the release does not say they are executed. I accept this because the probability is applied separately, but it is the weakest use of a contract rate.",
+   "evidence": "Treasury yield CSV; TeraWulf pricing release 2025-10-16; agent discounting blocks."
+  },
+  {
+   "topic": "A201 rack count (inventory flag 16)",
+   "positions": "Agents 1-4 switched to 128 systems (Q2 PR plan). Agent 5 kept 133, citing the Aug-2026 6-K.",
+   "resolution": "Agent 5 is right. The Aug-2026 update 6-K says Bitdeer 'advanced hardware readiness for its A201 facility by procuring 133 racks of GB300'. The inventory's 128-vs->100 conflict misses this. Agents 1-4 understate A201 capex by ~$20-23M (~-$0.07-0.08/sh).",
+   "evidence": "Bitdeer Aug-2026 update 6-K Ex.99.1."
+  },
+  {
+   "topic": "A202 direction and value",
+   "positions": "All five now treat Bitdeer as the customer paying a 10-yr facility fee, with no offtake. Values: agent 1 +$5M, agent 2 -$144M, agent 3 +$64M, agent 4 +$106M, agent 5 +$475M.",
+   "resolution": "Direction re-verified: the 9/14 release says 'No offtake commitments have been entered into with respect to A201 or A202 capacity' and that Bitdeer 'expects the per-MW economics of A202 to be broadly consistent with those of A102'. The fee is undisclosed; agents' estimates run $65-98M/yr. Agent 2 (12%) and agent 5 (12.5%) discount this fixed obligation at WACC, which understates it; agents 1/3 (9%) and agent 4 (11%) are right. Once refresh cycles are NPV-zero, A202 is worth roughly -$0.15B to +$0.1B. It is a funding call (~$1.6-1.8B of GPUs) more than a value source.",
+   "evidence": "GlobeNewswire A202 release 2026-09-14; Aug-2026 6-K."
+  },
+  {
+   "topic": "Corporate cost (round-3 open question)",
+   "positions": "Agents 1/2/4 build mining cost bottom-up and charge $214-220M/yr of corporate cost. Agents 3/5 use the CoinShares cash cost and add only R&D (+$30M overhead for agent 5).",
+   "resolution": "Settled. CoinShares' cash cost includes SG&A ex-SBC allocated by self-mining revenue share, so both approaches avoid double-counting G&A. But CoinShares also includes allocated net interest (~$105M/yr for Bitdeer at Q2 run-rate), so agents 3 and 5 double-count interest against net debt (conservative). Agent 5's R&D cut to $60M is not supported by the $112M/yr run-rate. Agent 3 cuts R&D to $60M as well and also uses +1.5% terminal growth; for agent 3 these roughly offset the interest effect and I leave them unquantified.",
+   "evidence": "CoinShares Q2-2026 mining report methodology; Bitdeer H1-26 FS."
+  }
+ ],
+ "ladder": [
+  {
+   "K": 2.66,
+   "p": 0.912
+  },
+  {
+   "K": 4.26,
+   "p": 0.794
+  },
+  {
+   "K": 5.32,
+   "p": 0.712
+  },
+  {
+   "K": 6.38,
+   "p": 0.63
+  },
+  {
+   "K": 7.45,
+   "p": 0.551
+  },
+  {
+   "K": 8.51,
+   "p": 0.479
+  },
+  {
+   "K": 9.58,
+   "p": 0.415
+  },
+  {
+   "K": 10.64,
+   "p": 0.362
+  },
+  {
+   "K": 11.7,
+   "p": 0.316
+  },
+  {
+   "K": 12.77,
+   "p": 0.277
+  },
+  {
+   "K": 14.36,
+   "p": 0.23
+  },
+  {
+   "K": 15.96,
+   "p": 0.192
+  },
+  {
+   "K": 18.62,
+   "p": 0.145
+  },
+  {
+   "K": 21,
+   "p": 0.114
+  },
+  {
+   "K": 27,
+   "p": 0.062
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 8.51,
+   "p": 0.764
+  },
+  {
+   "K": 9.04,
+   "p": 0.698
+  },
+  {
+   "K": 9.58,
+   "p": 0.627
+  },
+  {
+   "K": 9.9,
+   "p": 0.584
+  },
+  {
+   "K": 10.21,
+   "p": 0.543
+  },
+  {
+   "K": 10.64,
+   "p": 0.487
+  },
+  {
+   "K": 11.07,
+   "p": 0.434
+  },
+  {
+   "K": 11.38,
+   "p": 0.398
+  },
+  {
+   "K": 11.7,
+   "p": 0.363
+  },
+  {
+   "K": 12.24,
+   "p": 0.308
+  },
+  {
+   "K": 12.77,
+   "p": 0.26
+  }
+ ],
+ "one_month_reasoning": "I keep the forecasters' 1-month mean. They agree within 0.025 at every strike, and the window (to 10/31) holds only the mid-October September production update and BTC/financing headlines. Q3 results (~Nov 9-18) fall outside it. BTC rose 2.4% on 10/2 to ~$86.9k, which is noise at a ~30% monthly sigma.",
+ "confidence": "medium",
+ "confidence_reason": "Primary checks settled five facts that matter: Treasury yields (5.29% 10Y confirmed), the TeraWulf anchor, the CoinShares cost definition (includes G&A and interest), the A201 rack count and A202's lack of offtake. Together they cut agent 5's DCF from $5.19 to ~$3.4 and the corrected fair-value mean to ~$4.9 (agent mean $5.36). The 12-month price is driven mostly by BTC and lease optionality, so I move the ladder only ~3% in strike terms. That is not enough for 'high'.",
+ "thesis_break_price": 5.0,
+ "thesis_break_reason": "At ~$5.0-5.3, market cap (~$1.37-1.45B on 273M shares) equals net debt (~$1.40-1.45B). Equity would then be worth about the contracted Tydal + A102 + A201 value at split rates (~$1.5-2.0B, net of capex) and nothing for 80 EH/s of mining or ~3 GW of power. Getting there would most likely take a Volta LC/backstop failure, a refinancing squeeze on the $491M of current BIT loans, A201 commitments not converting with 133 GB300 racks bought, or a deep-discount equity raise. The agents' 4.0-5.4 bracket this level.",
+ "key_drivers": [
+  "BTC/hashprice into the April-2028 halving: mining is still ~65-70% of 2027 revenue. Agent 5's corrected DCF is $5.77 on a rising-BTC path and $1.01 flat, and agent 4's hashprice +/-20% gives +$1.76/-$6.31",
+  "On cash flows alone EV ~= net debt. Corrected split-rate DCFs run -$2.34 to $3.39 (mean ~-$0.05) and single-rate -$2.84 to $2.99 (mean ~-$0.50), so splitting the discount rate adds only ~$0.45/sh",
+  "Tydal: $233M yr-1 rent from ~2027-04-01. ~$1.3B LCs still 'anticipated'. Worth ~$0.9-1.0B net of capex at a ~9% LC-backed / ~11% Volta-only rate; TeraWulf's backstopped 7.75% notes, re-based to a 5.29% 10Y, anchor ~9%, not 7%",
+  "Malaysia GPU cloud: A102 >$800M signed; A201 >70% 'commitments' (>$1.7B / 5 yrs), 133 GB300 racks procured; A202 65.1 MW with no offtake and a 10-yr fee Bitdeer pays. Whether refresh cycles earn above their cost of capital moves agents 1 and 5 by ~$1.5-1.7/sh, more than GPU life does",
+  "Corporate cost and the mining cost base: $112M/yr of R&D plus ~$105M of G&A (H1-26 FS). CoinShares' cash cost already holds allocated G&A and ~$9.75k/BTC of interest, so agents using it must neither add G&A nor deduct interest twice"
+ ],
+ "fair_value": {
+  "value": 4.9,
+  "reason": "Round-4 blends are $6.51 / $3.50 / $4.70 / $4.58 / $7.51 (mean $5.36). Corrections: agent 1 to ~$6.48 (A201 133 racks); agent 2 to ~$3.41 (A202 fee at ~10% not WACC, 133 racks); agent 3 to ~$4.57 (Tydal LC rate 8.0% -> ~9% after re-basing to today's Treasuries, 133 racks); agent 4 to ~$4.54 (133 racks); agent 5 to ~$5.55 (DCF $5.19 -> $3.39: LC/Volta rates 7.0/9.5% -> 9/11%, NPV-zero refresh, A202 fee at ~10%, mining terminal -3% for the 2032 halving, R&D held ~$90M, partly offset by removing CoinShares' allocated interest, BTC paths weighted 50/50; SOTP $8.18 -> ~$4.9 on the same fixes; EV/sales $11.54 kept). Corrected mean ~$4.9, ~54% below the $10.64 spot. The gap is option value on BTC, a second lease and market multiples on powered MW."
+ },
+ "feedback_for_agents": [
+  {
+   "agent": "agent_1",
+   "missed": [
+    "The A201 rack count is 133, not 128: the Aug-2026 6-K says Bitdeer 'procur[ed] 133 racks of GB300'. Add ~$20M of capex",
+    "Your 8.5%/11.0% rates and the 28% LC share are well anchored on TeraWulf's 7.75% notes re-based to the 5.29% 10Y (Treasury, 9/30/2026); keep them"
+   ],
+   "revisit": "Your refresh at hurdle +10% is still the only positive-NPV refresh apart from agent 5's; NPV-zero would cost -$1.49. Also, 55% of your blend rests on SOTP/EV-MW legs that your own DCF says are option value."
+  },
+  {
+   "agent": "agent_2",
+   "missed": [
+    "You discount the A202 facility fee, a fixed obligation Bitdeer owes, at the 12% WACC. A ~10% rate makes it ~$48M larger (-$0.17/sh)",
+    "A201 is 133 racks (Aug-2026 6-K), not 128"
+   ],
+   "revisit": "Otherwise sound. Your DCF is the most negative because horizon net debt is $2.38B; check whether the A201/A202 prepayments (~50% of capex) are fully credited against it."
+  },
+  {
+   "agent": "agent_3",
+   "missed": [
+    "Your 8.0% LC-years rate adds 25bp to TeraWulf's 7.75% coupon but ignores the ~1.2-1.5pp rise in Treasuries since Oct-2025 (10Y 4.05% -> 5.29%). Re-based, it is ~9%",
+    "A201 is 133 racks (Aug-2026 6-K)",
+    "The CoinShares cash cost includes allocated net interest ($9,751/BTC for Bitdeer in Q2-26), so a cost base built on it double-counts interest against net debt. Your 1.5% mining terminal growth ignores the 2032 halving. Both should be fixed explicitly"
+   ],
+   "revisit": "Rebuild mining cost ex-interest and use a declining mining terminal. Hold R&D near the $112M/yr run-rate unless you cite a plan to cut it."
+  },
+  {
+   "agent": "agent_4",
+   "missed": [
+    "A201 is 133 racks (Aug-2026 6-K), not 128",
+    "Your rates (9.0% LC-backed, 11.0% unrated, A202 fee at 11%) are the best-anchored on the panel"
+   ],
+   "revisit": "Your Knoxville branch (40%, $742M cloud NPV) is generous for a site with no customer and RFS slipping; state the basis."
+  },
+  {
+   "agent": "agent_5",
+   "missed": [
+    "Your 7.0% LC-years rate is below the evidence. TeraWulf's 7.75% notes, fully covered by a Google backstop, priced at a ~3.6% 5Y. At today's 5.09% 5Y / 5.29% 10Y that is ~9%, and Tydal's LCs are not yet issued. 9.5% for unrated, early-stage Volta is also low; use ~11%",
+    "Refresh at 80% of today's revenue/capex is positive-NPV by construction. Most of A202's $475M is that refresh chain; at NPV-zero (your 60% case) the DCF falls ~$1.72",
+    "You discount the A202 facility fee (Bitdeer's obligation) at WACC; use ~9-11%",
+    "A +1.5% mining terminal growth rate ignores the 2032 and 2036 halvings",
+    "R&D was $56.3M in H1-26 ($112M/yr); cutting it to $60M needs a source",
+    "In your favour: CoinShares' cash cost includes $9,751/BTC of allocated net interest, so your mining FCF double-counts interest against net debt (worth ~+$1.5-2.75/sh)",
+    "Your 65/35 BTC weighting rests on Polymarket odds; with BTC at ~$86.9k I weight 50/50"
+   ],
+   "revisit": "Corrected DCF ~$3.4 (50/50) to ~$4.1 (65/35); blended fair value ~$5.5, not $7.51. Your A201 rack count (133) was right."
+  }
+ ],
+ "source_review": {
+  "independent_originals": 20,
+  "repeated_claims": [
+   {
+    "claim": "Tydal contract terms, LCs 'anticipated', single-phase start",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "Tydal 6-K Ex.99.1 (2026-08-04) and Q2 call, via sites.md"
+   },
+   {
+    "claim": "TeraWulf 7.75% / Cipher 7.125% backstopped notes as the contract-rate anchor",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4"
+    ],
+    "original_source": "TeraWulf 8-K 2025-10-16; Cipher release Nov-2025"
+   },
+   {
+    "claim": "A202 10-yr agreement, no offtake, A102-like economics expected",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "GlobeNewswire 2026-09-14; Aug-2026 6-K"
+   },
+   {
+    "claim": "10Y Treasury 5.29% (9/30/2026)",
+    "agents": [
+     "agent_1",
+     "agent_2",
+     "agent_3",
+     "agent_4",
+     "agent_5"
+    ],
+    "original_source": "FRED DGS10 / Treasury par yield curve (verified)"
+   }
+  ],
+  "quality": [
+   {
+    "agent": "agent_1",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Primary-document sourcing. Rates well anchored. Only error: the stale 128 rack count."
+   },
+   {
+    "agent": "agent_2",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Sound rate anchors. The A202 fee at WACC understates the obligation."
+   },
+   {
+    "agent": "agent_3",
+    "lane_kept": true,
+    "grade": "high",
+    "note": "Broadest set of market anchors (AWS, IG-offtake, Fluidstack, CoreWeave-tenant debt), but the 8.0% Tydal rate is not re-based. The CoinShares cost basis carries interest."
+   },
+   {
+    "agent": "agent_4",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Best-anchored rates. Still cites Polymarket in its scenarios."
+   },
+   {
+    "agent": "agent_5",
+    "lane_kept": true,
+    "grade": "medium",
+    "note": "Correctly verified 133 racks from the 6-K. Discount rates are built up from components rather than market evidence. BTC path leans on Polymarket odds."
+   }
+  ],
+  "discounted": [
+   {
+    "claim": "Polymarket BTC odds as basis for a 65% rising-BTC weight (agent 5) and bear-case odds (agent 4)",
+    "why": "Prediction-market touch odds relayed by news recaps; context only, not an expected-path estimate"
+   },
+   {
+    "claim": "Anthropic as Volta's end customer (~6-yr, ~$10B)",
+    "why": "Press (Blockspace) only; not confirmed by Bitdeer. Used only to time default legs"
+   },
+   {
+    "claim": "A201 '>70% commitments' treated at 80-95%",
+    "why": "Release does not say executed; no customers or deposits disclosed"
+   }
+  ]
+ },
+ "changes": [
+  {
+   "item": "P(close >= K) for K = 2.66-27",
+   "from": "agent mean (0.920 at 2.66, 0.495 at 8.51, 0.376 at 10.64, 0.241 at 14.36, 0.121 at 21, 0.068 at 27)",
+   "to": "mean shifted ~3% lower in strike terms (0.912 at 2.66, 0.479 at 8.51, 0.362 at 10.64, 0.230 at 14.36, 0.114 at 21, 0.062 at 27)",
+   "why": "Corrected fair value ($4.9) is ~8.5% below the agent mean ($5.36). At ~35% partial convergence of the log gap, the median moves ~3%."
+  },
+  {
+   "item": "fair value",
+   "from": 5.36,
+   "to": 4.9,
+   "why": "Agent 5's DCF corrected from $5.19 to ~$3.39 (rates re-anchored, NPV-zero refresh, A202 fee rate, halving-aware mining terminal, R&D, offset by the CoinShares interest double count). A201 is 133 racks for agents 1-4. Agent 3's Tydal rate re-based."
+  },
+  {
+   "item": "agent_5 DCF (split / single), $/sh",
+   "from": "5.19 / 4.25",
+   "to": "3.39 / 2.99",
+   "why": "See disagreement 1. Checked against Treasury, TeraWulf, CoinShares and Bitdeer H1-26 primary sources."
+  },
+  {
+   "item": "agent_5 Tydal contract rates",
+   "from": "7.0% LC years / 9.5% Volta-only",
+   "to": "9.0% / 11.0%",
+   "why": "TeraWulf's Google-backstopped 7.75% notes priced at a ~3.6% 5Y. Re-based to the 5.09% 5Y / 5.29% 10Y that gives ~9%, and Tydal's LCs are not yet issued."
+  },
+  {
+   "item": "agent_3 Tydal LC-years rate",
+   "from": 0.08,
+   "to": 0.09,
+   "why": "Its anchor was not re-based for the ~1.2-1.5pp rise in Treasuries since Oct-2025."
+  },
+  {
+   "item": "fact: A201 rack count (agents 1-4, inventory flag 16)",
+   "from": 128,
+   "to": 133,
+   "why": "The Aug-2026 6-K says Bitdeer procured 133 racks of GB300 for A201."
+  },
+  {
+   "item": "fact: CoinShares cash cost content (agents 3, 5)",
+   "from": "includes G&A; interest not considered",
+   "to": "includes allocated SG&A ex-SBC AND allocated net interest ($9,751/BTC) and tax; R&D excluded",
+   "why": "CoinShares Q2-2026 mining report methodology."
+  },
+  {
+   "item": "A202 fee discount rate (agents 2, 5)",
+   "from": "WACC 12-12.5%",
+   "to": "~10%",
+   "why": "A fixed 10-yr obligation of Bitdeer should be discounted near its cost of debt, which makes the liability larger."
+  }
+ ],
+ "summary": "In round 4 all five forecasters valued every inventory site once and split discount rates. After my fixes the split-rate DCFs run -$2.34 to $3.39 (mean ~-$0.05) and single-rate -$2.84 to $2.99 (mean ~-$0.50). Agent 5's $5.19 was the outlier: a 7% Tydal rate below the TeraWulf evidence, positive-NPV GPU refresh, an A202 fee at WACC, a mining perpetuity that ignores the 2032 halving and an unsupported R&D cut, partly offset by a real interest double count in the CoinShares cost it uses. Corrected fair value is ~$4.9 against a $10.64 spot. I shade the ladder ~3% lower (P(>=spot) 0.36) with medium confidence; thesis break is $5.0. The stock is a leveraged option on BTC and a second lease, with no checked edge over SPY.",
+ "sources": [
+  {
+   "title": "US Treasury daily par yield curve rates 2026 (CSV)",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv",
+   "date": "2026-10-01"
+  },
+  {
+   "title": "FRED DGS10",
+   "url": "https://fred.stlouisfed.org/series/DGS10",
+   "date": "2026-09-30"
+  },
+  {
+   "title": "TeraWulf Inc. announces pricing of $3.2 billion senior secured notes",
+   "url": "https://www.nasdaq.com/press-release/terawulf-inc-announces-pricing-32-billion-senior-secured-notes-2025-10-16",
+   "date": "2025-10-16"
+  },
+  {
+   "title": "CoinShares Bitcoin Mining Report Q2 2026",
+   "url": "https://coinshares.com/corp/insights/research-data/bitcoin-mining-report-q2-2026/",
+   "date": "2026"
+  },
+  {
+   "title": "Bitdeer H1 2026 interim financial statements (6-K Ex.99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1899123/000121390026104638/ea030647301ex99-1.htm",
+   "date": "2026-09-29"
+  },
+  {
+   "title": "Bitdeer August 2026 production and operations update (6-K Ex.99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1899123/000121390026100537/ea030523501ex99-1.htm",
+   "date": "2026-09-16"
+  },
+  {
+   "title": "Bitdeer AI secures 65.1MW A202 facility (GlobeNewswire)",
+   "url": "https://www.globenewswire.com/news-release/2026/09/14/3360904/0/en/bitdeer-ai-secures-65-1mw-a202-facility-at-its-existing-johor-malaysia-campus-estimated-active-ai-cloud-pipeline-surpasses-7-billion.html",
+   "date": "2026-09-14"
+  },
+  {
+   "title": "BTC/USD quote (Twelve Data)",
+   "url": "https://twelvedata.com",
+   "date": "2026-10-02"
+  }
+ ],
+ "round4_review": {
+  "per_agent": [
+   {
+    "agent": "agent_1",
+    "site_coverage_errors": [
+     "A201 capex on 128 racks; primary figure is 133 (+~$20M capex, -$0.07/sh). Fixed",
+     "All 20 sites present once; HPC MW at Rockdale taken out of mining; A202 direction right; no sold sites (none exist)"
+    ],
+    "discount_rates": "Tydal 8.5% on the 28% LC-backed share / 11.0% Volta-only in-term; A102 11.5%; A201/A101 12%; A202 fee 9%; WACC 13.9%",
+    "sound": true,
+    "note": "Anchored on TeraWulf/Cipher re-based to 5.29% 10Y; contract rates applied only in-term",
+    "dcf_single": -1.04,
+    "dcf_split": -0.4,
+    "dcf_single_corrected": -1.11,
+    "dcf_split_corrected": -0.47
+   },
+   {
+    "agent": "agent_2",
+    "site_coverage_errors": [
+     "A202 facility fee discounted at 12% WACC (fixed obligation; ~10% appropriate): -$0.17/sh. Fixed",
+     "A201 128 racks -> 133: -$0.08/sh. Fixed",
+     "All 20 sites present once; Knoxville/Wenatchee excluded from mining MW; Fox Creek valued as a zero-NPV option"
+    ],
+    "discount_rates": "8.75% Tydal yrs 1-5 (LC-covered) / 10.5% Tydal yrs 6-10 and GPU offtakes / 12% WACC",
+    "sound": true,
+    "note": "Good anchor; valued at the 2027-10 horizon with $2.38B horizon net debt",
+    "dcf_single": -2.43,
+    "dcf_split": -2.02,
+    "dcf_single_corrected": -2.51,
+    "dcf_split_corrected": -2.27
+   },
+   {
+    "agent": "agent_3",
+    "site_coverage_errors": [
+     "A201 128 racks -> 133: -$0.08/sh. Fixed",
+     "Corporate R&D booked on the Sparks row (-$2.17/sh): classification only, counted once",
+     "Mining cost on the CoinShares basis carries allocated interest (conservative) while the +1.5% mining terminal ignores the 2032 halving (optimistic). Flagged, not quantified (roughly offsetting)"
+    ],
+    "discount_rates": "8.0% Tydal yrs 1-5 / 10.5% yrs 6-10 and A102 / 11.0% A201, A101 / 12.5% WACC; A202 fee 9%",
+    "sound": "partly",
+    "note": "8.0% does not re-base the 7.75% anchor for the ~1.2-1.5pp rise in Treasuries; ~9% is right (-$0.10/sh)",
+    "dcf_single": 1.04,
+    "dcf_split": 1.63,
+    "dcf_single_corrected": 0.96,
+    "dcf_split_corrected": 1.45
+   },
+   {
+    "agent": "agent_4",
+    "site_coverage_errors": [
+     "A201 128 racks -> 133: -$0.07/sh. Fixed",
+     "All 20 sites present once; converted sites (Tydal, Knoxville, Wenatchee) excluded from the mining base; Massillon rebuild inside mining; Rockdale HPC only on the 179 MW expansion"
+    ],
+    "discount_rates": "9.0% Tydal yrs 1-5 / 11.0% Volta yrs 6-10, GPU offtakes and A202 fee / 12.5% WACC (mining 16%)",
+    "sound": true,
+    "note": "Best-anchored set (TeraWulf re-based from ~4.0% to 5.29%)",
+    "dcf_single": -2.77,
+    "dcf_split": -2.27,
+    "dcf_single_corrected": -2.84,
+    "dcf_split_corrected": -2.34
+   },
+   {
+    "agent": "agent_5",
+    "site_coverage_errors": [
+     "A202 value $475M is driven by a positive-NPV refresh chain, and its fee is discounted at WACC. At NPV-zero refresh and a ~10% fee rate, A202 is about -$0.1B to +$0.1B (-$1.72 for refresh across all GPU sites, -$0.20 for the fee). Fixed",
+     "Mining terminal +1.5% ignores the 2032/2036 halvings: -$0.68 on the rising path. Fixed",
+     "R&D cut to $60M against $112M/yr actual: -$0.70. Fixed",
+     "CoinShares cash cost includes allocated net interest: +$2.75 rising / +$1.5 flat. Fixed in agent's favour",
+     "A201 133 racks: correct (verified)",
+     "Knoxville/Wenatchee valued as colocation leases rather than own GPU cloud: a choice, counted once"
+    ],
+    "discount_rates": "7.0% Tydal yrs 1-5 / 9.5% yrs 6-10 / 11.0% GPU offtakes / 12.5% WACC (A202 fee at WACC)",
+    "sound": false,
+    "note": "7.0% and 9.5% are built from components and sit below the backstopped-lease market evidence; re-anchored to 9.0/11.0% (-$0.34)",
+    "dcf_single": 4.25,
+    "dcf_split": 5.19,
+    "dcf_single_corrected": 2.99,
+    "dcf_split_corrected": 3.39
+   }
+  ],
+  "reconciled_dcf_range": {
+   "split_rate": {
+    "low": -2.34,
+    "high": 3.39,
+    "mean": -0.05
+   },
+   "single_rate": {
+    "low": -2.84,
+    "high": 2.99,
+    "mean": -0.5
+   },
+   "note": "$/sh at 2027-10-01. Splitting the rate adds ~$0.3-0.6/sh, mostly from Tydal. The ~$5.7 spread between agents now comes from mining cost basis, BTC path and refresh economics, not from site coverage or discount rates."
+  },
+  "what_drives_value_most": "BTC/hashprice and the mining cost base (incl. how CoinShares' interest-laden cash cost is used) dominate, then whether GPU refresh cycles earn above their cost of capital, then Tydal's credit (LC issuance). Site coverage is now complete and consistent across agents (20/20, no double-counted MW, no sold sites), and contract-rate choices move DCFs by only ~$0.3-0.9/sh."
+ },
+ "sizing": {
+  "max_weight_pct": 1.5,
+  "confidence": 0.25,
+  "conviction_label_before": "low",
+  "conviction_label_reason": "My checks found no expected-return edge over the S&P 500 per unit of risk: corrected fair value (~$4.9) and every corrected DCF (-$2.34 to $3.39) sit far below the $10.64 spot, the median forecast (~$8.3) is below spot, and realised vol is ~100%.",
+  "entry": "2 tranches: half after Q3 results (~Nov 9-18, 2026) only if Tydal LCs/project financing are confirmed and A201 contracts are shown as executed, half after Tydal commencement (target 2027-03-31)",
+  "overlap": "VST (AI data-center power demand) and, more loosely, GOOGL/AVGO (AI capex cycle and GPU pricing behind the Malaysia cloud and Volta's credit); the BTC/hashprice driver is not shared with any holding",
+  "reason": "To beat SPY's Sharpe at ~100% vol, BTDR needs roughly +40% excess return (above ~$15); my ladder gives that ~21%, so ~0.25 after allowing for an SPY drawdown. Near-term event risk (Tydal LC conditions, $491M of current BIT loans, ATM supply, ~$1.6-1.8B of A202 GPU funding) and the AI-capex overlap cap it at a token 1.5% (~$150)."
+ }
+}

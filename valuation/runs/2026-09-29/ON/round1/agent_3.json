@@ -1,0 +1,79 @@
+{
+  "symbol": "ON", "agent_id": "agent_3", "as_of": "2026-09-29", "horizon": "2027-09-29",
+  "ladder": [
+    {"K": 18.99, "p": 0.99}, {"K": 30, "p": 0.95}, {"K": 38, "p": 0.89}, {"K": 46, "p": 0.80},
+    {"K": 53, "p": 0.73}, {"K": 61, "p": 0.65}, {"K": 68, "p": 0.58}, {"K": 76, "p": 0.50},
+    {"K": 84, "p": 0.43}, {"K": 91, "p": 0.37}, {"K": 103, "p": 0.28}, {"K": 114, "p": 0.21},
+    {"K": 133, "p": 0.13}, {"K": 152, "p": 0.08}, {"K": 190, "p": 0.03}
+  ],
+  "ladder_1m": [
+    {"K": 60.76, "p": 0.89}, {"K": 64.56, "p": 0.81}, {"K": 68.36, "p": 0.71}, {"K": 70.63, "p": 0.65},
+    {"K": 72.91, "p": 0.58}, {"K": 75.95, "p": 0.49}, {"K": 78.99, "p": 0.40}, {"K": 81.27, "p": 0.34},
+    {"K": 83.55, "p": 0.28}, {"K": 87.34, "p": 0.21}, {"K": 91.14, "p": 0.14}
+  ],
+  "one_month_reasoning": "onsemi's Q3 2026 report is estimated for ~Nov 2, 2026 (unconfirmed; last year's pattern), i.e. just outside the Oct 29 window, so no company earnings print is expected inside it. In-window items: the broad price increase effective Oct 10 (mildly positive, already announced Sep 16), peer analog/power reports in late October (e.g. Texas Instruments, NXP, STMicro) that can move the group either way, and possible S-4/Synaptics shareholder-vote milestones (neutral, largely known). The stock has already bounced ~14% from the $66.60 Analyst Day close (Sep 16), so short-term reversal and momentum roughly offset. With no strong edge I use a near-symmetric lognormal centred slightly below spot (median ~$75.6) with ~17.5% monthly vol (64%/3.5 = 18%, trimmed a touch since no earnings fall in the window).",
+  "fair_value": {
+    "value": 79.0,
+    "method": "Blend of 17x skeptic-haircut NTM EPS of $4.40 (= $75) at 60% weight and a 5% FCF yield on ~$1.7B forward FCF (= $85) at 40% weight, giving ~$79.",
+    "methods": [
+      {"name": "P/E", "value": 75.0, "weight": 0.6,
+       "inputs": "NTM EPS as of Sep 2027 $4.40 x 17x forward P/E",
+       "inputs_detail": [
+         {"input": "FY2027 consensus non-GAAP EPS", "value": "$4.53 (31 analysts; was $4.31 90 days ago)", "basis": "consensus", "source_ids": [7], "derivation": ""},
+         {"input": "Skeptic NTM EPS (Q4'27-Q3'28)", "value": "$4.40", "basis": "estimate", "source_ids": [7, 5, 9, 10], "derivation": "Haircut FY27 consensus ~10% to ~$4.10 for cyclical auto exposure, Chinese SiC pricing pressure and power-discrete pricing risk flagged by TD Cowen, then roll forward ~9 months with ~10% growth; Synaptics (close mid-2027, 12% dilution, accretive only within 18 months) treated as roughly EPS-neutral in the window."},
+         {"input": "Forward P/E multiple", "value": "17x", "basis": "judgment", "source_ids": [3, 4], "derivation": "Current forward P/E is near 17x per Sep 17 coverage; I hold it flat rather than re-rate, since the bull re-rating needs AI-DC and 2030 targets that land mostly in 2028+ (Analyst Day critique)."}
+       ]},
+      {"name": "FCF yield", "value": 85.0, "weight": 0.4,
+       "inputs": "Forward FCF ~$1.7B / 5% yield = $34B equity, less ~$0.6B net debt, / 397M diluted shares",
+       "inputs_detail": [
+         {"input": "TTM FCF margin", "value": "24.2%", "basis": "reported", "source_ids": [2], "derivation": ""},
+         {"input": "2027 revenue", "value": "$7.0B (vs consensus $7.42B)", "basis": "estimate", "source_ids": [7, 5], "derivation": "Consensus $7.42B haircut ~5% for cycle risk and business exits weighing on growth."},
+         {"input": "Forward FCF", "value": "$1.7B", "basis": "estimate", "source_ids": [2, 7], "derivation": "~$7.0-7.4B NTM revenue x ~23-24% FCF margin (TTM 24.2%)."},
+         {"input": "Net debt", "value": "~$0.6B (cash+ST inv $3.86B vs debt $4.46B at Jul 3 2026)", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Diluted shares", "value": "397.0M non-GAAP", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "FCF yield", "value": "5%", "basis": "judgment", "source_ids": [3, 10], "derivation": "Cyclical auto/industrial semi with ~8% short float and China SiC competition warrants a yield above large-cap analog peers; 5% sits between trough (6-7%) and peak (3-4%) cycle valuations."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 45.0, "prob": 0.25, "story": "Auto/industrial recovery stalls (Europe auto weak), Chinese SiC substrates (~$400 vs ~$1,200/wafer) crush SiC pricing, power-discrete pricing fades once the Oct 2026 hikes lap, AI-DC content disappoints; FY27 EPS ~$3.2 and multiple compresses to ~14x, with Synaptics dilution and integration noise from mid-2027. Revisits the 52-week low area."},
+    "base": {"price": 80.0, "prob": 0.50, "story": "Margins keep recovering toward 41-42% gross, FY27 EPS lands ~$4.1-4.5, AI-DC grows but the 2030 roadmap is not paid for in advance; Synaptics closes mid-2027 roughly EPS-neutral; multiple holds ~17x."},
+    "bull": {"price": 120.0, "prob": 0.25, "story": "Tight supply (lead times 27->32 weeks, broad price increases) plus 800V DC AI rack content drive upside revisions; FY28 EPS path >$5.2 and the market re-rates toward 22-23x, retracing toward the June high."}
+  },
+  "thesis_break_price": 50.0,
+  "thesis_break_reason": "Below ~$50 (about 11x FY27 consensus and ~34% below spot, near the Mar-Apr 2026 trading range) the price would most likely reflect a genuine earnings reset: Q3/Q4 guide-downs from auto/industrial demand, SiC price collapse from Chinese competition, or a failed/renegotiated Synaptics deal, rather than ordinary volatility in a 64%-vol stock.",
+  "catalysts": [
+    {"date": "2026-10-10", "event": "Broad price increase takes effect (power MOSFET, SiC, GaN, gate drivers)", "direction": "+"},
+    {"date": "2026-11-02", "event": "Q3 2026 results and Q4 guide (estimated date; Q3 guide $1.65-1.75B, EPS $0.81-0.93)", "direction": "?"},
+    {"date": "2027-02", "event": "Q4 2026 results and 2027 outlook", "direction": "?"},
+    {"date": "2027-H1", "event": "Synaptics shareholder vote and regulatory (incl. China SAMR) approvals", "direction": "?"},
+    {"date": "2027-mid", "event": "Synaptics deal close: ~12% dilution, integration, purchase-accounting noise", "direction": "-"},
+    {"date": "2027-05", "event": "Q1 2027 results: test of whether 2027 consensus EPS $4.53 (+41% y/y) is achievable", "direction": "?"},
+    {"date": "2027-08", "event": "Q2 2027 results", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Whether FY27 consensus EPS of $4.53 (+41% y/y) is realistic for a company with ~50% auto exposure in a cyclical market",
+    "Durability of pricing power in power discretes and SiC against subsidised Chinese substrate/device makers",
+    "AI data-center content ramp (800V DC) timing: most payoff lands 2028+",
+    "Synaptics integration, consumer/wireless exposure and dilution; approvals timing",
+    "Semiconductor-sector beta and macro risk in a 64%-realised-vol stock"
+  ],
+  "reasoning": "Skeptic lane. Facts: Q2 2026 revenue $1.60B (+9% y/y), non-GAAP EPS $0.74, TTM FCF margin 24.2%, net debt ~$0.6B, 397M diluted shares; Q3 guide $1.65-1.75B / EPS $0.81-0.93. Consensus FY26/FY27 EPS $3.20/$4.53, revised up over 60-90 days, so at $75.95 the stock trades ~17x FY27, not demanding. The bear evidence is real but mostly about timing and quality rather than solvency: the stock halved from the $134.92 June peak after the all-stock ~$7B Synaptics deal (Jun 25, ~12% dilution, close mid-2027) and a TD Cowen downgrade citing narrative dilution, niche NPU assets, thin revenue synergies, elevated inventory, business exits and power-discrete pricing pressure; the Sep 16 Analyst Day (2030: $11B revenue, 53% GM) fell 9% because payoff is 2028+ and the TAM slide shrank $30B; Chinese SiC wafers at ~1/3 the Western cost forced Czech job cuts; the CFO sold 90k shares in April at $80-100; short float ~8% (June). Offsetting: balance sheet is strong (0.6x pro forma net leverage, convertibles, no covenant stress found), estimates are rising, lead times are extending and a broad price increase takes effect Oct 10. So I find no hidden accounting or credit landmine; the downside is a cyclical earnings miss plus multiple compression. Fair value ~$79 (P/E $75 at 60%, FCF yield $85 at 40%). Scenarios 25/50/25 at $45/$80/$120 give a mean ~$81 and median ~$77. Ladder: lognormal around a ~$76-77 median with ~52% vol (below the 64% realised, which was inflated by the rally-and-crash) and a fattened left tail to reflect the 25% bear case. Research was limited: onsemi IR pages returned 503 and paid data endpoints (price targets, statistics) were unavailable; no credit-agency reports were reachable.",
+  "lane": "skeptic",
+  "sources": [
+    {"title": "onsemi Q2 2026 results, Exhibit 99.1 (8-K)", "url": "https://www.sec.gov/Archives/edgar/data/0001097864/000114036126030989/ef20079200_ex99-1.htm", "date": "2026-08-03", "type": "filing", "in_lane": false},
+    {"title": "onsemi Q2 2026 slides: margins expand, AI data center revenue doubles", "url": "https://www.investing.com/news/company-news/onsemi-q2-2026-slides-margins-expand-ai-data-center-revenue-doubles-93CH-4832507", "date": "2026-08-03", "type": "press", "in_lane": false},
+    {"title": "ON Semiconductor Stock Fell 9% After Its Analyst Day", "url": "https://finance.yahoo.com/markets/stocks/articles/semiconductor-stock-fell-9-analyst-145422594.html", "date": "2026-09-16", "type": "press", "in_lane": true},
+    {"title": "CEO Claims Investors Got It Wrong on $30 Billion Shortfall", "url": "https://finance.yahoo.com/markets/stocks/articles/ceo-claims-investors-got-wrong-163516827.html", "date": "2026-09-17", "type": "press", "in_lane": true},
+    {"title": "onsemi downgraded by TD Cowen after Synaptics deal clouds growth story", "url": "https://finance.yahoo.com/markets/stocks/articles/onsemi-downgraded-td-cowen-synaptics-131706906.html", "date": "2026-06-26", "type": "sell-side", "in_lane": true},
+    {"title": "Synaptics Form 425: onsemi to acquire Synaptics (terms, 88/12 ownership, synergies, 0.6x leverage)", "url": "https://www.sec.gov/Archives/edgar/data/0000817720/000114036126026416/ef20076840_425.htm", "date": "2026-06-25", "type": "filing", "in_lane": true},
+    {"title": "Alpha Vantage earnings estimates for ON (consensus EPS/revenue and revisions)", "url": "https://www.alphavantage.co/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "Alpha Vantage insider transactions for ON (CFO sales Apr 2026)", "url": "https://www.alphavantage.co/", "date": "2026-09-30", "type": "data", "in_lane": true},
+    {"title": "TrendForce: Onsemi reportedly plans up to 300 job cuts in Czech plant as low-cost Chinese SiC competition intensifies", "url": "https://www.trendforce.com/news/2026/06/08/news-onsemi-reportedly-plans-up-to-300-job-cuts-in-czech-plant-as-low-cost-chinese-sic-competition-intensifies/", "date": "2026-06-08", "type": "trade", "in_lane": true},
+    {"title": "MarketBeat onsemi short interest (7.98% of float, Jun 15 2026)", "url": "https://www.marketbeat.com/stocks/NASDAQ/ON/short-interest/", "date": "2026-06-15", "type": "data", "in_lane": true},
+    {"title": "ON Semiconductor Has Cratered for 3 Months: This Wall Street Pro...", "url": "https://finance.yahoo.com/markets/stocks/articles/semiconductor-cratered-3-months-wall-112529235.html", "date": "2026-09-18", "type": "press", "in_lane": true},
+    {"title": "onsemi Price Increase October 2026: Broad Repricing (Aetrix distributor blog)", "url": "https://www.aetrixelec.com/blog/onsemi-price-increase-october-2026", "date": "2026-09-16", "type": "alt-data", "in_lane": false},
+    {"title": "MarketBeat onsemi earnings date (Q3 est. Nov 2, 2026)", "url": "https://www.marketbeat.com/stocks/NASDAQ/ON/earnings/", "date": "2026-09-30", "type": "data", "in_lane": false},
+    {"title": "247 Wall St: onsemi facing continued slowdown in SiC and greater competition in CIS from Sony", "url": "https://247wallst.com/technology-3/2026/05/11/onsemi-is-facing-a-continued-slowdown-in-sic-and-greater-competition-in-cis-from-sony/", "date": "2026-05-11", "type": "press", "in_lane": true}
+  ]
+}

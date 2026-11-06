@@ -1,0 +1,76 @@
+{
+  "symbol": "LSCC", "agent_id": "agent_1", "as_of": "2026-10-02", "horizon": "2027-10-02",
+  "ladder": [
+    {"K": 34, "p": 0.99}, {"K": 54, "p": 0.95}, {"K": 67, "p": 0.895}, {"K": 80, "p": 0.825},
+    {"K": 94, "p": 0.745}, {"K": 107, "p": 0.665}, {"K": 121, "p": 0.585}, {"K": 134, "p": 0.515},
+    {"K": 147, "p": 0.445}, {"K": 161, "p": 0.38}, {"K": 181, "p": 0.30}, {"K": 201, "p": 0.235},
+    {"K": 234, "p": 0.155}, {"K": 268, "p": 0.10}, {"K": 335, "p": 0.045}
+  ],
+  "ladder_1m": [
+    {"K": 107.20, "p": 0.90}, {"K": 113.90, "p": 0.83}, {"K": 120.60, "p": 0.73}, {"K": 124.62, "p": 0.665},
+    {"K": 128.64, "p": 0.60}, {"K": 134.00, "p": 0.505}, {"K": 139.36, "p": 0.415}, {"K": 143.38, "p": 0.355},
+    {"K": 147.40, "p": 0.30}, {"K": 154.10, "p": 0.215}, {"K": 160.80, "p": 0.15}
+  ],
+  "one_month_reasoning": "The window (to 2026-11-01) most likely contains no earnings: fiscal Q3 ends around Oct 3, and Lattice reported Q2 on Aug 4, about 4.5 weeks after the July 4 quarter-end. On that cadence Q3 results should land around Nov 3, just after the window. The date had not been announced when I checked, so there is some chance it falls inside. The only dated filing-based event is the first lock-up release on the AMI consideration shares: per the 7/27/2026 8-K, 25% of the ~5.2M shares are freed after each 90 days, so about 1.3M shares (~0.9% of the 142.0M outstanding) free up around Oct 25. THL also holds two underwritten block-trade rights, so a block sale is a modest overhang. The stock rallied from $111 (week of 9/14) to $134 (+21% in two weeks), which adds a little short-term reversal risk. Against that, Q3 guidance ($245-265M revenue, $0.54-0.58 EPS) is well above the Street's earlier numbers, and pre-earnings run-ups into a beat-and-raise pattern are common. These roughly cancel, so I keep a near-symmetric lognormal centred at about $134 with monthly vol of 61%/3.5 = 17.4%, slightly shaded down for the block-trade overhang.",
+  "fair_value": {
+    "value": 138.0,
+    "method": "Blend of a forward P/E (NTM EPS of about $3.80 as of Oct 2027 x 38 = $144) and EV/NTM sales (about $1.6B x 12, less about $0.45B net debt, over 144M shares = $130). Weights are 60/40, giving about $138.",
+    "methods": [
+      {"name": "P/E", "value": 144.0, "weight": 0.6,
+       "inputs": "NTM non-GAAP EPS at Oct 2027 (Q4'27-Q3'28) of about $3.80 x 38 = $144. 2027E non-GAAP EPS of about $3.20 on about $1.38B revenue.",
+       "inputs_detail": [
+         {"input": "Q3 2026 non-GAAP EPS guidance", "value": "$0.54-0.58", "basis": "guidance", "source_ids": [1], "derivation": ""},
+         {"input": "Q2 2026 non-GAAP EPS / revenue", "value": "$0.53 / $201.1M (+62% y/y), non-GAAP op margin 38%", "basis": "reported", "source_ids": [1], "derivation": ""},
+         {"input": "Exit-2026 revenue run rate", "value": "about $1.2B (about $300M in Q4'26)", "basis": "guidance", "source_ids": [5], "derivation": ""},
+         {"input": "2027E revenue", "value": "$1.38B (FPGA $1.12B + AMI $0.26B)", "basis": "estimate", "source_ids": [1, 5], "derivation": "FPGA starts from the Q3'26 guide of $220M and grows about 7% q/q, giving about $1.12B for 2027. Management says 2027 is 'pretty much booked'. AMI: more than $200M in CY2026 x 1.25 (management's 2027 growth comment) gives about $260M."},
+         {"input": "2027E non-GAAP gross margin / opex", "value": "70% / about $380M", "basis": "estimate", "source_ids": [1, 5], "derivation": "CFO's '70-ish%' long-term GM. Opex runs from the Q3 guide of $83-90M per quarter and grows about 10%."},
+         {"input": "Interest and tax", "value": "about $40M interest on the $925M term loan (deleveraging); 6-8% tax", "basis": "estimate", "source_ids": [3, 4, 1], "derivation": "Term SOFR plus 1.00-1.75% on a balance that declines as FCF repays it. Q3 tax guide is 4-6%, rising modestly."},
+         {"input": "Diluted shares", "value": "about 144M", "basis": "reported", "source_ids": [2], "derivation": "142.03M outstanding at 7/30/2026 (includes about 5.2M AMI shares), plus about 2M dilution from RSUs and AMI employee grants."},
+         {"input": "NTM EPS at horizon", "value": "about $3.80", "basis": "estimate", "source_ids": [5, 1], "derivation": "2027E EPS of $3.20 grown about 20%, consistent with the $3B-by-2030 revenue target (about 30% CAGR) and EPS growing faster than revenue."},
+         {"input": "P/E multiple", "value": "38x", "basis": "judgment", "source_ids": [8, 1], "derivation": "The stock trades at about 45x my NTM EPS today (about $3.00) and about 42x 2027E. I assume modest compression as growth slows from 60%+ toward 25-30% and the company carries leverage. Consensus 2027 EPS of $2.41 (likely pre-AMI/stale) implies Street targets of $148-165, which would be 60x+ on that base."}
+       ]},
+      {"name": "EV/sales", "value": 130.0, "weight": 0.4,
+       "inputs": "NTM revenue at Oct 2027 of about $1.6B x 12 = EV $19.2B, less net debt of about $0.45B, over 144M shares = $130.",
+       "inputs_detail": [
+         {"input": "NTM revenue at horizon", "value": "about $1.6B", "basis": "estimate", "source_ids": [1, 5], "derivation": "2027E of $1.38B rolled forward at about 20% growth, on the $3B-by-2030 trajectory."},
+         {"input": "EV/sales multiple", "value": "12x", "basis": "judgment", "source_ids": [2, 1], "derivation": "Current EV is about $19.9B (134 x 142M + about $0.83B net debt), or about 15x my NTM revenue of $1.3B. I compress to 12x for slowing growth and the lower-multiple firmware mix, while keeping a premium for a 40%+ EBITDA margin."},
+         {"input": "Net debt at horizon", "value": "about $0.45B", "basis": "estimate", "source_ids": [2, 3, 5], "derivation": "$925M term loan drawn 7/27/2026 against about $173M cash at 7/4/2026 less the cash part of the purchase gives net debt of about $0.83B at close. FCF of about $450M/yr (Q2 FCF margin 40%) is partly applied to the target of under 2x leverage by end-2027."}
+       ]}
+    ]
+  },
+  "scenarios": {
+    "bear": {"price": 75.0, "prob": 0.25, "story": "AI server capex digests in 2027, or distributor inventory corrects (distributors are now 95% of revenue, up from 84%). FPGA growth stalls, 2027 EPS comes in around $2.6, and the multiple compresses to about 28x. Leverage of about $0.8B amplifies the de-rating."},
+    "base": {"price": 145.0, "prob": 0.50, "story": "The $1.2B exit run rate holds, 2027 revenue is about $1.38B, EPS is about $3.2 and NTM EPS about $3.8 at the horizon, valued at about 38x. Deleveraging is on track."},
+    "bull": {"price": 215.0, "prob": 0.25, "story": "FPGA attach per AI server keeps rising (more than 3 units per server, ASP above $4), AMI grows 25%+, and the $3B-2030 path gains credibility. NTM EPS of about $4.6 x 45x."}
+  },
+  "thesis_break_price": 85.0,
+  "thesis_break_reason": "Below about $85 (about 27x my 2027E EPS, and under the August-September lows of $104-110 by a wide margin), the market would be pricing an end to the AI-server FPGA growth leg. Likely causes are a guide-down showing the 'pretty much booked' 2027 visibility was distributor stocking, or an AMI customer-neutrality loss with hyperscalers. Ordinary semiconductor volatility at 61% annual vol would not usually take it there without such news.",
+  "catalysts": [
+    {"date": "2026-10-25", "event": "First 25% lock-up release of the about 5.2M AMI consideration shares held by THL and others; possible underwritten block trade", "direction": "-"},
+    {"date": "2026-11 (early, likely about Nov 3)", "event": "Q3 2026 results and Q4 guide; check against the about $1.2B exit run rate and the first AMI quarter", "direction": "?"},
+    {"date": "2027-01/2027-02", "event": "Q4 2026 results and first full-year 2027 framework", "direction": "?"},
+    {"date": "2027-01-25 / 2027-04-25 / 2027-07-27", "event": "Further AMI share lock-up releases (25% per 90 days; full release at 1 year)", "direction": "-"},
+    {"date": "2027-05", "event": "Q1 2027 results; deleveraging progress", "direction": "?"},
+    {"date": "2027-08", "event": "Q2 2027 results; 2H27 and 2028 visibility", "direction": "?"}
+  ],
+  "key_uncertainties": [
+    "Durability of AI-server-driven Compute & Communications growth (+83% y/y in Q2), and whether distributor sell-in (95% of revenue) is running ahead of sell-through",
+    "AMI integration and silicon-neutrality: hyperscaler and OEM customers might move firmware work away from a chip vendor",
+    "Multiple: the stock sits at about 45x NTM EPS, so a small slowdown can cause outsized de-rating",
+    "Assembly capacity constraints and cost pass-through flagged on the Q2 call",
+    "Leverage of about $0.8B of net debt after the AMI close, plus share overhang from THL lock-up releases and block-trade rights"
+  ],
+  "reasoning": "Primary documents show a sharp inflection. Q2'26 revenue was $201.1M (+62% y/y), non-GAAP EPS $0.53 (beating the top of guidance), adjusted EBITDA margin 43% and FCF margin 40%. Compute & Communications was $125.9M (62.6% of revenue). Q3 guidance is $210-230M for FPGA (+65% y/y) and $245-265M including about two months of AMI, with EPS of $0.54-0.58. The AMI deal ($1.65B: about $1B cash and 5.2M shares) closed 7/27, funded with a $925M term loan. Shares outstanding were 142.0M on 7/30. On the call, management guided to a $1.2B exit-2026 run rate, said 2027 is 'pretty much booked', expects AMI to grow 25% in 2027, targets under 2x leverage by end-2027, and set a $3B-by-2030 goal. My bottom-up 2027E is about $1.38B revenue and about $3.20 EPS, well above the stale web consensus of $2.41. Applying a compressed but premium multiple gives a fair value of about $138, close to the $134 price. The stock is fully valued rather than cheap, so I centre the distribution near spot (median about $136). Dispersion: realized vol is 61%, and the stock swung between $104 and $157 in the last four months alone. I use an effective 12-month log-vol of about 0.55, slightly below realized because the business visibility is better than in past cycles, and the bear/bull scenarios (25/50/25 at $75/$145/$215) cross-check the tails. Filing-only details the recaps skip: distributor concentration rose to 95% of revenue (two distributors hold 49% and 39% of AR), a $24M step-up in cash paid for software/IP licenses, $32.9M of RSU tax withholding in 1H, the AMI lock-up schedule, and routine 10b5-1 insider sales in Aug-Sep (about $0.6M). Limits: Twelve Data and Alpha Vantage estimate endpoints were unavailable because of plan and rate limits. I could not fetch the IR-hosted transcript (503) and used a transcript summary page instead. Consensus figures come from an aggregator and may be stale.",
+  "lane": "primary",
+  "sources": [
+    {"title": "Lattice Q2 2026 earnings press release (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926025650/ex_971139.htm", "date": "2026-08-04", "type": "filing", "in_lane": true},
+    {"title": "Lattice Form 10-Q for quarter ended July 4, 2026", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926025657/lscc20260704_10q.htm", "date": "2026-08-04", "type": "filing", "in_lane": true},
+    {"title": "8-K: Completion of AMI acquisition, term loan borrowing, lock-up terms", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926024519/lscc20260723_8k.htm", "date": "2026-07-27", "type": "filing", "in_lane": true},
+    {"title": "8-K: Second Amended and Restated Credit Agreement ($200M revolver, $950M DDTL)", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926022141/lscc20260629_8k.htm", "date": "2026-06-30", "type": "filing", "in_lane": true},
+    {"title": "Q2 2026 Lattice Semiconductor earnings call (transcript summary)", "url": "https://allmind.ai/earnings/event/2947085", "date": "2026-08-04", "type": "company", "in_lane": true},
+    {"title": "Press release: Lattice completes acquisition of AMI (8-K Ex. 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926024519/ex_993320.htm", "date": "2026-07-27", "type": "filing", "in_lane": true},
+    {"title": "Form 4 filings, SVP R&D and General Counsel (10b5-1 sales)", "url": "https://www.sec.gov/Archives/edgar/data/855658/000143774926030535/rdgdoc.xml", "date": "2026-09-16", "type": "filing", "in_lane": true},
+    {"title": "LSCC stock forecast (consensus EPS and targets aggregator)", "url": "https://www.wallstreetzen.com/stocks/us/nasdaq/lscc/stock-forecast", "date": "2026-09", "type": "data", "in_lane": false},
+    {"title": "Twelve Data LSCC weekly price history", "url": "https://twelvedata.com", "date": "2026-10-02", "type": "data", "in_lane": false}
+  ]
+}
