@@ -134,10 +134,15 @@ def research(syms):
     try: pend = json.load(open(f'{V}/data/name_updates.json')).get('names') or {}
     except FileNotFoundError: pend = {}
     got, why = dict(meta.get('research') or {}), {}
+    import datetime as _dt
+    built = _dt.datetime.fromisoformat(meta['base'].split('|')[1].replace('Z', '+00:00')).timestamp()  # the page build the slice holds
     for s in syms:
         rs = sorted(p.split('/')[-3] for p in glob.glob(f'{V}/runs/*/{s}/supervisor.json'))
-        rs = [r for r in rs if D0 < r <= today]
-        if not rs: why[s] = f'no research round after the slice date {D0}'; continue
+        # 2026-11-10: also a round dated on or before D0 that was finished (or updated in place) after the page build the
+        # slice was cut from: NVDA/AMAT rounds dated D0 and T/VST updated in their 11-05 rounds all finished after it
+        def touched(r): return max((os.path.getmtime(f) for f in (f'{V}/runs/{r}/{s}/supervisor.json', f'{V}/runs/{r}/{s}/model_engine.json') if os.path.exists(f)), default=0) > built
+        rs = [r for r in rs if D0 < r <= today or (r <= D0 and touched(r))]
+        if not rs: why[s] = f'no research round after the slice date {D0} or finished after the slice build'; continue
         R = rs[-1]; rd = f'{V}/runs/{R}/{s}'
         try: ca = json.load(open(f'{rd}/citation_audit.json'))
         except FileNotFoundError: ca = {}
