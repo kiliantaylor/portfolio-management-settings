@@ -8,7 +8,7 @@ one is told to drop its watch right away. Prints nothing (no effect) for the own
 """
 import json, os, re, sys
 
-OWNER = '014feK2CECVJVEWGcpuYtfF1'  # Daily routines session (session_/cse_ prefix stripped)
+OWNER = '01JyCFfTD4vhsPLj8t6K57Au'  # Daily routines session since 2026-11-11 (was 014feK2CECVJVEWGcpuYtfF1) (session_/cse_ prefix stripped)
 SHARED = {
     '9w9Hwe7BLfJyJLmC18Yps5': 'Price Targets',
     'MDSp6x8D7xVUaVkhNGvYNs': "Kilian's Holdings dashboard",
