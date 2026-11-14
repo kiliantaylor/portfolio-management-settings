@@ -1,0 +1,1718 @@
+{
+ "symbol": "KEYS",
+ "as_of": "2026-11-13",
+ "research_as_of": "KEYS",
+ "spot": 297.68,
+ "agents": [
+  {
+   "agent": "agent_1",
+   "fair_value": 309.04,
+   "method_text": "Approved quarterly driver build valued at the horizon on one SBC basis: 70% NTM P/E 20.9x ex-SBC (= 22.9x SBC-costed: 4-peer median 23.8x, own 23.6x, k=0.8, -0.75 turn post-horizon risks) on model NTM EPS ~$16.18 = $338.25; 30% normalised leg: SBC-costed mid-cycle EPS $12.62 x 23.8x = $300.40. Blend $326.90.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 328.97,
+     "weight": 0.7,
+     "inputs": "Horizon NTM (FY28-weighted) non-GAAP ex-SBC NOPAT + after-tax interest on ~$2.0B net cash / 170.8M shares = ~$16.18 x 20.9x (= SBC-costed EPS ~$14.77 x 22.9x)",
+     "inputs_detail": [
+      {
+       "input": "driver:wl_capture",
+       "base": 0.065818,
+       "years": [
+        0.052094,
+        0.042027,
+        0.038688,
+        0.03521
+       ],
+       "basis": "estimate",
+       "source": "Market: LightCounting AI-cluster Ethernet optics, CY2025 $16.5B (Jan 2026 forecast quoted in POET Technologies FY2025 20-F), +120% 2026 and +76% 2027 (Lightwave 2026-10-08), CY2028 by LightCounting optics/capex ratio x Big-4 capex (Lightwave 2026-03-10; series as gated in driver_models/CRDO/quarterly/set.json optical_tam), CY2029 +27.1% (linear fade of growth from +30.6% in 2028 to LightCounting's +20% by 2031). Wireline: KEYS does not disclose wireline dollars; Q3 FY26 prepared remarks: \"Wireline revenue exceeded wireless revenue for the first time this quarter\" of commercial communications $1,006M (https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf); Q3 FY26 call: wireline roughly two-thirds R&D, one-third manufacturing (Motley Fool transcript 2026-08-25).",
+       "derivation": "Wireline quarterly estimates (flag: not disclosed): FY25 229/257/290/310 (=1,086; share of CC rising 40->47%, wireline grew double digits FY25 per Q4 FY25 remarks), FY26 358/428/520 (Q3 > wireless 486) and Q4 585 (FY26 1,891). FY growth = 1/3 x market growth (manufacturing test scales with units) + 2/3 x R&D growth (estimate +25% FY27, +15% FY28, +10% FY29; no source, the main judgment): FY27 +42.0% -> 2,685, FY28 +20.2% -> 3,228, FY29 +15.7% -> 3,734. Fiscal FY n paired with CY n (variant: test leads deployment by 2-3 quarters). Quarterly market = log-linear interpolation through each CY midpoint, rescaled so each FY sums to its CY total; forecast wireline quarters grow at one constant quarterly rate per year from the prior quarter so the FY totals hold (FY27 +5.6%/qtr, FY28 +4.2%/qtr, FY29 +3.4%/qtr), capture = wireline / market. Capture FY26 5.21% -> FY27 4.20%, FY28 3.87%, FY29 3.52%. Variant: slower R&D (+15/+10/+5%) gives CC 4,526/5,076/5,571. Supply constrains conversion for several quarters (CFO, Q3 FY26 call).",
+       "value": "base 0.065818, years [0.052094, 0.042027, 0.038688, 0.03521]",
+       "source_ids": [
+        13,
+        3,
+        2,
+        4
+       ],
+       "fact_ids": [],
+       "confidence": "medium",
+       "variant_view": "My view: FY27 wireline +42% (2,685) is plausible given orders more than doubling (prepared remarks) but supply caps conversion; I would hold it. Variant: R&D +15/10/5% gives CC 4,526/5,076/5,571 (-3% revenue FY27, about -$9/share)."
+      },
+      {
+       "input": "driver:wireless_rev",
+       "base": 1402,
+       "years": [
+        1821,
+        1967.0,
+        2085.0,
+        2210.0
+       ],
+       "basis": "estimate",
+       "source": "Commercial communications actuals (Ex.99.1 end-market tables) less the wireline estimate; Q4 FY25 prepared remarks: wireless orders and revenue grew high-single digits in FY25; Spirent (closed 2025-10-15) adds wireless network test/assurance and positioning (10-Q Q3 FY26), incremental revenue 204 in 9M FY26.",
+       "derivation": "FY25 1,402 and FY26 1,821 (+30%: Spirent ~+270, organic ~+11%) = CC less wireline estimates. FY27 +8% (6G R&D, non-terrestrial networks, AI-edge supply chain per Q1-Q3 FY26 remarks; Spirent now organic) -> 1,967; FY28 +6% -> 2,085; FY29 +6% -> 2,210. Quarters 24.0/24.5/25.5/26.0%. Variant: wireless back to the FY24 decline (-7%).",
+       "value": "base 1402, years [1821, 1967.0, 2085.0, 2210.0]",
+       "source_ids": [
+        13,
+        2,
+        8,
+        1
+       ],
+       "fact_ids": [],
+       "confidence": "medium",
+       "variant_view": "My view: +8% FY27 slightly generous after Spirent laps; variant +4% = about -$2/share."
+      },
+      {
+       "input": "driver:adg_rev",
+       "base": 1238,
+       "years": [
+        1454,
+        1585.0,
+        1680.0,
+        1764.0
+       ],
+       "basis": "estimate",
+       "source": "Actuals: KEYS Ex.99.1 end-market tables (as cc_rev). 10-Q Q3 FY26: ADG +14% Q3, +19% 9M, radar, spectrum operations, space and satellite; Asia Pacific down.",
+       "derivation": "Q4 FY26 376 = Q3 339 x 1.11 (Q4/Q3 ratio 1.10 FY24, 1.11 FY25: US government fiscal year-end). FY2027 1,585 (+9% on FY26 1,454; 9M FY26 organic ~+12-14% after the ~5-7pt acquisition effect, faded). FY2028 1,680 (+6%), FY2029 1,764 (+5%). Seasonality avg FY24/25 (25.4/24.2/23.9/26.5%). Variant: a budget continuing-resolution year holds growth near +3%.",
+       "value": "base 1238, years [1454, 1585.0, 1680.0, 1764.0]",
+       "source_ids": [
+        13,
+        2,
+        1
+       ],
+       "fact_ids": [],
+       "confidence": "medium",
+       "variant_view": "My view: agree (+9% FY27); defense orders up double digits all regions (prepared remarks)."
+      },
+      {
+       "input": "driver:ei_rev",
+       "base": 1649,
+       "years": [
+        1989,
+        2188.0,
+        2341.0,
+        2481.0
+       ],
+       "basis": "estimate",
+       "source": "Actuals: KEYS Ex.99.1 segment / end-market tables. 10-Q Q3 FY26: EISG +21% (acquisitions +4pt), AI semis, PCB interconnect, SDV/autonomy, digital health.",
+       "derivation": "Q4 FY26 526 = Q3 501 x 1.05 (Q4/Q3 1.06 FY24, 1.04 FY25). FY2027 2,188 (+10% on FY26 1,989; Q3 organic ~+17% slowing as the semis/AI tail eases), FY2028 2,341 (+7%), FY2029 2,481 (+6%). Quarters by FY25 seasonality (25.2/23.8/25.0/26.0%; FY24 was a downcycle year and is skipped). Variant: industrial/auto downturn as FY24 (-12%).",
+       "value": "base 1649, years [1989, 2188.0, 2341.0, 2481.0]",
+       "source_ids": [
+        13,
+        2,
+        1
+       ],
+       "fact_ids": [],
+       "confidence": "medium",
+       "variant_view": "My view: agree (+10% FY27). Variant FY24-style -12% in the downside case."
+      },
+      {
+       "input": "driver:csg_margin",
+       "base": 0.264627,
+       "years": [
+        0.327352,
+        0.340118,
+        0.345118,
+        0.345119
+       ],
+       "basis": "estimate",
+       "source": "Actuals: Ex.99.1 segment results (income from operations / revenue). Q2 FY26 includes the IEEPA tariff refund (+$38M CSG op income, -$34M revenue; Q3 FY26 10-Q MD&A table).",
+       "derivation": "Q4 FY26 35.0%: the Q4 EPS guide midpoint 3.37 x 172M / 0.86 non-GAAP tax less ~$4M net other income implies ~$670M non-GAAP op income on $1.94B (34.5%), CSG Q3 34.0% + ~1pt Q4 step (guide implies company margin +1.3pt q/q from Q3 33.2%; FY25 CSG Q4 step was +0.5pt). FY2027 34.0% (quarters 33.5/34.0/34.0/34.5): held at the Q3 FY26 actual, not the guide-implied exit, because Q3 had peak mix; FY2028-29 34.5% (+0.5pt operating leverage on +7% growth; Q3 FY26 incremental margin was 52%). Variant: mix normalisation back to the FY25 26.5% level is the downside case (~-7.5pt vs FY27 34.0%).",
+       "value": "base 0.264627, years [0.327352, 0.340118, 0.345118, 0.345119]",
+       "source_ids": [
+        13,
+        2,
+        5,
+        1
+       ],
+       "fact_ids": [],
+       "confidence": "medium",
+       "variant_view": "My view: 34.0-34.5% is a peak-mix margin (proxy: FY23 peak 30.3%); I keep it in the P/E leg but weight 30% on a 29% mid-cycle leg. Variant 32.5% FY28 lowers the P/E leg ~$16/share."
+      },
+      {
+       "input": "driver:eisg_margin",
+       "base": 0.246816,
+       "years": [
+        0.308859,
+        0.310043,
+        0.310042,
+        0.310042
+       ],
+       "basis": "estimate",
+       "source": "Actuals: Ex.99.1 segment results. Q2 FY26 includes +$19M IEEPA refund (10-Q).",
+       "derivation": "Q4 FY26 32.0% (Q3 31.0% + Q4 seasonal +1pt; FY25 Q4 25.4% vs Q3 22.3%). FY2027-29 31.0% (quarters 30.5/31.0/31.0/31.5): flat at the Q3 FY26 actual; EISG was 19-21% in Q2-Q4 FY24 (FY24 22.9%) in the downturn and 24.7% in FY25, so no further expansion is assumed. Variant: FY25 level 24.7%.",
+       "value": "base 0.246816, years [0.308859, 0.310043, 0.310042, 0.310042]",
+       "source_ids": [
+        13,
+        2,
+        1
+       ],
+       "fact_ids": [],
+       "confidence": "medium",
+       "variant_view": "My view: hold 31%; FY24 trough 19-21%. Variant FY25 24.7% = about -$20/share."
+      },
+      {
+       "input": "tax_rate",
+       "value": "14%",
+       "basis": "reported",
+       "source_ids": [
+        2,
+        13
+       ],
+       "fact_ids": [],
+       "derivation": "non-GAAP tax rate stated in Ex.99.1 reconciliation; held all years",
+       "confidence": "high"
+      },
+      {
+       "input": "shares.diluted_now / annual_change",
+       "value": "173.0M at 2026-07-31; -0.9%/yr",
+       "basis": "estimate",
+       "source_ids": [
+        12,
+        2,
+        3
+       ],
+       "fact_ids": [
+        "F21",
+        "F22",
+        "F23",
+        "F26",
+        "F81"
+       ],
+       "derivation": "diluted wavg 179/175/173 FY23-25 (-2.2%, -1.1%; two-year CAGR -1.7%), Q3 FY26 173, Q4 guide ~172; $700M at ~$310 retires ~2.26M (1.3%) less SBC issuance ~0.69M (214/310, 0.4%) = -0.9%/yr (already net of SBC dilution)",
+       "confidence": "medium"
+      },
+      {
+       "input": "balance.net_debt",
+       "value": "-88 at 2026-07-31",
+       "basis": "reported",
+       "source_ids": [
+        12,
+        1
+       ],
+       "fact_ids": [
+        "F76",
+        "F77",
+        "F83"
+       ],
+       "derivation": "debt 2,517 - cash 2,605 = -88; operating leases (53+176) excluded as operating; 700 current notes assumed refinanced or paid from cash (no change to net debt)",
+       "confidence": "high"
+      },
+      {
+       "input": "balance.interest_rate",
+       "value": "4.0%",
+       "basis": "estimate",
+       "source_ids": [
+        12
+       ],
+       "fact_ids": [
+        "F60",
+        "F77"
+       ],
+       "derivation": "interest expense TTM 108 / debt 2,517 = 4.3%; cash yields ~4%; blended 4.0%",
+       "confidence": "medium"
+      },
+      {
+       "input": "adjustments: IEEPA refund receivable",
+       "value": "64 x 0.9",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "10-Q: $100M receivable, $37M received, $64M claims outstanding; 90% collection judgment",
+       "confidence": "medium"
+      },
+      {
+       "input": "P/E horizon multiple",
+       "value": "20.9x NTM (ex-SBC EPS; = 22.9x SBC-costed)",
+       "basis": "judgment",
+       "source_ids": [
+        16,
+        18,
+        20,
+        22,
+        23,
+        24,
+        14,
+        15
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm"
+       ],
+       "derivation": "All on an SBC-costed NTM basis. Peer median (21.4, 21.6, 26.0, 31.4) = 23.8x. Own SBC-costed NTM P/E: 303.5/12.66 = 24.0x (Street ex-SBC FY27 13.87 x 0.913) and 303.5/13.06 = 23.2x (Zacks, SBC-expensed); midpoint 23.6x. Exit = 23.8 x (23.6/23.8)^0.8 = 23.6x, less 0.75 turn for probability-weighted post-horizon risks = 22.9x SBC-costed; applied to the engine's ex-SBC NTM EPS ($16.18) as 22.9 x 0.913 = 20.9x (0.913 = 1 - FY28 SBC 280 x 0.86 / NTM NI ~2,766).",
+       "confidence": "medium",
+       "variant_view": "Zacks-only own multiple (23.2x) gives 20.6x (-$5/sh); SBC-costed own 24.0x gives 21.2x (+$5/sh); no risk haircut +0.75 turn x 0.913 = +$11/sh."
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 262.53,
+     "weight": 0.3,
+     "inputs": "Normalised mid-cycle EPS on the SBC-costed basis: FY28 model revenue 9,334 x (29% mid-cycle non-GAAP margin - 3% SBC) x 0.86 = 2,087 + after-tax interest on ~$2.0B horizon net cash at 4% (2,000 x 0.04 x 0.86 = 69) = 2,156 / 170.8M = $12.62 x 23.8x SBC-costed peer median = $300.4. Mid-cycle margin: proxy LTP actuals 30.3% FY23, 26.3% FY24, 26.0% FY25; FY26 9M 31.5% (avg ~28.5%); CFO LT 31-32%. Not driver-linked.",
+     "inputs_detail": [
+      {
+       "input": "custom: normalised mid-cycle EPS x P/E",
+       "value": "$300.4",
+       "basis": "estimate",
+       "source_ids": [
+        10,
+        9,
+        3,
+        6,
+        16,
+        23,
+        22,
+        24
+       ],
+       "fact_ids": [],
+       "derivation": "Normalised mid-cycle EPS on the SBC-costed basis: FY28 model revenue 9,334 x (29% mid-cycle non-GAAP margin - 3% SBC) x 0.86 = 2,087 + after-tax interest on ~$2.0B horizon net cash at 4% (2,000 x 0.04 x 0.86 = 69) = 2,156 / 170.8M = $12.62 x 23.8x SBC-costed peer median = $300.4. Mid-cycle margin: proxy LTP actuals 30.3% FY23, 26.3% FY24, 26.0% FY25; FY26 9M 31.5% (avg ~28.5%); CFO LT 31-32%. Not driver-linked.",
+       "confidence": "medium",
+       "variant_view": "At the round-1 ex-SBC basis without interest the leg was $305.3; a 27% mid-cycle margin gives ~$281."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 200.32,
+     "prob": null
+    },
+    "base": {
+     "price": 326.9,
+     "prob": null
+    },
+    "upside": {
+     "price": 492.8,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 326.9,
+   "reasoning": "Round 2. Kept the primary-lane picture from round 1 (Q3 FY26 Ex.99.1, deck, 10-Q, prepared remarks, Q4 FY25 call, 2026 proxy) and the Kilian-approved drivers exactly. Acted on the supervisor: (1) SBC basis - verified in the filings that Ralliant adjusted EPS excludes only amortization (SBC costed) and Viavi non-GAAP excludes SBC (FY26 SBC 55.4M); converted VIAV to 21.4x costed myself; the whole-company set is now VIAV, RAL, AME, Anritsu (median 23.8x costed) with FTV, TER, Advantest segment-only, which I accept (their match is under 25% of KEYS revenue). The exit multiple is applied to the engine's ex-SBC EPS through x0.913 (FY28 SBC 3% of revenue after tax over NTM NI). (2) Anritsu put on a CY-aligned NTM from consensus EPS (31.4x; low-medium confidence). (3) Own multiple: midpoint of two SBC-costed readings (24.0x converted Street, 23.2x Zacks). (4) Post-horizon turn recosted to -0.75 from my own long_dated_risks sum (-$11/sh on costed EPS), replacing round-1's -1.0, which over-applied them; China-Taiwan (6%) added to the downside tail. (5) Normalised leg on the costed basis with interest income: $300.4. (6) Q4 print 2026-11-19 (company release), Q4 EPS 3.43 from the drivers. Research target (12m) $326.90 (+7.7%). Downside case $200 (optics digestion + mandated China shock + 4.5pt margins + 4 turns), upside case $493 (+5 turns, trimmed from +6 since the costed upside multiple would otherwise exceed Anritsu). I differ from the supervisor's -0.75 only in source (same number, my own costing) and keep the 0.3 normalised weight. Research limited to 7 follow-up queries; Anritsu consensus page is undated. Custom normalised leg is not driver-linked.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": 329.5,
+     "to": 326.9,
+     "why": "SBC basis fix (peers SBC-costed; x0.913), 4-peer costed median 23.8x, -0.75 turn, normalised leg recosted"
+    },
+    {
+     "item": "a method: P/E horizon multiple",
+     "from": "21.0x on ex-SBC EPS (7-peer median 22.4x mixed basis)",
+     "to": "20.9x ex-SBC = 22.9x SBC-costed",
+     "why": "supervisor SBC-basis and peer-set findings, verified in RAL and VIAV Ex.99.1"
+    },
+    {
+     "item": "a method: normalised mid-cycle leg",
+     "from": 305.3,
+     "to": 300.4,
+     "why": "SBC costed in mid-cycle EPS (29%-3%), interest on net cash added, x 23.8x costed median"
+    },
+    {
+     "item": "a fact: whole-company peer set",
+     "from": "VIAV, FTV, RAL, TER, AME, Anritsu, Advantest (median 22.4x)",
+     "to": "VIAV (21.4x converted), RAL 21.6x NTM, AME 26.0x, Anritsu 31.4x CY-NTM; median 23.8x",
+     "why": "FTV/TER/Advantest under 25% fit (supervisor); Anritsu on NTM from consensus EPS"
+    },
+    {
+     "item": "a fact: post-horizon multiple deduction",
+     "from": "-1.0 turn",
+     "to": "-0.75 turn (SBC-costed)",
+     "why": "my own long_dated_risks sum -$11/sh / costed EPS 14.77; round 1 over-applied"
+    },
+    {
+     "item": "a scenario: downside case (P10)",
+     "from": 202.16,
+     "to": 200.32,
+     "why": "lower base multiple; same driver deltas; China-Taiwan tail noted"
+    },
+    {
+     "item": "a scenario: upside case (P90)",
+     "from": 510.42,
+     "to": 492.8,
+     "why": "multiple delta +6 -> +5 turns: on the costed basis +6 would sit above Anritsu"
+    },
+    {
+     "item": "thesis break",
+     "from": 225.0,
+     "to": 220.0,
+     "why": "re-based on SBC-costed EPS: ~14.9x horizon costed EPS"
+    },
+    {
+     "item": "a fact: Q4 FY26 print date",
+     "from": "~2026-11-23/24",
+     "to": "2026-11-19 after close",
+     "why": "Keysight release 2026-10-29 (source 21); still inside the 1-month window"
+    },
+    {
+     "item": "a fact: Q4 FY26 EPS",
+     "from": 3.45,
+     "to": 3.43,
+     "why": "+0.02 judgment was not driver-based (supervisor)"
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "1-month ladder",
+     "to": "unchanged",
+     "why": "print moves earlier but stays in the window; no new short-horizon evidence"
+    },
+    {
+     "item": "research target (12m) [post-gate, REFRESH 1d]",
+     "from": 326.9,
+     "to": 309.04,
+     "why": "peer median reset to stated-basis primary figures 20.8x (gate rejected the aggregator Anritsu/RAL figures); view, own multiple, k and turn unchanged"
+    }
+   ],
+   "round1": {
+    "fair_value": 329.5,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_2",
+   "fair_value": 311.24,
+   "method_text": "Research target (12m) $327: 0.75 x P/E 20.8x (ex-SBC; 22.8x SBC-costed vs a 23.7x 4-peer median) on FY2028 model EPS $16.19 ($337) + 0.25 x mid-cycle EPS $13.79 x 21.6x ($298), on the approved quarterly driver set.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 327.83,
+     "weight": 0.75,
+     "inputs": "NTM (FY2028) model ex-SBC EPS $16.19 at the horizon (approved driver build: revenue 9,334, non-GAAP EBIT ~3,139, 14% tax, 170.8M shares) x 20.8x (= 22.8x SBC-costed: 4-peer SBC-costed median 23.7x, own 23.65x, k=0.8 -> 23.66x, less 0.85x post-horizon risk; x0.913 onto ex-SBC EPS)",
+     "inputs_detail": [
+      {
+       "input": "driver:wl_capture",
+       "base": 0.065818,
+       "years": [
+        0.052094,
+        0.042027,
+        0.038688,
+        0.03521
+       ],
+       "basis": "estimate",
+       "source": "Market: LightCounting AI-cluster Ethernet optics, CY2025 $16.5B (Jan 2026 forecast quoted in POET Technologies FY2025 20-F), +120% 2026 and +76% 2027 (Lightwave 2026-10-08), CY2028 by LightCounting optics/capex ratio x Big-4 capex (Lightwave 2026-03-10; series as gated in driver_models/CRDO/quarterly/set.json optical_tam), CY2029 +27.1% (linear fade of growth from +30.6% in 2028 to LightCounting's +20% by 2031). Wireline: KEYS does not disclose wireline dollars; Q3 FY26 prepared remarks: \"Wireline revenue exceeded wireless revenue for the first time this quarter\" of commercial communications $1,006M (https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf); Q3 FY26 call: wireline roughly two-thirds R&D, one-third manufacturing (Motley Fool transcript 2026-08-25).",
+       "derivation": "Wireline quarterly estimates (flag: not disclosed): FY25 229/257/290/310 (=1,086; share of CC rising 40->47%, wireline grew double digits FY25 per Q4 FY25 remarks), FY26 358/428/520 (Q3 > wireless 486) and Q4 585 (FY26 1,891). FY growth = 1/3 x market growth (manufacturing test scales with units) + 2/3 x R&D growth (estimate +25% FY27, +15% FY28, +10% FY29; no source, the main judgment): FY27 +42.0% -> 2,685, FY28 +20.2% -> 3,228, FY29 +15.7% -> 3,734. Fiscal FY n paired with CY n (variant: test leads deployment by 2-3 quarters). Quarterly market = log-linear interpolation through each CY midpoint, rescaled so each FY sums to its CY total; forecast wireline quarters grow at one constant quarterly rate per year from the prior quarter so the FY totals hold (FY27 +5.6%/qtr, FY28 +4.2%/qtr, FY29 +3.4%/qtr), capture = wireline / market. Capture FY26 5.21% -> FY27 4.20%, FY28 3.87%, FY29 3.52%. Variant: slower R&D (+15/+10/+5%) gives CC 4,526/5,076/5,571. Supply constrains conversion for several quarters (CFO, Q3 FY26 call).",
+       "confidence": "medium"
+      },
+      {
+       "input": "driver:wireless_rev",
+       "base": 1402,
+       "years": [
+        1821,
+        1967.0,
+        2085.0,
+        2210.0
+       ],
+       "basis": "estimate",
+       "source": "Commercial communications actuals (Ex.99.1 end-market tables) less the wireline estimate; Q4 FY25 prepared remarks: wireless orders and revenue grew high-single digits in FY25; Spirent (closed 2025-10-15) adds wireless network test/assurance and positioning (10-Q Q3 FY26), incremental revenue 204 in 9M FY26.",
+       "derivation": "FY25 1,402 and FY26 1,821 (+30%: Spirent ~+270, organic ~+11%) = CC less wireline estimates. FY27 +8% (6G R&D, non-terrestrial networks, AI-edge supply chain per Q1-Q3 FY26 remarks; Spirent now organic) -> 1,967; FY28 +6% -> 2,085; FY29 +6% -> 2,210. Quarters 24.0/24.5/25.5/26.0%. Variant: wireless back to the FY24 decline (-7%).",
+       "confidence": "medium"
+      },
+      {
+       "input": "driver:adg_rev",
+       "base": 1238,
+       "years": [
+        1454,
+        1585.0,
+        1680.0,
+        1764.0
+       ],
+       "basis": "estimate",
+       "source": "Actuals: KEYS Ex.99.1 end-market tables (as cc_rev). 10-Q Q3 FY26: ADG +14% Q3, +19% 9M, radar, spectrum operations, space and satellite; Asia Pacific down.",
+       "derivation": "Q4 FY26 376 = Q3 339 x 1.11 (Q4/Q3 ratio 1.10 FY24, 1.11 FY25: US government fiscal year-end). FY2027 1,585 (+9% on FY26 1,454; 9M FY26 organic ~+12-14% after the ~5-7pt acquisition effect, faded). FY2028 1,680 (+6%), FY2029 1,764 (+5%). Seasonality avg FY24/25 (25.4/24.2/23.9/26.5%). Variant: a budget continuing-resolution year holds growth near +3%.",
+       "confidence": "medium"
+      },
+      {
+       "input": "driver:ei_rev",
+       "base": 1649,
+       "years": [
+        1989,
+        2188.0,
+        2341.0,
+        2481.0
+       ],
+       "basis": "estimate",
+       "source": "Actuals: KEYS Ex.99.1 segment / end-market tables. 10-Q Q3 FY26: EISG +21% (acquisitions +4pt), AI semis, PCB interconnect, SDV/autonomy, digital health.",
+       "derivation": "Q4 FY26 526 = Q3 501 x 1.05 (Q4/Q3 1.06 FY24, 1.04 FY25). FY2027 2,188 (+10% on FY26 1,989; Q3 organic ~+17% slowing as the semis/AI tail eases), FY2028 2,341 (+7%), FY2029 2,481 (+6%). Quarters by FY25 seasonality (25.2/23.8/25.0/26.0%; FY24 was a downcycle year and is skipped). Variant: industrial/auto downturn as FY24 (-12%).",
+       "confidence": "medium"
+      },
+      {
+       "input": "driver:csg_margin",
+       "base": 0.264627,
+       "years": [
+        0.327352,
+        0.340118,
+        0.345118,
+        0.345119
+       ],
+       "basis": "estimate",
+       "source": "Actuals: Ex.99.1 segment results (income from operations / revenue). Q2 FY26 includes the IEEPA tariff refund (+$38M CSG op income, -$34M revenue; Q3 FY26 10-Q MD&A table).",
+       "derivation": "Q4 FY26 35.0%: the Q4 EPS guide midpoint 3.37 x 172M / 0.86 non-GAAP tax less ~$4M net other income implies ~$670M non-GAAP op income on $1.94B (34.5%), CSG Q3 34.0% + ~1pt Q4 step (guide implies company margin +1.3pt q/q from Q3 33.2%; FY25 CSG Q4 step was +0.5pt). FY2027 34.0% (quarters 33.5/34.0/34.0/34.5): held at the Q3 FY26 actual, not the guide-implied exit, because Q3 had peak mix; FY2028-29 34.5% (+0.5pt operating leverage on +7% growth; Q3 FY26 incremental margin was 52%). Variant: mix normalisation back to the FY25 26.5% level is the downside case (~-7.5pt vs FY27 34.0%).",
+       "confidence": "medium"
+      },
+      {
+       "input": "driver:eisg_margin",
+       "base": 0.246816,
+       "years": [
+        0.308859,
+        0.310043,
+        0.310042,
+        0.310042
+       ],
+       "basis": "estimate",
+       "source": "Actuals: Ex.99.1 segment results. Q2 FY26 includes +$19M IEEPA refund (10-Q).",
+       "derivation": "Q4 FY26 32.0% (Q3 31.0% + Q4 seasonal +1pt; FY25 Q4 25.4% vs Q3 22.3%). FY2027-29 31.0% (quarters 30.5/31.0/31.0/31.5): flat at the Q3 FY26 actual; EISG was 19-21% in Q2-Q4 FY24 (FY24 22.9%) in the downturn and 24.7% in FY25, so no further expansion is assumed. Variant: FY25 level 24.7%.",
+       "confidence": "medium"
+      },
+      {
+       "input": "constant:mkt",
+       "values_by_fy": [
+        16500,
+        36300,
+        63888,
+        83438,
+        106050
+       ],
+       "basis": "primary/estimate",
+       "source": "Market: LightCounting AI-cluster Ethernet optics, CY2025 $16.5B (Jan 2026 forecast quoted in POET Technologies FY2025 20-F), +120% 2026 and +76% 2027 (Lightwave 2026-10-08), CY2028 by LightCounting optics/capex ratio x Big-4 capex (Lightwave 2026-03-10; series as gated in driver_models/CRDO/quarterly/set.json optical_tam), CY2029 +27.1% (linear fade of growth from +30.6% in 2028 to LightCounting's +20% by 2031). Wireline: KEYS does not disclose wireline dollars; Q3 FY26 prepared remarks: \"Wireline revenue exceeded wireless revenue for the first time this quarter\" of commercial communications $1,006M (https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf); Q3 FY26 call: wireline roughly two-thirds R&D, one-third manufacturing (Motley Fool transcript 2026-08-25).",
+       "value": "CY2025 16,500 / 2026 36,300 / 2027 63,888 / 2028 83,438 / 2029 106,050 ($M)",
+       "source_ids": [
+        30
+       ],
+       "confidence": "medium",
+       "derivation": "CY2025 $16.5B (POET FY2025 20-F quoting LightCounting); x2.20 = 36.3B; x1.76 = 63.888B; CY2028 83.438B and CY2029 +27.1% = 106.05B as gated in driver_models/CRDO and KEYS quarterly sets"
+      },
+      {
+       "input": "tax rate (non-GAAP)",
+       "value": "14%",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "Ex.99.1 non-GAAP tax rate 14%; run notes"
+      },
+      {
+       "input": "SBC % revenue",
+       "value": "3.0%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        1
+       ],
+       "fact_ids": [
+        "F29",
+        "F32"
+       ],
+       "derivation": "FY25 SBC 162 / revenue 5,375 = 3.0% (10-K FY25, source 3); TTM 214 / 6,582 = 3.25% and 9M FY26 181 / 5,163 = 3.5% (10-Q, source 1); 3.0% held as revenue grows (judgment). Basis dilution: adjusted EPS with share count net of SBC issuance and buybacks",
+       "confidence": "medium"
+      },
+      {
+       "input": "net debt 2026-07-31",
+       "value": "-$88M",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F76",
+        "F77",
+        "F83"
+       ],
+       "derivation": "debt 2,517 - cash 2,605; leases excluded"
+      },
+      {
+       "input": "diluted shares",
+       "value": "173.0M at 2026-07-31; -1%/yr",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3
+       ],
+       "fact_ids": [
+        "F21",
+        "F22",
+        "F23",
+        "F26",
+        "F81"
+       ],
+       "derivation": "Diluted weighted shares 179/175/173M FY23-25 (-2.2%/-1.1%; two-year CAGR -1.7%) net of SBC issuance; Q4 guide ~172M; $750M buybacks at ~$310 = 2.42M (1.4%) less SBC issuance 214/310 = 0.69M (0.4%) = -1.0%/yr",
+       "confidence": "medium",
+       "variant_view": "flat shares (buybacks paused for M&A) = -1% on value"
+      },
+      {
+       "input": "horizon P/E (NTM)",
+       "value": "20.8x (ex-SBC EPS; = 22.8x SBC-costed)",
+       "basis": "judgment",
+       "source_ids": [
+        8,
+        17,
+        19,
+        21,
+        22,
+        25,
+        10,
+        13,
+        15
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm"
+       ],
+       "derivation": "SBC-costed peer median of VIAV 21.4 (18.8 converted: 1.50 - 55.4 x 0.85 / 261.0 = 1.32), RAL 21.26, AME 26.0, Anritsu 28.54 = (21.4+26.0)/2 = 23.7x; own costed 303.5/12.84 = 23.65x; 23.7 x (23.65/23.7)^0.8 = 23.66x; - 0.85x post-horizon risk = 22.81x; x 14.78/16.19 = 0.913 -> 20.8x",
+       "confidence": "medium",
+       "variant_view": "supervisor's -0.75x deduction instead of -0.85x: 20.9x (+0.5%); TER/FTV kept in the median (round-1 view): median ~22.4x costed, ~-4%"
+      },
+      {
+       "input": "SBC basis conversion of the horizon P/E",
+       "value": "0.913",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        5
+       ],
+       "fact_ids": [
+        "F29",
+        "F32"
+       ],
+       "derivation": "NTM SBC at horizon 3% x 9,334 = 280 x (1-0.14) = 240.8 / 170.83M = $1.41; ex-SBC EPS 16.19 (engine) -> costed 14.78; 14.78/16.19 = 0.913",
+       "confidence": "high"
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 261.45,
+     "weight": 0.25,
+     "inputs": "Mid-cycle ex-SBC EPS $13.79 (FY28 revenue 9,334 x 28.7% FY23-26 average non-GAAP margin + ~60 net interest, 14% tax, 170.83M shares) x 21.6x (23.7x SBC-costed peer median x 0.913)",
+     "inputs_detail": [
+      {
+       "input": "horizon P/E (NTM)",
+       "value": "20.8x (ex-SBC EPS; = 22.8x SBC-costed)",
+       "basis": "judgment",
+       "source_ids": [
+        8,
+        17,
+        19,
+        21,
+        22,
+        25,
+        10,
+        13,
+        15
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm"
+       ],
+       "derivation": "SBC-costed peer median of VIAV 21.4 (18.8 converted: 1.50 - 55.4 x 0.85 / 261.0 = 1.32), RAL 21.26, AME 26.0, Anritsu 28.54 = (21.4+26.0)/2 = 23.7x; own costed 303.5/12.84 = 23.65x; 23.7 x (23.65/23.7)^0.8 = 23.66x; - 0.85x post-horizon risk = 22.81x; x 14.78/16.19 = 0.913 -> 20.8x",
+       "confidence": "medium",
+       "variant_view": "supervisor's -0.75x deduction instead of -0.85x: 20.9x (+0.5%); TER/FTV kept in the median (round-1 view): median ~22.4x costed, ~-4%"
+      },
+      {
+       "input": "mid-cycle operating margin (custom leg)",
+       "value": "28.7%",
+       "basis": "estimate",
+       "source_ids": [
+        24,
+        5
+       ],
+       "fact_ids": [],
+       "derivation": "(FY23 30.3% + FY24 26.3% + FY25 26.0% + FY26 32.2%) / 4 = 28.7%: proxy LTP non-GAAP OM actuals plus the set's FY26; replaces round-1 (FY25+FY26)/2 = 29.05%",
+       "confidence": "medium",
+       "variant_view": "FY24-25 trough 26.2% as mid-cycle: custom leg ~$274 (-1.9% on the target)"
+      },
+      {
+       "input": "mid-cycle through-cycle P/E (custom leg)",
+       "value": "21.6x",
+       "basis": "judgment",
+       "source_ids": [
+        8,
+        17,
+        19,
+        22,
+        21,
+        25
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm"
+       ],
+       "derivation": "23.7x SBC-costed peer median x 0.913 = 21.64x on ex-SBC mid-cycle EPS 13.79",
+       "confidence": "medium"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 190.68,
+     "prob": null
+    },
+    "base": {
+     "price": 327.1,
+     "prob": null
+    },
+    "upside": {
+     "price": 438.97,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 327.1,
+   "reasoning": "Round 2. Kept the Kilian-approved quarterly driver set unchanged (industry evidence: LightCounting optics +120%/+76%, hyperscaler capex up, Advantest raise, VIAV data-center strength; Teradyne's flat guide and LightCounting's July correction warning on the other side). Supervisor findings accepted after checking: (1) SBC basis: I opened Ralliant Q2 2026 Ex.99.1 (adjusted EPS excludes amortization, M&A, restructuring, not SBC) and Viavi Q4 FY26 Ex.99.1 (excludes SBC; FY26 SBC 55.4M), so peers are SBC-costed and VIAV is converted to 21.4x; the median becomes 23.7x costed on 4 whole-company peers (TER, Advantest, FTV moved to segment-only: KEYS makes no ATE, and post-spin Fortive matches only part of EISG). Own costed NTM 23.65x sits at the median, so k=0.8 changes little (23.66x); I deduct 0.85x for costed post-horizon risks (optics digestion 0.30 x -3.5, later China rule 0.10 x -1.5, 3.2T/6G 0.35 x +1.0; supervisor -0.75) and convert by 0.913 to 20.8x on the engine's ex-SBC EPS $16.19 = $337. (2) Mid-cycle margin now the FY23-26 average 28.7% (proxy LTP actuals 30.3/26.3/26.0% opened, plus FY26 32.2%), EPS $13.79 x 21.6x = $298, weight 0.25 (judgment; forward earnings are the better-tested method). Blend $327.1 (engine). (3) Print date 2026-11-19 (company release). Scenarios keep the same driver deltas (China shock -50% within wireless -10% / EI -12% / capture -30%, margins -4pt, -5 turns; upside capture +25%, margins +1-2pt, +4 turns): P10 $191, P90 $439 (fatter left tail). Thesis break $218 (~14.75x costed horizon EPS). I did not copy the supervisor's $332 / $198 / $455; my lower target comes from the larger risk deduction and the lower mid-cycle multiple. Research limited to 7 follow-up queries/fetches.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": "330.16",
+     "to": "327.10",
+     "why": "SBC-costed peer basis with x0.913 conversion, 4-peer median, FY23-26 mid-cycle margin (supervisor findings, verified in RAL/VIAV Ex.99.1 and the DEF 14A)"
+    },
+    {
+     "item": "a method: P/E (NTM) horizon multiple",
+     "from": "20.7x on a 22.4x mixed-basis 7-peer median (claimed ex-SBC)",
+     "to": "20.8x ex-SBC = 22.8x SBC-costed on a 23.7x costed 4-peer median; P/E leg $335.21 -> $336.83",
+     "why": "supervisor: 'adjusted ex SBC like the peers' false for AME, RAL, TER, Anritsu; TER/Advantest/FTV segment-only; risk deduction re-costed 1.0x -> 0.85x costed"
+    },
+    {
+     "item": "a method: mid-cycle EPS leg",
+     "from": "$315.0 (29.05% margin, 22.4x)",
+     "to": "$297.9 (28.7% FY23-26 average, 21.6x = 23.7 x 0.913)",
+     "why": "supervisor: (FY25+FY26)/2 ignored FY23 30.3% / FY24 26.3%; multiple put on the same SBC basis"
+    },
+    {
+     "item": "a scenario: downside (P10)",
+     "from": "192.55",
+     "to": "190.68",
+     "why": "same driver deltas on the revised base and lower mid-cycle leg"
+    },
+    {
+     "item": "a scenario: upside (P90)",
+     "from": "442.69",
+     "to": "438.97",
+     "why": "same driver deltas on the revised base"
+    },
+    {
+     "item": "thesis break",
+     "from": "220",
+     "to": "218",
+     "why": "re-based on SBC-costed horizon EPS 14.78 x ~14.75x"
+    },
+    {
+     "item": "a fact: Q4 FY2026 print date",
+     "from": "~2026-11-23/24 (est.)",
+     "to": "2026-11-19 after the close",
+     "why": "Keysight release 2026-10-29 (supervisor disagreement resolution)"
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "1-month ladder",
+     "to": "unchanged",
+     "why": "the print is inside the window on either date; Viavi 11-04 read-across added to reasoning only"
+    },
+    {
+     "item": "a fact: long-dated risks",
+     "from": "China in scenario only; no Taiwan tail",
+     "to": "later China rule costed -0.15x in the multiple; China-Taiwan 6% tail added (scenario)",
+     "why": "supervisor long_dated_review"
+    },
+    {
+     "item": "research target (12m) [post-gate, REFRESH 1d]",
+     "from": 327.1,
+     "to": 311.24,
+     "why": "peer median reset to stated-basis primary figures 20.8x (gate rejected the aggregator Anritsu/RAL figures); view, own multiple, k and turn unchanged"
+    }
+   ],
+   "round1": {
+    "fair_value": 330.16,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_3",
+   "fair_value": 298.18,
+   "method_text": "Approved driver build (FY28 revenue 9,334, non-GAAP op margin 33.6%) at the horizon: NTM ex-SBC EPS ~$16.06 x 20.5x (= 22.45x SBC-costed; 4-peer SBC-costed median 23.8x shrunk from own 23.24x, less a net 0.90 turns of post-horizon risk) = ~$329 (w 0.7), plus a mid-cycle leg $13.21 ex-SBC x 21.4x (= 23.8x costed) = ~$283 (w 0.3). Research target (12m) $315.24.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 320.09,
+     "weight": 0.7,
+     "inputs": "NTM EPS at 2027-11-02 ~$16.06 (ex-SBC, incl. interest on ~$1.75B net cash; 171.5M shares) x 20.5x (= 22.45x SBC-costed)",
+     "inputs_detail": [
+      {
+       "input": "horizon P/E main leg",
+       "value": "20.5x on ex-SBC NTM EPS at 2027-11-02 (= 22.45x SBC-costed)",
+       "basis": "judgment",
+       "source_ids": [
+        29,
+        27,
+        30,
+        10,
+        5,
+        32
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm",
+        "VIAV.price"
+       ],
+       "derivation": "SBC-costed peer median 23.8x (RAL 21.26; VIAV 28.21/(1.50-0.23x0.86)=21.6; AME 26.0; Anritsu 28.54). Own 303.5/13.06 = 23.24x. Exit 23.8 x (23.24/23.8)^0.8 = 23.35x; net post-horizon -0.90 turns (0.35x-3 + 0.15x-2 + 0.30x+1.5) = 22.45x; x (1 - 1.40/16.06 = 0.913) = 20.5x on the engine's ex-SBC EPS.",
+       "confidence": "medium",
+       "variant_view": "Without Anritsu (stale, March-FY) the median is 21.6x: exit 21.92x costed -> 19.2x engine, about -$15 on the leg, -$10 on the target (3%). Supervisor's -0.75 net turns instead of -0.90 adds ~$2."
+      },
+      {
+       "input": "driver:wl_capture",
+       "value": "base 0.065818; FY26-29 [0.052094, 0.042027, 0.038688, 0.03521]",
+       "basis": "estimate",
+       "source_ids": [
+        9,
+        11,
+        10,
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "Approved driver set (Kilian 2026-11-02), used unchanged: Wireline quarterly estimates (flag: not disclosed): FY25 229/257/290/310 (=1,086; share of CC rising 40->47%, wireline grew double digits FY25 per Q4 FY25 remarks), FY26 358/428/520 (Q3 > wireless 486) and Q4 585 (FY26 1,891). FY growth = 1/3 x market growth (manufacturing test scales with units) + 2/3 x R&D growth (estimate +25% FY27, +15% FY28, +10% FY29; no source, the main judgment): FY27 +42.0% -> 2,685, FY28 +20.2% -> 3,228, FY29 +15.7% -> 3,734. Fiscal FY n paired with CY n (variant: test leads deployment by 2-3 quarters). Quarterly market = log-linear interpolation through each CY midpoint, rescaled so each FY sums to its CY total; forecast wireline quarters grow at one constant quarterly rate per year from the prior quarter so the FY totals hold (FY27 +5.6%/qtr, FY28 +4.2%/qtr, FY29 +3.4%/qtr), capture = wireline / market. Capture FY26 5.21% -> FY27 4.20%, FY28 3.87%, FY29 3.52%",
+       "confidence": "medium",
+       "variant_view": "Skeptic view: I would put FY28 wireline ~8% below the approved path (capture 3.56% not 3.87%) because LightCounting (Jul 2026) sees a correction as more likely than a soft landing and record backlogs carry double ordering; that would cut FY28 revenue ~260 and the research target ~$7. Kept as approved; the downside case takes -30%."
+      },
+      {
+       "input": "driver:wireless_rev",
+       "value": "base 1402; FY26-29 [1821, 1967.0, 2085.0, 2210.0]",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        3,
+        4,
+        9
+       ],
+       "fact_ids": [],
+       "derivation": "Approved driver set (Kilian 2026-11-02), used unchanged: FY25 1,402 and FY26 1,821 (+30%: Spirent ~+270, organic ~+11%) = CC less wireline estimates. FY27 +8% (6G R&D, non-terrestrial networks, AI-edge supply chain per Q1-Q3 FY26 remarks; Spirent now organic) -> 1,967; FY28 +6% -> 2,085; FY29 +6% -> 2,210. Quarters 24.0/24.5/25.5/26.0%. Variant: wireless back to the FY24 decline (-7%).",
+       "confidence": "medium",
+       "variant_view": "Agree with FY27 +8%; China is the main exposure (wireless and EI are where China revenue sits); the downside case takes -10%."
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 247.06,
+     "weight": 0.3,
+     "inputs": "Normalised mid-cycle EPS $13.21 ex-SBC (29% margin on 8,845 = 0.95 x NTM revenue) x 21.4x (= $11.88 SBC-costed x 23.8x peer median)",
+     "inputs_detail": [
+      {
+       "input": "normalised EPS (stated, ex-SBC; multiple converted)",
+       "value": "$13.21 x 21.4x (= $11.88 SBC-costed x 23.8x)",
+       "basis": "estimate",
+       "source_ids": [
+        33,
+        6,
+        2,
+        5,
+        29,
+        27,
+        30
+       ],
+       "fact_ids": [
+        "F1",
+        "F2",
+        "F29"
+       ],
+       "derivation": "NTM revenue ~9,310 x 0.95 = 8,845 x 29% = 2,565 + 70 net-cash interest = 2,635 x 0.86 / 171.5 = 13.21. Mid-cycle margin = mean of FY23 30.3%, FY24 26.3%, FY25 26.0% (proxy) and FY26 ~32% (build) = 28.7%, 29% used. SBC 3% x 8,845 x 0.86 / 171.5 = 1.33 -> costed 11.88 x peer median 23.8 = 282.7; 23.8 x 11.88/13.21 = 21.4x.",
+       "confidence": "low",
+       "variant_view": "Supervisor-style: no revenue haircut (9,312 x 29%) gives ~$14.0 ex-SBC and ~$297 on the leg (+$5 on the target); mid-cycle 32% gives ~$310."
+      }
+     ]
+    },
+    {
+     "name": "P/E",
+     "value": 301.39,
+     "weight": 0.0,
+     "inputs": "Cross-check only: SBC-costed peer median 23.8x x Street-derived FY27 EPS 13.87 ex-SBC (MarketScreener EBIT, 14% tax) x 0.913 = $301 today; Street avg target $418 (StockAnalysis) sits far above",
+     "inputs_detail": [
+      {
+       "input": "Street FY27 EPS (company basis)",
+       "value": "13.87",
+       "basis": "estimate",
+       "source_ids": [
+        20
+       ],
+       "fact_ids": [],
+       "derivation": "MarketScreener FY27 EBIT 2,734 + ~15 other x 0.86 / ~170.5M = 13.87",
+       "confidence": "medium"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 181.6,
+     "prob": null
+    },
+    "base": {
+     "price": 315.24,
+     "prob": null
+    },
+    "upside": {
+     "price": 437.8,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 315.24,
+   "reasoning": "Skeptic lane. Credit is not where the risk is: net cash (-88 at Q3 FY26), BBB/positive at S&P, $700M current notes coverable from $2.6B cash; insider activity is director selling only (30k shares at $286 in March, 3k at $319 in August, $4.1M sold and $0 bought over 3 months to April), short interest only 1.3% of float, no short report found. The bear case is cyclical: KEYS earns its highest margins ever (33-34% non-GAAP op margin vs ~25% in FY24-25; FY24 revenue fell 9%) on an AI-optics ramp whose own industry analyst (LightCounting, July 2026) calls a correction more likely than a soft landing and warns of double ordering in record backlogs; the CFO says supply will be the governor and FY26 profit includes a one-time IEEPA refund; the stock fell from $389.93 to $303.50, sold off after both of the last two beats. Round 2: the supervisor showed peers are mostly SBC-costed and that my set mixed bases; I now use one basis (SBC-costed 4-peer median 23.8x: RAL, VIAV converted, AME, Anritsu; TER/FTV segment-only) converted onto each leg's ex-SBC EPS, and rebuilt the mid-cycle leg at 29% on 0.95 x NTM revenue at the peer median (the old 23x was unsupported). I add the 3.2T/6G upside I missed (net -0.90 turns vs -1.15) and the China-Taiwan tail. New in-lane evidence: October's -15.6% came with no downgrades, on AI-funding fears in optics (Broadcom/Intel CEOs), i.e. the de-rating risk is sector sentiment, which supports keeping the multiple deduction. I keep the approved drivers unchanged (3-5% above Street revenue FY27-28) and keep a fatter left tail than the supervisor. Research target (12m) $315.24 vs the Street's $418 average. Research was limited: no transcript full text; Anritsu consensus is March-FY and stale.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": "302.26",
+     "to": "315.24",
+     "why": "SBC-costed 4-peer median 23.8x (RAL, Anritsu added; TER/FTV segment-only), one SBC basis on both legs, mid-cycle leg rebuilt, 3.2T/6G upside added to the post-horizon deduction"
+    },
+    {
+     "item": "a method",
+     "from": "P/E 19.8x ex-SBC (21.7x costed) on $16.06 = 317.95",
+     "to": "20.5x ex-SBC (22.45x costed) = 329.19",
+     "why": "supervisor: peer set and median (RAL, Anritsu; TER/FTV segment-only); exit rule on 23.8x; net -0.90 turns"
+    },
+    {
+     "item": "a method",
+     "from": "mid-cycle $11.55 SBC-costed x 23x = 265.65",
+     "to": "$13.21 ex-SBC x 21.4x (= 23.8x costed) = 282.69",
+     "why": "supervisor: mixed SBC basis and unsupported 23x; one basis, peer median, revenue haircut 0.92 -> 0.95 (my own, kept against the supervisor's none)"
+    },
+    {
+     "item": "a fact",
+     "from": "Q4 FY26 print ~2026-11-23/24",
+     "to": "2026-11-19 after the close",
+     "why": "Keysight release 2026-10-29 (supervisor, source 26)"
+    },
+    {
+     "item": "a fact",
+     "from": "up to ~$100M Q4 revenue could slip (Quiver Quant)",
+     "to": "removed from guidance_check",
+     "why": "supervisor discounted a single unattributed report"
+    },
+    {
+     "item": "a scenario",
+     "from": "downside 173.66 / upside 420.84",
+     "to": "downside 181.6 / upside 437.8",
+     "why": "same driver deltas on the higher base multiple; downside multiple ~15.5x ex-SBC; Taiwan tail noted; upside adds 3.2T/6G"
+    },
+    {
+     "item": "a fact",
+     "from": "peer median 21.45x (VIAV, FTV, TER, AME)",
+     "to": "23.8x SBC-costed (RAL 21.26, VIAV 21.6, AME 26.0, Anritsu 28.54)",
+     "why": "supervisor peer finding; VIAV converted from its ex-SBC basis (Ex.99.1 SBC $0.23/share)"
+    },
+    {
+     "item": "thesis break",
+     "from": "215",
+     "to": "215",
+     "why": "unchanged; now ~14.7x SBC-costed horizon EPS"
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "ladder",
+     "to": "unchanged",
+     "why": "print date moved but stays inside the window; October selloff noted"
+    },
+    {
+     "item": "research target (12m) [post-gate, REFRESH 1d]",
+     "from": 315.24,
+     "to": 298.18,
+     "why": "peer median reset to stated-basis primary figures 20.8x (gate rejected the aggregator Anritsu/RAL figures); view, own multiple, k and turn unchanged"
+    }
+   ],
+   "round1": {
+    "fair_value": 302.26,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_4",
+   "fair_value": 314.31,
+   "method_text": "Approved KEYS driver build: horizon NTM ex-SBC EPS $16.12 x 20.94x (= 22.94x on SBC-costed EPS $14.71, four whole-company peers, k=0.8, -0.4 turn post-horizon risk) = $337.62 (w 0.7), blended with mid-cycle SBC-costed EPS $12.58 (29% margin) x 22.94x = $288.6 (w 0.3): research target (12m) $322.91.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 328.63,
+     "weight": 0.7,
+     "inputs": "Horizon NTM ex-SBC EPS $16.12 (driver set: revenue FY28 9,334, non-GAAP op margin 33.6%, 14% tax, net cash 1,771 at 4%, 170.83M shares) x 20.94x (SBC-costed 22.94x x 0.9126)",
+     "inputs_detail": [
+      {
+       "input": "driver:wl_capture",
+       "value": "FY26 5.21% / FY27 4.20% / FY28 3.87% / FY29 3.52% of LightCounting AI Ethernet optics market",
+       "basis": "estimate",
+       "source_ids": [
+        7,
+        8
+       ],
+       "fact_ids": [],
+       "derivation": "Approved set (Kilian 2026-11-02) unchanged; market +120% 2026, +76% 2027 per LightCounting (src 8).",
+       "confidence": "medium",
+       "variant_view": "Digestion in CY27-28 ('bumpy ride', src 8): -35% capture in downside case."
+      },
+      {
+       "input": "driver:wireless_rev",
+       "value": "1,821 / 1,967 / 2,085 / 2,210",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        7
+       ],
+       "fact_ids": [],
+       "derivation": "Approved set unchanged (CC actuals less wireline estimate; +8%/+6%/+6%).",
+       "confidence": "medium",
+       "variant_view": "China -50% and FY24-like wireless decline: -12% in downside."
+      },
+      {
+       "input": "driver:adg_rev",
+       "value": "1,454 / 1,585 / 1,680 / 1,764",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "Approved set unchanged (+9%/+6%/+5%).",
+       "confidence": "medium",
+       "variant_view": "Continuing resolution year ~+3%."
+      },
+      {
+       "input": "driver:ei_rev",
+       "value": "1,989 / 2,188 / 2,341 / 2,481",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "Approved set unchanged (+10%/+7%/+6%).",
+       "confidence": "medium",
+       "variant_view": "FY24-type industrial downturn (-12%) plus China shock: -15% downside."
+      },
+      {
+       "input": "driver:csg_margin",
+       "value": "32.7% / 34.0% / 34.5% / 34.5%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        5
+       ],
+       "fact_ids": [],
+       "derivation": "Approved set unchanged; held at Q3 FY26 actual 34.0%.",
+       "confidence": "medium",
+       "variant_view": "Peak-cycle; FY25 26.5%. My mid-cycle leg uses 29% company margin; downside -5pt."
+      },
+      {
+       "input": "driver:eisg_margin",
+       "value": "30.9% / 31.0% / 31.0% / 31.0%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        5
+       ],
+       "fact_ids": [],
+       "derivation": "Approved set unchanged; FY25 24.7%, FY24 22.9%.",
+       "confidence": "medium",
+       "variant_view": "Downside -5pt."
+      },
+      {
+       "input": "tax rate (non-GAAP)",
+       "value": "14%",
+       "basis": "reported",
+       "source_ids": [
+        3
+       ],
+       "fact_ids": [],
+       "derivation": "Ex.99.1 non-GAAP tax rate 14%."
+      },
+      {
+       "input": "SBC % revenue",
+       "value": "3.0%",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F29",
+        "F32"
+       ],
+       "derivation": "FY25 SBC 162 / revenue 5,375 = 3.0%; TTM 214 / TTM revenue ~6,582 (5,375 + 9M FY26 5,163 - 9M FY25 3,956) = 3.25%; 3.0% as Spirent integration grants fade.",
+       "confidence": "medium"
+      },
+      {
+       "input": "diluted shares",
+       "value": "173.0M, -1%/yr",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3
+       ],
+       "fact_ids": [
+        "F26",
+        "F53",
+        "F81"
+       ],
+       "derivation": "Q3 FY26 diluted 173M; TTM buybacks 617 at ~$300 = ~2.0M shares vs ~0.7M SBC issuance => ~-0.8% to -1.1%/yr; Q4 guide ~172M.",
+       "confidence": "medium"
+      },
+      {
+       "input": "horizon P/E",
+       "value": "20.94x NTM on ex-SBC EPS (= 22.94x SBC-costed)",
+       "basis": "judgment",
+       "source_ids": [
+        23,
+        18,
+        25,
+        26,
+        27
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm",
+        "VIAV.price"
+       ],
+       "derivation": "SBC-costed NTM P/E of whole-company peers: VIAV 28.21/(28.21/18.8 = 1.50 ex-SBC less SBC $0.23/sh x (1-17% assumed tax shield) = 0.19) = 28.21/1.31 = 21.5x; RAL 21.26x (adjusted EPS keeps SBC, src 26); AME 26.0x (excludes only amortization/M&A); Anritsu 28.54x (IFRS, SBC expensed). Median (21.5+26.0)/2 = 23.75x. Own 303.5 / Zacks FY27 SBC-expensed 13.06 = 23.24x. Exit k=0.8: 23.75 x (23.24/23.75)^0.8 = 23.34x; less 0.4 turn net post-horizon risk (long_dated_risks) = 22.94x costed. Engine P/E reads ex-SBC NOPAT, so x 0.9126 (horizon NTM costed EPS 14.71 / ex-SBC 16.12; SBC 280.5 x 0.86 = 241 / 170.83M = $1.41) = 20.94x.",
+       "confidence": "medium",
+       "variant_view": "Supervisor deducts 0.75 turn; at that deduction the target falls ~$5. FTV (20.5x) in the median instead of RAL changes nothing material; a VIAV/RAL-level 21.4x costed exit would cut ~$22."
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 280.91,
+     "weight": 0.3,
+     "inputs": "Mid-cycle: 9,341 x 29% = 2,709 - SBC 280.5 + interest 71 = 2,500 x 0.86 = 2,151 / 170.83M = $12.58 x 22.94x",
+     "inputs_detail": [
+      {
+       "input": "horizon P/E",
+       "value": "20.94x NTM on ex-SBC EPS (= 22.94x SBC-costed)",
+       "basis": "judgment",
+       "source_ids": [
+        23,
+        18,
+        25,
+        26,
+        27
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm",
+        "VIAV.price"
+       ],
+       "derivation": "SBC-costed NTM P/E of whole-company peers: VIAV 28.21/(28.21/18.8 = 1.50 ex-SBC less SBC $0.23/sh x (1-17% assumed tax shield) = 0.19) = 28.21/1.31 = 21.5x; RAL 21.26x (adjusted EPS keeps SBC, src 26); AME 26.0x (excludes only amortization/M&A); Anritsu 28.54x (IFRS, SBC expensed). Median (21.5+26.0)/2 = 23.75x. Own 303.5 / Zacks FY27 SBC-expensed 13.06 = 23.24x. Exit k=0.8: 23.75 x (23.24/23.75)^0.8 = 23.34x; less 0.4 turn net post-horizon risk (long_dated_risks) = 22.94x costed. Engine P/E reads ex-SBC NOPAT, so x 0.9126 (horizon NTM costed EPS 14.71 / ex-SBC 16.12; SBC 280.5 x 0.86 = 241 / 170.83M = $1.41) = 20.94x.",
+       "confidence": "medium",
+       "variant_view": "Supervisor deducts 0.75 turn; at that deduction the target falls ~$5. FTV (20.5x) in the median instead of RAL changes nothing material; a VIAV/RAL-level 21.4x costed exit would cut ~$22."
+      },
+      {
+       "input": "mid-cycle op margin (custom leg)",
+       "value": "29.0%",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        2,
+        28
+       ],
+       "fact_ids": [],
+       "derivation": "Average of FY25 25.9% (segment op income 1,393/5,375) and FY26E 32.2% (driver set FY26 2,305/7,155), bracketing the FY24-25 trough and the current peak; LightCounting (src 28) calls a correction 'of some kind' more likely after double ordering, so FY28's 33.6% driver margin is treated as above mid-cycle.",
+       "confidence": "low",
+       "variant_view": "Using the drivers' 33.6% margin raises this leg to ~$338 (+$15 on the blend)."
+      },
+      {
+       "input": "mid-cycle SBC-costed EPS (custom leg)",
+       "value": "$12.58",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2
+       ],
+       "fact_ids": [
+        "F29"
+       ],
+       "derivation": "(9,341 x 29% - SBC 280.5 + 1,771 x 4% interest) x 0.86 / 170.83M = $12.58; x 22.94x = $288.6.",
+       "confidence": "medium"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 183.54,
+     "prob": null
+    },
+    "base": {
+     "price": 322.91,
+     "prob": null
+    },
+    "upside": {
+     "price": 448.2,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 322.91,
+   "reasoning": "Round 2. Kept the approved driver set (Kilian 2026-11-02) unchanged; my view enters through the legs, the multiple and the scenarios. Supervisor findings acted on: (1) SBC basis: round 1 labelled the set SBC-costed but applied a 23.2x SBC-costed multiple to the engine's ex-SBC EPS (+9% overstatement); I re-derived the peer median on the SBC-costed basis (Viavi Ex.99.1 confirms non-GAAP ex-SBC, FY26 SBC $0.23/sh, so 18.8x -> 21.5x; Ralliant adjusted EPS keeps SBC), set the exit at 23.34x costed by k=0.8 and converted it to the engine's ex-SBC EPS with my build's own ratio 14.71/16.12 = 0.9126; (2) FTV is segment-only after the Ralliant spin; RAL (Tektronix) replaces it, median 23.75x; (3) print date is 2026-11-19 (company release, opened), not 11-17; (4) post-horizon China risk now sits in the multiple too: net -0.4 turn (digestion 0.35 x -2, China 0.15 x -1.5, 3.2T/6G 0.35 x +1.5); I keep -2 not -3 turns for digestion because my 30% mid-cycle leg already prices margin reversion, so I differ from the supervisor's -0.75. Alternative-lane evidence: LightCounting July 2026 (opened) sees a correction 'of some kind' as more likely and warns double ordering 'has never ended well', but a soft landing in 2027-28 if capex growth slows gradually, supporting the median path with a fat left tail; Advantest and Anritsu (src 14-15) confirm AI test demand into CY27. Build: horizon ex-SBC EPS $16.12 (costed $14.71) is ~2% above MarketScreener FY28 $14.37 on a costed basis and ~10% above Zacks FY28 $13.37 (1 est., SBC-expensed), because the approved set is above the Street on revenue (FY28 9,334 vs 8,927) and margin. Research target (12m) $322.91 (+6.4%): P/E leg $337.62 (w 0.7) and mid-cycle leg $288.6 (w 0.3). Downside case $183.54 (P10: optics digestion + China -50% + margins -5pt + 5 turns) and upside case $448.2 (P90), left tail fatter, consistent with 45% realized vol. Research limits: X/Reddit not reachable; in-lane share below 60% because filings and peer releases were needed to settle the SBC basis.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": "347.64",
+     "to": "322.91",
+     "why": "supervisor SBC-basis finding (multiple converted to ex-SBC EPS, -9%) partly offset by a higher SBC-costed peer median (23.75x) and a costed mid-cycle leg; -0.4 turn post-horizon deduction"
+    },
+    {
+     "item": "a method: P/E (w 0.7)",
+     "from": "23.2x on ex-SBC EPS = 374.05",
+     "to": "20.94x ex-SBC (= 22.94x costed) = 337.62",
+     "why": "supervisor: 23.2x SBC-costed multiple was applied to the engine's ex-SBC EPS; converted x 0.9126 (my build's 14.71/16.12); peer median re-derived 23.75x; -0.4 turn post-horizon risk"
+    },
+    {
+     "item": "a method: mid-cycle leg (w 0.3)",
+     "from": "12.32 x 23.2x = 286.0",
+     "to": "12.58 x 22.94x = 288.6",
+     "why": "interest on the engine's horizon net cash (1,771 x 4%) replaces a flat +20 'other'; multiple re-derived on the SBC-costed peer median less the risk deduction"
+    },
+    {
+     "item": "a fact: whole-company peer set",
+     "from": "VIAV 18.8, FTV 20.5, AME 26.0, Anritsu 28.54 (median 23.25x, mixed SBC basis)",
+     "to": "VIAV 21.5 (converted), RAL 21.26, AME 26.0, Anritsu 28.54 (median 23.75x, SBC-costed)",
+     "why": "supervisor: FTV segment-only post-spin; peers mostly SBC-costed and VIAV ex-SBC (Viavi and Ralliant Ex.99.1 opened)"
+    },
+    {
+     "item": "a fact: Q4 FY26 print date",
+     "from": "2026-11-17 (Earnings Whispers)",
+     "to": "2026-11-19 after the close, call 4:30pm ET",
+     "why": "supervisor; Keysight release 2026-10-29 (opened). Inside the 1-month window either way, ladder unchanged"
+    },
+    {
+     "item": "a scenario: downside case (P10)",
+     "from": "192.72",
+     "to": "183.54",
+     "why": "multiple basis now ex-SBC (-5 turns ~ -5.5 costed, to ~17.5x costed); China -50% shock and optics digestion kept"
+    },
+    {
+     "item": "a scenario: upside case (P90)",
+     "from": "477.26",
+     "to": "448.2",
+     "why": "lower base multiple after the SBC conversion; +5 turns reaches ~28.4x costed (Anritsu level)"
+    },
+    {
+     "item": "long_dated_risks / multiple",
+     "from": "0 turn deduction (China only in scenarios)",
+     "to": "-0.4 turn net (digestion -0.7, China -0.225, 3.2T/6G +0.525)",
+     "why": "supervisor: agent_4 missed the post-horizon China rule in the multiple; I keep a smaller digestion deduction than the supervisor because the mid-cycle leg already prices margin reversion"
+    },
+    {
+     "item": "thesis break",
+     "from": "215 (~16x FY27 EPS)",
+     "to": "215 (14.6x SBC-costed horizon EPS 14.71)",
+     "why": "level kept; anchor restated on the corrected SBC-costed EPS"
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "1-month ladder centred ~305",
+     "to": "unchanged",
+     "why": "date correction keeps the print inside the window; ~$100M slip report discounted (single source) but it never moved the ladder"
+    },
+    {
+     "item": "research target (12m) [post-gate, REFRESH 1d]",
+     "from": 322.91,
+     "to": 314.31,
+     "why": "peer median reset to stated-basis primary figures 20.8x (gate rejected the aggregator Anritsu/RAL figures); view, own multiple, k and turn unchanged"
+    }
+   ],
+   "round1": {
+    "fair_value": 347.64,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_5",
+   "fair_value": 324.75,
+   "method_text": "Approved quarterly driver build valued at the horizon: 0.7 x NTM P/E 21.2x on the build's ex-SBC EPS ~$16.14 (= 23.2x on SBC-costed $14.74; 4-peer SBC-costed median 23.7x, own 23.9x, k=0.8, -0.7 turn post-horizon risk) = $342 + 0.3 x mid-cycle SBC-costed EPS $12.72 x 24.0x = $305; blend $331.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 333.09,
+     "weight": 0.7,
+     "inputs": "NTM ex-SBC EPS at 2027-11-02 from the approved driver build (FY2028-weighted NOPAT + after-tax interest on ~$2.0B net cash, 171.3M shares) ~$16.14 x 21.2x (= 23.2x on SBC-costed EPS $14.74; SBC-costed 4-peer median 23.7x, own 23.9x, k=0.8, -0.7 turn post-horizon risk)",
+     "inputs_detail": [
+      {
+       "input": "horizon P/E",
+       "value": "21.2x NTM on the build's ex-SBC EPS (= 23.2x SBC-costed)",
+       "basis": "estimate",
+       "source_ids": [
+        17,
+        18,
+        28,
+        29,
+        30,
+        16,
+        1,
+        7
+       ],
+       "fact_ids": [
+        "VIAV.pe_ntm",
+        "AME.pe_ntm",
+        "F29",
+        "F32"
+       ],
+       "derivation": "Peers on one SBC-costed NTM basis: VIAV 28.21/18.8 = $1.50 Zacks EPS (non-GAAP, excludes SBC per Ex.99.1) less SBC 55.4/261.0 = $0.212 x 0.85 = $0.18 -> $1.32 -> 21.4x; RAL 21.26x (adjusted EPS keeps SBC, Ex.99.1); AME 26.0x (peers.md; adjusted EPS excludes amortization only); Anritsu 28.5x (IFRS, SBC costed). Median (21.4, 21.3, 26.0, 28.5) = (21.4+26.0)/2 = 23.7x. KEYS own: FY27 (= NTM from Nov-2026) non-GAAP consensus 13.93 less SBC 3.0% x 8,210 x 0.86 / 171 = $1.24 -> $12.69; 303.5/12.69 = 23.9x. Exit = 23.7 x (23.9/23.7)^0.8 = 23.86x; less 0.7 turn post-horizon risk (long_dated_risks: optics digestion 0.30 x -3 = -0.90, later China rule 0.15 x -1.5 = -0.225, 3.2T/6G upside 0.30 x +1.5 = +0.45; net -0.675) = 23.2x SBC-costed. Engine P/E reads ex-SBC NTM EPS at the horizon (~$16.14); KEYS NTM SBC 3.0% x ~9,312 x 0.86 / 171.3 = $1.40, so costed EPS $14.74 and ratio 14.74/16.14 = 0.913; 23.2 x 0.913 = 21.2x.",
+       "confidence": "medium",
+       "variant_view": "Peer median exactly with no post-horizon deduction (23.7 x 0.913 = 21.6x) adds ~$7/share on the P/E leg; a 4-peer median is thin (Anritsu stale price 2026-10-05)."
+      },
+      {
+       "input": "shares.annual_change",
+       "value": "-0.8%/yr",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F26",
+        "F32",
+        "F53",
+        "F81"
+       ],
+       "derivation": "Buybacks $600M at ~$300 = 2.0M shares (-1.2%) less SBC issuance ~$214M / $300 = 0.7M (+0.4%) = -0.8%/yr net.",
+       "confidence": "medium"
+      },
+      {
+       "input": "balance.net_debt",
+       "value": "-88 at 2026-07-31",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F76",
+        "F77",
+        "F83"
+       ],
+       "derivation": "Debt 2,517 - cash 2,605 = -88 (XBRL; leases excluded).",
+       "confidence": "high"
+      },
+      {
+       "input": "tax_rate",
+       "value": "14%",
+       "basis": "estimate",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "Company non-GAAP tax rate 14% used for 3 and 9 months FY26 (Ex.99.1); held FY26-29.",
+       "confidence": "high",
+       "variant_view": "Global minimum tax could add 1-2pt (-1 to -2% EPS)."
+      },
+      {
+       "input": "driver:wl_capture",
+       "value": "base 0.06582; years 0.05209, 0.04203, 0.03869, 0.03521",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        2,
+        3,
+        4,
+        22
+       ],
+       "fact_ids": [],
+       "derivation": "Wireline quarterly estimates (flag: not disclosed): FY25 229/257/290/310 (=1,086; share of CC rising 40->47%, wireline grew double digits FY25 per Q4 FY25 remarks), FY26 358/428/520 (Q3 > wireless 486) and Q4 585 (FY26 1,891). FY growth = 1/3 x market growth (manufacturing test scales with units) + 2/3 x R&D growth (estimate +25% FY27, +15% FY28, +10% FY29; no source, the main judgment): FY27 +42.0% -> 2,685, FY28 +20.2% -> 3,228, FY29 +15.7% -> 3,734. Fiscal FY n paired with CY n (variant: test leads deployment by 2-3 quarters). Quarterly market = log-linear interpolation through each CY midp",
+       "confidence": "medium",
+       "variant_view": "/ market. Capture FY26 5.21% -> FY27 4.20%, FY28 3.87%, FY29 3.52%. Variant: slower R&D (+15/+10/+5%) gives CC 4,526/5,076/5,571. Supply constrains conversion for several quarters (CFO, Q3 FY26 call)."
+      },
+      {
+       "input": "driver:wireless_rev",
+       "value": "base 1402; years 1821, 1967, 2085, 2210",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        2,
+        3,
+        4,
+        22
+       ],
+       "fact_ids": [],
+       "derivation": "FY25 1,402 and FY26 1,821 (+30%: Spirent ~+270, organic ~+11%) = CC less wireline estimates. FY27 +8% (6G R&D, non-terrestrial networks, AI-edge supply chain per Q1-Q3 FY26 remarks; Spirent now organic) -> 1,967; FY28 +6% -> 2,085; FY29 +6% -> 2,210. Quarters 24.0/24.5/25.5/26.0%. Variant: wireless back to the FY24 decline (-7%).",
+       "confidence": "medium",
+       "variant_view": "orks, AI-edge supply chain per Q1-Q3 FY26 remarks; Spirent now organic) -> 1,967; FY28 +6% -> 2,085; FY29 +6% -> 2,210. Quarters 24.0/24.5/25.5/26.0%. Variant: wireless back to the FY24 decline (-7%)."
+      },
+      {
+       "input": "driver:adg_rev",
+       "value": "base 1238; years 1454, 1585, 1680, 1764",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        2,
+        3,
+        4,
+        22
+       ],
+       "fact_ids": [],
+       "derivation": "Q4 FY26 376 = Q3 339 x 1.11 (Q4/Q3 ratio 1.10 FY24, 1.11 FY25: US government fiscal year-end). FY2027 1,585 (+9% on FY26 1,454; 9M FY26 organic ~+12-14% after the ~5-7pt acquisition effect, faded). FY2028 1,680 (+6%), FY2029 1,764 (+5%). Seasonality avg FY24/25 (25.4/24.2/23.9/26.5%). Variant: a budget continuing-resolution year holds growth near +3%.",
+       "confidence": "medium",
+       "variant_view": "after the ~5-7pt acquisition effect, faded). FY2028 1,680 (+6%), FY2029 1,764 (+5%). Seasonality avg FY24/25 (25.4/24.2/23.9/26.5%). Variant: a budget continuing-resolution year holds growth near +3%."
+      },
+      {
+       "input": "driver:ei_rev",
+       "value": "base 1649; years 1989, 2188, 2341, 2481",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        2,
+        3,
+        4,
+        22
+       ],
+       "fact_ids": [],
+       "derivation": "Q4 FY26 526 = Q3 501 x 1.05 (Q4/Q3 1.06 FY24, 1.04 FY25). FY2027 2,188 (+10% on FY26 1,989; Q3 organic ~+17% slowing as the semis/AI tail eases), FY2028 2,341 (+7%), FY2029 2,481 (+6%). Quarters by FY25 seasonality (25.2/23.8/25.0/26.0%; FY24 was a downcycle year and is skipped). Variant: industrial/auto downturn as FY24 (-12%).",
+       "confidence": "medium",
+       "variant_view": "AI tail eases), FY2028 2,341 (+7%), FY2029 2,481 (+6%). Quarters by FY25 seasonality (25.2/23.8/25.0/26.0%; FY24 was a downcycle year and is skipped). Variant: industrial/auto downturn as FY24 (-12%)."
+      },
+      {
+       "input": "driver:csg_margin",
+       "value": "base 0.2646; years 0.3274, 0.3401, 0.3451, 0.3451",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        2,
+        3,
+        4,
+        22
+       ],
+       "fact_ids": [],
+       "derivation": "Q4 FY26 35.0%: the Q4 EPS guide midpoint 3.37 x 172M / 0.86 non-GAAP tax less ~$4M net other income implies ~$670M non-GAAP op income on $1.94B (34.5%), CSG Q3 34.0% + ~1pt Q4 step (guide implies company margin +1.3pt q/q from Q3 33.2%; FY25 CSG Q4 step was +0.5pt). FY2027 34.0% (quarters 33.5/34.0/34.0/34.5): held at the Q3 FY26 actual, not the guide-implied exit, because Q3 had peak mix; FY2028-29 34.5% (+0.5pt operating leverage on +7% growth; Q3 FY26 incremental margin was 52%). Variant: mix normalisation back to the FY25 26.5% level is the downside case (~-7.5pt vs FY27 34.0%).",
+       "confidence": "medium",
+       "variant_view": "ix; FY2028-29 34.5% (+0.5pt operating leverage on +7% growth; Q3 FY26 incremental margin was 52%). Variant: mix normalisation back to the FY25 26.5% level is the downside case (~-7.5pt vs FY27 34.0%)."
+      },
+      {
+       "input": "driver:eisg_margin",
+       "value": "base 0.2468; years 0.3089, 0.31, 0.31, 0.31",
+       "basis": "estimate",
+       "source_ids": [
+        20,
+        2,
+        3,
+        4,
+        22
+       ],
+       "fact_ids": [],
+       "derivation": "Q4 FY26 32.0% (Q3 31.0% + Q4 seasonal +1pt; FY25 Q4 25.4% vs Q3 22.3%). FY2027-29 31.0% (quarters 30.5/31.0/31.0/31.5): flat at the Q3 FY26 actual; EISG was 19-21% in Q2-Q4 FY24 (FY24 22.9%) in the downturn and 24.7% in FY25, so no further expansion is assumed. Variant: FY25 level 24.7%.",
+       "confidence": "medium",
+       "variant_view": "(quarters 30.5/31.0/31.0/31.5): flat at the Q3 FY26 actual; EISG was 19-21% in Q2-Q4 FY24 (FY24 22.9%) in the downturn and 24.7% in FY25, so no further expansion is assumed. Variant: FY25 level 24.7%."
+      }
+     ]
+    },
+    {
+     "name": "other",
+     "value": 305.3,
+     "weight": 0.3,
+     "inputs": "Mid-cycle SBC-costed EPS: NTM revenue ~9,312 x 23.4% / 171.3M = $12.72 x 24.0x through-cycle SBC-costed P/E",
+     "inputs_detail": [
+      {
+       "input": "custom: mid-cycle SBC-costed net margin",
+       "value": "23.4%",
+       "basis": "judgment",
+       "source_ids": [
+        5,
+        6,
+        2,
+        3,
+        4,
+        7
+       ],
+       "fact_ids": [
+        "F27",
+        "F28",
+        "F29"
+       ],
+       "derivation": "Non-GAAP net margin FY23 8.33x179/5,464=27.3%, FY24 6.27x175/4,979=22.0%, FY25 ~22.3% (segment op income 1,393 x 0.86 / 5,375), FY26 (2.17+2.87+3.07+3.43)x172.5/7,155=27.8%; average 24.9% + ~1pt Spirent synergies = 26.0%; less SBC 3.0% of revenue x 0.86 = 2.6pt -> 23.4%.",
+       "confidence": "medium",
+       "variant_view": "Pre-AI 24.9% (22.3% costed) gives ~$291 on this leg."
+      },
+      {
+       "input": "custom: through-cycle P/E (SBC-costed)",
+       "value": "24.0x",
+       "basis": "estimate",
+       "source_ids": [
+        8,
+        6
+       ],
+       "fact_ids": [
+        "F15",
+        "F27"
+       ],
+       "derivation": "Macrotrends GAAP P/E median 31.4 (2015-25) x GAAP / SBC-costed-ex-amortization EPS ratio FY23: 5.91 / (8.33 - 135 x 0.86 / 179 = 7.68) = 0.77 -> 24.2x; less 0.2 turn for a later China rule (0.15 x -1.5) = 24.0x. EPS: 9,312 x 23.4% / 171.3 = $12.72; x 24.0 = $305.3.",
+       "confidence": "medium",
+       "variant_view": "2022-24 GAAP trough 20.6x -> 15.9x costed would give ~$202."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 192.56,
+     "prob": null
+    },
+    "base": {
+     "price": 331.11,
+     "prob": null
+    },
+    "upside": {
+     "price": 456.56,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 331.11,
+   "reasoning": "Round 2 (after supervisor review). Base-rates lane. (1) History: KEYS has had 7 drawdowns of 18%+ since 2014, the deepest after strong years (-45.5% 2015-16; -42.6% Dec-2021 to Oct-2023), and two -20% legs already in 2026 (ChartRow, Trefis); after past +45-58% trailing years the next 12 months ranged +66% to -17%. (2) Cycle: FY24 revenue fell 9% and non-GAAP net margin fell from 27.3% to 22.0%; FY26 segment margins are a record, so a 30% leg values mid-cycle SBC-costed EPS $12.72 (23.4% margin) at a through-cycle 24.0x. (3) Guidance record: 10/10 revenue and EPS beats; Q4 (now confirmed 2026-11-19) at the record-adjusted guide. (4) Event odds: Kalshi 2027 recession ~20%, Polymarket China-Taiwan by mid-2027 6%; plus the required China shock in the downside case. (5) Multiple, rebuilt per the supervisor: 4 whole-company peers on an SBC-costed basis (VIAV 21.4 converted, RAL 21.3, AME 26.0, Anritsu 28.5; median 23.7x), TER/Advantest/FTV moved to segment-only; KEYS own 23.9x SBC-costed; k=0.8 -> 23.86x; -0.7 turn for post-horizon risks (optics digestion, a later China rule, net of a 3.2T/6G extension) = 23.2x, = 21.2x on the engine's ex-SBC EPS via KEYS's own SBC ratio 0.913. Engine: P/E leg $342, blend research target (12m) $331 (+9%), below the $418 Street average target. Downside case $193 (multiple delta trimmed to -4.5 since the base multiple fell), upside case $457. Not driver-linked: the custom mid-cycle leg. Research limited to 5 follow-up fetches; Anritsu and Advantest prices stale.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": "343.36",
+     "to": "331.11",
+     "why": "SBC-basis correction of the P/E (supervisor: peers mostly SBC-costed) and post-horizon deduction; mid-cycle leg rebuilt SBC-costed"
+    },
+    {
+     "item": "a method: P/E leg",
+     "from": "22.0x on ex-SBC EPS = $355.09",
+     "to": "21.2x on ex-SBC EPS (23.2x SBC-costed) = $342.17",
+     "why": "supervisor: TER/Advantest out of the median, 0.94 conversion used Zacks/company EPS not peer SBC; rebuilt per peer (VIAV Ex.99.1 excludes SBC, RAL Ex.99.1 keeps it) and own SBC ratio 0.913"
+    },
+    {
+     "item": "a fact: whole-company peer median",
+     "from": "24.2x (6 peers incl. TER, FTV, Advantest)",
+     "to": "23.7x SBC-costed (VIAV, RAL, AME, Anritsu)",
+     "why": "supervisor peer-set finding; RAL added (StockAnalysis 21.26x)"
+    },
+    {
+     "item": "a fact: KEYS own NTM multiple",
+     "from": "23.2x (303.5/13.06 Zacks)",
+     "to": "23.9x (303.5/(13.93 - 1.24 SBC))",
+     "why": "supervisor flagged the Zacks/company basis; StockAnalysis FY27 13.93 less own SBC"
+    },
+    {
+     "item": "a method: mid-cycle leg",
+     "from": "$316.0 (ex-SBC $14.17 x 22.3x)",
+     "to": "$305.3 (SBC-costed $12.72 x 24.0x)",
+     "why": "one SBC basis for EPS and multiple; -0.2 turn for a later China rule"
+    },
+    {
+     "item": "a fact: post-horizon risk in the multiple",
+     "from": "0 (China rule only in scenarios)",
+     "to": "-0.7 turn",
+     "why": "supervisor long_dated_review: China rule after the horizon missed in the multiple; my own costing of digestion, China and 3.2T/6G"
+    },
+    {
+     "item": "a scenario: downside case",
+     "from": "197.03",
+     "to": "192.56",
+     "why": "lower base multiple; multiple delta -5 -> -4.5 keeps the trough near 18x SBC-costed"
+    },
+    {
+     "item": "a scenario: upside case",
+     "from": "471.45",
+     "to": "456.56",
+     "why": "lower base multiple flows through"
+    },
+    {
+     "item": "thesis break",
+     "from": "205",
+     "to": "210",
+     "why": "re-based on SBC-costed horizon EPS $14.74 (~14.2x)"
+    },
+    {
+     "item": "a fact: Q4 FY26 print date",
+     "from": "2026-11-17",
+     "to": "2026-11-19 after close",
+     "why": "Keysight release 2026-10-29 (source 27); still inside the 1-month window"
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "1-month ladder",
+     "to": "unchanged",
+     "why": "print still in window; no new information on the event"
+    },
+    {
+     "item": "research target (12m) [post-gate, REFRESH 1d]",
+     "from": 331.11,
+     "to": 324.75,
+     "why": "peer median reset to stated-basis primary figures 20.8x (gate rejected the aggregator Anritsu/RAL figures); view, own multiple, k and turn unchanged"
+    }
+   ],
+   "round1": {
+    "fair_value": 343.36,
+    "p_gain": null,
+    "median": null
+   }
+  }
+ ],
+ "supervisor": {
+  "confidence": "low",
+  "used": false,
+  "confidence_reason": "Round-2 changes are to the 12m set (interest, shares, SBC, turn); none bears on the 1-month window beyond the confirmed print date.",
+  "changes": [
+   {
+    "item": "research target (12m)",
+    "from": 332.12,
+    "to": 322.32,
+    "why": "re-derived: interest on net cash ~2% (10-Q), shares 172M at 10/31 -0.9%/yr, SBC 3.2%, turn -0.6; forecasters' revised mean 324.65"
+   },
+   {
+    "item": "post-horizon turn deduction",
+    "from": -0.75,
+    "to": -0.6,
+    "why": "digestion at -2 turns because the 0.3 mid-cycle leg already prices margin reversion; 3.2T/6G +1.0"
+   },
+   {
+    "item": "balance.interest_rate",
+    "from": 0.04,
+    "to": 0.02,
+    "why": "Q3 FY26 10-Q: interest income 20 on 2,605 cash (3.1%), expense 26 on 2,517 debt (4.1%)"
+   },
+   {
+    "item": "shares.diluted_now",
+    "from": 173.0,
+    "to": 172.0,
+    "why": "cover 170.2M basic + ~1.6M dilutive; Q4 guide ~172M"
+   },
+   {
+    "item": "sbc_pct_rev",
+    "from": 0.03,
+    "to": 0.032,
+    "why": "9M FY26 SBC 181 on 5,163 revenue; FY26E ~3.3%"
+   },
+   {
+    "item": "P/E horizon multiple (ex-SBC)",
+    "from": 21.2,
+    "to": 20.9,
+    "why": "23.06x costed x 0.906 conversion (post-gate: 22.45x costed x 0.906 = 20.34x)"
+   },
+   {
+    "item": "mid-cycle leg",
+    "from": 306.5,
+    "to": 293.2,
+    "why": "12.36 costed mid-cycle EPS (2% interest, 3.2% SBC) x 20.8x (post-gate)"
+   },
+   {
+    "item": "downside case (P10)",
+    "from": 197.78,
+    "to": 191.29,
+    "why": "same deltas on the revised base"
+   },
+   {
+    "item": "upside case (P90)",
+    "from": 454.64,
+    "to": 442.21,
+    "why": "same deltas on the revised base"
+   },
+   {
+    "item": "sizing max_weight_pct / confidence (supervisor post-gate follow-up)",
+    "from": "4.0 / 0.47",
+    "to": "2.0 / 0.45",
+    "why": "research target (12m) 305.32 is +0.6% vs $303.5 with a -41% downside case; no edge left at the target"
+   }
+  ],
+  "changes_derived": false,
+  "median_mean": null,
+  "median_supervisor": 320.599352444274,
+  "summary": "Research target (12m) $305.32 (+0.6% vs $303.5; $322.32 before the citation gate) on Kilian's approved driver set: 0.7 x 20.34x ex-SBC (22.45x SBC-costed; 4 whole-company peers median 20.8x on stated-basis calendar NTM, own 23.65x with k=0.8, -0.6 turn post-horizon risk) on NTM EPS $16.00 plus 0.3 x a 29% mid-cycle-margin leg ($257). Downside case $179 (includes the China -50% shock and an AI-optics digestion), upside case $422. The gate re-sourced Anritsu (18.3x at the 2026-11-02 price, stated fiscal years) and RAL (20.2x, Zacks calendar NTM): the median fell from 23.7x and with it both legs. The 2026-11-19 print is the next test. Supervisor follow-up (REFRESH 1d): all four peer P/Es re-verified (Anritsu 18.3x on a consensus updated after its Oct-29 results); the k=0.8 rule, -0.6 turn and 0.906 SBC conversion hold, so 305.32 stands; peer-set alternatives 301.79-309.22; max weight cut to 2.0%.",
+  "fair_value": {
+   "value": 320.6,
+   "reason": "Engine base horizon value of model.reconciled_inputs: 0.7 x P/E 20.84x (ex-SBC; = 23.0x SBC-costed) on NTM EPS $16.00 at the horizon (approved drivers) + $0.34 IEEPA = $333.85, plus 0.3 x mid-cycle leg $289.69 (12.36 x 23.41x segment SOTP blend + 0.34). Peer multiple = segment sum-of-the-parts (Kilian card 2026-11-03), was whole-company 20.8x (305.32)."
+  }
+ },
+ "supervisor_round1": {
+  "summary": "Research target (12m) $332 (+9% vs $303.50): the Kilian-approved driver build (FY28 revenue 9,334, ~33.6% non-GAAP margin) gives $16.17 NTM ex-SBC EPS at the horizon, valued at 21.2x (=23.2x SBC-costed, four whole-company peers) with 30% on a 29% mid-cycle margin leg. Downside case $198 (China revenue -50% plus an AI-optics digestion), upside case $455. The main corrections were the SBC basis (peers mostly cost SBC; uncorrected sets ran ~9% high) and the print date, Thursday 2026-11-19 after the close. Margin durability and the 2028 optics cycle remain the swing factors.",
+  "feedback": [
+   {
+    "agent": "agent_1",
+    "missed": [
+     "Print date is 2026-11-19 (company release 2026-10-29), not ~11-23/24",
+     "FTV, TER, Advantest match under 25% of KEYS revenue: segment-only, out of the median",
+     "Peers are SBC-costed (RAL Ex.99.1; AME/TDY exclude amortization only); your 21.0x on ex-SBC EPS overstates ~9%",
+     "Q4 EPS +0.02 above the drivers is not driver-based"
+    ],
+    "revisit": "Put KEYS and peers on one SBC basis (convert VIAV, scale the multiple by ~0.913), add RAL properly, put Anritsu on NTM."
+   },
+   {
+    "agent": "agent_2",
+    "missed": [
+     "Print date 2026-11-19",
+     "'adjusted ex SBC like the peers' is false for AME, RAL, TER, Anritsu",
+     "Mid-cycle margin (FY25+FY26)/2 ignores FY23 30.3%/FY24 26.3%"
+    ],
+    "revisit": "Rebuild the multiple on an SBC-costed peer basis; strong industry evidence, keep it."
+   },
+   {
+    "agent": "agent_3",
+    "missed": [
+     "Print date 2026-11-19",
+     "Peer set of 4 included TER/FTV (segment-only) and missed RAL/Anritsu",
+     "Mid-cycle leg mixes SBC-costed EPS 11.55 with an unsupported 23x"
+    ],
+    "revisit": "Keep your SBC conversion; use one multiple basis on both legs and the reconciled peer set."
+   },
+   {
+    "agent": "agent_4",
+    "missed": [
+     "Print date 2026-11-17 (Earnings Whispers) is wrong: company says 11-19",
+     "Set labelled 'SBC costed' but 23.2x (SBC-costed own multiple) is applied to the engine's ex-SBC EPS: +9% overstatement",
+     "FTV is not a whole-company peer post-Ralliant spin"
+    ],
+    "revisit": "Convert the multiple to the EPS basis; the ~$100M slip report stays low-confidence."
+   },
+   {
+    "agent": "agent_5",
+    "missed": [
+     "Print date 11-17 wrong (11-19)",
+     "TER/Advantest in the whole-company median",
+     "0.94 basis conversion uses Zacks/company EPS for KEYS, not peer SBC"
+    ],
+    "revisit": "Use per-peer SBC basis; base-rate and prediction-market evidence is useful, keep it labelled."
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "Q4 FY2026 print date",
+    "resolution": "Thursday 2026-11-19 after the close, call 4:30pm ET. Both camps wrong; still inside the 1-month window, so the ladder is unaffected."
+   },
+   {
+    "topic": "SBC basis of the P/E",
+    "resolution": "Peers are mostly SBC-costed: Ralliant adjusted EPS does not exclude SBC (Q2 2026 Ex.99.1), AMETEK/Teledyne exclude only amortization/M&A, Anritsu is IFRS; only Viavi excludes SBC (Q4 FY26 Ex.99.1). Reconciled: peers on SBC-costed basis (VIAV converted 18.8x -> 21.4x), exit multiple x 0.913 onto the engine's ex-SBC EPS; SBC counted once via shares -1.0%/yr net. Worth -9.4% vs the uncorrected basis."
+   },
+   {
+    "topic": "Peer set and median",
+    "resolution": "4 whole-company peers: VIAV, RAL (Tektronix), AME, Anritsu; median 23.7x SBC-costed NTM. TER/Advantest (ATE) and FTV (post-spin tools/software) match under 25% of KEYS revenue: segment-only. TDY dropped (Digital Imaging 54% of sales). Count flagged; not padded."
+   },
+   {
+    "topic": "Mid-cycle (normalised) leg alongside the driver-led P/E",
+    "resolution": "Kept at 0.3 (the forecasters' modal weight). No tested evidence moves it either way: the WRDS blend study tests DCF vs forward P/E only, and Liu-Nissim-Thomas (2002) favour forward earnings, which argues against raising it. Rebuilt on one basis: NTM revenue 9,312 x 29% (FY23-26 average 28.7%) ex-SBC EPS $14.00 x 21.9x = $306.5. Not driver-linked. Weight 0 is a judgment call (+3.3%)."
+   },
+   {
+    "topic": "China shock in the downside case",
+    "resolution": "Downside case carries the full China shock (17.45% x 50% = 8.7% of revenue, as wireline -10%, wireless -10%, EI -12%; ~-6.2% of value alone) on top of an optics digestion; event probability ~0.13 within 3 years."
+   },
+   {
+    "topic": "Post-horizon risk deduction on the multiple",
+    "resolution": "-0.75 turns costed: optics digestion 0.35 x -3, later China rule 0.15 x -1.5, 3.2T/6G upside 0.35 x +1.5."
+   },
+   {
+    "topic": "Q4 FY26 EPS",
+    "resolution": "3.43 from the drivers; agent_1's +0.02 removed."
+   }
+  ]
+ }
+}

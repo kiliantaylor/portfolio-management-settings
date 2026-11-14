@@ -1,0 +1,794 @@
+{
+ "date": "2026-10-30",
+ "symbol": "INTC",
+ "clean": true,
+ "checked": 84,
+ "ok": 68,
+ "failures": [
+  {
+   "item": "Base segment revenue FY2025: CCPG / DCAI / Foundry net of eliminations / All other",
+   "value": "$32,228M / $16,919M / $143M / $3,563M",
+   "cited": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "result": "mislabelled",
+   "fix": "basis -> estimate: Foundry net 143 derived = 17,826 - 17,683; CCG (release name)/DCAI/All other reported; confidence high"
+  },
+  {
+   "item": "Reported quarters Q1-Q3 FY2026 (driver_build.quarters.reported)",
+   "value": "revenue 13,577 / 16,128 / 16,513; adjusted EBIT 1,668.5 / 2,468.5 / 3,096.6; non-GAAP EPS 0.29 / 0.42 / 0.52",
+   "cited": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000077/q126earningsrelease.htm",
+   "result": "wrong",
+   "fix": "adjusted EBIT relabelled derived (estimate) = non-GAAP NI attributable / 0.89; reported non-GAAP operating income 1,668 / 2,770 / 3,234 shown; Q2/Q3 releases cited; values unchanged (actuals not in the horizon NTM)"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2026 consensus as of 2026-10-30",
+   "value": "0.24",
+   "cited": "https://www.marketbeat.com/stocks/NASDAQ/INTC/earnings/",
+   "result": "not_found",
+   "fix": "basis relabelled 'not stated (MarketBeat aggregator)'; stated-basis Zacks Q4 $0.30 (SBC expensed, 12 est.) added; no number uses either"
+  },
+  {
+   "item": "Non-controlling interests",
+   "value": "-$16,642M (SOTP equity part); NCI income ~$250M Q4 FY26 and ~$1.1B a year 2027-28 in EBIT",
+   "cited": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "result": "mislabelled",
+   "fix": "NCI income projections -> estimate from call statements: 250/0.89 = 281, 1,100/0.89/4 = 309 a quarter, confidence medium; book 16,642 stays reported"
+  },
+  {
+   "item": "'about $96, 20% below spot' (also '$120 price' in disagreements[0])",
+   "value": "spot ~$120",
+   "cited": "https://twelvedata.com (time_series 1day)",
+   "result": "wrong",
+   "fix": "fair_value prose rewritten: $82.23 vs the $65.76 close (+25%); $120 reference in disagreements[0] replaced"
+  },
+  {
+   "item": "Thesis break change row",
+   "value": "70.8 -> 70.0",
+   "cited": "",
+   "result": "wrong",
+   "fix": "changes[]: thesis break row now 70 -> 47 (70 -> 55 supervisor, 55 -> 47 gate SBC part); research-target and multiple rows added"
+  },
+  {
+   "item": "Eight companies evaluating 14A, no commitments (Piper Sandler)",
+   "value": "8",
+   "cited": "https://www.techspot.com/news/113984-amazon-apple-amd-google-tesla-microsoft-nvidia-qualcomm.html",
+   "result": "not_found",
+   "fix": "second source: PC Gamer report of the Piper Sandler note (eight named, no commitments)"
+  },
+  {
+   "item": "Fitch outlook Stable (agent_3)",
+   "value": "BBB/Stable",
+   "cited": "https://x.com/imnotharsh/status/2089776063991673322",
+   "result": "lone_social",
+   "fix": "claim removed (anonymous X post only); no number used it"
+  },
+  {
+   "item": "Fitch downgrade to BBB/Negative Aug 2025",
+   "value": "BBB, Negative",
+   "cited": "https://www.cnbc.com/2025/08/05/intels-credit-rating-downgraded-by-fitch-on-demand-challenges.html",
+   "result": "not_found",
+   "fix": "re-sourced: The Star syndication of the CNBC story: BBB from BBB+, Negative, 2025-08-04"
+  },
+  {
+   "item": "Q3 earnings date 'Oct 22 unconfirmed', 1-month window",
+   "value": "Oct 22 (unconfirmed)",
+   "cited": "https://data.sec.gov/submissions/CIK0000050863.json",
+   "result": "wrong",
+   "fix": "resolved: Q3 released 2026-10-29 (8-K), 10-Q 2026-10-30"
+  },
+  {
+   "item": "fair value ~$96, median ~$111 'below spot', P(>= ~$151) 0.30",
+   "value": "$96 / $111 / $151",
+   "cited": "https://twelvedata.com (time_series 1day)",
+   "result": "wrong",
+   "fix": "sizing rewritten on the $65.76 spot: needs ~$83; P(>= ~$83) ~0.49 from the engine distribution + ~0.03 = 0.52"
+  },
+  {
+   "item": "INTC own NTM P/E",
+   "value": "35.8x = 65.76 / (0.170x1.47 + 0.830x1.91)",
+   "cited": "https://www.marketbeat.com/stocks/NASDAQ/INTC/earnings/",
+   "result": "mislabelled",
+   "fix": "own NTM P/E on the peers' Zacks basis: 65.76 / (0.170 x 1.05 + 0.830 x 1.46) = 47.3x; Zacks basis expenses SBC (reconciled: INTC Zacks Q1-Q3 0.17/0.30/0.41 vs company 0.29/0.42/0.52, gaps = SBC per share)"
+  },
+  {
+   "item": "P/E exit multiple 32.6x",
+   "value": "22.4 x (35.8/22.4)^0.8",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "exit 22.4 x (47.3/22.4)^0.8 = 40.7x, applied to model EPS after SBC (forecast EBIT - sbc_c, sbc_treatment cost, no SBC dilution); SOTP carries SBC at 18x; peers' basis reconciled per row (QCOM, AMD, NVDA, AVGO, MRVL releases); ex-SBC alternative $83.05 vs $82.23 (+1.0%)"
+  },
+  {
+   "item": "gross capex FY2026 guidance arithmetic",
+   "value": "FY2025 guide 18,000 -> 17,672 (-0.0182); adjusted 19,636; ours 19,634 below -0.0183",
+   "cited": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "result": "wrong",
+   "fix": "record fixed: first FY2025 guide $20.0B (2025-01-30), -11.6%, record-adjusted 17,672; ours 19,634 is +11.1% above it, -1.8% vs the point guide; driver unchanged with stated reason"
+  },
+  {
+   "item": "driver_build.quarters da expression",
+   "value": "3000 + 0.25*(ly_capex - 4400)",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "note reworded to the signed expression 3,000 + 0.25 x (capex a year earlier - 4,400)"
+  },
+  {
+   "item": "Quarter grid labels/ends; actual = 7",
+   "value": "ends 2025-03-29 ... 2026-09-26 filed; forecast to 2028-12-30; FY2028 14-week Q4",
+   "cited": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "result": "wrong",
+   "fix": "FY2028 Q1-Q3 ends 2028-04-01 / 07-01 / 09-30 (14-week Q1), Q4 2028-12-30"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue Q3 FY2026: first guide (2026-07-23) / reported actual",
+   "value": "15800-16800 / 16513",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Base revenue FY2025 (year ended 2025-12-27)",
+   "value": "$52,853M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000011/",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "revenue Q4 FY2026 guide as of 2026-10-29 (GAAP net revenue $M)",
+   "value": "15000.0-16000.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2026 guide as of 2026-10-29",
+   "value": "0.38-0.38",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2026 guide as of 2026-10-29",
+   "value": "0.25-0.25",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "13300-14300 / 14260",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000147/q324_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2024: first guide / reported actual",
+   "value": "0.395-0.395 / 0.421",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000147/q324_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q4 FY2024: first guide / reported actual",
+   "value": "0.12-0.12 / 0.13",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000147/q324_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q1 FY2025: first guide (2025-01-30) / reported actual",
+   "value": "11700-12700 / 12667",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2025: first guide / reported actual",
+   "value": "0.36-0.36 / 0.392",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q1 FY2025: first guide / reported actual",
+   "value": "0-0 / 0.13",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q2 FY2025: first guide (2025-04-24) / reported actual",
+   "value": "11200-12400 / 12859",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000070/q125_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2025: first guide / reported actual",
+   "value": "0.365-0.365 / 0.297",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000070/q125_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q2 FY2025: first guide / reported actual",
+   "value": "0-0 / -0.1",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000070/q125_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q3 FY2025: first guide (2025-07-24) / reported actual",
+   "value": "12600-13600 / 13653",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000107/q225_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2025: first guide / reported actual",
+   "value": "0.36-0.36 / 0.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000107/q225_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q3 FY2025: first guide / reported actual",
+   "value": "0-0 / 0.23",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000107/q225_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "gross capital expenditure FY2025: first guide (2025-07-24) / reported actual",
+   "value": "18000.0-18000.0 / 17672.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000107/q225_earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q4 FY2025: first guide (2025-10-23) / reported actual",
+   "value": "12800-13800 / 13674",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000169/q325earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2025: first guide / reported actual",
+   "value": "0.365-0.365 / 0.379",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000169/q325earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q4 FY2025: first guide / reported actual",
+   "value": "0.08-0.08 / 0.15",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000169/q325earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q1 FY2026: first guide (2026-01-22) / reported actual",
+   "value": "11700-12700 / 13577",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2026: first guide / reported actual",
+   "value": "0.345-0.345 / 0.41",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q1 FY2026: first guide / reported actual",
+   "value": "0-0 / 0.29",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q2 FY2026: first guide (2026-04-23) / reported actual",
+   "value": "13800-14800 / 16128",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000077/q126earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2026: first guide / reported actual",
+   "value": "0.39-0.39 / 0.418",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000077/q126earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q2 FY2026: first guide / reported actual",
+   "value": "0.2-0.2 / 0.42",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000077/q126earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q4 FY2026 consensus as of 2026-10-29",
+   "value": "17100.0",
+   "basis": "consensus",
+   "source_url": "https://www.tikr.com/blog/intel-stock-sank-more-than-20-on-its-q4-guide-heres-the-custom-chip-business-management-expects-to-triple-again",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2026: first guide (2026-07-23) / reported actual",
+   "value": "0.42-0.42 / 0.441",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/q226earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q3 FY2026: first guide (2026-07-23) / reported actual",
+   "value": "0.38-0.38 / 0.52",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/q226earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2026 consensus as of 2026-10-29",
+   "value": "0.428",
+   "basis": "consensus",
+   "source_url": "https://tech-insider.org/intel-plunges-25-q4-guidance-15-16-billion-pc-slump-2026/",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "gross capital expenditure FY2026 guide as of 2026-10-29 (gross additions to PP&E, $M (~$20B, \"on track\"))",
+   "value": "20000.0-20000.0",
+   "basis": "guidance",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/intel-corp-intc-q3-2026-051348065.html",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Net debt at 2026-09-26",
+   "value": "-$3,871M (net cash)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "mean of round-2 fair values; vs base",
+   "value": "$96 (100/96/94/94/96); 84.76 = -11.7% vs $96",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "close 2026-10-30; NCI; net cash",
+   "value": "$65.76; $16.6B; $3.9B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "CFO at Deutsche Bank 2026-09-02: 'how much capacity can I get', 'conviction', no named customer",
+   "value": "2026-09-02",
+   "basis": "reported",
+   "source_url": "https://bits-chips.com/article/intel-signals-external-customer-wins-for-14a-foundry-process/",
+   "checked": "2026-10-30",
+   "feeds": "disagreements (no number)"
+  },
+  {
+   "item": "Tesla Terafab 14A selection, no capital/revenue disclosed",
+   "value": "2026-04-24",
+   "basis": "reported",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/intel-tesla-terafab-deal-tests-080701413.html",
+   "checked": "2026-10-30",
+   "feeds": "disagreements (no number)"
+  },
+  {
+   "item": "Maia 2 on 18A/18A-P is report-based",
+   "value": "report",
+   "basis": "reported",
+   "source_url": "https://www.tomshardware.com/tech-industry/semiconductors/intel-foundry-secures-contract-to-build-microsofts-maia-2-next-gen-ai-processor-on-18a-18a-p-node-claims-report-could-be-first-step-in-ongoing-partnership",
+   "checked": "2026-10-30",
+   "feeds": "disagreements (no number)"
+  },
+  {
+   "item": "Micron FQ4 2026 revenue, y/y, GM",
+   "value": "$54.2B, +379%, 87%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000723125/000072312526000018/a2026q4ex991-pressrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "disagreements (no number)"
+  },
+  {
+   "item": "PC TAM -12% 2026, ~-10% 2027; no positive FCF 2027; 14A production 2028",
+   "value": "-12%/-10%",
+   "basis": "reported",
+   "source_url": "https://tech-insider.org/intel-plunges-25-q4-guidance-15-16-billion-pc-slump-2026/",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "null",
+   "value": "null",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "comps"
+  },
+  {
+   "item": "Base revenue FY2025 and segments",
+   "value": "52,853; CCPG 32,228; DCAI 16,919; Foundry net 143; All other 3,563",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Reported quarters Q1-Q3 FY26: revenue, adj EBIT, non-GAAP EPS",
+   "value": "13,577/16,128/16,513; 1,668.5/2,468.5/3,096.6; 0.29/0.42/0.52",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Net debt 2026-09-26",
+   "value": "-3,871",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "NCI",
+   "value": "16,642 (AZ SCIP 14,372, Mobileye 2,129, IMS 141); NCI ~$250M Q4, ~$1.1B/yr 2027-28",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Diluted shares 5,506M",
+   "value": "5.44B guide + 66M contingent escrow; 132M in escrow; 241M warrants at $20; 242M offering at $95",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Tax rate 11%",
+   "value": "11%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Working capital 10%; 9M revenue +7.0B y/y",
+   "value": "+7,039",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Call facts in driver rows: DCAI +mid-teens, CCPG down >20%, Fab 28 ~$300M revenue / ~200bp, FY26 capex ~$20B, 2027 capex 'rise strongly', equipment POs ~+40% q/q, external foundry $411M",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/intel-corp-intc-q3-2026-051348065.html",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "P/E NTM AMD",
+   "value": "39.3x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-30/INTC/peers.md",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "P/E NTM QCOM",
+   "value": "22.4x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-30/INTC/peers.md",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "P/E NTM MRVL",
+   "value": "37.2x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-30/INTC/peers.md",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "P/E NTM NVDA (hand-computed)",
+   "value": "14.5x",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/NVDA/earnings-forecast",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "P/E NTM AVGO (hand-computed)",
+   "value": "18.7x",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/AVGO/earnings-forecast",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Peer median NTM P/E",
+   "value": "22.4x (AMD 39.3, QCOM 22.4, NVDA 14.5, AVGO 18.7, MRVL 37.2)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-30/INTC/peers.md",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "SOTP parts",
+   "value": "Products 18x; Foundry $115B; NCI -16,642",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Scenarios P10/P90",
+   "value": "47.38 / 126.88",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "revenue Q4 FY2026 guidance arithmetic",
+   "value": "4/4/0; median 0.0403; adjusted 16124.6; ours 15782 inside +0.0182",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP GM Q4 FY2026 guidance arithmetic",
+   "value": "7/0/1; median 0.0688; adjusted 0.4061; ours 0.3825 above 0.0066",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "non-GAAP EPS Q4 FY2026 guidance arithmetic",
+   "value": "7/0/1; median 0.6217; adjusted 0.405; ours 0.263 above 0.0508",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "driver:ccpg_rev (actual quarters, aggregates, next-quarter derivation)",
+   "value": "FY25 7629/7871/8535/8193 (=32,228), FY26 actual 7727/8877/8097; Q4 8097x0.78=6316; aggs 31,017/27,000/28,350; FY25 seasonality 23.7/24.4/26.5/25.4%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:dcai_rev (actual quarters, aggregates, next-quarter derivation)",
+   "value": "FY25 4126/3939/4117/4737 (=16,919), FY26 5052/6262/7318; Q4 7318x1.15=8416; run-rate x4 33.7B; aggs 27,048/36,000/43,200",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:ccpg_margin (actual quarters, aggregates, next-quarter derivation)",
+   "value": "actual OI 2361/2053/2694/2209, 2516/2343/2285 over revenue = quarters shown; base 0.2891; Q4 0.55x6316+1350=4,824 -> 23.6%; aggs 0.2761/0.2402/0.2614",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:dcai_margin (actual quarters, aggregates, next-quarter derivation)",
+   "value": "actual OI 575/633/964/1250, 1542/2474/3039 = quarters shown; base 0.2023; aggs 0.3697/0.3807/0.38; Fab 28 200bp x 15.5B = 310",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:foundry_oi (actual quarters, aggregates, next-quarter derivation)",
+   "value": "Foundry OI + eliminations: -2320+240, -3168-8, -2321+28, -2509+359 (=-9,699), -2437+221, -2089+254, -1853-70; aggs -8,424/-8,500/-5,600",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "driver:capex (actual quarters, aggregates, next-quarter derivation)",
+   "value": "gross additions 6203/4492/2956/4021 (=17,672), 4963/2652/4219 (YTD 11,834); FY26 19,634; FY27 26,000 (+32%); FY28 27,000",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Constants fnd_rev/oth_rev/oth_oi/corp/nci/oinc/sbc_c",
+   "value": "fnd_rev -31/-4/8/170, 170/288/406; corp -276/-442/-346; nci -281/-309; oinc Q4 ~+320",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Annual driver_build entries replaced by quarters",
+   "value": "driver_build.set holds only the SOTP Products metric",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-10-30",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Base segment revenue FY2025: CCPG / DCAI / Foundry net of eliminations / All other (fixed)",
+   "value": "basis -> estimate",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Reported quarters Q1-Q3 FY2026 (driver_build.quarters.reported) (fixed)",
+   "value": "adjusted EBIT relabelled derived (estimate) = non-GAAP NI attributable / 0.89; reported non-GAAP operating income 1,668 ",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2026 consensus as of 2026-10-30 (fixed)",
+   "value": "basis relabelled 'not stated (MarketBeat aggregator)'; stated-basis Zacks Q4 $0.30 (SBC expensed, 12 est.) added; no num",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/INTC/earnings-forecast",
+   "checked": "2026-11-02",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Non-controlling interests (fixed)",
+   "value": "NCI income projections -> estimate from call statements",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "'about $96, 20% below spot' (also '$120 price' in disagreements[0]) (fixed)",
+   "value": "fair_value prose rewritten",
+   "basis": "estimate",
+   "source_url": "https://twelvedata.com (time_series INTC 1day)",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Thesis break change row (fixed)",
+   "value": "changes[]",
+   "basis": "estimate",
+   "source_url": "supervisor.json thesis_break_price",
+   "checked": "2026-11-02",
+   "feeds": "changes"
+  },
+  {
+   "item": "Eight companies evaluating 14A, no commitments (Piper Sandler) (fixed)",
+   "value": "second source",
+   "basis": "reported",
+   "source_url": "https://www.pcgamer.com/hardware/processors/apple-nvidia-google-microsoft-pretty-much-all-the-big-us-players-in-the-chip-business-are-reportedly-evaluating-intels-new-14a-node/",
+   "checked": "2026-11-02",
+   "feeds": "disagreements (no number)"
+  },
+  {
+   "item": "Fitch downgrade to BBB/Negative Aug 2025 (fixed)",
+   "value": "re-sourced",
+   "basis": "reported",
+   "source_url": "https://www.thestar.com.my/tech/tech-news/2025/08/05/intel039s-credit-rating-downgraded-by-fitch-on-demand-challenges",
+   "checked": "2026-11-02",
+   "feeds": "disagreements (no number)"
+  },
+  {
+   "item": "Q3 earnings date 'Oct 22 unconfirmed', 1-month window (fixed)",
+   "value": "resolved",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/intc-20261029.htm",
+   "checked": "2026-11-02",
+   "feeds": "disagreements (no number)"
+  },
+  {
+   "item": "fair value ~$96, median ~$111 'below spot', P(>= ~$151) 0.30 (fixed)",
+   "value": "sizing rewritten on the $65.76 spot",
+   "basis": "estimate",
+   "source_url": "https://twelvedata.com (time_series INTC 1day)",
+   "checked": "2026-11-02",
+   "feeds": "sizing"
+  },
+  {
+   "item": "INTC own NTM P/E (fixed)",
+   "value": "own NTM P/E on the peers' Zacks basis",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/company/INTC/earnings-surprise",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "P/E exit multiple 32.6x (fixed)",
+   "value": "exit 22.4 x (47.3/22.4)^0.8 = 40.7x, applied to model EPS after SBC (forecast EBIT - sbc_c, sbc_treatment cost, no SBC d",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000804328/000080432826000085/qcom062826erex991.htm",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "gross capex FY2026 guidance arithmetic (fixed)",
+   "value": "record fixed",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-11-02",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "driver_build.quarters da expression (fixed)",
+   "value": "note reworded to the signed expression 3,000 + 0.25 x (capex a year earlier - 4,400)",
+   "basis": "estimate",
+   "source_url": "supervisor.json driver_build.quarters",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Quarter grid labels/ends; actual = 7 (fixed)",
+   "value": "FY2028 Q1-Q3 ends 2028-04-01 / 07-01 / 09-30 (14-week Q1), Q4 2028-12-30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/intc-20260926.htm",
+   "checked": "2026-11-02",
+   "feeds": "fair_value"
+  }
+ ],
+ "note": "Fixed by the gate fix step 2026-11-02 in supervisor.json (corrections in supervisor.json citation_audit.corrections) and peers.md. Two failures were recorded as 'mixed_basis' by the shard (listed as mislabelled here). Research target (12m) 84.76 -> 82.23 (model_engine check).",
+ "quarterly_gate": {
+  "checked": 8,
+  "fixes": 0,
+  "file": "driver_models/INTC/quarterly/gate.json"
+ }
+}

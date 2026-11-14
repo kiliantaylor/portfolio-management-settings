@@ -1,0 +1,1057 @@
+{
+ "date": "2026-11-11",
+ "symbol": "AVGO",
+ "clean": true,
+ "checked": 103,
+ "ok": 76,
+ "fixed": 24,
+ "failures": [
+  {
+   "item": "AI semiconductor revenue Q3 FY2026: first guide / reported actual",
+   "value": "16000 / 16700",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+   "result": "not_found",
+   "fix": "ok after re-check: the Q2 FY26 release (id 65) says 'in Q3 we expect semiconductor revenue from AI to grow over 200 percent year-over-year to $16.0 billion' and the Q2 call (id 88) 'we expect Q3 AI semiconductor revenue of $16 billion'; guide_quote and id 88 added to the Q3 FY2026 period rows"
+  },
+  {
+   "item": "AVGO +7.1% at 1:47pm ET, z 2.02; SOX ~-20% over prior month; 11-09 AVGO release dating the Q4 FY26 print to Dec 9",
+   "value": "",
+   "cited": "/mnt/project-files/valuation/data/daily_AVGO.csv",
+   "result": "not_found",
+   "fix": "rewritten with sources: move watch record (src 138, tier 2) and Twelve Data 15-min bars (355.45 vs 331.98 = +7.07%, src 135); SOX claim replaced by SOXX -21.4% 10-09 -> 11-10 (Twelve Data, src 136); Dec 9 date cited to Broadcom's 11-09 release (src 134); CoreWeave figures cited to the 8-K Ex.99.1 (src 133). update.json trigger text (SMH/AMD/MU) is outside the files this fix may edit"
+  },
+  {
+   "item": "+8.3% intraday move on 2026-11-09 (sector rebound, no Broadcom news)",
+   "value": "",
+   "cited": "/mnt/project-files/valuation/data/daily_AVGO.csv",
+   "result": "not_found",
+   "fix": "replaced in fair_value.reason and model.reasoning with the daily file's +8.8% close to close (293.69 -> 319.48), intraday high +10.0% (src 135); old 293.69 -> 313.15 pair noted as unsourced (+6.6%)"
+  },
+  {
+   "item": "research target (12m) 475.49",
+   "value": "",
+   "cited": "supervisor.json judgment_alternatives_sized",
+   "result": "arithmetic",
+   "fix": "fair_value.value 475.49 -> 476.35 (model_engine.py check 2026-11-11); 11-11 entry prepended to fair_value.reason (19.34x, quarter shape); the 11-10 even-split paragraph marked superseded"
+  },
+  {
+   "item": "Anthropic S-1/A (2026-11-02) \"identifies the 8-K 2.03 customer as Anthropic\"",
+   "value": "",
+   "cited": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+   "result": "mislabelled",
+   "fix": "reworded in fair_value.reason, model.reasoning and inputs_detail 'Oct 27 2026 Anthropic SPV Backstop': the customer being Anthropic is the set's inference from timing and structure (medium confidence); the S-1/A quote kept as is"
+  },
+  {
+   "item": "Marvell-Lumentum optics effect after the NTM year",
+   "value": "-3,323.8 (row) vs -4,430.0 (adjustment)",
+   "cited": "supervisor.json",
+   "result": "arithmetic",
+   "fix": "inputs_detail row 42 fixed to -4,430.0 with R 324.5 (was the even-split -243.4 x 13.653 = -3,323.8). The capitalisation at 19.81x vs the booked 19.34x (-4,324.9, about +0.02 a share) is value-moving: added to judgment_alternatives (engine 0.0%), not booked"
+  },
+  {
+   "item": "8-peer calendar-NTM P/E median 32.73x; own 19.81x; peer P/Es (NVDA 15.17, AMD 44.18, MRVL 41.43, TSM 20.07, ANET 40.62, CRDO 24.84, ALAB 68.49, COHR 23.42)",
+   "value": "32.73x",
+   "cited": "/mnt/project-files/valuation/data/estimates/NVDA.json",
+   "result": "mixed_basis",
+   "fix": "comps_summary.basis and inputs_detail 'SBC basis' rewritten: Zacks SBC basis checked for AVGO only; peers untested per company (nasdaq refused), low confidence; peer median feeds only the reference exit rule and the sized P/E alternatives, not the booked 19.34x; price/consensus dates stated"
+  },
+  {
+   "item": "FY2027 AI revenue 118,150 = (5.0+1.3+1.0 GW) x $11.5B + Google TPUs $25B/0.73 (booked 34,200)",
+   "value": "118150",
+   "cited": "https://streetsignal.substack.com/p/streetsignals-five-broadcoms-most",
+   "result": "back_solved",
+   "fix": "kept (owner card 2026-11-10 picked $11.5B; thread's logged forecast_lint override in lint_overrides.json). Real-world case: company-stated customer GW x price; the chip-content build ($10.7-12.8B per GW from Ironwood pod power and Q3 filed revenue per unit, not from the guide) brackets $11.5B. Morgan Stanley 5M-unit FY27 build added and sized (-0.16%); UBS build +0.35%. Owner may reopen"
+  },
+  {
+   "item": "FY2028 AI revenue 195,500 = 17.0 GW x $11.5B (Anthropic 8.5 of 10, OpenAI 3.5 of >5, others 5.0)",
+   "value": "195500",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "result": "back_solved",
+   "fix": "not closed by the gate fix: per-customer FY28 builds added to judgment_alternatives (Anthropic 6.0 GW -11.67%, 10 GW +7.0%; OpenAI 1.3 GW -10.27%, 5 GW +7.0%; others 4.0 GW -4.67%) and carded in judgment_calls_for_kilian ('How many GW does each lab realize in FY28'); booked 17.0 GW stays, no pick"
+  },
+  {
+   "item": "FY2029 AI revenue held at Q4 FY28 run-rate 65,140.7 a quarter (260,563, +33% on FY28)",
+   "value": "260563",
+   "cited": "supervisor.json drivers[ai_rev]",
+   "result": "unsupported",
+   "fix": "FY29 level relabelled as judgment with its case (no company figure beyond FY28; XPV '>20 GW by end 2028') in the ai_rev derivation; alternative FY29 at FY28's average quarter 48,875 added and sized (-0.91%)"
+  },
+  {
+   "item": "Q4 FY26 non-AI semiconductor revenue 4,300 (= guide); FY27-FY29 repeat FY26 quarters incl. Q4 4,300",
+   "value": "4300",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "result": "back_solved",
+   "fix": "not closed by the gate fix: no own build available; options (4,300 guide / 3,955 guide x Q3 miss / 4,139 flat on Q3 / +5% a year) added to judgment_alternatives, engine-sized (-0.14% to +0.68%) and carded in judgment_calls_for_kilian; booked 4,300 stays, no pick"
+  },
+  {
+   "item": "Future XPV backstops $32,000M x p 0.5 x 70% from Q2 FY28 (11,200); OpenAI 35,000 x p 0.6",
+   "value": "11200",
+   "cited": "https://finance.yahoo.com/technology/ai/articles/broadcom-arranging-50-billion-openai-060941579.html",
+   "result": "unsupported",
+   "fix": "row basis set to judgment with the evidence stated (no source gives Broadcom-backed size or timing; WSJ does not say Broadcom guarantees the OpenAI package); alternatives 'no further backstops' (+0.02%) and 'OpenAI not Broadcom-backed' (+0.03%) sized under cf_exposure and the row's own item"
+  },
+  {
+   "item": "S&P five-year cumulative default BB 5.05%, B 14.69% (1981-2024, Table 26)",
+   "value": "",
+   "cited": "https://maalot.co.il/Publications/FTS20250331162126.pdf",
+   "result": "not_found",
+   "fix": "ok after re-check: the relay PDF (Maalot copy of S&P's study) shows Table 26 pp. 57-58, Y5 BB 5.05, B 14.69; the spglobal.com original page was tried and does not render the table; relay labelled in the source title and the PD row"
+  },
+  {
+   "item": "5.0 GW others; Rasgon \"~20 GW in 2028, ~15 of which Anthropic and OpenAI\"",
+   "value": "5.0",
+   "cited": "https://streetsignal.substack.com/p/streetsignals-five-broadcoms-most",
+   "result": "not_found",
+   "fix": "rewritten in inputs_detail: Rasgon gives only $11-12B per GW; the ~20 GW (= $230B / $11.5B) and the 15 / 5 split are the set's arithmetic from the call's Anthropic 10 GW and OpenAI over 5 GW; guidance_check FY2028 why reworded the same way"
+  },
+  {
+   "item": "10% diversification discount (Berger & Ofek 13-15%) -$49.9B",
+   "value": "",
+   "cited": "https://www.sciencedirect.com/science/article/pii/0304405X9400798M",
+   "result": "not_found",
+   "fix": "source replaced: Graham, Lemmon & Wolf (src 137, opened) cite Berger & Ofek (1995) at 'approximately a 15% discount on average'; '13-15%' changed to ~15%; unopened internal file and publisher link dropped from the row; alternative arithmetic 37,459 x .835 x .84 x 19 = $499B, 10% = -$49.9B re-derived"
+  },
+  {
+   "item": "Sized price alternatives span 459.1 to 530.5; FY28 GW builds span 357.08 to 554.34",
+   "value": "",
+   "cited": "supervisor.json judgment_alternatives",
+   "result": "mislabelled",
+   "fix": "card why re-sized at base 476.35: price alternatives 449.67 to 519.66; FY28 GW builds 349.64 to 543.04"
+  },
+  {
+   "item": "cf_loss_rate BB 5.05% / B 14.69%",
+   "value": "",
+   "cited": "https://maalot.co.il/Publications/FTS20250331162126.pdf",
+   "result": "not_found",
+   "fix": "same as the S&P row: Table 26 confirmed on pp. 57-58 of the relay PDF; engine sizes current (+0.10% / -0.07%)"
+  },
+  {
+   "item": "conglomerate discount 10%",
+   "value": "",
+   "cited": "https://www.sciencedirect.com/science/article/pii/0304405X9400798M",
+   "result": "not_found",
+   "fix": "same as the conglomerate row: source replaced by src 137; engine size -2.12%"
+  },
+  {
+   "item": "Anthropic FY28 at 60% (-$39.8) or 100% (+$23.9); OpenAI flat at 1.3 GW (-$35.1) or full 5 GW; others 4.0 GW (-$15.9) as single-customer builds",
+   "value": "",
+   "cited": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+   "result": "missing_alternative",
+   "fix": "added and engine-sized: Anthropic 60% -11.67%, Anthropic 100% +7.00%, OpenAI 1.3 GW -10.27%, OpenAI 5 GW +7.00%, others 4.0 GW -4.67%; carded (FY28 per-customer card)"
+  },
+  {
+   "item": "FY27 AI from Morgan Stanley's 5M TPUs in 2027 at $15.56k per unit plus networking 0.37x (about $106B before any MediaTek split)",
+   "value": "",
+   "cited": "https://www.kucoin.com/news/flash/morgan-stanley-defends-broadcom-s-role-in-google-s-tpu-supply-chain-forecasts-5m-shipments-by-2027",
+   "result": "missing_alternative",
+   "fix": "added and engine-sized: Morgan Stanley 5M TPUs x $15.56k x 1.37 = $106.6B FY27: -0.16%"
+  },
+  {
+   "item": "non-AI revenue +5% a year from FY27 (Q2 FY26 bookings >$6B), +3.12 per inputs_detail",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/06/03/broadcom-avgo-q2-2026-earnings-transcript/",
+   "result": "missing_alternative",
+   "fix": "added under 'constant: non_ai_rev' and engine-sized: +5% a year from FY27 +0.68% (plus the two Q4 builds)"
+  },
+  {
+   "item": "Exit rule 21.9x x 0.9763 = 21.4x (8-peer median 32.73x, k 0.8) and 11-peer median 26.18x",
+   "value": "",
+   "cited": "/mnt/project-files/valuation/data/estimates/NVDA.json",
+   "result": "missing_alternative",
+   "fix": "added under 'Horizon P/E multiple' and engine-sized: 21.38x (8-peer exit rule x 0.9763) +10.59%, 20.45x (11-peer exit rule x 0.9763) +5.76%; carded as a re-shown owner decision (2026-10-30)"
+  },
+  {
+   "item": "booked: \"FY27 118,150 ... split evenly by quarter; FY28 195,500 ... split evenly; FY29 held at Q4 FY28\"",
+   "value": "",
+   "cited": "supervisor.json drivers[ai_rev]",
+   "result": "mislabelled",
+   "fix": "judgment_alternatives ai_rev booked text rewritten to the FY24-FY26 quarter shares (21,184.3 / 25,993.0 / 31,605.1 / 39,367.6; 35,053.1 / 43,010.0 / 52,296.2 / 65,140.7)"
+  },
+  {
+   "item": "option research_target values 503.32 / 486.31 / 469.3",
+   "value": "",
+   "cited": "supervisor.json judgment_alternatives_sized",
+   "result": "mislabelled",
+   "fix": "card options re-sized from judgment_check size at base 476.35: $12.0B 493.02 (+3.5%), $11.5B 476.35, $11.0B 459.67 (-3.5%)"
+  },
+  {
+   "item": "option research_target values 530.5 / 459.1",
+   "value": "",
+   "cited": "supervisor.json judgment_alternatives_sized",
+   "result": "mislabelled",
+   "fix": "card options re-sized: $12.8B 519.66 (+9.09%), $10.7B 449.67 (-5.6%), keep 476.35"
+  },
+  {
+   "item": "option research_target values 519.49 / 455.71 vs 486.31",
+   "value": "",
+   "cited": "supervisor.json judgment_alternatives_sized",
+   "result": "mislabelled",
+   "fix": "card options re-sized: none binds 508.54 (+6.76%), spread 446.67 (-6.23%), keep 476.35"
+  },
+  {
+   "item": "option research_target values 512.39 vs 486.31",
+   "value": "",
+   "cited": "supervisor.json judgment_alternatives_sized",
+   "result": "mislabelled",
+   "fix": "card options re-sized: ARR +15% 501.9 (+5.36%), hold 476.35"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue Q4 FY2026 guide as of 2026-09-02 (GAAP revenue $M)",
+   "value": "34800-34800",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue Q4 FY2026 guide as of 2026-09-02 (company figure $M)",
+   "value": "21700-21700",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q4 FY2026 guide",
+   "value": "0.66-0.66",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q1 FY2025: first guide / reported actual",
+   "value": "14600 / 14916",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000125/avgo-11032024x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q1 FY2025: first guide / reported actual",
+   "value": "0.66 / 0.676",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000125/avgo-11032024x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q2 FY2025: first guide / reported actual",
+   "value": "14900 / 15004",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000009/avgo-02022025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue Q2 FY2025: first guide / reported actual",
+   "value": "4400 / 4400",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000009/avgo-02022025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q2 FY2025: first guide / reported actual",
+   "value": "0.66 / 0.6666",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000009/avgo-02022025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q3 FY2025: first guide / reported actual",
+   "value": "15800 / 15952",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000061/avgo-05042025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue Q3 FY2025: first guide / reported actual",
+   "value": "5100 / 5200",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000061/avgo-05042025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q3 FY2025: first guide / reported actual",
+   "value": "0.66 / 0.6709",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000061/avgo-05042025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q4 FY2025: first guide / reported actual",
+   "value": "17400 / 18015",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000094/avgo-08032025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue Q4 FY2025 (actual derived estimate, not reported): first guide / reported actual",
+   "value": "6200 / 6460",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000094/avgo-08032025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q4 FY2025: first guide / reported actual",
+   "value": "0.67 / 0.6782",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000094/avgo-08032025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q1 FY2026: first guide / reported actual",
+   "value": "19100 / 19311",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000116/avgo-11022025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue Q1 FY2026: first guide / reported actual",
+   "value": "8200 / 8400",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000116/avgo-11022025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q1 FY2026: first guide / reported actual",
+   "value": "0.67 / 0.6798",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000116/avgo-11022025x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q2 FY2026: first guide / reported actual",
+   "value": "22000 / 22187",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000011/avgo-02012026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue Q2 FY2026: first guide / reported actual",
+   "value": "10700 / 10800",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000011/avgo-02012026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q2 FY2026: first guide / reported actual",
+   "value": "0.68 / 0.6871",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000011/avgo-02012026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q3 FY2026: first guide / reported actual",
+   "value": "29400 / 29591",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "margin guide (adj. EBITDA % of revenue through Q2 FY26; non-GAAP operating margin from Q3 FY26) Q3 FY2026: first guide / reported actual",
+   "value": "0.67 / 0.6791",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue FY2027 guide as of 2026-09-02 ('approximately $115 billion', supply secured)",
+   "value": "115000-115000",
+   "basis": "guidance",
+   "source_url": "https://www.webull.com/news/15511095937917952",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "AI semiconductor revenue FY2028 ('line of sight', not formal guidance ($M))",
+   "value": "230000-230000",
+   "basis": "guidance",
+   "source_url": "https://www.webull.com/news/15511095937917952",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "CoreWeave Q3 8-K 2026-11-10 4:05pm ET, accession 0001769628-26-000461: revenue 3.661B, FY26 capex guide 37-39B (low end up from 35B), backlog 132.5B, contract-backed financing",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000461/coreweave3q26earningspress.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model.reasoning (11-11 paragraph)"
+  },
+  {
+   "item": "Anthropic S-1/A: Q3 2026 revenue $16,956M (Q3 2025 $1,382M), adjusted operating income $2,463M, rent ~$161.2B excl. interest, non-cancelable except by lessor on default, capacity \"starting in 2027\", up to $42.0B convertible notes",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor fair_value.reason / inputs_detail"
+  },
+  {
+   "item": "Net debt 35,444; debt 59,419; cash 23,975; Q3 revenue 29,591; TTM revenue 89,104; base revenue 63,887; segment OI 12,770 + 7,325 = 20,095",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R52.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor fair_value.reason"
+  },
+  {
+   "item": "Exit P/E 19.34x = 19.81 x 0.9763; factor from exit_growth.py (dG_ours -0.1777, dG_cons -0.0736)",
+   "value": "19.34x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/exit_growth.py",
+   "checked": "2026-11-11",
+   "feeds": "supervisor comps_summary.growth_term / horizon_multiples"
+  },
+  {
+   "item": "revenue Q4 FY2026 guidance arithmetic",
+   "value": "7/0/0, median 0.0096, adjusted 35134, ours 34670 below -0.0037",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.guidance_check",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check revenue Q4 FY2026"
+  },
+  {
+   "item": "AI semiconductor revenue Q4 FY2026 guidance arithmetic",
+   "value": "5/1/0, median 0.022, adjusted 22177, ours 21620 below -0.0037",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.guidance_check",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check AI semiconductor revenue Q4 FY2026"
+  },
+  {
+   "item": "margin guide Q4 FY2026 guidance arithmetic",
+   "value": "7/0/0, median 0.0136, adjusted 0.669, ours 0.6676 above 0.0115",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.guidance_check",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check margin guide Q4 FY2026"
+  },
+  {
+   "item": "AI semiconductor revenue FY2027 guidance arithmetic",
+   "value": "5/1/0, median 0.022, adjusted 117530, ours 118150 above 0.0274",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.guidance_check",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check AI semiconductor revenue FY2027"
+  },
+  {
+   "item": "AI semiconductor revenue FY2028 guidance arithmetic",
+   "value": "5/1/0, median 0.022, adjusted 235060, ours 195500 below -0.15",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.guidance_check",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check AI semiconductor revenue FY2028"
+  },
+  {
+   "item": "AI quarters by FY24-FY26 average shares 17.93/22.00/26.75/33.32%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json drivers[ai_rev]",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver ai_rev quarter shape FY27-FY28"
+  },
+  {
+   "item": "Q4 FY26 AI 21,620 from TPU units x revenue per unit + networking",
+   "value": "21620",
+   "basis": "estimate",
+   "source_url": "https://thebuildout.ai/intel/3bd003a5-04eb-44ba-ad8b-17129845d8a3",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver ai_rev Q4 FY2026"
+  },
+  {
+   "item": "Software 8,750 a quarter Q4 FY26-FY29 (FY27 35,000 = +11.2%, FY28 0%)",
+   "value": "8750",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver sw_rev"
+  },
+  {
+   "item": "XPU share 0.73 Q4 FY26-FY29",
+   "value": "0.73",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/broadcom-avgo-q1-2026-earnings-call-transcript",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver xpu_share"
+  },
+  {
+   "item": "XPU margin 58.75% Q4 FY26-FY29",
+   "value": "0.5875",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/broadcom-avgo-q1-2026-earnings-call-transcript",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver xpu_margin"
+  },
+  {
+   "item": "Anthropic junior 10% coupon vs ~7% BB; senior \"guaranteed by Broadcom\"; $60B = $42B Class A + $18B Class B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://en.sedaily.com/international/2026/10/19/anthropic-offers-10-percent-yield-on-subordinated-debt-for",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver cf_loss_rate / inputs_detail"
+  },
+  {
+   "item": "Texas 93.1 GW (19.5+73.6), PJM states 89.429 GW, Georgia 19.8, NY 6.082 of 345.9 GW; US share 0.693 = 149,617/215,938",
+   "value": "0.2692 / 0.2585 / 0.0572 / 0.0176 / 0.693",
+   "basis": "estimate",
+   "source_url": "https://dcmap.us/states/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver dc_mor"
+  },
+  {
+   "item": "ERCOT energization pause, reports by 2026-12-10, TCEQ pause, NY EO 62, Pennsylvania, Texas session 2027-01-12 to 05-31, Hinojosa, BNEF, SemiAnalysis, UBS",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver dc_mor"
+  },
+  {
+   "item": "Optics ~$2.0B FY26 (11.35% of networking), Marvell-Lumentum deal terms and ramp",
+   "value": "0.1135",
+   "basis": "estimate",
+   "source_url": "https://investor.marvell.com/news-events/press-releases/detail/1040/marvell-and-lumentum-to-combine-creating-a-category-leader-in-ai-connectivity",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver optics_share / optics_share_loss / optics_price_cut"
+  },
+  {
+   "item": "$11,500M per GW (Rasgon midpoint); Mizuho $21B 2026 / $42B 2027 and ~3.5 GW; Tan $20-30B per GW; chip-content $10.7-12.8B",
+   "value": "11500",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/sectors/technology/articles/anthropic-google-broadcom-tpu-deal-113234906.html",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail AI revenue per GW"
+  },
+  {
+   "item": "OpenAI revenue \"approaching $50B end of September\" (FT), $18B financing snag (The Information), >$50B talks (WSJ); Anthropic IPO ~$1.5T, Q3 revenue $16.8B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/technology/ai/articles/openai-revenue-20b-below-previous-181839907.html",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail FY2028 OpenAI / Anthropic GW haircuts"
+  },
+  {
+   "item": "16% non-GAAP tax; D&A 0.6%; capex 2.3/1.5/1.0%; NWC 12%; interest 5.24%; SBC; dividends 12,420/14,330/15,420; 4,940M shares",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/R4.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail tax / D&A / capex / working capital / interest / SBC / dividends / shares"
+  },
+  {
+   "item": "55%: segment gross ~70% and opex $822M (\"stable\") from Q4 FY23 call; Q3 FY26 non-AI 4,139",
+   "value": "0.55",
+   "basis": "estimate",
+   "source_url": "https://www.marketbeat.com/earnings/transcripts/99795",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail nonai_margin"
+  },
+  {
+   "item": "10-Q Backstop ~$29B max, 85%, 5-year; $42,000M note facility, drawn 0; 8-K 10-27 Backstop ~$43B, 72.5%",
+   "value": "29000 / 42000 / 43000",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526434271/d148323d8k.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail customer financing deals"
+  },
+  {
+   "item": "CISPE DG Competition complaint 2026-03-19; EU fines cap 10% of turnover; -$1,250M",
+   "value": "-1250",
+   "basis": "estimate",
+   "source_url": "https://www.cispe.cloud/?p=25724",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail legal adjustment"
+  },
+  {
+   "item": "non-AI \"stable\", bookings >$6B, Q3 guide $4.5B vs 4,139 actual",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/03/broadcom-avgo-q2-2026-earnings-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail non_ai_rev rationale"
+  },
+  {
+   "item": "Built from drivers (rebuild 2026-11-09): AI 21,620 ..., -0.4% vs the $34.8B guide and -1.3% vs the record-adjusted 35,134.",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check why (uncited)"
+  },
+  {
+   "item": "TPU units x revenue per unit plus networking ...: 21,620, -0.4% vs the $21.7B guide; range 17.7-25.6B across the UBS and Morgan Stanley unit",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check why (uncited)"
+  },
+  {
+   "item": "Built from drivers: XPU margin 58.75% ..., networking 72%, non-AI 55%: 66.8% vs the ~66% guide.",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check why (uncited)"
+  },
+  {
+   "item": "It lands just inside the band of past beats (66% x 1.010 to x 1.024 spans 66.7-67.6%; smallest +1.0% Q2 FY25, largest +2.4%).",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check why (uncited)"
+  },
+  {
+   "item": "Customer GW x $11.5B per GW (Rasgon midpoint, owner card) plus Google's own TPUs; +2.7% vs 'approximately $115 billion' (management: 'demand",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check why (uncited)"
+  },
+  {
+   "item": "Two lab customers hold ~15 of the 20 GW and both depend on outside financing; Oct 27 8-K shows a Broadcom backstop up to ~$43B for a new SPV leasing AI racks to \"the Company's customer\"",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526434271/d148323d8k.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check AI FY2028 why (uncited)"
+  },
+  {
+   "item": "The $12.0B option is the set's division of Mizuho's $42B / ~3.5 GW, not a Mizuho per-GW figure; Rasgon's range divides management's outlook by customer GW",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://streetsignal.substack.com/p/streetsignals-five-broadcoms-most",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment call: price per GW why (uncited)"
+  },
+  {
+   "item": "Owner picks 2026-11-10; \"Q3 step already lifts FY27 +11%\"; \"re-shown with today's sizes\"",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment calls (uncited why): software, chip-content, moratorium"
+  },
+  {
+   "item": "ai_rev $12.0B per GW Mizuho division",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/sectors/technology/articles/anthropic-google-broadcom-tpu-deal-113234906.html",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev $11.0B (Rasgon low end)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://streetsignal.substack.com/p/streetsignals-five-broadcoms-most",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev FY28 at $230B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev FY28 lab financing stalls (11.3 GW)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/technology/ai/articles/broadcom-arranging-50-billion-openai-060941579.html",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev FY27 from UBS 6.76M units",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://thebuildout.ai/intel/3bd003a5-04eb-44ba-ad8b-17129845d8a3",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev Q4 FY26 Morgan Stanley only",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.kucoin.com/news/flash/morgan-stanley-defends-broadcom-s-role-in-google-s-tpu-supply-chain-forecasts-5m-shipments-by-2027",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev chip-content $12.8B / $10.7B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://eu.36kr.com/en/p/3631956080985095",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev Google TPUs $30B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev Q4 FY26 UBS only",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://thebuildout.ai/intel/3bd003a5-04eb-44ba-ad8b-17129845d8a3",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "ai_rev base-round ramp / even split",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev"
+  },
+  {
+   "item": "xpu_share 0.70 from Q2 FY27",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/03/broadcom-avgo-q2-2026-earnings-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives xpu_share"
+  },
+  {
+   "item": "xpu_share Q4 FY26 0.663",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives xpu_share"
+  },
+  {
+   "item": "xpu_margin rack mix UBS 45-50%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/broadcom-avgo-q1-2026-earnings-call-transcript",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives xpu_margin"
+  },
+  {
+   "item": "sw_rev ARR +15%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives sw_rev"
+  },
+  {
+   "item": "nonai_margin 59% / 54%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.marketbeat.com/earnings/transcripts/99795",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives nonai_margin"
+  },
+  {
+   "item": "optics_share_loss gross -20% (Lumentum >$5B)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://investor.lumentum.com/financial-news-releases/news-details/2026/Lumentum-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives optics_share_loss"
+  },
+  {
+   "item": "optics_price_cut -6%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-broadcom-tops-q3-2026-estimates-as-ai-sales-surge-93CH-4886849",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives optics_price_cut"
+  },
+  {
+   "item": "dc_mor none-binds / spread-full",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives dc_mor"
+  },
+  {
+   "item": "Card option links (Yahoo/Mizuho, Fool Q3, StreetSignal, 36Kr, Register, Fool Q3)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_calls_for_kilian option sources"
+  },
+  {
+   "item": "AI semiconductor revenue Q3 FY2026: first guide / reported actual",
+   "value": "16000 / 16700",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance",
+   "fixed": "ok after re-check: the Q2 FY26 release (id 65) says 'in Q3 we expect semiconductor revenue from AI to grow over 200 percent year-over-year to $16.0 billion' and the Q2 call (id 88) 'we expect Q3 AI se"
+  },
+  {
+   "item": "AVGO +7.1% at 1:47pm ET, z 2.02; SOX ~-20% over prior month; 11-09 AVGO release dating the Q4 FY26 print to Dec 9",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/daily_AVGO.csv",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model.reasoning (11-11 paragraph)",
+   "fixed": "rewritten with sources: move watch record (src 138, tier 2) and Twelve Data 15-min bars (355.45 vs 331.98 = +7.07%, src 135); SOX claim replaced by SOXX -21.4% 10-09 -> 11-10 (Twelve Data, src 136); D"
+  },
+  {
+   "item": "+8.3% intraday move on 2026-11-09 (sector rebound, no Broadcom news)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/daily_AVGO.csv",
+   "checked": "2026-11-11",
+   "feeds": "supervisor fair_value.reason",
+   "fixed": "replaced in fair_value.reason and model.reasoning with the daily file's +8.8% close to close (293.69 -> 319.48), intraday high +10.0% (src 135); old 293.69 -> 313.15 pair noted as unsourced (+6.6%)"
+  },
+  {
+   "item": "research target (12m) 475.49",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives_sized",
+   "checked": "2026-11-11",
+   "feeds": "supervisor fair_value.value",
+   "fixed": "fair_value.value 475.49 -> 476.35 (model_engine.py check 2026-11-11); 11-11 entry prepended to fair_value.reason (19.34x, quarter shape); the 11-10 even-split paragraph marked superseded"
+  },
+  {
+   "item": "Anthropic S-1/A (2026-11-02) \"identifies the 8-K 2.03 customer as Anthropic\"",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor fair_value.reason",
+   "fixed": "reworded in fair_value.reason, model.reasoning and inputs_detail 'Oct 27 2026 Anthropic SPV Backstop': the customer being Anthropic is the set's inference from timing and structure (medium confidence)"
+  },
+  {
+   "item": "8-peer calendar-NTM P/E median 32.73x; own 19.81x; peer P/Es (NVDA 15.17, AMD 44.18, MRVL 41.43, TSM 20.07, ANET 40.62, CRDO 24.84, ALAB 68.49, COHR 23.42)",
+   "value": "32.73x",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/estimates/NVDA.json",
+   "checked": "2026-11-11",
+   "feeds": "supervisor comps_summary / comps_review",
+   "fixed": "comps_summary.basis and inputs_detail 'SBC basis' rewritten: Zacks SBC basis checked for AVGO only; peers untested per company (nasdaq refused), low confidence; peer median feeds only the reference ex"
+  },
+  {
+   "item": "FY2027 AI revenue 118,150 = (5.0+1.3+1.0 GW) x $11.5B + Google TPUs $25B/0.73 (booked 34,200)",
+   "value": "118150",
+   "basis": "estimate",
+   "source_url": "https://streetsignal.substack.com/p/streetsignals-five-broadcoms-most",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver ai_rev FY2027",
+   "fixed": "kept (owner card 2026-11-10 picked $11.5B; thread's logged forecast_lint override in lint_overrides.json). Real-world case: company-stated customer GW x price; the chip-content build ($10.7-12.8B per "
+  },
+  {
+   "item": "FY2029 AI revenue held at Q4 FY28 run-rate 65,140.7 a quarter (260,563, +33% on FY28)",
+   "value": "260563",
+   "basis": "estimate",
+   "source_url": "supervisor.json drivers[ai_rev]",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver ai_rev FY2029",
+   "fixed": "FY29 level relabelled as judgment with its case (no company figure beyond FY28; XPV '>20 GW by end 2028') in the ai_rev derivation; alternative FY29 at FY28's average quarter 48,875 added and sized (-"
+  },
+  {
+   "item": "Future XPV backstops $32,000M x p 0.5 x 70% from Q2 FY28 (11,200); OpenAI 35,000 x p 0.6",
+   "value": "11200",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/technology/ai/articles/broadcom-arranging-50-billion-openai-060941579.html",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver cf_exposure",
+   "fixed": "row basis set to judgment with the evidence stated (no source gives Broadcom-backed size or timing; WSJ does not say Broadcom guarantees the OpenAI package); alternatives 'no further backstops' (+0.02"
+  },
+  {
+   "item": "S&P five-year cumulative default BB 5.05%, B 14.69% (1981-2024, Table 26)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://maalot.co.il/Publications/FTS20250331162126.pdf",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver cf_loss_rate / inputs_detail PD row",
+   "fixed": "ok after re-check: the relay PDF (Maalot copy of S&P's study) shows Table 26 pp. 57-58, Y5 BB 5.05, B 14.69; the spglobal.com original page was tried and does not render the table; relay labelled in t"
+  },
+  {
+   "item": "5.0 GW others; Rasgon \"~20 GW in 2028, ~15 of which Anthropic and OpenAI\"",
+   "value": "5.0",
+   "basis": "estimate",
+   "source_url": "https://streetsignal.substack.com/p/streetsignals-five-broadcoms-most",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail FY2028 other customers GW",
+   "fixed": "rewritten in inputs_detail: Rasgon gives only $11-12B per GW; the ~20 GW (= $230B / $11.5B) and the 15 / 5 split are the set's arithmetic from the call's Anthropic 10 GW and OpenAI over 5 GW; guidance"
+  },
+  {
+   "item": "10% diversification discount (Berger & Ofek 13-15%) -$49.9B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sciencedirect.com/science/article/pii/0304405X9400798M",
+   "checked": "2026-11-11",
+   "feeds": "supervisor inputs_detail conglomerate discount",
+   "fixed": "source replaced: Graham, Lemmon & Wolf (src 137, opened) cite Berger & Ofek (1995) at 'approximately a 15% discount on average'; '13-15%' changed to ~15%; unopened internal file and publisher link dro"
+  },
+  {
+   "item": "Sized price alternatives span 459.1 to 530.5; FY28 GW builds span 357.08 to 554.34",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment call: Which price per GW why (uncited)",
+   "fixed": "card why re-sized at base 476.35: price alternatives 449.67 to 519.66; FY28 GW builds 349.64 to 543.04"
+  },
+  {
+   "item": "cf_loss_rate BB 5.05% / B 14.69%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://maalot.co.il/Publications/FTS20250331162126.pdf",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives cf_loss_rate",
+   "fixed": "same as the S&P row: Table 26 confirmed on pp. 57-58 of the relay PDF; engine sizes current (+0.10% / -0.07%)"
+  },
+  {
+   "item": "conglomerate discount 10%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sciencedirect.com/science/article/pii/0304405X9400798M",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives conglomerate",
+   "fixed": "same as the conglomerate row: source replaced by src 137; engine size -2.12%"
+  },
+  {
+   "item": "Anthropic FY28 at 60% (-$39.8) or 100% (+$23.9); OpenAI flat at 1.3 GW (-$35.1) or full 5 GW; others 4.0 GW (-$15.9) as single-customer builds",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev (FY28 per-customer builds)",
+   "fixed": "added and engine-sized: Anthropic 60% -11.67%, Anthropic 100% +7.00%, OpenAI 1.3 GW -10.27%, OpenAI 5 GW +7.00%, others 4.0 GW -4.67%; carded (FY28 per-customer card)"
+  },
+  {
+   "item": "FY27 AI from Morgan Stanley's 5M TPUs in 2027 at $15.56k per unit plus networking 0.37x (about $106B before any MediaTek split)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.kucoin.com/news/flash/morgan-stanley-defends-broadcom-s-role-in-google-s-tpu-supply-chain-forecasts-5m-shipments-by-2027",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev (FY27 Morgan Stanley units)",
+   "fixed": "added and engine-sized: Morgan Stanley 5M TPUs x $15.56k x 1.37 = $106.6B FY27: -0.16%"
+  },
+  {
+   "item": "non-AI revenue +5% a year from FY27 (Q2 FY26 bookings >$6B), +3.12 per inputs_detail",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/03/broadcom-avgo-q2-2026-earnings-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives non_ai_rev",
+   "fixed": "added under 'constant: non_ai_rev' and engine-sized: +5% a year from FY27 +0.68% (plus the two Q4 builds)"
+  },
+  {
+   "item": "Exit rule 21.9x x 0.9763 = 21.4x (8-peer median 32.73x, k 0.8) and 11-peer median 26.18x",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/estimates/NVDA.json",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives horizon P/E",
+   "fixed": "added under 'Horizon P/E multiple' and engine-sized: 21.38x (8-peer exit rule x 0.9763) +10.59%, 20.45x (11-peer exit rule x 0.9763) +5.76%; carded as a re-shown owner decision (2026-10-30)"
+  },
+  {
+   "item": "booked: \"FY27 118,150 ... split evenly by quarter; FY28 195,500 ... split evenly; FY29 held at Q4 FY28\"",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json drivers[ai_rev]",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives ai_rev booked text",
+   "fixed": "judgment_alternatives ai_rev booked text rewritten to the FY24-FY26 quarter shares (21,184.3 / 25,993.0 / 31,605.1 / 39,367.6; 35,053.1 / 43,010.0 / 52,296.2 / 65,140.7)"
+  },
+  {
+   "item": "option research_target values 503.32 / 486.31 / 469.3",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives_sized",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_calls_for_kilian $12.0B / $11.5B / $11.0B per GW card",
+   "fixed": "card options re-sized from judgment_check size at base 476.35: $12.0B 493.02 (+3.5%), $11.5B 476.35, $11.0B 459.67 (-3.5%)"
+  },
+  {
+   "item": "option research_target values 530.5 / 459.1",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives_sized",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_calls_for_kilian chip-content card $12.8B / $10.7B",
+   "fixed": "card options re-sized: $12.8B 519.66 (+9.09%), $10.7B 449.67 (-5.6%), keep 476.35"
+  },
+  {
+   "item": "option research_target values 519.49 / 455.71 vs 486.31",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives_sized",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_calls_for_kilian moratorium weights card",
+   "fixed": "card options re-sized: none binds 508.54 (+6.76%), spread 446.67 (-6.23%), keep 476.35"
+  },
+  {
+   "item": "option research_target values 512.39 vs 486.31",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives_sized",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_calls_for_kilian software card",
+   "fixed": "card options re-sized: ARR +15% 501.9 (+5.36%), hold 476.35"
+  }
+ ],
+ "research_target_12m": 476.35,
+ "note": "Gate fix 2026-11-11: no booked value moved; open items need the owner's card answers or a value-moving fix the gate fix was told not to book.",
+ "corrections": [
+  {
+   "item": "Marvell-Lumentum optics effect after the NTM year",
+   "value": "-3,323.8 (row) vs -4,430.0 (adjustment)",
+   "cited": "supervisor.json",
+   "result": "arithmetic",
+   "fix": "inputs_detail row 42 fixed to -4,430.0 with R 324.5 (was the even-split -243.4 x 13.653 = -3,323.8). The capitalisation at 19.81x vs the booked 19.34x (-4,324.9, about +0.02 a share) is value-moving: added to judgment_alternatives (engine 0.0%), not booked",
+   "why_open": "value-moving or owner decision; not booked by the gate fix",
+   "closed": "2026-11-11 thread: booked -4,324.9 at 19.34x"
+  },
+  {
+   "item": "Q4 FY26 non-AI semiconductor revenue 4,300 (= guide); FY27-FY29 repeat FY26 quarters incl. Q4 4,300",
+   "value": "4300",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "result": "back_solved",
+   "fix": "not closed by the gate fix: no own build available; options (4,300 guide / 3,955 guide x Q3 miss / 4,139 flat on Q3 / +5% a year) added to judgment_alternatives, engine-sized (-0.14% to +0.68%) and carded in judgment_calls_for_kilian; booked 4,300 stays, no pick",
+   "why_open": "value-moving or owner decision; not booked by the gate fix",
+   "closed": "2026-11-11 thread: rebuilt at 4,139 = Q3 FY26 reported, flat (not the guide); later Q4s repeat it"
+  },
+  {
+   "item": "FY2028 AI revenue 195,500 = 17.0 GW x $11.5B (Anthropic 8.5 of 10, OpenAI 3.5 of >5, others 5.0)",
+   "value": "195500",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/09/09/broadcom-avgo-q3-2026-earnings-call-transcript/",
+   "result": "back_solved",
+   "fix": "not closed by the gate fix: per-customer FY28 builds added to judgment_alternatives (Anthropic 6.0 GW -11.67%, 10 GW +7.0%; OpenAI 1.3 GW -10.27%, 5 GW +7.0%; others 4.0 GW -4.67%) and carded in judgment_calls_for_kilian ('How many GW does each lab realize in FY28'); booked 17.0 GW stays, no pick",
+   "why_open": "value-moving or owner decision; not booked by the gate fix",
+   "closed": "2026-11-11 owner card: keep 17.0 GW (each lab haircut has its own cause; single-lab builds sized and carded)"
+  }
+ ]
+}

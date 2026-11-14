@@ -1,0 +1,1837 @@
+{
+ "date": "2026-11-05",
+ "symbol": "VST",
+ "clean": true,
+ "checked": 158,
+ "ok": 118,
+ "fixed": 40,
+ "engine_value": 137.32,
+ "failures": [
+  {
+   "item": "claim (src 55)",
+   "value": "Bottom-up 7,366, inside 7,100-7,500 and +0.9% vs the 7,300 mid; management expects to finish above the midpoint for a fifth year (src 55).",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "result": "not_found",
+   "origin": "supervisor guidance_check Ongoing Operations Adjusted EBITDA FY2026 why",
+   "fix": "Rewritten to the call/deck: 'fifth consecutive year we expect to finish above the midpoint of our original guidance range', cited to deck slide 5 (src 56) and the call (src 57), not the release.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "claim (src 74)",
+   "value": "REBUILD 2026-11-09 (hedge-book build, Kilian card 2026-11-09, src 74): gen_price = fuel_cost + generation margin / gen_twh per quarter; the margin is built from the company's hedge book, never set to…",
+   "cited": "claude project thread cmsg_01HdhANNPxz1f5xqDwR22cfLSyFcqxJgaeQQg7g34FUm1u",
+   "result": "not_found",
+   "origin": "supervisor driver gen_price derivation",
+   "fix": "src 74 recorded as Kilian's internal decision record (project thread, not web-openable; basis 'internal decision record'); decisions kept; every figure in the build cites its own deck/filing.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "claim (src 74)",
+   "value": "FY2029: NOT PRICED (Kilian 2026-11-09, src 74: no published hedges or forwards): FY2028 quarters copied as placeholders; no effect on the research target (tested: FY2029 gen_price +30% leaves the val…",
+   "cited": "claude project thread cmsg_01HdhANNPxz1f5xqDwR22cfLSyFcqxJgaeQQg7g34FUm1u",
+   "result": "not_found",
+   "origin": "supervisor driver gen_price derivation",
+   "fix": "Same as above: FY2029 'not priced' is Kilian's decision (internal decision record src 74); the no-effect test is the engine's (NTM window ends 2028-11-04).",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "Cogentrix forecast 'meaningfully improved' (src 57)",
+   "value": "quote",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "result": "not_found",
+   "origin": "supervisor guidance_check EBITDA FY2027 why",
+   "fix": "Quote is in the call: CEO prepared remarks 'our forecast for the earnings contribution of the Cogentrix assets has meaningfully improved' (Fool transcript src 57, saved copy notes/transcripts/VST_2026-11-06.md line 27); sentence restated with the exact quote; no number reads it.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "FY2028-29 growth tapering after Permian / coal-to-gas builds 'online 2028' (call src 57)",
+   "value": "2028",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "result": "not_found",
+   "origin": "supervisor model capex",
+   "fix": "Permian peakers 'expected to be online by Q2 2028' now cited to the Q2 2026 deck slide 10 (src 52) in the capex row; src 52 added to its source_ids.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "'Batch Zero's 6.6 GW (UD 2026-08-21)' adds 1.32 GW/yr from mid-2027",
+   "value": "6.6 GW",
+   "cited": "https://utilitydive.com/news/ercot-texas-puc-data-center-audit/828472",
+   "result": "wrong",
+   "origin": "supervisor model ercot_dc_gw path (a)",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): 6.6 GW is the Utility Dive 17-load pipeline (src 36), not Batch Zero; the 3.9 GW Q4 2026 cohort counts inside it; driver:ercot_dc_gw derivation and ercot_ref rebuilt; post-horizon adjustment recomputed (now -1,480.5 in the set). This step restated the ercot_ref row text to the set's constants.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "key_drivers list",
+   "value": "gen_price 64.44/64.77/65.03; fuel 26.05/26.01/26.01; retail_twh 132.6/133.9/135.2; ercot 4.33/5.172/7.501; post-horizon -1,254; FY2027 EBITDA 8,254",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor key_drivers",
+   "fix": "key_drivers restated from the rebuilt set: gen_price 61.37/61.18/64.43/64.43, fuel 25.97/25.93/28.51/28.51, cap_rev 596.6/765.9/780.6/780.6, retail 131.3/135.2/135.2/135.2, retail_margin 12.10/11.58 x3, ercot 4.102/4.557/5.262/6.514, 8.69x, NTM 7,821, post-horizon -1,480.5, FY2027 7,751.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "fair_value.reason and changes",
+   "value": "137.1",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor fair_value / changes",
+   "fix": "fair_value.reason now leads with the rebuilt set (137.32 = 8.69x x NTM 7,821, net debt 20,350.7, preferred/NCI 1,488, +700, -1,480.5, 330.3M shares); old rounds kept as history. changes rows added for 145.81->153.19, 153.19->152.45, 152.45->137.32 (shards saw 137.10; thread fixes moved it to 137.32).",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "thesis_break_price / thesis_break_reason keys",
+   "value": "absent",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor thesis_break_price/reason",
+   "fix": "thesis_break_price 114.2 and thesis_break_reason written: 8.0x FY2027 7,751 = 62,008 less pro forma net debt 21,793 and preferred/NCI 1,488 over 339.0M shares; disagreements entry restated; tied to thesis_triggers.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "Horizon EV/EBITDA option sources 'src 1' for peer levels; booked option KeyBanc 'most Texas exposure'",
+   "value": "",
+   "cited": "https://au.investing.com/news/stock-market-news/keybanc-downgrades-vistra-energy-stock-rating-on-texas-election-93CH-4743252",
+   "result": "not_found",
+   "origin": "supervisor horizon card / alternatives",
+   "fix": "Investing.com stays unreadable (403). Claim restated to what readable reports show (goldesel.de 2026-11-04; TIKR 2026-11-05): KeyBanc cut VST to Sector Weight from Overweight, removed the target, and judged Vistra more exposed to the Texas data-center policy risk than Constellation. 'most Texas exposure' quote dropped; src 32 relabelled news report (relay; broker note not public) with the readable URLs; card links swapped.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "ours 4,585 inside +0.019",
+   "value": "4,585",
+   "cited": "",
+   "result": "back_solved",
+   "origin": "supervisor guidance Ongoing Ops Adj. FCFbG FY2026",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FCFbG FY2026 rebuilt from our EBITDA: 7,366 x 0.6164 = 4,540 (inside, +0.9%).",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "ours 4,789 inside +0.0184",
+   "value": "4,789",
+   "cited": "",
+   "result": "back_solved",
+   "origin": "supervisor guidance Ongoing Ops Adj. FCFbG FY2027",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FCFbG FY2027 rebuilt: 7,751 x 0.5802 = 4,497 (inside, -4.3%).",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "Revenue growth +9.1% / +1.8% / +4.0% / -0.3%",
+   "value": "as stated",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor model",
+   "fix": "Revenue growth row restated to the engine: +8.5% / +0.8% / +5.2% / -0.2% (revenue 19,085 / 19,232 / 20,225 / 20,193 on 17,586).",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "D&A % revenue 11.0% ('sits between' 11.4% and 10.9%)",
+   "value": "11.0%",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor model",
+   "fix": "D&A row restated: guides 2,190 / 2,130 over engine revenue 19,085.4 / 19,232.3 = 11.47% / 11.08%; 11.0% sits just below both (within norm tolerance); anchor 0.1128. da_pct_rev unchanged.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "EBIT margin 26.0% / 31.3% / 29.2% / 28.7%",
+   "value": "as stated",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor model",
+   "fix": "EBIT margin row restated to the engine: 25.8% / 29.3% / 27.9% / 27.3%.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "Capex % revenue 14.3% / 16.1% / 10.5% / 10.5%",
+   "value": "as stated",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor model",
+   "fix": "Capex row restated: booked 14.34% / 16.14% = 2,737 / 3,104 on engine revenue vs deck 2,750 / 3,150 (14.41% / 16.38%), gap stated (no leg reads capex); anchor 0.1638. capex_pct_rev unchanged.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "Net debt at horizon 20,061",
+   "value": "20,061",
+   "cited": "",
+   "result": "back_solved",
+   "origin": "supervisor model",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): net debt at the horizon restated on the bottom-up build: 20,350.7 (Q4 1,726.7, FY2027 7,751); engine net_debt_H 20,350.7.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "quarter constant fixed_cost row value",
+   "value": "[-737.67, -826.6, ... -3,319.7 FY2029]",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model",
+   "fix": "fixed_cost row value replaced with the set's constants (FY2027 -760.25/-835.61/-735.50/-778.90 = -3,110.3; FY2028 -3,219.9; FY2029 = FY2028) and derivation restated on the FY2025-26 mean shares.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "208.2 -> 227.7 / 242 / 242.3 / 242.3",
+   "value": "as stated",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model driver:gen_twh",
+   "fix": "Stale 'FY2025 quarter shares 23.1/21.9/27.9/27.1%' sentence dropped from driver and row derivations; 2024-26 mean 21.9/22.5/29.0/26.6% stays.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "58.66 -> 61.82 / 64.56 / 67.81 / 68.07",
+   "value": "as stated",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model driver:gen_price",
+   "fix": "gen_price row value restated to the quarter-weighted 61.37/61.18/64.43/64.43; notes the drivers[].years field holds pre-rebuild values that the engine replaces with quarter aggregates (field not edited: engine-read constraint).",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "26.02 -> 25.97 / 26.05 / 28.93 / 28.93",
+   "value": "as stated",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model driver:fuel_cost",
+   "fix": "fuel_cost row value restated to 25.97/25.93/28.51/28.51; quarter_derivation corrected (+2.57, not +2.92).",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "227 -> 570.3 / 544.2 / 508.5 / 522.2",
+   "value": "as stated",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model driver:cap_rev",
+   "fix": "cap_rev row value restated to the quarter sums 596.6/765.9/780.6/780.6.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "139.1 -> 131.3 / 130.2 / 129.2 / 128.1",
+   "value": "as stated",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model driver:retail_twh",
+   "fix": "retail_twh row value restated to 131.3/135.2/135.2/135.2; quarter_derivation restated to the FY2025-26 mean shares; retail_margin value 12.10/11.58 x3 and quarter_derivation restated.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "Net debt link basis 1,800 x 0.6164 ('0 at base')",
+   "value": "1,800",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor model",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): link basis 1,726.7 (link 0 at base; engine link effect -0.0).",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "driver_build.set net_debt_horizon formula",
+   "value": "20061 - 0.5802 x 0.8438 x (book - 8255.5)",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): set formula base 7,750.5 on fixed costs 3,110.3 and stated 20,350.7; this step restated the inputs_detail row value/derivation and driver_build.note to that formula.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "quarter constants ercot_ref / open_tx rows",
+   "value": "stated lists",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model",
+   "fix": "ercot_ref / ercot_l0 / pjm_ref and open_tx / open_east row values replaced with the set's constants (ercot_ref FY2027 5.01/5.96/6.11/6.25; open_tx/open_east 0 through FY2028).",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "FY2027-28 at the 2024-26 mean 11.58 $/MWh (1,565 $M)",
+   "value": "11.6",
+   "cited": "",
+   "result": "trend_only",
+   "origin": "supervisor driver path retail_margin",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): retail_margin booked case written (judgment_alternatives) and the supply-cost relief build sized (+5.3%, carded); derivation now points to it.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "Texas pause restart mid-2028 ('unchanged')",
+   "value": "mid-2028",
+   "cited": "",
+   "result": "unsupported",
+   "origin": "supervisor driver path ercot_dc_gw (b)",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): restart mid-2028 argued as the middle of a 12-24 month pause from the January 2027 inauguration (src 34, 39, Kilian scenario weights).",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "Inside: our EBITDA x the guide's own conversion (61.6%).",
+   "value": "4,585",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor guidance_check FCFbG FY2026 why",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FY2026 FCFbG 4,540 = 7,366 x 0.6164.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "Inside, above the midpoint by the same record term as EBITDA; working capital (+704 in the guide) is taken as guided.",
+   "value": "4,789",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "result": "back_solved",
+   "origin": "supervisor guidance_check FCFbG FY2027 why",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FY2027 FCFbG why re-worded: 4,497 = 7,751 x 0.5802; working capital stated as excluded from FCFbG.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "Quarters by the FY2025 quarter shares 23.1/21.9/27.9/27.1%.",
+   "value": "",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor driver gen_twh derivation",
+   "fix": "Same as 18: stale FY2025-share sentence dropped.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "NYISO and CAISO Cogentrix positions left out (winter NYISO covers the whole fleet; CAISO prices not disclosed).",
+   "value": "",
+   "cited": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "result": "wrong",
+   "origin": "supervisor driver cap_rev derivation",
+   "fix": "Rewritten: Cogentrix is PJM, ISO-NE and ERCOT only (deck slide 6, src 56); ERCOT has no capacity market; West capacity prices not disclosed (slide 21). No value effect.",
+   "fixed_by": "gate fix step"
+  },
+  {
+   "item": "missing: FY2028 hedged part at the latest (10-30) forwards",
+   "value": "",
+   "cited": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives gen_price",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: FY2028 hedged at the 10-30 forwards +15.4% (carded, posted to Kilian).",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "missing: FY2028 hedge split at the fleet 78% in every region (instead of East/West 90%, Texas 62.6%, judgment)",
+   "value": "",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives gen_price",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: fleet-wide 78% split +2.3%.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "missing: 2027 back-test gap on the same deck set as 2028",
+   "value": "",
+   "cited": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/334/2025_Q2_Results_Presentation_vFinal.pdf",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives gen_price",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: six-deck 2027 gap +0.4%; this step also named the five-deck average in the gen_price derivation.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "missing: supply-cost relief at lower 2027 ERCOT forwards",
+   "value": "",
+   "cited": "src 71 + https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives retail_margin",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: retail supply-cost relief +5.3% (carded, posted to Kilian).",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "Texas restart Q1 2028 / 2029 (source: CEO TCEQ hold may lift mid-December, src 57)",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "result": "wrong",
+   "origin": "supervisor judgment_alternatives ercot_dc_gw",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): restart alternatives re-cited (12 months, 24 months from the inauguration; CEO mid-December src 57) and sized.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "missing: restart at the CEO's mid-December 2026 timing (pause ends with the 12-10 reports)",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives ercot_dc_gw",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: CEO mid-December restart -0.5%.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "'less the gap by which 2027 hedges came in below the same kind of average'",
+   "value": "",
+   "cited": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf ; https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_calls_for_kilian gen_price context",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): card context 'same kind of average' corrected.",
+   "fixed_by": "thread"
+  },
+  {
+   "item": "peer levels 10.01x / 9.52x / 8.08x cited to 'src 1' and KeyBanc",
+   "value": "",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm",
+   "result": "wrong",
+   "origin": "supervisor judgment_calls_for_kilian Horizon multiple options 2-4",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): horizon-multiple card options no longer cite src 1 (peer levels to src 17/25); KeyBanc link replaced in this step (see the KeyBanc row).",
+   "fixed_by": "thread"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "Ongoing Operations Adjusted EBITDA FY2026 guide as of 2026-11-06 (Ongoing Ops Adj. EBITDA (excl. Asset Closure); narrowed 2026-11-06 incl. Cogentrix Nov-Dec; c…",
+   "value": "7100-7500",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "Ongoing Operations Adjusted EBITDA FY2027 guide as of 2026-11-06 (Ongoing Ops Adj. EBITDA incl. Cogentrix (12 months) and the first-phase Meta (Perry) operatin…",
+   "value": "7700-8500",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "Ongoing Operations Adjusted FCFbG FY2026 guide as of 2026-11-06 (Ongoing Ops Adjusted Free Cash Flow before Growth (narrowed))",
+   "value": "4300-4700",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "Ongoing Operations Adjusted FCFbG FY2027 guide as of 2026-11-06 (Ongoing Ops Adjusted Free Cash Flow before Growth)",
+   "value": "4300-5100",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "D&A % revenue anchor (company_stated, as of 2026-11-06): 2026/2027 D&A guides 2,190 / 2,130 over model revenue 19,180 / 19,518 = 11.4% / 10.9%, mean 11.2% (202…",
+   "value": "0.112",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model normalizing (da_pct_rev) anchor",
+   "status": "ok"
+  },
+  {
+   "item": "Tax rate anchor (company_stated, as of 2026-11-06): 2026 guide midpoints: tax 1,080 / pretax 5,380 = 20.1%; 2027: 975 / 4,760 = 20.5%",
+   "value": "0.201",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model normalizing (tax_rate) anchor",
+   "status": "ok"
+  },
+  {
+   "item": "Stock comp anchor (company_stated, as of 2026-11-06): 2027 guide non-cash comp $155M / model FY2027 revenue",
+   "value": "0.0079",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model normalizing (sbc_pct_rev) anchor",
+   "status": "ok"
+  },
+  {
+   "item": "Shares at horizon anchor (company_stated, as of 2026-11-06): Company FCFbG/share assumptions (deck slide 12): ~339M at 2026-11-02 less ~$100M to YE2026 and $1.…",
+   "value": "330.7",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model normalizing (shares) anchor",
+   "status": "ok"
+  },
+  {
+   "item": "Interest rate on net debt (balance.interest_rate) anchor (company_stated, as of 2026-11-06): 2027 interest guide 1,430 / pro forma debt 22,815",
+   "value": "0.0627",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model normalizing (interest_rate) anchor",
+   "status": "ok"
+  },
+  {
+   "item": "Diluted shares now (shares.diluted_now) anchor (company_stated, as of 2026-11-02): release: ~339M shares outstanding at 2026-11-02",
+   "value": "339.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model normalizing (shares) anchor",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 55)",
+   "value": "FY2025's FCFbG beat exceeded its EBITDA beat at the guide's conversion (112 x 3,300 / 5,800 = 64, excess ~228 = 6.9% of the midpoint; FY2024 excess ~1), so no second beat rests on one period: the FY2…",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check Ongoing Operations Adjusted FCFbG FY2026 why",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 55, 57, 69, 70, 52, 56)",
+   "value": "FY2028: 78% hedged at 10-30 (src 55), 'much less hedged in ERCOT' (CEO, src 57): East and West 90%, Texas the rest = 62.6% (judgment); hedged price = mean 2028 forward over the four decks that show 2…",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "Ongoing Operations Adjusted EBITDA FY2024: first guide (2024-05-08) / reported actual",
+   "value": "4550-5050 / 5656",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312524133760/d837065dex991.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "Ongoing Operations Adjusted FCFbG FY2024: first guide (2024-05-08) / reported actual",
+   "value": "2200-2700 / 2888",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312524133760/d837065dex991.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "Ongoing Operations Adjusted EBITDA FY2025: first guide (2025-02-27 (in the FY2024 release; the FY2025 release calls it the original range)) / reported actual",
+   "value": "5500-6100 / 5912",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312525037636/d126557dex991.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "Ongoing Operations Adjusted FCFbG FY2025: first guide (2025-02-27) / reported actual",
+   "value": "3000-3600 / 3592",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312525037636/d126557dex991.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 21, 23)",
+   "value": "The record's FCFbG beats came with EBITDA beats (FY2024 FCFbG +438 vs midpoint with EBITDA +856; FY2025 +292 with EBITDA +112; releases src 21, 23); the cited releases do not attribute the FCFbG beat…",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312525037636/d126557dex991.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check Ongoing Operations Adjusted FCFbG FY2026 why",
+   "status": "ok"
+  },
+  {
+   "item": "Capex % revenue (incl. nuclear fuel and growth ex-Cogentrix) anchor (company_stated, as of 2026-11-06): 2027E total capex ~3,150 (slide 27) / model FY2027 reve…",
+   "value": "0.1614",
+   "basis": "guidance",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model normalizing (capex_pct_rev) anchor",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 56)",
+   "value": "Q4 FY2026: Nov-Dec book @10-30 1,196.2 (42 TWh at $42.92, 100% hedged, incl. Cogentrix, src 56) - 1.96 x 42 + October 485.4 (Jul-Oct book 3,441.2 = Jul-Dec @6-30 4,637 less Nov-Dec 1,196, less 1.96 x…",
+   "basis": "claim",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 56)",
+   "value": "FY2027: book @10-30 8,949.2 (242 TWh, 98% hedged; Texas 106 TWh at 51.34 = hub 38.50 + 12.84, West 4 at 74.99, East 132 at 52.69; gas fuel 20.10 / 25.80 / 30.11 $/MWh; src 56) - 1.96 x 242 + 55 = 8,5…",
+   "basis": "claim",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 56, 69)",
+   "value": "REBUILD 2026-11-09: FY2027 quarters kept (book gas fuel per MWh of total generation 2027 @10-30 3,748 / 242 = 15.49 vs the 2026 book @12-31-25 3,761 / 238 = 15.80: flat within 2%, src 56, 69).",
+   "basis": "claim",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver fuel_cost derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 56)",
+   "value": "FY2028 = FY2027 quarters + 2.57 $/MWh = the change in book gas fuel per MWh of total generation at the 10-30 2028 forwards (4,376 / 242.3 = 18.06, gas at hub - spark per region, src 56).",
+   "basis": "claim",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver fuel_cost derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 56)",
+   "value": "REBUILD 2026-11-09: capacity now carries every position on the 10-30 deck slide 21 incl. Cogentrix (src 56); the earlier split (Cogentrix capacity inside the gen_price book) is removed because the bo…",
+   "basis": "claim",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver cap_rev derivation",
+   "status": "ok"
+  },
+  {
+   "item": "Working capital % of revenue increase (years.nwc_pct_incr_rev)",
+   "value": "0.077",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006/vistra-20251231.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 57)",
+   "value": "The book (98% hedged) fixes most of it; the gap to the mid is items the company may carry that we cannot source: Cogentrix's 'meaningfully improved' forecast (src 57), retail supply-cost relief at lo…",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check Ongoing Operations Adjusted EBITDA FY2027 why",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 57)",
+   "value": "MORATORIUM: open Texas/East volume in FY2027-28 is priced at the 10-30 forwards, which already react to the Texas audit/permitting pause (CEO, src 57), so the load-path price cut (open_tx / open_east…",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 57)",
+   "value": "UPDATE 2026-11-09: no new PJM load table; the call keeps PJM energy growth at 2-3% through 2030 (src 57).",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver pjm_dc_gw derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 69, 70, 52, 72)",
+   "value": "Non-book items (coal fuel, purchased power, delivery, PTC, dispatch beyond the book) = H1 2026 actual vs the book: Q1 2,029 vs 2,194 (Dec-25 FY book 8,507 less Apr-Dec book @3-31 6,313), Q2 1,643 vs …",
+   "basis": "claim",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/338/2025_Q4_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 69, 52, 57)",
+   "value": "REBUILD 2026-11-09 (replaces the earlier -0.8%/yr path from past volumes): Vistra's retail volume moves with weather and with business-markets contracting: 2025 +4% from business markets (Q4 2025 dec…",
+   "basis": "claim",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/338/2025_Q4_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver retail_twh derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 69)",
+   "value": "No weather-normal series is published, so the FY2027-28 level is the mean of FY2025 (139.14) and FY2026 (131.27 est.) = 135.20 TWh, a two-weather-year normal; TXU's organic residential count growth (…",
+   "basis": "claim",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/338/2025_Q4_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver retail_twh derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 67, 56)",
+   "value": "FY2025 ran -3.08 $/MWh vs its Dec-24 book (7,437 vs 6,796, src 67); at -1.96 the extra -233 is the Martin Lake Unit 1 outage year (deck note, src 56), a cited one-off, so not the base rate.",
+   "basis": "claim",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 70, 69)",
+   "value": "PTC: on gross receipts excluding hedges (Q1 2026 deck note, src 70); Texas nuclear ~19.5 TWh, max $15 less 80% of gross receipts over the threshold (~$27-29 inflation-adjusted, Q4 2025 deck slide 20,…",
+   "basis": "claim",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/343/Q1_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 73)",
+   "value": "Meta operating tranche at full delivery +487 (company: +8-10% of 2026 FCFbG mid 4,325 at ~80% conversion = 433-541, mid 487, src 73; full by YE2027)",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526008508/d20785d8k.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 71, 21, 23)",
+   "value": "generation (all non-retail) Adj. EBITDA quarter shares 2023-2025 mean 21.3/15.2/38.5/25.1%; 2023 19.2/16.8/47.4/16.6, 2024 20.1/14.9/32.0/33.0, 2025 24.6/13.8/36.0/25.6",
+   "basis": "claim",
+   "source_url": "https://investor.vistracorp.com/2025-11-06-Vistra-Reports-Third-Quarter-2025-Results,-Narrows-2025-Guidance,-and-Initiates-2026-Guidance",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 71, 21, 23)",
+   "value": "Q4 FY2026 = 9M 939 x Q4 share / (1 - Q4 share), Q4 share 2023-25 mean 40.9% (41.9 / 41.0 / 39.8); Q4 ranged 463-645",
+   "basis": "claim",
+   "source_url": "https://investor.vistracorp.com/2025-11-06-Vistra-Reports-Third-Quarter-2025-Results,-Narrows-2025-Guidance,-and-Initiates-2026-Guidance",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver retail_margin derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 52)",
+   "value": "Cogentrix ISO-NE = slide 21 ISO-NE 4,112 / 4,631 less Q2 deck 3,442 / 3,750 (src 52); $2.59/kW-mo (2026/27), $3.58 (2027/28)",
+   "basis": "claim",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver cap_rev derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 47, 45, 46, 43, 44)",
+   "value": "B = 4.132 GW (Sep-26 observed peak of loads with Approval to Energize, src 47), A0 = 9,456 MW approved; Sep share 4,132/9,456",
+   "basis": "claim",
+   "source_url": "https://www.ercot.com/files/docs/2026/10/16/ERCOT-Monthly-Operational-Overview-September.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver ercot_dc_gw derivation",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 75)",
+   "value": "Q4 2026 QSA cohort of ~3.9 GW (ERCOT Board 2026-05-24, src 75)",
+   "basis": "claim",
+   "source_url": "https://www.ercot.com/files/docs/2026/05/24/8-Interconnection-and-Grid-Analysis-Update.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver ercot_dc_gw derivation",
+   "status": "ok"
+  },
+  {
+   "item": "Q3 2026 Ongoing Ops Adj. EBITDA 2,378; 9M 5,639; Retail Q3 98 / 9M 939",
+   "value": "2,378 / 5,639 / 98 / 939",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model inputs_detail (Q3 reported row)",
+   "status": "ok"
+  },
+  {
+   "item": "Q3 ongoing D&A 840 (Retail 11, T/E/W 782, Corp 47); operating income 1,706; operating revenues 6,347",
+   "value": "840 / 1,706 / 6,347",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model inputs_detail (Q3 reported row)",
+   "status": "ok"
+  },
+  {
+   "item": "2026 guide narrowed 7,100-7,500 Adj. EBITDA / 4,300-4,700 FCFbG; 2027 initiated 7,700-8,500 / 4,300-5,100",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check",
+   "status": "ok"
+  },
+  {
+   "item": "2026 guide: D&A 2,190 incl. nuclear fuel 416, interest 1,220 incl. 37 NCI, non-cash comp 162, tax 1,040-1,120 on NI 4,140-4,460; 2027: D&A 2,130 incl. 404, interest 1,430, non-cash comp 155, tax 890-1,060 on NI 3,470-4,100",
+   "value": "as stated",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model D&A / Tax / SBC / interest",
+   "status": "ok"
+  },
+  {
+   "item": "Transition and merger: 2026 FCFbG guide adds back 207, 2027 30; 9M 2026 expense 52",
+   "value": "207 / 30 / 52",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model net debt horizon",
+   "status": "ok"
+  },
+  {
+   "item": "9M 2026 stock repurchases 917; common dividends 231 (Q4 77 = 231/3)",
+   "value": "917 / 231",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model net debt horizon",
+   "status": "ok"
+  },
+  {
+   "item": "~339M shares outstanding at 2026-11-02",
+   "value": "339.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model shares",
+   "status": "ok"
+  },
+  {
+   "item": "Series A preferred $1B redeemed in October and November 2026; AR financing fully drawn; ~$1.7B Cogentrix debt repaid",
+   "value": "as quoted",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model preferred / net debt",
+   "status": "ok"
+  },
+  {
+   "item": "Pro forma debt slide 19: revolvers 1,187, senior 17,650, junior 1,500, revenue bonds 431, AR 1,375, forward repurchase 622, equipment 50 = 22,815; cash 400; net 22,415; margin deposits 1,310",
+   "value": "22,815 / 22,415",
+   "basis": "company pro forma",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model net debt 2026-09-30",
+   "status": "ok"
+  },
+  {
+   "item": "Hedge slide 20 at 10-30: Bal-2026 17 + 25 = 42 TWh at $42.92; 2027 97 + 145 = 242 TWh, 98% hedged, Texas $51.34 = 38.50 + 12.84, West 74.99, East 52.69",
+   "value": "as stated",
+   "basis": "company",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model gen_twh / gen_price",
+   "status": "ok"
+  },
+  {
+   "item": "Q3 2026 generation 65.5 TWh (Texas 29.8 / East 34.2 / West 1.5); Q3 2025 58.1",
+   "value": "65.5",
+   "basis": "reported",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model gen_twh",
+   "status": "ok"
+  },
+  {
+   "item": "Capacity slide 21: PJM 2026/27 12,883 MW at 329.17, 2027/28 12,451 at 333.44, 2028/29 12,920 at 325.00; ISO-NE 4,112 at 2.59 / 4,631 at 3.58",
+   "value": "as stated",
+   "basis": "company",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model cap_rev",
+   "status": "ok"
+  },
+  {
+   "item": "10-30 forwards slide 22: ERCOT North 29.99/38.46/44.87; Texas wtd 30.11/38.50/45.08; East wtd 53.27/61.34/63.71; NYMEX 2.86/2.91/3.57",
+   "value": "as stated",
+   "basis": "market",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model fuel_cost / gen_price",
+   "status": "ok"
+  },
+  {
+   "item": "Capex slide 27: 2026E ~2,750 / 2027E ~3,150 (maintenance 1,150/1,075, fuel 475/575, solar 400/250, Helix 0/500, other growth 900/750, non-recurring -175/0); adjusted 1,625/1,650",
+   "value": "as stated",
+   "basis": "company",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model capex",
+   "status": "ok"
+  },
+  {
+   "item": "Slide 12: ~$100M more buybacks to YE2026 at $134.61; $1.2B in 2027 and 2028",
+   "value": "100 / 1,200",
+   "basis": "company",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model shares / net debt horizon",
+   "status": "ok"
+  },
+  {
+   "item": "~$0.7B NPV of expected tax benefits; Q3 deck: ~$4.0B net price net of expected tax benefits",
+   "value": "700",
+   "basis": "company",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526002589/d62722dex991.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model Cogentrix tax NPV",
+   "status": "ok"
+  },
+  {
+   "item": "CFO: $1B/yr buybacks 'pretty close' to a commitment; $300M dividends",
+   "value": "as quoted",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model shares / judgment",
+   "status": "ok"
+  },
+  {
+   "item": "CEO: 78% hedged for 2028, 'much less hedged in ERCOT'",
+   "value": "as quoted",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model gen_price FY2028",
+   "status": "ok"
+  },
+  {
+   "item": "CFO: Q3 strong volumes 'largely due to the hotter-than-normal weather'",
+   "value": "as quoted",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model retail_twh",
+   "status": "ok"
+  },
+  {
+   "item": "Call keeps PJM energy growth 2-3% through 2030",
+   "value": "2-3%",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model pjm_dc_gw",
+   "status": "ok"
+  },
+  {
+   "item": "Q2 deck slide 17 retail volumes 2024 133.4 / 2025 139.1; YTD 66.6 vs 61.9; Q4 2025 deck 'Retail volumes increased 4% driven by ... business markets'",
+   "value": "as stated",
+   "basis": "company",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model retail_twh / retail_margin",
+   "status": "ok"
+  },
+  {
+   "item": "2028 forwards in four decks: Texas wtd 58.79 / 51.38 / 50.30 / 45.08; East 54.57 / 56.69 / 57.47 / 63.71; CAISO 54.63 / 51.02 / 51.23 / 51.16; NYMEX 2028 3.71 / 3.77 / 3.67 / 3.57",
+   "value": "as stated",
+   "basis": "market",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/338/2025_Q4_Results_Presentation_vFINAL.pdf ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/343/Q1_2026_Results_Presentation_vFINAL.pdf ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf ; https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model gen_price",
+   "status": "ok"
+  },
+  {
+   "item": "Books: FY2025 @12-31-24 212 TWh at $49.45; FY2026 @12-31-25 238 at $51.59; 2027 @12-31-25 228 at $58.23; Apr-Dec @3-31 174 at $49.64; Jul-Dec @6-30 123 at $51.54",
+   "value": "as stated",
+   "basis": "company",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/338/2025_Q4_Results_Presentation_vFINAL.pdf ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/343/Q1_2026_Results_Presentation_vFINAL.pdf ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model gen_price",
+   "status": "ok"
+  },
+  {
+   "item": "Meta operating tranche +8-10% of 2026 FCFbG guide at full delivery, ~80% EBITDA conversion -> 433-541 $M",
+   "value": "433-541",
+   "basis": "company",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526008508/d20785d8k.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model gen_price FY2028 Meta",
+   "status": "ok"
+  },
+  {
+   "item": "ERCOT Feb/Jun/Jul/Aug/Sep 2026: approved 9,043 / 8,926 / 9,456 / 9,456 / 9,456 MW, observed 4,037 / 3,966 / 4,370 / 4,316 / 4,132 MW",
+   "value": "as stated",
+   "basis": "regulator data",
+   "source_url": "https://www.ercot.com/files/docs/2026/10/16/ERCOT-Monthly-Operational-Overview-September.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model ercot_dc_gw",
+   "status": "ok"
+  },
+  {
+   "item": "Q4 2026 QSA cohort ~3.9 GW of large load expected to energize in Q4 2026",
+   "value": "3.9 GW",
+   "basis": "regulator data",
+   "source_url": "https://www.ercot.com/files/docs/2026/05/24/8-Interconnection-and-Grid-Analysis-Update.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model ercot_dc_gw",
+   "status": "ok"
+  },
+  {
+   "item": "B-9b RTO 11,469 / 15,856 / 21,280 / 27,361 / 38,805; zone sum AEP+ATSI+DAYTON+PL+PECO+COMED 3,922 / 6,257 / 9,685 / 13,790 / 21,744 MW",
+   "value": "as stated",
+   "basis": "regulator forecast",
+   "source_url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/load-forecast/2026-load-report-tables.xlsx",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model pjm_dc_gw",
+   "status": "ok"
+  },
+  {
+   "item": "Q2 call: 'more than $10 billion of available cash', '~$3 billion to equity holders', '$4.5-5B growth', '$2-2.5B additional'; CFO 'lower end'; 'roughly $700 million'",
+   "value": "as quoted",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/ (src 2)",
+   "checked": "2026-11-10",
+   "feeds": "supervisor disagreements",
+   "status": "ok"
+  },
+  {
+   "item": "IPP NTM EV/EBITDA CEG 10.48x, TLN 10.01x, NRG 8.08x; median 10.01x, mean 9.52x",
+   "value": "10.01x",
+   "basis": "estimate (consensus)",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-14/VST/peers.md (src 17) + src 25",
+   "checked": "2026-11-10",
+   "feeds": "supervisor comps_review",
+   "status": "ok"
+  },
+  {
+   "item": "record, adjusted 8,021, ours 7,366 inside +0.009",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance Ongoing Ops Adj. EBITDA FY2026",
+   "status": "ok"
+  },
+  {
+   "item": "adjusted 8,900, ours 7,751 inside -0.0431",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance Ongoing Ops Adj. EBITDA FY2027",
+   "status": "ok"
+  },
+  {
+   "item": "0.077 = 217 / 2,825",
+   "value": "0.077",
+   "basis": "reported",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model nwc anchor",
+   "status": "ok"
+  },
+  {
+   "item": "Adjusted EBITDA path 7,366 / 7,751 / 7,854 / 7,736",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Tax rate 20%",
+   "value": "20%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Stock comp 0.8% of revenue",
+   "value": "0.8%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Net debt 2026-09-30 (pro forma) 21,793",
+   "value": "21,793",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Preferred + NCI 1,488",
+   "value": "1,488",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Shares at horizon 330.3M",
+   "value": "330.3",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Cogentrix tax NPV 700 x 1.0",
+   "value": "700",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Fixed costs 2,880 / 3,110 / 3,220 / 3,220",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "11.66 -> 12.06 / 11.6 / 11.6 / 11.6",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model driver:retail_margin",
+   "status": "ok"
+  },
+  {
+   "item": "Interest rate 0.063",
+   "value": "0.063",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Data-center moratorium beyond NTM -1,505.4",
+   "value": "-1,505.4",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "Q3 FY2026 reported row",
+   "value": "revenue 5,760.5 etc.",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "ok"
+  },
+  {
+   "item": "FY2027-28 at 135.2 TWh (mean of FY2025-26 as weather normal)",
+   "value": "135.2",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver path retail_twh",
+   "status": "ok"
+  },
+  {
+   "item": "hedge book / forwards",
+   "value": "as built",
+   "basis": "estimate",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver path gen_price FY2027-28",
+   "status": "ok"
+  },
+  {
+   "item": "+2.57 $/MWh from 10-30 2028 gas forwards",
+   "value": "28.5",
+   "basis": "estimate",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver path fuel_cost FY2028",
+   "status": "ok"
+  },
+  {
+   "item": "The guide is the cross-check, not the level (Kilian 2026-11-09).",
+   "value": "",
+   "basis": "project rule",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check EBITDA FY2026 why",
+   "status": "ok"
+  },
+  {
+   "item": "7,751 is -4.3% vs the 8,100 mid, inside 7,700-8,500.",
+   "value": "",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check EBITDA FY2027 why",
+   "status": "ok"
+  },
+  {
+   "item": "FY2025 -233 below our calibration (Martin Lake), H1 2026 at it.",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check EBITDA FY2027 why",
+   "status": "ok"
+  },
+  {
+   "item": "No usual-beat multiplier (Kilian 2026-11-09).",
+   "value": "",
+   "basis": "project rule",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check EBITDA FY2027 why",
+   "status": "ok"
+  },
+  {
+   "item": "The back-test gap and Meta are each evidenced; the H1 2026 rate is the latest clean read.",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526008508/d20785d8k.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment call gen_price why",
+   "status": "ok"
+  },
+  {
+   "item": "Decided: Kilian card 2026-11-09 'Forward avg less 2027 gap, + Meta'; 2026-11-10 'H1 2026 rate'.",
+   "value": "",
+   "basis": "internal decision",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment call gen_price why",
+   "status": "ok"
+  },
+  {
+   "item": "Kilian set the discount on 11-04 ...; Decided: card 2026-11-04 '8.9x, peer median less discount'.",
+   "value": "",
+   "basis": "internal decision",
+   "source_url": "/mnt/project-files/valuation/driver_models/VST/proposal.md (src 51)",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment call horizon why",
+   "status": "ok"
+  },
+  {
+   "item": "Effect about $0.12 a share either way; open volume is small.",
+   "value": "0.12",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment call pause overlap why",
+   "status": "ok"
+  },
+  {
+   "item": "Decided: Kilian card 2026-11-10 'Forwards carry it (no extra cut)'.",
+   "value": "",
+   "basis": "internal decision",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment call pause overlap why",
+   "status": "ok"
+  },
+  {
+   "item": "A real fixed obligation; ... Decided: open.",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment call net debt why",
+   "status": "ok"
+  },
+  {
+   "item": "Q3 FY2026 65.5 TWh; Q3 2025 58.1; Bal-2026 17 + 25; FY2027 97 + 145 excl. Rumford; Permian Q2 deck slide 10, Q3 deck slide 11",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_twh derivation",
+   "status": "ok"
+  },
+  {
+   "item": "EBITDA-neutral for FY2027-29",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_twh derivation",
+   "status": "ok"
+  },
+  {
+   "item": "Generation margin = realized x TWh less gas at hub - spark (deck slides); book premium includes 'estimated value from projected future incremental power sales'; no quarter split in hedge books",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "ok"
+  },
+  {
+   "item": "FY2029 = FY2028 (not priced); Q4 FY2026 26.38 kept",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver fuel_cost derivation",
+   "status": "ok"
+  },
+  {
+   "item": "PJM MW, 8,117 MW-eq retail, Q4 183.4, FY2027 765.9, FY2028 780.6",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver cap_rev derivation",
+   "status": "ok"
+  },
+  {
+   "item": "FY2029 = FY2028; quarters by FY2025-26 mean shares",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver retail_twh derivation",
+   "status": "ok"
+  },
+  {
+   "item": "2024 1,463/133.4, 2025 1,622/139.14, 2026 (939 + 650)/131.27; 2023-25 shares; 2024 retail +32% after 2023 prices fell",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/2025-11-06-Vistra-Reports-Third-Quarter-2025-Results,-Narrows-2025-Guidance,-and-Initiates-2026-Guidance (src 71)",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver retail_margin derivation",
+   "status": "ok"
+  },
+  {
+   "item": "FY means (a) 5.74/6.48/7.07, weighted 4.53/5.27/6.63",
+   "value": "",
+   "basis": "set",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver ercot_dc_gw derivation",
+   "status": "ok"
+  },
+  {
+   "item": "Later QSA cohorts not added: ERCOT has published no MW for them.",
+   "value": "",
+   "basis": "regulator data",
+   "source_url": "https://www.ercot.com/files/docs/2026/05/24/8-Interconnection-and-Grid-Analysis-Update.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver ercot_dc_gw derivation",
+   "status": "ok"
+  },
+  {
+   "item": "B-9b interpolation; zones; zone sum 3,922 / 6,257 / 9,685 / 13,790 / 21,744; reference 11.47/15.99/21.36/28.03",
+   "value": "",
+   "basis": "regulator forecast",
+   "source_url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/load-forecast/2026-load-report-tables.xlsx",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver pjm_dc_gw derivation",
+   "status": "ok"
+  },
+  {
+   "item": "FY2028 hedged at forward average with no back-test gap (+11.66%)",
+   "value": "153.08",
+   "basis": "estimate",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/338/2025_Q4_Results_Presentation_vFINAL.pdf ; https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives gen_price",
+   "status": "ok"
+  },
+  {
+   "item": "FY2028 without Meta step-up (-7.89%)",
+   "value": "126.27",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526008508/d20785d8k.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives gen_price",
+   "status": "ok"
+  },
+  {
+   "item": "Non-book at FY2025 rate -3.08 (-5.58%)",
+   "value": "129.45",
+   "basis": "estimate",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives gen_price",
+   "status": "ok"
+  },
+  {
+   "item": "2028 gas at four-deck NYMEX 3.68 (-1.44%)",
+   "value": "135.13",
+   "basis": "market",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives fuel_cost",
+   "status": "ok"
+  },
+  {
+   "item": "FY2025 139.1 (+0.95%) / FY2026E 131.3 (-0.95%)",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/347/Q2_2026_Results_Presentation_vFinal.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives retail_twh",
+   "status": "ok"
+  },
+  {
+   "item": "2024 10.97 / 2025 11.66 / 2026E 12.1",
+   "value": "",
+   "basis": "company data",
+   "source_url": "src 71",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives retail_margin",
+   "status": "ok"
+  },
+  {
+   "item": "peer median 10.01x / mean 9.52x / NRG 8.08x",
+   "value": "",
+   "basis": "estimate (consensus)",
+   "source_url": "src 17, src 25",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives Horizon EV/EBITDA",
+   "status": "ok"
+  },
+  {
+   "item": "keep the cut on FY2027-28 open volume (-0.07%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives Pause overlap",
+   "status": "ok"
+  },
+  {
+   "item": "include 622 (-1.37%)",
+   "value": "",
+   "basis": "company",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives Net debt forward repurchase",
+   "status": "ok"
+  },
+  {
+   "item": "volume = company's expected generation; capacity = cleared auctions; PJM = own forecast",
+   "value": "",
+   "basis": "company/regulator",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives gen_twh / cap_rev / pjm_dc_gw why_none",
+   "status": "ok"
+  },
+  {
+   "item": "booked / no gap / no Meta / FY2025 non-book rate sources",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/338/2025_Q4_Results_Presentation_vFINAL.pdf ; https://www.sec.gov/Archives/edgar/data/1692819/000119312526008508/d20785d8k.htm ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_calls_for_kilian gen_price options",
+   "status": "ok"
+  },
+  {
+   "item": "open volume 2% / 22%; ERCOT 2027 forward 57.43 -> 38.50; curve predates the election; CEO 'has not been allowed to energize'",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf ; https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_calls_for_kilian Pause overlap context/options",
+   "status": "ok"
+  },
+  {
+   "item": "622 NPV counted in total debt; about $1.8 a share",
+   "value": "",
+   "basis": "company",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_calls_for_kilian Net debt options",
+   "status": "ok"
+  },
+  {
+   "item": "claim (src 55)",
+   "value": "Bottom-up 7,366, inside 7,100-7,500 and +0.9% vs the 7,300 mid; management expects to finish above the midpoint for a fifth year (src 55).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check Ongoing Operations Adjusted EBITDA FY2026 why",
+   "status": "fixed",
+   "fix": "Rewritten to the call/deck: 'fifth consecutive year we expect to finish above the midpoint of our original guidance range', cited to deck slide 5 (src 56) and the call (src 57), not the release."
+  },
+  {
+   "item": "claim (src 74)",
+   "value": "REBUILD 2026-11-09 (hedge-book build, Kilian card 2026-11-09, src 74): gen_price = fuel_cost + generation margin / gen_twh per quarter; the margin is built from the company's hedge book, never set to…",
+   "basis": "claim",
+   "source_url": "claude project thread cmsg_01HdhANNPxz1f5xqDwR22cfLSyFcqxJgaeQQg7g34FUm1u",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "fixed",
+   "fix": "src 74 recorded as Kilian's internal decision record (project thread, not web-openable; basis 'internal decision record'); decisions kept; every figure in the build cites its own deck/filing."
+  },
+  {
+   "item": "claim (src 74)",
+   "value": "FY2029: NOT PRICED (Kilian 2026-11-09, src 74: no published hedges or forwards): FY2028 quarters copied as placeholders; no effect on the research target (tested: FY2029 gen_price +30% leaves the val…",
+   "basis": "claim",
+   "source_url": "claude project thread cmsg_01HdhANNPxz1f5xqDwR22cfLSyFcqxJgaeQQg7g34FUm1u",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_price derivation",
+   "status": "fixed",
+   "fix": "Same as above: FY2029 'not priced' is Kilian's decision (internal decision record src 74); the no-effect test is the engine's (NTM window ends 2028-11-04)."
+  },
+  {
+   "item": "Cogentrix forecast 'meaningfully improved' (src 57)",
+   "value": "quote",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check EBITDA FY2027 why",
+   "status": "fixed",
+   "fix": "Quote is in the call: CEO prepared remarks 'our forecast for the earnings contribution of the Cogentrix assets has meaningfully improved' (Fool transcript src 57, saved copy notes/transcripts/VST_2026-11-06.md line 27); sentence restated with the exact quote; no number reads it."
+  },
+  {
+   "item": "FY2028-29 growth tapering after Permian / coal-to-gas builds 'online 2028' (call src 57)",
+   "value": "2028",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model capex",
+   "status": "fixed",
+   "fix": "Permian peakers 'expected to be online by Q2 2028' now cited to the Q2 2026 deck slide 10 (src 52) in the capex row; src 52 added to its source_ids."
+  },
+  {
+   "item": "'Batch Zero's 6.6 GW (UD 2026-08-21)' adds 1.32 GW/yr from mid-2027",
+   "value": "6.6 GW",
+   "basis": "news report",
+   "source_url": "https://utilitydive.com/news/ercot-texas-puc-data-center-audit/828472",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model ercot_dc_gw path (a)",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): 6.6 GW is the Utility Dive 17-load pipeline (src 36), not Batch Zero; the 3.9 GW Q4 2026 cohort counts inside it; driver:ercot_dc_gw derivation and ercot_ref rebuilt; post-horizon adjustment recomputed (now -1,480.5 in the set). This step restated the ercot_ref row text to the set's constants."
+  },
+  {
+   "item": "key_drivers list",
+   "value": "gen_price 64.44/64.77/65.03; fuel 26.05/26.01/26.01; retail_twh 132.6/133.9/135.2; ercot 4.33/5.172/7.501; post-horizon -1,254; FY2027 EBITDA 8,254",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor key_drivers",
+   "status": "fixed",
+   "fix": "key_drivers restated from the rebuilt set: gen_price 61.37/61.18/64.43/64.43, fuel 25.97/25.93/28.51/28.51, cap_rev 596.6/765.9/780.6/780.6, retail 131.3/135.2/135.2/135.2, retail_margin 12.10/11.58 x3, ercot 4.102/4.557/5.262/6.514, 8.69x, NTM 7,821, post-horizon -1,480.5, FY2027 7,751."
+  },
+  {
+   "item": "fair_value.reason and changes",
+   "value": "137.1",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor fair_value / changes",
+   "status": "fixed",
+   "fix": "fair_value.reason now leads with the rebuilt set (137.32 = 8.69x x NTM 7,821, net debt 20,350.7, preferred/NCI 1,488, +700, -1,480.5, 330.3M shares); old rounds kept as history. changes rows added for 145.81->153.19, 153.19->152.45, 152.45->137.32 (shards saw 137.10; thread fixes moved it to 137.32)."
+  },
+  {
+   "item": "thesis_break_price / thesis_break_reason keys",
+   "value": "absent",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor thesis_break_price/reason",
+   "status": "fixed",
+   "fix": "thesis_break_price 114.2 and thesis_break_reason written: 8.0x FY2027 7,751 = 62,008 less pro forma net debt 21,793 and preferred/NCI 1,488 over 339.0M shares; disagreements entry restated; tied to thesis_triggers."
+  },
+  {
+   "item": "Horizon EV/EBITDA option sources 'src 1' for peer levels; booked option KeyBanc 'most Texas exposure'",
+   "value": "",
+   "basis": "news report",
+   "source_url": "https://au.investing.com/news/stock-market-news/keybanc-downgrades-vistra-energy-stock-rating-on-texas-election-93CH-4743252",
+   "checked": "2026-11-10",
+   "feeds": "supervisor horizon card / alternatives",
+   "status": "fixed",
+   "fix": "Investing.com stays unreadable (403). Claim restated to what readable reports show (goldesel.de 2026-11-04; TIKR 2026-11-05): KeyBanc cut VST to Sector Weight from Overweight, removed the target, and judged Vistra more exposed to the Texas data-center policy risk than Constellation. 'most Texas exposure' quote dropped; src 32 relabelled news report (relay; broker note not public) with the readable URLs; card links swapped."
+  },
+  {
+   "item": "ours 4,585 inside +0.019",
+   "value": "4,585",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance Ongoing Ops Adj. FCFbG FY2026",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FCFbG FY2026 rebuilt from our EBITDA: 7,366 x 0.6164 = 4,540 (inside, +0.9%)."
+  },
+  {
+   "item": "ours 4,789 inside +0.0184",
+   "value": "4,789",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance Ongoing Ops Adj. FCFbG FY2027",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FCFbG FY2027 rebuilt: 7,751 x 0.5802 = 4,497 (inside, -4.3%)."
+  },
+  {
+   "item": "Revenue growth +9.1% / +1.8% / +4.0% / -0.3%",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "Revenue growth row restated to the engine: +8.5% / +0.8% / +5.2% / -0.2% (revenue 19,085 / 19,232 / 20,225 / 20,193 on 17,586)."
+  },
+  {
+   "item": "D&A % revenue 11.0% ('sits between' 11.4% and 10.9%)",
+   "value": "11.0%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "D&A row restated: guides 2,190 / 2,130 over engine revenue 19,085.4 / 19,232.3 = 11.47% / 11.08%; 11.0% sits just below both (within norm tolerance); anchor 0.1128. da_pct_rev unchanged."
+  },
+  {
+   "item": "EBIT margin 26.0% / 31.3% / 29.2% / 28.7%",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "EBIT margin row restated to the engine: 25.8% / 29.3% / 27.9% / 27.3%."
+  },
+  {
+   "item": "Capex % revenue 14.3% / 16.1% / 10.5% / 10.5%",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "Capex row restated: booked 14.34% / 16.14% = 2,737 / 3,104 on engine revenue vs deck 2,750 / 3,150 (14.41% / 16.38%), gap stated (no leg reads capex); anchor 0.1638. capex_pct_rev unchanged."
+  },
+  {
+   "item": "Net debt at horizon 20,061",
+   "value": "20,061",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): net debt at the horizon restated on the bottom-up build: 20,350.7 (Q4 1,726.7, FY2027 7,751); engine net_debt_H 20,350.7."
+  },
+  {
+   "item": "quarter constant fixed_cost row value",
+   "value": "[-737.67, -826.6, ... -3,319.7 FY2029]",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "fixed_cost row value replaced with the set's constants (FY2027 -760.25/-835.61/-735.50/-778.90 = -3,110.3; FY2028 -3,219.9; FY2029 = FY2028) and derivation restated on the FY2025-26 mean shares."
+  },
+  {
+   "item": "208.2 -> 227.7 / 242 / 242.3 / 242.3",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model driver:gen_twh",
+   "status": "fixed",
+   "fix": "Stale 'FY2025 quarter shares 23.1/21.9/27.9/27.1%' sentence dropped from driver and row derivations; 2024-26 mean 21.9/22.5/29.0/26.6% stays."
+  },
+  {
+   "item": "58.66 -> 61.82 / 64.56 / 67.81 / 68.07",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model driver:gen_price",
+   "status": "fixed",
+   "fix": "gen_price row value restated to the quarter-weighted 61.37/61.18/64.43/64.43; notes the drivers[].years field holds pre-rebuild values that the engine replaces with quarter aggregates (field not edited: engine-read constraint)."
+  },
+  {
+   "item": "26.02 -> 25.97 / 26.05 / 28.93 / 28.93",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model driver:fuel_cost",
+   "status": "fixed",
+   "fix": "fuel_cost row value restated to 25.97/25.93/28.51/28.51; quarter_derivation corrected (+2.57, not +2.92)."
+  },
+  {
+   "item": "227 -> 570.3 / 544.2 / 508.5 / 522.2",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model driver:cap_rev",
+   "status": "fixed",
+   "fix": "cap_rev row value restated to the quarter sums 596.6/765.9/780.6/780.6."
+  },
+  {
+   "item": "139.1 -> 131.3 / 130.2 / 129.2 / 128.1",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model driver:retail_twh",
+   "status": "fixed",
+   "fix": "retail_twh row value restated to 131.3/135.2/135.2/135.2; quarter_derivation restated to the FY2025-26 mean shares; retail_margin value 12.10/11.58 x3 and quarter_derivation restated."
+  },
+  {
+   "item": "Net debt link basis 1,800 x 0.6164 ('0 at base')",
+   "value": "1,800",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): link basis 1,726.7 (link 0 at base; engine link effect -0.0)."
+  },
+  {
+   "item": "driver_build.set net_debt_horizon formula",
+   "value": "20061 - 0.5802 x 0.8438 x (book - 8255.5)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): set formula base 7,750.5 on fixed costs 3,110.3 and stated 20,350.7; this step restated the inputs_detail row value/derivation and driver_build.note to that formula."
+  },
+  {
+   "item": "quarter constants ercot_ref / open_tx rows",
+   "value": "stated lists",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor model",
+   "status": "fixed",
+   "fix": "ercot_ref / ercot_l0 / pjm_ref and open_tx / open_east row values replaced with the set's constants (ercot_ref FY2027 5.01/5.96/6.11/6.25; open_tx/open_east 0 through FY2028)."
+  },
+  {
+   "item": "FY2027-28 at the 2024-26 mean 11.58 $/MWh (1,565 $M)",
+   "value": "11.6",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver path retail_margin",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): retail_margin booked case written (judgment_alternatives) and the supply-cost relief build sized (+5.3%, carded); derivation now points to it."
+  },
+  {
+   "item": "Texas pause restart mid-2028 ('unchanged')",
+   "value": "mid-2028",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver path ercot_dc_gw (b)",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): restart mid-2028 argued as the middle of a 12-24 month pause from the January 2027 inauguration (src 34, 39, Kilian scenario weights)."
+  },
+  {
+   "item": "Inside: our EBITDA x the guide's own conversion (61.6%).",
+   "value": "4,585",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check FCFbG FY2026 why",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FY2026 FCFbG 4,540 = 7,366 x 0.6164."
+  },
+  {
+   "item": "Inside, above the midpoint by the same record term as EBITDA; working capital (+704 in the guide) is taken as guided.",
+   "value": "4,789",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor guidance_check FCFbG FY2027 why",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): FY2027 FCFbG why re-worded: 4,497 = 7,751 x 0.5802; working capital stated as excluded from FCFbG."
+  },
+  {
+   "item": "Quarters by the FY2025 quarter shares 23.1/21.9/27.9/27.1%.",
+   "value": "",
+   "basis": "set",
+   "source_url": "",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver gen_twh derivation",
+   "status": "fixed",
+   "fix": "Same as 18: stale FY2025-share sentence dropped."
+  },
+  {
+   "item": "NYISO and CAISO Cogentrix positions left out (winter NYISO covers the whole fleet; CAISO prices not disclosed).",
+   "value": "",
+   "basis": "company data",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor driver cap_rev derivation",
+   "status": "fixed",
+   "fix": "Rewritten: Cogentrix is PJM, ISO-NE and ERCOT only (deck slide 6, src 56); ERCOT has no capacity market; West capacity prices not disclosed (slide 21). No value effect."
+  },
+  {
+   "item": "missing: FY2028 hedged part at the latest (10-30) forwards",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives gen_price",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: FY2028 hedged at the 10-30 forwards +15.4% (carded, posted to Kilian)."
+  },
+  {
+   "item": "missing: FY2028 hedge split at the fleet 78% in every region (instead of East/West 90%, Texas 62.6%, judgment)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000023/vistra-20260930xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives gen_price",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: fleet-wide 78% split +2.3%."
+  },
+  {
+   "item": "missing: 2027 back-test gap on the same deck set as 2028",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf ; https://filecache.investorroom.com/mr5ir_vistracorp_ir/334/2025_Q2_Results_Presentation_vFinal.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives gen_price",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: six-deck 2027 gap +0.4%; this step also named the five-deck average in the gen_price derivation."
+  },
+  {
+   "item": "missing: supply-cost relief at lower 2027 ERCOT forwards",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "src 71 + https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives retail_margin",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: retail supply-cost relief +5.3% (carded, posted to Kilian)."
+  },
+  {
+   "item": "Texas restart Q1 2028 / 2029 (source: CEO TCEQ hold may lift mid-December, src 57)",
+   "value": "",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives ercot_dc_gw",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): restart alternatives re-cited (12 months, 24 months from the inauguration; CEO mid-December src 57) and sized."
+  },
+  {
+   "item": "missing: restart at the CEO's mid-December 2026 timing (pause ends with the 12-10 reports)",
+   "value": "",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/06/vistra-vst-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_alternatives ercot_dc_gw",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): added and engine-sized: CEO mid-December restart -0.5%."
+  },
+  {
+   "item": "'less the gap by which 2027 hedges came in below the same kind of average'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://filecache.investorroom.com/mr5ir_vistracorp_ir/332/2024%20Q4%20Results%20Presentation%20vFF.pdf ; https://investor.vistracorp.com/image/Q3_2026_Results_Presentation_vFINAL.pdf",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_calls_for_kilian gen_price context",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): card context 'same kind of average' corrected."
+  },
+  {
+   "item": "peer levels 10.01x / 9.52x / 8.08x cited to 'src 1' and KeyBanc",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000017/vistra-20260630xearningsre.htm",
+   "checked": "2026-11-10",
+   "feeds": "supervisor judgment_calls_for_kilian Horizon multiple options 2-4",
+   "status": "fixed",
+   "fix": "Fixed by the thread in the model before this step (2026-11-10): horizon-multiple card options no longer cite src 1 (peer levels to src 17/25); KeyBanc link replaced in this step (see the KeyBanc row)."
+  }
+ ],
+ "note": "Fix step 2026-11-10 (text and citations only; no engine-read number changed; model_engine check 137.32 before and after; judgment_check size+check ok; forecast_lint round []). 18 failures were fixed by the thread in the model before this step and are recorded as such. Residual (not a failure): drivers[].years for gen_price/fuel_cost/cap_rev/retail_twh still hold pre-rebuild years; the engine replaces them with the quarter aggregates (quarter_vs_years), the row texts state the booked values; left unedited under the no-engine-number rule."
+}

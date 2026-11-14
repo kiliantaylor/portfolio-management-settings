@@ -1,0 +1,229 @@
+{
+ "as_of": "2026-11-13",
+ "sizing": "max_sharpe",
+ "total_wealth": 24255.84,
+ "cash_available": 11873.72,
+ "rf": 0.04,
+ "gamma": 4.0,
+ "max_industry_risk_share": null,
+ "max_positions": 8,
+ "dropped_for_position_limit": [],
+ "sharpe_trims": {},
+ "sharpe_combo": {
+  "committed": {},
+  "candidates": {},
+  "combos_checked": 1,
+  "base_sharpe": 0.538,
+  "best_sharpe": 0.538
+ },
+ "invested": 0.5105,
+ "tbills": 0.4895,
+ "expected_return": 0.0939,
+ "expected_return_market_only": 0.0775,
+ "volatility": 0.102,
+ "invested_expected_return": 0.1471,
+ "invested_expected_return_market_only": 0.1138,
+ "invested_volatility": 0.199,
+ "invested_dollars_cost_basis": 12053.18,
+ "sharpe": 0.538,
+ "risk_share": {
+  "NFLX": 0.1102,
+  "GOOGL": 0.0258,
+  "AVGO": 0.4037,
+  "NVDA": 0.012,
+  "AMAT": 0.058,
+  "ABT": 0.1416,
+  "T": 0.2487
+ },
+ "industry_risk_share": {
+  "Games": 0.1102,
+  "Servs": 0.0258,
+  "BusEq": 0.4737,
+  "Hlth": 0.1416,
+  "Telcm": 0.2487
+ },
+ "industry_of": {
+  "NFLX": "Games",
+  "GOOGL": "Servs",
+  "AVGO": "BusEq",
+  "NVDA": "BusEq",
+  "AMAT": "BusEq",
+  "ABT": "Hlth",
+  "T": "Telcm",
+  "AMBQ": "BusEq",
+  "AMZN": "Rtail",
+  "APP": "Servs",
+  "BE": "ElcEq",
+  "BKNG": "Trans",
+  "COHR": "BusEq",
+  "CRDO": "BusEq",
+  "DY": "Cnstr",
+  "INTC": "BusEq",
+  "KEYS": "BusEq",
+  "MCHP": "BusEq",
+  "META": "Servs",
+  "MOD": "Autos",
+  "MRVL": "BusEq",
+  "SNOW": "Servs",
+  "TT": "BusEq",
+  "VST": "Util",
+  "XEL": "Util"
+ },
+ "solver": {
+  "penalty": 0.0,
+  "iterations": 0
+ },
+ "weights_continuous": {
+  "AMBQ": 0.0,
+  "AMZN": 0.0,
+  "APP": 0.0,
+  "BE": 0.0,
+  "BKNG": 0.0,
+  "COHR": 0.0,
+  "CRDO": 0.0,
+  "DY": 0.0,
+  "INTC": 0.0,
+  "KEYS": 0.0,
+  "MCHP": 0.0,
+  "META": 0.0,
+  "MOD": 0.0,
+  "MRVL": 0.0,
+  "SNOW": 0.0,
+  "TT": 0.0,
+  "VST": 0.0,
+  "XEL": 0.0
+ },
+ "shares": {
+  "AMBQ": 0,
+  "AMZN": 0,
+  "APP": 0,
+  "BE": 0,
+  "BKNG": 0,
+  "COHR": 0,
+  "CRDO": 0,
+  "DY": 0,
+  "INTC": 0,
+  "KEYS": 0,
+  "MCHP": 0,
+  "META": 0,
+  "MOD": 0,
+  "MRVL": 0,
+  "SNOW": 0,
+  "TT": 0,
+  "VST": 0,
+  "XEL": 0
+ },
+ "index_fund": null,
+ "ai_cap": {
+  "cap": 0.5,
+  "basis": "gross",
+  "members": {
+   "GOOGL": "named list",
+   "AVGO": "named list",
+   "NVDA": "named list",
+   "AMAT": "named list",
+   "AMBQ": "watchlist semi",
+   "AMZN": "named list",
+   "BE": "corr 0.49 to AI basket >= 0.30",
+   "COHR": "semis_ai loading 0.35 >= 0.30",
+   "CRDO": "watchlist semi",
+   "DY": "corr 0.39 to AI basket >= 0.30",
+   "INTC": "watchlist semi",
+   "KEYS": "corr 0.55 to AI basket >= 0.30",
+   "MCHP": "watchlist semi",
+   "META": "semis_ai loading 0.50 >= 0.30",
+   "MOD": "named list",
+   "MRVL": "watchlist semi",
+   "TT": "corr 0.51 to AI basket >= 0.30",
+   "VST": "named list"
+  },
+  "held_share": 0.3169,
+  "share_after_buys": 0.3169,
+  "multiplier": 0.0,
+  "cut": []
+ },
+ "method": "Since 2026-09-29 (Kilian: \"solve as one portfolio against the factor model\") all candidates are sized together:\n    maximize sum_i w_i (mu_i - rf) - (gamma/2) w' Sigma w,   gamma = 4 (quarter Kelly),\nwith w the share of total wealth (current account + new cash), mu_i the conviction-adjusted 1Y expected return\n(conviction.py; the options market's part at quarter Kelly, the research part scaled 0.5x-2x), and\nSigma_ij = rho_ij s_i s_j: s_i the s.d. of the name's final blended 1Y distribution (result.json, the same one that sets\ntarget, TP and SL), rho_ij from the Risk Prism factor model recalibrated to the option market (riskcal.py), else 2Y\nrealized correlation shrunk toward the pool average. Constraints per name, the smallest binding:\n  - Gate: no buy unless the NTM target (blended median) is above the last price ('target_above_last').\n  - Stop budget: a stop-out at the SL may cost at most stop_budget_share_of_wealth of total wealth (data/review_settings.json;\n    5% since Kilian 2026-09-29, was 2%): w <= budget / ((spot - SL) / spot).\n  - The supervisor's sizing.max_weight_pct, if given, and a 20% single-name ceiling.\n  - Index fund (review_settings index_fund, SPY since Kilian 2026-09-29): an S&P 500 fund is always a candidate, expected\n    to earn the risk-free rate plus the measured 7.69% equity premium with its option-implied vol; no stop, supervisor or conviction caps, only\n    its own max_weight. It soaks up cash the stock picks leave idle, sized against them in the same solve.\n  - Kelly split (Kilian 2026-09-29): the options-implied part of each expected return is sized at market_kelly_fraction\n    (half Kelly), the research part at quarter Kelly; done by solving with mu_solve = rf + MKF*gamma*(m - rf) + alpha.\n    Reported expected returns are the true mu, not mu_solve.\n  - Conviction rubric: removed 2026-11-09 (Kilian \"get rid of conviction rubric\"; its gate was off since 2026-10-21).\n    No conviction label, no book dP, no conviction gate; the Sharpe tests and the gates below decide buys.\n  - Driver model (Kilian 2026-11-02 \"im not buying anything without one + a memo\", 2026-11-04): no buy and no staged\n    new-name tranche unless the research round behind the target has a driver-led set (gate 'no_driver_model').\n  - Research after the print (2026-11-04): no buy unless the research is dated on or after the name's last earnings print\n    (last_print.py: earnings_miss.json dates, a passed next-report date, the newest SEC 8-K Item 2.02); unknown = no buy\n    (gate 'research_before_print').\n  - Big-miss block (Kilian 2026-10-19 card 'Add flag'): no buy, and a staged new name's buy pauses, for 6 months after a\n    big earnings miss (earnings_miss.py -> data/earnings_miss.json; gate 'big_miss_block').\n  - Held names (Kilian 2026-10-19 15:21Z, SIZING = 'max_sharpe'): review.py sizes them to Sharpe-optimal (tangency)\n    targets on mu_eff, scaled to the total this rule would hold; here they stay fixed and a new name must still raise\n    the book's Sharpe (Sharpe test below).\n  - AI cap (Kilian 2026-11-05 cards 'Named list plus a rule' and '50% of stocks, buys only'; ai_cap.py): AI names (named\n    list, watchlist semis, semis_ai loading >= 0.3 or AI/DC revenue >= 25%) at most 50% of the money in stocks, held at\n    market value plus today's buys. One linear group constraint in the joint solve, sum_AI w <= 0.5 sum w, through its\n    Lagrange multiplier (ai_cap.solve_capped); the whole-share and Sharpe-test steps keep it. Freed weight goes to the\n    next-best non-AI name or cash. If the held book is already over, new AI names get no buy; nothing is trimmed (gate 'ai_cap').\nAcross the book: total buys <= cash. An optional industry limit (max_industry_risk_share; null = off, Kilian removed\nthe 40% limit 2026-09-29) caps any one Risk Prism industry's share of the book's variance. Held names (holdings mode) stay fixed at\ntheir current weight; review.py decides trims and adds for those. Whole shares: rounded down, then single shares added\nback while they raise the objective and fit the cash and limits. The rest stays in cash.\nruns/DATE/portfolio.json carries the book's expected return, volatility (recalibrated model, plus the raw model and the\noption market's own view), Sharpe, beta, factor and industry risk shares.",
+ "volatility_option_market": 0.0866,
+ "volatility_raw_model": 0.0845,
+ "beta": 0.348,
+ "invested_beta": 0.705,
+ "factor_share": 0.4464,
+ "held_beta_mv": 0.681,
+ "factor_var_share": {
+  "market": 0.3771,
+  "beta": -0.1908,
+  "volatility": 0.137,
+  "momentum": 0.0652,
+  "ind_Hlth": 0.0273,
+  "liquidity": 0.0205,
+  "size": -0.0097,
+  "ind_BusEq": 0.0063
+ },
+ "model": "model-2026-11-09",
+ "calibration": {
+  "k": 1.0,
+  "spy_model_vol": 0.1277,
+  "market_iv": 0.1909,
+  "market_iv_source": "SPY 30D full-strike IV 2026-11-13",
+  "blend_delta": {
+   "52": 0.9333,
+   "104": 0.6
+  },
+  "semis_loadings": {
+   "AMBQ": [
+    -0.443,
+    0.54
+   ],
+   "BE": [
+    0.037,
+    0.429
+   ],
+   "COHR": [
+    0.354,
+    -0.264
+   ],
+   "CRDO": [
+    1.213,
+    -0.069
+   ],
+   "INTC": [
+    0.194,
+    0.479
+   ],
+   "MCHP": [
+    0.114,
+    0.835
+   ],
+   "META": [
+    0.502,
+    0.169
+   ],
+   "MOD": [
+    0.556,
+    -0.107
+   ],
+   "MRVL": [
+    0.483,
+    0.105
+   ],
+   "SNOW": [
+    -0.127,
+    -0.34
+   ],
+   "VST": [
+    0.21,
+    -0.013
+   ],
+   "GOOGL": [
+    0.202,
+    0.058
+   ],
+   "AMAT": [
+    0.404,
+    0.144
+   ]
+  },
+  "weeks": 109
+ },
+ "calibration_method": "LIVE since 2026-11-02 (Kilian's pick, after the out-of-sample test in risk/model_study/report.md and the GICS\nsub-industry comparison in risk/finer_model/report.md). Sizing takes only rho_ij from here; each name's vol comes from its\nown 1Y distribution. Correlations come from:\n  1. Risk Prism exposures and factor returns, with the factor covariance re-estimated from weekly factor returns\n     (exponentially weighted, half-life 26 weeks; no scale-up to implied vol).\n  2. Two extra semis factors, each the equal-weight average residual of a basket: AI chips and chip equipment, and analog\n     chips. Each name's loadings come from a ridge regression of its weekly residual on the basket factors (half-life 52 weeks,\n     prior worth 26 weeks at loading 0, the name left out of its own basket).\n  3. Specific risk from each name's own weekly residuals (half-life 26 weeks; no top-up to implied or realized vol).\n     Names with under 26 weeks of residuals use Risk Prism's specific x 1.2 (our weekly residual vols run ~1.2x theirs).\n  4. The sample correlation of weekly returns blended in: rho = d x model + (1 - d) x sample, with d from the Ledoit-Wolf\n     fixed-target rule (sampling noise / distance). 104 weeks where both names have them, else 52, else the model alone.\nReplaced (backup riskcal.py.bak-v2_1102): Risk Prism with each name's specific risk topped up to its 1Y implied vol.\nUsage: M = riskcal.load(DATE, syms)  -> riskcalc.Model subclass; M.corr/M.cov use the blend,\nM.risk/M.beta_spy keep the factor structure (reporting only). M.calib records the market's implied vol for reference."
+}

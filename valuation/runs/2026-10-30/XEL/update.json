@@ -1,0 +1,45 @@
+{
+ "symbol": "XEL",
+ "update_date": "2026-10-30",
+ "base": "2026-10-20",
+ "mode": "update",
+ "mode_reason": "base 2026-10-20 has a gate-clean standard model",
+ "trigger": "Q3 2026 print 2026-10-29 (unheld; Kilian: install existing XEL driver set, roll in Q3 + new capital plan, quarterly)",
+ "playbook": "regulated_utility",
+ "base_fair_value": 82.04882674772037,
+ "base_fair_value_source": "standard model",
+ "filings_since_base": [
+  {
+   "form": "10-Q",
+   "filed": "2026-10-29",
+   "items": "",
+   "url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000181/xel-20260930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-29",
+   "items": "2.02,9.01",
+   "url": "https://www.sec.gov/Archives/edgar/data/72903/000007290326000178/xel-20261029.htm"
+  }
+ ],
+ "created_utc": "2026-11-02T02:53Z",
+ "changed_inputs": [
+  "driver:rate_base",
+  "driver:earned_roe",
+  "driver:holdco_drag",
+  "driver:avg_shares",
+  "driver:eq_ratio",
+  "quarters",
+  "driver_build.quarters",
+  "driver_build.set[horizon_multiples[metric=P/E].eps]",
+  "horizon_multiples[metric=P/E].eps",
+  "NTM EPS at the horizon (2027-10-30)",
+  "Net debt now / at horizon",
+  "Shares now / at horizon",
+  "EPS path (ongoing)",
+  "reference.guidance",
+  "reference.consensus"
+ ],
+ "what_changed": "# XEL quarterly driver set, update round 2026-10-30 (Q3 2026 print 2026-10-29)\n\nKilian 2026-10-30: install the existing XEL driver set (driver_models/XEL/set.json, built 10-22, never gated). This set = that set +\nQ3 2026 actuals + the new 2027-31 capital plan + the FY2026/FY2027 guides, in quarterly form (QBRIEF.md).\n\nResearch target (12m): 82.05 (live 10-20 set, non-driver) -> 83.50 (+1.8%). Page target (dry run) 80.00 -> 80.73. Only leg: P/E NTM 17.2x (unchanged).\n\n## Quarter grid\nQ1 FY2025 .. Q4 FY2028, calendar quarter ends, actual = 7 (Q1-Q3 FY2026 10-Qs 0000072903-26-000073 / -000154 / -000181).\n\n## Drivers (agg; actuals; forecast)\n- rate_base (end, $B): 56.0 -> 66.0 / 78.2 / 89.2 (old 66 / 77 / 86). FY2027-28 add the new plan's extra capex vs the Q2 deck plan:\n  2027 $16.30B vs $15.10B, 2028 $14.67B vs $12.65B (Q3 release capex table, 5-year $70.0B). Straight line within years. Derived (no new rate base slide in the run): flag.\n- eq_ratio (mean): 0.537 flat (unchanged).\n- earned_roe (mean): actual quarters implied from ongoing EPS (Q1 0.91, Q2 0.93, Q3 1.52; FY2025 0.84/0.75/1.24/0.96). Q4 FY2026 forecast at EPS $0.78\n  (FY2026 $4.14, upper half of the narrowed $4.10-4.16 guide; YTD $3.37). FY2027 8.19% calibrated to EPS $4.55 (guide $4.48-4.62 midpoint = Zacks FY2027 $4.55).\n  FY2028 8.15% kept. Season factor sea = 0.985 / 0.711 / 1.333 / 0.972 (2024 GAAP NI and 2025 ongoing OpCo NI quarter shares, rate-base growth adjusted).\n- holdco_drag (sum, $M): quarters from the release EPS tables x shares; Q4 2025 plug to the $200M base; Q4 2026 $40M; FY2026 102.6 (old 125); FY2027-28 190 / 260 kept.\n- avg_shares (mean, M): actual quarters 10-Q XBRL; Q4 2026 638; FY2027 657 (old 653), FY2028 690 (old 682): ~40% equity on the extra 2027-28 capex.\n\n## Quarter expressions (driver_build.quarters)\nrevenue = rsea x (5000 + 172.66 x avgRB) / 4; ebit = avgRB x eq x ROE x sea / 4 - holdco + ir (ir = 4.6% x 9/30 net debt 38,115 / 4 = 438.32, so EBIT - ir = ongoing NI and the\nengine quarter EPS is ongoing EPS); da = 5.1% x avgRB / 4; capex = change in RB + da. Annual driver_build.years removed; P/E EPS set path kept with weights 0.167 / 0.833\n(NTM Nov-2027 to Oct-2028 at the 2027-10-30 horizon). Reported Q1-Q3 FY2026 rows: revenue / D&A / capex from 10-Q XBRL, EPS ongoing from the releases.\n\n## EPS: ours vs Street vs whisper\n- Q3 2026 actual $1.52 vs Zacks $1.39 (+9.4%). Usual beat (last 4: -0.01, 0.00, +0.14, +0.13 in $) -> whisper ~$1.45; actual beat that too.\n- Q4 FY2026 ours $0.78 vs Zacks quarter $0.94 (stale: Zacks FY2026 $4.13 implies ~$0.76; 2 down revisions). Whisper on the FY basis ~$0.79.\n- FY2026 $4.14 vs $4.13; FY2027 $4.55 vs $4.55; FY2028 $4.94 vs $4.92 (Nasdaq.com / Zacks, read 2026-11-02).\n\n## Scenarios\nDeltas kept (bear ROE -25bp, shares +1%, holdco +15%; bull RB +1.5%, shares +0.5%, ROE +15bp): downside 67.49 -> 68.43, upside 91.90 -> 93.62 (both < 2% beyond the base move).\n\n## Judgment calls (none > 5%)\n- Extra capex fully in rate base in ",
+ "escalate": []
+}

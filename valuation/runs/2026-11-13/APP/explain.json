@@ -1,0 +1,881 @@
+{
+ "symbol": "APP",
+ "as_of": "2026-11-13",
+ "research_as_of": "APP",
+ "spot": 409.1,
+ "agents": [
+  {
+   "agent": "agent_1",
+   "fair_value": 348.0,
+   "method_text": "Blend of 50% P/E (NTM EPS at Oct-2027 ~$21.8 x 16x = $349) and 50% FCF yield (NTM FCF ~$6.8B at a 6% yield on ~326M shares = $348). FY27 EPS is consensus $20.00 cut 4% to $19.2; net debt (~$0.46B) is immaterial.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 349.0,
+     "weight": 0.5,
+     "inputs": "NTM EPS as of Oct 2027 = 0.25 x FY27 $19.2 + 0.75 x FY28 ~$22.65 = ~$21.8; 16x multiple",
+     "inputs_detail": [
+      {
+       "input": "FY2027 EPS (haircut consensus)",
+       "value": "$19.20",
+       "basis": "estimate",
+       "source_ids": [
+        11,
+        18,
+        19,
+        1
+       ],
+       "derivation": "Alpha Vantage mean of 27 analysts is $20.00 (was $21.16 60 days ago; 19 of 24 30-day revisions were cuts). I cut it 4%: Edgewater's Q4 call of +8-9% q/q on a ~$2.07B Q3 midpoint (~$2.24-2.26B) is only ~1-2% below what consensus implies, and Wells Fargo's traffic-weighted pixel data (~85% of new sites with no traffic, e-commerce 'more like a 2027 story') argues for a slower e-commerce ramp in 2027 than consensus revenue growth of ~27% embeds"
+      },
+      {
+       "input": "FY2028 EPS",
+       "value": "~$22.65",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        11,
+        19
+       ],
+       "derivation": "FY27 $19.2 grown 18% (was 20%). Below management's 'roughly 30% annually' long-term compounding; trimmed for Edgewater's view that MAX share of wallet is near a ceiling with Unity spread pressure, and for lower buyback accretion (~2-3%/yr, since Q2 buybacks were moderated to $551M from ~$1B in Q1). E-commerce, if it is a 2027 story, supports rather than hurts FY28 growth, which is why I do not cut further"
+      },
+      {
+       "input": "Multiple",
+       "value": "16x NTM",
+       "basis": "judgment",
+       "source_ids": [
+        11,
+        12,
+        13,
+        18
+       ],
+       "derivation": "Today ~14.6x my FY27 ($281/$19.2) and ~13x NTM. Mega-cap ad platforms trade ~20-22x. Lowered from 17x because revisions are still negative and the multiple will not re-rate until they turn; 16x assumes only a small re-rating if growth holds at ~20-25% with ~83% EBITDA margins. Wells Fargo's own $325 target (Equal Weight) and the ~$500 mean target bracket it"
+      }
+     ]
+    },
+    {
+     "name": "FCF yield",
+     "value": 348.0,
+     "weight": 0.5,
+     "inputs": "NTM FCF at Oct 2027 ~$6.8B; required FCF yield 6%; ~326M shares after buybacks",
+     "inputs_detail": [
+      {
+       "input": "FY2025 FCF",
+       "value": "$3.95B",
+       "basis": "reported",
+       "source_ids": [
+        10
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "H1 2026 operating cash flow / cash taxes",
+       "value": "$2.16B OCF; $640M cash taxes paid (vs $101M in H1 2025)",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "derivation": "Q2 FCF ($863M) fell because of tax timing, not the business. Capex is negligible ($5.7M gap between OCF and FCF in Q2)"
+      },
+      {
+       "input": "NTM FCF at Oct 2027",
+       "value": "~$6.8B",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        11
+       ],
+       "derivation": "FCF ~ net income + SBC (~$0.35B/yr) - working capital/tax timing, i.e. ~NI - $0.3B as in round 1. FY27 NI ~$6.3B ($19.2 x ~330M) gives FCF ~$6.0B; FY28 NI ~$7.4B ($22.65 x 326M) gives ~$7.1B; weighted 25/75"
+      },
+      {
+       "input": "Required FCF yield",
+       "value": "6%",
+       "basis": "judgment",
+       "source_ids": [
+        12
+       ],
+       "derivation": "TIKR puts the NTM levered FCF yield at ~6% at $310, up from ~2% a year earlier. I hold today's de-rated yield rather than assume a return to the old one"
+      },
+      {
+       "input": "Diluted shares Oct 2027",
+       "value": "~326M",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        4,
+        1
+       ],
+       "derivation": "335.3M at Jun 30 2026. Q2 repurchases were only 1.14M shares for $551M (moderated for lower FCF, per CFO), vs ~$1B in Q1. At ~$3-3.5B/yr at ~$300-330 that retires ~11M shares, net of ~2M RSU issuance (was 322M at a $4-5B/yr pace)"
+      },
+      {
+       "input": "Net debt",
+       "value": "~$0.46B",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        2
+       ],
+       "derivation": "$3.515B debt minus $3.053B cash at Jun 30 2026"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 175.0,
+     "prob": 0.3
+    },
+    "base": {
+     "price": 320.0,
+     "prob": 0.45
+    },
+    "bull": {
+     "price": 490.0,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.283,
+   "median": 294.24,
+   "reasoning": "Round 2. Primary documents still show a fast-compounding business: Q2 2026 revenue $1.924B (+53%), 83.9% adj. EBITDA margin, $3.76 GAAP EPS, Q3 guide $2.055-2.085B (+46-48%), net debt ~$0.46B, $1.8B buyback authorisation left. Corrections from the supervisor, which I verified: (1) the Q3 guide is not conservative in the way I said; the CFO said it 'reflects the model improvements that are already live and performing' (the step-up that landed just after quarter-end) and excludes only not-yet-deployed releases; (2) Edgewater's Q4 call (+8-9% q/q) is only ~1-2% below consensus; (3) Wells Fargo's traffic-weighted pixel data pushes e-commerce to 2027. Re-reading the call I also found I overstated the buyback pace: Q2 repurchases were $551M, moderated from ~$1B in Q1. I therefore cut FY27 EPS 4% to $19.2, FY28 growth to 18%, the P/E to 16x and the share-count reduction, which lowers fair value from $382 to $348 (P/E $349, FCF yield $348). I remain above the supervisor's ~$320 because 15x NTM is roughly today's de-rated multiple and assumes no re-rating at all for a business still guiding ~46% growth; a modest move to 16x is a judgment I keep. The scenario mix (30% bear $175, 45% base $320, 25% bull $490) gives a mean of ~$319. I do not centre the distribution on fair value because revisions are falling and momentum is negative. The ladder is a mixture: 92% lognormal with median $308 and sigma 0.55, plus 8% business-break mass with median $155. That gives P(>=281) 0.53, slightly below round 1's 0.545, and a thinner right tail (P>=703 0.062 vs 0.071). EDGAR shows no new 8-K since Aug 5. Research was mostly SEC filings and the call transcript; consensus is from Alpha Vantage, and option data was deliberately not consulted."
+  },
+  {
+   "agent": "agent_2",
+   "fair_value": 333.0,
+   "method_text": "Blend of NTM P/E ($22.2 NTM EPS at Oct-2027 x 15.5 = $344, 45%), EV/NTM EBITDA ($9.1B x 11.5 = $320/sh, 30%) and FCF yield ($21.0 NTM FCF/sh at 6.3% = $333, 25%) = ~$333, ~18% above spot. Single consistent haircut: FY27 revenue/EPS ~3.5% below consensus (Edgewater Q4 gap ~1-2% plus Wells Fargo's later e-commerce ramp), no stacked EBITDA spread haircut.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 344.0,
+     "weight": 0.45,
+     "inputs": "FY2027 EPS $19.3 (consensus $20.00 less 3.5%), rolled to NTM at Oct-2027 ~$22.2 (~12% from 3 quarters of ~16% growth plus ~3% buyback accretion) x 15.5x",
+     "inputs_detail": [
+      {
+       "input": "FY2027 consensus EPS",
+       "value": "$20.00 (was $21.16 60 days ago; 19 down / 5 up revisions in 30d)",
+       "basis": "consensus",
+       "source_ids": [
+        3
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "FY2027 EPS used",
+       "value": "$19.30",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        22,
+        26
+       ],
+       "derivation": "3.5% haircut, one haircut only: Edgewater's Q4 call (+8-9% q/q, ~$2.25B) is ~1-2% below the ~$2.27-2.28B consensus revenue and its checks call August 'spotty'; Wells Fargo traffic-weighted pixel data pushes the e-commerce ramp to 2027, trimming the 2027 non-gaming contribution by roughly another 2%. Round 1 used 5% while also counting Citi raw merchant counts as an offset; per the supervisor, I drop that offset and the overlap with the EBITDA leg."
+      },
+      {
+       "input": "NTM EPS at Oct-2027",
+       "value": "$22.2",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        1
+       ],
+       "derivation": "$19.3 x 1.16^0.75 (~1.118) for growth decelerating from the 28% FY26->FY27 consensus, x ~1.03 for net share shrink from buybacks ($551M in Q2)."
+      },
+      {
+       "input": "P/E multiple",
+       "value": "15.5x",
+       "basis": "judgment",
+       "source_ids": [
+        18,
+        13,
+        3,
+        23
+       ],
+       "derivation": "Stock trades ~14x FY27 consensus. 15.5x (from 16x in round 1) gives modest re-rating for ~20% EPS growth and 80%+ EBITDA margins, but the AppLovin-v-Unity Ad Quality suit (Unity calls it a response to 'increased competition and slowing growth') shows competitive pressure escalating, and revisions have not turned. Still far below the 25-30x before the sell-off and above Liftoff's ~7x EV/EBITDA IPO valuation."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 320.0,
+     "weight": 0.3,
+     "inputs": "FY2027 EBITDA $8.16B ($10.26B consensus revenue less 3% x 82% margin), rolled to NTM at Oct-2027 ~$9.1B x 11.5x = EV ~$104.9B, less $0.46B net debt, / ~326M shares",
+     "inputs_detail": [
+      {
+       "input": "FY2027 revenue consensus",
+       "value": "$10.26B",
+       "basis": "consensus",
+       "source_ids": [
+        3
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "FY2027 revenue used",
+       "value": "$9.95B (consensus less 3%)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        4,
+        22
+       ],
+       "derivation": "Same single trim as the EPS leg (Edgewater Q4 gap plus later e-commerce ramp); no extra spread-compression haircut stacked on top, as the supervisor noted round 1 double-counted."
+      },
+      {
+       "input": "Adj. EBITDA margin",
+       "value": "82%",
+       "basis": "guidance",
+       "source_ids": [
+        1
+       ],
+       "derivation": "Q3 2026 guide ~83%, Q2 actual 84%; 82% allows for some spread pressure from Unity Vector (guided +19-21% q/q)."
+      },
+      {
+       "input": "NTM EBITDA at Oct-2027",
+       "value": "$9.1B",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3
+       ],
+       "derivation": "$8.16B x 1.16^0.75."
+      },
+      {
+       "input": "EV/EBITDA multiple",
+       "value": "11.5x",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        13,
+        11
+       ],
+       "derivation": "Today's EV ~$95B is ~11.2x FY27 consensus EBITDA. 11.5x on NTM is consistent with the 15.5x P/E leg (NTM EPS ~79% of EBITDA per share) with a small discount; Liftoff at ~7x is the floor for a slower, lower-margin peer."
+      },
+      {
+       "input": "Net debt",
+       "value": "~$0.46B (LT debt $3.515B less cash $3.053B)",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "Shares at Oct-2027",
+       "value": "~326M",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "derivation": "335.3M at Jun 30 2026 less ~9-10M net from buybacks at a ~$2B+/yr pace, net of SBC."
+      }
+     ]
+    },
+    {
+     "name": "FCF yield",
+     "value": 333.0,
+     "weight": 0.25,
+     "inputs": "NTM FCF ~$6.84B (75% of $9.1B EBITDA) / 326M = $21.0/sh at a 6.3% required yield",
+     "inputs_detail": [
+      {
+       "input": "FCF conversion",
+       "value": "~75% of adj. EBITDA",
+       "basis": "guidance",
+       "source_ids": [
+        2
+       ],
+       "derivation": "Management expects FCF conversion to normalize to ~75%."
+      },
+      {
+       "input": "NTM FCF per share",
+       "value": "$21.0",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2,
+        3
+       ],
+       "derivation": "$9.1B x 0.75 = $6.84B / 326M."
+      },
+      {
+       "input": "Required FCF yield",
+       "value": "6.3%",
+       "basis": "judgment",
+       "source_ids": [
+        18
+       ],
+       "derivation": "TIKR cites ~6% NTM FCF yield at ~$311; I require slightly more than today's for decelerating growth and rising competition (Unity Vector, the Unity suit)."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 185.0,
+     "prob": 0.3
+    },
+    "base": {
+     "price": 325.0,
+     "prob": 0.45
+    },
+    "bull": {
+     "price": 500.0,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.286,
+   "median": 294.45,
+   "reasoning": "Round 2 changes. The supervisor showed (a) Edgewater's Q4 call is only ~1-2% below consensus revenue, so my 5% EPS cut plus a further 5% EBITDA trim double-counted it; (b) the Citi/Store Leads raw merchant counts I used as an offset are inflated by dormant APAC storefronts: Wells Fargo's traffic-weighted data (which I verified: 85% zero-traffic new sites vs ~30% pre-June, e-commerce 'more like a 2027 story', EW $325 PT) is the better read. I now use one consistent ~3-3.5% trim to FY27 revenue/EPS across all legs and drop the Citi offset. New lane evidence: AppLovin sued Unity (Sep 27-Oct 1) to stop its Ad Quality SDK collecting MAX auction data, with a TRO hearing and a JAMS arbitration; Unity calls it an incumbent's response to 'increased competition and slowing growth'. I read that as confirming that Unity Vector (Q3 Strategic Grow guided +68-70%, Vector >$1B run rate) is a real competitive threat, which justifies trimming the P/E to 15.5x from 16x, though a win would protect MAX's data edge. Sensor Tower still has APP at ~36% of game ad revenue (AdMob 29%) in a game-ad pool growing ~8%, so gaming growth must come from share or pricing. Net: P/E leg $352->$344, EV/EBITDA $309->$320 (double haircut removed, multiple aligned with P/E), FCF $330->$333; blend ~$333, basically unchanged because removing the double count is offset by a lower multiple and the loss of the e-commerce offset. Scenarios 185/325/500 at 30/45/25 (mean ~$327). Ladder: lognormal, median ~$300, sigma 0.57 (below the 75% realized because ~14x EPS, ~6% FCF yield and buybacks give valuation support), with a 3% crash component (median $140) for litigation/fraud-type tails; P(>=281) 0.53. Supervisor facts outside my lane (SEC probe closed, CEO sales under 10b5-1) slightly reduce the governance tail, which is why the crash weight is small. 1-month: no AppLovin earnings in window (est. Nov 11), so neutral around spot at ~21.5% monthly sigma. About 7 follow-up searches/fetches; no option data or priors consulted."
+  },
+  {
+   "agent": "agent_3",
+   "fair_value": 315.0,
+   "method_text": "Blend of P/E (skeptic FY2027E EPS $19.0 x 17x = $323, 40%), FCF yield (FY2027E FCF ~$6.18bn / 330M shares = $18.7 at 6%, less $1.4 net debt = $311, 35%) and EV/EBITDA (FY2027E EBITDA $7.9bn x 13x less $0.46bn net debt / 330M = $309, 25%): ~$315, about 12% above the $281 close.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 323.0,
+     "weight": 0.4,
+     "inputs": "Skeptic FY2027E EPS $19.0 (consensus $20.00 less 5%) x 17x",
+     "inputs_detail": [
+      {
+       "input": "FY2027 consensus EPS",
+       "value": "$20.00 (27 analysts; was $21.16 60 days ago; 19 down vs 5 up revisions in 30 days; low $16.00)",
+       "basis": "consensus",
+       "source_ids": [
+        4
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "Skeptic FY2027 EPS",
+       "value": "$19.0",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        10,
+        11,
+        29,
+        9
+       ],
+       "derivation": "Consensus $20.00 cut 5% (was 8% in round 1). Edgewater's Q4 +8-9% q/q call is only ~1-2% below the revenue consensus implies, so it supports ~1-2% by itself; Wells Fargo's traffic-weighted pixel data (~85% of new sites no traffic, e-commerce 'a 2027 story') and still-negative revisions (19 down / 5 up) justify a further ~3%. Slightly deeper than the supervisor's ~4% because revisions momentum has not turned."
+      },
+      {
+       "input": "P/E multiple on 2027E",
+       "value": "17x",
+       "basis": "judgment",
+       "source_ids": [
+        9,
+        19,
+        6
+       ],
+       "derivation": "Piper uses ~18x (cut from 20x); trailing P/E ~22x (Trefis); one turn below Piper for two pending securities class actions and slowing growth. The SEC inquiry is closed (source 25), so I no longer add a regulatory discount beyond that, but I keep 17x because the June CEO sales were not under a 10b5-1 plan per the Form 4s (sources 26-28). ~14.5x NTM EPS by Oct 2027."
+      }
+     ]
+    },
+    {
+     "name": "FCF yield",
+     "value": 311.0,
+     "weight": 0.35,
+     "inputs": "Skeptic FY2027E FCF ~$6.18bn / 330M shares = $18.7/share at a 6% required yield, less ~$1.4/share net debt",
+     "inputs_detail": [
+      {
+       "input": "FY2027 consensus revenue",
+       "value": "$10.26bn",
+       "basis": "consensus",
+       "source_ids": [
+        4
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "Skeptic FY2027 revenue",
+       "value": "$9.85bn (~+21% on ~$8.1bn 2026E)",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        10,
+        11,
+        29
+       ],
+       "derivation": "Consensus $10.26bn cut 4% (round 1: 6.5%): Edgewater's Q4 gap is ~1-2%; the rest reflects a slower e-commerce merchant ramp per Wells Fargo traffic-weighted data."
+      },
+      {
+       "input": "Adjusted EBITDA margin",
+       "value": "80%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3
+       ],
+       "derivation": "Q2 2026 was 84% and Q3 guide 83%; trimmed for the higher training and compute costs the CFO cited, plus pricing pressure from Unity on net-revenue spreads (source 10)."
+      },
+      {
+       "input": "Cash taxes, interest, capex",
+       "value": "~$1.48bn taxes (~20% of pretax), ~$0.19bn interest, ~$0.03bn capex/leases",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        17
+       ],
+       "derivation": "H1 2026 cash taxes $640m on $2.94bn pretax (~22%); interest on $3.55bn of 5.1-5.95% notes; Q2 capex plus finance leases ~$6m."
+      },
+      {
+       "input": "Shares outstanding Oct 2027",
+       "value": "330M",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "derivation": "335M at Jun 30 2026; $1.8bn authorization left plus ongoing FCF buybacks retire ~10-15M/yr at ~$300, offset by ~5M of equity grants."
+      },
+      {
+       "input": "Required FCF yield",
+       "value": "6%",
+       "basis": "judgment",
+       "source_ids": [
+        6
+       ],
+       "derivation": "NTM levered FCF yield is already ~6% (TIKR), up from ~2% at end-2025; a skeptic keeps that de-rated yield rather than assuming it compresses back."
+      },
+      {
+       "input": "Net debt",
+       "value": "$0.46bn (debt $3.515bn - cash $3.053bn)",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        2
+       ],
+       "derivation": ""
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 309.0,
+     "weight": 0.25,
+     "inputs": "Skeptic FY2027E EBITDA $7.9bn x 13x = $102.4bn EV, less $0.46bn net debt, / 330M shares",
+     "inputs_detail": [
+      {
+       "input": "Skeptic 2027E adjusted EBITDA",
+       "value": "$7.9bn",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        4,
+        10,
+        11,
+        29
+       ],
+       "derivation": "$9.85bn skeptic revenue x 80% margin (see FCF method)."
+      },
+      {
+       "input": "EV/EBITDA multiple",
+       "value": "13x",
+       "basis": "judgment",
+       "source_ids": [
+        1,
+        4,
+        9
+       ],
+       "derivation": "Current EV ~$94.7bn (281.31 x 335M + $0.46bn net debt) is ~13.9x 2026E EBITDA of ~$6.8bn (Q1+Q2 reported $3.17bn + Q3 guide midpoint $1.725bn + Q4 ~$1.9bn) and ~11.5x consensus 2027 EBITDA (~$8.2bn); 13x on my lower 2027 number is in line with Piper's multiple compression."
+      },
+      {
+       "input": "Net debt",
+       "value": "$0.46bn",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "derivation": ""
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 190.0,
+     "prob": 0.22
+    },
+    "base": {
+     "price": 315.0,
+     "prob": 0.53
+    },
+    "bull": {
+     "price": 480.0,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.284,
+   "median": 307.1,
+   "reasoning": "Lane: skeptic. Round 2 changes, from the supervisor's fact-checks and my follow-up: (a) Edgewater's Q4 call (+8-9% q/q, ~$2.25bn) is only ~1-2% below consensus, so my 8% FY27 EPS haircut double-counted it; I now cut 5% (Edgewater ~1-2% plus the Wells Fargo e-commerce delay and negative revisions), deeper than the supervisor's ~4% because revisions are still 19 down / 5 up. (b) The SEC inquiry is closed with no recommended action (CFO, Aug 5 2026, AdTechRadar), so I drop the regulatory component of the bear case and cut bear probability from 25% to 22%. (c) I disagree with the supervisor on the CEO's insider sales: the primary Form 4s for the Jun 10-12 2026 sales (104,166 shares, ~$51.1m at $473-517, part via children's trusts) have the Rule 10b5-1 checkbox unticked and no 10b5-1 footnote, and the matching Form 144s carry no plan remark, whereas director Vivas's March Form 144 explicitly cites a 10b5-1 plan dated 12/10/2025. The supervisor's source was a paywalled MarketScreener summary I could not read. So my round-1 fact stands, but I give it little price weight: it matters for the class action's scienter element, not for earnings. Valuation: P/E $323 (19.0 x 17x), FCF yield $311, EV/EBITDA $309; blended fair value $315 (from $306). Scenarios: bear $190 (22%), base $315 (53%), bull $480 (25%); mean ~$329, median ~$305. Ladder: average of a three-scenario lognormal mixture (inner sigmas 30-35%) and a single lognormal (median ~$302, sigma 0.62, below the 75% realized vol because that vol includes a one-off de-rating), which keeps fat tails. Result: P(>= $281) ~0.57 (from 0.55), ~20% chance below $197, ~5.5% chance above $703. Thesis break $195 (from $205). Research limited (paywalls, 403s); no options data or priors consulted."
+  },
+  {
+   "agent": "agent_4",
+   "fair_value": 310.0,
+   "method_text": "Blend of P/E (FY27 EPS $19.0, consensus $20.00 cut 5%, x 18x = $342), EV/EBITDA (FY27 revenue $10.0B x 81% = $8.1B x 12x, less $0.46B net debt, / 330M shares = $293) and FCF yield (FY27 FCF ~$6.2B at 6.5%, less net debt, / 330M = $286), weighted 40/30/30, gives about $310.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 342.0,
+     "weight": 0.4,
+     "inputs": "FY2027 EPS $19.0 (consensus $20.00 cut by 5%) x 18x",
+     "inputs_detail": [
+      {
+       "input": "FY2027 consensus EPS",
+       "value": "$20.00 (27 analysts; $21.16 sixty days ago; 19 down vs 5 up revisions in 30 days)",
+       "basis": "consensus",
+       "source_ids": [
+        3
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "FY2027 EPS used",
+       "value": "$19.0",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        6,
+        7,
+        12,
+        15,
+        16,
+        17,
+        18
+       ],
+       "derivation": "Cut consensus by 5% (was 7.5% in round 1). Edgewater's Q4 call (+8-9% q/q, ~$2.25B) is only ~1-2% below consensus revenue, so the near-term gap is small; the rest of the haircut reflects Wells Fargo's traffic-weighted Pixel data (~85% of new sites with no traffic, e-commerce 'more like a 2027 story') and still-negative revisions. Fits the supervisor's 3-5% range at its upper end because Unity Vector's 23% q/q growth adds spread pressure."
+      },
+      {
+       "input": "P/E multiple",
+       "value": "18x",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        4,
+        5,
+        19
+       ],
+       "derivation": "The market pays about 14x FY27 consensus ($281/$20). Growth is still ~25-30% (FY27 revenue $10.26B vs FY26 $8.10B), net debt is negligible and the SEC probe is closed; the class action, AI-model execution miss and Unity competition cap the multiple far below the 30x+ history. 18x on FY27 is about 15-16x on the NTM EPS the market will look at in Oct 2027, close to large-cap ad peers."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 293.0,
+     "weight": 0.3,
+     "inputs": "FY2027 adj. EBITDA ~$8.1B (revenue $10.0B x 81%) x 12x, less $0.46B net debt, / 330M shares",
+     "inputs_detail": [
+      {
+       "input": "FY2027 revenue",
+       "value": "$10.0B (consensus $10.26B)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        6,
+        15
+       ],
+       "derivation": "Consensus less ~2.5% (round 1: -4.5%): Edgewater's Q4 gap is ~1-2%, plus a small further trim for the delayed e-commerce ramp per Wells Fargo."
+      },
+      {
+       "input": "Adj. EBITDA margin",
+       "value": "81%",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "derivation": "Q2 2026 margin 84%, Q3 guide ~83%; a little off for creative-tool/self-serve investment and spread pressure from Unity."
+      },
+      {
+       "input": "EV/EBITDA multiple",
+       "value": "12x",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        4,
+        16
+       ],
+       "derivation": "Today's EV (~$95B) over annualized Q3-guide EBITDA ($6.9B) is ~13.8x; a slightly lower multiple on forward EBITDA reflects the de-rating and competition from Unity Vector."
+      },
+      {
+       "input": "Net debt",
+       "value": "$0.46B (debt $3.515B less cash $3.053B at Jun 30, 2026)",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "Share count",
+       "value": "330M",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "derivation": "337.0M diluted in Q2, less ~2% net buyback over 12 months."
+      }
+     ]
+    },
+    {
+     "name": "FCF yield",
+     "value": 286.0,
+     "weight": 0.3,
+     "inputs": "FY2027 FCF ~$6.2B at a 6.5% yield, less $0.46B net debt, / 330M shares",
+     "inputs_detail": [
+      {
+       "input": "FY2027 FCF",
+       "value": "$6.2B",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3
+       ],
+       "derivation": "Net income ~$19.0 x 335M = $6.4B at ~97% conversion. Q2 FCF $863M vs net income $1.27B was timing-depressed, so conversion is uncertain."
+      },
+      {
+       "input": "Required FCF yield",
+       "value": "6.5%",
+       "basis": "judgment",
+       "source_ids": [
+        4
+       ],
+       "derivation": "TIKR puts NTM levered FCF yield at ~6% today; I require a bit more given the execution and legal overhang."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 170.0,
+     "prob": 0.25
+    },
+    "base": {
+     "price": 315.0,
+     "prob": 0.5
+    },
+    "bull": {
+     "price": 490.0,
+     "prob": 0.25
+    }
+   },
+   "p_gain": 0.269,
+   "median": 307.55,
+   "reasoning": "Round 2. Hard facts unchanged: Q2 2026 revenue $1.92B (+53%), 84% EBITDA margin, Q3 guide $2.055-2.085B, net debt ~$0.46B, ~337M diluted shares, ~14x FY27 consensus EPS at $281. Supervisor findings I accepted: (1) Edgewater's Q4 call is only ~1-2% below consensus, so my 7.5% EPS haircut was too deep; I moved to 5%, at the upper end of the supervisor's 3-5% because I add Unity Vector's 23% q/q Q2 growth (Unity release, confirmed by trade press) as a spread-pressure factor the supervisor did not weight. (2) My right tail was too thin; I widened the scenario inner sigmas to 38/30/40% and lifted the bull price to $490, which raises P(>=563) from 0.06 to 0.10 and P(>=703) from 0.014 to 0.048, consistent with APP's own 2023 rebound and Meta 2023. (3) Muddy Waters and the SEC probe removed from the bear story. Kept: the Wells Fargo traffic-weighted Pixel work as the key alt-data read (the supervisor rated it the most decision-useful finding); a new in-lane check of the Shopify App Store listing (25 reviews, 3.6 stars, latest Sep 15 2026, complaints about region availability) fits the view that self-serve e-commerce is early and small. Fair value rises from $302 to $310 (P/E $342, EV/EBITDA $293, FCF yield $286). I stay a bit below the supervisor's ~$320 because revisions are still falling and Unity competition is accelerating. Mixture: bear $170/25%, base $315/50%, bull $490/25%, which gives a median near $308 and P(>=281) of 0.58. The 1-month ladder is unchanged (no earnings before Nov 4). Research in round 2: 7 searches/fetches; X and Reddit were not reached directly, and a reported Oct 2 price move after a Unity spokesperson's comments was not used (after the as-of date and not verified)."
+  },
+  {
+   "agent": "agent_5",
+   "fair_value": 322.0,
+   "method_text": "Blend of P/E (15x NTM EPS at Oct-2027 of about $22.2, from FY27 consensus of $20.00 cut 4.5% to $19.10, giving $333), FCF yield (2027E FCF of about $19.8/share at a 6% yield, giving $330) and EV/EBITDA (10x 2028E EBITDA of about $9.64B, giving $292), weighted 40/35/25 for about $322. The EPS haircut is now 4.5%, down from 7.5%, because Edgewater's Q4 call is only 1-2% below consensus; Wells Fargo's pixel data justifies the extra trim.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 333.0,
+     "weight": 0.4,
+     "inputs": "NTM EPS at Oct 2027 of about $22.2 (FY27E $19.10 after a 4.5% haircut, rolled forward with about 16% growth into 2028) x 15x",
+     "inputs_detail": [
+      {
+       "input": "FY2027 consensus EPS",
+       "value": "$20.00 (27 analysts; was $21.16 60 days ago; 19 down / 5 up revisions in 30 days)",
+       "basis": "consensus",
+       "source_ids": [
+        3
+       ],
+       "derivation": ""
+      },
+      {
+       "input": "FY2027 EPS used",
+       "value": "$19.10",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        4,
+        22,
+        25
+       ],
+       "derivation": "Consensus $20.00 cut 4.5%, down from my round-1 7.5%. Edgewater's specific call (Q4 +8-9% q/q, about $2.24-2.26B on a Q3 guide midpoint of $2.07B) is only about 1-2% below the roughly $2.27B consensus implies, so it cannot carry a 7.5% cut alone. I add about 1.5% for Wells Fargo's traffic-weighted pixel data (85% of new pixel sites have no traffic; e-commerce 'more like a 2027 story') and about 1% for negative revision momentum (19 down / 5 up)."
+      },
+      {
+       "input": "NTM EPS at Oct 2027",
+       "value": "$22.2",
+       "basis": "estimate",
+       "source_ids": [
+        3
+       ],
+       "derivation": "$19.10 x 1.16. The consensus FY26-to-FY27 EPS growth of 28% ($15.67 to $20.00) is roughly halved for 2028; this includes about 1% a year of buyback accretion."
+      },
+      {
+       "input": "Multiple",
+       "value": "15x",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        9,
+        10
+       ],
+       "derivation": "APP trades at about 14x 2027 consensus today ($281.31 / $20.00). The de-rated adtech peer TTD is at 14.2x. Meta bottomed near 9-10x in 2022 and re-rated to the low 20s. 15x is a small premium to TTD for growth above 25% and an 80%+ EBITDA margin, but below large-cap internet averages because of the regulatory overhang."
+      }
+     ]
+    },
+    {
+     "name": "FCF yield",
+     "value": 330.0,
+     "weight": 0.35,
+     "inputs": "2027E FCF of about $6.54B (revenue $10.05B x 82% EBITDA margin minus about $1.7B cash tax and interest) / about 330M shares = $19.8/share, at a 6% required yield",
+     "inputs_detail": [
+      {
+       "input": "FY2027 revenue used",
+       "value": "$10.05B",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        4,
+        22
+       ],
+       "derivation": "Consensus $10.26B cut about 2%: the 1-2% Edgewater Q4 gap carried forward, plus a slower e-commerce ramp per Wells Fargo."
+      },
+      {
+       "input": "Adj. EBITDA margin",
+       "value": "82%",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "derivation": "Q2-26 margin was 84% and Q3-26 guidance is 83%. I take 82% for mix and R&D growth (R&D more than doubled y/y in Q2)."
+      },
+      {
+       "input": "Cash taxes + interest",
+       "value": "about $1.7B",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "derivation": "H1-26 cash taxes were $640M on $2.94B of pre-tax income, with an effective book tax rate of about 16%. Interest is about $200M a year on $3.5B of debt. Scaled to 2027 pre-tax income of about $8B gives about 18% x $8B + $0.2B."
+      },
+      {
+       "input": "Shares outstanding",
+       "value": "about 330M",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "derivation": "335.3M at 6/30/26, falling by about 3M a year from buybacks (H1-26 repurchases were $1.53B)."
+      },
+      {
+       "input": "Required FCF yield",
+       "value": "6%",
+       "basis": "judgment",
+       "source_ids": [
+        2
+       ],
+       "derivation": "The NTM levered FCF yield is already about 6% (TIKR), up from about 2% at end-2025. I assume the market holds that de-rated yield rather than re-rating, consistent with a base case of no re-rating."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 292.0,
+     "weight": 0.25,
+     "inputs": "2028E EBITDA of about $9.64B x 10x = $96.4B EV, minus net debt of about $0.46B, / about 328M shares",
+     "inputs_detail": [
+      {
+       "input": "2027E adj. EBITDA",
+       "value": "about $8.24B",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        22
+       ],
+       "derivation": "$10.05B haircut revenue (consensus $10.26B less 2%) x 82% margin."
+      },
+      {
+       "input": "2028E adj. EBITDA",
+       "value": "about $9.64B",
+       "basis": "estimate",
+       "source_ids": [
+        3
+       ],
+       "derivation": "About 17% growth on 2027E, a deceleration from the 27% that the revenue consensus implies for 2027."
+      },
+      {
+       "input": "Net debt",
+       "value": "about $0.46B",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "derivation": "Long-term debt of $3.515B minus cash of $3.053B at 6/30/26."
+      },
+      {
+       "input": "EV/EBITDA multiple",
+       "value": "10x",
+       "basis": "judgment",
+       "source_ids": [
+        3,
+        9
+       ],
+       "derivation": "The current EV is about $94.7B against 2027E EBITDA of about $8.4B, or about 11.3x. I assume a slight further compression on NTM as growth slows, in line with de-rated adtech (TTD at about 14x earnings)."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "bear": {
+     "price": 175.0,
+     "prob": 0.27
+    },
+    "base": {
+     "price": 310.0,
+     "prob": 0.46
+    },
+    "bull": {
+     "price": 475.0,
+     "prob": 0.27
+    }
+   },
+   "p_gain": 0.276,
+   "median": 300.73,
+   "reasoning": "Round 2. Facts: Q2-26 revenue $1.924B (+53%), adj. EBITDA $1.614B (84%), 335.3M shares, net debt about $0.46B, Q3 guide $2.055-2.085B. FY26/FY27 consensus EPS is $15.67/$20.00, with FY27 down from $21.16 over 60 days. At $281 the stock is at about 14x FY27 EPS and about a 6% FCF yield, so the drawdown is de-rating rather than an earnings collapse. The supervisor's corrections, which I checked: (1) the SEC inquiry is closed. AdTechRadar (Aug 5 2026) reports the CFO said on the Q2 call it closed with no recommended enforcement action. Bloomberg had reported it 'still active' as late as Feb 20 2026, so my round-1 premise was stale, not invented, but it was wrong as of October. I removed it from the bear story and catalysts and cut the bear probability from 30% to 27%. (2) Edgewater's Q4 +8-9% q/q is only about 1-2% below consensus, so I cut my EPS haircut from 7.5% to 4.5%, keeping part for Wells Fargo's Sep 30 traffic-weighted pixel data, which I confirmed across Yahoo/Stocktwits and Investing.com. (3) I dropped the thin Polymarket recession market (about $9.7K volume). Base rates: Mauboussin and Callahan (Counterpoint Global, May 2025) find a median peak-to-trough drawdown of 85% across 6,500 stocks from 1985 to 2024, and more than half never regain their prior high. I tried the primary PDF again and Morgan Stanley returned 403, so the figures come from the study's own landing page and search abstract. That keeps a return to $700+ in 12 months a tail outcome (about 5%). The TTD analog (a second straight year down about 67%) argues for persistence while revisions stay negative; Meta 2023 and APP 2023 argue for violent rebounds once they turn. Valuation: P/E $333, FCF yield $330, EV/EBITDA $292, blended 40/35/25 to $322 (round 1: $315). Scenarios $175/$310/$475 at 27/46/27% (mean about $318). The ladder is a 50/50 blend of that scenario mixture (inner sigmas 0.28-0.35) and a single lognormal (median $296, sigma 0.60). The result is P(>=$281) of 0.55 and a median of about $300, nudged up 1-2 points from round 1. I disagree with no supervisor finding. My fair value ($322) lands near its $320 independently: my FCF leg is higher and my EV/EBITDA leg lower. The thesis break moves to $185. Limits: no option data was used; the Morgan Stanley PDF was blocked; there are no APP-specific prediction markets."
+  }
+ ],
+ "supervisor": {
+  "confidence": "low",
+  "used": false,
+  "confidence_reason": "The five revised ladders sit within about 0.05 of each other at every strike, and all of them already reflect the round-1 findings. My checks overturned one round-1 supervisor fact (the CEO's sales were discretionary, not under a 10b5-1 plan) and confirmed that Unity's competition is real. Both matter for litigation and the bear-case weight, not for the centre of the distribution. None settles a disagreement that clearly moves the forecast, so I keep the mean.",
+  "changes": [
+   {
+    "item": "Fair value (12-month)",
+    "from": 325.6,
+    "to": 322.0,
+    "why": "Small trim to the agents' mean: agent_1's 16x NTM assumes a re-rating that negative revisions do not yet support; the other legs sit around $310-333."
+   },
+   {
+    "item": "Fact: CEO 2026 share sales (reversing the round-1 supervisor; agent_3's round-2 position confirmed)",
+    "from": "made under a Rule 10b5-1 plan adopted Mar 3 2026",
+    "to": "discretionary sales, not under a 10b5-1 plan (about $51m in Jun 2026 at $473-517, plus Mar 2026 sales)",
+    "why": "The CEO's Form 4s have aff10b5One=false, his Form 144s list no plan-adoption date, and the Q1 10-Q shows the Mar 3 2026 plan was director Maynard Webb's."
+   },
+   {
+    "item": "Fact: Q3 2026 report date (agents 2 and 3)",
+    "from": "Nov 11 (est.)",
+    "to": "Wed Nov 4 after the close (announced Oct 7)",
+    "why": "AppLovin's Oct 7 Business Wire date release (headline in StockAnalysis news, src 10), Citi's note and MarketBeat (src 33) all give Nov 4."
+   }
+  ],
+  "changes_derived": false,
+  "median_mean": 301.25,
+  "median_supervisor": 301.35,
+  "summary": "The five revised forecasts agree closely: median about $300, P(>= $281 on 2027-10-01) about 0.55, agent values $310-348. The stock is about 14x FY27 EPS and about a 6% FCF yield after a 60% de-rating. My checks reversed one round-1 supervisor fact: the CEO's 2026 sales were discretionary, not under a 10b5-1 plan, which adds a little to the class-action risk. They also confirmed that Unity is growing about twice as fast as AppLovin sequentially and that the two are now in litigation over MAX data. Neither moves the centre, so I keep the mean ladder (low confidence) with the research target (12m) at $313 after the citation gate (base round $322) and thesis break $185. The Q3 print and Q4 guide, likely Nov 4, are the next real test.",
+  "fair_value": {
+   "value": 419.43,
+   "reason": "Model update 2026-11-04 (update): Q3 beat our revenue by 4.5% and grew 55.5% y/y; the forward path is rebuilt from gaming (+30/25/20%, management's 20-30% range against a flat IAP market) and consumer (+75/50/35%, down from triple digits in 2026 as the base grows); whole business +30.1% a year FY2026-29, in line with management's ~30% long-term aim (Q3 call) from a Q4 at the guide record median, with margins held at 2026's ~84.3%, tax 16.5%, buybacks at 85% of FCF and the notes' interest carry modeled; NTM GAAP EPS at the horizon rises and the 13.52x exit P/E gives 419.43 (was 313.17 in the 2026-10-30 set; that set's reasoning is in update.json and its own round)."
+  }
+ }
+}

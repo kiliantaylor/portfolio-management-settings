@@ -1,0 +1,54 @@
+{
+ "_note": "Sales metrics in the pre-print log (routines/sales_metrics.py, Kilian 2026-11-13). Names valued on EV/sales (>= _sales_weight_min of the live set's horizon-multiple weight) get total revenue vs Zacks; names listed here get the metrics listed. actual_re: regex on the plain text of the 8-K Item 2.02 Ex.99.1 (first group, commas dropped) x actual_scale into the model unit ($M; fractions for rates). Street kinds: zacks_sales (Zacks quarter consensus), guide (company guide mid x usual beat, from the model's guidance_check), prior_reported (last reported figure, previous release). Ours kinds: revenue, revenue_less (revenue less a driver), driver, none.",
+ "_sales_weight_min": 0.5,
+ "_benchmark_card": "cmsg_01HdhANNPxz1f5xqDwR22cfLVFz2Gk2br5TfE2YRoSL5Zb (11-13, rec: company figures as built)",
+ "SNOW": {
+  "why": "EV/sales 0.8 of the horizon weight; non-GAAP EPS ~0.60 a quarter, so interest and investment income swing the EPS row; the stock trades on product revenue, the guide and NRR. Release wording checked on the Q2 FY27 Ex.99.1 (https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm).",
+  "metrics": [
+   {
+    "id": "product_revenue",
+    "label": "Product revenue ($M)",
+    "ours": {
+     "kind": "revenue_less",
+     "driver": "ps_rev"
+    },
+    "street": "guide",
+    "guide_metric": "product revenue",
+    "actual_re": "Revenue: Product revenue \\$ ([\\d,]+)",
+    "actual_scale": 0.001
+   },
+   {
+    "id": "revenue",
+    "label": "Total revenue ($M)",
+    "ours": {
+     "kind": "revenue"
+    },
+    "street": "zacks_sales",
+    "actual_re": "Statements of Operations \\(in thousands, except per share data\\) \\(unaudited\\) Three Months Ended .{0,80}? Revenue \\$ ([\\d,]+)",
+    "actual_scale": 0.001
+   },
+   {
+    "id": "nrr",
+    "label": "Net revenue retention (fraction)",
+    "ours": {
+     "kind": "driver",
+     "driver": "nrr"
+    },
+    "street": "prior_reported",
+    "actual_re": "Net revenue retention rate of (\\d+(?:\\.\\d+)?)%",
+    "actual_scale": 0.01
+   },
+   {
+    "id": "rpo",
+    "label": "Remaining performance obligations ($M)",
+    "ours": {
+     "kind": "none",
+     "why": "RPO is not a driver in the SNOW set: no our number; logged for the reaction score"
+    },
+    "street": "prior_reported",
+    "actual_re": "Remaining performance obligations of \\$(\\d+(?:\\.\\d+)?) billion",
+    "actual_scale": 1000
+   }
+  ]
+ }
+}

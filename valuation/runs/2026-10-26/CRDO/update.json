@@ -1,0 +1,33 @@
+{
+ "symbol": "CRDO",
+ "update_date": "2026-10-26",
+ "base": "2026-10-23",
+ "mode": "update",
+ "mode_reason": "set by hand (computed: update, base 2026-10-23 has a gate-clean standard model)",
+ "trigger": "Kilian 2026-10-27 16:31Z: rebuild drivers: copper vs photonics segments, each TAM x Credo share and its own gross margin; top-customer vs rest split",
+ "playbook": "semis",
+ "base_fair_value": 221.17615893492996,
+ "base_fair_value_source": "standard model",
+ "filings_since_base": [],
+ "created_utc": "2026-10-27T16:36Z",
+ "changed_inputs": [
+  "driver:copper_tam",
+  "driver:copper_share",
+  "driver:gm_copper",
+  "driver:optical_tam",
+  "driver:optical_share",
+  "driver:gm_optical",
+  "driver:opex",
+  "driver:top_customer_pct",
+  "segment_build[Copper (AECs, electrical ICs, IP)].base_revenue",
+  "segment_build[Optical (DSPs, SiPh PICs, ZF optics, ALC)].base_revenue",
+  "scenarios",
+  "driver_build.segments[Copper (AECs, electrical ICs, IP)].revenue = copper_tam*copper_share*1000*0.67/(1-top_customer_pct)",
+  "driver_build.segments[Copper (AECs, electrical ICs, IP)].ebit = revenue*gm_copper - opex*(copper_tam*copper_share)/(copper_tam*copper_share+optical_tam*optical_share)",
+  "driver_build.segments[Optical (DSPs, SiPh PICs, ZF optics, ALC)].revenue = optical_tam*optical_share*1000*0.67/(1-top_customer_pct)",
+  "driver_build.segments[Optical (DSPs, SiPh PICs, ZF optics, ALC)].ebit = revenue*gm_optical - opex*(1 - copper revenue share)",
+  "removed: driver:big4_capex, driver:capture_bps, driver:gm, segment_build[Connectivity (total)].base_revenue"
+ ],
+ "what_changed": "No new filing since 2026-10-23; this round rebuilds the drivers (Kilian 2026-10-27). Old: one revenue line = Big-4 capex x capture_bps (calibrated to the forecasters' median revenue), one gm, opex, no concentration. New: copper = Big-4 capex x 0.60% attach (estimate; no citable copper TAM) x Credo share; optical = LightCounting AI-cluster optics ($16.5B CY2025, +120% 2026, +76% 2027, CY2028 from LightCounting's optics-to-capex ratio, +30.6%) x Credo share (1.708%, from the >$600M FY27 guide at $620M); each segment with its own gross margin (copper 69/68.5/68%, optical 65/63/62%, solved to the reported 68.1% FY26 and the flat FY27 guide); a top-customer term (33%, 10-K/10-Q end-customer tables) that the bear cuts to 21% (top customer -46%) in place of the blanket capture cut. With copper share held at the FY27 level (Kilian 2026-10-27 17:21Z), revenue is $2.50B / $3.86B / $4.84B (consensus FY28 $3.88B) and optics growing to 29% of FY29 revenue lowers the blended margin to 66.2%; the research target (12m) moves 221.18 -> 223.00 (+0.8%). Optical guide check: first optical guide, proxy record +2.8%, ours $620M (above the floor).",
+ "escalate": []
+}

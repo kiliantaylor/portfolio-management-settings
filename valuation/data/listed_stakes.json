@@ -1,0 +1,21 @@
+{
+ "_note": "stake_marks.py spec (Kilian 2026-10-30 03:29Z). $M; shares_m in millions. A stake with ticker null is pending (not listed): at listing set ticker, and move its part out of the overlay fixed_part. Held names checked 2026-10-30: only GOOGL (SpaceX listed; Anthropic pending) and AMZN (Anthropic pending) carry listed or soon-listed stakes as adjustments. AMZN marketable equity ($4.7B, Rivian etc.) sits in net debt at the 9/30 mark and NVDA's equity stakes are not separate lines: both immaterial (<$0.05/share per 10% move).",
+ "GOOGL": {
+  "stakes": [
+   {"id": "spacex", "ticker": "SPCX", "match": "SpaceX re-marked", "shares_m": 551.1895, "haircut": 0.75, "counted": 70632.0, "in_overlay": true,
+    "source": "551,189,500 shares (13F at 6/30; Q3 10-Q marketable equity $90.384B ties at the 9/30 close); the base 'Net financial assets' line counts $94.176B x 0.75 = 70,632"},
+   {"id": "anthropic", "ticker": null, "match": "Anthropic stake estimate", "shares_m": 1378.6, "haircut": 1.0, "lockup": 0.115, "tax_rate": 0.21, "cost": 23600.0, "counted": 56840.0, "in_overlay": true,
+    "source": "S-1 2026-10-26 (anthropic-ipo memo): 1,378.6M shares (est.), lock-up 11.50% (Finnerty), 21% tax on gain over $23.6B cost; 56,840 = Series H mark est. $81.20B x 0.70 already in the non-marketable line. At listing: set ticker and reduce the overlay fixed_part by 82,190"}
+  ],
+  "overlay": {"match": "conglomerate overlay", "rate": 0.10, "fixed_part": 203450.0,
+   "source": "263.82B non-core total (S-1 update 2026-10-27) less SpaceX 60.37B (marked here); still includes Anthropic 82.19B until it lists"}
+ },
+ "AMZN": {
+  "stakes": [
+   {"id": "anthropic", "ticker": null, "match": "Anthropic stake at a $1.5T IPO", "shares_m": 3484.1, "haircut": 1.0, "lockup": 0.115, "tax_rate": 0.24, "cost": 18000.0, "counted": 0.0, "in_overlay": true,
+    "source": "S-1 2026-10-26: preferred 1,643.7M + notes 1,840.4M as converted; 24% tax on gain over $18.0B invested; lock-up 11.50%. At listing: set ticker and reduce the overlay fixed_part by 191,607"}
+  ],
+  "overlay": {"match": "Conglomerate overlay 10%", "rate": 0.10, "fixed_part": 268200.0,
+   "source": "post-haircut non-core parts $268.2B (S-1 update 2026-10-27), includes Anthropic 191.6B until it lists"}
+ }
+}
