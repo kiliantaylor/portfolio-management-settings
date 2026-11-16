@@ -20,6 +20,20 @@ What this hook refuses (the card is never posted; the session gets the list of p
 The text is checked for form only; whether the reasoning is right and the links show what it says is still on the
 session (and the gate text agent for model cards).
 
+GATE RULE (Kilian 2026-11-15, SPCX: five cards went out while the citation gate ran, then the gate failed an invented
+claim, wrong numbers and missing options in them): no card while the round it is about has a citation gate that is not
+clean. The rounds a session works on are found in its transcript (runs/DATE/SYM paths or "script.py ... DATE SYM", and
+driver_models/SYM[/quarterly] paths or "drv.py/qdrv.py ... SYM"). Checked: the newest round per symbol named in the card
+or its context message (if the card names none and is a valuation card: the round touched last).
+  round runs/DATE/SYM (has supervisor.json): clean = citation_audit.json with clean true and no open_failures, written
+     after gate/merged.json and gate/checklist.json (a later merge or re-prep means the gate is running again);
+  driver set driver_models/SYM[/quarterly]: clean = gate.json with clean true, written after set.json.
+Open (no gate yet or still running) or failed -> refused. A card that is not gated (e.g. a driver-set approval before
+the build) needs a logged override:
+    python3 .claude/hooks/card_check.py allow-ungated --why "<what the card is and why no gate applies>"
+which lets exactly the next card past the gate check (the reasoning check still applies).
+Status of a round: python3 .claude/hooks/card_check.py gate-status DATE SYM | drv SYM [quarterly]
+
 Override (only when Kilian asked in words for a bare card): run
     python3 .claude/hooks/card_check.py allow-next --why "<Kilian's words and when>"
 in this session; it logs to valuation/data/rule_overrides.jsonl and lets exactly the next card through.
@@ -43,6 +57,11 @@ URL = re.compile(r'https?://[^\s)\]>]+')
 MDLINK = re.compile(r'\[[^\]]+\]\(([^)\s]+)\)')
 NOSRC = re.compile(r'no (?:outside )?sources?\s*[:\-–—]\s*(.+)', re.I)
 ALLOW_CMD = re.compile(r'card_check\.py\s+allow-next\b')
+UNGATED_CMD = re.compile(r'card_check\.py\s+allow-ungated\b')
+VAL = os.environ.get('CARD_CHECK_VAL_DIR', '/mnt/project-files/valuation')
+SYM = r'[A-Z][A-Z0-9]{0,6}(?:\.[A-Z])?'
+ROUND_REF = re.compile(r'\b(20\d\d-\d\d-\d\d)(?:/|[ \t]+)(' + SYM + r')\b')
+DRV_REF = re.compile(r'driver_models/(' + SYM + r')(/quarterly)?\b|\b(q?)drv\.py[ \t]+[\w-]+[ \t]+(' + SYM + r')\b')
 LOG = os.environ.get('CARD_CHECK_LOG', '/mnt/project-files/valuation/data/rule_overrides.jsonl')
 # a line that opens an option section: optional quote/bullet/number/heading/bold/"Option X:", then the label
 PREFIX = (r'^[ \t>]*(?:[-*+•]|\d+[.)])?[ \t]*(?:#{1,6}[ \t]*)?(?:\*\*|__|\*)?[ \t]*'
@@ -107,6 +126,11 @@ def _blocks(e):
     return c if isinstance(c, list) else []
 
 
+def _why(cmd):
+    m = re.search(r'--why[ =](["\'])(.+?)\1', cmd, re.S)
+    return m.group(2) if m else ''
+
+
 def scan(path):
     """Since the last card that went out: the last context message text and whether an allow-next ran (and its why)."""
     uses, results = [], {}
@@ -125,9 +149,94 @@ def scan(path):
         if n in MSG_TOOLS and (u.get('id') not in results or ok(u)) and inp.get('text'):
             msg = inp['text']
         elif n == 'Bash' and ALLOW_CMD.search(inp.get('command', '')) and ok(u):
-            m = re.search(r'--why[ =](["\'])(.+?)\1', inp.get('command', ''), re.S)
-            allow = m.group(2) if m else ''
+            allow = _why(inp.get('command', ''))
     return msg, allow
+
+
+def scan_gate(path):
+    """Rounds this session touched, in order of last mention: [('run', DATE, SYM) | ('drv', SYM, quarterly)], and the
+    why of an allow-ungated that ran since the last card that went out (None if none)."""
+    uses, results = [], {}
+    for e in _entries(path):
+        for b in _blocks(e):
+            if b.get('type') == 'tool_use': uses.append(b)
+            elif b.get('type') == 'tool_result': results[b.get('tool_use_id')] = b
+    ok = lambda u: u.get('id') in results and not results[u['id']].get('is_error')
+    last_card = max((k for k, u in enumerate(uses) if u.get('name') == CARD_TOOL and ok(u)), default=-1)
+    seen, allow = {}, None
+    for k, u in enumerate(uses):
+        if u.get('name') == CARD_TOOL: continue
+        t = json.dumps(u.get('input') or {}).replace('\\/', '/')
+        for m in ROUND_REF.finditer(t):
+            key = ('run', m.group(1), m.group(2))
+            if os.path.exists(f'{VAL}/runs/{key[1]}/{key[2]}/supervisor.json'):
+                seen.pop(key, None); seen[key] = k
+        for m in DRV_REF.finditer(t):
+            key = ('drv', m.group(1), bool(m.group(2))) if m.group(1) else ('drv', m.group(4), m.group(3) == 'q')
+            if os.path.isdir(f'{VAL}/driver_models/{key[1]}'):
+                seen.pop(key, None); seen[key] = k
+        if k > last_card and u.get('name') == 'Bash' and UNGATED_CMD.search((u.get('input') or {}).get('command', '')) and ok(u):
+            allow = _why(u['input']['command'])
+    return list(seen), allow
+
+
+def _mt(p):
+    try: return os.path.getmtime(p)
+    except OSError: return None
+
+
+def _load(p):
+    try: return json.load(open(p))
+    except (OSError, ValueError): return None
+
+
+def gate_status(key):
+    """(state, detail) for one round: state is 'clean', 'open' or 'failed'."""
+    if key[0] == 'run':
+        _, d, s = key
+        rd = f'{VAL}/runs/{d}/{s}'; gd = f'{rd}/gate'; name = f'runs/{d}/{s}'
+        a, ta = _load(f'{rd}/citation_audit.json'), _mt(f'{rd}/citation_audit.json')
+        merged, tm, tc = _load(f'{gd}/merged.json'), _mt(f'{gd}/merged.json'), _mt(f'{gd}/checklist.json')
+        if a and a.get('clean') is True and not a.get('open_failures') and all(t is None or ta >= t for t in (tm, tc)):
+            return 'clean', f'{name}: citation_audit.json clean ({a.get("checked")} checked)'
+        if a and ta and (a.get('clean') is False or a.get('open_failures')) and (tm is None or ta >= tm):
+            return 'failed', f'{name}: citation_audit.json not clean ({len(a.get("open_failures") or a.get("failures") or [])} open failures)'
+        if merged is not None and (ta is None or tm > ta):
+            nf = len(merged.get('failures') or [])
+            if nf: return 'failed', (f'{name}: gate merged with {nf} failures and no clean citation_audit.json since '
+                                     f'(fix agent on gate/brief_fix.md, then a clean citation_audit.json)')
+            return 'open', f'{name}: gate merged clean but citation_audit.json was not written'
+        if tc is not None:
+            return 'open', f'{name}: gate is running (gate/checklist.json prepared, not merged yet)'
+        return 'open', f'{name}: no citation gate has run on this round'
+    _, s, q = key
+    base = f'{VAL}/driver_models/{s}' + ('/quarterly' if q else ''); name = base.split('valuation/')[-1]
+    g, tg, ts = _load(f'{base}/gate.json'), _mt(f'{base}/gate.json'), _mt(f'{base}/set.json')
+    if ts is None and g is None:
+        return 'clean', f'{name}: no set.json (nothing to gate)'
+    if g is None:
+        return 'open', f'{name}: set.json has no gate.json (driver-set gate not run)'
+    if ts is not None and ts > tg:
+        return 'open', f'{name}: set.json changed after gate.json (re-run the driver-set gate)'
+    if g.get('clean') is not True:
+        return 'failed', f'{name}: gate.json clean={g.get("clean")}, open: {"; ".join(map(str, g.get("open") or []))[:300]}'
+    return 'clean', f'{name}: gate.json clean'
+
+
+def gate_problems(rounds, text, valuation):
+    """Rounds the card is about whose gate is not clean -> list of details ([] = fine)."""
+    syms = {k[2] if k[0] == 'run' else k[1] for k in rounds}
+    named = {s for s in syms if re.search(r'(?<![A-Za-z0-9])' + re.escape(s) + r'(?![A-Za-z0-9])', text)}
+    pick = [k for k in rounds if (k[2] if k[0] == 'run' else k[1]) in named]
+    if not pick and valuation and rounds:
+        last = rounds[-1]; ls = last[2] if last[0] == 'run' else last[1]
+        pick = [k for k in rounds if (k[2] if k[0] == 'run' else k[1]) == ls]
+    newest = {}
+    for k in pick:  # newest round per symbol; driver sets checked as well
+        if k[0] == 'run':
+            if k[1] >= newest.get(k[2], ('run', '', ''))[1]: newest[k[2]] = k
+    check = list(newest.values()) + [k for k in pick if k[0] == 'drv']
+    return [d for st, d in map(gate_status, check) if st != 'clean']
 
 
 def deny(reason):
@@ -142,7 +251,19 @@ def hook():
     inp = ev.get('tool_input') or {}
     labels = [str(o.get('label', '')) for o in inp.get('options') or [] if isinstance(o, dict)]
     msg, allow = scan(ev.get('transcript_path') or '')
+    rounds, ungated = scan_gate(ev.get('transcript_path') or '')
+    card_text = ' '.join([str(inp.get('question', '')), str(inp.get('reason', ''))] + labels +
+                         [str(o.get('consequence', '')) for o in inp.get('options') or [] if isinstance(o, dict)])
+    G = [] if ungated is not None and len(ungated.strip()) >= 20 else \
+        gate_problems(rounds, card_text + ' ' + (msg or ''), bool(VALUATION.search(card_text + ' ' + (msg or ''))))
+    gate_txt = ('' if not G else
+                'CARD REFUSED (project rule, Kilian 11-15: no card while its round\'s citation gate is open or flagged). '
+                'Not clean:\n- ' + '\n- '.join(G) + '\nFix: wait for the gate, run the fix agent until citation_audit.json '
+                '(or driver_models gate.json) is clean, re-check the card\'s numbers and options against the fixed set, '
+                'then post the context message and the card. Only for a card no gate covers (e.g. a driver-set approval '
+                'before the build): python3 .claude/hooks/card_check.py allow-ungated --why "<what the card is, why no gate>"\n')
     if allow is not None and len(allow.strip()) >= 20:
+        if gate_txt: deny(gate_txt)
         return  # logged when allow-next ran
     head = ('CARD REFUSED (project rule, Kilian 11-10/11-13: every card comes with its reasoning laid out). ')
     how = ('\nFix: post a message FIRST (its own step, not in the same batch as the card) with the context, then one '
@@ -150,27 +271,29 @@ def hook():
            'sources and, for a valuation card, its sized research target (12m) / % effect. Then post the card again. '
            'Check a draft with: python3 .claude/hooks/card_check.py draft MSG.md "' + '" "'.join(labels) + '"')
     if msg is None:
-        deny(head + 'No context message was posted since the last card.' + how)
+        deny(gate_txt + head + 'No context message was posted since the last card.' + how)
         return
-    card_text = ' '.join([str(inp.get('question', '')), str(inp.get('reason', ''))] +
-                         [str(o.get('consequence', '')) for o in inp.get('options') or [] if isinstance(o, dict)])
     P = problems(msg, labels, valuation=bool(VALUATION.search(card_text + ' ' + msg)))
     if P:
-        deny(head + 'The last message posted has these problems:\n- ' + '\n- '.join(P) + how)
+        deny(gate_txt + head + 'The last message posted has these problems:\n- ' + '\n- '.join(P) + how)
+    elif gate_txt:
+        deny(gate_txt)
 
 
 # ---------- CLI ----------
 
-def allow_next(why):
+def allow_next(why, rule='card-reasoning'):
     if len(why.strip()) < 20:
-        sys.exit('REFUSED: --why must quote what Kilian asked for and when (20+ chars).')
-    row = dict(utc=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), rule='card-reasoning', why=why,
+        sys.exit('REFUSED: --why must say ' + ('what Kilian asked for and when' if rule == 'card-reasoning' else
+                                              'what the card is and why no citation gate covers it') + ' (20+ chars).')
+    row = dict(utc=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), rule=rule, why=why,
                session=os.environ.get('CLAUDE_CODE_REMOTE_SESSION_ID', ''))
     try:
         with open(LOG, 'a') as f: f.write(json.dumps(row) + '\n')
     except OSError as e:
         sys.exit(f'REFUSED: could not log the override to {LOG} ({e}).')
-    print('Logged. The next decision card in this session goes through without the reasoning check; the one after is checked again.')
+    print('Logged. The next decision card in this session goes through without the ' +
+          ('reasoning check' if rule == 'card-reasoning' else 'citation-gate check') + '; the one after is checked again.')
 
 
 def main(a):
@@ -179,6 +302,12 @@ def main(a):
     if a[0] == 'allow-next':
         why = a[a.index('--why') + 1] if '--why' in a and a.index('--why') + 1 < len(a) else ''
         return allow_next(why)
+    if a[0] == 'allow-ungated':
+        why = a[a.index('--why') + 1] if '--why' in a and a.index('--why') + 1 < len(a) else ''
+        return allow_next(why, 'card-gate')
+    if a[0] == 'gate-status' and len(a) >= 3:
+        key = ('drv', a[2].upper(), len(a) > 3 and a[3] == 'quarterly') if a[1] == 'drv' else ('run', a[1], a[2].upper())
+        st, d = gate_status(key); print(st.upper() + ': ' + d); sys.exit(0 if st == 'clean' else 1)
     if a[0] == 'draft' and len(a) >= 3:
         val = '--valuation' in a
         labels = [x for x in a[2:] if x != '--valuation']
