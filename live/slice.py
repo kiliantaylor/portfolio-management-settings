@@ -150,7 +150,7 @@ def research(syms):
         if not os.path.exists(f'{rd}/result.json'): why[s] = f'runs/{R}/{s} has no result.json (round not finished)'; continue
         if os.path.exists(f'{rd}/model_engine.json'):  # the model must value this exact set, as the nightly's combine will see it
             sys.path.insert(0, V); import combine
-            sm, sm_why = combine.standard_model(R, s, 'clean')
+            sm, sm_why = (getattr(combine, 'model_leg', None) or combine.standard_model)(R, s, 'clean')  # renamed model_leg 2026-11-14
             if not sm: why[s] = f'runs/{R}/{s}: standard model not usable ({sm_why})'; continue
         e = pend.get(s) or {}
         if e.get('status') == 'pending': why[s] = f'data/name_updates.json holds {s} pending: run name_update.py finish first'; continue
