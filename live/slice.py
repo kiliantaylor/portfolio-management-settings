@@ -14,7 +14,7 @@ Adds each named symbol's newest finished research round dated after the slice da
 the nightly can only pick up after the 4:15pm ET close bar) and lists it in slice.json 'research' {SYM: RDATE}; live/remark.py
 then re-marks that name with combine.py --research RDATE on every live run, so the page's target, take-profit, stop and
 the held names' sizing move intraday. Finished = runs/RDATE/SYM has supervisor.json, result.json and a clean
-citation_audit.json, a model_engine.json that values the current supervisor.json (combine.standard_model), and
+citation_audit.json, a model_engine.json that values the current supervisor.json (combine.model_leg), and
 data/name_updates.json does not hold the name pending. D, base.json and every other slice file
 stay as they are (only files the slice lacks are added), so the page's patch key and the close-bar guard are untouched.
 A republish on the same D keeps the list (each name re-checked); the next nightly slice (D = RDATE) drops it, since the
@@ -150,7 +150,7 @@ def research(syms):
         if not os.path.exists(f'{rd}/result.json'): why[s] = f'runs/{R}/{s} has no result.json (round not finished)'; continue
         if os.path.exists(f'{rd}/model_engine.json'):  # the model must value this exact set, as the nightly's combine will see it
             sys.path.insert(0, V); import combine
-            sm, sm_why = (getattr(combine, 'model_leg', None) or combine.standard_model)(R, s, 'clean')  # renamed model_leg 2026-11-14
+            sm, sm_why = combine.model_leg(R, s, 'clean')  # was standard_model until 2026-11-14; live/contract.py checks the name
             if not sm: why[s] = f'runs/{R}/{s}: standard model not usable ({sm_why})'; continue
         e = pend.get(s) or {}
         if e.get('status') == 'pending': why[s] = f'data/name_updates.json holds {s} pending: run name_update.py finish first'; continue
@@ -195,6 +195,13 @@ def copy(src):
     os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(src, dst); return 1
 
 if __name__ == '__main__':
+    # 2026-11-16: refuse to slice when valuation/ no longer has a function or script the live job calls (the 11-14
+    # standard_model -> model_leg rename broke --research); loud exit here instead of a quiet failure on the page
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import contract
+    broken = contract.check(V)
+    if broken:
+        for b in broken: print('LIVE CONTRACT BROKEN: ' + b, file=sys.stderr)
+        sys.exit('live/slice.py: not slicing until live/ and valuation/ agree again (python3 live/contract.py ' + V + ')')
     if '--tape' in ARGS:
         tape(); print(json.dumps(dict(tape=True))); sys.exit(0)
     if '--research' in ARGS:

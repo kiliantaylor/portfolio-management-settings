@@ -24,6 +24,14 @@ Fills, live quotes and the page's numbers update here, in GitHub Actions, with n
   at once; `live/remark.py` re-marks the name with `combine.py` research = that round on every run, so the new target and the
   held-name sizing reach the page before the 4:15pm ET close bar. The slice date, `base.json` and the other inputs are
   untouched (the page's patch key holds); a same-day republish keeps the list, the next nightly slice drops it.
+- **Checks (2026-11-16).** `live/contract.py VALUATION_DIR` fails when `valuation/` no longer defines a function, or has a
+  script, that `live/*.py` calls (the 2026-11-14 `standard_model` -> `model_leg` rename). `live/slice.py` runs it before every
+  slice, the live workflow before every run, and `.github/workflows/contract.yml` on every change to `live/`.
+  `live/nightly.sh research` and `tape` first compare live-data's base with the key of `valuation/report.html`; when the page
+  was republished without a push they re-slice before adding the research, so the push cannot land on a key the page ignores.
+  Every `push`, `research` and `tape` then runs `live/verify.py`: it waits for the live run the push started and exits 1 unless
+  the new patch carries the page's key and re-marks each pushed name on its round. Run `python3 live/verify.py` any time to
+  answer "is the page live?".
 - **Tape hold.** Each run `live/remark.py` checks QQQ and SMH against the prior close (`valuation/tape_hold.py`); a fall of
   4% / 7% or more records the day's event in the slice's `data/tape_hold.json`, so `review.py` holds adds in the exposed
   names (AI/data-center names and watchlist semis) and they are not swap candidates. A name stays held until it is cleared

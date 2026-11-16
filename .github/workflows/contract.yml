@@ -1,0 +1,25 @@
+name: live contract
+# Every change to live/: live/*.py must only call functions and scripts that valuation/ still has.
+# Checked against the valuation/ copy in branch live-data, which is what the live job runs on. The live job itself runs
+# the same check on every run (live.yml), and live/slice.py runs it on the project files before every push.
+on:
+  pull_request:
+    paths: ['live/**', '.github/workflows/**']
+  push:
+    branches: [main]
+    paths: ['live/**', '.github/workflows/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unit tests
+        run: python3 live/test_contract.py
+      - name: Check live/ against the published slice's valuation/
+        run: |
+          git clone -q --depth 1 -b live-data "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" slice
+          python3 live/contract.py slice/valuation
