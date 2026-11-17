@@ -82,7 +82,9 @@ if __name__ == '__main__':
     quotes = json.load(open(f'{V}/data/live_quotes.json'))
     p.update(base=meta['base'], version=stamp, quotes_as_of=quotes.get('as_of'),
              fills=dict(applied=intake['logged'], already=intake['already_in_trades'], rejected=intake['rejected']),
-             remarked=remark['remarked'])
+             remarked=remark['remarked'],
+             # why a name has no fresh leg this run, read by live/verify.py (Kilian 2026-11-17): {SYM: {code, detail, ...}}
+             remark_failed=remark['failed'], remark_skipped=remark.get('skipped', {}), remark_retried=remark.get('retried', {}))
     os.makedirs(OUT, exist_ok=True)
     json.dump(p, open(f'{OUT}/patch.json', 'w'), separators=(',', ':'))
     json.dump(dict(fill_key=fill_key, base=meta['base'], version=p['version']), open(f'{OUT}/state.json', 'w'))
@@ -99,6 +101,6 @@ if __name__ == '__main__':
         sheet.set_status(upd, stamp)
     print(json.dumps(dict(version=p['version'], bytes=os.path.getsize(f'{OUT}/patch.json'), sets=len(p['set']),
                           fills_applied=len(intake['logged']), rejected=intake['rejected'], sheet=bool(sheet),
-                          chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'], research=remark.get('research'),
+                          chains_pulled=remark['pulled'], remarked=remark['remarked'], remark_failed=remark['failed'], remark_skipped=remark.get('skipped'), remark_retried=remark.get('retried'), research=remark.get('research'),
                           swap_candidates=sorted(remark['candidates']), swap_winners=swaps['winners'], swap_failed=swaps.get('failed'),
                           tape_hold=remark.get('tape_hold'))))

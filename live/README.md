@@ -12,7 +12,10 @@ Fills, live quotes and the page's numbers update here, in GitHub Actions, with n
   Cboe option chain every run (`live/remark.py`, Kilian 2026-11-05: market leg, page target, take-profit and stop; the
   research target (12m) does not move). One pull per name feeds the 12-month and 1-month legs, pulls are paced with one
   retry on a 429, and a chain counts only when it is quoted in the live price's session, so pre-market runs and stale
-  chains never re-mark on the prior close (the name keeps an earlier leg from this session, if any). The pulled legs stay
+  chains never re-mark on the prior close (the name keeps an earlier leg from this session, if any). Since 2026-11-17 a
+  name left without a fresh leg is in the patch's `remark_failed` / `remark_skipped` with a code (`stale_chain`,
+  `fetch_http_429`, `fetch_network`, `empty_chain`, `combine`, `no_live_quote`, ...), stale / 429 / 5xx / network / empty
+  pulls get one retry at the end of the run (`remark_retried`), and `live/verify.py` prints the reasons. The pulled legs stay
   in `remark/` on `live-out` for the rest of the session; the nightly still writes the official priors on the official
   close. A full run with ~23 chains took about 40 seconds in a test on 2026-11-05 (15-minute job limit), reruns `review.py`, scores swap candidates (`live/swaps.py`, which calls `valuation/swap_test.py`, the same test the nightly runs at the close; the best winner is the trade in the page's next-share table; unheld names with gate-clean research at or below their Entry below, tested with `market_color/beats_check.py`'s whole-book swap; the result is the page's `live_swaps`), and `build_report.py`, then writes the difference from
   the published page's data (`live/patch.py`) to the Sheet's `live` tab and branch `live-out`, and sets each row's status.

@@ -31,8 +31,13 @@ Tape hold (Kilian 2026-11-05 card 'Tape-triggered news hold'): every run checks 
 event in the slice's data/tape_hold.json, so review.py, run next, holds the exposed names' adds, and those names are not
 swap candidates (their chains are still pulled), until each is cleared after its read-through (tape_hold.py clear,
 then live/nightly.sh tape).
+Failure reasons (Kilian 2026-11-17): every researched name that gets no fresh leg is in 'failed' or 'skipped' with a code
+(fetch_http_429, fetch_http_5xx, fetch_http, fetch_network, fetch_bad_json, empty_chain, chain_parse, stale_chain, combine,
+research_combine; skipped: no_live_quote, quote_not_in_session, no_prior) and the detail; stale, empty, 429, 5xx and network
+failures get one more pull at the end of the run ('retried'). live/run.py writes all three into the patch and
+live/verify.py prints them. A pushed research round whose pull failed is still re-marked on the slice's own leg.
 Prints one JSON line."""
-import datetime as dt, glob, json, math, os, shutil, sys, tempfile, time, urllib.error
+import datetime as dt, glob, json, math, os, shutil, socket, sys, tempfile, time, urllib.error
 
 
 def sessions(a, b):  # weekdays after date a up to and including date b, at least 1
@@ -50,6 +55,40 @@ def pull(s, chains):  # one Cboe pull per name per run, shared by the 12-month a
             time.sleep(wait)
 
 
+# Why a name got no fresh leg (Kilian 2026-11-17, after CRDO SNOW TT MOD had none at 9:37 and 10:02am ET): every failure
+# is a dict with a code, so the patch itself says why, without the Actions log. RETRY codes get one more pull at the end
+# of the run, at least RETRY_GAP seconds after the first (a chain not yet quoting the session, a 429 or a dropped
+# connection often clears that fast); at most RETRY_MAX names, so the run stays under Cboe's ~40 quick pulls.
+RETRY = {'stale_chain', 'fetch_http_429', 'fetch_http_5xx', 'fetch_network', 'empty_chain'}
+RETRY_GAP, RETRY_MAX = 20, 8
+
+
+def why(e):  # a pull's exception -> (code, detail)
+    if isinstance(e, urllib.error.HTTPError):
+        return ('fetch_http_429' if e.code == 429 else 'fetch_http_5xx' if e.code >= 500 else 'fetch_http'), f'HTTP {e.code} {e.reason}'
+    if isinstance(e, (urllib.error.URLError, TimeoutError, ConnectionError, socket.timeout)):
+        return 'fetch_network', f'{type(e).__name__}: {e}'[:200]
+    if isinstance(e, json.JSONDecodeError): return 'fetch_bad_json', str(e)[:200]
+    if isinstance(e, SystemExit) and 'no usable expiries' in str(e): return 'empty_chain', str(e)[:200]
+    if isinstance(e, (KeyError, TypeError)): return 'chain_parse', f'{type(e).__name__}: {e}'[:200]
+    return 'error', f'{type(e).__name__}: {e}'[:200]
+
+
+def attempt(s, chains, session_date):  # (m12, m1) on a chain quoted in the live session, else a failure dict
+    try: os.remove(f'{chains}/{s}.json')  # a retry must not read the first pull's cached chain
+    except FileNotFoundError: pass
+    t = time.time()
+    try:
+        m12, m1 = pull(s, chains)
+    except (Exception, SystemExit) as e:
+        code, detail = why(e)
+        return None, dict(code=code, detail=detail, at=t)
+    if m12['market_date'] != session_date:
+        return None, dict(code='stale_chain', detail=f"chain quoted {m12['market_date']}, not {session_date}",
+                          chain_date=m12['market_date'], at=t)
+    return (m12, m1), None
+
+
 if __name__ == '__main__':
     SLICE, OUT = (os.path.abspath(a) for a in sys.argv[1:3])
     V = f'{SLICE}/valuation'; sys.path.insert(0, V); os.chdir(V)
@@ -63,7 +102,7 @@ if __name__ == '__main__':
     session = max([q.get('date') or '' for q in quotes.values()] + [''])
     for f in glob.glob(f'{R}/*.json'):  # a market leg from an earlier session is the nightly's job now
         if json.load(open(f)).get('market_date') != session: os.remove(f)
-    pulled, checked, failed, cands, rdm = [], {}, {}, {}, []
+    pulled, checked, failed, cands, rdm, skipped, retried = [], {}, {}, {}, [], {}, {}  # failed/skipped: {SYM: {code, detail, ...}}
     # Kilian 2026-11-05 card 'Tape-triggered news hold': a QQQ -4% / SMH -7% session records an event in the slice's
     # data/tape_hold.json, so review.py (run next) holds the exposed names' adds and they are no swap candidates
     try: import tape_hold
@@ -74,13 +113,17 @@ if __name__ == '__main__':
         TAPE = tape_hold.active(session)
     for s in sorted(PUSHED):  # the new round first, so the Entry below and candidate tests read its target
         try: combine.combine(D, s, PUSHED[s])
-        except (Exception, SystemExit) as e: failed[s] = f'combine on research {PUSHED[s]}: {str(e)[:200]}'
+        except (Exception, SystemExit) as e: failed[s] = dict(code='research_combine', detail=f'combine on research {PUSHED[s]}: {str(e)[:200]}')
     EM = json.load(open(f'{V}/data/earnings_miss.json'))  # last_report_date per name: research must postdate the last print
     for f in sorted(glob.glob(f'{V}/runs/{D}/*/result.json')):  # swap candidates: unheld, gate-clean, at or below Entry below
         s = f.split('/')[-2]; q = quotes.get(s) or {}; P = q.get('price')
-        if s in held or not P or (q.get('date') or '') <= D or not os.path.exists(f'{V}/priors/{D}/{s}.json'): continue
+        if s in held or not os.path.exists(f'{V}/priors/{D}/{s}.json'): continue
         r, pr = json.load(open(f)), json.load(open(f'{V}/priors/{D}/{s}.json'))
         if not last_print.driver_model(s, r.get('research_as_of')): continue  # not a researched name: no intraday chain
+        if not P or (q.get('date') or '') <= D:  # a researched name the live quotes missed: said so, not dropped silently
+            skipped[s] = dict(code='no_live_quote', detail='live_quotes.json has no price') if not P else \
+                dict(code='quote_not_in_session', detail=f"live quote dated {q.get('date')}, slice {D}")
+            continue
         rdm.append(s)
         last = last_print.last(D, s, EM)  # 2026-11-04: earnings_miss last_report_date alone was stale for unheld names (MTRN)
         if (r.get('citation_gate') or {}).get('status') != 'clean' or not last or (r.get('research_as_of') or '') < last: continue
@@ -89,32 +132,43 @@ if __name__ == '__main__':
                                    last_report=last, remarked=False)
     scope = held + sorted(s for s in rdm if s not in held)  # every researched name, every run
     chains = tempfile.mkdtemp(prefix='chains-')
+    def keep(s, legs):
+        for m in legs: m['intraday'] = dict(pulled_utc=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), move=checked[s])
+        json.dump(legs[0], open(f'{R}/{s}.json', 'w'), indent=1); json.dump(legs[1], open(f'{R}/{s}_1m.json', 'w'), indent=1)
+        pulled.append(s)
     for s in scope:
         q = quotes.get(s) or {}; P = q.get('price')
-        if not P or (q.get('date') or '') <= D: continue
+        if not P: skipped[s] = dict(code='no_live_quote', detail='live_quotes.json has no price'); continue
+        if (q.get('date') or '') <= D:
+            skipped[s] = dict(code='quote_not_in_session', detail=f"live quote dated {q.get('date')}, slice {D}"); continue
         mine = f'{R}/{s}.json'
         if s in cands: os.path.exists(mine) and os.remove(mine)  # a candidate is pulled fresh on every run
-        if not os.path.exists(mine) and not os.path.exists(f'{V}/priors/{D}/{s}.json'): continue
+        if not os.path.exists(mine) and not os.path.exists(f'{V}/priors/{D}/{s}.json'):
+            skipped[s] = dict(code='no_prior', detail=f'no priors/{D}/{s}.json in the slice'); continue
         ref = json.load(open(mine if os.path.exists(mine) else f'{V}/priors/{D}/{s}.json'))
         v30 = (json.load(open(f'{R}/{s}_1m.json'))['atm_iv_1y'] if os.path.exists(mine) else None) \
             or combine.iv30(s, D)[0] or ref['atm_iv_1y']
         n = sessions(ref['market_date'], q['date']) if ref['market_date'] < q['date'] else 1
         move, bar = math.log(P / ref['spot']), v30 * math.sqrt(n / 252)
         checked[s] = dict(price=P, ref_spot=ref['spot'], ref_date=ref['market_date'], move=round(move, 4), implied_move=round(bar, 4))
-        try:
-            m12, m1 = pull(s, chains)
-        except (Exception, SystemExit) as e:
-            failed[s] = str(e)[:200]; continue
-        if m12['market_date'] != q['date']:
-            failed[s] = f"chain quoted {m12['market_date']}, not {q['date']}"; continue
-        for m in (m12, m1): m['intraday'] = dict(pulled_utc=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), move=checked[s])
-        json.dump(m12, open(mine, 'w'), indent=1); json.dump(m1, open(f'{R}/{s}_1m.json', 'w'), indent=1)
-        pulled.append(s)
+        legs_, f = attempt(s, chains, q['date'])
+        if legs_: keep(s, legs_)
+        else: failed[s] = dict(f, attempts=1)
+    for s in [s for s in sorted(failed, key=lambda x: failed[x].get('at', 0)) if failed[s]['code'] in RETRY][:RETRY_MAX]:
+        time.sleep(max(0, failed[s]['at'] + RETRY_GAP - time.time()))
+        legs_, f = attempt(s, chains, quotes[s]['date'])
+        first = {k: v for k, v in failed.pop(s).items() if k not in ('at', 'attempts')}
+        if legs_: keep(s, legs_); retried[s] = dict(first=first, ok=True)
+        else: failed[s] = dict(f, attempts=2, first=first); retried[s] = dict(first=first, ok=False)
+    for s, f in failed.items():  # a name that failed this run may still hold a leg pulled earlier in the session
+        f.pop('at', None)
+        if f['code'] not in ('research_combine',) and os.path.exists(f'{R}/{s}.json') and s not in cands:
+            f['kept_leg_utc'] = (json.load(open(f'{R}/{s}.json')).get('intraday') or {}).get('pulled_utc')
     # every market leg from this session goes into the slice, then combine re-marks those names
     legs = sorted(os.path.basename(f)[:-5] for f in glob.glob(f'{R}/*.json') if not f.endswith('_1m.json'))
     legs = [s for s in legs if s not in cands and os.path.exists(f'{V}/priors/{D}/{s}.json') and json.load(open(f'{R}/{s}.json'))['market_date'] > json.load(open(f'{V}/priors/{D}/{s}.json'))['market_date']] \
         + [s for s in pulled if s in cands]  # a candidate's leg is this run's own (its file was removed before the pull)
-    again = [s for s in sorted(PUSHED) if s not in legs and s not in failed]  # pushed research on the slice's own leg: combined above, re-run after the IV patch
+    again = [s for s in sorted(PUSHED) if s not in legs and (failed.get(s) or {}).get('code') != 'research_combine']  # pushed research on the slice's own leg: combined above, re-run after the IV patch
     ivf = sorted(f for f in glob.glob(f'{SLICE}/portfolio/data/iv/*.json') if os.path.basename(f)[:-5] <= D)
     iv = json.load(open(ivf[-1])) if ivf else None
     remarked = {}
@@ -133,6 +187,6 @@ if __name__ == '__main__':
                                **({'research': PUSHED[s]} if s in PUSHED else {}))
             if s in cands: cands[s]['remarked'] = True
         except (Exception, SystemExit) as e:
-            failed[s] = f'combine: {str(e)[:200]}'
-    print(json.dumps(dict(session=session, checked=checked, pulled=pulled, remarked=remarked, failed=failed, candidates=cands, research=PUSHED,
+            failed[s] = dict(code='combine', detail=str(e)[:200], **({'pull': failed[s]} if s in failed else {}))
+    print(json.dumps(dict(session=session, checked=checked, pulled=pulled, remarked=remarked, failed=failed, skipped=skipped, retried=retried, candidates=cands, research=PUSHED,
                           tape_hold=dict(seen=tape_seen, on_hold=sorted(TAPE)))))
