@@ -13,6 +13,10 @@ live-data on the old key, every live run then diffs against the old build, and t
   3. that run's patch (branch live-out, the same JSON it wrote to the Sheet's live tab) has the same base,
   4. each SYM (default: every name in slice.json research) is re-marked in that patch, on its pushed research round
      when that round postdates the slice date.
+A name missing from the patch is reported with the reason the run recorded (patch remark_failed / remark_skipped, written
+by live/remark.py since 2026-11-17: a code such as stale_chain, fetch_http_429, fetch_network, empty_chain, combine, plus
+the detail and whether a retry ran). Every result also lists the run's remark_failed names, so a fetch problem on a name
+nobody asked about still shows.
 Prints one JSON line; exit 0 when all hold, 1 (with the reason and the fix) when any fails. Run by live/nightly.sh after
 every push, research and tape step; anyone can run it to answer "is the page live?".
 """
@@ -53,6 +57,18 @@ def branch_file(branch, name):
         subprocess.run(['rm', '-rf', w])
 
 
+def reason(s, reasons, old):  # one readable line for why the run left s without a fresh leg
+    if old: return 'reason not recorded: this patch predates remark_failed'
+    f = reasons.get(s)
+    if not f: return 'no failure recorded'
+    if isinstance(f, str): return f
+    out = f"{f.get('code')}: {f.get('detail')}"
+    if f.get('first'): out += f" (after a retry; first try {f['first'].get('code')}: {f['first'].get('detail')})"
+    if f.get('pull'): out += f" (pull: {f['pull'].get('code')}: {f['pull'].get('detail')})"
+    if f.get('kept_leg_utc'): out += f", kept the leg pulled {f['kept_leg_utc']}"
+    return out
+
+
 def fail(why, fix, **kw):
     print(json.dumps(dict(live_verify='FAIL', why=why, fix=fix, **kw)))
     sys.exit(1)
@@ -83,16 +99,20 @@ def main():
         fail(f"the newest live patch ({patch.get('version')}) has base {patch.get('base')}, the page has {want}",
              'run live/nightly.sh push, then this check again', page_key=want)
     rem, miss = patch.get('remarked') or {}, []
+    rf = patch.get('remark_failed')
+    reasons = {**(patch.get('remark_skipped') or {}), **(rf or {})}
     for s in syms:
         r = rem.get(s)
         rd = research.get(s)
-        if r is None: miss.append(f'{s}: not re-marked in the patch')
+        if r is None: miss.append(f'{s}: not re-marked in the patch ({reason(s, reasons, rf is None)})')
         elif rd and rd > sl.get('date', '') and r.get('research') != rd:
             miss.append(f"{s}: re-marked on research {r.get('research')}, pushed {rd}")
+    failed = {s: reason(s, reasons, False) for s in sorted(rf or {})}
     if miss:
-        fail('; '.join(miss), 'read the live run log for these names (live/remark.py prints why a name failed)',
-             page_key=want, version=patch.get('version'))
-    print(json.dumps(dict(live_verify='ok', page_key=want, version=patch.get('version'),
+        fail('; '.join(miss), 'stale_chain / fetch_* clear on a later run (the next one is within 30 min); '
+             'empty_chain, chain_parse, combine or no_prior need a look at the name', page_key=want, version=patch.get('version'),
+             remark_failed=failed)
+    print(json.dumps(dict(live_verify='ok', page_key=want, version=patch.get('version'), remark_failed=failed,
                           names={s: {k: rem[s].get(k) for k in ('target', 'research') if rem[s].get(k) is not None} for s in syms})))
 
 
