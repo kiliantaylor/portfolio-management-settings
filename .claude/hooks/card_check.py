@@ -28,6 +28,8 @@ or its context message (if the card names none and is a valuation card: the roun
   round runs/DATE/SYM (has supervisor.json): clean = citation_audit.json with clean true and no open_failures, written
      after gate/merged.json and gate/checklist.json (a later merge or re-prep means the gate is running again);
   driver set driver_models/SYM[/quarterly]: clean = gate.json with clean true, written after set.json.
+Exception (RULES.md 24, Kilian 2026-11-18): after gate round 2, when every row still open is a must-card row
+(gate/must_card.json: unsupported / trend_only / back_solved), the round counts as clean for cards: those rows are carded now.
 Open (no gate yet or still running) or failed -> refused. A card that is not gated (e.g. a driver-set approval before
 the build) needs a logged override:
     python3 .claude/hooks/card_check.py allow-ungated --why "<what the card is and why no gate applies>"
@@ -199,6 +201,14 @@ def gate_status(key):
         merged, tm, tc = _load(f'{gd}/merged.json'), _mt(f'{gd}/merged.json'), _mt(f'{gd}/checklist.json')
         if a and a.get('clean') is True and not a.get('open_failures') and all(t is None or ta >= t for t in (tm, tc)):
             return 'clean', f'{name}: citation_audit.json clean ({a.get("checked")} checked)'
+        # RULES.md 24 (Kilian 2026-11-18): after gate round 2, unsupported / trend_only / back_solved rows are must-card items
+        # (gate/must_card.json). They are the blockers, so a card for them goes out now instead of waiting for a clean gate.
+        mc = _load(f'{gd}/must_card.json'); MUST = ('unsupported', 'trend_only', 'back_solved')
+        if mc and mc.get('items') and merged is not None and (tc is None or tm >= tc):
+            if a and ta and (tm is None or ta >= tm): left = [f for f in (a.get('open_failures') or []) if f.get('status') != 'accepted_by_kilian']
+            else: left = merged.get('failures') or []
+            if left and all(f.get('result') in MUST for f in left):
+                return 'clean', f'{name}: only must-card rows open ({len(left)}, gate round {mc.get("round")}; RULES.md 24): card them now'
         if a and ta and (a.get('clean') is False or a.get('open_failures')) and (tm is None or ta >= tm):
             return 'failed', f'{name}: citation_audit.json not clean ({len(a.get("open_failures") or a.get("failures") or [])} open failures)'
         if merged is not None and (ta is None or tm > ta):
