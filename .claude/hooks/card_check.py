@@ -249,6 +249,36 @@ def gate_problems(rounds, text, valuation):
     return [d for st, d in map(gate_status, check) if st != 'clean']
 
 
+CLOSE_TOOL = 'mcp__hearthbot__close_decision'
+CMSG = re.compile(r'cmsg_[A-Za-z0-9]{10,}')
+
+
+def _card_key(inp):
+    return (str(inp.get('question', '')).strip(),
+            tuple(str(o.get('label', '')).strip() for o in inp.get('options') or [] if isinstance(o, dict)))
+
+
+def is_repost(path, inp):
+    """True when this card repeats (same question and labels) a card that already went out and whose old copy was
+    withdrawn with close_decision (no `chose`): open_cards_stop.py asks for that re-post so the thread ends as waiting
+    on Kilian. The reasoning and gate checks ran on the original."""
+    uses, results = [], {}
+    for e in _entries(path):
+        for b in _blocks(e):
+            if b.get('type') == 'tool_use': uses.append(b)
+            elif b.get('type') == 'tool_result': results[b.get('tool_use_id')] = b
+    ok = lambda u: u.get('id') in results and not results[u['id']].get('is_error')
+    key, ids, withdrawn = _card_key(inp), set(), set()
+    for u in uses:
+        i = u.get('input') or {}
+        if u.get('name') == CARD_TOOL and ok(u) and _card_key(i) == key:
+            c = results[u['id']].get('content')
+            ids.update(CMSG.findall(c if isinstance(c, str) else json.dumps(c)))
+        elif u.get('name') == CLOSE_TOOL and ok(u) and i.get('chose') is None and i.get('message_id'):
+            withdrawn.add(i['message_id'])
+    return bool(ids & withdrawn)
+
+
 def deny(reason):
     print(json.dumps({'hookSpecificOutput': {'hookEventName': 'PreToolUse', 'permissionDecision': 'deny',
                                              'permissionDecisionReason': reason}}))
@@ -260,6 +290,8 @@ def hook():
     if ev.get('tool_name') != CARD_TOOL: return
     inp = ev.get('tool_input') or {}
     labels = [str(o.get('label', '')) for o in inp.get('options') or [] if isinstance(o, dict)]
+    if is_repost(ev.get('transcript_path') or '', inp):
+        return  # identical re-post of a withdrawn open card (open_cards_stop.py); checked when first posted
     msg, allow = scan(ev.get('transcript_path') or '')
     rounds, ungated = scan_gate(ev.get('transcript_path') or '')
     card_text = ' '.join([str(inp.get('question', '')), str(inp.get('reason', ''))] + labels +
