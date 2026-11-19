@@ -16,18 +16,54 @@ REPO=${REPO:-https://github.com/kiliantaylor/portfolio-management-settings}
 ROOT=${ROOT:-/mnt/project-files}
 W=$(mktemp -d); trap 'rm -rf "$W"' EXIT
 git clone -q --depth 1 "$REPO" "$W/main"
+# 2026-11-19: the published page's key is valuation/data/published_page.json (written by publish_check.py D --stamp right
+# after each Price Targets publish), not report.html: report.html can be rebuilt without being published.
+published_key() { (cd "$W/main/live" && python3 -c 'import sys; from verify import published_key; print(published_key(sys.argv[1]))' "$ROOT"); }
+slice_base() { python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("base"))' "$W/slice/slice.json" 2>/dev/null || true; }
+# 2026-11-16: a research or tape push onto a slice whose base is not the published build's key is skipped by the page
+# (a 7:04am ET republish was never pushed, so the 11:02am ET AVGO research never showed). Re-slice from the published
+# build first; the full slice carries research already pushed today (live/slice.py), then the new research is added.
+reslice_if_stale() {
+  local have want
+  have=$(slice_base); want=$(published_key)
+  if [ "$have" != "$want" ]; then
+    echo "live-data base $have is not the published build $want: re-slicing first (the page was republished without live/nightly.sh push)" >&2
+    python3 "$W/main/live/slice.py" "$W/slice" --root "$ROOT"
+  fi
+}
+# 2026-11-19 (Kilian: the live job must always be accurate during market hours): never push a slice whose base is not
+# the published page's key. On 11-18 at 9:56 PM ET a rebuilt, unpublished report.html was sliced; the page then ignored
+# every live patch and showed the Nov 18 close and old share counts until 12:37 PM ET on 11-19.
+guard_published() {
+  local have want
+  have=$(slice_base); want=$(published_key)
+  if [ "$have" != "$want" ]; then
+    echo "REFUSED: the slice base $have is not the published page $want (report.html was rebuilt but not published)." >&2
+    echo "Fix: run rules_check, publish valuation/report.html to Price Targets, then python3 publish_check.py D --stamp (it pushes)." >&2
+    exit 1
+  fi
+}
+# After every push: confirm the page will take the patches (live/verify.py). VERIFY=0 skips; a failure exits 1.
+verify() {
+  [ "${VERIFY:-1}" = 0 ] && return 0
+  local since=$1; shift
+  if [ "$since" = base-only ]; then python3 "$W/main/live/verify.py" --root "$ROOT" --base-only; return; fi
+  python3 "$W/main/live/verify.py" --root "$ROOT" ${since:+--since "$since"} "$@"
+}
 case "${1:-}" in
   fold)
     python3 "$W/main/live/fold_fills.py" "$W/main/fills" "$ROOT/valuation" ;;
   push)
     git clone -q --depth 1 -b live-data "$REPO" "$W/slice" 2>/dev/null || { git init -q "$W/slice" && git -C "$W/slice" checkout -q -b live-data; }
     python3 "$W/main/live/slice.py" "$W/slice" --root "$ROOT"
+    guard_published
     # 2026-11-04: each build has its own live-patch key, so the page shows no live prices until a live run patches the
     # new build. This workflow rides in the live-data tree: a push here starts live.yml at once instead of at the next
     # 30-minute tick. (Pushes made with the Actions token, such as live.yml's fold, start no workflow, so no loop.)
     if [ -f "$W/main/live/on_slice.yml" ]; then mkdir -p "$W/slice/.github/workflows" && cp "$W/main/live/on_slice.yml" "$W/slice/.github/workflows/on-slice.yml"; fi
+    since=$(date -u +%FT%TZ)
     cd "$W/slice" && git add -A
-    git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live inputs $(date -u +%FT%TZ)"
+    git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live inputs $since"
     if ! git push -q "$REPO" HEAD:live-data; then
       # a token without workflow scope refuses .github/workflows: push the slice without the trigger (live prices then
       # wait for the next 30-minute run) rather than not at all
@@ -35,6 +71,7 @@ case "${1:-}" in
       git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -q --amend -m "live inputs $(date -u +%FT%TZ)"
       git push -q "$REPO" HEAD:live-data || { echo "live-data moved while slicing (another push landed): rerun live/nightly.sh push" >&2; exit 1; }
       echo "pushed without the on-slice trigger (workflow scope refused); live prices return at the next 30-minute run" >&2
+      since=base-only  # no live run starts now, so only the slice's key can be checked
     fi
     cd "$W/main"
     # only fills already in the trades.json just pushed; a fill entered during the re-mark stays for tomorrow's fold
@@ -43,17 +80,25 @@ case "${1:-}" in
     if [ -n "$ids" ]; then
       git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "Fold fills into trades.json: $ids"
       git push -q "$REPO" HEAD:main
-    fi ;;
+    fi
+    verify "$since" ;;
   research)
     shift; [ $# -gt 0 ] || { echo "usage: live/nightly.sh research SYM [SYM ...]" >&2; exit 2; }
     git clone -q --depth 1 -b live-data "$REPO" "$W/slice"
+    reslice_if_stale
+    guard_published
     python3 "$W/main/live/slice.py" "$W/slice" --research "$@" --root "$ROOT"
+    since=$(date -u +%FT%TZ)
     cd "$W/slice" && git add -A
-    git diff --cached --quiet && { echo "live-data already holds this research" >&2; exit 0; }
-    git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live research $* $(date -u +%FT%TZ)"
-    git push -q "$REPO" HEAD:live-data || { echo "live-data moved while adding research (another push landed): rerun live/nightly.sh research $*" >&2; exit 1; } ;;
+    if git diff --cached --quiet; then echo "live-data already holds this research" >&2; since=""; else
+      git -c user.name=nightly -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "live research $* $since"
+      git push -q "$REPO" HEAD:live-data || { echo "live-data moved while adding research (another push landed): rerun live/nightly.sh research $*" >&2; exit 1; }
+    fi
+    verify "$since" "$@" ;;
   tape)
     git clone -q --depth 1 -b live-data "$REPO" "$W/slice"
+    reslice_if_stale
+    guard_published
     python3 "$W/main/live/slice.py" "$W/slice" --tape --root "$ROOT"
     cd "$W/slice" && git add -A
     git diff --cached --quiet && { echo "live-data already holds this tape hold" >&2; exit 0; }
