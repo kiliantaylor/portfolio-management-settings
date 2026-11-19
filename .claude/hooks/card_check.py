@@ -260,8 +260,8 @@ def _card_key(inp):
 
 def is_repost(path, inp):
     """True when this card repeats (same question and labels) a card that already went out and whose old copy was
-    withdrawn with close_decision (no `chose`): open_cards_stop.py asks for that re-post so the thread ends as waiting
-    on Kilian. The reasoning and gate checks ran on the original."""
+    withdrawn with close_decision (no `chose`). Kilian 11-19 (rule 2a): never close and reopen cards, so such a re-post
+    is refused (it was allowed 11-18 for the old open_cards_stop.py re-post instruction)."""
     uses, results = [], {}
     for e in _entries(path):
         for b in _blocks(e):
@@ -291,7 +291,10 @@ def hook():
     inp = ev.get('tool_input') or {}
     labels = [str(o.get('label', '')) for o in inp.get('options') or [] if isinstance(o, dict)]
     if is_repost(ev.get('transcript_path') or '', inp):
-        return  # identical re-post of a withdrawn open card (open_cards_stop.py); checked when first posted
+        deny('CARD REFUSED (project rule 2a, Kilian 11-19: "why are you closing and reopening every card" ... "if '
+             'there are multiple cards just wait until i respond to all of them"). This card repeats one you withdrew. '
+             'Do not re-post cards: leave the set as first posted and wait until Kilian has answered all of them.')
+        return
     msg, allow = scan(ev.get('transcript_path') or '')
     rounds, ungated = scan_gate(ev.get('transcript_path') or '')
     card_text = ' '.join([str(inp.get('question', '')), str(inp.get('reason', ''))] + labels +

@@ -27,17 +27,6 @@
     ]
   },
   "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/open_cards_stop.py\"",
-            "timeout": 30
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "Artifact",
@@ -61,6 +50,16 @@
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/card_check.py\"",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__hearthbot__post_message|mcp__hearthbot__update_progress_checklist|mcp__hearthbot__post_widget|mcp__hearthbot__set_thread_resolved",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/open_cards_stop.py\"",
             "timeout": 30
           }
         ]
