@@ -1,37 +1,38 @@
 #!/usr/bin/env python3
-"""Stop hook: a thread with open decision cards ends its turn as waiting on Kilian, never as idle or ready for review.
+"""Open decision cards: post the set once, then wait for Kilian to answer ALL of them. Never withdraw and re-post.
 
-Kilian 2026-11-18: "if a thread has open cards why are they marked idle instead of waiting on me" ... "code preferably".
+Kilian 2026-11-19 (SPCX): "why are you closing and reopening every card" ... "if there are multiple cards just wait
+until i respond to all of them" (RULES.md 2a). The 11-18 version of this file was a Stop hook that refused any turn
+whose last visible call came after open cards and asked the thread to withdraw and re-post every unanswered card. A
+one-line "got it" after each tap counted as that last call, so every open card was closed and reopened after every tap.
 
-Why it happens: the project marks a thread by the LAST thing it showed. A turn whose last visible call is
-request_decision reads as "waiting on you" (blocked); one that posts the cards and then a checklist or a reply reads as
-"ready for review" (e.g. META 11-18: three cards, then a checklist update -> review_ready). A later turn that only
-answers a question while cards are still open flips it the same way.
+Now a PreToolUse guard on the visible status calls (post_message, update_progress_checklist, post_widget,
+set_thread_resolved). With any card still open it refuses the call when:
+  a. a card went out earlier in this same turn: the checklist and context message go BEFORE the cards, and the cards are
+     the last calls of the turn (so the thread reads as waiting on Kilian, Kilian 11-18);
+  b. this turn was started by Kilian's tap on one card (the wake carries its cmsg id) while other cards of the set are
+     still open: record the tap silently and end the turn with no_reply_needed. When the LAST open card is answered no
+     card is open any more, so the thread applies all the answers in one go and replies once.
+A turn started by anything else (Kilian writes a question, a coordinator note) is not refused: answer it.
+It never asks for a withdraw or a re-post, and card_check.py refuses an identical re-post of a withdrawn card.
+At most MAX_BLOCKS refusals per turn, so a session can never be trapped (e.g. a real blocker after a tap).
+The Stop entry point is kept as a no-op so an old settings.json that still registers it does nothing.
 
-What this hook does at the end of every turn (main loop only; subagents are not checked):
-  1. Reads the session transcript for cards that went out (request_decision with a cmsg_ id in its result).
-  2. A card is closed when close_decision ran on its id, or a later wake/user message carries its id (a tap on it).
-  3. If any card is still open and the last status-setting call (post_message, update_progress_checklist,
-     post_widget, no_reply_needed, set_thread_resolved) came after the last card, the stop is refused with the list
-     of open cards and what to do:
-       - a card Kilian already answered (tap or words): close_decision with chose=<option index>;
-       - a card still open: withdraw the old copy (close_decision without chose) and post the SAME card again
-         (same question and option labels) as the last call of the turn. card_check.py lets an identical re-post of a
-         withdrawn card through without a new context message, since its reasoning is already in the thread.
-  At most MAX_BLOCKS refusals per turn, so a session can never be trapped.
+A card is closed when close_decision ran on its id, or a later wake/user message carries its id (a tap on it).
 
 Tests: python3 .claude/hooks/test_open_cards_stop.py
+Status: python3 .claude/hooks/open_cards_stop.py status TRANSCRIPT.jsonl
 """
 import json, os, re, sys, time
 
 CARD = 'mcp__hearthbot__request_decision'
 CLOSE = 'mcp__hearthbot__close_decision'
 STATUS = {'mcp__hearthbot__' + n for n in ('post_message', 'update_progress_checklist', 'post_widget',
-                                           'no_reply_needed', 'set_thread_resolved')}
+                                           'set_thread_resolved')}
 CMSG = re.compile(r'cmsg_[A-Za-z0-9]{10,}')
 MAX_BLOCKS = 2
 MARK = 'OPEN CARDS (project rule'
-STATE_DIR = os.path.join(os.environ.get('HOME') or '/tmp', '.open-cards-stop')
+STATE_DIR = os.path.join(os.environ.get('HOME') or '/tmp', '.open-cards-guard')
 
 
 def _entries(path):
@@ -62,7 +63,7 @@ def _wait_stable(path, limit=2.0):
 
 
 def scan(path):
-    """-> (open_cards [(id, question, labels)], last_status_tool_name or None, last_status_after_last_card, prompts)."""
+    """-> dict(open_cards [(id, question, labels)], card_this_turn, tap_ids (cards this turn's prompt answers), prompts)."""
     uses, results, order = {}, {}, []   # order: ('use', id) | ('user', text)
     prompts = 0
     for e in _entries(path):
@@ -79,27 +80,34 @@ def scan(path):
             for b in c:
                 if isinstance(b, dict) and b.get('type') == 'tool_use':
                     uses[b.get('id')] = b; order.append(('use', b.get('id')))
-    ok = lambda uid: uid not in results or not results[uid].get('is_error')   # pending = this turn's last call
-    cards, closed, last_status, last_card_pos, last_status_pos = {}, set(), None, -1, -1
-    for pos, (kind, v) in enumerate(order):
+    ok = lambda uid: uid not in results or not results[uid].get('is_error')
+    cards, closed, card_this_turn, tap_ids = {}, set(), False, set()
+    for kind, v in order:
         if kind == 'user':
+            card_this_turn, tap_ids = False, set()      # a new turn starts
             for cid in CMSG.findall(v):
-                if cid in cards: closed.add(cid)
+                if cid in cards: closed.add(cid); tap_ids.add(cid)
             continue
         u = uses[v]; n = u.get('name'); inp = u.get('input') or {}
         if not ok(v): continue
         if n == CARD:
-            last_card_pos = pos
             for cid in CMSG.findall(_text((results.get(v) or {}).get('content'))):
                 cards[cid] = (str(inp.get('question', '')), [str(o.get('label', '')) for o in inp.get('options') or []
                                                              if isinstance(o, dict)])
+                card_this_turn = True
                 break
         elif n == CLOSE and inp.get('message_id'):
             closed.add(inp['message_id'])
-        elif n in STATUS:
-            last_status, last_status_pos = n, pos
     open_cards = [(cid, q, l) for cid, (q, l) in cards.items() if cid not in closed]
-    return open_cards, last_status, last_status_pos > last_card_pos, prompts
+    return dict(open_cards=open_cards, card_this_turn=card_this_turn, tap_ids=sorted(tap_ids), prompts=prompts)
+
+
+def verdict(st):
+    """-> None (allow) or 'posted' / 'tap' (refuse)."""
+    if not st['open_cards']: return None
+    if st['card_this_turn']: return 'posted'
+    if st['tap_ids']: return 'tap'
+    return None
 
 
 def _blocks_so_far(session, prompts):
@@ -116,42 +124,49 @@ def _save(session, prompts, blocks):
         pass
 
 
-def reason(open_cards, last_status):
-    short = last_status.replace('mcp__hearthbot__', '') if last_status else '?'
-    lines = '\n'.join(f'- {cid}: "{q[:120]}" (options: {" | ".join(l)})' for cid, q, l in open_cards)
-    return (MARK + ', Kilian 11-18: a thread with open cards must read as waiting on him, not idle). '
-            f'Your last visible call ({short}) came after these cards, so the thread now shows as ready for review:\n'
-            f'{lines}\n'
-            'Fix before ending the turn:\n'
-            '1. Any card Kilian already answered (a tap or in words): close_decision with message_id and chose=<option '
-            'index>. If unsure, read_messages_by_id on the card first.\n'
-            '2. Each card still open: close_decision with only message_id (withdraws the old copy), then post the SAME '
-            'card again with request_decision (same question and option labels; card_check lets an identical re-post '
-            'through). Make the request_decision calls the LAST calls of the turn: no checklist or message after them.\n'
-            'Next time: update the checklist and post the message BEFORE the cards, so the cards are the last thing.')
+def reason(why, st, tool):
+    short = tool.replace('mcp__hearthbot__', '')
+    lines = '\n'.join(f'- {cid}: "{q[:120]}" (options: {" | ".join(l)})' for cid, q, l in st['open_cards'])
+    if why == 'posted':
+        do = (f'{short} refused: cards went out earlier in this turn, and a visible call after them makes the thread read '
+              'as ready for review instead of waiting on Kilian (Kilian 11-18). Post the checklist and the context '
+              'message BEFORE the cards next time. Do NOT withdraw and re-post the cards (Kilian 11-19, rule 2a): end '
+              'the turn now with no further visible call.')
+    else:
+        do = (f'{short} refused: Kilian answered {", ".join(st["tap_ids"])} but other cards of the set are still open. '
+              'Kilian 11-19 (rule 2a): "if there are multiple cards just wait until i respond to all of them". Note the '
+              'pick, post nothing, do not withdraw or re-post any card, do not act on this answer alone; end the turn '
+              'with no_reply_needed. When the last card is answered, apply all the answers in one go and reply once.')
+    return (MARK + ' 2a). ' + do + '\nStill open:\n' + lines +
+            '\nOnly if this turn truly needs Kilian now (a blocker), make the same call again; the guard steps aside after '
+            f'{MAX_BLOCKS} refusals in a turn.')
 
 
 def hook():
     try: ev = json.load(sys.stdin)
     except ValueError: return
-    if ev.get('agent_id'): return
+    if ev.get('agent_id') or ev.get('hook_event_name') == 'Stop': return   # Stop: no-op (11-19)
+    tool = ev.get('tool_name') or ''
+    if tool not in STATUS: return
     path = ev.get('transcript_path') or ''
     if not path: return
     _wait_stable(path)
-    open_cards, last_status, after, prompts = scan(path)
-    if not open_cards or not after: return
+    st = scan(path)
+    why = verdict(st)
+    if not why: return
     session = re.sub(r'[^A-Za-z0-9_.-]', '', str(ev.get('session_id') or 'x'))[:100] or 'x'
-    n = _blocks_so_far(session, prompts)
+    n = _blocks_so_far(session, st['prompts'])
     if n >= MAX_BLOCKS: return
-    _save(session, prompts, n + 1)
-    print(json.dumps({'decision': 'block', 'reason': reason(open_cards, last_status)}))
+    _save(session, st['prompts'], n + 1)
+    print(json.dumps({'hookSpecificOutput': {'hookEventName': 'PreToolUse', 'permissionDecision': 'deny',
+                                             'permissionDecisionReason': reason(why, st, tool)}}))
 
 
 if __name__ == '__main__':
     try:
         if len(sys.argv) > 2 and sys.argv[1] == 'status':
-            oc, ls, after, _ = scan(sys.argv[2])
-            print(json.dumps({'open_cards': oc, 'last_status': ls, 'status_after_last_card': after}, indent=1))
+            st = scan(sys.argv[2]); st['verdict'] = verdict(st)
+            print(json.dumps(st, indent=1))
         else:
             hook()
     except Exception as e:  # never break a turn on a hook bug
