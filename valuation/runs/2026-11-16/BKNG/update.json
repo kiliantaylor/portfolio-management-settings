@@ -1,0 +1,90 @@
+{
+ "symbol": "BKNG",
+ "update_date": "2026-11-16",
+ "base": "2026-11-03",
+ "mode": "update",
+ "mode_reason": "set by hand (computed: update, base 2026-11-03 is a driver model (no full runs: Kilian 2026-11-04))",
+ "trigger": "carry-forward fixes batch 1 (Kilian 11-17 'start with everything that doesn't have a written reason'): net debt at horizon and tax rate",
+ "playbook": "software_internet",
+ "base_fair_value": 185.8987261332372,
+ "base_fair_value_source": "driver model",
+ "filings_since_base": [
+  {
+   "form": "8-K",
+   "filed": "2026-11-13",
+   "items": "1.01,2.03,8.01,9.01",
+   "url": "https://www.sec.gov/Archives/edgar/data/1075531/000110465926127223/tm2629703d1_8k.htm"
+  }
+ ],
+ "created_utc": "2026-11-17T21:50Z",
+ "changed_inputs": [
+  "Tax rate",
+  "Net debt at horizon",
+  "Net interest (adjusted), per year",
+  "Shareholder returns per year",
+  "Annual share change",
+  "shares.buyback (re-priced buybacks, 2026-11-05)",
+  "driver:take",
+  "driver:mkt",
+  "driver:rn",
+  "driver:sh",
+  "driver_build.ntm (NTM window at the horizon)",
+  "FCF conversion (FCF / adjusted net income)",
+  "driver:gbrn",
+  "driver:opex",
+  "Leg weights"
+ ],
+ "what_changed": "Kilian's cards 2026-11-18: BKNG now valued on P/E only (was 60% P/E + 40% FCF yield), dividend held at the declared $0.42 a quarter, Booking's share gain keeps narrowing; research target (12m) 172.09 (base 185.90, -7.4%). | Gate fix 2026-11-18: research target (12m) 186.77 -> 180.96. Room nights are now built from WTTC's travel growth forecast (+3.6% a year) plus Booking's share gain, which narrowed from +3.9pt in 2025 to +2.2pt in 2026 and keeps narrowing: +4.8% / +4.3% / +4.0% FY2027-29 (was +6.0% / +5.2% / +5.2%). FCF is built from adjusted net income plus the cash customers prepay as bookings grow (FCF / NI 1.22 falling to 1.20), instead of FY2025's 1.22 held. Q4 FY2026 buybacks now come from Q4 FCF. The Q4 FY2026 room nights, bookings, take and marketing sit on the company's Q4 guide (top line with half the beat record), declared as guide uses. | No new print; this round fixes every BKNG forecast the carry-forward check refused. Tax now comes from tax drivers (Dutch law unchanged for 2027, US coupon interest non-deductible under the 2026 BBB Act limit): 20.6% / 20.8% / 20.7% / 20.6% FY2026-29, applied to all of pretax instead of carrying FY2025's rate. Net interest is built from the note coupons (including the EUR 3.55B issued Nov 13, 2026) and the cash yield at the priced ECB and Fed path, about -$420M to -$455M a year vs the FY2025 -$173M the old formula held. Net debt at the Nov 2027 horizon is $5,281M from the cash schedule (FTC payment, Q4 buybacks), not the Sept 30 level. The take rate falls only with flight mix (accommodation take near flat by contract; the agency-rate fall is the agency-to-merchant shift), marketing rises +3/+2/+2bp on channel drivers, FY2028-29 room nights come from online travel growth rather than the company framework, and buybacks were re-solved on the new earnings with dividends rising at about half of EPS growth. Research target (12m) 186.77 vs 185.90 (+0.5%; 185.93 at the old horizon date, the rest is the horizon rolling two weeks). One call over 5%: dropping the FCF yield leg (P/E only) -5.54%, carded.",
+ "driver_model": true,
+ "flags": [
+  "Structural: new debt EUR 3.55B (8-K 2026-11-13): in net interest (coupons) and net debt (cash held); a buyback use is sized as an alternative (+1.5%).",
+  "Guide uses (declared, last resort): Q4 FY2026 room nights, gross bookings and take at the Q4 guide x (1 + half the median beat); Q4 FY2026 marketing set so adjusted EBITDA sits inside the 'about flat' guide."
+ ],
+ "gate_rounds": [
+  {
+   "utc": "2026-11-18T00:46Z",
+   "why": "first round"
+  },
+  {
+   "utc": "2026-11-18T22:21Z",
+   "why": "trigger: model.reconciled_inputs.drivers[id=take].derivation and inputs_detail[54] Q4 FY2026 clause rewritten, sources[53] (corrected transcript) added, judgment_alternatives take + judgment_calls_for_kilian take added; reason: the new transcript quotes and figures in the take text are new citations that no earlier round checked and Kilian's card does not cover their accuracy, so only these changed rows are re-checked",
+   "trigger": "model.reconciled_inputs.drivers[id=take].derivation and inputs_detail[54] Q4 FY2026 clause rewritten, sources[53] (corrected transcript) added, judgment_alternatives take + judgment_calls_for_kilian take added",
+   "reason": "the new transcript quotes and figures in the take text are new citations that no earlier round checked and Kilian's card does not cover their accuracy, so only these changed rows are re-checked",
+   "changed": [
+    "(no rows_r file for the earlier round: not computed)"
+   ]
+  },
+  {
+   "utc": "2026-11-19T02:47Z",
+   "why": "trigger: round-2 fixes (inputs_detail tax anchor, tax rate, D&A/capex labels, drivers take/opex/mkt derivations, guidance_check adjusted EBITDA Q4, judgment_alternatives FCF conversion + mkt, sources 33/43/48/53-57) and Kilian's 2026-11-19 card picks applied to drivers mkt Q4 FY2026-FY2029 and gbrn FY2027-29; reason: a fix agent may not certify its own 18 fixes (RULES.md 24), and these are factual corrections and new citations that cards or gate_accept cannot close",
+   "trigger": "round-2 fixes (inputs_detail tax anchor, tax rate, D&A/capex labels, drivers take/opex/mkt derivations, guidance_check adjusted EBITDA Q4, judgment_alternatives FCF conversion + mkt, sources 33/43/48/53-57) and Kilian's 2026-11-19 card picks applied to drivers mkt Q4 FY2026-FY2029 and gbrn FY2027-29",
+   "reason": "a fix agent may not certify its own 18 fixes (RULES.md 24), and these are factual corrections and new citations that cards or gate_accept cannot close",
+   "changed": [
+    "driver gbrn (Gross bookings per room night (total gross bookings incl. car/flights / room nights))",
+    "driver mkt (Marketing expense (performance + brand) % of gross bookings)",
+    "driver opex (Other operating expense ex marketing, ex impairment and transformation costs, % of revenue (GAAP, incl. SBC and D&A))",
+    "driver take (Take rate (total revenues / total gross bookings))",
+    "guidance_check adjusted EBITDA growth Q4 FY2026",
+    "judgment_alternatives take",
+    "judgment_alternatives mkt",
+    "judgment_alternatives rn",
+    "judgment_alternatives gbrn",
+    "judgment_alternatives opex",
+    "judgment_alternatives sh",
+    "judgment_alternatives FCF conversion",
+    "judgment_alternatives Leg weights",
+    "judgment_calls_for_kilian #1 (take)",
+    "judgment_calls_for_kilian #2 (mkt)",
+    "judgment_calls_for_kilian #3 (gbrn)",
+    "judgment_calls_for_kilian #4 (opex)",
+    "inputs_detail row \"Capex % revenue\"",
+    "inputs_detail row \"D&A % revenue\"",
+    "inputs_detail row \"Tax rate\"",
+    "inputs_detail row \"driver:gbrn\"",
+    "inputs_detail row \"driver:mkt\"",
+    "inputs_detail row \"driver:opex\"",
+    "inputs_detail row \"driver:take\""
+   ]
+  }
+ ]
+}

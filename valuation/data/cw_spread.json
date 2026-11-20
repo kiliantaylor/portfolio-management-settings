@@ -1,0 +1,6654 @@
+{
+ "as_of": "2026-11-17",
+ "fetched": "2026-11-18T00:43Z",
+ "source": "Cboe delayed option chains (https://cdn.cboe.com/api/global/delayed_quotes/options/SYM.json); market caps from the Nasdaq screener file; dividends from the Yahoo chart feed",
+ "definition": "30-day IV of the 50-delta call minus the -50-delta put (BSM IV on mids at the T-bill rate and trailing dividend yield)",
+ "band": "US common stock, market cap $1-5B, price >= $5 (Nasdaq screener)",
+ "n_band": 891,
+ "n_reference": 351,
+ "cross_section": {
+  "wins_lo": -0.18992,
+  "wins_hi": 0.21249,
+  "mean": 0.01231,
+  "sd": 0.06593,
+  "raw_mean": 0.01274
+ },
+ "mapping": {
+  "formula": "z = (winsorized cw - mean) / sd, capped at +/-2; excess_12m = 0.0085 z; log_shift = ln(1 + excess_12m)",
+  "coef": 0.0085,
+  "z_cap": 2.0,
+  "evidence": "adhoc/skew_vrp_1111/report.md sections 4-5 (OptionMetrics 2000-2025, walk-forward from 2005)",
+  "sizing": "not scaled by conviction (conviction.py), like the other tilts"
+ },
+ "unusable_reasons": {
+  "no expiry 7-75 days with quotes either side of 50 delta": 421,
+  "no Cboe chain": 79,
+  "fetch failed": 40
+ },
+ "reference": {
+  "AAOI": -0.03109,
+  "AAP": 0.06876,
+  "ABG": -0.00093,
+  "ABSI": -0.24291,
+  "ACAD": 0.04614,
+  "ACHC": -0.066,
+  "ACLS": 0.00212,
+  "ACMR": -0.1037,
+  "ADEA": 0.1179,
+  "ADNT": 0.0436,
+  "AEHR": -0.05548,
+  "AEO": 0.05139,
+  "AGL": -0.01606,
+  "AGM": 0.00357,
+  "AGX": -0.07603,
+  "AGYS": -0.02508,
+  "AI": 0.05627,
+  "AIR": 0.0641,
+  "ALGT": 0.00259,
+  "ALK": 0.04982,
+  "ALNT": -0.01301,
+  "ALRM": -0.00788,
+  "AMBA": -0.01846,
+  "AMBQ": -0.15971,
+  "AMLX": 0.03331,
+  "AMPL": -0.04242,
+  "AMPX": -0.05987,
+  "AMR": -0.00242,
+  "AMRC": 0.16507,
+  "AMSC": 0.01295,
+  "APLD": -0.03357,
+  "APPN": -0.01298,
+  "ARCB": -0.02586,
+  "ARLO": 0.10678,
+  "ARR": 0.25545,
+  "ASAN": 0.1025,
+  "ASH": -0.02935,
+  "ASO": 0.09511,
+  "ASST": 0.04568,
+  "ATEN": -0.10449,
+  "ATEX": 0.02647,
+  "ATRO": 0.00629,
+  "AVEX": 0.00745,
+  "AXGN": 0.01674,
+  "AXTI": -0.039,
+  "AZZ": 0.07094,
+  "BAND": -0.00517,
+  "BBWI": -0.05122,
+  "BCC": 0.04764,
+  "BCO": 0.01814,
+  "BDC": 0.00174,
+  "BELFB": 0.0015,
+  "BFH": 0.00295,
+  "BFLY": 0.0451,
+  "BHVN": 0.0456,
+  "BILL": 0.06439,
+  "BJRI": 0.04355,
+  "BKE": 0.10184,
+  "BKU": 0.18278,
+  "BLBD": 0.12448,
+  "BLLN": 0.0008,
+  "BMI": -0.00504,
+  "BOOT": 0.01867,
+  "BRBR": -0.1079,
+  "BRSL": 0.4256,
+  "BTU": -0.05047,
+  "BXMT": 0.11296,
+  "CALM": -0.04211,
+  "CALX": 0.09347,
+  "CALY": 0.05818,
+  "CAR": 0.01354,
+  "CBRL": -0.01458,
+  "CBT": 0.03104,
+  "CC": 0.049,
+  "CDNA": -0.02963,
+  "CELC": 0.00394,
+  "CENX": -0.01154,
+  "CIFR": -0.02043,
+  "CLMT": -0.02781,
+  "CLSK": 0.03354,
+  "CNK": -0.02872,
+  "CNR": 0.03406,
+  "CNXN": 0.04159,
+  "COCO": -0.07518,
+  "COHU": -0.03063,
+  "COLD": 0.03316,
+  "CORZ": -0.07704,
+  "CPK": 0.01286,
+  "CRC": 0.02086,
+  "CRGY": 0.07973,
+  "CRI": 0.02331,
+  "CRK": -0.04075,
+  "CRSR": -0.00589,
+  "CTRI": -0.03366,
+  "CVCO": -0.01687,
+  "CVI": -0.02995,
+  "CVSA": -0.02074,
+  "CXW": -0.00783,
+  "DAVE": -0.03083,
+  "DBD": 0.06835,
+  "DCO": 0.02175,
+  "DFTX": 0.13802,
+  "DIOD": 0.01371,
+  "DK": 0.00353,
+  "DORM": 0.01659,
+  "DXC": 0.04823,
+  "DXPE": -0.0186,
+  "ECG": -0.01094,
+  "EE": -0.0319,
+  "ENOV": -0.0185,
+  "ENPH": 0.05091,
+  "ENR": -0.2447,
+  "ENS": -0.01141,
+  "ENVA": -0.00213,
+  "EQPT": 0.08484,
+  "ESAB": 0.00995,
+  "EWTX": 0.09671,
+  "EXTR": -0.09633,
+  "EYE": 0.10235,
+  "FIGS": 0.08453,
+  "FIVN": 0.00246,
+  "FLG": 0.00165,
+  "FLY": 0.04161,
+  "FLYW": -0.03974,
+  "FND": 0.01368,
+  "FOUR": 0.02113,
+  "FRPT": -0.07024,
+  "FRSH": 0.0314,
+  "FRVO": 0.02247,
+  "FSLY": -0.01785,
+  "FUN": 0.06493,
+  "GBX": 0.05397,
+  "GCT": -0.0267,
+  "GEF": 0.04062,
+  "GENB": -0.01775,
+  "GEO": -0.04929,
+  "GFF": -0.08044,
+  "GLOB": -0.02833,
+  "GOLD": -0.00944,
+  "GOLF": 0.00789,
+  "GPI": 0.00472,
+  "GPOR": -0.02035,
+  "GRAL": -0.02163,
+  "HAPN": -0.0052,
+  "HAWK": -0.02367,
+  "HAYW": 0.01477,
+  "HCC": 0.06736,
+  "HCI": 0.00936,
+  "HE": 0.00641,
+  "HGV": -0.02277,
+  "HHH": 0.07264,
+  "HIMS": 0.02736,
+  "HLIT": -0.12079,
+  "HOG": 0.00261,
+  "HROW": -0.20549,
+  "HTFL": 0.04992,
+  "HTGC": -0.20179,
+  "HUBG": 0.05236,
+  "HURN": 0.01822,
+  "IBTA": -0.00392,
+  "ICHR": -0.06761,
+  "ICUI": 0.0335,
+  "IIPR": 0.05186,
+  "INFQ": -0.02231,
+  "INOD": -0.09677,
+  "INTA": 0.00957,
+  "IOND": 0.00671,
+  "IONS": -0.04178,
+  "IPGP": -0.03652,
+  "IRON": 0.08762,
+  "IRTC": 0.01734,
+  "ITRI": 0.00806,
+  "KAI": 0.01398,
+  "KALU": 0.04208,
+  "KBH": 0.10403,
+  "KBR": 0.04013,
+  "KGS": 0.0236,
+  "KMT": 0.11231,
+  "KWR": 0.03259,
+  "LBRT": -0.10487,
+  "LEU": 0.01996,
+  "LFTO": -0.05363,
+  "LGN": 0.06675,
+  "LIF": -0.0035,
+  "LIFE": -0.05008,
+  "LKQ": 0.04117,
+  "LMAT": -0.04941,
+  "LMND": 0.02323,
+  "LOPE": 0.01433,
+  "LUNR": 0.02908,
+  "LZB": 0.01276,
+  "MAT": 0.22127,
+  "MBX": 0.13807,
+  "MCB": -0.04642,
+  "MCY": 0.03083,
+  "MDU": 0.16099,
+  "MGNI": 0.00409,
+  "MHO": -0.00296,
+  "MIAX": 0.0189,
+  "MLYS": 0.05512,
+  "MQ": 0.12679,
+  "MSGE": -0.06395,
+  "MTRN": -0.02744,
+  "MXL": 0.00433,
+  "MYRG": 0.05235,
+  "NCNO": -0.0049,
+  "NIC": -0.02819,
+  "NKTR": 0.06542,
+  "NMAX": -0.0732,
+  "NN": 0.02951,
+  "NOG": 0.08407,
+  "NOVT": -0.00676,
+  "NTLA": 0.06662,
+  "NVAX": 0.15114,
+  "NVTS": -0.05416,
+  "NWL": -0.08651,
+  "OII": 0.04852,
+  "OKLO": 0.01216,
+  "OLED": 0.03236,
+  "OMER": 0.12506,
+  "OSIS": 0.00011,
+  "OUST": 0.02176,
+  "PARR": -0.04716,
+  "PBI": 0.06865,
+  "PDFS": 0.02794,
+  "PEB": 0.00477,
+  "PENG": -0.03969,
+  "PENN": -0.09012,
+  "PFSI": 0.00982,
+  "PGY": 0.02377,
+  "PHIN": 0.00036,
+  "PII": -0.08267,
+  "PIPR": 0.04998,
+  "PJT": 0.00576,
+  "PK": -0.04494,
+  "PL": 0.01529,
+  "PLAB": -0.03614,
+  "PLMR": 0.01127,
+  "PLNT": -0.0238,
+  "POST": 0.05939,
+  "POWI": -0.05682,
+  "PRCH": 0.00722,
+  "PRCT": -0.06101,
+  "PRDO": -0.0108,
+  "PRG": 0.01381,
+  "PRGS": 0.15858,
+  "PRIM": -0.00171,
+  "PRKS": 0.06528,
+  "PRLB": 0.05583,
+  "PTEN": -0.0825,
+  "PTON": 0.02224,
+  "PURR": 0.03132,
+  "PVH": 0.06085,
+  "PVLA": -0.0532,
+  "QBTS": 0.07472,
+  "QTWO": 0.08248,
+  "QUBT": -0.0218,
+  "RDW": 0.03424,
+  "REAL": 0.0094,
+  "RELY": 0.00984,
+  "REPL": 0.04268,
+  "RGTI": 0.00243,
+  "RH": 0.11808,
+  "RHI": -0.00158,
+  "RITM": 0.19583,
+  "ROAD": 0.11068,
+  "ROG": -0.01167,
+  "RPD": 0.11297,
+  "RUM": 0.05141,
+  "RUN": 0.01804,
+  "RVLV": 0.08948,
+  "SAM": -0.07312,
+  "SBET": 0.00548,
+  "SDGR": -0.03324,
+  "SEI": -0.0482,
+  "SEPN": 0.00649,
+  "SFM": -0.01416,
+  "SG": 0.07093,
+  "SHAK": 0.02239,
+  "SHLS": 0.08825,
+  "SHOO": -0.07314,
+  "SITE": 0.05217,
+  "SKY": 0.00351,
+  "SKYW": -0.01726,
+  "SLG": -0.00702,
+  "SLS": -0.06758,
+  "SMG": -0.02701,
+  "SON": 0.09746,
+  "SONO": 0.03949,
+  "SPB": 0.03012,
+  "SPHR": -0.0454,
+  "SPSC": -0.02763,
+  "SRPT": 0.10669,
+  "STAA": -0.06886,
+  "STRA": -0.02031,
+  "STWD": 0.21249,
+  "SXI": 0.03939,
+  "SXT": 0.0275,
+  "TALO": 0.23641,
+  "TARS": -0.03837,
+  "TDC": -0.07456,
+  "TDOC": -0.04404,
+  "TDS": 0.04418,
+  "TDW": 0.06376,
+  "TENB": -0.00331,
+  "TFIN": -0.0076,
+  "THO": 0.08865,
+  "THRM": 0.06213,
+  "TIC": 0.0426,
+  "TMDX": -0.05046,
+  "TNC": 0.06845,
+  "TRAX": 0.10555,
+  "TRIN": 0.12854,
+  "TRLV": -0.18992,
+  "TRN": 0.05695,
+  "TRS": 0.00089,
+  "TRVI": -0.00817,
+  "TVTX": -0.06081,
+  "UCTT": -0.06144,
+  "ULCC": -0.01273,
+  "UNF": 0.00892,
+  "UNFI": 0.01928,
+  "UPST": -0.02374,
+  "UPWK": 0.00347,
+  "USAR": -0.03837,
+  "USPH": 0.08582,
+  "UTI": 0.01731,
+  "VAC": 0.0596,
+  "VECO": 0.00245,
+  "VERX": -0.07265,
+  "VKTX": 0.00815,
+  "VOYG": 0.16191,
+  "VSH": -0.00404,
+  "VVV": 0.08654,
+  "VYX": -0.04591,
+  "WDFC": -0.00227,
+  "WEN": -0.18663,
+  "WGS": 0.06638,
+  "WHD": 0.01493,
+  "WHR": 0.02575,
+  "WING": 0.06494,
+  "WK": -0.01948,
+  "WOLF": -0.02683,
+  "WOR": -0.01552,
+  "WRBY": -0.02129,
+  "WSC": -0.11286,
+  "WT": 0.02854,
+  "WU": 0.04525,
+  "XE": 0.04898,
+  "YELP": 0.07782,
+  "YETI": 0.03863
+ },
+ "names": {
+  "ABT": {
+   "cap": 186218360940.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "AMAT": {
+   "cap": 277957504411.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "AMBQ": {
+   "cap": 1097619668.0,
+   "cw": -0.15971,
+   "iv_c50": 0.6997,
+   "iv_p50": 0.8595,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 45.55,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "AMZN": {
+   "cap": 2787086398372.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "APP": {
+   "cap": 137571549075.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "AVGO": {
+   "cap": 1591528196991.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "BE": {
+   "cap": 52431757227.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "BKNG": {
+   "cap": 117155259015.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "COHR": {
+   "cap": 40061393275.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "CRDO": {
+   "cap": 22687676022.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "DY": {
+   "cap": 6496217723.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "GOOGL": {
+   "cap": 3488053680000.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "INTC": {
+   "cap": 294674230000.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "KEYS": {
+   "cap": 48620196725.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "LEU": {
+   "cap": 2010711244.0,
+   "cw": 0.01996,
+   "iv_c50": 0.8812,
+   "iv_p50": 0.8613,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 94.19,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.116,
+   "excess_12m": 0.00099,
+   "log_shift": 0.00099,
+   "in_band": true
+  },
+  "META": {
+   "cap": 1601255083292.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "MOD": {
+   "cap": 6951773244.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "MRVL": {
+   "cap": 127466184000.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "NEE": {
+   "cap": 178921179040.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "NFLX": {
+   "cap": 249459298607.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "NVDA": {
+   "cap": 3762974000000.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "SNOW": {
+   "cap": 98981568000.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "SPCX": {
+   "cap": 1865494911068.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "T": {
+   "cap": 150694910696.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  },
+  "TT": {
+   "cap": 89355265517.0,
+   "log_shift": 0.0,
+   "reason": "not US common stock / price under $5"
+  },
+  "VST": {
+   "cap": 44114520896.0,
+   "log_shift": 0.0,
+   "reason": "above $5B: no tilt"
+  }
+ },
+ "band_names": {
+  "AAOI": {
+   "cap": 4099206257.0,
+   "cw": -0.03109,
+   "iv_c50": 1.2032,
+   "iv_p50": 1.2343,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 45.22,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.658,
+   "excess_12m": -0.00559,
+   "log_shift": -0.00561,
+   "in_band": true
+  },
+  "AAP": {
+   "cap": 2701692000.0,
+   "cw": 0.06876,
+   "iv_c50": 0.5228,
+   "iv_p50": 0.454,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 44.07,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02244,
+   "dps": 1.0,
+   "z": 0.856,
+   "excess_12m": 0.00728,
+   "log_shift": 0.00725,
+   "in_band": true
+  },
+  "ABG": {
+   "cap": 3544771545.0,
+   "cw": -0.00093,
+   "iv_c50": 0.4231,
+   "iv_p50": 0.4241,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 196.87,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.201,
+   "excess_12m": -0.00171,
+   "log_shift": -0.00171,
+   "in_band": true
+  },
+  "ABSI": {
+   "cap": 1291274930.0,
+   "cw": -0.24291,
+   "iv_c50": 1.9687,
+   "iv_p50": 2.2116,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 7.58,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "ACAD": {
+   "cap": 3226716907.0,
+   "cw": 0.04614,
+   "iv_c50": 0.5098,
+   "iv_p50": 0.4637,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 18.32,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.513,
+   "excess_12m": 0.00436,
+   "log_shift": 0.00435,
+   "in_band": true
+  },
+  "ACHC": {
+   "cap": 3597810710.0,
+   "cw": -0.066,
+   "iv_c50": 0.4598,
+   "iv_p50": 0.5258,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 37.94,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.188,
+   "excess_12m": -0.0101,
+   "log_shift": -0.01015,
+   "in_band": true
+  },
+  "ACLS": {
+   "cap": 3064282202.0,
+   "cw": 0.00212,
+   "iv_c50": 0.727,
+   "iv_p50": 0.7249,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 97.98,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.154,
+   "excess_12m": -0.00131,
+   "log_shift": -0.00131,
+   "in_band": true
+  },
+  "ACMR": {
+   "cap": 3080490952.0,
+   "cw": -0.1037,
+   "iv_c50": 0.8475,
+   "iv_p50": 0.9512,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 44.12,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.759,
+   "excess_12m": -0.01496,
+   "log_shift": -0.01507,
+   "in_band": true
+  },
+  "ADEA": {
+   "cap": 1627921525.0,
+   "cw": 0.1179,
+   "iv_c50": 0.7326,
+   "iv_p50": 0.6147,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 14.74,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01348,
+   "dps": 0.2,
+   "z": 1.602,
+   "excess_12m": 0.01361,
+   "log_shift": 0.01352,
+   "in_band": true
+  },
+  "ADNT": {
+   "cap": 1134202118.0,
+   "cw": 0.0436,
+   "iv_c50": 0.5423,
+   "iv_p50": 0.4987,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 15.06,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.475,
+   "excess_12m": 0.00403,
+   "log_shift": 0.00403,
+   "in_band": true
+  },
+  "AEHR": {
+   "cap": 1671878445.0,
+   "cw": -0.05548,
+   "iv_c50": 1.1687,
+   "iv_p50": 1.2242,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 49.74,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.028,
+   "excess_12m": -0.00874,
+   "log_shift": -0.00878,
+   "in_band": true
+  },
+  "AEO": {
+   "cap": 3563446926.0,
+   "cw": 0.05139,
+   "iv_c50": 0.7006,
+   "iv_p50": 0.6492,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 21.18,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02333,
+   "dps": 0.5,
+   "z": 0.593,
+   "excess_12m": 0.00504,
+   "log_shift": 0.00503,
+   "in_band": true
+  },
+  "AGL": {
+   "cap": 1965105558.0,
+   "cw": -0.01606,
+   "iv_c50": 0.734,
+   "iv_p50": 0.75,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 115.2,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.43,
+   "excess_12m": -0.00366,
+   "log_shift": -0.00366,
+   "in_band": true
+  },
+  "AGM": {
+   "cap": 1864633561.0,
+   "cw": 0.00357,
+   "iv_c50": 0.2868,
+   "iv_p50": 0.2832,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 171.64,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.03605,
+   "dps": 6.3,
+   "z": -0.133,
+   "excess_12m": -0.00113,
+   "log_shift": -0.00113,
+   "in_band": true
+  },
+  "AGX": {
+   "cap": 4131928767.0,
+   "cw": -0.07603,
+   "iv_c50": 0.8595,
+   "iv_p50": 0.9355,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 293.25,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00747,
+   "dps": 2.2,
+   "z": -1.34,
+   "excess_12m": -0.01139,
+   "log_shift": -0.01145,
+   "in_band": true
+  },
+  "AGYS": {
+   "cap": 3468568909.0,
+   "cw": -0.02508,
+   "iv_c50": 0.4626,
+   "iv_p50": 0.4876,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 119.51,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.567,
+   "excess_12m": -0.00482,
+   "log_shift": -0.00483,
+   "in_band": true
+  },
+  "AI": {
+   "cap": 1717932761.0,
+   "cw": 0.05627,
+   "iv_c50": 0.8354,
+   "iv_p50": 0.7791,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-24"
+   ],
+   "spot": 9.95,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.667,
+   "excess_12m": 0.00567,
+   "log_shift": 0.00565,
+   "in_band": true
+  },
+  "AIR": {
+   "cap": 4268223266.0,
+   "cw": 0.0641,
+   "iv_c50": 0.5098,
+   "iv_p50": 0.4457,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 103.93,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.786,
+   "excess_12m": 0.00668,
+   "log_shift": 0.00666,
+   "in_band": true
+  },
+  "ALGT": {
+   "cap": 2578096827.0,
+   "cw": 0.00259,
+   "iv_c50": 0.627,
+   "iv_p50": 0.6244,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 90.89,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.147,
+   "excess_12m": -0.00125,
+   "log_shift": -0.00125,
+   "in_band": true
+  },
+  "ALK": {
+   "cap": 4387002116.0,
+   "cw": 0.04982,
+   "iv_c50": 0.5789,
+   "iv_p50": 0.5291,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 36.46,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.569,
+   "excess_12m": 0.00484,
+   "log_shift": 0.00482,
+   "in_band": true
+  },
+  "ALNT": {
+   "cap": 1301538666.0,
+   "cw": -0.01301,
+   "iv_c50": 0.566,
+   "iv_p50": 0.5791,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 75.74,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00185,
+   "dps": 0.14,
+   "z": -0.384,
+   "excess_12m": -0.00326,
+   "log_shift": -0.00327,
+   "in_band": true
+  },
+  "ALRM": {
+   "cap": 3252447943.0,
+   "cw": -0.00788,
+   "iv_c50": 0.3427,
+   "iv_p50": 0.3506,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 66.47,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.306,
+   "excess_12m": -0.0026,
+   "log_shift": -0.00261,
+   "in_band": true
+  },
+  "AMBA": {
+   "cap": 2429077634.0,
+   "cw": -0.01846,
+   "iv_c50": 1.0078,
+   "iv_p50": 1.0263,
+   "expiries": [
+    "2026-11-27",
+    "2026-12-18"
+   ],
+   "spot": 53.54,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.467,
+   "excess_12m": -0.00397,
+   "log_shift": -0.00397,
+   "in_band": true
+  },
+  "AMBQ": {
+   "cap": 1097619668.0,
+   "cw": -0.15971,
+   "iv_c50": 0.6997,
+   "iv_p50": 0.8595,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 45.55,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "AMLX": {
+   "cap": 3574048731.0,
+   "cw": 0.03331,
+   "iv_c50": 0.5951,
+   "iv_p50": 0.5617,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 27.52,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.319,
+   "excess_12m": 0.00271,
+   "log_shift": 0.0027,
+   "in_band": true
+  },
+  "AMPL": {
+   "cap": 2265638678.0,
+   "cw": -0.04242,
+   "iv_c50": 0.5779,
+   "iv_p50": 0.6203,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 16.97,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.83,
+   "excess_12m": -0.00706,
+   "log_shift": -0.00708,
+   "in_band": true
+  },
+  "AMPX": {
+   "cap": 1044102525.0,
+   "cw": -0.05987,
+   "iv_c50": 0.8813,
+   "iv_p50": 0.9412,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 6.77,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.095,
+   "excess_12m": -0.0093,
+   "log_shift": -0.00935,
+   "in_band": true
+  },
+  "AMR": {
+   "cap": 1791299648.0,
+   "cw": -0.00242,
+   "iv_c50": 0.5565,
+   "iv_p50": 0.559,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 139.53,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.223,
+   "excess_12m": -0.0019,
+   "log_shift": -0.0019,
+   "in_band": true
+  },
+  "AMRC": {
+   "cap": 1311319849.0,
+   "cw": 0.16507,
+   "iv_c50": 0.8601,
+   "iv_p50": 0.695,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 22.75,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "AMSC": {
+   "cap": 1104290749.0,
+   "cw": 0.01295,
+   "iv_c50": 0.7539,
+   "iv_p50": 0.741,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 22.16,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.01,
+   "excess_12m": 8e-05,
+   "log_shift": 8e-05,
+   "in_band": true
+  },
+  "APLD": {
+   "cap": 4408804501.0,
+   "cw": -0.03357,
+   "iv_c50": 1.0962,
+   "iv_p50": 1.1297,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 14.22,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.696,
+   "excess_12m": -0.00591,
+   "log_shift": -0.00593,
+   "in_band": true
+  },
+  "APPN": {
+   "cap": 3967489039.0,
+   "cw": -0.01298,
+   "iv_c50": 0.6729,
+   "iv_p50": 0.6858,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 53.47,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.384,
+   "excess_12m": -0.00326,
+   "log_shift": -0.00327,
+   "in_band": true
+  },
+  "ARCB": {
+   "cap": 2989951612.0,
+   "cw": -0.02586,
+   "iv_c50": 0.4889,
+   "iv_p50": 0.5148,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 132.52,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00362,
+   "dps": 0.48,
+   "z": -0.579,
+   "excess_12m": -0.00492,
+   "log_shift": -0.00493,
+   "in_band": true
+  },
+  "ARLO": {
+   "cap": 1323171354.0,
+   "cw": 0.10678,
+   "iv_c50": 0.6792,
+   "iv_p50": 0.5724,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 12.25,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.433,
+   "excess_12m": 0.01218,
+   "log_shift": 0.01211,
+   "in_band": true
+  },
+  "ARR": {
+   "cap": 1700098636.0,
+   "cw": 0.25545,
+   "iv_c50": 0.629,
+   "iv_p50": 0.3736,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 10.95,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.2335,
+   "dps": 2.88,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "ASAN": {
+   "cap": 2266804158.0,
+   "cw": 0.1025,
+   "iv_c50": 0.9803,
+   "iv_p50": 0.8778,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 9.23,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.368,
+   "excess_12m": 0.01163,
+   "log_shift": 0.01156,
+   "in_band": true
+  },
+  "ASH": {
+   "cap": 3458773236.0,
+   "cw": -0.02935,
+   "iv_c50": 0.2916,
+   "iv_p50": 0.321,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 74.15,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02227,
+   "dps": 1.67,
+   "z": -0.632,
+   "excess_12m": -0.00537,
+   "log_shift": -0.00538,
+   "in_band": true
+  },
+  "ASO": {
+   "cap": 4340696027.0,
+   "cw": 0.09511,
+   "iv_c50": 0.579,
+   "iv_p50": 0.4839,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 69.47,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00831,
+   "dps": 0.58,
+   "z": 1.256,
+   "excess_12m": 0.01068,
+   "log_shift": 0.01062,
+   "in_band": true
+  },
+  "ASST": {
+   "cap": 2395098160.0,
+   "cw": 0.04568,
+   "iv_c50": 1.0429,
+   "iv_p50": 0.9972,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 18.09,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.506,
+   "excess_12m": 0.0043,
+   "log_shift": 0.00429,
+   "in_band": true
+  },
+  "ATEN": {
+   "cap": 2094898380.0,
+   "cw": -0.10449,
+   "iv_c50": 0.4471,
+   "iv_p50": 0.5516,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 29.28,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00816,
+   "dps": 0.24,
+   "z": -1.771,
+   "excess_12m": -0.01506,
+   "log_shift": -0.01517,
+   "in_band": true
+  },
+  "ATEX": {
+   "cap": 1509609328.0,
+   "cw": 0.02647,
+   "iv_c50": 0.7248,
+   "iv_p50": 0.6984,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 78.86,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.215,
+   "excess_12m": 0.00183,
+   "log_shift": 0.00182,
+   "in_band": true
+  },
+  "ATRO": {
+   "cap": 2404314027.0,
+   "cw": 0.00629,
+   "iv_c50": 0.6288,
+   "iv_p50": 0.6225,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 55.95,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.091,
+   "excess_12m": -0.00078,
+   "log_shift": -0.00078,
+   "in_band": true
+  },
+  "AVEX": {
+   "cap": 1699971928.0,
+   "cw": 0.00745,
+   "iv_c50": 0.9072,
+   "iv_p50": 0.8998,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 13.62,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.074,
+   "excess_12m": -0.00063,
+   "log_shift": -0.00063,
+   "in_band": true
+  },
+  "AXGN": {
+   "cap": 3307886997.0,
+   "cw": 0.01674,
+   "iv_c50": 0.6301,
+   "iv_p50": 0.6133,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 55.37,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.067,
+   "excess_12m": 0.00057,
+   "log_shift": 0.00057,
+   "in_band": true
+  },
+  "AXTI": {
+   "cap": 2527681619.0,
+   "cw": -0.039,
+   "iv_c50": 1.2465,
+   "iv_p50": 1.2855,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 36.42,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.778,
+   "excess_12m": -0.00661,
+   "log_shift": -0.00664,
+   "in_band": true
+  },
+  "AZZ": {
+   "cap": 3892654320.0,
+   "cw": 0.07094,
+   "iv_c50": 0.429,
+   "iv_p50": 0.3581,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 128.6,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00682,
+   "dps": 0.88,
+   "z": 0.889,
+   "excess_12m": 0.00756,
+   "log_shift": 0.00753,
+   "in_band": true
+  },
+  "BAND": {
+   "cap": 1325129178.0,
+   "cw": -0.00517,
+   "iv_c50": 0.8878,
+   "iv_p50": 0.893,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 40.19,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.265,
+   "excess_12m": -0.00225,
+   "log_shift": -0.00226,
+   "in_band": true
+  },
+  "BBWI": {
+   "cap": 3883688728.0,
+   "cw": -0.05122,
+   "iv_c50": 0.7117,
+   "iv_p50": 0.7629,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 18.4,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.04256,
+   "dps": 0.8,
+   "z": -0.964,
+   "excess_12m": -0.00819,
+   "log_shift": -0.00822,
+   "in_band": true
+  },
+  "BCC": {
+   "cap": 2310034589.0,
+   "cw": 0.04764,
+   "iv_c50": 0.4116,
+   "iv_p50": 0.364,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 65.14,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01357,
+   "dps": 0.89,
+   "z": 0.536,
+   "excess_12m": 0.00456,
+   "log_shift": 0.00454,
+   "in_band": true
+  },
+  "BCO": {
+   "cap": 4819669467.0,
+   "cw": 0.01814,
+   "iv_c50": 0.3905,
+   "iv_p50": 0.3723,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 114.25,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00889,
+   "dps": 1.02,
+   "z": 0.088,
+   "excess_12m": 0.00075,
+   "log_shift": 0.00075,
+   "in_band": true
+  },
+  "BDC": {
+   "cap": 3876767280.0,
+   "cw": 0.00174,
+   "iv_c50": 0.4901,
+   "iv_p50": 0.4883,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 100.15,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.002,
+   "dps": 0.2,
+   "z": -0.16,
+   "excess_12m": -0.00136,
+   "log_shift": -0.00136,
+   "in_band": true
+  },
+  "BELFB": {
+   "cap": 3007006840.0,
+   "cw": 0.0015,
+   "iv_c50": 0.514,
+   "iv_p50": 0.5125,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 208.24,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00134,
+   "dps": 0.28,
+   "z": -0.164,
+   "excess_12m": -0.00139,
+   "log_shift": -0.00139,
+   "in_band": true
+  },
+  "BFH": {
+   "cap": 3700082258.0,
+   "cw": 0.00295,
+   "iv_c50": 0.434,
+   "iv_p50": 0.4311,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 96.82,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0071,
+   "dps": 0.69,
+   "z": -0.142,
+   "excess_12m": -0.00121,
+   "log_shift": -0.00121,
+   "in_band": true
+  },
+  "BFLY": {
+   "cap": 1528544947.0,
+   "cw": 0.0451,
+   "iv_c50": 0.898,
+   "iv_p50": 0.8529,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 5.75,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.497,
+   "excess_12m": 0.00423,
+   "log_shift": 0.00422,
+   "in_band": true
+  },
+  "BHVN": {
+   "cap": 2087632353.0,
+   "cw": 0.0456,
+   "iv_c50": 0.992,
+   "iv_p50": 0.9464,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 13.24,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.505,
+   "excess_12m": 0.00429,
+   "log_shift": 0.00428,
+   "in_band": true
+  },
+  "BILL": {
+   "cap": 4952016202.0,
+   "cw": 0.06439,
+   "iv_c50": 0.3254,
+   "iv_p50": 0.261,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 64.88,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.79,
+   "excess_12m": 0.00671,
+   "log_shift": 0.00669,
+   "in_band": true
+  },
+  "BJRI": {
+   "cap": 1221574135.0,
+   "cw": 0.04355,
+   "iv_c50": 0.6515,
+   "iv_p50": 0.608,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 56.35,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.474,
+   "excess_12m": 0.00403,
+   "log_shift": 0.00402,
+   "in_band": true
+  },
+  "BKE": {
+   "cap": 2192111629.0,
+   "cw": 0.10184,
+   "iv_c50": 0.4612,
+   "iv_p50": 0.3594,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 42.04,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.09954,
+   "dps": 4.4,
+   "z": 1.358,
+   "excess_12m": 0.01154,
+   "log_shift": 0.01148,
+   "in_band": true
+  },
+  "BKU": {
+   "cap": 3022824101.0,
+   "cw": 0.18278,
+   "iv_c50": 0.4541,
+   "iv_p50": 0.2713,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 42.76,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02995,
+   "dps": 1.3,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "BLBD": {
+   "cap": 1717819052.0,
+   "cw": 0.12448,
+   "iv_c50": 0.709,
+   "iv_p50": 0.5845,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 54.07,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.701,
+   "excess_12m": 0.01446,
+   "log_shift": 0.01436,
+   "in_band": true
+  },
+  "BLLN": {
+   "cap": 4601195611.0,
+   "cw": 0.0008,
+   "iv_c50": 0.7858,
+   "iv_p50": 0.785,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 97.5,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.175,
+   "excess_12m": -0.00148,
+   "log_shift": -0.00148,
+   "in_band": true
+  },
+  "BMI": {
+   "cap": 4550618218.0,
+   "cw": -0.00504,
+   "iv_c50": 0.3578,
+   "iv_p50": 0.3629,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 152.94,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01067,
+   "dps": 1.64,
+   "z": -0.263,
+   "excess_12m": -0.00224,
+   "log_shift": -0.00224,
+   "in_band": true
+  },
+  "BOOT": {
+   "cap": 4030526084.0,
+   "cw": 0.01867,
+   "iv_c50": 0.5451,
+   "iv_p50": 0.5264,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 133.06,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.097,
+   "excess_12m": 0.00082,
+   "log_shift": 0.00082,
+   "in_band": true
+  },
+  "BRBR": {
+   "cap": 1228479120.0,
+   "cw": -0.1079,
+   "iv_c50": 0.9163,
+   "iv_p50": 1.0242,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 11.01,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.823,
+   "excess_12m": -0.0155,
+   "log_shift": -0.01562,
+   "in_band": true
+  },
+  "BRSL": {
+   "cap": 1749060000.0,
+   "cw": 0.4256,
+   "iv_c50": 0.843,
+   "iv_p50": 0.4174,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 8.95,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.09683,
+   "dps": 0.91,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "BTU": {
+   "cap": 2064376500.0,
+   "cw": -0.05047,
+   "iv_c50": 0.5243,
+   "iv_p50": 0.5748,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 17.24,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01297,
+   "dps": 0.225,
+   "z": -0.952,
+   "excess_12m": -0.00809,
+   "log_shift": -0.00813,
+   "in_band": true
+  },
+  "BXMT": {
+   "cap": 1777730655.0,
+   "cw": 0.11296,
+   "iv_c50": 0.4545,
+   "iv_p50": 0.3416,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 10.44,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.16558,
+   "dps": 1.88,
+   "z": 1.527,
+   "excess_12m": 0.01298,
+   "log_shift": 0.01289,
+   "in_band": true
+  },
+  "CALM": {
+   "cap": 3108124189.0,
+   "cw": -0.04211,
+   "iv_c50": 0.4095,
+   "iv_p50": 0.4516,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 65.24,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01633,
+   "dps": 1.074,
+   "z": -0.825,
+   "excess_12m": -0.00702,
+   "log_shift": -0.00704,
+   "in_band": true
+  },
+  "CALX": {
+   "cap": 2003937729.0,
+   "cw": 0.09347,
+   "iv_c50": 0.5708,
+   "iv_p50": 0.4773,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 32.09,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.231,
+   "excess_12m": 0.01046,
+   "log_shift": 0.01041,
+   "in_band": true
+  },
+  "CALY": {
+   "cap": 2971861841.0,
+   "cw": 0.05818,
+   "iv_c50": 0.4718,
+   "iv_p50": 0.4136,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 16.57,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.696,
+   "excess_12m": 0.00591,
+   "log_shift": 0.0059,
+   "in_band": true
+  },
+  "CAR": {
+   "cap": 4341604934.0,
+   "cw": 0.01354,
+   "iv_c50": 0.6098,
+   "iv_p50": 0.5963,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 124.64,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.019,
+   "excess_12m": 0.00016,
+   "log_shift": 0.00016,
+   "in_band": true
+  },
+  "CBRL": {
+   "cap": 1519518191.0,
+   "cw": -0.01458,
+   "iv_c50": 0.5621,
+   "iv_p50": 0.5767,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 67.98,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0146,
+   "dps": 1.0,
+   "z": -0.408,
+   "excess_12m": -0.00347,
+   "log_shift": -0.00347,
+   "in_band": true
+  },
+  "CBT": {
+   "cap": 3663219947.0,
+   "cw": 0.03104,
+   "iv_c50": 0.3206,
+   "iv_p50": 0.2895,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 70.14,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02598,
+   "dps": 1.846,
+   "z": 0.284,
+   "excess_12m": 0.00242,
+   "log_shift": 0.00241,
+   "in_band": true
+  },
+  "CC": {
+   "cap": 1879423095.0,
+   "cw": 0.049,
+   "iv_c50": 0.583,
+   "iv_p50": 0.534,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 12.18,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02849,
+   "dps": 0.352,
+   "z": 0.557,
+   "excess_12m": 0.00473,
+   "log_shift": 0.00472,
+   "in_band": true
+  },
+  "CDNA": {
+   "cap": 3873454184.0,
+   "cw": -0.02963,
+   "iv_c50": 0.6132,
+   "iv_p50": 0.6428,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 74.56,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.636,
+   "excess_12m": -0.00541,
+   "log_shift": -0.00542,
+   "in_band": true
+  },
+  "CELC": {
+   "cap": 2975580839.0,
+   "cw": 0.00394,
+   "iv_c50": 0.7875,
+   "iv_p50": 0.7836,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 58.01,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.127,
+   "excess_12m": -0.00108,
+   "log_shift": -0.00108,
+   "in_band": true
+  },
+  "CENX": {
+   "cap": 3373691494.0,
+   "cw": -0.01154,
+   "iv_c50": 0.6271,
+   "iv_p50": 0.6386,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 32.96,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.362,
+   "excess_12m": -0.00307,
+   "log_shift": -0.00308,
+   "in_band": true
+  },
+  "CIFR": {
+   "cap": 2984627839.0,
+   "cw": -0.02043,
+   "iv_c50": 1.3202,
+   "iv_p50": 1.3407,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 6.42,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.497,
+   "excess_12m": -0.00422,
+   "log_shift": -0.00423,
+   "in_band": true
+  },
+  "CLMT": {
+   "cap": 2815434382.0,
+   "cw": -0.02781,
+   "iv_c50": 0.6564,
+   "iv_p50": 0.6843,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 31.82,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.608,
+   "excess_12m": -0.00517,
+   "log_shift": -0.00519,
+   "in_band": true
+  },
+  "CLSK": {
+   "cap": 1617947560.0,
+   "cw": 0.03354,
+   "iv_c50": 1.1809,
+   "iv_p50": 1.1473,
+   "expiries": [
+    "2026-12-04",
+    "2026-12-18"
+   ],
+   "spot": 6.15,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.322,
+   "excess_12m": 0.00274,
+   "log_shift": 0.00273,
+   "in_band": true
+  },
+  "CNK": {
+   "cap": 4712026953.0,
+   "cw": -0.02872,
+   "iv_c50": 0.3595,
+   "iv_p50": 0.3882,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 40.43,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00886,
+   "dps": 0.36,
+   "z": -0.622,
+   "excess_12m": -0.00529,
+   "log_shift": -0.0053,
+   "in_band": true
+  },
+  "CNR": {
+   "cap": 4071502242.0,
+   "cw": 0.03406,
+   "iv_c50": 0.4529,
+   "iv_p50": 0.4189,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 83.65,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00477,
+   "dps": 0.4,
+   "z": 0.33,
+   "excess_12m": 0.0028,
+   "log_shift": 0.0028,
+   "in_band": true
+  },
+  "CNXN": {
+   "cap": 2061744331.0,
+   "cw": 0.04159,
+   "iv_c50": 0.3255,
+   "iv_p50": 0.2839,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 80.91,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00984,
+   "dps": 0.8,
+   "z": 0.444,
+   "excess_12m": 0.00378,
+   "log_shift": 0.00377,
+   "in_band": true
+  },
+  "COCO": {
+   "cap": 3670918178.0,
+   "cw": -0.07518,
+   "iv_c50": 0.459,
+   "iv_p50": 0.5341,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 65.24,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.327,
+   "excess_12m": -0.01128,
+   "log_shift": -0.01134,
+   "in_band": true
+  },
+  "COHU": {
+   "cap": 1899147172.0,
+   "cw": -0.03063,
+   "iv_c50": 0.8964,
+   "iv_p50": 0.927,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 40.41,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.651,
+   "excess_12m": -0.00554,
+   "log_shift": -0.00555,
+   "in_band": true
+  },
+  "COLD": {
+   "cap": 4754108583.0,
+   "cw": 0.03316,
+   "iv_c50": 0.4023,
+   "iv_p50": 0.3692,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 16.25,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.05507,
+   "dps": 0.92,
+   "z": 0.316,
+   "excess_12m": 0.00269,
+   "log_shift": 0.00268,
+   "in_band": true
+  },
+  "CORZ": {
+   "cap": 4375967596.0,
+   "cw": -0.07704,
+   "iv_c50": 0.8803,
+   "iv_p50": 0.9574,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 13.51,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.355,
+   "excess_12m": -0.01152,
+   "log_shift": -0.01159,
+   "in_band": true
+  },
+  "CPK": {
+   "cap": 3423341139.0,
+   "cw": 0.01286,
+   "iv_c50": 0.2505,
+   "iv_p50": 0.2377,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 138.0,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02037,
+   "dps": 2.84,
+   "z": 0.008,
+   "excess_12m": 7e-05,
+   "log_shift": 7e-05,
+   "in_band": true
+  },
+  "CRC": {
+   "cap": 4156023769.0,
+   "cw": 0.02086,
+   "iv_c50": 0.4151,
+   "iv_p50": 0.3942,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 45.75,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0348,
+   "dps": 1.62,
+   "z": 0.13,
+   "excess_12m": 0.0011,
+   "log_shift": 0.0011,
+   "in_band": true
+  },
+  "CRGY": {
+   "cap": 4881487261.0,
+   "cw": 0.07973,
+   "iv_c50": 0.5069,
+   "iv_p50": 0.4272,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 11.36,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.04139,
+   "dps": 0.48,
+   "z": 1.023,
+   "excess_12m": 0.00869,
+   "log_shift": 0.00865,
+   "in_band": true
+  },
+  "CRI": {
+   "cap": 1288640600.0,
+   "cw": 0.02331,
+   "iv_c50": 0.5036,
+   "iv_p50": 0.4803,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 34.75,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02837,
+   "dps": 1.0,
+   "z": 0.167,
+   "excess_12m": 0.00142,
+   "log_shift": 0.00142,
+   "in_band": true
+  },
+  "CRK": {
+   "cap": 4263270213.0,
+   "cw": -0.04075,
+   "iv_c50": 0.4874,
+   "iv_p50": 0.5282,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 14.39,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.805,
+   "excess_12m": -0.00684,
+   "log_shift": -0.00686,
+   "in_band": true
+  },
+  "CRSR": {
+   "cap": 1229084494.0,
+   "cw": -0.00589,
+   "iv_c50": 0.6263,
+   "iv_p50": 0.6322,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 11.25,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.276,
+   "excess_12m": -0.00235,
+   "log_shift": -0.00235,
+   "in_band": true
+  },
+  "CTRI": {
+   "cap": 2159696857.0,
+   "cw": -0.03366,
+   "iv_c50": 0.5508,
+   "iv_p50": 0.5845,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 21.42,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.697,
+   "excess_12m": -0.00593,
+   "log_shift": -0.00594,
+   "in_band": true
+  },
+  "CVCO": {
+   "cap": 4873161985.0,
+   "cw": -0.01687,
+   "iv_c50": 0.404,
+   "iv_p50": 0.4209,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 630.48,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.443,
+   "excess_12m": -0.00376,
+   "log_shift": -0.00377,
+   "in_band": true
+  },
+  "CVI": {
+   "cap": 4406943233.0,
+   "cw": -0.02995,
+   "iv_c50": 0.5912,
+   "iv_p50": 0.6211,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 39.12,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00764,
+   "dps": 0.3,
+   "z": -0.641,
+   "excess_12m": -0.00545,
+   "log_shift": -0.00546,
+   "in_band": true
+  },
+  "CVSA": {
+   "cap": 3919130152.0,
+   "cw": -0.02074,
+   "iv_c50": 0.3602,
+   "iv_p50": 0.381,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 117.74,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.501,
+   "excess_12m": -0.00426,
+   "log_shift": -0.00427,
+   "in_band": true
+  },
+  "CXW": {
+   "cap": 2677980433.0,
+   "cw": -0.00783,
+   "iv_c50": 0.4864,
+   "iv_p50": 0.4942,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 30.97,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.305,
+   "excess_12m": -0.0026,
+   "log_shift": -0.0026,
+   "in_band": true
+  },
+  "DAVE": {
+   "cap": 3493530463.0,
+   "cw": -0.03083,
+   "iv_c50": 0.6406,
+   "iv_p50": 0.6714,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 273.08,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.654,
+   "excess_12m": -0.00556,
+   "log_shift": -0.00558,
+   "in_band": true
+  },
+  "DBD": {
+   "cap": 1776042275.0,
+   "cw": 0.06835,
+   "iv_c50": 0.4957,
+   "iv_p50": 0.4273,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 52.87,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.85,
+   "excess_12m": 0.00723,
+   "log_shift": 0.0072,
+   "in_band": true
+  },
+  "DCO": {
+   "cap": 2046440212.0,
+   "cw": 0.02175,
+   "iv_c50": 0.549,
+   "iv_p50": 0.5272,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 135.31,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.143,
+   "excess_12m": 0.00122,
+   "log_shift": 0.00122,
+   "in_band": true
+  },
+  "DFTX": {
+   "cap": 4128902040.0,
+   "cw": 0.13802,
+   "iv_c50": 0.8557,
+   "iv_p50": 0.7177,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 30.16,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.907,
+   "excess_12m": 0.01621,
+   "log_shift": 0.01608,
+   "in_band": true
+  },
+  "DIOD": {
+   "cap": 3809120255.0,
+   "cw": 0.01371,
+   "iv_c50": 0.7325,
+   "iv_p50": 0.7188,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 82.7,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.021,
+   "excess_12m": 0.00018,
+   "log_shift": 0.00018,
+   "in_band": true
+  },
+  "DK": {
+   "cap": 4112973352.0,
+   "cw": 0.00353,
+   "iv_c50": 0.5676,
+   "iv_p50": 0.5641,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 67.82,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01558,
+   "dps": 1.065,
+   "z": -0.133,
+   "excess_12m": -0.00113,
+   "log_shift": -0.00113,
+   "in_band": true
+  },
+  "DORM": {
+   "cap": 3889378000.0,
+   "cw": 0.01659,
+   "iv_c50": 0.3777,
+   "iv_p50": 0.3611,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 131.87,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.065,
+   "excess_12m": 0.00055,
+   "log_shift": 0.00055,
+   "in_band": true
+  },
+  "DXC": {
+   "cap": 2276867962.0,
+   "cw": 0.04823,
+   "iv_c50": 0.554,
+   "iv_p50": 0.5058,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 14.65,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.545,
+   "excess_12m": 0.00463,
+   "log_shift": 0.00462,
+   "in_band": true
+  },
+  "DXPE": {
+   "cap": 2317927369.0,
+   "cw": -0.0186,
+   "iv_c50": 0.4627,
+   "iv_p50": 0.4813,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 149.38,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.469,
+   "excess_12m": -0.00398,
+   "log_shift": -0.00399,
+   "in_band": true
+  },
+  "ECG": {
+   "cap": 4229899694.0,
+   "cw": -0.01094,
+   "iv_c50": 0.6766,
+   "iv_p50": 0.6875,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 82.92,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.353,
+   "excess_12m": -0.003,
+   "log_shift": -0.003,
+   "in_band": true
+  },
+  "EE": {
+   "cap": 4264061909.0,
+   "cw": -0.0319,
+   "iv_c50": 0.3771,
+   "iv_p50": 0.409,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 37.77,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0087,
+   "dps": 0.33,
+   "z": -0.67,
+   "excess_12m": -0.0057,
+   "log_shift": -0.00572,
+   "in_band": true
+  },
+  "ENOV": {
+   "cap": 1611415932.0,
+   "cw": -0.0185,
+   "iv_c50": 0.6654,
+   "iv_p50": 0.6839,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 27.92,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.467,
+   "excess_12m": -0.00397,
+   "log_shift": -0.00398,
+   "in_band": true
+  },
+  "ENPH": {
+   "cap": 3301241211.0,
+   "cw": 0.05091,
+   "iv_c50": 0.7727,
+   "iv_p50": 0.7218,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 23.06,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.586,
+   "excess_12m": 0.00498,
+   "log_shift": 0.00496,
+   "in_band": true
+  },
+  "ENR": {
+   "cap": 1669631070.0,
+   "cw": -0.2447,
+   "iv_c50": 0.4716,
+   "iv_p50": 0.7163,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 24.34,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.04812,
+   "dps": 1.2,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "ENS": {
+   "cap": 4938370383.0,
+   "cw": -0.01141,
+   "iv_c50": 0.4724,
+   "iv_p50": 0.4838,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 136.9,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00784,
+   "dps": 1.077,
+   "z": -0.36,
+   "excess_12m": -0.00306,
+   "log_shift": -0.00306,
+   "in_band": true
+  },
+  "ENVA": {
+   "cap": 4060617549.0,
+   "cw": -0.00213,
+   "iv_c50": 0.41,
+   "iv_p50": 0.4121,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 165.94,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.219,
+   "excess_12m": -0.00186,
+   "log_shift": -0.00186,
+   "in_band": true
+  },
+  "EQPT": {
+   "cap": 3681770926.0,
+   "cw": 0.08484,
+   "iv_c50": 0.9255,
+   "iv_p50": 0.8407,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 14.51,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.1,
+   "excess_12m": 0.00935,
+   "log_shift": 0.00931,
+   "in_band": true
+  },
+  "ESAB": {
+   "cap": 4924357178.0,
+   "cw": 0.00995,
+   "iv_c50": 0.4818,
+   "iv_p50": 0.4718,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 78.96,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00556,
+   "dps": 0.44,
+   "z": -0.036,
+   "excess_12m": -0.0003,
+   "log_shift": -0.0003,
+   "in_band": true
+  },
+  "EWTX": {
+   "cap": 4782207088.0,
+   "cw": 0.09671,
+   "iv_c50": 0.7059,
+   "iv_p50": 0.6092,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 43.68,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.28,
+   "excess_12m": 0.01088,
+   "log_shift": 0.01082,
+   "in_band": true
+  },
+  "EXTR": {
+   "cap": 3425394295.0,
+   "cw": -0.09633,
+   "iv_c50": 0.468,
+   "iv_p50": 0.5644,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 26.11,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.648,
+   "excess_12m": -0.01401,
+   "log_shift": -0.0141,
+   "in_band": true
+  },
+  "EYE": {
+   "cap": 1462977810.0,
+   "cw": 0.10235,
+   "iv_c50": 0.6452,
+   "iv_p50": 0.5429,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 18.74,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.366,
+   "excess_12m": 0.01161,
+   "log_shift": 0.01154,
+   "in_band": true
+  },
+  "FIGS": {
+   "cap": 3539224087.0,
+   "cw": 0.08453,
+   "iv_c50": 0.7101,
+   "iv_p50": 0.6256,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 21.34,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.095,
+   "excess_12m": 0.00931,
+   "log_shift": 0.00927,
+   "in_band": true
+  },
+  "FIVN": {
+   "cap": 2027839126.0,
+   "cw": 0.00246,
+   "iv_c50": 0.6387,
+   "iv_p50": 0.6362,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 26.93,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.149,
+   "excess_12m": -0.00127,
+   "log_shift": -0.00127,
+   "in_band": true
+  },
+  "FLG": {
+   "cap": 4143543372.0,
+   "cw": 0.00165,
+   "iv_c50": 0.3304,
+   "iv_p50": 0.3287,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 10.29,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00388,
+   "dps": 0.04,
+   "z": -0.162,
+   "excess_12m": -0.00137,
+   "log_shift": -0.00137,
+   "in_band": true
+  },
+  "FLY": {
+   "cap": 3861071306.0,
+   "cw": 0.04161,
+   "iv_c50": 0.9772,
+   "iv_p50": 0.9356,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 21.45,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.444,
+   "excess_12m": 0.00378,
+   "log_shift": 0.00377,
+   "in_band": true
+  },
+  "FLYW": {
+   "cap": 2715548980.0,
+   "cw": -0.03974,
+   "iv_c50": 0.4522,
+   "iv_p50": 0.4919,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 22.16,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.789,
+   "excess_12m": -0.00671,
+   "log_shift": -0.00673,
+   "in_band": true
+  },
+  "FND": {
+   "cap": 4982916457.0,
+   "cw": 0.01368,
+   "iv_c50": 0.4732,
+   "iv_p50": 0.4595,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 46.37,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.021,
+   "excess_12m": 0.00018,
+   "log_shift": 0.00018,
+   "in_band": true
+  },
+  "FOUR": {
+   "cap": 3185117620.0,
+   "cw": 0.02113,
+   "iv_c50": 0.654,
+   "iv_p50": 0.6328,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 41.41,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.134,
+   "excess_12m": 0.00114,
+   "log_shift": 0.00114,
+   "in_band": true
+  },
+  "FRPT": {
+   "cap": 3216453505.0,
+   "cw": -0.07024,
+   "iv_c50": 0.4423,
+   "iv_p50": 0.5125,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 66.54,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.252,
+   "excess_12m": -0.01064,
+   "log_shift": -0.0107,
+   "in_band": true
+  },
+  "FRSH": {
+   "cap": 3470598223.0,
+   "cw": 0.0314,
+   "iv_c50": 0.5513,
+   "iv_p50": 0.5199,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 12.95,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.29,
+   "excess_12m": 0.00246,
+   "log_shift": 0.00246,
+   "in_band": true
+  },
+  "FRVO": {
+   "cap": 3239328944.0,
+   "cw": 0.02247,
+   "iv_c50": 1.0512,
+   "iv_p50": 1.0287,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 11.38,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.154,
+   "excess_12m": 0.00131,
+   "log_shift": 0.00131,
+   "in_band": true
+  },
+  "FSLY": {
+   "cap": 2556632000.0,
+   "cw": -0.01785,
+   "iv_c50": 0.8579,
+   "iv_p50": 0.8757,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 15.9,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.457,
+   "excess_12m": -0.00389,
+   "log_shift": -0.0039,
+   "in_band": true
+  },
+  "FUN": {
+   "cap": 1189863218.0,
+   "cw": 0.06493,
+   "iv_c50": 0.767,
+   "iv_p50": 0.702,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 11.01,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.798,
+   "excess_12m": 0.00678,
+   "log_shift": 0.00676,
+   "in_band": true
+  },
+  "GBX": {
+   "cap": 1249863512.0,
+   "cw": 0.05397,
+   "iv_c50": 0.3879,
+   "iv_p50": 0.334,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 38.57,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.03415,
+   "dps": 1.34,
+   "z": 0.632,
+   "excess_12m": 0.00537,
+   "log_shift": 0.00536,
+   "in_band": true
+  },
+  "GCT": {
+   "cap": 2285281140.0,
+   "cw": -0.0267,
+   "iv_c50": 0.5201,
+   "iv_p50": 0.5468,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 64.15,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.592,
+   "excess_12m": -0.00503,
+   "log_shift": -0.00504,
+   "in_band": true
+  },
+  "GEF": {
+   "cap": 3211006726.0,
+   "cw": 0.04062,
+   "iv_c50": 0.3933,
+   "iv_p50": 0.3527,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 67.56,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.03434,
+   "dps": 2.36,
+   "z": 0.429,
+   "excess_12m": 0.00365,
+   "log_shift": 0.00364,
+   "in_band": true
+  },
+  "GENB": {
+   "cap": 1354224026.0,
+   "cw": -0.01775,
+   "iv_c50": 0.8244,
+   "iv_p50": 0.8421,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 10.49,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.456,
+   "excess_12m": -0.00387,
+   "log_shift": -0.00388,
+   "in_band": true
+  },
+  "GEO": {
+   "cap": 4324515747.0,
+   "cw": -0.04929,
+   "iv_c50": 0.4678,
+   "iv_p50": 0.517,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 32.75,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.934,
+   "excess_12m": -0.00794,
+   "log_shift": -0.00797,
+   "in_band": true
+  },
+  "GFF": {
+   "cap": 4530377494.0,
+   "cw": -0.08044,
+   "iv_c50": 0.3225,
+   "iv_p50": 0.403,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 104.75,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00837,
+   "dps": 0.88,
+   "z": -1.407,
+   "excess_12m": -0.01196,
+   "log_shift": -0.01203,
+   "in_band": true
+  },
+  "GLOB": {
+   "cap": 1934444109.0,
+   "cw": -0.02833,
+   "iv_c50": 0.7755,
+   "iv_p50": 0.8038,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 43.005,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.616,
+   "excess_12m": -0.00524,
+   "log_shift": -0.00525,
+   "in_band": true
+  },
+  "GOLD": {
+   "cap": 1027213335.0,
+   "cw": -0.00944,
+   "iv_c50": 0.4677,
+   "iv_p50": 0.4772,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 36.14,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.04861,
+   "dps": 1.8,
+   "z": -0.33,
+   "excess_12m": -0.0028,
+   "log_shift": -0.00281,
+   "in_band": true
+  },
+  "GOLF": {
+   "cap": 4717677217.0,
+   "cw": 0.00789,
+   "iv_c50": 0.3741,
+   "iv_p50": 0.3662,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 82.64,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01203,
+   "dps": 1.0,
+   "z": -0.067,
+   "excess_12m": -0.00057,
+   "log_shift": -0.00057,
+   "in_band": true
+  },
+  "GPI": {
+   "cap": 3111556896.0,
+   "cw": 0.00472,
+   "iv_c50": 0.447,
+   "iv_p50": 0.4423,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 258.44,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00828,
+   "dps": 2.15,
+   "z": -0.115,
+   "excess_12m": -0.00098,
+   "log_shift": -0.00098,
+   "in_band": true
+  },
+  "GPOR": {
+   "cap": 2861667459.0,
+   "cw": -0.02035,
+   "iv_c50": 0.2843,
+   "iv_p50": 0.3046,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 162.24,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.495,
+   "excess_12m": -0.00421,
+   "log_shift": -0.00422,
+   "in_band": true
+  },
+  "GRAL": {
+   "cap": 4748005258.0,
+   "cw": -0.02163,
+   "iv_c50": 0.8262,
+   "iv_p50": 0.8478,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 105.6,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.515,
+   "excess_12m": -0.00438,
+   "log_shift": -0.00438,
+   "in_band": true
+  },
+  "HAPN": {
+   "cap": 1773543088.0,
+   "cw": -0.0052,
+   "iv_c50": 0.4542,
+   "iv_p50": 0.4594,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 14.88,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.266,
+   "excess_12m": -0.00226,
+   "log_shift": -0.00226,
+   "in_band": true
+  },
+  "HAWK": {
+   "cap": 1838363778.0,
+   "cw": -0.02367,
+   "iv_c50": 0.7895,
+   "iv_p50": 0.8132,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 18.45,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.546,
+   "excess_12m": -0.00464,
+   "log_shift": -0.00465,
+   "in_band": true
+  },
+  "HAYW": {
+   "cap": 3376962073.0,
+   "cw": 0.01477,
+   "iv_c50": 0.3847,
+   "iv_p50": 0.3699,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 15.95,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.037,
+   "excess_12m": 0.00032,
+   "log_shift": 0.00032,
+   "in_band": true
+  },
+  "HCC": {
+   "cap": 4225751023.0,
+   "cw": 0.06736,
+   "iv_c50": 0.515,
+   "iv_p50": 0.4477,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 79.59,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02873,
+   "dps": 2.32,
+   "z": 0.835,
+   "excess_12m": 0.0071,
+   "log_shift": 0.00707,
+   "in_band": true
+  },
+  "HCI": {
+   "cap": 2403161598.0,
+   "cw": 0.00936,
+   "iv_c50": 0.305,
+   "iv_p50": 0.2956,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 192.0,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0083,
+   "dps": 1.6,
+   "z": -0.045,
+   "excess_12m": -0.00038,
+   "log_shift": -0.00038,
+   "in_band": true
+  },
+  "HE": {
+   "cap": 1477688074.0,
+   "cw": 0.00641,
+   "iv_c50": 0.3856,
+   "iv_p50": 0.3792,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 8.36,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.089,
+   "excess_12m": -0.00076,
+   "log_shift": -0.00076,
+   "in_band": true
+  },
+  "HGV": {
+   "cap": 3412781032.0,
+   "cw": -0.02277,
+   "iv_c50": 0.3807,
+   "iv_p50": 0.4034,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 45.42,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.532,
+   "excess_12m": -0.00452,
+   "log_shift": -0.00453,
+   "in_band": true
+  },
+  "HHH": {
+   "cap": 4957025741.0,
+   "cw": 0.07264,
+   "iv_c50": 0.3878,
+   "iv_p50": 0.3151,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 80.66,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.915,
+   "excess_12m": 0.00778,
+   "log_shift": 0.00775,
+   "in_band": true
+  },
+  "HIMS": {
+   "cap": 4348350428.0,
+   "cw": 0.02736,
+   "iv_c50": 0.7775,
+   "iv_p50": 0.7501,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 17.55,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.228,
+   "excess_12m": 0.00194,
+   "log_shift": 0.00194,
+   "in_band": true
+  },
+  "HLIT": {
+   "cap": 1091694936.0,
+   "cw": -0.12079,
+   "iv_c50": 0.5388,
+   "iv_p50": 0.6596,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 10.25,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "HOG": {
+   "cap": 3355975791.0,
+   "cw": 0.00261,
+   "iv_c50": 0.45,
+   "iv_p50": 0.4474,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 33.27,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02212,
+   "dps": 0.744,
+   "z": -0.147,
+   "excess_12m": -0.00125,
+   "log_shift": -0.00125,
+   "in_band": true
+  },
+  "HROW": {
+   "cap": 1091839624.0,
+   "cw": -0.20549,
+   "iv_c50": 0.6201,
+   "iv_p50": 0.8256,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 29.52,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "HTFL": {
+   "cap": 4118411108.0,
+   "cw": 0.04992,
+   "iv_c50": 0.767,
+   "iv_p50": 0.7171,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 47.07,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.57,
+   "excess_12m": 0.00485,
+   "log_shift": 0.00484,
+   "in_band": true
+  },
+  "HTGC": {
+   "cap": 2989184513.0,
+   "cw": -0.20179,
+   "iv_c50": 0.3428,
+   "iv_p50": 0.5445,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 15.63,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.11358,
+   "dps": 1.88,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "HUBG": {
+   "cap": 1519053188.0,
+   "cw": 0.05236,
+   "iv_c50": 0.7312,
+   "iv_p50": 0.6788,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 24.48,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02022,
+   "dps": 0.5,
+   "z": 0.607,
+   "excess_12m": 0.00516,
+   "log_shift": 0.00515,
+   "in_band": true
+  },
+  "HURN": {
+   "cap": 2731174403.0,
+   "cw": 0.01822,
+   "iv_c50": 0.4284,
+   "iv_p50": 0.4102,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 170.33,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.09,
+   "excess_12m": 0.00076,
+   "log_shift": 0.00076,
+   "in_band": true
+  },
+  "IBTA": {
+   "cap": 1350179382.0,
+   "cw": -0.00392,
+   "iv_c50": 0.5488,
+   "iv_p50": 0.5527,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 56.87,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.246,
+   "excess_12m": -0.00209,
+   "log_shift": -0.00209,
+   "in_band": true
+  },
+  "ICHR": {
+   "cap": 1264442697.0,
+   "cw": -0.06761,
+   "iv_c50": 0.9047,
+   "iv_p50": 0.9724,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 33.64,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.212,
+   "excess_12m": -0.0103,
+   "log_shift": -0.01036,
+   "in_band": true
+  },
+  "ICUI": {
+   "cap": 4548586705.0,
+   "cw": 0.0335,
+   "iv_c50": 0.3986,
+   "iv_p50": 0.3651,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 176.91,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.321,
+   "excess_12m": 0.00273,
+   "log_shift": 0.00273,
+   "in_band": true
+  },
+  "IIPR": {
+   "cap": 1441542467.0,
+   "cw": 0.05186,
+   "iv_c50": 0.4573,
+   "iv_p50": 0.4054,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 50.5,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.14019,
+   "dps": 7.6,
+   "z": 0.6,
+   "excess_12m": 0.0051,
+   "log_shift": 0.00509,
+   "in_band": true
+  },
+  "INFQ": {
+   "cap": 1782574281.0,
+   "cw": -0.02231,
+   "iv_c50": 0.9336,
+   "iv_p50": 0.9559,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 7.54,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.525,
+   "excess_12m": -0.00446,
+   "log_shift": -0.00447,
+   "in_band": true
+  },
+  "INOD": {
+   "cap": 1121509632.0,
+   "cw": -0.09677,
+   "iv_c50": 0.8684,
+   "iv_p50": 0.9652,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 32.41,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.654,
+   "excess_12m": -0.01406,
+   "log_shift": -0.01416,
+   "in_band": true
+  },
+  "INTA": {
+   "cap": 3524430314.0,
+   "cw": 0.00957,
+   "iv_c50": 0.5885,
+   "iv_p50": 0.5789,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 45.03,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.041,
+   "excess_12m": -0.00035,
+   "log_shift": -0.00035,
+   "in_band": true
+  },
+  "IOND": {
+   "cap": 2792012659.0,
+   "cw": 0.00671,
+   "iv_c50": 0.7975,
+   "iv_p50": 0.7908,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 60.66,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.085,
+   "excess_12m": -0.00072,
+   "log_shift": -0.00072,
+   "in_band": true
+  },
+  "IONS": {
+   "cap": 4664928251.0,
+   "cw": -0.04178,
+   "iv_c50": 0.5982,
+   "iv_p50": 0.6399,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 26.96,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.82,
+   "excess_12m": -0.00697,
+   "log_shift": -0.007,
+   "in_band": true
+  },
+  "IPGP": {
+   "cap": 2669936273.0,
+   "cw": -0.03652,
+   "iv_c50": 0.5792,
+   "iv_p50": 0.6158,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 63.88,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.741,
+   "excess_12m": -0.00629,
+   "log_shift": -0.00631,
+   "in_band": true
+  },
+  "IRON": {
+   "cap": 3487973089.0,
+   "cw": 0.08762,
+   "iv_c50": 0.5728,
+   "iv_p50": 0.4852,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 76.59,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.142,
+   "excess_12m": 0.00971,
+   "log_shift": 0.00966,
+   "in_band": true
+  },
+  "IRTC": {
+   "cap": 3053536201.0,
+   "cw": 0.01734,
+   "iv_c50": 0.5604,
+   "iv_p50": 0.543,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 89.665,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.076,
+   "excess_12m": 0.00065,
+   "log_shift": 0.00065,
+   "in_band": true
+  },
+  "ITRI": {
+   "cap": 4193495617.0,
+   "cw": 0.00806,
+   "iv_c50": 0.376,
+   "iv_p50": 0.3679,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 95.61,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.064,
+   "excess_12m": -0.00055,
+   "log_shift": -0.00055,
+   "in_band": true
+  },
+  "KAI": {
+   "cap": 3406170114.0,
+   "cw": 0.01398,
+   "iv_c50": 0.374,
+   "iv_p50": 0.36,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 287.94,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00492,
+   "dps": 1.42,
+   "z": 0.025,
+   "excess_12m": 0.00022,
+   "log_shift": 0.00022,
+   "in_band": true
+  },
+  "KALU": {
+   "cap": 1694502185.0,
+   "cw": 0.04208,
+   "iv_c50": 0.5088,
+   "iv_p50": 0.4668,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 103.64,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.02929,
+   "dps": 3.08,
+   "z": 0.452,
+   "excess_12m": 0.00384,
+   "log_shift": 0.00383,
+   "in_band": true
+  },
+  "KBH": {
+   "cap": 2880153686.0,
+   "cw": 0.10403,
+   "iv_c50": 0.476,
+   "iv_p50": 0.372,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 46.33,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02135,
+   "dps": 1.0,
+   "z": 1.391,
+   "excess_12m": 0.01182,
+   "log_shift": 0.01176,
+   "in_band": true
+  },
+  "KBR": {
+   "cap": 4457952690.0,
+   "cw": 0.04013,
+   "iv_c50": 0.4304,
+   "iv_p50": 0.3902,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 34.63,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01888,
+   "dps": 0.66,
+   "z": 0.422,
+   "excess_12m": 0.00359,
+   "log_shift": 0.00358,
+   "in_band": true
+  },
+  "KGS": {
+   "cap": 4325776858.0,
+   "cw": 0.0236,
+   "iv_c50": 0.5805,
+   "iv_p50": 0.5569,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 42.67,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.04536,
+   "dps": 1.98,
+   "z": 0.171,
+   "excess_12m": 0.00146,
+   "log_shift": 0.00145,
+   "in_band": true
+  },
+  "KMT": {
+   "cap": 1793026237.0,
+   "cw": 0.11231,
+   "iv_c50": 0.5912,
+   "iv_p50": 0.4789,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 23.26,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.03382,
+   "dps": 0.8,
+   "z": 1.517,
+   "excess_12m": 0.01289,
+   "log_shift": 0.01281,
+   "in_band": true
+  },
+  "KWR": {
+   "cap": 2611458876.0,
+   "cw": 0.03259,
+   "iv_c50": 0.3395,
+   "iv_p50": 0.307,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 151.08,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0135,
+   "dps": 2.054,
+   "z": 0.308,
+   "excess_12m": 0.00261,
+   "log_shift": 0.00261,
+   "in_band": true
+  },
+  "LBRT": {
+   "cap": 1999910803.0,
+   "cw": -0.10487,
+   "iv_c50": 0.699,
+   "iv_p50": 0.8039,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 12.26,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02894,
+   "dps": 0.36,
+   "z": -1.777,
+   "excess_12m": -0.01511,
+   "log_shift": -0.01522,
+   "in_band": true
+  },
+  "LEU": {
+   "cap": 2010711244.0,
+   "cw": 0.01996,
+   "iv_c50": 0.8812,
+   "iv_p50": 0.8613,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 94.19,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.116,
+   "excess_12m": 0.00099,
+   "log_shift": 0.00099,
+   "in_band": true
+  },
+  "LFTO": {
+   "cap": 4144606722.0,
+   "cw": -0.05363,
+   "iv_c50": 0.8139,
+   "iv_p50": 0.8676,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 24.46,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.0,
+   "excess_12m": -0.0085,
+   "log_shift": -0.00854,
+   "in_band": true
+  },
+  "LGN": {
+   "cap": 3709470531.0,
+   "cw": 0.06675,
+   "iv_c50": 0.9416,
+   "iv_p50": 0.8749,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 34.18,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.826,
+   "excess_12m": 0.00702,
+   "log_shift": 0.00699,
+   "in_band": true
+  },
+  "LIF": {
+   "cap": 3591511208.0,
+   "cw": -0.0035,
+   "iv_c50": 0.6107,
+   "iv_p50": 0.6142,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 43.93,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.24,
+   "excess_12m": -0.00204,
+   "log_shift": -0.00204,
+   "in_band": true
+  },
+  "LIFE": {
+   "cap": 2209866614.0,
+   "cw": -0.05008,
+   "iv_c50": 0.6122,
+   "iv_p50": 0.6623,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 33.99,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.946,
+   "excess_12m": -0.00804,
+   "log_shift": -0.00808,
+   "in_band": true
+  },
+  "LKQ": {
+   "cap": 4863710944.0,
+   "cw": 0.04117,
+   "iv_c50": 0.4428,
+   "iv_p50": 0.4016,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 18.815,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.06183,
+   "dps": 1.2,
+   "z": 0.438,
+   "excess_12m": 0.00372,
+   "log_shift": 0.00371,
+   "in_band": true
+  },
+  "LMAT": {
+   "cap": 1762055876.0,
+   "cw": -0.04941,
+   "iv_c50": 0.3206,
+   "iv_p50": 0.37,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 77.01,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01226,
+   "dps": 0.95,
+   "z": -0.936,
+   "excess_12m": -0.00796,
+   "log_shift": -0.00799,
+   "in_band": true
+  },
+  "LMND": {
+   "cap": 3465935599.0,
+   "cw": 0.02323,
+   "iv_c50": 0.6802,
+   "iv_p50": 0.6569,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 40.64,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.166,
+   "excess_12m": 0.00141,
+   "log_shift": 0.00141,
+   "in_band": true
+  },
+  "LOPE": {
+   "cap": 3043659783.0,
+   "cw": 0.01433,
+   "iv_c50": 0.393,
+   "iv_p50": 0.3787,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 115.23,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.031,
+   "excess_12m": 0.00026,
+   "log_shift": 0.00026,
+   "in_band": true
+  },
+  "LUNR": {
+   "cap": 2726423501.0,
+   "cw": 0.02908,
+   "iv_c50": 0.9792,
+   "iv_p50": 0.9502,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 11.045,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.254,
+   "excess_12m": 0.00216,
+   "log_shift": 0.00216,
+   "in_band": true
+  },
+  "LZB": {
+   "cap": 1282489727.0,
+   "cw": 0.01276,
+   "iv_c50": 0.4721,
+   "iv_p50": 0.4594,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 31.085,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.03067,
+   "dps": 0.968,
+   "z": 0.007,
+   "excess_12m": 6e-05,
+   "log_shift": 6e-05,
+   "in_band": true
+  },
+  "MAT": {
+   "cap": 4348165000.0,
+   "cw": 0.22127,
+   "iv_c50": 0.6351,
+   "iv_p50": 0.4138,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 14.75,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "MBX": {
+   "cap": 2637740797.0,
+   "cw": 0.13807,
+   "iv_c50": 1.4661,
+   "iv_p50": 1.328,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 53.12,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.907,
+   "excess_12m": 0.01621,
+   "log_shift": 0.01608,
+   "in_band": true
+  },
+  "MCB": {
+   "cap": 1181671670.0,
+   "cw": -0.04642,
+   "iv_c50": 0.2669,
+   "iv_p50": 0.3134,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 96.82,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01232,
+   "dps": 1.2,
+   "z": -0.891,
+   "excess_12m": -0.00757,
+   "log_shift": -0.0076,
+   "in_band": true
+  },
+  "MCY": {
+   "cap": 4739050926.0,
+   "cw": 0.03083,
+   "iv_c50": 0.3371,
+   "iv_p50": 0.3063,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 85.63,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01475,
+   "dps": 1.272,
+   "z": 0.281,
+   "excess_12m": 0.00239,
+   "log_shift": 0.00239,
+   "in_band": true
+  },
+  "MDU": {
+   "cap": 4147581701.0,
+   "cw": 0.16099,
+   "iv_c50": 0.3813,
+   "iv_p50": 0.2203,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 19.43,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.02866,
+   "dps": 0.565,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "MGNI": {
+   "cap": 4133077084.0,
+   "cw": 0.00409,
+   "iv_c50": 0.4705,
+   "iv_p50": 0.4664,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 28.79,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.125,
+   "excess_12m": -0.00106,
+   "log_shift": -0.00106,
+   "in_band": true
+  },
+  "MHO": {
+   "cap": 3157439478.0,
+   "cw": -0.00296,
+   "iv_c50": 0.3775,
+   "iv_p50": 0.3805,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 126.1,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.232,
+   "excess_12m": -0.00197,
+   "log_shift": -0.00197,
+   "in_band": true
+  },
+  "MIAX": {
+   "cap": 3763138730.0,
+   "cw": 0.0189,
+   "iv_c50": 0.4863,
+   "iv_p50": 0.4674,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 37.58,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.1,
+   "excess_12m": 0.00085,
+   "log_shift": 0.00085,
+   "in_band": true
+  },
+  "MLYS": {
+   "cap": 1286734619.0,
+   "cw": 0.05512,
+   "iv_c50": 1.3237,
+   "iv_p50": 1.2686,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 14.6,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.649,
+   "excess_12m": 0.00552,
+   "log_shift": 0.0055,
+   "in_band": true
+  },
+  "MQ": {
+   "cap": 1855099764.0,
+   "cw": 0.12679,
+   "iv_c50": 0.4456,
+   "iv_p50": 0.3188,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 17.87,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.736,
+   "excess_12m": 0.01476,
+   "log_shift": 0.01465,
+   "in_band": true
+  },
+  "MSGE": {
+   "cap": 3787925962.0,
+   "cw": -0.06395,
+   "iv_c50": 0.3151,
+   "iv_p50": 0.379,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 79.91,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.157,
+   "excess_12m": -0.00983,
+   "log_shift": -0.00988,
+   "in_band": true
+  },
+  "MTRN": {
+   "cap": 4131842602.0,
+   "cw": -0.02744,
+   "iv_c50": 0.5215,
+   "iv_p50": 0.5489,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 197.8,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00217,
+   "dps": 0.43,
+   "z": -0.603,
+   "excess_12m": -0.00512,
+   "log_shift": -0.00514,
+   "in_band": true
+  },
+  "MXL": {
+   "cap": 4729270416.0,
+   "cw": 0.00433,
+   "iv_c50": 1.0906,
+   "iv_p50": 1.0863,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 50.63,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.121,
+   "excess_12m": -0.00103,
+   "log_shift": -0.00103,
+   "in_band": true
+  },
+  "MYRG": {
+   "cap": 4170426643.0,
+   "cw": 0.05235,
+   "iv_c50": 0.589,
+   "iv_p50": 0.5367,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 267.85,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.607,
+   "excess_12m": 0.00516,
+   "log_shift": 0.00515,
+   "in_band": true
+  },
+  "NCNO": {
+   "cap": 2408670044.0,
+   "cw": -0.0049,
+   "iv_c50": 0.6953,
+   "iv_p50": 0.7002,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 22.78,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.261,
+   "excess_12m": -0.00222,
+   "log_shift": -0.00222,
+   "in_band": true
+  },
+  "NIC": {
+   "cap": 3568649181.0,
+   "cw": -0.02819,
+   "iv_c50": 0.2255,
+   "iv_p50": 0.2537,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 171.74,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00789,
+   "dps": 1.36,
+   "z": -0.614,
+   "excess_12m": -0.00522,
+   "log_shift": -0.00523,
+   "in_band": true
+  },
+  "NKTR": {
+   "cap": 1246783049.0,
+   "cw": 0.06542,
+   "iv_c50": 0.8565,
+   "iv_p50": 0.791,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 36.44,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.806,
+   "excess_12m": 0.00685,
+   "log_shift": 0.00682,
+   "in_band": true
+  },
+  "NMAX": {
+   "cap": 1140840583.0,
+   "cw": -0.0732,
+   "iv_c50": 0.6945,
+   "iv_p50": 0.7677,
+   "expiries": [
+    "2026-12-11"
+   ],
+   "spot": 8.84,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.297,
+   "excess_12m": -0.01102,
+   "log_shift": -0.01108,
+   "in_band": true
+  },
+  "NN": {
+   "cap": 1514533125.0,
+   "cw": 0.02951,
+   "iv_c50": 1.3587,
+   "iv_p50": 1.3292,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 8.91,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.261,
+   "excess_12m": 0.00222,
+   "log_shift": 0.00222,
+   "in_band": true
+  },
+  "NOG": {
+   "cap": 2562712482.0,
+   "cw": 0.08407,
+   "iv_c50": 0.5163,
+   "iv_p50": 0.4323,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 24.2,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.07174,
+   "dps": 1.8,
+   "z": 1.088,
+   "excess_12m": 0.00925,
+   "log_shift": 0.00921,
+   "in_band": true
+  },
+  "NOVT": {
+   "cap": 4326820670.0,
+   "cw": -0.00676,
+   "iv_c50": 0.5434,
+   "iv_p50": 0.5502,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 115.33,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.289,
+   "excess_12m": -0.00246,
+   "log_shift": -0.00246,
+   "in_band": true
+  },
+  "NTLA": {
+   "cap": 1383934928.0,
+   "cw": 0.06662,
+   "iv_c50": 0.9364,
+   "iv_p50": 0.8697,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 9.78,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.824,
+   "excess_12m": 0.007,
+   "log_shift": 0.00698,
+   "in_band": true
+  },
+  "NVAX": {
+   "cap": 1329972613.0,
+   "cw": 0.15114,
+   "iv_c50": 0.8782,
+   "iv_p50": 0.727,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 7.96,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "NVTS": {
+   "cap": 2123719321.0,
+   "cw": -0.05416,
+   "iv_c50": 0.9694,
+   "iv_p50": 1.0236,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 7.6,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.008,
+   "excess_12m": -0.00857,
+   "log_shift": -0.00861,
+   "in_band": true
+  },
+  "NWL": {
+   "cap": 2492100000.0,
+   "cw": -0.08651,
+   "iv_c50": 0.5194,
+   "iv_p50": 0.6059,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 5.81,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.04707,
+   "dps": 0.28,
+   "z": -1.499,
+   "excess_12m": -0.01274,
+   "log_shift": -0.01282,
+   "in_band": true
+  },
+  "OII": {
+   "cap": 3401452645.0,
+   "cw": 0.04852,
+   "iv_c50": 0.5379,
+   "iv_p50": 0.4894,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 34.33,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.549,
+   "excess_12m": 0.00467,
+   "log_shift": 0.00466,
+   "in_band": true
+  },
+  "OKLO": {
+   "cap": 4499472223.0,
+   "cw": 0.01216,
+   "iv_c50": 0.8936,
+   "iv_p50": 0.8814,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 22.37,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.002,
+   "excess_12m": -2e-05,
+   "log_shift": -2e-05,
+   "in_band": true
+  },
+  "OLED": {
+   "cap": 3961645042.0,
+   "cw": 0.03236,
+   "iv_c50": 0.5057,
+   "iv_p50": 0.4734,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 85.02,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02268,
+   "dps": 1.95,
+   "z": 0.304,
+   "excess_12m": 0.00259,
+   "log_shift": 0.00258,
+   "in_band": true
+  },
+  "OMER": {
+   "cap": 1242052364.0,
+   "cw": 0.12506,
+   "iv_c50": 1.0407,
+   "iv_p50": 0.9156,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 16.68,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.71,
+   "excess_12m": 0.01454,
+   "log_shift": 0.01443,
+   "in_band": true
+  },
+  "OSIS": {
+   "cap": 2961769056.0,
+   "cw": 0.00011,
+   "iv_c50": 0.3508,
+   "iv_p50": 0.3507,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 188.31,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.185,
+   "excess_12m": -0.00157,
+   "log_shift": -0.00157,
+   "in_band": true
+  },
+  "OUST": {
+   "cap": 2279701588.0,
+   "cw": 0.02176,
+   "iv_c50": 0.934,
+   "iv_p50": 0.9122,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 30.425,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.143,
+   "excess_12m": 0.00122,
+   "log_shift": 0.00122,
+   "in_band": true
+  },
+  "PARR": {
+   "cap": 3610048191.0,
+   "cw": -0.04716,
+   "iv_c50": 0.5665,
+   "iv_p50": 0.6136,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 70.36,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.902,
+   "excess_12m": -0.00767,
+   "log_shift": -0.0077,
+   "in_band": true
+  },
+  "PBI": {
+   "cap": 2085506613.0,
+   "cw": 0.06865,
+   "iv_c50": 0.4098,
+   "iv_p50": 0.3411,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 15.1,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0255,
+   "dps": 0.39,
+   "z": 0.855,
+   "excess_12m": 0.00726,
+   "log_shift": 0.00724,
+   "in_band": true
+  },
+  "PDFS": {
+   "cap": 1485137694.0,
+   "cw": 0.02794,
+   "iv_c50": 0.9047,
+   "iv_p50": 0.8767,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 35.18,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.237,
+   "excess_12m": 0.00202,
+   "log_shift": 0.00201,
+   "in_band": true
+  },
+  "PEB": {
+   "cap": 2442749508.0,
+   "cw": 0.00477,
+   "iv_c50": 0.3392,
+   "iv_p50": 0.3344,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 21.72,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00184,
+   "dps": 0.04,
+   "z": -0.114,
+   "excess_12m": -0.00097,
+   "log_shift": -0.00097,
+   "in_band": true
+  },
+  "PENG": {
+   "cap": 2680467865.0,
+   "cw": -0.03969,
+   "iv_c50": 0.9709,
+   "iv_p50": 1.0106,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 43.83,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.789,
+   "excess_12m": -0.0067,
+   "log_shift": -0.00673,
+   "in_band": true
+  },
+  "PENN": {
+   "cap": 2387032457.0,
+   "cw": -0.09012,
+   "iv_c50": 0.447,
+   "iv_p50": 0.5371,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 18.13,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.553,
+   "excess_12m": -0.0132,
+   "log_shift": -0.01329,
+   "in_band": true
+  },
+  "PFSI": {
+   "cap": 3169707734.0,
+   "cw": 0.00982,
+   "iv_c50": 0.3861,
+   "iv_p50": 0.3763,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 60.81,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01954,
+   "dps": 1.2,
+   "z": -0.038,
+   "excess_12m": -0.00032,
+   "log_shift": -0.00032,
+   "in_band": true
+  },
+  "PGY": {
+   "cap": 1346123450.0,
+   "cw": 0.02377,
+   "iv_c50": 0.73,
+   "iv_p50": 0.7063,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 15.42,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.174,
+   "excess_12m": 0.00148,
+   "log_shift": 0.00148,
+   "in_band": true
+  },
+  "PHIN": {
+   "cap": 2649868967.0,
+   "cw": 0.00036,
+   "iv_c50": 0.3773,
+   "iv_p50": 0.3769,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 72.72,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01596,
+   "dps": 1.17,
+   "z": -0.181,
+   "excess_12m": -0.00154,
+   "log_shift": -0.00154,
+   "in_band": true
+  },
+  "PII": {
+   "cap": 3695918407.0,
+   "cw": -0.08267,
+   "iv_c50": 0.4574,
+   "iv_p50": 0.54,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 64.92,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0409,
+   "dps": 2.71,
+   "z": -1.441,
+   "excess_12m": -0.01224,
+   "log_shift": -0.01232,
+   "in_band": true
+  },
+  "PIPR": {
+   "cap": 4625389908.0,
+   "cw": 0.04998,
+   "iv_c50": 0.4585,
+   "iv_p50": 0.4085,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 65.03,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.03029,
+   "dps": 2.0,
+   "z": 0.571,
+   "excess_12m": 0.00486,
+   "log_shift": 0.00485,
+   "in_band": true
+  },
+  "PJT": {
+   "cap": 3782253116.0,
+   "cw": 0.00576,
+   "iv_c50": 0.3854,
+   "iv_p50": 0.3797,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 147.52,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00676,
+   "dps": 1.0,
+   "z": -0.099,
+   "excess_12m": -0.00084,
+   "log_shift": -0.00084,
+   "in_band": true
+  },
+  "PK": {
+   "cap": 3304042793.0,
+   "cw": -0.04494,
+   "iv_c50": 0.3392,
+   "iv_p50": 0.3841,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 16.26,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.05968,
+   "dps": 1.0,
+   "z": -0.868,
+   "excess_12m": -0.00738,
+   "log_shift": -0.00741,
+   "in_band": true
+  },
+  "PL": {
+   "cap": 4629965660.0,
+   "cw": 0.01529,
+   "iv_c50": 1.0385,
+   "iv_p50": 1.0233,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 12.49,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.045,
+   "excess_12m": 0.00038,
+   "log_shift": 0.00038,
+   "in_band": true
+  },
+  "PLAB": {
+   "cap": 1551625492.0,
+   "cw": -0.03614,
+   "iv_c50": 0.8025,
+   "iv_p50": 0.8386,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 26.19,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.735,
+   "excess_12m": -0.00625,
+   "log_shift": -0.00627,
+   "in_band": true
+  },
+  "PLMR": {
+   "cap": 4239008728.0,
+   "cw": 0.01127,
+   "iv_c50": 0.3315,
+   "iv_p50": 0.3202,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 158.12,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00284,
+   "dps": 0.45,
+   "z": -0.016,
+   "excess_12m": -0.00013,
+   "log_shift": -0.00013,
+   "in_band": true
+  },
+  "PLNT": {
+   "cap": 4574697898.0,
+   "cw": -0.0238,
+   "iv_c50": 0.386,
+   "iv_p50": 0.4098,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 61.14,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.548,
+   "excess_12m": -0.00465,
+   "log_shift": -0.00467,
+   "in_band": true
+  },
+  "POST": {
+   "cap": 3587314856.0,
+   "cw": 0.05939,
+   "iv_c50": 0.4531,
+   "iv_p50": 0.3937,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 80.31,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.714,
+   "excess_12m": 0.00607,
+   "log_shift": 0.00605,
+   "in_band": true
+  },
+  "POWI": {
+   "cap": 2366045531.0,
+   "cw": -0.05682,
+   "iv_c50": 0.6428,
+   "iv_p50": 0.6996,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 42.55,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01989,
+   "dps": 0.855,
+   "z": -1.048,
+   "excess_12m": -0.00891,
+   "log_shift": -0.00895,
+   "in_band": true
+  },
+  "PRCH": {
+   "cap": 2774914279.0,
+   "cw": 0.00722,
+   "iv_c50": 0.5779,
+   "iv_p50": 0.5707,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 20.51,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.077,
+   "excess_12m": -0.00066,
+   "log_shift": -0.00066,
+   "in_band": true
+  },
+  "PRCT": {
+   "cap": 1354400288.0,
+   "cw": -0.06101,
+   "iv_c50": 0.6032,
+   "iv_p50": 0.6642,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 23.78,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.112,
+   "excess_12m": -0.00945,
+   "log_shift": -0.0095,
+   "in_band": true
+  },
+  "PRDO": {
+   "cap": 1794333217.0,
+   "cw": -0.0108,
+   "iv_c50": 0.3496,
+   "iv_p50": 0.3603,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 28.87,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02125,
+   "dps": 0.62,
+   "z": -0.35,
+   "excess_12m": -0.00298,
+   "log_shift": -0.00298,
+   "in_band": true
+  },
+  "PRG": {
+   "cap": 1544268370.0,
+   "cw": 0.01381,
+   "iv_c50": 0.5154,
+   "iv_p50": 0.5015,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 38.66,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01413,
+   "dps": 0.55,
+   "z": 0.023,
+   "excess_12m": 0.00019,
+   "log_shift": 0.00019,
+   "in_band": true
+  },
+  "PRGS": {
+   "cap": 1778436094.0,
+   "cw": 0.15858,
+   "iv_c50": 0.6055,
+   "iv_p50": 0.447,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 41.77,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "PRIM": {
+   "cap": 3528878200.0,
+   "cw": -0.00171,
+   "iv_c50": 0.6955,
+   "iv_p50": 0.6972,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 66.99,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00477,
+   "dps": 0.32,
+   "z": -0.213,
+   "excess_12m": -0.00181,
+   "log_shift": -0.00181,
+   "in_band": true
+  },
+  "PRKS": {
+   "cap": 1845205220.0,
+   "cw": 0.06528,
+   "iv_c50": 0.5675,
+   "iv_p50": 0.5022,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 39.15,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.803,
+   "excess_12m": 0.00683,
+   "log_shift": 0.00681,
+   "in_band": true
+  },
+  "PRLB": {
+   "cap": 1554297781.0,
+   "cw": 0.05583,
+   "iv_c50": 0.5402,
+   "iv_p50": 0.4844,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 64.29,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.66,
+   "excess_12m": 0.00561,
+   "log_shift": 0.0056,
+   "in_band": true
+  },
+  "PTEN": {
+   "cap": 3841615330.0,
+   "cw": -0.0825,
+   "iv_c50": 0.561,
+   "iv_p50": 0.6435,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 9.93,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.03755,
+   "dps": 0.38,
+   "z": -1.438,
+   "excess_12m": -0.01222,
+   "log_shift": -0.0123,
+   "in_band": true
+  },
+  "PTON": {
+   "cap": 2376382776.0,
+   "cw": 0.02224,
+   "iv_c50": 0.5148,
+   "iv_p50": 0.4925,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 5.19,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.151,
+   "excess_12m": 0.00128,
+   "log_shift": 0.00128,
+   "in_band": true
+  },
+  "PURR": {
+   "cap": 2301942430.0,
+   "cw": 0.03132,
+   "iv_c50": 0.9975,
+   "iv_p50": 0.9662,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 7.96,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.288,
+   "excess_12m": 0.00245,
+   "log_shift": 0.00245,
+   "in_band": true
+  },
+  "PVH": {
+   "cap": 4303044995.0,
+   "cw": 0.06085,
+   "iv_c50": 0.5874,
+   "iv_p50": 0.5266,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 91.88,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00165,
+   "dps": 0.152,
+   "z": 0.736,
+   "excess_12m": 0.00626,
+   "log_shift": 0.00624,
+   "in_band": true
+  },
+  "PVLA": {
+   "cap": 2113828882.0,
+   "cw": -0.0532,
+   "iv_c50": 0.5287,
+   "iv_p50": 0.5819,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 144.35,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.994,
+   "excess_12m": -0.00845,
+   "log_shift": -0.00848,
+   "in_band": true
+  },
+  "QBTS": {
+   "cap": 3291362865.0,
+   "cw": 0.07472,
+   "iv_c50": 1.025,
+   "iv_p50": 0.9503,
+   "expiries": [
+    "2026-11-27",
+    "2026-12-18"
+   ],
+   "spot": 8.08,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.947,
+   "excess_12m": 0.00805,
+   "log_shift": 0.00801,
+   "in_band": true
+  },
+  "QTWO": {
+   "cap": 4553917461.0,
+   "cw": 0.08248,
+   "iv_c50": 0.4963,
+   "iv_p50": 0.4138,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 70.22,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.064,
+   "excess_12m": 0.00905,
+   "log_shift": 0.00901,
+   "in_band": true
+  },
+  "QUBT": {
+   "cap": 1191391730.0,
+   "cw": -0.0218,
+   "iv_c50": 0.7968,
+   "iv_p50": 0.8186,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 5.13,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.517,
+   "excess_12m": -0.0044,
+   "log_shift": -0.00441,
+   "in_band": true
+  },
+  "RDW": {
+   "cap": 1764046178.0,
+   "cw": 0.03424,
+   "iv_c50": 0.8779,
+   "iv_p50": 0.8436,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 6.78,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.333,
+   "excess_12m": 0.00283,
+   "log_shift": 0.00282,
+   "in_band": true
+  },
+  "REAL": {
+   "cap": 1678637397.0,
+   "cw": 0.0094,
+   "iv_c50": 0.7744,
+   "iv_p50": 0.765,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 12.65,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.044,
+   "excess_12m": -0.00037,
+   "log_shift": -0.00037,
+   "in_band": true
+  },
+  "RELY": {
+   "cap": 4693295660.0,
+   "cw": 0.00984,
+   "iv_c50": 0.4894,
+   "iv_p50": 0.4796,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 20.53,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.037,
+   "excess_12m": -0.00032,
+   "log_shift": -0.00032,
+   "in_band": true
+  },
+  "REPL": {
+   "cap": 2029676650.0,
+   "cw": 0.04268,
+   "iv_c50": 0.8273,
+   "iv_p50": 0.7846,
+   "expiries": [
+    "2026-11-27",
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 19.69,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.461,
+   "excess_12m": 0.00392,
+   "log_shift": 0.00391,
+   "in_band": true
+  },
+  "RGTI": {
+   "cap": 3105614143.0,
+   "cw": 0.00243,
+   "iv_c50": 0.9763,
+   "iv_p50": 0.9739,
+   "expiries": [
+    "2026-12-04",
+    "2026-12-18"
+   ],
+   "spot": 8.46,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.15,
+   "excess_12m": -0.00127,
+   "log_shift": -0.00127,
+   "in_band": true
+  },
+  "RH": {
+   "cap": 2388228676.0,
+   "cw": 0.11808,
+   "iv_c50": 0.9016,
+   "iv_p50": 0.7835,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 115.6,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.604,
+   "excess_12m": 0.01364,
+   "log_shift": 0.01354,
+   "in_band": true
+  },
+  "RHI": {
+   "cap": 4339691940.0,
+   "cw": -0.00158,
+   "iv_c50": 0.5011,
+   "iv_p50": 0.5027,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 41.67,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.05509,
+   "dps": 2.36,
+   "z": -0.211,
+   "excess_12m": -0.00179,
+   "log_shift": -0.00179,
+   "in_band": true
+  },
+  "RITM": {
+   "cap": 4936318154.0,
+   "cw": 0.19583,
+   "iv_c50": 0.503,
+   "iv_p50": 0.3071,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 8.48,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.11147,
+   "dps": 1.0,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "ROAD": {
+   "cap": 4539474792.0,
+   "cw": 0.11068,
+   "iv_c50": 0.7203,
+   "iv_p50": 0.6096,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 78.0238,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.492,
+   "excess_12m": 0.01268,
+   "log_shift": 0.0126,
+   "in_band": true
+  },
+  "ROG": {
+   "cap": 2196224228.0,
+   "cw": -0.01167,
+   "iv_c50": 0.4812,
+   "iv_p50": 0.4929,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 122.81,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.364,
+   "excess_12m": -0.00309,
+   "log_shift": -0.0031,
+   "in_band": true
+  },
+  "RPD": {
+   "cap": 1006790432.0,
+   "cw": 0.11297,
+   "iv_c50": 0.9923,
+   "iv_p50": 0.8793,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 13.63,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.527,
+   "excess_12m": 0.01298,
+   "log_shift": 0.01289,
+   "in_band": true
+  },
+  "RUM": {
+   "cap": 2534417727.0,
+   "cw": 0.05141,
+   "iv_c50": 0.8316,
+   "iv_p50": 0.7802,
+   "expiries": [
+    "2026-12-24"
+   ],
+   "spot": 4.915,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.593,
+   "excess_12m": 0.00504,
+   "log_shift": 0.00503,
+   "in_band": true
+  },
+  "RUN": {
+   "cap": 2020371519.0,
+   "cw": 0.01804,
+   "iv_c50": 0.7722,
+   "iv_p50": 0.7541,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 7.72,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.087,
+   "excess_12m": 0.00074,
+   "log_shift": 0.00074,
+   "in_band": true
+  },
+  "RVLV": {
+   "cap": 1296073627.0,
+   "cw": 0.08948,
+   "iv_c50": 0.5752,
+   "iv_p50": 0.4857,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 18.23,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.17,
+   "excess_12m": 0.00995,
+   "log_shift": 0.0099,
+   "in_band": true
+  },
+  "SAM": {
+   "cap": 2266913954.0,
+   "cw": -0.07312,
+   "iv_c50": 0.3497,
+   "iv_p50": 0.4228,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 224.68,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.296,
+   "excess_12m": -0.01101,
+   "log_shift": -0.01107,
+   "in_band": true
+  },
+  "SBET": {
+   "cap": 1151934860.0,
+   "cw": 0.00548,
+   "iv_c50": 0.7979,
+   "iv_p50": 0.7924,
+   "expiries": [
+    "2026-12-24"
+   ],
+   "spot": 5.12,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.104,
+   "excess_12m": -0.00088,
+   "log_shift": -0.00088,
+   "in_band": true
+  },
+  "SDGR": {
+   "cap": 2054128444.0,
+   "cw": -0.03324,
+   "iv_c50": 0.8167,
+   "iv_p50": 0.85,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 27.36,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.691,
+   "excess_12m": -0.00587,
+   "log_shift": -0.00589,
+   "in_band": true
+  },
+  "SEI": {
+   "cap": 4885450839.0,
+   "cw": -0.0482,
+   "iv_c50": 0.8579,
+   "iv_p50": 0.9061,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 60.96,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00784,
+   "dps": 0.48,
+   "z": -0.918,
+   "excess_12m": -0.0078,
+   "log_shift": -0.00783,
+   "in_band": true
+  },
+  "SEPN": {
+   "cap": 1981376122.0,
+   "cw": 0.00649,
+   "iv_c50": 0.7419,
+   "iv_p50": 0.7354,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 41.67,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.088,
+   "excess_12m": -0.00075,
+   "log_shift": -0.00075,
+   "in_band": true
+  },
+  "SFM": {
+   "cap": 4627311298.0,
+   "cw": -0.01416,
+   "iv_c50": 0.4338,
+   "iv_p50": 0.448,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 49.58,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.401,
+   "excess_12m": -0.00341,
+   "log_shift": -0.00342,
+   "in_band": true
+  },
+  "SG": {
+   "cap": 1444247710.0,
+   "cw": 0.07093,
+   "iv_c50": 0.7289,
+   "iv_p50": 0.658,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 12.18,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.889,
+   "excess_12m": 0.00756,
+   "log_shift": 0.00753,
+   "in_band": true
+  },
+  "SHAK": {
+   "cap": 3130747901.0,
+   "cw": 0.02239,
+   "iv_c50": 0.5054,
+   "iv_p50": 0.483,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 72.73,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.153,
+   "excess_12m": 0.0013,
+   "log_shift": 0.0013,
+   "in_band": true
+  },
+  "SHLS": {
+   "cap": 1351144638.0,
+   "cw": 0.08825,
+   "iv_c50": 0.9102,
+   "iv_p50": 0.822,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 7.04,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.152,
+   "excess_12m": 0.00979,
+   "log_shift": 0.00974,
+   "in_band": true
+  },
+  "SHOO": {
+   "cap": 3000217146.0,
+   "cw": -0.07314,
+   "iv_c50": 0.3752,
+   "iv_p50": 0.4484,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 40.98,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.02029,
+   "dps": 0.84,
+   "z": -1.296,
+   "excess_12m": -0.01102,
+   "log_shift": -0.01108,
+   "in_band": true
+  },
+  "SITE": {
+   "cap": 4777724551.0,
+   "cw": 0.05217,
+   "iv_c50": 0.4198,
+   "iv_p50": 0.3676,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 110.9,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.605,
+   "excess_12m": 0.00514,
+   "log_shift": 0.00513,
+   "in_band": true
+  },
+  "SKY": {
+   "cap": 4947191939.0,
+   "cw": 0.00351,
+   "iv_c50": 0.4238,
+   "iv_p50": 0.4203,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 89.77,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.133,
+   "excess_12m": -0.00113,
+   "log_shift": -0.00113,
+   "in_band": true
+  },
+  "SKYW": {
+   "cap": 3153031615.0,
+   "cw": -0.01726,
+   "iv_c50": 0.3677,
+   "iv_p50": 0.385,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 82.9,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.448,
+   "excess_12m": -0.00381,
+   "log_shift": -0.00382,
+   "in_band": true
+  },
+  "SLG": {
+   "cap": 3447690075.0,
+   "cw": -0.00702,
+   "iv_c50": 0.4489,
+   "iv_p50": 0.4559,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 48.59,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.04255,
+   "dps": 2.112,
+   "z": -0.293,
+   "excess_12m": -0.00249,
+   "log_shift": -0.00249,
+   "in_band": true
+  },
+  "SLS": {
+   "cap": 1522827858.0,
+   "cw": -0.06758,
+   "iv_c50": 1.4045,
+   "iv_p50": 1.4721,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 19.15,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.212,
+   "excess_12m": -0.0103,
+   "log_shift": -0.01035,
+   "in_band": true
+  },
+  "SMG": {
+   "cap": 3713580177.0,
+   "cw": -0.02701,
+   "iv_c50": 0.3618,
+   "iv_p50": 0.3888,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 62.55,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.04134,
+   "dps": 2.64,
+   "z": -0.596,
+   "excess_12m": -0.00507,
+   "log_shift": -0.00508,
+   "in_band": true
+  },
+  "SON": {
+   "cap": 4783113777.0,
+   "cw": 0.09746,
+   "iv_c50": 0.3478,
+   "iv_p50": 0.2504,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 46.94,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.04479,
+   "dps": 2.15,
+   "z": 1.292,
+   "excess_12m": 0.01098,
+   "log_shift": 0.01092,
+   "in_band": true
+  },
+  "SONO": {
+   "cap": 2060681114.0,
+   "cw": 0.03949,
+   "iv_c50": 0.4805,
+   "iv_p50": 0.441,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 17.57,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.412,
+   "excess_12m": 0.0035,
+   "log_shift": 0.0035,
+   "in_band": true
+  },
+  "SPB": {
+   "cap": 1924731385.0,
+   "cw": 0.03012,
+   "iv_c50": 0.366,
+   "iv_p50": 0.3359,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 83.76,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0222,
+   "dps": 1.88,
+   "z": 0.27,
+   "excess_12m": 0.0023,
+   "log_shift": 0.00229,
+   "in_band": true
+  },
+  "SPHR": {
+   "cap": 4551765577.0,
+   "cw": -0.0454,
+   "iv_c50": 0.5519,
+   "iv_p50": 0.5973,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 125.49,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.875,
+   "excess_12m": -0.00744,
+   "log_shift": -0.00747,
+   "in_band": true
+  },
+  "SPSC": {
+   "cap": 2895169245.0,
+   "cw": -0.02763,
+   "iv_c50": 0.4679,
+   "iv_p50": 0.4955,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 81.69,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.606,
+   "excess_12m": -0.00515,
+   "log_shift": -0.00516,
+   "in_band": true
+  },
+  "SRPT": {
+   "cap": 1622478380.0,
+   "cw": 0.10669,
+   "iv_c50": 0.8675,
+   "iv_p50": 0.7608,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 15.13,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.432,
+   "excess_12m": 0.01217,
+   "log_shift": 0.01209,
+   "in_band": true
+  },
+  "STAA": {
+   "cap": 1305749312.0,
+   "cw": -0.06886,
+   "iv_c50": 0.5539,
+   "iv_p50": 0.6228,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 26.01,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.231,
+   "excess_12m": -0.01046,
+   "log_shift": -0.01052,
+   "in_band": true
+  },
+  "STRA": {
+   "cap": 1185573641.0,
+   "cw": -0.02031,
+   "iv_c50": 0.3207,
+   "iv_p50": 0.341,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 54.18,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.04334,
+   "dps": 2.4,
+   "z": -0.495,
+   "excess_12m": -0.0042,
+   "log_shift": -0.00421,
+   "in_band": true
+  },
+  "STWD": {
+   "cap": 4278878516.0,
+   "cw": 0.21249,
+   "iv_c50": 0.5098,
+   "iv_p50": 0.2973,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 11.32,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.15667,
+   "dps": 1.92,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "SXI": {
+   "cap": 2834930956.0,
+   "cw": 0.03939,
+   "iv_c50": 0.4187,
+   "iv_p50": 0.3793,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 234.31,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.00587,
+   "dps": 1.38,
+   "z": 0.411,
+   "excess_12m": 0.00349,
+   "log_shift": 0.00349,
+   "in_band": true
+  },
+  "SXT": {
+   "cap": 4876723940.0,
+   "cw": 0.0275,
+   "iv_c50": 0.3326,
+   "iv_p50": 0.3051,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 114.59,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01421,
+   "dps": 1.64,
+   "z": 0.23,
+   "excess_12m": 0.00196,
+   "log_shift": 0.00196,
+   "in_band": true
+  },
+  "TALO": {
+   "cap": 2665931292.0,
+   "cw": 0.23641,
+   "iv_c50": 0.7043,
+   "iv_p50": 0.4679,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 15.86,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "TARS": {
+   "cap": 3879360831.0,
+   "cw": -0.03837,
+   "iv_c50": 0.6438,
+   "iv_p50": 0.6821,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 78.2,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.769,
+   "excess_12m": -0.00653,
+   "log_shift": -0.00655,
+   "in_band": true
+  },
+  "TDC": {
+   "cap": 3211796000.0,
+   "cw": -0.07456,
+   "iv_c50": 0.3982,
+   "iv_p50": 0.4728,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 34.87,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.317,
+   "excess_12m": -0.0112,
+   "log_shift": -0.01126,
+   "in_band": true
+  },
+  "TDOC": {
+   "cap": 1589600846.0,
+   "cw": -0.04404,
+   "iv_c50": 0.561,
+   "iv_p50": 0.6051,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 8.49,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.855,
+   "excess_12m": -0.00726,
+   "log_shift": -0.00729,
+   "in_band": true
+  },
+  "TDS": {
+   "cap": 3428334000.0,
+   "cw": 0.04418,
+   "iv_c50": 0.4861,
+   "iv_p50": 0.4419,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 30.86,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00517,
+   "dps": 0.16,
+   "z": 0.483,
+   "excess_12m": 0.00411,
+   "log_shift": 0.0041,
+   "in_band": true
+  },
+  "TDW": {
+   "cap": 3721359187.0,
+   "cw": 0.06376,
+   "iv_c50": 0.5275,
+   "iv_p50": 0.4637,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 72.04,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.78,
+   "excess_12m": 0.00663,
+   "log_shift": 0.00661,
+   "in_band": true
+  },
+  "TENB": {
+   "cap": 4287947772.0,
+   "cw": -0.00331,
+   "iv_c50": 0.7279,
+   "iv_p50": 0.7312,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 38.6,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.237,
+   "excess_12m": -0.00201,
+   "log_shift": -0.00202,
+   "in_band": true
+  },
+  "TFIN": {
+   "cap": 1419980834.0,
+   "cw": -0.0076,
+   "iv_c50": 0.3844,
+   "iv_p50": 0.392,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 58.49,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.302,
+   "excess_12m": -0.00257,
+   "log_shift": -0.00257,
+   "in_band": true
+  },
+  "THO": {
+   "cap": 4000901514.0,
+   "cw": 0.08865,
+   "iv_c50": 0.5715,
+   "iv_p50": 0.4829,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 75.53,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02742,
+   "dps": 2.1,
+   "z": 1.158,
+   "excess_12m": 0.00984,
+   "log_shift": 0.00979,
+   "in_band": true
+  },
+  "THRM": {
+   "cap": 1497953727.0,
+   "cw": 0.06213,
+   "iv_c50": 0.6049,
+   "iv_p50": 0.5428,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 28.53,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.07004,
+   "dps": 2.07,
+   "z": 0.756,
+   "excess_12m": 0.00642,
+   "log_shift": 0.0064,
+   "in_band": true
+  },
+  "TIC": {
+   "cap": 2266298954.0,
+   "cw": 0.0426,
+   "iv_c50": 0.5013,
+   "iv_p50": 0.4587,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 10.02,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.459,
+   "excess_12m": 0.00391,
+   "log_shift": 0.0039,
+   "in_band": true
+  },
+  "TMDX": {
+   "cap": 3202811351.0,
+   "cw": -0.05046,
+   "iv_c50": 0.5175,
+   "iv_p50": 0.5679,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 93.91,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.952,
+   "excess_12m": -0.00809,
+   "log_shift": -0.00812,
+   "in_band": true
+  },
+  "TNC": {
+   "cap": 1268763667.0,
+   "cw": 0.06845,
+   "iv_c50": 0.3746,
+   "iv_p50": 0.3061,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 74.54,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0165,
+   "dps": 1.24,
+   "z": 0.852,
+   "excess_12m": 0.00724,
+   "log_shift": 0.00721,
+   "in_band": true
+  },
+  "TRAX": {
+   "cap": 1956353471.0,
+   "cw": 0.10555,
+   "iv_c50": 0.8231,
+   "iv_p50": 0.7175,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 46.56,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.414,
+   "excess_12m": 0.01202,
+   "log_shift": 0.01195,
+   "in_band": true
+  },
+  "TRIN": {
+   "cap": 1720388945.0,
+   "cw": 0.12854,
+   "iv_c50": 0.395,
+   "iv_p50": 0.2664,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 17.23,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.12939,
+   "dps": 2.38,
+   "z": 1.763,
+   "excess_12m": 0.01498,
+   "log_shift": 0.01487,
+   "in_band": true
+  },
+  "TRLV": {
+   "cap": 1992732225.0,
+   "cw": -0.18992,
+   "iv_c50": 0.8419,
+   "iv_p50": 1.0318,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 10.07,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "TRN": {
+   "cap": 2386239223.0,
+   "cw": 0.05695,
+   "iv_c50": 0.3812,
+   "iv_p50": 0.3243,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 29.82,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.04074,
+   "dps": 1.24,
+   "z": 0.677,
+   "excess_12m": 0.00576,
+   "log_shift": 0.00574,
+   "in_band": true
+  },
+  "TRS": {
+   "cap": 1286140510.0,
+   "cw": 0.00089,
+   "iv_c50": 0.5324,
+   "iv_p50": 0.5315,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 36.8,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00434,
+   "dps": 0.16,
+   "z": -0.173,
+   "excess_12m": -0.00147,
+   "log_shift": -0.00147,
+   "in_band": true
+  },
+  "TRVI": {
+   "cap": 1894614426.0,
+   "cw": -0.00817,
+   "iv_c50": 0.5431,
+   "iv_p50": 0.5513,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 13.51,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.311,
+   "excess_12m": -0.00264,
+   "log_shift": -0.00264,
+   "in_band": true
+  },
+  "TVTX": {
+   "cap": 4770810104.0,
+   "cw": -0.06081,
+   "iv_c50": 0.4239,
+   "iv_p50": 0.4847,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 51.1,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.109,
+   "excess_12m": -0.00943,
+   "log_shift": -0.00947,
+   "in_band": true
+  },
+  "UCTT": {
+   "cap": 2056052016.0,
+   "cw": -0.06144,
+   "iv_c50": 0.9184,
+   "iv_p50": 0.9799,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 43.14,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.119,
+   "excess_12m": -0.00951,
+   "log_shift": -0.00955,
+   "in_band": true
+  },
+  "ULCC": {
+   "cap": 1834123706.0,
+   "cw": -0.01273,
+   "iv_c50": 0.7769,
+   "iv_p50": 0.7896,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 7.96,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.38,
+   "excess_12m": -0.00323,
+   "log_shift": -0.00323,
+   "in_band": true
+  },
+  "UNF": {
+   "cap": 4113122969.0,
+   "cw": 0.00892,
+   "iv_c50": 0.6519,
+   "iv_p50": 0.6429,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 226.32,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00808,
+   "dps": 1.835,
+   "z": -0.051,
+   "excess_12m": -0.00044,
+   "log_shift": -0.00044,
+   "in_band": true
+  },
+  "UNFI": {
+   "cap": 2916798935.0,
+   "cw": 0.01928,
+   "iv_c50": 0.6281,
+   "iv_p50": 0.6088,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 51.99,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.106,
+   "excess_12m": 0.0009,
+   "log_shift": 0.0009,
+   "in_band": true
+  },
+  "UPST": {
+   "cap": 1888166281.0,
+   "cw": -0.02374,
+   "iv_c50": 0.6993,
+   "iv_p50": 0.7231,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 18.13,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.547,
+   "excess_12m": -0.00465,
+   "log_shift": -0.00466,
+   "in_band": true
+  },
+  "UPWK": {
+   "cap": 1245193676.0,
+   "cw": 0.00347,
+   "iv_c50": 0.5201,
+   "iv_p50": 0.5166,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 9.58,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.134,
+   "excess_12m": -0.00114,
+   "log_shift": -0.00114,
+   "in_band": true
+  },
+  "USAR": {
+   "cap": 2676031101.0,
+   "cw": -0.03837,
+   "iv_c50": 1.0688,
+   "iv_p50": 1.1072,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 6.635,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.769,
+   "excess_12m": -0.00653,
+   "log_shift": -0.00655,
+   "in_band": true
+  },
+  "USPH": {
+   "cap": 1486576146.0,
+   "cw": 0.08582,
+   "iv_c50": 0.4286,
+   "iv_p50": 0.3428,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 97.34,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01873,
+   "dps": 1.84,
+   "z": 1.115,
+   "excess_12m": 0.00948,
+   "log_shift": 0.00943,
+   "in_band": true
+  },
+  "UTI": {
+   "cap": 1237438888.0,
+   "cw": 0.01731,
+   "iv_c50": 0.8491,
+   "iv_p50": 0.8318,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 21.86,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.076,
+   "excess_12m": 0.00065,
+   "log_shift": 0.00064,
+   "in_band": true
+  },
+  "VAC": {
+   "cap": 4042506617.0,
+   "cw": 0.0596,
+   "iv_c50": 0.4775,
+   "iv_p50": 0.4179,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 115.1,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.02742,
+   "dps": 3.2,
+   "z": 0.717,
+   "excess_12m": 0.0061,
+   "log_shift": 0.00608,
+   "in_band": true
+  },
+  "VECO": {
+   "cap": 2274413840.0,
+   "cw": 0.00245,
+   "iv_c50": 0.7293,
+   "iv_p50": 0.7269,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 37.2,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.149,
+   "excess_12m": -0.00127,
+   "log_shift": -0.00127,
+   "in_band": true
+  },
+  "VERX": {
+   "cap": 2985727097.0,
+   "cw": -0.07265,
+   "iv_c50": 0.5347,
+   "iv_p50": 0.6073,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 18.4,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -1.289,
+   "excess_12m": -0.01095,
+   "log_shift": -0.01101,
+   "in_band": true
+  },
+  "VKTX": {
+   "cap": 3417594665.0,
+   "cw": 0.00815,
+   "iv_c50": 0.7024,
+   "iv_p50": 0.6943,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 26.88,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.063,
+   "excess_12m": -0.00054,
+   "log_shift": -0.00054,
+   "in_band": true
+  },
+  "VOYG": {
+   "cap": 1553080609.0,
+   "cw": 0.16191,
+   "iv_c50": 0.9448,
+   "iv_p50": 0.7829,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 25.01,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 2.0,
+   "excess_12m": 0.017,
+   "log_shift": 0.01686,
+   "in_band": true
+  },
+  "VSH": {
+   "cap": 3894431820.0,
+   "cw": -0.00404,
+   "iv_c50": 0.768,
+   "iv_p50": 0.7721,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 25.37,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01564,
+   "dps": 0.4,
+   "z": -0.248,
+   "excess_12m": -0.00211,
+   "log_shift": -0.00211,
+   "in_band": true
+  },
+  "VVV": {
+   "cap": 4371110681.0,
+   "cw": 0.08654,
+   "iv_c50": 0.524,
+   "iv_p50": 0.4374,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 33.06,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 1.126,
+   "excess_12m": 0.00957,
+   "log_shift": 0.00952,
+   "in_band": true
+  },
+  "VYX": {
+   "cap": 1414305817.0,
+   "cw": -0.04591,
+   "iv_c50": 0.6933,
+   "iv_p50": 0.7392,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 10.4,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.883,
+   "excess_12m": -0.00751,
+   "log_shift": -0.00753,
+   "in_band": true
+  },
+  "WDFC": {
+   "cap": 3026835083.0,
+   "cw": -0.00227,
+   "iv_c50": 0.284,
+   "iv_p50": 0.2862,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 226.01,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01789,
+   "dps": 4.08,
+   "z": -0.221,
+   "excess_12m": -0.00188,
+   "log_shift": -0.00188,
+   "in_band": true
+  },
+  "WEN": {
+   "cap": 1619827355.0,
+   "cw": -0.18663,
+   "iv_c50": 0.3443,
+   "iv_p50": 0.531,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 8.7,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.05479,
+   "dps": 0.49,
+   "z": -2.0,
+   "excess_12m": -0.017,
+   "log_shift": -0.01715,
+   "in_band": true
+  },
+  "WGS": {
+   "cap": 1529196593.0,
+   "cw": 0.06638,
+   "iv_c50": 0.9223,
+   "iv_p50": 0.8559,
+   "expiries": [
+    "2026-12-24"
+   ],
+   "spot": 45.72,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.82,
+   "excess_12m": 0.00697,
+   "log_shift": 0.00695,
+   "in_band": true
+  },
+  "WHD": {
+   "cap": 4796416533.0,
+   "cw": 0.01493,
+   "iv_c50": 0.4092,
+   "iv_p50": 0.3943,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 59.78,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00949,
+   "dps": 0.57,
+   "z": 0.04,
+   "excess_12m": 0.00034,
+   "log_shift": 0.00034,
+   "in_band": true
+  },
+  "WHR": {
+   "cap": 1859691554.0,
+   "cw": 0.02575,
+   "iv_c50": 0.6423,
+   "iv_p50": 0.6166,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 26.86,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.06486,
+   "dps": 1.8,
+   "z": 0.204,
+   "excess_12m": 0.00173,
+   "log_shift": 0.00173,
+   "in_band": true
+  },
+  "WING": {
+   "cap": 4104771870.0,
+   "cw": 0.06494,
+   "iv_c50": 0.643,
+   "iv_p50": 0.578,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 152.135,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0102,
+   "dps": 1.56,
+   "z": 0.798,
+   "excess_12m": 0.00679,
+   "log_shift": 0.00676,
+   "in_band": true
+  },
+  "WK": {
+   "cap": 3717621459.0,
+   "cw": -0.01948,
+   "iv_c50": 0.4814,
+   "iv_p50": 0.5009,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 68.19,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.482,
+   "excess_12m": -0.0041,
+   "log_shift": -0.00411,
+   "in_band": true
+  },
+  "WOLF": {
+   "cap": 1213897446.0,
+   "cw": -0.02683,
+   "iv_c50": 0.9834,
+   "iv_p50": 1.0102,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 23.15,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.594,
+   "excess_12m": -0.00505,
+   "log_shift": -0.00506,
+   "in_band": true
+  },
+  "WOR": {
+   "cap": 2886619006.0,
+   "cw": -0.01552,
+   "iv_c50": 0.4413,
+   "iv_p50": 0.4568,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 57.855,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.01322,
+   "dps": 0.77,
+   "z": -0.422,
+   "excess_12m": -0.00359,
+   "log_shift": -0.00359,
+   "in_band": true
+  },
+  "WRBY": {
+   "cap": 3260771328.0,
+   "cw": -0.02129,
+   "iv_c50": 0.7229,
+   "iv_p50": 0.7442,
+   "expiries": [
+    "2026-12-11",
+    "2026-12-18"
+   ],
+   "spot": 25.92,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": -0.51,
+   "excess_12m": -0.00433,
+   "log_shift": -0.00434,
+   "in_band": true
+  },
+  "WSC": {
+   "cap": 3528324215.0,
+   "cw": -0.11286,
+   "iv_c50": 0.508,
+   "iv_p50": 0.6208,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 19.42,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.01432,
+   "dps": 0.28,
+   "z": -1.898,
+   "excess_12m": -0.01614,
+   "log_shift": -0.01627,
+   "in_band": true
+  },
+  "WT": {
+   "cap": 3143666557.0,
+   "cw": 0.02854,
+   "iv_c50": 0.4731,
+   "iv_p50": 0.4445,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "relaxed": true,
+   "spot": 20.73,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.00577,
+   "dps": 0.12,
+   "z": 0.246,
+   "excess_12m": 0.00209,
+   "log_shift": 0.00209,
+   "in_band": true
+  },
+  "WU": {
+   "cap": 2015879848.0,
+   "cw": 0.04525,
+   "iv_c50": 0.5063,
+   "iv_p50": 0.4611,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "relaxed": true,
+   "spot": 6.12,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.14288,
+   "dps": 0.94,
+   "z": 0.5,
+   "excess_12m": 0.00425,
+   "log_shift": 0.00424,
+   "in_band": true
+  },
+  "XE": {
+   "cap": 4192046601.0,
+   "cw": 0.04898,
+   "iv_c50": 0.8808,
+   "iv_p50": 0.8318,
+   "expiries": [
+    "2027-01-15"
+   ],
+   "spot": 10.32,
+   "chain_date": "2026-11-16",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.556,
+   "excess_12m": 0.00473,
+   "log_shift": 0.00472,
+   "in_band": true
+  },
+  "YELP": {
+   "cap": 1119284104.0,
+   "cw": 0.07782,
+   "iv_c50": 0.5788,
+   "iv_p50": 0.501,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 20.13,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.994,
+   "excess_12m": 0.00845,
+   "log_shift": 0.00841,
+   "in_band": true
+  },
+  "YETI": {
+   "cap": 2803428267.0,
+   "cw": 0.03863,
+   "iv_c50": 0.4517,
+   "iv_p50": 0.4131,
+   "expiries": [
+    "2026-12-18"
+   ],
+   "spot": 38.02,
+   "chain_date": "2026-11-17",
+   "div_yield": 0.0,
+   "dps": 0,
+   "z": 0.399,
+   "excess_12m": 0.00339,
+   "log_shift": 0.00339,
+   "in_band": true
+  }
+ }
+}

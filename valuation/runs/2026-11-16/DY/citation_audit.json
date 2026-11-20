@@ -1,0 +1,1246 @@
+{
+ "date": "2026-11-16",
+ "symbol": "DY",
+ "clean": true,
+ "checked": 122,
+ "ok": 92,
+ "fixed": 29,
+ "failures": [
+  {
+   "item": "research target (12m) value and reason",
+   "value": "281.06",
+   "cited": "judgment_alternatives_sized (set_hash f3032ea6, 2026-11-17T21:51Z)",
+   "result": "mislabelled",
+   "origin": "supervisor fair_value",
+   "fix": "fixed: fair_value restated to the current engine value 280.86 (model_engine.py check 2026-11-18; P/E 271.37 w0.7, EV/EBITDA 303.02 w0.3; downside 127.31, upside 437.37) with the Goldman rebook (281.06 -> 281.06, bs_share recomputed) and the second gate fix (-> 280.86) in the path; ConstructConnect removed from the reason"
+  },
+  {
+   "item": "last research-target step 289.99 -> 281.06",
+   "value": "281.06",
+   "cited": "judgment_alternatives_sized",
+   "result": "mislabelled",
+   "origin": "supervisor changes",
+   "fix": "fixed: changes rows added for the Goldman rebook (0.00 after the bs_share recompute; 279.82 before it) and the second gate fix 281.06 -> 280.86, downside 127.75 -> 127.31, upside 437.41 -> 437.37"
+  },
+  {
+   "item": "ConstructConnect Spring 2026 Private Office forecast (CY2029 +3.65%; FY2030 roll-forward 'no further growth past Dec 2029')",
+   "value": "+25.2%/+14.8%/+7.4% 2026-28, peak $144B 2029",
+   "cited": "https://news.constructconnect.com/u.s.-put-in-place-construction-forecast-report-spring-2026-highlights",
+   "result": "stale",
+   "origin": "supervisor fair_value / changes / dc_mkt constants_note",
+   "fix": "fixed (stale): ConstructConnect dropped everywhere it fed (fair_value reason, changes, constants_note, FY2030 roll-forward note); src 52 timeliness.newer_forecast = [66 Goldman Nov 2026, 69 Oxford Economics 2026-11-13]; CY2029 rebuilt on Oxford (+9.73%/yr to a 2030 peak), Jan 2030 rising; value effect 0.00 (Building Systems revenue is crew-built)"
+  },
+  {
+   "item": "Hyperscaler capex consensus path (Goldman 2026-09-24: $800B -> $1,070B -> ~$1,300B) used for CY2027 103,357 / CY2028 125,574 (the 281.06 booking)",
+   "value": "1,070/800, 1,300/1,070",
+   "cited": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "stale",
+   "origin": "supervisor fair_value / dc_mkt alternative",
+   "fix": "fixed (stale): the Goldman 2026-09-24 capex-consensus path is superseded by Goldman's own Nov 2026 US data-center construction forecast (src 27 timeliness.newer_forecast [66]); the capex-ratio dc_mkt alternative dropped; fair_value no longer rests on it"
+  },
+  {
+   "item": "reconciled_peer_median_pe_ntm 18.65x (spot checks incl. MYRG 20.2x GAAP)",
+   "value": "18.65",
+   "cited": "https://api.nasdaq.com/api/analyst/PRIM/earnings-forecast; https://data.sec.gov/api/xbrl/companyconcept/CIK0000700923/us-gaap/EarningsPerShareDiluted.json; https://finanzen.net/nachricht/aktien/myr-group-myrg-q3-earnings-and-revenues-surpass-estimates-15143259",
+   "result": "mixed_basis",
+   "origin": "supervisor comps_review",
+   "fix": "fixed (mixed_basis): comps_review restated to one basis: median 18.20x (MTZ 16.6, PRIM 16.8 post-print, MYRG 19.6 restated, PWR 35.2 adjusted), spot-check list rewritten; exit 13.2x unchanged (13.16)"
+  },
+  {
+   "item": "whole-company median 18.65x, MYRG 20.2x",
+   "value": "18.65",
+   "cited": "https://api.nasdaq.com/api/analyst/PRIM/earnings-forecast; https://data.sec.gov/api/xbrl/companyconcept/CIK0000700923/us-gaap/EarningsPerShareDiluted.json",
+   "result": "mixed_basis",
+   "origin": "supervisor disagreements (Horizon P/E) resolution",
+   "fix": "fixed (mixed_basis): disagreements resolution restated to the one-basis 18.20x median with MYRG 19.6x"
+  },
+  {
+   "item": "PRIM consensus 2026 1.77 / 2027 4.82 (Nasdaq/Zacks, 2026-11-02) -> NTM 4.31, 17.1x",
+   "value": "17.1x",
+   "cited": "https://api.nasdaq.com/api/analyst/PRIM/earnings-forecast",
+   "result": "stale",
+   "origin": "supervisor comps (PRIM row)",
+   "fix": "fixed (stale): PRIM moved to the post-print Nasdaq/Zacks read 2026-11-18 (1.91 / 4.88 -> NTM 4.39, 16.8x on the 2026-11-02 close), src 15 timeliness.newer_forecast [70]; median 18.20x, exit 13.2x unchanged"
+  },
+  {
+   "item": "PWR NTM P/E 35.2x, eps_basis 'not established'",
+   "value": "35.2x",
+   "cited": "https://api.nasdaq.com/api/analyst/PWR/earnings-forecast",
+   "result": "mixed_basis",
+   "origin": "supervisor comps (PWR row)",
+   "fix": "fixed (mixed_basis): PWR basis established as adjusted (Zacks 2026-10-29: adjusted $6.06 vs consensus $5.03, GAAP $4.55, src 71); 11-18 read 16.61 / 19.19 (33.1x) noted; outside the median pair"
+  },
+  {
+   "item": "driver value strings",
+   "value": "comms_conv 0.2805/0.282; comms_margin 0.1335/0.1336 (FY29-30); bs_share 0.01677/0.01594/0.01514; bs_margin 0.2/0.2/0.2",
+   "cited": "supervisor.json model.reconciled_inputs.drivers",
+   "result": "mislabelled",
+   "origin": "supervisor key_drivers",
+   "fix": "fixed: key_drivers rewritten from the booked year aggregates"
+  },
+  {
+   "item": "FY2030 path +1.25%/+1.0%/+0.75%/+0.5% a quarter (Q4 FY2030 6,573)",
+   "value": "6,427/6,492/6,540/6,573",
+   "cited": "https://www.sec.gov/Archives/edgar/data/732717/000073271726000370/t-3q2026exhibit991.htm; https://earningswhispers.com/transcript/DY/Q22027",
+   "result": "trend_only",
+   "origin": "supervisor model driver comms_ntm_backlog",
+   "fix": "owner-decided: Kilian decision card 2026-11-02 'Middle trim', re-confirmed 2026-11-17 1:08 PM ET (cmsg_01HdhANNPxz1f5xqDwR22cfL8QJQ3fXRvLEhZjogyYPJMD): 'Middle trim (booked)' (judgment_calls_for_kilian[comms_ntm_backlog].decided; the booked alternative includes the FY30 fade). Not rebuilt; close with gate_accept.py accept U DY --msg cmsg_01HdhANNPxz1f5xqDwR22cfL8QJQ3fXRvLEhZjogyYPJMD --quote '<his words>'"
+  },
+  {
+   "item": "derivation text (Q3 FY27 5,450, Q4 5,650, FY28 +2.5%, FY29 +1.75%)",
+   "value": "booked 5,420/5,580, +1.75%/+1.5%",
+   "cited": "supervisor.json drivers[comms_ntm_backlog]",
+   "result": "mislabelled",
+   "origin": "supervisor model driver comms_ntm_backlog",
+   "fix": "fixed: derivation restated to the booked middle-trim path (5,420 / 5,580, +1.75%/qtr FY28, +1.5%/qtr FY29, FY30 fade); values unchanged"
+  },
+  {
+   "item": "BEAD TAM ~$17-22B (Q2 FY27 call)",
+   "value": "$17-22B",
+   "cited": "https://earningswhispers.com/transcript/DY/Q22027",
+   "result": "wrong",
+   "origin": "supervisor model driver comms_ntm_backlog source",
+   "fix": "fixed (wrong): BEAD TAM restated to management's 'about a $17 billion TAM'; the $22B is an analyst question, removed"
+  },
+  {
+   "item": "Q3/Q4 FY27 0.30119 / 0.23597 and FY2028-FY2030 seasonal means 0.2901/0.3010/0.3168/0.2482",
+   "value": "as booked",
+   "cited": "https://www.sec.gov/Archives/edgar/data/67215/000006721523000008/dyq4fy2023-transcriptex991.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721523000061/dyfy2024q3-transcriptex991.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721524000049/dyfy2025q3-transcriptex991.htm; https://data.sec.gov/api/xbrl/companyconcept/CIK0000067215/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json",
+   "result": "trend_only",
+   "origin": "supervisor model driver comms_conv",
+   "fix": "fixed (trend_only): real-world case added: level from the NTM-backlog definition (MSA backlog = preceding 12-month work; project work enters only for its 12-month part, so mix shifts do not change the burn, as FY25-FY27 showed), season from the company's workday/weather explanation (10-K Item 1 src 9: 'several holidays fall within the fiscal quarter ending in January, which decreases the number of available workdays'; Q3 FY24 call src 43); FY28-30 are 52-week years (no 14-week Q4); values unchanged, alternatives sized (largest -2.0%)"
+  },
+  {
+   "item": "Q3 FY27 14.2% (Q3 FY26 15.1% less ~0.9pt) and Q4 FY27 11.4% (Q4 FY26 11.1% +0.3pt)",
+   "value": "0.142 / 0.114",
+   "cited": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://dycomind.gcs-web.com/static-files/69ad42d9-8ecc-4700-94e0-390b564405ba",
+   "result": "trend_only",
+   "origin": "supervisor model driver comms_margin",
+   "fix": "fixed (trend_only): Q3/Q4 FY27 rebuilt from the components named on the Q2 FY27 call (fuel ~35bp + investments to scale / wireless deleverage 99bp, both continuing in H2): 13.77% / 9.77% (FY27 12.49%, the guided slight decline); previous 14.2/11.4 sized as an alternative (+0.54%)"
+  },
+  {
+   "item": "FY2029-FY2030 = FY2028 quarters held",
+   "value": "0.1256/0.1387/0.145/0.117",
+   "cited": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm; https://www.sec.gov/Archives/edgar/data/732717/000073271726000370/t-3q2026exhibit991.htm; https://wirelessestimator.com/articles/2026/net-90-terms-surface-as-verizon-falls-short-on-multiple-commitments-to-the-fcc-and-infrastructure-contractors/",
+   "result": "unsupported",
+   "origin": "supervisor model driver comms_margin",
+   "fix": "fixed (unsupported): FY28 = FY27 + reversal of the 99bp one-time drag (wireless returns into FY28, ramp lapped; fuel kept) = FY26 filed margins less fuel; FY29-30 held at that normalized level (reported history with discrete items removed); MasTec / Verizon evidence addressed (deleverage is in the backlog driver; net-90 is working capital); alternatives sized (FY27 levels -3.05%, agent_4 -4.21%, fuel reversed +2.73%)"
+  },
+  {
+   "item": "Q3 FY27 435 (1.85% of 23,478) and Q4 FY27 420 (1.73% of 24,235), 'unchanged'",
+   "value": "435 / 420",
+   "cited": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "result": "unsupported",
+   "origin": "supervisor model driver bs_share",
+   "fix": "fixed (unsupported): Q3/Q4 FY27 Building Systems revenue on the crew chain from the Q2 FY27 actual 397.5 at 15%/yr: 411.6 / 426.3 (FY27 1,630.8, inside the guide as a cross-check; backlog-conversion cross-check 0.373 x 1,110 = 414.1); was 435 / 420; +1.32 with the FY28-30 chain"
+  },
+  {
+   "item": "FY2028-FY2030 revenue = 420 growing 15%/yr",
+   "value": "1,835 / 2,110 / 2,427 (stated)",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript; https://earningswhispers.com/transcript/DY/Q22027",
+   "result": "trend_only",
+   "origin": "supervisor model driver bs_share",
+   "fix": "fixed (trend_only): the 15%/yr FY28-30 crew rate now cites the forward statements: Q4 FY26 call (~3,000 electricians, labor growth 15-25%, 'adding resources'), Q2 FY27 call ('electricians are still in short demand', 'projects that we are turning away', industry 'continues to be constrained as we look down the road', 'comfortable scaling that business', 'scaling the critical workforce ... in the DMV'); low end of the stated range (rule 0c); organic flat (-6.6%, carded) and +25% (+4.8%) sized"
+  },
+  {
+   "item": "Oct 2026-Jan 2027 held at the Sep-26 Census level (SAAR 96,462)",
+   "value": "Q3 FY27 23,478.2; Q4 FY27 24,235.2",
+   "cited": "https://www.census.gov/construction/c30/xlsx/privsatime.xlsx; https://www.tokenpost.com/news/business/51961",
+   "result": "unsupported",
+   "origin": "supervisor model driver dc_mkt (driver_build constants)",
+   "fix": "fixed (unsupported): Oct-Dec 2026 = Goldman's 2026 $80B less the Census Jan-Sep actual: SAAR 107,357 a month; Q3/Q4 FY27 market 24,386.1 / 25,400.5; held-at-Sep sized as an alternative (-0.26% at the booked share, 0.00 on the booked build)"
+  },
+  {
+   "item": "CY2029 held flat at CY2028 $125B (FY2030 market 125,910)",
+   "value": "flat",
+   "cited": "https://www.tokenpost.com/news/business/51961; https://www.aia.org/resource-center/july-2026-consensus-construction-forecast; https://www.kucoin.com/blog/goldman-sachs-raises-2030-data-center-forecast-273-gw-8-trillion-investment",
+   "result": "unsupported",
+   "origin": "supervisor model driver dc_mkt (driver_build constants)",
+   "fix": "fixed (unsupported): CY2029 = 125 x 1.45^(1/4) = $137.2B from Oxford Economics 2026-11-13 (src 69; +45% over four years to a 2030 peak), Goldman's raised 2030 capacity view agrees in direction; flat and +25% sized"
+  },
+  {
+   "item": "0.62 from adhoc/nvda_customer_capex.md section 8 base case (Big-4 1,080 x 0.375 = 405 / 653.3, CY2027)",
+   "value": "0.62",
+   "cited": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "stale",
+   "origin": "supervisor model driver hs_self_funded",
+   "fix": "fixed (stale): hs_self_funded re-checked on the Big-4 Q3 2026 outlooks (Alphabet 8-K + call, Meta 8-K, Microsoft call, Amazon call: CY2026 ~730 vs the study's 733) -> 0.619 -> 0.62 unchanged; no numeric 2027 guide exists (search shown in src 39 timeliness); src 39 vintage corrected to 2026-10-05"
+  },
+  {
+   "item": "FY2028-FY2030 Building Systems revenue (before dc_mor) from the 15%/yr capacity build",
+   "value": "booked quarters x dc_mkt = 1,779.6 / 2,093.8 / 2,330.3 (Q1 FY28 420.8)",
+   "cited": "supervisor.json drivers[bs_share].quarters x driver_build constants dc_mkt",
+   "result": "arithmetic",
+   "origin": "supervisor model driver bs_share (section 2)",
+   "fix": "fixed (arithmetic): verified on the round-1 recompute (backup .bak-fix2-1117: shares x Goldman market = 1,834.7 / 2,110.0 / 2,426.4, as derived); then superseded by the crew chain from Q2 FY27 (1,862.1 / 2,141.5 / 2,462.7), shares recomputed on the new market, derivation states the new shares"
+  },
+  {
+   "item": "AIA July 2026 consensus: data centers +25% in 2027 on the Census CY2026 total (77.3 -> 96.6)",
+   "value": "276.98 (-1.02%)",
+   "cited": "https://www.aia.org/resource-center/july-2026-consensus-construction-forecast",
+   "result": "stale",
+   "origin": "supervisor judgment_alternatives dc_mkt",
+   "fix": "fixed (stale): AIA July 2026 alternative dropped (overtaken by Census: Jan-Sep 2026 +43% vs AIA's +33%); src 67 timeliness.newer_forecast [66]"
+  },
+  {
+   "item": "Hyperscaler capex consensus ratio (previous booking)",
+   "value": "281.06 (+0.44%)",
+   "cited": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "stale",
+   "origin": "supervisor judgment_alternatives dc_mkt",
+   "fix": "fixed (stale): capex-ratio alternative dropped; src 27 timeliness.newer_forecast [66]"
+  },
+  {
+   "item": "alternatives 20.0% / 17.0% / 21.1%",
+   "value": "booked 18.0%",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript; https://www.sec.gov/Archives/edgar/data/67215/000006721525000075/dyfy2026q4pressreleaseex991.htm",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives bs_margin",
+   "fix": "fixed (missing_alternative): 15.0% added to judgment_alternatives (Q4 FY26 call 'Mid-teens is really the right way to think about it today', src 37; 8-K src 29) and engine-sized -6.45% (262.75); over 5% and not on the 2026-11-17 card, so added to the bs_margin card as an option for Kilian (his 18% decision left as booked)"
+  },
+  {
+   "item": "organic flat at 420 / labor +25%/yr patches",
+   "value": "267.22 / 288.58",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript; https://earningswhispers.com/transcript/DY/Q22027",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_alternatives bs_share",
+   "fix": "fixed (mislabelled): bs_share patches rebuilt on the current market as revenue paths (organic flat at 397.5, labor +25% from 397.5, previous 435/420 booking, share flat, share -5%/yr) and re-sized"
+  },
+  {
+   "item": "card context and option research_target values",
+   "value": "booked option 281.06 (e.g. backlog flat 260.16; bs_margin 21.1% 299.50 / +6.56%)",
+   "cited": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_calls_for_kilian comms_ntm_backlog",
+   "fix": "fixed: card options re-sized on the 280.86 base (pre-trim 288.95, agent_3 275.37, flat 259.82 / -7.49%); context base updated"
+  },
+  {
+   "item": "card context and option research_target values",
+   "value": "booked option 281.06 (e.g. backlog flat 260.16; bs_margin 21.1% 299.50 / +6.56%)",
+   "cited": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_calls_for_kilian Supplier finance adjustment (debt-like share)",
+   "fix": "fixed: card options re-sized on the 280.86 base (none 287.59 / +2.40%, all 275.49 / -1.91%)"
+  },
+  {
+   "item": "card context and option research_target values",
+   "value": "booked option 281.06 (e.g. backlog flat 260.16; bs_margin 21.1% 299.50 / +6.56%)",
+   "cited": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_calls_for_kilian EV/EBITDA horizon multiple",
+   "fix": "fixed: card options re-sized on the 280.86 base (as-filed 287.59, 19% 279.74, 15% 281.99)"
+  },
+  {
+   "item": "card context and option research_target values",
+   "value": "booked option 281.06 (e.g. backlog flat 260.16; bs_margin 21.1% 299.50 / +6.56%)",
+   "cited": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_calls_for_kilian comms_margin",
+   "fix": "fixed: card rewritten to the rebuilt margin path; options re-sized (agent_4 269.03 / -4.21%, FY27 levels 272.29, fuel reversed 288.53, previous booking 282.38)"
+  },
+  {
+   "item": "card context and option research_target values",
+   "value": "booked option 281.06 (e.g. backlog flat 260.16; bs_margin 21.1% 299.50 / +6.56%)",
+   "cited": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_calls_for_kilian bs_margin",
+   "fix": "fixed: card options re-sized on the 280.86 base (21.1% 299.58 / +6.66%, 20% 292.94, 17% 274.83) and the 15% option added (262.75 / -6.45%)"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue Q3 FY2027 guide as of 2026-08-26 (GAAP contract revenues)",
+   "value": "1900-1980",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q3 FY2027 guide as of 2026-08-26 (Non-GAAP adjusted EBITDA)",
+   "value": "281-302",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q3 FY2027 guide as of 2026-08-26 (Non-GAAP adjusted diluted EPS excluding amortization)",
+   "value": "4.33-4.79",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue FY2027 guide as of 2026-08-26 (GAAP contract revenues)",
+   "value": "7480-7660",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "claim (src 2)",
+   "value": "Above the range (+10.0% vs midpoint 291.5) ... Building Systems 21.0% inside the guided high-teens to low-twenties band, src 2 ...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "claim (src 2, 49, 37)",
+   "value": "FY2028-FY2030 18.0% (the FY27 band 'high-teens to low-twenties' covers FY27 only, src 2 / src 49; ...)",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "revenue Q1 FY2026: first guide (2025-02-26) / reported actual",
+   "value": "1160-1200 / 1258.6",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q1 FY2026: first guide (2025-02-26) / reported actual",
+   "value": "130.6-140.6 / 150.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q1 FY2026 (GAAP): first guide (2025-02-26) / reported actual",
+   "value": "1.5-1.73 / 2.09",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue FY2026: first guide (2025-02-26) / reported actual",
+   "value": "5172.2-5313.3 / 5545.9",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q2 FY2026: first guide (2025-05-21) / reported actual",
+   "value": "1380-1430 / 1377.9",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q2 FY2026: first guide (2025-05-21) / reported actual",
+   "value": "185-200 / 205.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q2 FY2026 (GAAP): first guide (2025-05-21) / reported actual",
+   "value": "2.74-3.05 / 3.33",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q3 FY2026: first guide (2025-08-20) / reported actual",
+   "value": "1380-1430 / 1451.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q3 FY2026: first guide (2025-08-20) / reported actual",
+   "value": "198-213 / 219.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q3 FY2026 (GAAP): first guide (2025-08-20) / reported actual",
+   "value": "3.03-3.36 / 3.63",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q4 FY2026: first guide (2025-11-19) / reported actual",
+   "value": "1260-1340 / 1457.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q4 FY2026: first guide (2025-11-19) / reported actual",
+   "value": "140-155 / 162.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q4 FY2026 (adjusted): first guide (2025-11-19) / reported actual",
+   "value": "1.62-1.97 / 2.03",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q1 FY2027: first guide (2026-03-04) / reported actual",
+   "value": "1640-1710 / 1964.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q1 FY2027: first guide (2026-03-04) / reported actual",
+   "value": "202-218 / 262.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q1 FY2027 (adjusted): first guide (2026-03-04) / reported actual",
+   "value": "2.57-2.9 / 4.42",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue Q2 FY2027: first guide (2026-05-27) / reported actual",
+   "value": "1940-2010 / 2005.9",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q2 FY2027: first guide (2026-05-27) / reported actual",
+   "value": "284-303 / 315.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q2 FY2027 (adjusted): first guide (2026-05-27) / reported actual",
+   "value": "4.4-4.82 / 5.29",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "claim (src 3)",
+   "value": "Record: ... the Q1 FY27 beat (+17.3%) came against a guide (2026-03-04) that already included Power Solutions (release: organic growth +24.7%, src 3) ...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "claim (src 12, 11)",
+   "value": "Risks to the build: MasTec Communications revenue -11.8% y/y in Q3 2026 on carrier deferrals (src 12) and AT&T's 2027-28 capex trim (src 11); the deferral is already taken out.",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "claim (src 12, 11, 51)",
+   "value": "FY29-FY30 = the FY28 quarters held ... (MasTec Communications EBITDA margin 6.7%, -460bp y/y, src 12; ...)",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "claim (src 49)",
+   "value": "Above the range (vs midpoint 4.56), from the build: ... / 30.36M shares (company-stated Q3 interest ~$38M and 26.0% non-GAAP tax rate, Outlook Expectations Summary src 49)",
+   "basis": "claim",
+   "source_url": "https://dycomind.gcs-web.com/static-files/69ad42d9-8ecc-4700-94e0-390b564405ba",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "claim (src 50)",
+   "value": "... Verizon held 2026 capex $16-16.5B (src 50) ...",
+   "basis": "claim",
+   "source_url": "https://telecomlead.com/?p=128387",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "claim (src 43)",
+   "value": "The ratios held in a narrow band through FY24-FY27 although the program mix moved (AT&T fiber ramp, Lumen long-haul for hyperscalers from FY25, BEAD engineering), and the season comes from workdays (\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721523000061/dyfy2024q3-transcriptex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "claim (src 24, 49)",
+   "value": "FY28 +0.3pt per quarter (the ~$150M wireless work shifts into FY28 and the FY27 fiber-ramp investments that cut Q2 FY27 margin lap: Q2 FY27 call src 24, Outlook Expectations Summary src 49).",
+   "basis": "claim",
+   "source_url": "https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "claim (src 37, 24)",
+   "value": "FY2028-FY2030 rebuilt 2026-11-17 from capacity, not a share trend: Building Systems is labor-bound ('They are really about labor'; ~3,000 electricians for over $1B of revenue; 'we are certainly addin\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "claim (src 9, 53)",
+   "value": "Windows are the shared GPU-deployment months (pause + ~12-month build); Dycom recognizes contract revenue under 'the cost-to-cost method of progress' (10-K FY2026 risk factors, src 9), i.e. as work i\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000008/dy-20260131.htm",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "claim (src 39, 36, 37)",
+   "value": "CY2027: Big-4 1,080 x 0.375 = 405 vs Oracle+xAI+other large 256 x 0.375 = 96, ACIE 415 x 0.15 = 62.3, shells 90 -> 405 / 653.3 = 0.620; CY2028 498.8 / 792.3 = 0.630; CY2026 274.9 / 443.5 = 0.620 -> 0\u2026",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "claim (src 38, 39)",
+   "value": "Cross-check, DY's own region: colocation is 21% of Virginia's pipeline capacity, the rest self-build [src 38] (upper bound ~0.79, alternative sized); lower builds sized too: DC Byte global pipeline 4\u2026",
+   "basis": "claim",
+   "source_url": "https://www.dcbyte.com/industry-reports/trends-in-hyperscaler-build-strategies-report/",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "AT&T capital investment $22-23B annually 2027-28 vs $23-24B 2026; >60M fiber locations by 2030",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/732717/000073271726000370/t-3q2026exhibit991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "MasTec Q3 2026 Communications revenue 806.9 vs 914.6 (-11.8%), EBITDA margin 6.7% (-460bp), 18-month backlog 5,053 vs 5,461 (Jun 30) / 5,055 (Sep 30 2025), deferrals and market exits",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "DY Communications NTM backlog 5,376 (Q1 FY27) -> 5,362 (Q2 FY27)",
+   "value": "5,376 / 5,362",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "10-Q note 22: confirmed obligations 367.4 (2026-08-01) / 226.4 (2026-01-31), invoices received 578.6, paid 560.6 in Q2, paid to the bank 'generally within 60 days', no pledged assets, in AP and operating cash flow",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "AP days 18.75/18.74/17.49/18.62 (avg 18.40) vs 27.67; excess 9.27 days x 2,005.9/91 = 204.3 (55.6% of 367.4)",
+   "value": "-204.3",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000067215.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "MTZ Zacks consensus on adjusted EPS; NTM 11.68, 193.77 / 11.68 = 16.6x",
+   "value": "16.6x",
+   "basis": "estimate",
+   "source_url": "https://zacks.com/stock/news/3019447/mastec-q3-earnings-revenues-beat-estimates-on-power-delivery-strength",
+   "checked": "2026-11-18",
+   "feeds": "comps"
+  },
+  {
+   "item": "PRIM Zacks consensus on adjusted EPS",
+   "value": "adjusted",
+   "basis": "estimate",
+   "source_url": "https://www.finanzen.net/nachricht/aktien/primoris-services-stock-down-10-post-q3-results-buy-the-dip-or-wait-15268515",
+   "checked": "2026-11-18",
+   "feeds": "comps"
+  },
+  {
+   "item": "MYRG restated to ex-amortization 19.6x (GAAP 20.2x)",
+   "value": "19.6x",
+   "basis": "estimate",
+   "source_url": "https://finanzen.net/nachricht/aktien/myr-group-myrg-q3-earnings-and-revenues-surpass-estimates-15143259; https://data.sec.gov/api/xbrl/companyconcept/CIK0000700923/us-gaap/EarningsPerShareDiluted.json",
+   "checked": "2026-11-18",
+   "feeds": "comps"
+  },
+  {
+   "item": "Power Solutions pre-close add ~69: ~$1.0B CY2025 revenue x 'mid-to-high teens' x 149/365; 9,350.9/990.7 = 9.44x; exit 13.85 x (9.44/13.85)^0.8 = 10.19",
+   "value": "10.2x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000075/dyfy2026q4pressreleaseex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "comps"
+  },
+  {
+   "item": "BEAD/long-haul ~$20B TAM back-half weighted; Verizon net-90 terms from Feb 2026",
+   "value": "as stated",
+   "basis": "management",
+   "source_url": "https://earningswhispers.com/transcript/DY/Q22027; https://wirelessestimator.com/articles/2026/net-90-terms-surface-as-verizon-falls-short-on-multiple-commitments-to-the-fcc-and-infrastructure-contractors/",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "Form 4 code P: CEO 850 @ $296.76 (2026-09-09); directors 700 @ $286.92 (09-01), 350 @ $280.62 (09-23); 10-07 code F",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000183734726000003/xslF345X06/primarydocument.xml; https://www.sec.gov/Archives/edgar/data/67215/000134962826000004/xslF345X06/primarydocument.xml; https://www.sec.gov/Archives/edgar/data/67215/000191934826000002/xslF345X06/primarydocument.xml; https://www.sec.gov/Archives/edgar/data/67215/000203811026000003/xslF345X06/primarydocument.xml",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "AT&T 11.0% of receivables and contract assets at 2026-08-01",
+   "value": "11.0%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "Verizon maintained 2026 capex guidance $16-16.5B",
+   "value": "$16-16.5B",
+   "basis": "reported",
+   "source_url": "https://telecomlead.com/?p=128387",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "Net debt 2,479.7 = 2,791.3 + 28.4 - 340.1; diluted shares 30.364; Q2 tax 38.3/154.0 = 24.9%; buybacks H1 FY27 36.0; SBC TTM 38.1; FY24-26 diluted shares 29.7/29.5/29.4",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "python3 secfacts.py show DY (SEC XBRL)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "Outlook Expectations Summary: Q3 interest ~$38M, non-GAAP tax 26.0%, diluted 30.4M (Q3 and FY27), SBC ~$11M, amortization ~$60M / ~$239M, net capex $210-220M; ~$150M wireless into FY28; BS margin high-teens to low-twenties",
+   "value": "as stated",
+   "basis": "company-stated",
+   "source_url": "https://dycomind.gcs-web.com/static-files/69ad42d9-8ecc-4700-94e0-390b564405ba",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "NWC: DSO 101 days",
+   "value": "101",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "revenue Q3 FY2027 guidance arithmetic",
+   "value": "4/1/1, median 0.05, adjusted 2036.903, ours 2050.0 above, gap 0.0567",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted EBITDA Q3 FY2027 guidance arithmetic",
+   "value": "6/0/0, median 0.088, adjusted 317.152, ours 320.7 above, gap 0.1001",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "adjusted diluted EPS Q3 FY2027 guidance arithmetic",
+   "value": "6/0/0, median 0.1489, adjusted 5.239, ours 5.32 above, gap 0.1667",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "revenue FY2027 guidance arithmetic",
+   "value": "1/0/0, median 0.0578, adjusted 8007.546, ours 7719.6 above, gap 0.0198",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "guidance_check"
+  },
+  {
+   "item": "CY2027 $100B / CY2028 $125B (Goldman Sachs, Nov 2026)",
+   "value": "100,000 / 125,000",
+   "basis": "estimate",
+   "source_url": "https://www.tokenpost.com/news/business/51961",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "Census actuals Sep-26p 96,462, Aug-26r 88,815, Sep-25 50,700; CY2024 avg 34,718, CY2025 49,712; Q1/Q2 FY27 14,778.4 / 18,258.4",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.census.gov/construction/c30/xlsx/privsatime.xlsx",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "Peak 1.0 x 0.70 x (TX 0.2692 x 0.75 + PJM 0.2585 x 0.30 + NY 0.0176) = 0.2079; GA 0.0572 x 0.30 x 0.70 from Jan 2028",
+   "value": "0.2079",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "seasonal means and Q3/Q4 FY27 arithmetic",
+   "value": "0.2901 / 0.3010 / 0.3168 / 0.2482; 1,615.0 (0.30119); 1,278.9 (0.23597)",
+   "basis": "estimate,",
+   "source_url": "derivation",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "year aggregates",
+   "value": "0.1285/0.1315/0.1315/0.1316",
+   "basis": "estimate,",
+   "source_url": "derivation",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "Q3/Q4 FY27 21.0%/19.5%; FY28-30 18.0%",
+   "value": "0.2066 / 0.18",
+   "basis": "estimate,",
+   "source_url": "derivation",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "revenue Q3 why: cross-check 1,615 vs ~1,505 (guide midpoint 1,940 less BS 435)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "revenue Q3 why: 'Q2 FY27 beat only +1.6% after the wireless deferral'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "EBITDA Q3 why: beat 6 of 6 (median +8.8%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "EPS Q3 why: beat 6 of 6 (median +14.9%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000054/dyfy2026q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000028/dyfy2026q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "FY revenue why: +2.0% vs midpoint 7,570, wireless shift taken out",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "FY revenue why: FY26 first guide +10-13% beaten by 5.8% (incl ~96 of Power Solutions and a 53rd week); FY27 guide raised twice net of the wireless cut",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000006/dyfy2025q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000074/dyfy2026q3earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000023/dyfy2027q1earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "FY revenue why: BS H2 855 at the top of 1.58-1.65B less H1 792.9",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "backlog card why: slower, not falling; BEAD and long-haul land mostly after the horizon",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "backlog card why: booked since Kilian's 2026-11-02 card",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "supplier finance card why: 60-day payment, no interest, supplier terms unchanged; AP days 18.4 -> 27.7",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm; https://data.sec.gov/api/xbrl/companyfacts/CIK0000067215.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "EV/EBITDA card why: EV carries purchase debt, TTM misses 149 pre-close days; ~69 add from the 8-K (61-78)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000075/dyfy2026q4pressreleaseex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "EV/EBITDA card why: 'In the set; under the 5% threshold'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_margin card why: agent_4 cut leans on MasTec 6.7% and trade-press unit-price commentary; DY guided slight decline (12.84% FY27)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm; https://wirelessestimator.com/articles/2026/net-90-terms-surface-as-verizon-falls-short-on-multiple-commitments-to-the-fcc-and-infrastructure-contractors/; https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_margin card why: under 5% on the re-sized set",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "bs_margin card why: evidence-based alternative over 5%: carded, not chosen",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_conv derivation: workday seasonality (January-quarter weather, holidays, daylight)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721523000061/dyfy2024q3-transcriptex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_conv derivation: one-offs +26.5 (Q3 FY24) and ~46 storm (Q3 FY25)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721523000061/dyfy2024q3-transcriptex991.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721524000049/dyfy2025q3-transcriptex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_conv derivation: BEAD construction 'in earnest' FY28; long-haul backlog > $1B; deferred wireless stays in backlog (scope and backlog unchanged)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "bs_share derivation: labor-bound quotes, ~3,000 electricians, >$1B, 15-25% labor range, ~15% CAGR; electricians short, projects turned away",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript; https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "bs_margin derivation: 'mid- to high-teens margin profile ... historically'; 'mid-teens ... the right way to think about it today'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "dc_mor derivation: cost-to-cost revenue recognition; construction 12-18 months, commissioning 2-6 months",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm; https://www.globaldatacenterhub.com/p/from-permit-to-power-on-how-data",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "hs_self_funded derivation: Big-4 capex includes finance leases on developer-built halls",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "hs_self_funded derivation: DY gives no Building Systems customer split; DMV concentration",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721525000075/dyfy2026q4pressreleaseex991.htm; https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "CY2029 at Goldman's 2027->28 rate; Q4 FY27 at Goldman's $80B 2026",
+   "value": "279.89 / 280.83",
+   "basis": "estimate",
+   "source_url": "https://www.tokenpost.com/news/business/51961",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "hs_self_funded alternatives (Virginia 0.79, DC Byte 0.56)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.dcbyte.com/industry-reports/trends-in-hyperscaler-build-strategies-report/",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "dc_mor alternatives (windows 3/6 months earlier; PJM only; US share 0.693)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.globaldatacenterhub.com/p/from-permit-to-power-on-how-data; https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm; /mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_ntm_backlog alternatives (pre-trim, agent_3, flat)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://earningswhispers.com/transcript/DY/Q22027; https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/732717/000073271726000370/t-3q2026exhibit991.htm; https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_conv alternatives (Q2-relative chain, as-reported, lowest year, deferral added back)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721523000061/dyfy2024q3-transcriptex991.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721524000049/dyfy2025q3-transcriptex991.htm; https://data.sec.gov/api/xbrl/companyconcept/CIK0000067215/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json; https://earningswhispers.com/transcript/DY/Q22027; https://dycomind.gcs-web.com/static-files/69ad42d9-8ecc-4700-94e0-390b564405ba",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "comms_margin alternatives (FY27 levels, +0.2pt, agent_4 -50bp)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721526000004/dyfy2026q4earningsreleasee.htm; https://wirelessestimator.com/articles/2026/net-90-terms-surface-as-verizon-falls-short-on-multiple-commitments-to-the-fcc-and-infrastructure-contractors/",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "supplier finance / EV/EBITDA / leg weight alternatives",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000043/dy-20260801.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721525000075/dyfy2026q4pressreleaseex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "research target (12m) value and reason (after fix)",
+   "value": "fixed: fair_value restated to the current engine value 280.86 (model_engine.py check 2026-11-18; P/E 271.37 w0.7, EV/EBITDA 303.02 w0.3; downside 127.31, upside 437.37) with the Goldman rebook (281.06 -> 281.06, bs_share recomputed) and the second gate fix (-> 280.86) in the path; ConstructConnect r",
+   "basis": "estimate",
+   "source_url": "judgment_alternatives_sized (set_hash f3032ea6, 2026-11-17T21:51Z)",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "last research-target step 289.99 -> 281.06 (after fix)",
+   "value": "fixed: changes rows added for the Goldman rebook (0.00 after the bs_share recompute; 279.82 before it) and the second gate fix 281.06 -> 280.86, downside 127.75 -> 127.31, upside 437.41 -> 437.37",
+   "basis": "estimate",
+   "source_url": "judgment_alternatives_sized",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "ConstructConnect Spring 2026 Private Office forecast (CY2029 +3.65%; FY2030 roll-forward 'no further growth past Dec 2029') (after fix)",
+   "value": "fixed (stale): ConstructConnect dropped everywhere it fed (fair_value reason, changes, constants_note, FY2030 roll-forward note); src 52 timeliness.newer_forecast = [66 Goldman Nov 2026, 69 Oxford Economics 2026-11-13]; CY2029 rebuilt on Oxford (+9.73%/yr to a 2030 peak), Jan 2030 rising; value effe",
+   "basis": "estimate",
+   "source_url": "https://news.constructconnect.com/u.s.-put-in-place-construction-forecast-report-spring-2026-highlights",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "Hyperscaler capex consensus path (Goldman 2026-09-24: $800B -> $1,070B -> ~$1,300B) used for CY2027 103,357 / CY2028 125,574 (the 281.06 booking) (after fix)",
+   "value": "fixed (stale): the Goldman 2026-09-24 capex-consensus path is superseded by Goldman's own Nov 2026 US data-center construction forecast (src 27 timeliness.newer_forecast [66]); the capex-ratio dc_mkt alternative dropped; fair_value no longer rests on it",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "reconciled_peer_median_pe_ntm 18.65x (spot checks incl. MYRG 20.2x GAAP) (after fix)",
+   "value": "fixed (mixed_basis): comps_review restated to one basis: median 18.20x (MTZ 16.6, PRIM 16.8 post-print, MYRG 19.6 restated, PWR 35.2 adjusted), spot-check list rewritten; exit 13.2x unchanged (13.16)",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/PRIM/earnings-forecast; https://data.sec.gov/api/xbrl/companyconcept/CIK0000700923/us-gaap/EarningsPerShareDiluted.json; https://finanzen.net/nachricht/aktien/myr-group-myrg-q3-earnings-and-revenues-surpass-estimates-15143259",
+   "checked": "2026-11-18",
+   "feeds": "comps"
+  },
+  {
+   "item": "whole-company median 18.65x, MYRG 20.2x (after fix)",
+   "value": "fixed (mixed_basis): disagreements resolution restated to the one-basis 18.20x median with MYRG 19.6x",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/PRIM/earnings-forecast; https://data.sec.gov/api/xbrl/companyconcept/CIK0000700923/us-gaap/EarningsPerShareDiluted.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "PRIM consensus 2026 1.77 / 2027 4.82 (Nasdaq/Zacks, 2026-11-02) -> NTM 4.31, 17.1x (after fix)",
+   "value": "fixed (stale): PRIM moved to the post-print Nasdaq/Zacks read 2026-11-18 (1.91 / 4.88 -> NTM 4.39, 16.8x on the 2026-11-02 close), src 15 timeliness.newer_forecast [70]; median 18.20x, exit 13.2x unchanged",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/PRIM/earnings-forecast",
+   "checked": "2026-11-18",
+   "feeds": "comps"
+  },
+  {
+   "item": "PWR NTM P/E 35.2x, eps_basis 'not established' (after fix)",
+   "value": "fixed (mixed_basis): PWR basis established as adjusted (Zacks 2026-10-29: adjusted $6.06 vs consensus $5.03, GAAP $4.55, src 71); 11-18 read 16.61 / 19.19 (33.1x) noted; outside the median pair",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/PWR/earnings-forecast",
+   "checked": "2026-11-18",
+   "feeds": "comps"
+  },
+  {
+   "item": "driver value strings (after fix)",
+   "value": "fixed: key_drivers rewritten from the booked year aggregates",
+   "basis": "estimate",
+   "source_url": "supervisor.json model.reconciled_inputs.drivers",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "derivation text (Q3 FY27 5,450, Q4 5,650, FY28 +2.5%, FY29 +1.75%) (after fix)",
+   "value": "fixed: derivation restated to the booked middle-trim path (5,420 / 5,580, +1.75%/qtr FY28, +1.5%/qtr FY29, FY30 fade); values unchanged",
+   "basis": "estimate",
+   "source_url": "supervisor.json drivers[comms_ntm_backlog]",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "BEAD TAM ~$17-22B (Q2 FY27 call) (after fix)",
+   "value": "fixed (wrong): BEAD TAM restated to management's 'about a $17 billion TAM'; the $22B is an analyst question, removed",
+   "basis": "estimate",
+   "source_url": "https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "Q3/Q4 FY27 0.30119 / 0.23597 and FY2028-FY2030 seasonal means 0.2901/0.3010/0.3168/0.2482 (after fix)",
+   "value": "fixed (trend_only): real-world case added: level from the NTM-backlog definition (MSA backlog = preceding 12-month work; project work enters only for its 12-month part, so mix shifts do not change the burn, as FY25-FY27 showed), season from the company's workday/weather explanation (10-K Item 1 src ",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721523000008/dyq4fy2023-transcriptex991.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721523000061/dyfy2024q3-transcriptex991.htm; https://www.sec.gov/Archives/edgar/data/67215/000006721524000049/dyfy2025q3-transcriptex991.htm; https://data.sec.gov/api/xbrl/companyconcept/CIK0000067215/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "Q3 FY27 14.2% (Q3 FY26 15.1% less ~0.9pt) and Q4 FY27 11.4% (Q4 FY26 11.1% +0.3pt) (after fix)",
+   "value": "fixed (trend_only): Q3/Q4 FY27 rebuilt from the components named on the Q2 FY27 call (fuel ~35bp + investments to scale / wireless deleverage 99bp, both continuing in H2): 13.77% / 9.77% (FY27 12.49%, the guided slight decline); previous 14.2/11.4 sized as an alternative (+0.54%)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm; https://dycomind.gcs-web.com/static-files/69ad42d9-8ecc-4700-94e0-390b564405ba",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "FY2029-FY2030 = FY2028 quarters held (after fix)",
+   "value": "fixed (unsupported): FY28 = FY27 + reversal of the 99bp one-time drag (wireless returns into FY28, ramp lapped; fuel kept) = FY26 filed margins less fuel; FY29-30 held at that normalized level (reported history with discrete items removed); MasTec / Verizon evidence addressed (deleverage is in the b",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm; https://www.sec.gov/Archives/edgar/data/732717/000073271726000370/t-3q2026exhibit991.htm; https://wirelessestimator.com/articles/2026/net-90-terms-surface-as-verizon-falls-short-on-multiple-commitments-to-the-fcc-and-infrastructure-contractors/",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "Q3 FY27 435 (1.85% of 23,478) and Q4 FY27 420 (1.73% of 24,235), 'unchanged' (after fix)",
+   "value": "fixed (unsupported): Q3/Q4 FY27 Building Systems revenue on the crew chain from the Q2 FY27 actual 397.5 at 15%/yr: 411.6 / 426.3 (FY27 1,630.8, inside the guide as a cross-check; backlog-conversion cross-check 0.373 x 1,110 = 414.1); was 435 / 420; +1.32 with the FY28-30 chain",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "FY2028-FY2030 revenue = 420 growing 15%/yr (after fix)",
+   "value": "fixed (trend_only): the 15%/yr FY28-30 crew rate now cites the forward statements: Q4 FY26 call (~3,000 electricians, labor growth 15-25%, 'adding resources'), Q2 FY27 call ('electricians are still in short demand', 'projects that we are turning away', industry 'continues to be constrained as we loo",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript; https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "Oct 2026-Jan 2027 held at the Sep-26 Census level (SAAR 96,462) (after fix)",
+   "value": "fixed (unsupported): Oct-Dec 2026 = Goldman's 2026 $80B less the Census Jan-Sep actual: SAAR 107,357 a month; Q3/Q4 FY27 market 24,386.1 / 25,400.5; held-at-Sep sized as an alternative (-0.26% at the booked share, 0.00 on the booked build)",
+   "basis": "estimate",
+   "source_url": "https://www.census.gov/construction/c30/xlsx/privsatime.xlsx; https://www.tokenpost.com/news/business/51961",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "CY2029 held flat at CY2028 $125B (FY2030 market 125,910) (after fix)",
+   "value": "fixed (unsupported): CY2029 = 125 x 1.45^(1/4) = $137.2B from Oxford Economics 2026-11-13 (src 69; +45% over four years to a 2030 peak), Goldman's raised 2030 capacity view agrees in direction; flat and +25% sized",
+   "basis": "estimate",
+   "source_url": "https://www.tokenpost.com/news/business/51961; https://www.aia.org/resource-center/july-2026-consensus-construction-forecast; https://www.kucoin.com/blog/goldman-sachs-raises-2030-data-center-forecast-273-gw-8-trillion-investment",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "0.62 from adhoc/nvda_customer_capex.md section 8 base case (Big-4 1,080 x 0.375 = 405 / 653.3, CY2027) (after fix)",
+   "value": "fixed (stale): hs_self_funded re-checked on the Big-4 Q3 2026 outlooks (Alphabet 8-K + call, Meta 8-K, Microsoft call, Amazon call: CY2026 ~730 vs the study's 733) -> 0.619 -> 0.62 unchanged; no numeric 2027 guide exists (search shown in src 39 timeliness); src 39 vintage corrected to 2026-10-05",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "FY2028-FY2030 Building Systems revenue (before dc_mor) from the 15%/yr capacity build (after fix)",
+   "value": "fixed (arithmetic): verified on the round-1 recompute (backup .bak-fix2-1117: shares x Goldman market = 1,834.7 / 2,110.0 / 2,426.4, as derived); then superseded by the crew chain from Q2 FY27 (1,862.1 / 2,141.5 / 2,462.7), shares recomputed on the new market, derivation states the new shares",
+   "basis": "estimate",
+   "source_url": "supervisor.json drivers[bs_share].quarters x driver_build constants dc_mkt",
+   "checked": "2026-11-18",
+   "feeds": "model drivers"
+  },
+  {
+   "item": "AIA July 2026 consensus: data centers +25% in 2027 on the Census CY2026 total (77.3 -> 96.6) (after fix)",
+   "value": "fixed (stale): AIA July 2026 alternative dropped (overtaken by Census: Jan-Sep 2026 +43% vs AIA's +33%); src 67 timeliness.newer_forecast [66]",
+   "basis": "estimate",
+   "source_url": "https://www.aia.org/resource-center/july-2026-consensus-construction-forecast",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "Hyperscaler capex consensus ratio (previous booking) (after fix)",
+   "value": "fixed (stale): capex-ratio alternative dropped; src 27 timeliness.newer_forecast [66]",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "alternatives 20.0% / 17.0% / 21.1% (after fix)",
+   "value": "fixed (missing_alternative): 15.0% added to judgment_alternatives (Q4 FY26 call 'Mid-teens is really the right way to think about it today', src 37; 8-K src 29) and engine-sized -6.45% (262.75); over 5% and not on the 2026-11-17 card, so added to the bs_margin card as an option for Kilian (his 18% d",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript; https://www.sec.gov/Archives/edgar/data/67215/000006721525000075/dyfy2026q4pressreleaseex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "organic flat at 420 / labor +25%/yr patches (after fix)",
+   "value": "fixed (mislabelled): bs_share patches rebuilt on the current market as revenue paths (organic flat at 397.5, labor +25% from 397.5, previous 435/420 booking, share flat, share -5%/yr) and re-sized",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/03/04/dycom-dy-q4-2026-earnings-call-transcript; https://earningswhispers.com/transcript/DY/Q22027",
+   "checked": "2026-11-18",
+   "feeds": "supervisor"
+  },
+  {
+   "item": "card context and option research_target values (after fix)",
+   "value": "fixed: card options re-sized on the 280.86 base (pre-trim 288.95, agent_3 275.37, flat 259.82 / -7.49%); context base updated",
+   "basis": "estimate",
+   "source_url": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "checked": "2026-11-18",
+   "feeds": "cards"
+  },
+  {
+   "item": "card context and option research_target values (after fix)",
+   "value": "fixed: card options re-sized on the 280.86 base (none 287.59 / +2.40%, all 275.49 / -1.91%)",
+   "basis": "estimate",
+   "source_url": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "checked": "2026-11-18",
+   "feeds": "cards"
+  },
+  {
+   "item": "card context and option research_target values (after fix)",
+   "value": "fixed: card options re-sized on the 280.86 base (as-filed 287.59, 19% 279.74, 15% 281.99)",
+   "basis": "estimate",
+   "source_url": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "checked": "2026-11-18",
+   "feeds": "cards"
+  },
+  {
+   "item": "card context and option research_target values (after fix)",
+   "value": "fixed: card rewritten to the rebuilt margin path; options re-sized (agent_4 269.03 / -4.21%, FY27 levels 272.29, fuel reversed 288.53, previous booking 282.38)",
+   "basis": "estimate",
+   "source_url": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "checked": "2026-11-18",
+   "feeds": "cards"
+  },
+  {
+   "item": "card context and option research_target values (after fix)",
+   "value": "fixed: card options re-sized on the 280.86 base (21.1% 299.58 / +6.66%, 20% 292.94, 17% 274.83) and the 15% option added (262.75 / -6.45%)",
+   "basis": "estimate",
+   "source_url": "judgment_alternatives (sized 2026-11-17T21:51Z, base 279.82)",
+   "checked": "2026-11-18",
+   "feeds": "cards"
+  }
+ ],
+ "notes": [
+  "Gate round 2 (fix 2026-11-18). Research target (12m) 280.86 (model_engine.py check); was 281.06.",
+  "Owner-decided items: Communications NTM backlog (cards 2026-11-02 / 2026-11-17) left as booked; Building Systems margin 18% FY28-30 (card 2026-11-17, cmsg_01HdhANNPxz1f5xqDwR22cfL7xHYAbvST4ALu72S8B1n7g) left as booked, with the new 15% option (-6.45%) added to its card.",
+  "New over-5% alternatives carded: bs_share organic flat at 397.5 (-6.60%, new bs_share card); bs_margin 15% (-6.45%, on the decided bs_margin card).",
+  "timeliness.py check: 0 refused; judgment_check.py check: ok; forecast_lint.py check: no hits.",
+  "Disclosure: the 2026-11-18 Nasdaq/Zacks read also shows MTZ (8.77 / 11.98), MYRG (13.46 / 16.31) and PWR (16.61 / 19.19) consensus moved since the round's 2026-11-02 price date; their prints predate 2026-11-02, so they are not stale here, but a full re-read at the next update would put the peer median near 17.0x and the exit P/E near 13.0x (about -1.5%)."
+ ],
+ "accepted_carried": [
+  {
+   "item": "FY2030 path +1.25%/+1.0%/+0.75%/+0.5% a quarter (Q4 FY2030 6,573)",
+   "value": "6,427/6,492/6,540/6,573",
+   "cited": "https://www.sec.gov/Archives/edgar/data/732717/000073271726000370/t-3q2026exhibit991.htm; https://earningswhispers.com/transcript/DY/Q22027",
+   "result": "trend_only",
+   "origin": "supervisor model driver comms_ntm_backlog",
+   "fix": "owner-decided: Kilian decision card 2026-11-02 'Middle trim', re-confirmed 2026-11-17 1:08 PM ET (cmsg_01HdhANNPxz1f5xqDwR22cfL8QJQ3fXRvLEhZjogyYPJMD): 'Middle trim (booked)' (judgment_calls_for_kilian[comms_ntm_backlog].decided; the booked alternative includes the FY30 fade). Not rebuilt; close with gate_accept.py accept U DY --msg cmsg_01HdhANNPxz1f5xqDwR22cfL8QJQ3fXRvLEhZjogyYPJMD --quote '<his words>' | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL8QJQ3fXRvLEhZjogyYPJMD): \"Chose \"Middle trim (booked)\" on the decision card asking \"Which Communications backlog path for DY?\"\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL8QJQ3fXRvLEhZjogyYPJMD",
+    "card": null,
+    "quote": "Chose \"Middle trim (booked)\" on the decision card asking \"Which Communications backlog path for DY?\"",
+    "utc": "2026-11-18T00:58Z"
+   }
+  }
+ ],
+ "note": " | 2026-11-18T00:58Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL8QJQ3fXRvLEhZjogyYPJMD)."
+}

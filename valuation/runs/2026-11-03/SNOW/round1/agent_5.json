@@ -1,0 +1,2302 @@
+{
+ "symbol": "SNOW",
+ "agent_id": "agent_5",
+ "as_of": "2026-11-03",
+ "horizon": "2027-11-03",
+ "model_inputs": {
+  "unit": "USD millions",
+  "ebit_basis": "adjusted",
+  "ebit_basis_note": "EBIT = company non-GAAP operating income (Ex.99.1): GAAP operating income + stock-based compensation-related charges (incl. employer payroll tax on employee stock transactions) + amortization of acquired intangibles + acquisition/strategic-investment expenses + restructuring + office-exit impairment. Q2 FY27: (262.967) + 456.363 + 42.230 + 1.378 - 0.002 - 0.017 = 236.985 [6]. SBC is excluded from EBIT and recorded as its own quarterly line (sbc); FY26 SBC-related charges 36.5% of revenue. EPS = company non-GAAP diluted (SBC excluded); any multiple must read peers on the same basis.",
+  "sbc_treatment": "dilution",
+  "quarters": {
+   "labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027",
+    "Q3 FY2027",
+    "Q4 FY2027",
+    "Q1 FY2028",
+    "Q2 FY2028",
+    "Q3 FY2028",
+    "Q4 FY2028",
+    "Q1 FY2029",
+    "Q2 FY2029",
+    "Q3 FY2029",
+    "Q4 FY2029",
+    "Q1 FY2030",
+    "Q2 FY2030",
+    "Q3 FY2030",
+    "Q4 FY2030"
+   ],
+   "ends": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-01-31",
+    "2026-04-30",
+    "2026-07-31",
+    "2026-10-31",
+    "2027-01-31",
+    "2027-04-30",
+    "2027-07-31",
+    "2027-10-31",
+    "2028-01-31",
+    "2028-04-30",
+    "2028-07-31",
+    "2028-10-31",
+    "2029-01-31",
+    "2029-04-30",
+    "2029-07-31",
+    "2029-10-31",
+    "2030-01-31"
+   ],
+   "actual": 6,
+   "note": "FY ends Jan 31. Actual = FY26 (10-K [9]) + Q1 FY27 (10-Q [8]) + Q2 FY27 (10-Q [7]). Q3 FY27 (2026-10-31) reports ~2026-12-02 after the close (not yet confirmed by the company [19,20]). To flip Q3 FY27 to actual: set actual 7, overwrite column 7 of each driver with the reported values and add reported[\"Q3 FY2027\"]."
+  },
+  "base": {
+   "fy_end": "2026-01-31",
+   "revenue": 4683.946,
+   "product_revenue": 4472.317,
+   "ebit": 489.718,
+   "note": "FY26: revenue 1,042.074 + 1,144.969 + 1,212.909 + 1,283.994; non-GAAP operating income 489.718 (Q4 FY26 Ex.99.1 FY column) [4]; 10-K [9]."
+  },
+  "drivers": [
+   {
+    "id": "nrr",
+    "label": "Net revenue retention rate (company definition: trailing-2-year cohort of capacity customers, product revenue year 2 / year 1; reported at quarter end)",
+    "unit": "fraction",
+    "quarters": [
+     1.24,
+     1.25,
+     1.25,
+     1.25,
+     1.26,
+     1.26,
+     1.28,
+     1.29,
+     1.29,
+     1.275,
+     1.26,
+     1.245,
+     1.23,
+     1.22,
+     1.21,
+     1.2,
+     1.19,
+     1.18,
+     1.175,
+     1.17
+    ],
+    "agg": "mean",
+    "basis": "estimate",
+    "source": "Ex.99.1 'Financial Highlights' / Key Business Metrics: Q1 FY26 124%, Q2 125%, Q3 125%, Q4 125% [1-4], Q1 FY27 126% [5], Q2 FY27 126% [6] (10-Q: 126% at 2026-07-31 vs 125% at 2026-01-31 [7]); history Q4 FY24 131% [11], FY25 128/127/127/126% [12-15]. Definition: cohort = capacity customers using the platform in the first month of the first year of the trailing 2 years; NRR = cohort product revenue year 2 / year 1; churned customers count as zero [6].",
+    "derivation": "Identity (per Kilian's spec): product revenue(q) = product revenue(same quarter a year earlier) x nrr + new_cust. Q3 FY27 128%, Q4 129%: the reported rate is trailing-12-month and lags the quarters (quarterly product growth 33.9%/36.8% in Q1/Q2 FY27 vs TTM product growth 31.1%/32.6% and NRR 126% [5,6]; the Q3 guide is +37-38% y/y [6]), so the TTM rate rises as H2 FY27 rolls in (CFO: third consecutive quarter of acceleration, existing-customer consumption is the driver [6,7]). FY28 129/127.5/126/124.5%: the AI step-up (CoCo 9,100 accounts, +2,000 in Q2 [6]) laps. FY29 123->120%, FY30 119->117%: the fade the company showed as the base grew (131% Q4 FY24 -> 124% Q1 FY26 [11,1]) plus Iceberg tables (storage and some compute outside Snowflake, 10-Q risk factor [7]), Databricks warehousing ($1.5B, >100% growth [23]) and price-performance cuts passed through. Check: the TTM residual implied by our quarters is 6.0% of TTM product revenue at Q4 FY27, 5.2% Q4 FY28, 3.9% Q4 FY29, 3.1% Q4 FY30 (FY25-FY26 actual 2.8-3.2%, Q2 FY27 5.0%): the FY28 reported rate could run ~1-2 pt above this path at the same revenue. Variant: downside -4 pt, upside +3 pt on every forecast quarter (scenarios).",
+    "why": "The consumption metric the company and the Street use for existing-customer growth; the debated item (AI consumption up, Iceberg/storage and price cuts down).",
+    "base": 1.2475,
+    "years": [
+     1.2725,
+     1.2675,
+     1.215,
+     1.17875
+    ]
+   },
+   {
+    "id": "new_cust",
+    "label": "Product revenue not explained by NRR: customers outside the NRR cohort (new logos of the last ~24 months, on-demand) + acquisitions ($M a quarter; identity residual)",
+    "unit": "$M",
+    "quarters": [
+     17.725,
+     53.934,
+     33.024,
+     47.502,
+     78.345,
+     117.836,
+     135.0,
+     110.0,
+     80.0,
+     72.0,
+     68.0,
+     66.0,
+     66.0,
+     68.0,
+     70.0,
+     70.0,
+     70.0,
+     72.0,
+     74.0,
+     74.0
+    ],
+    "agg": "sum",
+    "basis": "estimate",
+    "source": "Derived from Ex.99.1 product revenue and NRR [1-6, 12-15]: Q1 FY26 996.813 vs Q1 FY25 789.587 x 1.24 = 17.7; Q2 1,090.496 vs 829.250 x 1.25 = 53.9; Q3 1,158.377 vs 900.282 x 1.25 = 33.0; Q4 1,226.631 vs 943.303 x 1.25 = 47.5; Q1 FY27 1,334.329 vs 996.813 x 1.26 = 78.3; Q2 FY27 1,491.861 vs 1,090.496 x 1.26 = 117.8. TTM form (company definition is TTM): FY26 Q4 TTM 4,472.3 - 3,462.4 x 1.25 = 144.3 (3.2%); Q1 FY27 186.1 (3.9%); Q2 FY27 258.3 (5.0%); FY25 Q4-FY26 Q3 102-118 (2.8-3.1%). Total customers 13,296 (2026-01-31, as adjusted) -> 13,912 (2026-04-30) -> 14,554 (2026-07-31) [8,7]: net adds 616 / 642; Q4 FY26 740 net adds (+40% y/y) [4]. Acquisitions: Observe (2026-02-02, consideration 595.8) and Natoma (2026-06-03, 128.3); Natoma revenue 'not material' [7].",
+    "derivation": "Q3 FY27 135, Q4 110: the H1 FY27 residual (78, 118) is not all new-customer revenue: it holds the TTM lag of NRR (quarterly existing-customer growth runs ahead of the TTM rate) and Observe; as the TTM NRR catches up (128-129%) the residual falls back. FY28 80/72/68/66, FY29 66-70, FY30 70-74 = 2.3-3.0% of product revenue, the FY25-FY26 structural level (quarterly residual 1.4-4.9%, mean 2.9%; TTM 2.8-3.2%), growing slowly with net customer adds (616-740 a quarter [4,7,8]). Variant: downside -25%, upside +20%.",
+    "why": "Keeps the NRR identity closed: every dollar of product revenue is either existing-cohort (nrr) or this residual; makes new-logo and acquisition revenue visible.",
+    "base": 152.185,
+    "years": [
+     441.181,
+     286.0,
+     274.0,
+     290.0
+    ]
+   },
+   {
+    "id": "product_gm",
+    "label": "Non-GAAP product gross margin (non-GAAP product gross profit / product revenue, Ex.99.1)",
+    "unit": "fraction",
+    "quarters": [
+     0.756535,
+     0.764451,
+     0.758963,
+     0.751214,
+     0.75146,
+     0.746775,
+     0.74,
+     0.735,
+     0.735,
+     0.735,
+     0.735,
+     0.735,
+     0.735,
+     0.735,
+     0.735,
+     0.74,
+     0.74,
+     0.74,
+     0.74,
+     0.745
+    ],
+    "agg": "wmean:prod_ly*nrr+new_cust",
+    "basis": "estimate",
+    "source": "Ex.99.1 reconciliation 'Non-GAAP product gross profit': Q1 FY26 754.124 / 996.813 = 75.7%, Q2 833.631 / 1,090.496 = 76.4%, Q3 879.165 / 1,158.377 = 75.9%, Q4 921.462 / 1,226.631 = 75.1% (FY26 3,388.382 / 4,472.317 = 75.8%) [1-4]; Q1 FY27 1,002.695 / 1,334.329 = 75.1%, Q2 FY27 1,114.084 / 1,491.861 = 74.7% [5,6]. Guide: FY27 non-GAAP product gross margin 75% (2026-02-25 [4]) cut to 74.0% (2026-09-02 [6]). 10-Q: GAAP product GM 71% vs 72%, 'costs attributable to newly launched product capabilities ... not yet reached economies of scale', partly offset by better cloud-infrastructure discounts [7].",
+    "derivation": "FY27 guide 74.0% on product guide 6,070 [6] implies H2 GP 4,491.8 - H1 2,116.8 = 2,375 on H2 product 3,243.8 = 73.2%; the company beat its FY26 guide (75% -> 75.8%), so Q3 74.0%, Q4 73.5% (FY27 74.3%). FY28 73.5% flat: AI inference (Cortex, CoCo, Snowflake Intelligence) grows faster than core warehousing and carries third-party model and GPU costs; FY29 73.5-74.0%, FY30 74.0-74.5% as AI features scale and cloud discounts renew. Variant: downside -2 pt (AI mix at lower margin, hyperscaler pricing), upside +1 pt.",
+    "why": "Makes AI gross-margin dilution visible; op margin = gross profit - opex is computed, not a driver.",
+    "base": 0.757635,
+    "years": [
+     0.74276,
+     0.735,
+     0.736332,
+     0.741321
+    ]
+   },
+   {
+    "id": "opex_pct",
+    "label": "Non-GAAP operating expenses (S&M + R&D + G&A) % of revenue (Ex.99.1)",
+    "unit": "fraction",
+    "quarters": [
+     0.6338,
+     0.618108,
+     0.617536,
+     0.608661,
+     0.598366,
+     0.564304,
+     0.545,
+     0.54,
+     0.555,
+     0.535,
+     0.53,
+     0.525,
+     0.54,
+     0.522,
+     0.517,
+     0.513,
+     0.527,
+     0.51,
+     0.505,
+     0.501
+    ],
+    "agg": "wmean:prod_ly*nrr+new_cust+ps_rev",
+    "basis": "estimate",
+    "source": "Ex.99.1 non-GAAP S&M / R&D / G&A ($M): Q1 FY26 357.883/238.822/63.761 = 660.466 (63.4% of 1,042.074), Q2 392.103/247.124/68.488 = 707.715 (61.8%), Q3 429.571/254.541/64.903 = 749.015 (61.8%), Q4 447.940/263.219/70.358 = 781.517 (60.9%) (FY26 2,898.7 = 61.9%) [1-4]; Q1 FY27 471.846/284.348/76.104 = 832.298 (59.8%), Q2 FY27 489.420/309.146/74.295 = 872.861 (56.4%) [5,6]. FY25 non-GAAP opex 2,417.0 = 66.6% [12-15]. Check Q2 FY27: product GP 1,114.084 + PS GP (4.238) - opex 872.861 = 236.985 = non-GAAP operating income [6].",
+    "derivation": "Q3 FY27 54.5% (opex 923 = +5.8% q/q, as Q3 FY26 +5.8% [3]; revenue +9.5% q/q) -> op margin 16.8% vs guide 15.5% [6] (beat record median +3.0 pt, taken at +1.3 because the GM guide was cut); Q4 54.0%. FY28 55.5/53.5/53.0/52.5% (Q1 payroll-tax and merit reset: Q1 FY26 63.4% vs Q4 FY25 59.6% [1,15]); FY29 ~52.4%, FY30 ~51.0%: opex grows ~26% / 22% / 18% vs revenue ~30% / 24% / 20% (H1 FY27 opex +24% y/y vs revenue +34% [6]). Variant: opex grows with revenue from FY28 (FY30 op margin ~-4 pt).",
+    "why": "Opex leverage is what moves the FY27 margin (FY26 61.9% -> FY27 ~56%), against a lower product GM.",
+    "base": 0.618861,
+    "years": [
+     0.559986,
+     0.535488,
+     0.5224,
+     0.510235
+    ]
+   },
+   {
+    "id": "ps_rev",
+    "label": "Professional services and other revenue",
+    "unit": "$M",
+    "quarters": [
+     45.261,
+     54.473,
+     54.532,
+     57.363,
+     56.622,
+     54.932,
+     56.0,
+     58.0,
+     59.4531,
+     57.6786,
+     58.8,
+     60.9,
+     62.425755,
+     60.56253,
+     61.74,
+     63.945,
+     65.547043,
+     63.590657,
+     64.827,
+     67.14225
+    ],
+    "agg": "sum",
+    "basis": "estimate",
+    "source": "Ex.99.1: Q1 FY26 45.261, Q2 54.473, Q3 54.532, Q4 57.363 (FY26 211.6), Q1 FY27 56.622, Q2 FY27 54.932 [1-6].",
+    "derivation": "Q3 FY27 56.0, Q4 58.0 (flat to the FY26 run-rate; FY27 225.5, +6.6%); FY28-FY30 same quarter a year earlier x 1.05. About 3.5% of revenue; non-GAAP gross margin near zero, so it barely moves EPS. Variant: flat (-5% on FY30 PS = -0.03% of revenue).",
+    "why": "Keeps 100% of revenue driven.",
+    "base": 211.629,
+    "years": [
+     225.554,
+     236.8317,
+     248.673285,
+     261.10695
+    ]
+   }
+  ],
+  "driver_build": {
+   "quarters": {
+    "revenue": "prod + ps_rev",
+    "sbc": "sbc_pct*rev",
+    "constants": {
+     "sbc_pct": [
+      0.39222,
+      0.380955,
+      0.364736,
+      0.329744,
+      0.31177,
+      0.295038,
+      0.272,
+      0.264,
+      0.255,
+      0.245,
+      0.235,
+      0.225,
+      0.22,
+      0.212,
+      0.205,
+      0.2,
+      0.195,
+      0.19,
+      0.185,
+      0.18
+     ],
+     "other_income": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      49.0,
+      66.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0,
+      62.0
+     ],
+     "ng_diluted_shares": [
+      370.92,
+      372.383,
+      373.353,
+      373.988,
+      375.045,
+      377.878,
+      382.0,
+      385.0,
+      386.435699,
+      387.876752,
+      389.323179,
+      390.775,
+      392.232235,
+      393.694904,
+      395.163027,
+      396.636625,
+      398.115718,
+      399.600327,
+      401.090472,
+      402.586174
+     ],
+     "ps_gm": [
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08,
+      -0.08
+     ],
+     "prod_actual": [
+      996.813,
+      1090.496,
+      1158.377,
+      1226.631,
+      1334.329,
+      1491.861,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "prod_ly": [
+      789.587,
+      829.25,
+      900.282,
+      943.303,
+      996.813,
+      1090.496,
+      1158.377,
+      1226.631,
+      1334.329,
+      1491.861,
+      1617.723,
+      1692.354,
+      1801.284,
+      1974.123,
+      2106.33,
+      2172.981,
+      2281.58,
+      2476.43,
+      2618.66,
+      2677.577
+     ]
+    },
+    "reported": {
+     "Q1 FY2027": {
+      "revenue": 1390.951,
+      "ebit": 165.753,
+      "sbc": 433.657,
+      "tax_rate": 0.25,
+      "eps": 0.39,
+      "gaap_operating_income": -326.154,
+      "product_revenue": 1334.329,
+      "source": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+      "note": "ebit = non-GAAP operating income; sbc = stock-based compensation-related charges incl. employer payroll tax on equity excluded in the reconciliation (cash-flow SBC net of capitalized 402.470); tax_rate 0.25 = (income tax effect of adjustments + GAAP provision) / non-GAAP pre-tax income; eps = non-GAAP diluted EPS on 375.045M non-GAAP diluted shares (GAAP basic 345.391M).",
+      "product_gross_profit_ng": 1002.695,
+      "opex_ng": 832.298,
+      "nrr": 1.26
+     },
+     "Q2 FY2027": {
+      "revenue": 1546.793,
+      "ebit": 236.985,
+      "sbc": 456.363,
+      "tax_rate": 0.25,
+      "eps": 0.62,
+      "gaap_operating_income": -262.967,
+      "product_revenue": 1491.861,
+      "source": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+      "note": "ebit = non-GAAP operating income; sbc = stock-based compensation-related charges incl. employer payroll tax on equity excluded in the reconciliation (cash-flow SBC net of capitalized 423.582); tax_rate 0.25 = (income tax effect of adjustments + GAAP provision) / non-GAAP pre-tax income; eps = non-GAAP diluted EPS on 377.878M non-GAAP diluted shares (GAAP basic 349.257M).",
+      "product_gross_profit_ng": 1114.084,
+      "opex_ng": 872.861,
+      "nrr": 1.26
+     }
+    },
+    "note": "Forecast quarters: product revenue = lines.prod = ly_prod x nrr + new_cust (NRR identity; ly_prod reads the line's own history, so scenario moves compound); revenue = product + ps_rev; ebit (company non-GAAP operating income) = product revenue x product_gm + ps_rev x ps_gm - revenue x opex_pct; sbc = sbc_pct x rev (constant path). constants.prod_actual = reported product revenue for the actual quarters Q1 FY26-Q2 FY27 (Ex.99.1 [1-6]); later values unused. constants.ps_gm = non-GAAP professional services gross margin -8% (H1 FY27 (8.882) / 111.554 = -8.0% [6]; FY26 +0.049 / 211.6 = 0.0% [4]). other_income and ng_diluted_shares are for the EPS check in notes_nrr.md only. constants.prod_ly (product revenue a year earlier, base path) is kept only as the weight for product_gm's year average (wmean); values use lines.prod.",
+    "ebit": "prod*product_gm + ps_rev*ps_gm - rev*opex_pct",
+    "lines": {
+     "prod": {
+      "expr": "ly_prod*nrr + new_cust",
+      "history": "prod_actual"
+     }
+    }
+   }
+  },
+  "years": [
+   {
+    "label": "FY2027",
+    "tax_rate": 0.25,
+    "da_pct_rev": 0.047,
+    "capex_pct_rev": 0.015,
+    "nwc_pct_incr_rev": 0.0
+   },
+   {
+    "label": "FY2028",
+    "tax_rate": 0.25,
+    "da_pct_rev": 0.047,
+    "capex_pct_rev": 0.015,
+    "nwc_pct_incr_rev": 0.0
+   },
+   {
+    "label": "FY2029",
+    "tax_rate": 0.25,
+    "da_pct_rev": 0.047,
+    "capex_pct_rev": 0.015,
+    "nwc_pct_incr_rev": 0.0
+   },
+   {
+    "label": "FY2030",
+    "tax_rate": 0.25,
+    "da_pct_rev": 0.047,
+    "capex_pct_rev": 0.015,
+    "nwc_pct_incr_rev": 0.0
+   }
+  ],
+  "guidance_check": [
+   {
+    "metric": "product revenue",
+    "fy": "Q3 FY2027",
+    "guide_low": 1588,
+    "guide_high": 1593,
+    "guide_basis": "product revenue (GAAP)",
+    "guide_as_of": "2026-09-02",
+    "guide_source_ids": [
+     6
+    ],
+    "track_record": {
+     "granularity": "quarterly",
+     "periods": [
+      {
+       "period": "Q1 FY2025",
+       "first_guide_low": 745,
+       "first_guide_high": 750,
+       "actual": 789.587,
+       "source_ids": [
+        11,
+        12
+       ],
+       "actual_vs_mid_pct": 0.0563
+      },
+      {
+       "period": "Q2 FY2025",
+       "first_guide_low": 805,
+       "first_guide_high": 810,
+       "actual": 829.25,
+       "source_ids": [
+        12,
+        13
+       ],
+       "actual_vs_mid_pct": 0.0269
+      },
+      {
+       "period": "Q3 FY2025",
+       "first_guide_low": 850,
+       "first_guide_high": 855,
+       "actual": 900.282,
+       "source_ids": [
+        13,
+        14
+       ],
+       "actual_vs_mid_pct": 0.056
+      },
+      {
+       "period": "Q4 FY2025",
+       "first_guide_low": 906,
+       "first_guide_high": 911,
+       "actual": 943.303,
+       "source_ids": [
+        14,
+        15
+       ],
+       "actual_vs_mid_pct": 0.0383
+      },
+      {
+       "period": "Q1 FY2026",
+       "first_guide_low": 955,
+       "first_guide_high": 960,
+       "actual": 996.813,
+       "source_ids": [
+        15,
+        1
+       ],
+       "actual_vs_mid_pct": 0.0411
+      },
+      {
+       "period": "Q2 FY2026",
+       "first_guide_low": 1035,
+       "first_guide_high": 1040,
+       "actual": 1090.496,
+       "source_ids": [
+        1,
+        2
+       ],
+       "actual_vs_mid_pct": 0.0511
+      },
+      {
+       "period": "Q3 FY2026",
+       "first_guide_low": 1125,
+       "first_guide_high": 1130,
+       "actual": 1158.377,
+       "source_ids": [
+        2,
+        3
+       ],
+       "actual_vs_mid_pct": 0.0274
+      },
+      {
+       "period": "Q4 FY2026",
+       "first_guide_low": 1195,
+       "first_guide_high": 1200,
+       "actual": 1226.631,
+       "source_ids": [
+        3,
+        4
+       ],
+       "actual_vs_mid_pct": 0.0243
+      },
+      {
+       "period": "Q1 FY2027",
+       "first_guide_low": 1262,
+       "first_guide_high": 1267,
+       "actual": 1334.329,
+       "source_ids": [
+        4,
+        5
+       ],
+       "actual_vs_mid_pct": 0.0552
+      },
+      {
+       "period": "Q2 FY2027",
+       "first_guide_low": 1415,
+       "first_guide_high": 1420,
+       "actual": 1491.861,
+       "source_ids": [
+        5,
+        6
+       ],
+       "actual_vs_mid_pct": 0.0525
+      }
+     ],
+     "summary": "10 of 10 above the midpoint; median +4.6%, range +2.4% to +5.6%; last 4 +2.4/+5.5/+5.2/+2.7% (mean +4.0%).",
+     "beat": 10,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.046,
+     "note": "10 of 10 above the midpoint; median +4.6%, range +2.4% to +5.6%; last 4 +2.4/+5.5/+5.2/+2.7% (mean +4.0%)."
+    },
+    "street": "~1,598 implied (MarketScreener total revenue 1,654 [17] less PS ~56); no direct product-revenue consensus found",
+    "ours": 1617.7,
+    "position": "above",
+    "note": "Not taken at face value: beat set at +3.0%, below the record median.",
+    "our_value": 1617.7,
+    "gap_to_mid_pct": 0.0171,
+    "consensus": 1598,
+    "consensus_as_of": "2026-09-14",
+    "consensus_source_ids": [
+     17
+    ],
+    "record_adjusted_guide": 1663.7,
+    "drivers_imply": 1617.7,
+    "drivers_note": "1,158.4 x 1.28 + 135 (set lines.prod)",
+    "why": "Record: 10/10 quarterly beats, median +4.6% (record-adjusted 1,663.7). The set sits +1.7% over the midpoint, below the record's low end (+2.4%); I accept the set's value but the base rate says a beat of 2.4-5.6% is the norm, so risk to the set is upward."
+   },
+   {
+    "metric": "non-GAAP operating margin",
+    "fy": "Q3 FY2027",
+    "guide": 0.155,
+    "guide_as_of": "2026-09-02",
+    "guide_source_ids": [
+     6
+    ],
+    "track_record": {
+     "granularity": "quarterly",
+     "periods": [
+      {
+       "period": "Q1 FY2025",
+       "guide": 0.03,
+       "actual": 0.0437,
+       "source_ids": [
+        11,
+        12
+       ]
+      },
+      {
+       "period": "Q2 FY2025",
+       "guide": 0.03,
+       "actual": 0.0504,
+       "source_ids": [
+        12,
+        13
+       ]
+      },
+      {
+       "period": "Q3 FY2025",
+       "guide": 0.03,
+       "actual": 0.0625,
+       "source_ids": [
+        13,
+        14
+       ]
+      },
+      {
+       "period": "Q4 FY2025",
+       "guide": 0.04,
+       "actual": 0.0941,
+       "source_ids": [
+        14,
+        15
+       ]
+      },
+      {
+       "period": "Q1 FY2026",
+       "guide": 0.05,
+       "actual": 0.088,
+       "source_ids": [
+        15,
+        1
+       ]
+      },
+      {
+       "period": "Q2 FY2026",
+       "guide": 0.08,
+       "actual": 0.1114,
+       "source_ids": [
+        1,
+        2
+       ]
+      },
+      {
+       "period": "Q3 FY2026",
+       "guide": 0.09,
+       "actual": 0.1083,
+       "source_ids": [
+        2,
+        3
+       ]
+      },
+      {
+       "period": "Q4 FY2026",
+       "guide": 0.07,
+       "actual": 0.1084,
+       "source_ids": [
+        3,
+        4
+       ]
+      },
+      {
+       "period": "Q1 FY2027",
+       "guide": 0.09,
+       "actual": 0.1192,
+       "source_ids": [
+        4,
+        5
+       ]
+      },
+      {
+       "period": "Q2 FY2027",
+       "guide": 0.125,
+       "actual": 0.1532,
+       "source_ids": [
+        5,
+        6
+       ]
+      }
+     ],
+     "summary": "10 of 10 above; beat +1.4 to +5.4 pt, median +3.0 pt (beats 1.4/2.0/3.3/5.4/3.8/3.1/1.8/3.8/2.9/2.8); last 4 median +2.85 pt.",
+     "beat": 10,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.03,
+     "note": "10 of 10 above; beat +1.4 to +5.4 pt, median +3.0 pt (beats 1.4/2.0/3.3/5.4/3.8/3.1/1.8/3.8/2.9/2.8); last 4 median +2.85 pt. median_vs_mid here in margin points."
+    },
+    "street": "15.6% (MarketScreener EBIT 258.1 / net sales 1,654 [17])",
+    "ours": 0.17,
+    "position": "above",
+    "guide_low": 0.155,
+    "guide_high": 0.155,
+    "our_value": 0.168,
+    "gap_to_mid_pct": 0.0839,
+    "consensus": 0.156,
+    "consensus_as_of": "2026-09-14",
+    "consensus_source_ids": [
+     17
+    ],
+    "record_adjusted_guide": 0.185,
+    "drivers_imply": 0.168,
+    "drivers_note": "set: product x product_gm + PS x -8% - revenue x opex_pct",
+    "why": "Record 10/10 margin beats, median +3.0 pt (guide + record = 18.5%); the set's 16.8% sits between the guide and the record-adjusted figure because opex is rising with AI hiring."
+   },
+   {
+    "metric": "product revenue",
+    "fy": "FY2027",
+    "guide": 6070,
+    "guide_as_of": "2026-09-02",
+    "guide_source_ids": [
+     6
+    ],
+    "history": "FY27 guide raised 5,660 (2026-02-25 [4]) -> 5,840 (2026-05-27 [5]) -> 6,070 (2026-09-02 [6]); H1 FY27 beat the quarter guides by +5.5% and +5.2%.",
+    "ours": 6136.3,
+    "position": "above",
+    "street": "StockAnalysis total revenue 6.32B [16], MarketScreener 6,315 [17]; ours total 6,410 (+1.5%)",
+    "guide_low": 6070,
+    "guide_high": 6070,
+    "guide_basis": "product revenue (GAAP)",
+    "our_value": 6136.3,
+    "gap_to_mid_pct": 0.0109,
+    "consensus": 6100,
+    "consensus_as_of": "2026-10-23",
+    "consensus_source_ids": [
+     16,
+     17
+    ],
+    "record_adjusted_guide": 6343.1,
+    "drivers_imply": 6136.3,
+    "drivers_note": "sum of the set's FY27 quarters of lines.prod",
+    "why": "First annual guides: FY24 2,705 -> 2,666.8 (-1.4%, a miss in the 2023 consumption-optimisation cycle), FY25 3,250 -> 3,462.4 (+6.5%), FY26 4,280 -> 4,472.3 (+4.5%); median +4.5%. 6,070 is already the third raise (first guide 5,660 [4]), so applying the first-guide error would over-state; the set's +1.1% over the raised guide fits the H2 beat pattern. Consensus 6,100 = Street total revenue 6.32B less ~0.22B PS (estimate).",
+    "track_record": {
+     "granularity": "annual",
+     "periods": [
+      {
+       "period": "FY2024",
+       "first_guide_low": 2705,
+       "first_guide_high": 2705,
+       "first_guide_date": "2023-03-01",
+       "actual": 2666.8,
+       "actual_vs_mid_pct": -0.0141,
+       "source_ids": [
+        35,
+        11
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "FY2025",
+       "first_guide_low": 3250,
+       "first_guide_high": 3250,
+       "first_guide_date": "2024-02-28",
+       "actual": 3462.4,
+       "actual_vs_mid_pct": 0.0654,
+       "source_ids": [
+        11,
+        15
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "FY2026",
+       "first_guide_low": 4280,
+       "first_guide_high": 4280,
+       "first_guide_date": "2025-02-26",
+       "actual": 4472.3,
+       "actual_vs_mid_pct": 0.0449,
+       "source_ids": [
+        15,
+        4
+       ],
+       "fact_ids": []
+      }
+     ],
+     "beat": 2,
+     "inside": 0,
+     "miss": 1,
+     "median_vs_mid_pct": 0.045,
+     "note": "3 completed periods (fewer than 4); FY2027 in progress with first guide 5,660 (2026-02-25 [4]) raised to 5,840 [5] and 6,070 [6]. FY24's first guide was cut in May 2023."
+    }
+   },
+   {
+    "metric": "non-GAAP operating margin",
+    "fy": "FY2027",
+    "guide": 0.145,
+    "guide_as_of": "2026-09-02",
+    "guide_source_ids": [
+     6
+    ],
+    "history": "12.5% [4] -> 13.5% [5] -> 14.5% [6]",
+    "ours": 0.1535,
+    "position": "above",
+    "guide_low": 0.145,
+    "guide_high": 0.145,
+    "guide_basis": "non-GAAP operating margin (excludes SBC-related charges, amortization)",
+    "our_value": 0.1535,
+    "gap_to_mid_pct": 0.0586,
+    "consensus": 0.1454,
+    "consensus_as_of": "2026-09-14",
+    "consensus_source_ids": [
+     17
+    ],
+    "record_adjusted_guide": 0.17,
+    "drivers_imply": 0.1535,
+    "drivers_note": "set FY27 non-GAAP OI / revenue",
+    "why": "First annual margin guides: FY25 3% -> ~6% (+3 pt), FY26 8% -> 10.5% (+2.5 pt); FY27's guide already rose 12.5% -> 14.5%. The set's 15.35% is above the guide, below guide + record (17%) and above Street 14.5%.",
+    "track_record": {
+     "granularity": "annual",
+     "periods": [
+      {
+       "period": "FY2025",
+       "first_guide_low": 0.03,
+       "first_guide_high": 0.03,
+       "first_guide_date": "2024-02-28",
+       "actual": 0.06,
+       "actual_vs_mid_pct": 1.0,
+       "source_ids": [
+        11,
+        15
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "FY2026",
+       "first_guide_low": 0.08,
+       "first_guide_high": 0.08,
+       "first_guide_date": "2025-02-26",
+       "actual": 0.1046,
+       "actual_vs_mid_pct": 0.3069,
+       "source_ids": [
+        15,
+        4
+       ],
+       "fact_ids": []
+      }
+     ],
+     "beat": 2,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.025,
+     "note": "2 periods; median_vs_mid in margin points (+3.0 and +2.5 pt). FY25 actual ~6% from the Q4 FY25 release (confidence medium)."
+    }
+   }
+  ],
+  "street": {
+   "stockanalysis_2026_10_23": "FY27 revenue 6.32B (+34.9%), non-GAAP EPS 2.22 (46 analysts, range 2.07-2.56); FY28 revenue 8.13B, EPS 3.03 [16]",
+   "marketscreener_2026_09_14": "Net sales FY27 6,315 / FY28 8,089 / FY29 10,330; EBIT (= non-GAAP op income; FY26 489.7 matches) 918.1 / 1,350 / 1,968; Q3 FY27 net sales 1,654, EBIT 258.1; EPS shown is GAAP (-2.55 FY27) [17]",
+   "q3_fy27_eps": "0.5999 (24/7 Wall St. 2026-10-19 [19]), 0.6107 (Bullstory [20]); non-GAAP basis (GAAP consensus is negative)",
+   "zacks_gaap": "Nasdaq/Zacks FY27 -1.42 (14 est.), FY28 -0.76: GAAP basis, SBC expensed [21]",
+   "non_gaap_eps_fy29": "not found in a free source (flag); MarketScreener EBIT 1,968 x (1-0.25) / ~395M = ~3.74 before interest income, ~4.37 with ~62/q interest (derived)"
+  },
+  "balance": {
+   "as_of": "2026-07-31",
+   "cash_and_investments": 4329.177,
+   "convertible_principal": 2300.0,
+   "net_debt": -1309.2,
+   "pro_forma_after_2026_10_01": {
+    "cash_and_investments": 7097.4,
+    "convertible_principal": 5788.2,
+    "net_debt": -1309.2,
+    "note": "4,329.2 + net proceeds 3,700 - capped calls 383.5 - repurchase of 261.8 principal of 2027 notes for 548.3 [10]; principal 2,300 - 261.8 + 3,750 = 5,788.2. The 2027/2029 notes ($1.15B each, conversion $157.50, capped calls 157.50-225.00 [7]) are in the money; their premium over principal is in the share count (~10M if-converted [6]). Gate 2026-11-03: closed 2026-10-01 at $3.75B (8-K 0001640147-26-000043); the initial purchasers' option for up to $300M 2029 + $250M 2031 notes (13 days from issue) is not disclosed as exercised: if exercised, cash and principal both rise ~$0.54B (net cash ~unchanged less extra capped calls). The 2027-note repurchase paid 548.3 for 261.8 principal: the ~286 premium is a likely Q3 FY27 loss on extinguishment in other income, which the company's non-GAAP exclusions (i)-(viii) [6] do not list; the EPS path assumes it is excluded (if not, Q3 non-GAAP EPS ~-0.56 lower)."
+   },
+   "interest_rate": 0.037,
+   "note": "Pro forma after the 2026-10-01 $3.75B 0% notes: cash and investments 7,097.4 vs principal 5,788.2 = net cash 1,309.2 (set.json balance.pro_forma, [7,10]); dated 2026-07-31 so the engine's roll adds Aug-Oct cash flow. Operating leases excluded."
+  },
+  "shares": {
+   "diluted_now": 382.0,
+   "basis": "non-GAAP diluted (company guide Q3 FY27)",
+   "gaap_basic_q2_fy27": 349.257,
+   "as_of": "2026-09-02",
+   "annual_change": 0.015,
+   "buyback": "Authorisation $2.0B (Feb 2023) + $2.5B (Aug 2024) through March 2027 [13]; $802.7M left at 2026-07-31 [7]; FY26 repurchases $873.5M, H1 FY27 $300.0M at $178.95 avg [7]."
+  },
+  "scenarios": {
+   "downside": {
+    "deltas": {
+     "drivers": {
+      "nrr": {
+       "add": -0.04
+      },
+      "new_cust": {
+       "pct": -0.25
+      },
+      "product_gm": {
+       "add": -0.02
+      }
+     },
+     "multiple": -40
+    },
+    "story": "P10: Iceberg tables move storage and some compute out of Snowflake (10-Q risk factor [7]), Databricks keeps taking warehousing share ($1.5B Lakehouse warehousing >100% growth [23]), hyperscaler and own price-performance cuts pass through, and AI consumption is priced low at lower margin: NRR -4 pt, new-customer revenue -25%, product GM -2 pt on every forecast quarter. Engine figures understate the FY29-30 hit (prod_ly is fixed); compounded figures in notes_nrr.md. Plus a de-rating of -40 P/E turns (-4.0x EV/sales): high-multiple software de-rates as growth decelerates (SNOW EV/sales 67x at FY22 to 13.9x at FY26 [27]); SNOW's own 12-month P10 return since its IPO is -43% [29]."
+   },
+   "upside": {
+    "deltas": {
+     "drivers": {
+      "nrr": {
+       "add": 0.03
+      },
+      "new_cust": {
+       "pct": 0.2
+      },
+      "product_gm": {
+       "add": 0.01
+      }
+     },
+     "multiple": 55
+    },
+    "story": "P90: CoCo/CoWork/Cortex consumption keeps compounding (CoCo 9,100 accounts, +2,000 in Q2 [6]) and the TTM NRR climbs past 130% as in FY23-24 (131% at Q4 FY24 [11]); new-customer revenue +20%; product GM +1 pt as AI scales. Engine understates FY29-30 (fixed prod_ly). Plus a re-rating of +55 P/E turns (+5.5x EV/sales) as AI consumption holds growth near 30%; SNOW's own 12-month P90 return since its IPO is +44% [29]."
+   }
+  },
+  "inputs_detail": [
+   {
+    "input": "driver:opex_pct",
+    "base": 0.618861,
+    "years": [
+     0.559986,
+     0.535488,
+     0.5224,
+     0.510235
+    ],
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     12,
+     13,
+     14,
+     15
+    ],
+    "fact_ids": [],
+    "derivation": "Q3 FY27 54.5% (opex 923 = +5.8% q/q, as Q3 FY26 +5.8% [3]; revenue +9.5% q/q) -> op margin 16.8% vs guide 15.5% [6] (beat record median +3.0 pt, taken at +1.3 because the GM guide was cut); Q4 54.0%. FY28 55.5/53.5/53.0/52.5% (Q1 payroll-tax and merit reset: Q1 FY26 63.4% vs Q4 FY25 59.6% [1,15]); FY29 ~52.4%, FY30 ~51.0%: opex grows ~26% / 22% / 18% vs revenue ~30% / 24% / 20% (H1 FY27 opex +24% y/y vs revenue +34% [6]). Variant: opex grows with revenue from FY28 (FY30 op margin ~-4 pt)."
+   },
+   {
+    "input": "driver:product_gm",
+    "base": 0.757635,
+    "years": [
+     0.74276,
+     0.735,
+     0.736332,
+     0.741321
+    ],
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "fact_ids": [],
+    "derivation": "FY27 guide 74.0% on product guide 6,070 [6] implies H2 GP 4,491.8 - H1 2,116.8 = 2,375 on H2 product 3,243.8 = 73.2%; the company beat its FY26 guide (75% -> 75.8%), so Q3 74.0%, Q4 73.5% (FY27 74.3%). FY28 73.5% flat: AI inference (Cortex, CoCo, Snowflake Intelligence) grows faster than core warehousing and carries third-party model and GPU costs; FY29 73.5-74.0%, FY30 74.0-74.5% as AI features scale and cloud discounts renew. Variant: downside -2 pt (AI mix at lower margin, hyperscaler pricing), upside +1 pt."
+   },
+   {
+    "input": "driver:new_cust",
+    "base": 152.185,
+    "years": [
+     441.181,
+     286.0,
+     274.0,
+     290.0
+    ],
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     12,
+     13,
+     14,
+     15
+    ],
+    "fact_ids": [],
+    "derivation": "Q3 FY27 135, Q4 110: the H1 FY27 residual (78, 118) is not all new-customer revenue: it holds the TTM lag of NRR (quarterly existing-customer growth runs ahead of the TTM rate) and Observe; as the TTM NRR catches up (128-129%) the residual falls back. FY28 80/72/68/66, FY29 66-70, FY30 70-74 = 2.3-3.0% of product revenue, the FY25-FY26 structural level (quarterly residual 1.4-4.9%, mean 2.9%; TTM 2.8-3.2%), growing slowly with net customer adds (616-740 a quarter [4,7,8]). Variant: downside -25%, upside +20%."
+   },
+   {
+    "input": "driver:nrr",
+    "base": 1.2475,
+    "years": [
+     1.2725,
+     1.2675,
+     1.215,
+     1.17875
+    ],
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     11,
+     12,
+     13,
+     14,
+     15,
+     23
+    ],
+    "fact_ids": [],
+    "derivation": "Identity (per Kilian's spec): product revenue(q) = product revenue(same quarter a year earlier) x nrr + new_cust. Q3 FY27 128%, Q4 129%: the reported rate is trailing-12-month and lags the quarters (quarterly product growth 33.9%/36.8% in Q1/Q2 FY27 vs TTM product growth 31.1%/32.6% and NRR 126% [5,6]; the Q3 guide is +37-38% y/y [6]), so the TTM rate rises as H2 FY27 rolls in (CFO: third consecutive quarter of acceleration, existing-customer consumption is the driver [6,7]). FY28 129/127.5/126/124.5%: the AI step-up (CoCo 9,100 accounts, +2,000 in Q2 [6]) laps. FY29 123->120%, FY30 119->117%: the fade the company showed as the base grew (131% Q4 FY24 -> 124% Q1 FY26 [11,1]) plus Iceberg tables (storage and some compute outside Snowflake, 10-Q risk factor [7]), Databricks warehousing ($1.5B, >100% growth [23]) and price-performance cuts passed through. Check: the TTM residual implied by our quarters is 6.0% of TTM product revenue at Q4 FY27, 5.2% Q4 FY28, 3.9% Q4 FY29, 3.1% Q4 FY30 (FY25-FY26 actual 2.8-3.2%, Q2 FY27 5.0%): the FY28 reported rate could run ~1-2 pt above this path at the same revenue. Variant: downside -4 pt, upside +3 pt on every forecast quarter (scenarios)."
+   },
+   {
+    "input": "driver:ps_rev",
+    "base": 211.629,
+    "years": [
+     225.554,
+     236.8317,
+     248.673285,
+     261.10695
+    ],
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "fact_ids": [],
+    "derivation": "Q3 FY27 56.0, Q4 58.0 (flat to the FY26 run-rate; FY27 225.5, +6.6%); FY28-FY30 same quarter a year earlier x 1.05. About 3.5% of revenue; non-GAAP gross margin near zero, so it barely moves EPS. Variant: flat (-5% on FY30 PS = -0.03% of revenue)."
+   },
+   {
+    "input": "years.tax_rate (non-GAAP)",
+    "value": 0.25,
+    "basis": "company_adjusted",
+    "source_ids": [
+     5,
+     6
+    ],
+    "fact_ids": [],
+    "derivation": "Non-GAAP net income reconciliation: Q2 FY27 pre-tax = GAAP loss before tax (188.290) + adjustments 502.033 = 313.743; tax = GAAP provision 3.430 + income tax effect of adjustments 75.005 = 78.435 -> 25.0%; Q1 FY27 (49.3 / 197.3) = 25.0% [5,6]. GAAP effective rate (1.8%) for Q2 FY27 (10-Q note 13 [7]) is not used: the EPS basis is non-GAAP.",
+    "anchor": {
+     "value": 0.25,
+     "kind": "company_adjusted",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      6,
+      5
+     ],
+     "fact_ids": [],
+     "note": "non-GAAP tax effect / non-GAAP pre-tax income, Q1 and Q2 FY27 both 25.0%"
+    }
+   },
+   {
+    "input": "years.sbc_pct_rev (SBC-related charges % of revenue)",
+    "value": "FY27 28.4%, FY28 23.9%, FY29 20.9%, FY30 18.7%",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     12,
+     13,
+     14,
+     15
+    ],
+    "fact_ids": [],
+    "derivation": "SBC-related charges in the operating-income reconciliation: FY25 1,564.3 / 3,626.4 = 43.1% [12-15]; FY26 1,710.7 / 4,683.9 = 36.5% [1-4]; Q1 FY27 433.7 / 1,391.0 = 31.2% [5]; Q2 FY27 456.4 / 1,546.8 = 29.5% [6]. Dollars grew +9.4% FY26 and +6% y/y in H1 FY27 while revenue grew 29-35%, so the ratio falls ~6-7 pt a year; path holds dollars +3-6% a year (FY27 1,820, FY28 1,963, FY29 2,129, FY30 2,295) -> 23.9/20.9/18.7%. The FY28+ ratio is below the latest quarter anchor by design: the bridge is the filed FY25 -> FY26 -> H1 FY27 decline at that dollar growth. Variant: dollars +10% a year (FY30 ~21.5%).",
+    "anchor": {
+     "value": 0.295,
+     "kind": "reported_history",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      6
+     ],
+     "fact_ids": [],
+     "note": "Q2 FY27 SBC-related charges 456.363 / revenue 1,546.793"
+    }
+   },
+   {
+    "input": "shares.diluted_now (non-GAAP diluted)",
+    "value": 382.0,
+    "basis": "company_stated",
+    "source_ids": [
+     6,
+     7,
+     10
+    ],
+    "fact_ids": [],
+    "derivation": "Q3 FY27 guide 382M non-GAAP diluted shares incl. ~10M if-converted shares from the 2027/2029 notes net of capped calls [6]; Q2 FY27 actual 377.878M non-GAAP diluted vs GAAP basic 349.257M [6]. FY27 guide 380M -> Q4 ~385M.",
+    "anchor": {
+     "value": 382.0,
+     "kind": "company_stated",
+     "as_of": "2026-09-02",
+     "source_ids": [
+      6
+     ],
+     "fact_ids": [],
+     "note": "Q3 FY27 guide"
+    }
+   },
+   {
+    "input": "shares.annual_change",
+    "value": 0.015,
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     6,
+     7
+    ],
+    "fact_ids": [],
+    "derivation": "Non-GAAP diluted 370.920M (Q1 FY26 [1]) -> 377.878M (Q2 FY27 [6]) = +1.9% over 5 quarters = +1.5% a year, net of $790.6M of buybacks in that window (FY26 Q1 490.6, Q3 232.9, Q4 150.0, FY27 Q1 300.0; $802.7M left under the program through March 2027 [7]). New Oct-2029/2031 notes convert at ~$500/$484 with caps at $820.30 [10]: out of the money at 290.68, no dilution assumed.",
+    "anchor": {
+     "value": 0.015,
+     "kind": "reported_history",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      1,
+      6
+     ],
+     "fact_ids": [],
+     "note": "(377.878/370.920)^(4/5) - 1"
+    }
+   },
+   {
+    "input": "balance.interest_rate (yield on cash and investments)",
+    "value": 0.037,
+    "basis": "estimate",
+    "source_ids": [
+     4,
+     6,
+     7,
+     10
+    ],
+    "fact_ids": [],
+    "derivation": "Q2 FY27 interest income 41.996 x 4 / average cash + investments (2026-01-31 4,784.7; 2026-07-31 4,329.2) = 3.7% [6]. Q3 FY27 other income 49 (one month of the Oct-1 net proceeds), Q4 66, then 62 a quarter.",
+    "anchor": {
+     "value": 0.037,
+     "kind": "reported_history",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      6
+     ],
+     "fact_ids": [],
+     "note": "interest income annualised / average cash and investments, H1 FY27"
+    }
+   },
+   {
+    "input": "constants.ps_gm (non-GAAP PS gross margin)",
+    "value": -0.08,
+    "basis": "company_adjusted",
+    "source_ids": [
+     4,
+     6
+    ],
+    "fact_ids": [],
+    "derivation": "H1 FY27 non-GAAP PS gross loss (8.882) / PS revenue 111.554 = -8.0% [6]; FY26 0.049 / 211.629 = 0.0% [4]. Near-zero, so PS moves revenue, not profit.",
+    "anchor": {
+     "value": -0.08,
+     "kind": "company_adjusted",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      6
+     ],
+     "fact_ids": [],
+     "note": "non-GAAP PS gross profit / PS revenue, six months to 2026-07-31"
+    }
+   },
+   {
+    "input": "horizon_multiples EV/sales",
+    "value": "12.1x NTM",
+    "basis": "estimate",
+    "source_ids": [
+     24,
+     25,
+     26,
+     31,
+     16
+    ],
+    "fact_ids": [
+     "F92",
+     "DDOG.price",
+     "MDB.price",
+     "NET.price",
+     "ESTC.price",
+     "TDC.price"
+    ],
+    "derivation": "Peers EV/NTM sales (mkt cap used for EV where EV is n/a; DDOG/MDB/NET hold net cash so true EV is a little lower): DDOG 81.4B / (2/12 x 4.47 + 10/12 x 5.49 = 5.32B) = 15.3x; MDB 27.1B / (3/12 x 3.03 + 9/12 x 3.60 = 3.46B) = 7.8x; NET 98.0B / (2/12 x 2.87 + 10/12 x 3.70 = 3.56B) = 27.5x; ESTC 4.87x and TDC 1.62x trailing (secfacts). Median 7.8x, range 1.6-27.5x. SNOW: 352.8M (F92) x 295.85 = 104.4B - net cash 1.3B = 103.1B / Street NTM revenue (3/12 x 6.32 + 9/12 x 8.1 = 7.66B [16]) = 13.5x. Exit = 7.8 x (13.5/7.8)^0.8 = 12.1x.",
+    "confidence": "medium",
+    "variant_view": "Three growth peers only (median 15.3x): 15.3 x (13.5/15.3)^0.8 = 13.8x (+14% on this leg). SNOW's FY26 trough was 13.9x [27]."
+   },
+   {
+    "input": "horizon_multiples P/E (non-GAAP)",
+    "value": "98.0x NTM",
+    "basis": "estimate",
+    "source_ids": [
+     24,
+     25,
+     26,
+     16
+    ],
+    "fact_ids": [
+     "DDOG.price",
+     "MDB.price",
+     "NET.price"
+    ],
+    "derivation": "Peer non-GAAP NTM EPS: DDOG 2/12 x 2.53 + 10/12 x 2.98 = 2.905 -> 219.35/2.905 = 75.5x; MDB 3/12 x 6.54 + 9/12 x 7.85 = 7.52 -> 336.60/7.52 = 44.8x; NET 2/12 x 1.26 + 10/12 x 1.68 = 1.61 -> 276.69/1.61 = 171.8x; median 75.5x. SNOW Street NTM 3/12 x 2.22 + 9/12 x 3.03 = 2.83 [16] -> 295.85/2.83 = 104.6x. Exit = 75.5 x (104.6/75.5)^0.8 = 98.0x. Non-GAAP both sides; SNOW's SBC-related charges (~29.5% of revenue, Q2 FY27 [6]) are heavy, which is why this leg gets low weight.",
+    "confidence": "low",
+    "variant_view": "At the peer median 75.5x the leg is ~23% lower; on GAAP P/E (SNOW GAAP EPS negative) the method does not apply."
+   },
+   {
+    "input": "years.da_pct_rev",
+    "value": 0.047,
+    "basis": "estimate",
+    "source_ids": [
+     31
+    ],
+    "fact_ids": [
+     "F39",
+     "F6"
+    ],
+    "derivation": "TTM D&A 253.0 / TTM revenue 5,434.6 = 4.7%.",
+    "anchor": {
+     "value": 0.047,
+     "kind": "reported_history",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      31
+     ],
+     "fact_ids": [
+      "F39",
+      "F6"
+     ],
+     "note": "253.0 / 5,434.6"
+    }
+   },
+   {
+    "input": "years.capex_pct_rev",
+    "value": 0.015,
+    "basis": "estimate",
+    "source_ids": [
+     31
+    ],
+    "fact_ids": [
+     "F60",
+     "F6",
+     "F57",
+     "F3"
+    ],
+    "derivation": "TTM capex 58.0 / 5,434.6 = 1.1%; FY26 101.6 / 4,683.9 = 2.2%; midpoint ~1.5%.",
+    "anchor": {
+     "value": 0.015,
+     "kind": "reported_history",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      31
+     ],
+     "fact_ids": [
+      "F60",
+      "F57"
+     ],
+     "note": "between 1.1% TTM and 2.2% FY26"
+    }
+   },
+   {
+    "input": "years.nwc_pct_incr_rev",
+    "value": 0.0,
+    "basis": "judgment",
+    "source_ids": [
+     31
+    ],
+    "fact_ids": [
+     "F95"
+    ],
+    "derivation": "Deferred revenue makes working capital a source of cash (FCF TTM 1,195.3, F95), but it is seasonal; held at 0, conservative for the net-cash roll.",
+    "anchor": {
+     "value": 0.0,
+     "kind": "reported_history",
+     "as_of": "2026-07-31",
+     "source_ids": [
+      31
+     ],
+     "fact_ids": [
+      "F95"
+     ],
+     "note": "conservative; the historical figure is negative (a source of cash)"
+    }
+   },
+   {
+    "input": "balance.net_debt (pro forma)",
+    "value": -1309.2,
+    "basis": "estimate",
+    "source_ids": [
+     7,
+     10
+    ],
+    "fact_ids": [
+     "F90",
+     "F91"
+    ],
+    "derivation": "7,097.4 cash and investments - 5,788.2 convertible principal (4,329.2 + 3,700 net proceeds - 383.5 capped calls - 548.3 repurchase of 261.8 principal; principal 2,300 - 261.8 + 3,750).",
+    "confidence": "high"
+   },
+   {
+    "input": "custom SBC-costed maturity value",
+    "value": "$120/share, weight 0.20",
+    "basis": "judgment",
+    "source_ids": [
+     4,
+     6,
+     7,
+     32
+    ],
+    "fact_ids": [
+     "F43"
+    ],
+    "derivation": "See the custom leg's explanation: FY33 owner earnings 2,364 x 35x / 419M shares = $197, / 1.10^5.25 = $120.",
+    "confidence": "low",
+    "variant_view": "SBC 10% of revenue by FY33 at 40x: ~$165; SBC 16% at 30x: ~$85."
+   },
+   {
+    "input": "scenario multiple deltas",
+    "value": "downside -40, upside +55 P/E turns (x0.1 on EV/sales)",
+    "basis": "judgment",
+    "source_ids": [
+     29,
+     27,
+     30
+    ],
+    "fact_ids": [],
+    "derivation": "Sized so that with the set's driver deltas the cases land near SNOW's own 12-month return P10/P90 since IPO (-43% / +44% over 63 overlapping windows of monthly closes [29]) around the base; the driver deltas carry the fundamental part.",
+    "confidence": "medium"
+   }
+  ],
+  "structure_note": "Approved quarterly driver set (set.json, Kilian 2026-11-03) used exactly: drivers nrr, new_cust, product_gm, opex_pct, ps_rev, quarters and driver_build unchanged; set's driver deltas kept for the cases. Value carried by horizon multiples on the build's NTM figures at 2027-11-03: EV/NTM sales (weight 0.55, 12.1x) and non-GAAP P/E (weight 0.25, 98x), plus a custom SBC-costed maturity leg (weight 0.20, $120) because GAAP earnings are negative and SBC (FY26 1,599.5M, F43) is ~30% of revenue. No DCF leg (not a neocloud). Leg weights are judgment, untested.",
+  "terminal": {
+   "ronic": null,
+   "ronic_basis": "not used (no DCF leg)"
+  },
+  "discount_rate": {
+   "pre_tax_cost_of_debt": null,
+   "basis": "engine sets; no DCF leg"
+  },
+  "contracts": [],
+  "financing_events": [],
+  "dcf_weight": null,
+  "segments": [],
+  "sotp_weight": 0.0,
+  "adjustments": [],
+  "horizon_multiples": [
+   {
+    "metric": "EV/sales",
+    "value": 12.1,
+    "weight": 0.55,
+    "basis": "ntm",
+    "levered": true,
+    "peer_basis": "5-peer median EV/NTM sales 7.8x (DDOG 15.3, MDB 7.8, NET 27.5 on mkt cap / NTM consensus revenue; ESTC 4.9, TDC 1.6 trailing); own 13.5x on Street NTM revenue; shrink k=0.8: 7.8 x (13.5/7.8)^0.8 = 12.1x"
+   },
+   {
+    "metric": "P/E",
+    "value": 98.0,
+    "weight": 0.25,
+    "basis": "ntm",
+    "eps": null,
+    "levered": true,
+    "peer_basis": "3-peer non-GAAP NTM P/E median 75.5x (DDOG 75.5, MDB 44.8, NET 171.8); own 104.6x on Street NTM non-GAAP EPS 2.83; shrink k=0.8: 75.5 x (104.6/75.5)^0.8 = 98.0x; non-GAAP (SBC excluded) on both sides"
+   }
+  ],
+  "custom": [
+   {
+    "name": "SBC-costed maturity value",
+    "value_per_share": 120,
+    "weight": 0.2,
+    "explanation": "Non-multiple-on-today cross-check for the METHOD FIT flag (GAAP losses). Extend the approved set's FY30 (revenue 12,398, non-GAAP OI 2,651 = 21.4%, SBC ~18-19.5% of revenue) three years at 18/16/14% growth -> FY33 revenue 19,346; non-GAAP op margin 28% (the set's ~2 pt a year opex leverage continued) = 5,417; SBC 13% of revenue (set path falls ~1 pt a year) = 2,515; interest income 250; owner earnings (5,417 - 2,515 + 250) x 0.75 = 2,364; x 35x (SBC-costed P/E for mature growing software, near DT's 38.2x and above TDC's 17.5x GAAP NTM P/E in peers.md) = 82.7B; / 419M shares (382M x 1.015^6.25) = $197 at Jan 2033; discounted 5.25 years at 10% = $120 at the horizon. Not driver-linked.",
+    "source_ids": [
+     4,
+     6,
+     7,
+     32
+    ]
+   }
+  ],
+  "scenario_vol": 0.15,
+  "gap_note": "Judgment calls for Kilian: (a) custom SBC-costed leg weight 0.20 moves the research target (12m) ~-13% vs a multiples-only blend ($329.9 = (311.80 x 0.55 + 369.56 x 0.25) / 0.80); untested, flagged. (b) EV/sales peer median uses market cap for DDOG/MDB/NET EV (net cash ignored) and trailing EV/sales for ESTC/TDC: mixed basis. (c) Long-term (FY29) company targets from the 2023 investor day could not be verified from a fetched source and are not used. (d) Driver set used exactly; no disagreement entered.",
+  "comps_summary": {
+   "peer_median_fwd_pe": 171.2,
+   "peer_median_fwd_pe_basis": "GAAP NTM, 6 peers (peers.md); non-GAAP NTM median of DDOG/MDB/NET 75.5x",
+   "peer_median_ev_ebitda": null,
+   "peer_median_ev_sales": 7.8,
+   "peer_range": "EV/NTM sales 1.6x (TDC, ttm) - 27.5x (NET); non-GAAP NTM P/E 44.8x (MDB) - 171.8x (NET); GAAP NTM P/E 17.5x (TDC) - 1286.7x (NET)",
+   "own_multiple": "EV/NTM sales 13.5x (103.1B / Street NTM revenue 7.66B); non-GAAP NTM P/E 104.6x (295.85 / 2.83)",
+   "exit_k": 0.8,
+   "resulting_multiple": "EV/sales 12.1x = 7.8 x (13.5/7.8)^0.8; P/E 98.0x = 75.5 x (104.6/75.5)^0.8",
+   "our_multiple_vs_peers": "EV/sales 12.1x sits above the 7.8x median, below DDOG 15.3x and NET 27.5x; P/E 98x above the 75.5x median, below NET 171.8x.",
+   "premium_discount_justification": "Only the default k=0.8 shrink is kept: no further premium argued. The retained premium reflects growth (SNOW NTM revenue growth ~30% vs MDB ~19%, DDOG ~23%) and the 10/10 guide-beat record; offset by heavier SBC (~29.5% of revenue Q2 FY27), which is why the P/E leg carries only 0.25 weight and an SBC-costed leg 0.20.",
+   "peer_count_flag": "6 peers (MDB DDOG NET ESTC TDC DT): the only genuinely comparable US-listed filers; CFLT was acquired by IBM, Databricks is private; GTLB, PLTR, ORCL and hyperscalers are weak or segment-only. Forward EV/sales and non-GAAP P/E only for DDOG/MDB/NET (cited consensus); ESTC/TDC trailing; no EV/EBITDA NTM for any.",
+   "rows": [
+    {
+     "symbol": "DDOG",
+     "fit": {
+      "segment": "consumption-priced platform (whole product revenue)",
+      "revenue_share": 0.96,
+      "why": "same consumption model and buyer; not the same product"
+     },
+     "peer": "DDOG"
+    },
+    {
+     "symbol": "MDB",
+     "fit": {
+      "segment": "data platform / database (whole product revenue)",
+      "revenue_share": 0.96,
+      "why": "same product family and consumption pricing"
+     },
+     "peer": "MDB"
+    },
+    {
+     "symbol": "NET",
+     "fit": {
+      "segment": "cloud platform (business-model fit, whole product revenue)",
+      "revenue_share": 0.96,
+      "why": "similar growth and SBC-heavy margin profile; different product"
+     },
+     "peer": "NET"
+    },
+    {
+     "symbol": "ESTC",
+     "fit": {
+      "segment": "data/analytics platform (whole product revenue)",
+      "revenue_share": 0.96,
+      "why": "same data-analytics end market; slower growth"
+     },
+     "peer": "ESTC"
+    },
+    {
+     "symbol": "TDC",
+     "fit": {
+      "segment": "data warehouse (whole product revenue)",
+      "revenue_share": 0.96,
+      "why": "same product; ex-growth, so it anchors the multiple floor"
+     },
+     "peer": "TDC"
+    },
+    {
+     "symbol": "DT",
+     "fit": {
+      "segment": "infrastructure software (business-model fit)",
+      "revenue_share": 0.96,
+      "why": "mature-growth software SBC-costed P/E reference; no EV in the table"
+     },
+     "peer": "DT"
+    }
+   ]
+  }
+ },
+ "sources": [
+  {
+   "title": "Q1 FY26 Ex.99.1 (8-K 2025-05-21)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000094/fy2026q1earnings.htm",
+   "date": "2025-05-21",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q2 FY26 Ex.99.1 (8-K 2025-08-27)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000177/fy2026q2earnings.htm",
+   "date": "2025-08-27",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q3 FY26 Ex.99.1 (8-K 2025-12-03)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000207/fy2026q3earnings.htm",
+   "date": "2025-12-03",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q4 FY26 Ex.99.1 (8-K 2026-02-25)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "date": "2026-02-25",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q1 FY27 Ex.99.1 (8-K 2026-05-27)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "date": "2026-05-27",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q2 FY27 Ex.99.1 (8-K 2026-09-02)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "date": "2026-09-02",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q2 FY27 10-Q (period 2026-07-31)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000037/snow-20260731.htm",
+   "date": "2026-09-04",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q1 FY27 10-Q (period 2026-04-30)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000030/snow-20260430.htm",
+   "date": "2026-05-29",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "FY26 10-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000008/snow-20260131.htm",
+   "date": "2026-03-20",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Convertible notes pricing Ex.99.2 (8-K 2026-10-02)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000043/exhibit992-pricingpressrel.htm",
+   "date": "2026-09-28",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q4 FY24 Ex.99.1",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "date": "2024-02-28",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q1 FY25 Ex.99.1",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000122/fy2025q1earnings.htm",
+   "date": "2024-05-22",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q2 FY25 Ex.99.1",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000203/fy2025q2earnings.htm",
+   "date": "2024-08-21",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q3 FY25 Ex.99.1",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000242/fy2025q3earnings.htm",
+   "date": "2024-11-20",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Q4 FY25 Ex.99.1",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "date": "2025-02-26",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis SNOW forecast (S&P Global consensus; non-GAAP EPS; updated 2026-10-23, read 2026-11-03)",
+   "url": "https://stockanalysis.com/stocks/snow/forecast/",
+   "date": "2026-10-23",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "MarketScreener SNOW finances (EBIT = company non-GAAP op income; EPS GAAP; quote stamp 2026-09-14)",
+   "url": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "date": "2026-09-14",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "24/7 Wall St. SNOW earnings history (non-GAAP EPS est. vs actual, last 6 quarters)",
+   "url": "https://247wallst.com/companies/snow/earnings/trends",
+   "date": "2026-11-03",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "24/7 Wall St. 2026-10-19 (Q3 FY27 EPS consensus 0.5999; report expected 2026-12-02, unconfirmed)",
+   "url": "https://247wallst.com/investing/2026/10/19/price-prediction-snowflake-will-hit-400-on-this-date/",
+   "date": "2026-10-19",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Bullstory SNOW Q3 FY27 (report 2026-12-02 after close; consensus EPS 0.6107)",
+   "url": "https://bullstory.io/en/stocks/snow/earnings/2027-q3",
+   "date": "2026-11-03",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Nasdaq/Zacks earnings forecast (GAAP-basis EPS; data/estimates/SNOW.json)",
+   "url": "https://api.nasdaq.com/api/analyst/SNOW/earnings-forecast",
+   "date": "2026-11-03",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Nasdaq earnings surprise (Zacks, GAAP-basis; data/earnings_history.json)",
+   "url": "https://api.nasdaq.com/api/company/SNOW/earnings-surprise",
+   "date": "2026-11-02",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Databricks press release 2026-08-13 (>$7B run-rate, >80% growth; Lakehouse warehousing $1.5B >100%)",
+   "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-grows-80-yoy-surpasses-7b-revenue-run-rate-scales",
+   "date": "2026-08-13",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis DDOG forecast (S&P Global consensus: FY26 rev 4.47B, non-GAAP EPS 2.53; FY27 rev 5.49B, EPS 2.98; updated 2026-10-26)",
+   "url": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "date": "2026-10-26",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis MDB forecast (FY27 rev 3.03B, EPS 6.54; FY28 rev 3.60B, EPS 7.85; updated 2026-10-13)",
+   "url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "date": "2026-10-13",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis NET forecast (FY26 rev 2.87B, EPS 1.26; FY27 rev 3.70B, EPS 1.68; updated 2026-10-22)",
+   "url": "https://stockanalysis.com/stocks/net/forecast/",
+   "date": "2026-10-22",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "StockAlarm SNOW EV/sales history (fiscal year-ends 2019-2026: 625x, 266x, 136x, 67x, 23.8x, 22.3x, 16.7x, 13.9x; TTM 19.3x on 2026-11-03)",
+   "url": "https://pro.stockalarm.io/quote/SNOW/metric/evToSales",
+   "date": "2026-11-03",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Oddpool cross-venue Fed cut count for 2026 (Kalshi / Polymarket: 0 cuts 36% / 34.5%, 1 cut 24% / 27%, 2 cuts 21% / 16%; page undated, no volume shown)",
+   "url": "https://www.oddpool.com/fed-rate-cut-count",
+   "date": "2026-11-03",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Twelve Data SNOW monthly closes Sep 2020 - Nov 2026 (base-rate 12-month return distribution, own calculation)",
+   "url": "https://api.twelvedata.com/time_series?symbol=SNOW&interval=1month",
+   "date": "2026-11-03",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "Twelve Data SNOW daily closes May 2023 - Nov 2026 (14 post-earnings 1-day moves and 20-day drift, own calculation)",
+   "url": "https://api.twelvedata.com/time_series?symbol=SNOW&interval=1day",
+   "date": "2026-11-03",
+   "type": "data",
+   "in_lane": true
+  },
+  {
+   "title": "SEC XBRL companyfacts SNOW (fact pack F-ids) and secfacts.py peers (trailing EV/sales ESTC 4.87x, TDC 1.62x; mkt cap DDOG 81.4B, MDB 27.1B, NET 98.0B, ESTC 9.7B, TDC 3.2B, DT 14.0B; 2026-11-03)",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001640147.json",
+   "date": "2026-11-03",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Run peer table peers.md (Nasdaq/Zacks GAAP-basis NTM P/E: MDB 245.8x, DDOG 232.4x, ESTC 109.9x, TDC 17.5x, NET 1286.7x, DT 38.2x)",
+   "url": "https://api.nasdaq.com/api/analyst/SNOW/earnings-forecast",
+   "date": "2026-11-03",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "TIKR: Snowflake stock surges 36% after Q1 2027 earnings beat",
+   "url": "https://www.tikr.com/blog/snowflake-stock-surges-36-after-q1-2027-earnings-beat-heres-what-it-means-for-snow",
+   "date": "2026-05-28",
+   "type": "press",
+   "in_lane": true
+  },
+  {
+   "title": "KuCoin flash: Polymarket traders assign 79% probability to zero Fed rate cuts in 2026 (headline only; undated; conflicts with Oddpool)",
+   "url": "https://www.kucoin.com/news/flash/polymarket-traders-assign-79-probability-to-zero-fed-rate-cuts-in-2026",
+   "date": "2026",
+   "type": "prediction-market",
+   "in_lane": true
+  },
+  {
+   "title": "Q4 FY23 Ex.99.1 (FY24 first product revenue guide 2,705)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014723000004/fy2023q4earnings.htm",
+   "date": "2023-03-01",
+   "type": "filing",
+   "in_lane": false
+  }
+ ],
+ "ladder_1m": [
+  {
+   "K": 236.68,
+   "p": 0.859
+  },
+  {
+   "K": 251.47,
+   "p": 0.785
+  },
+  {
+   "K": 266.26,
+   "p": 0.697
+  },
+  {
+   "K": 275.14,
+   "p": 0.641
+  },
+  {
+   "K": 284.02,
+   "p": 0.583
+  },
+  {
+   "K": 295.85,
+   "p": 0.506
+  },
+  {
+   "K": 307.68,
+   "p": 0.432
+  },
+  {
+   "K": 316.56,
+   "p": 0.379
+  },
+  {
+   "K": 325.44,
+   "p": 0.33
+  },
+  {
+   "K": 340.23,
+   "p": 0.257
+  },
+  {
+   "K": 355.02,
+   "p": 0.197
+  }
+ ],
+ "one_month_reasoning": "Window 2026-11-03 to 2026-12-03 likely contains the Q3 FY27 print: Bullstory lists 2026-12-02 after close [20] (not yet confirmed by the company; Snowflake has reported on Wednesdays: 2025-12-03, 2026-05-27, 2026-09-02), so the 2026-12-03 close would carry the reaction (~80% in window). Base rates from SNOW's own last 14 prints [30]: median absolute next-day move 14.1% (mean 14.6%), 8 of 14 up, range -18.1% to +36.5%; the last two were +36.5% and +16.6% (Q1 surge [33]). The 20-day drift after a print has been negative in 9 of 14 cases, so no momentum premium. Expected: another product beat (10/10 record, median +4.6%; set 1,617.7 vs guide 1,588-1,593) is priced; non-GAAP EPS set 0.65 vs Street 0.60 and whisper 0.71 (80% 0.41-1.01), so a set-sized beat lands below the whisper. Risk flags: the ~286M 2027-note repurchase loss may hit non-GAAP EPS; cRPO coverage. FOMC 2026-12-09/10 falls after the window. Ladder: lognormal centred at today's price (+0.3% drift), sigma 21% for the month = ex-earnings vol 52% annual (15%/month) combined with an earnings move of ~18% sd x 0.8 probability.",
+ "fair_value": {
+  "value": 287.88,
+  "method": "Engine base horizon value $287.88 on the approved quarterly driver set: EV/NTM sales 12.1x (peer median 7.8x shrunk at k=0.8 from own 13.5x) on ~9.8B NTM revenue at the horizon -> $311.80 (w 0.55); non-GAAP P/E 98x on the set's NTM EPS -> $369.56 (w 0.25); SBC-costed maturity value $120 (w 0.20).",
+  "methods": [
+   {
+    "name": "EV/sales",
+    "value": 311.8,
+    "weight": 0.55,
+    "inputs": "12.1x EV/NTM sales at 2027-11-03 on the set's NTM revenue (~0.25 x FY28 8,292 + 0.75 x FY29 10,303); net cash ~1.3B pro forma rolled; 382M non-GAAP diluted shares +1.5%/yr",
+    "inputs_detail": [
+     {
+      "input": "EV/NTM sales exit",
+      "value": "12.1x",
+      "basis": "estimate",
+      "source_ids": [
+       24,
+       25,
+       26,
+       31,
+       16
+      ],
+      "fact_ids": [
+       "F92",
+       "DDOG.price",
+       "MDB.price",
+       "NET.price"
+      ],
+      "derivation": "7.8 x (13.5/7.8)^0.8 = 12.1x; peer median 7.8x of DDOG 15.3, MDB 7.8, NET 27.5, ESTC 4.9, TDC 1.6",
+      "confidence": "medium",
+      "variant_view": "growth peers only: 13.8x (+14% on the leg)"
+     },
+     {
+      "input": "NTM revenue at horizon",
+      "value": "~9,800",
+      "basis": "estimate",
+      "source_ids": [
+       6,
+       7,
+       16
+      ],
+      "fact_ids": [
+       "F3"
+      ],
+      "derivation": "approved set FY28 8,292 / FY29 10,303 interpolated by the engine",
+      "confidence": "medium",
+      "variant_view": "Street FY28 8.1B, FY29 10.33B: within ~1%"
+     }
+    ]
+   },
+   {
+    "name": "P/E",
+    "value": 369.56,
+    "weight": 0.25,
+    "inputs": "98x non-GAAP NTM P/E on the set's NTM non-GAAP EPS at the horizon (~0.25 x FY28 3.30 + 0.75 x FY29 4.27 = ~4.03)",
+    "inputs_detail": [
+     {
+      "input": "non-GAAP P/E exit",
+      "value": "98.0x",
+      "basis": "estimate",
+      "source_ids": [
+       24,
+       25,
+       26,
+       16
+      ],
+      "fact_ids": [
+       "DDOG.price",
+       "MDB.price",
+       "NET.price"
+      ],
+      "derivation": "75.5 x (104.6/75.5)^0.8",
+      "confidence": "low",
+      "variant_view": "peer median 75.5x: leg ~$285"
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 120.0,
+    "weight": 0.2,
+    "inputs": "SBC-costed maturity value: FY33 revenue 19,346, non-GAAP margin 28%, SBC 13%, owner earnings 2,364 x 35x / 419M shares = $197, discounted 5.25y at 10%",
+    "inputs_detail": [
+     {
+      "input": "FY33 owner earnings",
+      "value": "2,364",
+      "basis": "judgment",
+      "source_ids": [
+       4,
+       6,
+       7
+      ],
+      "fact_ids": [
+       "F43"
+      ],
+      "derivation": "(5,417 - 2,515 + 250) x 0.75",
+      "confidence": "low",
+      "variant_view": "SBC 10% / 40x: ~$165; SBC 16% / 30x: ~$85"
+     },
+     {
+      "input": "mature SBC-costed P/E",
+      "value": "35x",
+      "basis": "judgment",
+      "source_ids": [
+       32
+      ],
+      "fact_ids": [
+       "DT.pe_ntm",
+       "TDC.pe_ntm"
+      ],
+      "derivation": "near DT 38.2x, above TDC 17.5x GAAP NTM P/E",
+      "confidence": "low"
+     }
+    ]
+   },
+   {
+    "name": "P/E",
+    "value": 213.66,
+    "weight": 0.0,
+    "inputs": "cross-check only: peer-median non-GAAP NTM P/E 75.5x x Street NTM EPS 2.83 today = $213.67",
+    "inputs_detail": [
+     {
+      "input": "Street NTM non-GAAP EPS",
+      "value": 2.83,
+      "basis": "consensus",
+      "source_ids": [
+       16
+      ],
+      "fact_ids": [],
+      "derivation": "3/12 x 2.22 + 9/12 x 3.03"
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 302.95,
+    "weight": 0.0,
+    "inputs": "base-rate cross-check: today's price x SNOW's median 12-month return since IPO (+2.4%, 63 windows) = $302.95",
+    "inputs_detail": [
+     {
+      "input": "median 12m return",
+      "value": "+2.4%",
+      "basis": "estimate",
+      "source_ids": [
+       29
+      ],
+      "fact_ids": [],
+      "derivation": "63 overlapping 12-month windows of monthly closes Sep 2020 - Nov 2026",
+      "confidence": "medium"
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "downside": {
+   "price": 174.61,
+   "story": "10th percentile ($174.61, -41% vs today): NRR -4 pt, new-customer revenue -25% and product GM -2 pt in every quarter (Iceberg moves storage/compute out, Databricks takes warehousing share, AI priced cheaply), first quarterly guide miss, and a 40-turn P/E / 4x EV/sales de-rating; matches SNOW's own 12-month P10 return of -43% since IPO and the 2022 and 2024 drawdowns."
+  },
+  "base": {
+   "price": 287.88,
+   "story": "Median ($287.88, -3%): the approved set (NRR peaks ~129% then fades to 117% by FY30, FY28 revenue 8.29B, FY29 10.30B, margins 17.6% -> 19.4%) valued at shrunk peer multiples, less an SBC-costed maturity leg; consistent with SNOW's flat median 12-month base rate (+2.4%)."
+  },
+  "upside": {
+   "price": 451.39,
+   "story": "90th percentile ($451.39, +53%): NRR +3 pt (past 130% as in FY23-24), new-customer revenue +20%, GM +1 pt as AI consumption compounds, and a 55-turn P/E / 5.5x EV/sales re-rating toward DDOG/NET; in line with SNOW's own 12-month P90 return of +44% and the +36% / +17% post-print moves of 2026."
+  }
+ },
+ "comps": [
+  {
+   "symbol": "DDOG",
+   "name": "Datadog",
+   "why_comparable": "Usage-priced cloud infrastructure software sold to the same engineering/data buyers, ~23% growth, positive non-GAAP margins, heavy SBC",
+   "fwd_pe": 232.4,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "revenue +22.8% (4.47B -> 5.49B); non-GAAP EPS +17.8%",
+   "as_of": "2026-11-03",
+   "basis": "estimate",
+   "source_ids": [
+    24,
+    32,
+    31
+   ],
+   "fact_ids": [
+    "DDOG.price",
+    "DDOG.pe_ntm",
+    "DDOG.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "consumption-priced platform (whole product revenue)",
+    "revenue_share": 0.96,
+    "why": "same consumption model and buyer; not the same product"
+   },
+   "fwd_pe_nongaap": 75.5,
+   "ev_sales_ntm": 15.3,
+   "note": "GAAP NTM P/E from peers.md; non-GAAP 219.35 / 2.905 and P/S 81.4B / 5.32B from StockAnalysis consensus (my arithmetic)"
+  },
+  {
+   "symbol": "MDB",
+   "name": "MongoDB",
+   "why_comparable": "Cloud database (Atlas, consumption-priced), the closest listed data-platform peer, ~19% growth",
+   "fwd_pe": 245.8,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "revenue +18.8% (3.03B -> 3.60B); non-GAAP EPS +20.0%",
+   "as_of": "2026-11-03",
+   "basis": "estimate",
+   "source_ids": [
+    25,
+    32,
+    31
+   ],
+   "fact_ids": [
+    "MDB.price",
+    "MDB.pe_ntm",
+    "MDB.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data platform / database (whole product revenue)",
+    "revenue_share": 0.96,
+    "why": "same product family and consumption pricing"
+   },
+   "fwd_pe_nongaap": 44.8,
+   "ev_sales_ntm": 7.8,
+   "note": "non-GAAP 336.60 / 7.52; P/S 27.1B / 3.46B"
+  },
+  {
+   "symbol": "NET",
+   "name": "Cloudflare",
+   "why_comparable": "Usage-heavy cloud platform at ~29% growth, closest growth profile, AI inference exposure",
+   "fwd_pe": 1286.7,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "revenue +28.9% (2.87B -> 3.70B); non-GAAP EPS +33%",
+   "as_of": "2026-11-03",
+   "basis": "estimate",
+   "source_ids": [
+    26,
+    32,
+    31
+   ],
+   "fact_ids": [
+    "NET.price",
+    "NET.pe_ntm",
+    "NET.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "cloud platform (business-model fit, whole product revenue)",
+    "revenue_share": 0.96,
+    "why": "similar growth and SBC-heavy margin profile; different product"
+   },
+   "fwd_pe_nongaap": 171.8,
+   "ev_sales_ntm": 27.5,
+   "note": "non-GAAP 276.69 / 1.61; P/S 98.0B / 3.56B"
+  },
+  {
+   "symbol": "ESTC",
+   "name": "Elastic",
+   "why_comparable": "Search/analytics data platform, consumption-tilted cloud mix, slower growth",
+   "fwd_pe": 109.9,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +40.4% (peers.md, thin out-year estimates)",
+   "as_of": "2026-11-03",
+   "basis": "estimate",
+   "source_ids": [
+    32,
+    31
+   ],
+   "fact_ids": [
+    "ESTC.price",
+    "ESTC.pe_ntm",
+    "ESTC.eps_growth_fwd",
+    "ESTC.ev"
+   ],
+   "fit": {
+    "segment": "data/analytics platform (whole product revenue)",
+    "revenue_share": 0.96,
+    "why": "same data-analytics end market; slower growth"
+   },
+   "ev_sales_ttm": 4.87
+  },
+  {
+   "symbol": "TDC",
+   "name": "Teradata",
+   "why_comparable": "Legacy data warehouse, the incumbent SNOW displaces; same product, no growth",
+   "fwd_pe": 17.5,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +8.5% (peers.md)",
+   "as_of": "2026-11-03",
+   "basis": "estimate",
+   "source_ids": [
+    32,
+    31
+   ],
+   "fact_ids": [
+    "TDC.price",
+    "TDC.pe_ntm",
+    "TDC.eps_growth_fwd",
+    "TDC.ev_ebitda_ttm"
+   ],
+   "fit": {
+    "segment": "data warehouse (whole product revenue)",
+    "revenue_share": 0.96,
+    "why": "same product; ex-growth, so it anchors the multiple floor"
+   },
+   "ev_sales_ttm": 1.62,
+   "ev_ebitda_ttm": 12.3
+  },
+  {
+   "symbol": "DT",
+   "name": "Dynatrace",
+   "why_comparable": "Observability software, profitable at ~20% growth; GAAP-profitable reference for the maturity leg",
+   "fwd_pe": 38.2,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +28.7% (peers.md)",
+   "as_of": "2026-11-03",
+   "basis": "estimate",
+   "source_ids": [
+    32,
+    31
+   ],
+   "fact_ids": [
+    "DT.price",
+    "DT.pe_ntm",
+    "DT.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "infrastructure software (business-model fit)",
+    "revenue_share": 0.96,
+    "why": "mature-growth software SBC-costed P/E reference; no EV in the table"
+   }
+  }
+ ],
+ "comps_summary": {
+  "peer_median_fwd_pe": 171.2,
+  "peer_median_fwd_pe_basis": "GAAP NTM, 6 peers (peers.md); non-GAAP NTM median of DDOG/MDB/NET 75.5x",
+  "peer_median_ev_ebitda": null,
+  "peer_median_ev_sales": 7.8,
+  "peer_range": "EV/NTM sales 1.6x (TDC, ttm) - 27.5x (NET); non-GAAP NTM P/E 44.8x (MDB) - 171.8x (NET); GAAP NTM P/E 17.5x (TDC) - 1286.7x (NET)",
+  "own_multiple": "EV/NTM sales 13.5x (103.1B / Street NTM revenue 7.66B); non-GAAP NTM P/E 104.6x (295.85 / 2.83)",
+  "exit_k": 0.8,
+  "resulting_multiple": "EV/sales 12.1x = 7.8 x (13.5/7.8)^0.8; P/E 98.0x = 75.5 x (104.6/75.5)^0.8",
+  "our_multiple_vs_peers": "EV/sales 12.1x sits above the 7.8x median, below DDOG 15.3x and NET 27.5x; P/E 98x above the 75.5x median, below NET 171.8x.",
+  "premium_discount_justification": "Only the default k=0.8 shrink is kept: no further premium argued. The retained premium reflects growth (SNOW NTM revenue growth ~30% vs MDB ~19%, DDOG ~23%) and the 10/10 guide-beat record; offset by heavier SBC (~29.5% of revenue Q2 FY27), which is why the P/E leg carries only 0.25 weight and an SBC-costed leg 0.20.",
+  "peer_count_flag": "6 peers (MDB DDOG NET ESTC TDC DT): the only genuinely comparable US-listed filers; CFLT was acquired by IBM, Databricks is private; GTLB, PLTR, ORCL and hyperscalers are weak or segment-only. Forward EV/sales and non-GAAP P/E only for DDOG/MDB/NET (cited consensus); ESTC/TDC trailing; no EV/EBITDA NTM for any.",
+  "rows": [
+   {
+    "symbol": "DDOG",
+    "fit": {
+     "segment": "consumption-priced platform (whole product revenue)",
+     "revenue_share": 0.96,
+     "why": "same consumption model and buyer; not the same product"
+    },
+    "peer": "DDOG"
+   },
+   {
+    "symbol": "MDB",
+    "fit": {
+     "segment": "data platform / database (whole product revenue)",
+     "revenue_share": 0.96,
+     "why": "same product family and consumption pricing"
+    },
+    "peer": "MDB"
+   },
+   {
+    "symbol": "NET",
+    "fit": {
+     "segment": "cloud platform (business-model fit, whole product revenue)",
+     "revenue_share": 0.96,
+     "why": "similar growth and SBC-heavy margin profile; different product"
+    },
+    "peer": "NET"
+   },
+   {
+    "symbol": "ESTC",
+    "fit": {
+     "segment": "data/analytics platform (whole product revenue)",
+     "revenue_share": 0.96,
+     "why": "same data-analytics end market; slower growth"
+    },
+    "peer": "ESTC"
+   },
+   {
+    "symbol": "TDC",
+    "fit": {
+     "segment": "data warehouse (whole product revenue)",
+     "revenue_share": 0.96,
+     "why": "same product; ex-growth, so it anchors the multiple floor"
+    },
+    "peer": "TDC"
+   },
+   {
+    "symbol": "DT",
+    "fit": {
+     "segment": "infrastructure software (business-model fit)",
+     "revenue_share": 0.96,
+     "why": "mature-growth software SBC-costed P/E reference; no EV in the table"
+    },
+    "peer": "DT"
+   }
+  ]
+ },
+ "thesis_break_price": 185.0,
+ "thesis_break_reason": "At $185 the EV (~64B) is ~8.4x Street NTM revenue, i.e. the peer median: the market would be pricing SNOW as a ~20% grower, which most likely means the NRR/AI-consumption path broke (a first product-guide miss after 10 straight beats, NRR back toward 120%, or a visible Iceberg/Databricks share loss), not ordinary volatility (64% vol makes $230-240 a routine 1-sigma 3-month move).",
+ "catalysts": [
+  {
+   "date": "2026-12-02",
+   "event": "Q3 FY27 results (expected after close; not confirmed): product guide 1,588-1,593, margin 15.5%, cRPO coverage, note-repurchase loss treatment",
+   "direction": "?"
+  },
+  {
+   "date": "2026-12-10",
+   "event": "FOMC decision (markets lean to few or no further cuts; Oddpool/Kalshi/Polymarket 2026 cut count favourite '0 cuts' ~35%)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-02",
+   "event": "Q4 FY27 results and first FY28 guide (base rate: first annual guides beat by a median +4.5%, but the Feb 2024 first guide drew -18% next day)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-03",
+   "event": "Buyback authorisation expires (802.7M left at 2026-07-31); renewal or not",
+   "direction": "+"
+  },
+  {
+   "date": "2027-05",
+   "event": "Q1 FY28 results (the AI step-up starts to lap: NRR path 129% -> 127.5%)",
+   "direction": "-"
+  },
+  {
+   "date": "2027-06",
+   "event": "Snowflake Summit: AI product (Cortex, Snowflake Intelligence) pricing and Iceberg roadmap",
+   "direction": "?"
+  },
+  {
+   "date": "2027-08",
+   "event": "Q2 FY28 results; NRR trend vs the set's 127.5%",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Whether the AI consumption step-up in FY27 (product +37% y/y in Q2) persists or laps in FY28: NRR path 129% -> 117%",
+  "SBC normalisation: SBC-related charges ~29.5% of revenue; the SBC-costed leg moves $85-165 on this alone",
+  "Multiple regime: SNOW's EV/sales went 67x -> 13.9x in four years; peer EV/sales range 1.6-27.5x",
+  "Open table formats (Iceberg) and Databricks warehousing share",
+  "Q3 non-GAAP EPS treatment of the ~286M loss on the 2027-note repurchase",
+  "Rates: long-duration equity; prediction markets disagree on 2026 cuts (Oddpool 0 cuts ~35% vs a headline 79%)"
+ ],
+ "long_dated_risks": [
+  {
+   "risk": "Iceberg/open table formats plus Databricks take compute and storage share",
+   "probability": 0.35,
+   "when": "FY29-FY31",
+   "cash_flow_effect": "NRR ~4 pt lower from FY29: FY30 revenue ~-8%, EPS ~-10%",
+   "value_effect_per_share": -9.0,
+   "how_applied": "scenario",
+   "sources": [
+    7,
+    23
+   ]
+  },
+  {
+   "risk": "SBC stays above 20% of revenue (no normalisation)",
+   "probability": 0.4,
+   "when": "FY29-FY33",
+   "cash_flow_effect": "owner earnings FY33 -40%",
+   "value_effect_per_share": -3.0,
+   "how_applied": "multiple",
+   "sources": [
+    6,
+    7
+   ]
+  },
+  {
+   "risk": "AI workloads priced low by hyperscalers / own price-performance cuts compress product GM",
+   "probability": 0.3,
+   "when": "FY28-FY30",
+   "cash_flow_effect": "product GM -2 pt: FY30 EPS -8%",
+   "value_effect_per_share": -2.2,
+   "how_applied": "scenario",
+   "sources": [
+    6,
+    7
+   ]
+  },
+  {
+   "risk": "Convertible notes (5.8B principal; 2029/2031 notes convert ~$484-500, capped to $820) dilute if the stock rallies",
+   "probability": 0.25,
+   "when": "2029-2031",
+   "cash_flow_effect": "~7.5M shares net of capped calls only above ~$500",
+   "value_effect_per_share": -1.0,
+   "how_applied": "multiple",
+   "sources": [
+    10
+   ]
+  }
+ ],
+ "reverse_dcf_check": "12.1x EV/NTM sales at the horizon (~118B EV on ~9.8B revenue) needs roughly 15-18% revenue growth for a decade after FY30 with SBC-costed free-cash margins reaching ~25%; plausible only if NRR holds above ~115% and SBC falls toward ~10% of revenue, which is why an SBC-costed leg carries 20%.",
+ "sbc_treatment": {
+  "sbc_last_fy_musd": 1599.5,
+  "basis": "added to share count",
+  "note": "FY26 SBC 1,599.5M (F43; SBC-related charges incl. payroll tax 1,710.7M, 36.5% of revenue). The set's EBIT is non-GAAP (SBC excluded), so shares grow +1.5%/yr net of buybacks (sbc_treatment 'dilution'); the multiple legs read non-GAAP peers on the same basis, and the 0.20-weight custom leg costs SBC explicitly (13% of FY33 revenue). FCF TTM 1,195.3 (F95) less SBC TTM 1,641.9 (F46) = -446.6M: on an SBC-costed basis SNOW is not yet profitable.",
+  "sources": [
+   31,
+   6,
+   9
+  ]
+ },
+ "reasoning": "Lane base-rates. (1) Own history [29]: 63 overlapping 12-month windows since the 2020 IPO give P10 -43%, P25 -23%, median +2.4%, P75 +25%, P90 +44% (log sd 0.38) - a flat-median, very wide distribution, wider than the \u00b125-35% large-cap norm; realized vol 64% in the last year, 52% ex-earnings [30]. (2) Earnings events [30]: 14 prints, median |move| 14.1%, 8 up; guide record 10/10 product beats (median +4.6%) and first annual guides beat by a median +4.5% (FY24 a miss), so the beat habit is known and priced. (3) Multiple regime [27]: EV/sales 67x (FY22) -> 23.8x -> 22.3x -> 16.7x -> 13.9x (FY26), TTM 19.3x now: re-rating since the trough rests on the AI consumption acceleration; base rates for high-multiple software say multiples compress as growth fades, so I keep the default k=0.8 shrink toward the 7.8x peer median and do not add a premium. (4) Macro [28,34]: prediction markets on 2026 Fed cuts are dated poorly and disagree; no rate effect is put in the numbers. Model: the approved quarterly driver set is used exactly (my view: I accept the nrr path; on base rates the risk to Q3 product is upward given the 10/10 record, while the FY29-30 NRR fade to 117% is reasonable given NRR fell from 158% to 126% in four years). Value: EV/sales 12.1x (w 0.55) $311.80, non-GAAP P/E 98x (w 0.25) $369.56, SBC-costed maturity leg $120 (w 0.20) -> $287.88. METHOD FIT: GAAP losses mean GAAP P/E and EV/EBITDA do not apply; non-GAAP multiples ignore ~30% of revenue of SBC, so they are weakened and the non-multiple SBC-costed leg is added (not driver-linked). Cases: the set's driver deltas plus P/E -40 / +55 turns, sized to land near the own-history P10/P90 (engine 174.61 / 451.39). Research limited: 6 page fetches; Twelve Data statistics/estimates not in plan. Sources 1-23 are the approved set's filing/consensus sources (basic facts); of my 12 added sources 6 are in-lane (EV/sales history, prediction markets x2, own price-history base rates x2, post-earnings press), 3 unlikely to be found by other lanes (StockAlarm EV/sales history, Oddpool, own post-earnings base-rate calc).",
+ "lane": "base-rates"
+}

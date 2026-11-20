@@ -1,0 +1,1449 @@
+{
+ "date": "2026-11-17",
+ "symbol": "COHR",
+ "clean": true,
+ "checked": 161,
+ "ok": 159,
+ "failures": [
+  {
+   "item": "balance.interest_rate anchor (company_adjusted, as of 2026-09-30)",
+   "value": "0.0587",
+   "cited": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "result": "mislabelled",
+   "fix": "Already fixed by the thread (confirmed): anchor kind and basis 'estimate', confidence high, derivation states it is our calculation (33.0 x 4 / 2,247.7 = 5.87%) and that the 33.0 line includes other non-FX items; norm_check passes."
+  },
+  {
+   "item": "non-GAAP EPS diluted Q2 FY2027 consensus as of 2026-11-16",
+   "value": "2.14",
+   "cited": "https://api.nasdaq.com/api/analyst/COHR/earnings-forecast",
+   "result": "not_found",
+   "fix": "Basis shown: Zacks-reported actuals vs company non-GAAP for five quarters (0.93/1.16, 1.11/1.29, 1.21/1.41, 1.47/1.74, 1.80/2.09; src 26 vs src 5/4/3/2/38) put Zacks 0.18-0.29 a quarter below; guidance_check row now carries consensus_basis 'Zacks basis' and consensus_basis_evidence (~2.37 company basis); src 41 kind 'consensus' (dated by the consensus rule: figures of the day opened, 2026-11-16)."
+  },
+  {
+   "item": "FY2026 major customers 20% and 12%, primarily D&C",
+   "value": "20% / 12%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/iivi-20260630.htm",
+   "result": "not_found",
+   "fix": "Confirmed on the 10-K XBRL R page for Note 20 (R30.htm): 'One major customer accounted for 20%, 10%, and 10% ... A second major customer accounted for 12% ... primarily attributable to our Datacenter & Communications segment'."
+  },
+  {
+   "item": "research target (12m) / engine base after the 2026-11-17 rate fix",
+   "value": "309.66 (0.7 x 329.89 + 0.3 x 262.46)",
+   "cited": "supervisor.json judgment_alternatives_sized (base_target 309.62, set_hash c669..., 2026-11-18T00:32Z)",
+   "result": "arithmetic",
+   "fix": "Brought to the engine value: fair_value.value 309.64; fair_value.reason (0.7 x 329.86 + 0.3 x 262.46 = 309.64), gap_note, sizing.reason, model.reasoning, changes[0]/[10], disagreements[5], scenario stories (P10 138.75 / P90 494.95)."
+  },
+  {
+   "item": "horizon net debt",
+   "value": "4,006.5",
+   "cited": "(engine; inputs_detail horizon P/E row)",
+   "result": "arithmetic",
+   "fix": "fair_value.reason horizon net debt 4,006.5 -> 4,008.3 (engine)."
+  },
+  {
+   "item": "D&C segment profit FY26 / FY25",
+   "value": "1,329.7 / 903.8",
+   "cited": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/iivi-20260630.htm",
+   "result": "not_found",
+   "fix": "Confirmed on 10-K R30.htm: D&C segment profit 1,329,719 (FY26) / 903,787 (FY25) $K."
+  },
+  {
+   "item": "Marvell-Lumentum low / high variant per share",
+   "value": "-9.58 / +24.19",
+   "cited": "/mnt/project-files/valuation/driver_models/COHR/share_shift/share_shift.json",
+   "result": "arithmetic",
+   "fix": "long_dated_review value_effect_per_share -9.58 / +24.19 -> -9.70 / +24.49 (their own how_applied at 19.47x)."
+  },
+  {
+   "item": "Q1 FY27 segment profit D&C 508.7, Industrial 121.7, corporate -80.2",
+   "value": "508,683 / 121,745 / -80,170 $K",
+   "cited": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "result": "not_found",
+   "fix": "Confirmed on the 10-Q XBRL R page (R27.htm): D&C 508,683, Industrial 121,745, corporate and centralized function costs -80,170 $K."
+  },
+  {
+   "item": "China 1-year LPR (src 61)",
+   "value": "3.00%",
+   "cited": "https://www.nst.com.my/amp/business/economy/2026/10/1559483/china-leaves-loan-rates-steady-17th-consecutive-month",
+   "result": "not_found",
+   "fix": "src 61 re-pointed to Trading Economics 2026-10-20 (opens: 1-year LPR 3.0%, 5-year 3.5%, 17th month on hold); the investingLive page the thread used did not open from this checker (client error), so it is not relied on."
+  },
+  {
+   "item": "leg 2 EPS derivation",
+   "value": "16,773.1 x 0.205 - 0.0587 x 4,006.5 = 3,203.3; x 0.81 / 204.28 = 12.70",
+   "cited": "(set arithmetic)",
+   "result": "arithmetic",
+   "fix": "Derivation restated at the rate fix: 16,773.1 x 0.205 - 0.0588 x 4,008.3 = 3,202.8; x 0.81 / 204.28 = 12.70 (value unchanged)."
+  },
+  {
+   "item": "FY28-29 +1.5% a quarter (~+6%/yr)",
+   "value": "1,763 / 1,872",
+   "cited": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "result": "unsupported",
+   "fix": "Not supported here: no outside forecast sizes Industrial demand in FY28-29 and the company gives no end-market mix to map one onto (SEMI's July 2026 WFE forecast 2027 +21.8% / 2028 +14.1% covers only part of the segment). Per the brief: options written to judgment_calls_for_kilian (card 4: set +1.5%/q, flat at the FY27 exit -0.51%, +3%/q +0.53%; engine-sized in judgment_alternatives ind_rev); value unchanged, not picked."
+  },
+  {
+   "item": "-82 a quarter Q2-Q4 FY27; +5% a year FY28-29",
+   "value": "-326.2 / -344.4 / -361.6",
+   "cited": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "result": "unsupported",
+   "fix": "Not supported here: the Q2 opex guide is not split by segment and no source gives corporate cost growth. Per the brief: options written to judgment_calls_for_kilian (card 5: set, opex-guide scaled -0.28%, +8%/yr -0.25%, no growth +0.40%; new judgment_alternatives item constant:corp, engine-sized); value unchanged, not picked."
+  },
+  {
+   "item": "balance.interest_rate = 0.0589 (estimate, confidence medium, derivation + build script)",
+   "value": "0.0589",
+   "cited": "/mnt/project-files/valuation/driver_models/COHR/interest_rate/cohr_rate.py",
+   "result": "arithmetic",
+   "fix": "Already fixed by the thread (confirmed): cohr_rate.py cash_y_q1 2.845 (13.3 x 4 / 1,870 = 2.85%); run at 4,008.3 gives gross 266.4, income 30.6, net 235.8, rate 5.88%; Q1 check 45.5 vs 46.3."
+  },
+  {
+   "item": "US share 0.651 = North America 4,633.7 / 7,118.2",
+   "value": "as listed",
+   "cited": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/iivi-20260630.htm",
+   "result": "not_found",
+   "fix": "Confirmed on 10-K R30.htm: North America 4,633,696 of 7,118,181 $K = 0.651."
+  },
+  {
+   "item": "all local at LPR less 71bp (src 61)",
+   "value": "as listed",
+   "cited": "https://www.nst.com.my/amp/business/economy/2026/10/1559483/china-leaves-loan-rates-steady-17th-consecutive-month",
+   "result": "not_found",
+   "fix": "Same as src 61: the alternative now cites the Trading Economics page that shows the 3.0% LPR."
+  },
+  {
+   "item": "context / booked option research_target",
+   "value": "309.66 (mkt context \"309.66 after the gate fix\"; set options rt 309.66; other options rt ~0.04 above the re-sized alternatives)",
+   "cited": "supervisor.json judgment_alternatives_sized (base 309.62)",
+   "result": "mislabelled",
+   "fix": "Cards re-synced: contexts carry 309.64; every option's research_target = its engine-sized alternative at base 309.64 (e.g. growth-rate 295.63); fv_effect_pct unchanged; kilian_decisions.json untouched."
+  },
+  {
+   "item": "src 51 Lightwave 2026-06-23 (Dell'Oro): IPoDWDM five-year CAGR 27% to >$7B by 2030; disaggregated WDM 17% to ~$13B; ZR/ZR+ plug",
+   "value": "published 2026-06-23 (gate checker (page)), industry_forecast",
+   "cited": "https://www.lightwaveonline.com/home/article/55385918/data-center-interconnect-dci-demands-drive-27-ipodwdm-growth",
+   "result": "stale_forecast",
+   "fix": "No newer edition: Dell'Oro's 2026-06-16 release is the original of this forecast and the newest five-year one found (3 searches 2026-11-18, 4 editions/pages checked). Since then Dell'Oro's 2Q 2026 actuals (2026-08-20, new src 63): DCI IPoDWDM ZR/ZR+ and WDM +45% y/y. Reconciled in sources[51].timeliness: the set uses the rate only after CY2027 (+23%/yr, between the 17% and 27-29% five-year rates) after Scale Across doubles to Dec 2027 on the company's statement; front-loaded actuals do not raise CY2028-29, path unchanged. timeliness.py check passes."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "balance.interest_rate anchor (company_adjusted, as of 2026-09-30)",
+   "value": "0.0587",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model normalizing (interest_rate) anchor",
+   "fixed": true
+  },
+  {
+   "item": "non-GAAP EPS diluted Q2 FY2027 consensus as of 2026-11-16",
+   "value": "2.14",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/COHR/earnings-forecast",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance",
+   "fixed": true
+  },
+  {
+   "item": "FY2026 major customers 20% and 12%, primarily D&C",
+   "value": "20% / 12%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/R30.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value",
+   "fixed": true
+  },
+  {
+   "item": "research target (12m) / engine base after the 2026-11-17 rate fix",
+   "value": "309.66 (0.7 x 329.89 + 0.3 x 262.46)",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives_sized (base_target 309.62, set_hash c669..., 2026-11-18T00:32Z)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value + gap_note + sizing + changes",
+   "fixed": true
+  },
+  {
+   "item": "horizon net debt",
+   "value": "4,006.5",
+   "basis": "estimate",
+   "source_url": "(engine; inputs_detail horizon P/E row)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value",
+   "fixed": true
+  },
+  {
+   "item": "D&C segment profit FY26 / FY25",
+   "value": "1,329.7 / 903.8",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/R30.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements",
+   "fixed": true
+  },
+  {
+   "item": "Marvell-Lumentum low / high variant per share",
+   "value": "-9.58 / +24.19",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/COHR/share_shift/share_shift.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor long_dated_review",
+   "fixed": true
+  },
+  {
+   "item": "Q1 FY27 segment profit D&C 508.7, Industrial 121.7, corporate -80.2",
+   "value": "508,683 / 121,745 / -80,170 $K",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/R27.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor key_drivers / inputs_detail",
+   "fixed": true
+  },
+  {
+   "item": "China 1-year LPR (src 61)",
+   "value": "3.00%",
+   "basis": "market",
+   "source_url": "https://tradingeconomics.com/china/interest-rate/news/593249",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail",
+   "fixed": true
+  },
+  {
+   "item": "leg 2 EPS derivation",
+   "value": "16,773.1 x 0.205 - 0.0587 x 4,006.5 = 3,203.3; x 0.81 / 204.28 = 12.70",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail",
+   "fixed": true
+  },
+  {
+   "item": "balance.interest_rate = 0.0589 (estimate, confidence medium, derivation + build script)",
+   "value": "0.0589",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/COHR/interest_rate/cohr_rate.py",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model",
+   "fixed": true
+  },
+  {
+   "item": "US share 0.651 = North America 4,633.7 / 7,118.2",
+   "value": "as listed",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000020/R30.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_mor",
+   "fixed": true
+  },
+  {
+   "item": "all local at LPR less 71bp (src 61)",
+   "value": "as listed",
+   "basis": "market",
+   "source_url": "https://tradingeconomics.com/china/interest-rate/news/593249",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives balance.interest_rate",
+   "fixed": true
+  },
+  {
+   "item": "context / booked option research_target",
+   "value": "309.66 (mkt context \"309.66 after the gate fix\"; set options rt 309.66; other options rt ~0.04 above the re-sized alternatives)",
+   "basis": "estimate",
+   "source_url": "supervisor.json judgment_alternatives_sized (base 309.62)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_calls_for_kilian all three cards",
+   "fixed": true
+  },
+  {
+   "item": "src 51 Lightwave 2026-06-23 (Dell'Oro): IPoDWDM five-year CAGR 27% to >$7B by 2030; disaggregated WDM 17% to ~$13B; ZR/ZR+ plug",
+   "value": "published 2026-06-23 (gate checker (page)), industry_forecast",
+   "basis": "forecast",
+   "source_url": "https://www.delloro.com/newsroom/ipodwdm-market-forecast-to-grow-at-27-percent-cagr/",
+   "checked": "2026-11-18",
+   "feeds": "timeliness.py (supervisor sources)",
+   "fixed": true
+  },
+  {
+   "item": "revenue Q2 FY2027 guide as of 2026-11-04",
+   "value": "2550-2750",
+   "basis": "GAAP revenue ($M); guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS diluted Q2 FY2027 guide as of 2026-11-04",
+   "value": "2.28-2.48",
+   "basis": "non-GAAP diluted EPS; guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2027 guide as of 2026-11-04",
+   "value": "0.4-0.42",
+   "basis": "non-GAAP gross margin; guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses Q2 FY2027 guide as of 2026-11-04",
+   "value": "430-450",
+   "basis": "non-GAAP opex ($M); guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP tax rate FY2027 guide as of 2026-11-04",
+   "value": "0.18-0.2",
+   "basis": "non-GAAP; Q2 guide 18-20%, FY26-27 normalized rate 19%; guid",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "FY2027 pro forma revenue growth (management) FY2027 guide as of 2026-11-04",
+   "value": "0.6-None",
+   "basis": "pro forma revenue growth ex A&D and Munich, a floor; guidanc",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "FY2027 pro forma revenue growth (management) Q1 FY2027 (progress): first guide (2026-11-04) / reported actual",
+   "value": "0.6-None / 0.56",
+   "basis": "pro forma y/y; guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "quarterly revenue above $3B (management target) Q4 FY2027 guide as of 2026-11-04",
+   "value": "3000-None",
+   "basis": "GAAP quarterly revenue, a floor; guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "first $4B revenue quarter (management) FY2028 guide as of 2026-11-04",
+   "value": "4000-None",
+   "basis": "GAAP quarterly revenue, a floor; guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "first $4B revenue quarter (management) Q1 FY2027 (progress): first guide (2026-11-04) / reported actual",
+   "value": "4000-None / 2370.3",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "first quarter of non-GAAP gross margin >45% (management target) before end CY2028 (Q2 FY2029) guide as of 2026-11-04",
+   "value": "0.45-None",
+   "basis": "non-GAAP gross margin, a floor; guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 38)",
+   "value": "Restated on the Q1 FY27 release ('first $3 billion revenue quarter by the end of fiscal 2027', src 38).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check quarterly revenue above $3B (management target) Q4 FY2027 why"
+  },
+  {
+   "item": "revenue Q1 FY2026: first guide (2025-08-13) / reported actual",
+   "value": "1460-1600 / 1581.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525179833/d22249dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS diluted Q1 FY2026: first guide (2025-08-13) / reported actual",
+   "value": "0.93-1.13 / 1.16",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525179833/d22249dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2026: first guide (2025-08-13) / reported actual",
+   "value": "0.375-0.395 / 0.387",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525179833/d22249dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q2 FY2026: first guide (2025-11-05) / reported actual",
+   "value": "1560-1700 / 1685.6",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525266951/d27982dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS diluted Q2 FY2026: first guide (2025-11-05) / reported actual",
+   "value": "1.1-1.3 / 1.29",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525266951/d27982dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2026: first guide (2025-11-05) / reported actual",
+   "value": "0.38-0.4 / 0.39",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525266951/d27982dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q3 FY2026: first guide (2026-02-04) / reported actual",
+   "value": "1700-1840 / 1805.6",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526037556/d101115dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS diluted Q3 FY2026: first guide (2026-02-04) / reported actual",
+   "value": "1.28-1.48 / 1.41",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526037556/d101115dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2026: first guide (2026-02-04) / reported actual",
+   "value": "0.385-0.405 / 0.396",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526037556/d101115dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q4 FY2026: first guide (2026-05-06) / reported actual",
+   "value": "1910-2050 / 2045.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526208972/d57080dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS diluted Q4 FY2026: first guide (2026-05-06) / reported actual",
+   "value": "1.52-1.72 / 1.74",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526208972/d57080dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2026: first guide (2026-05-06) / reported actual",
+   "value": "0.39-0.41 / 0.402",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526208972/d57080dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q1 FY2027: first guide (2026-08-12) / reported actual",
+   "value": "2200-2400 / 2370.3",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS diluted Q1 FY2027: first guide (2026-08-12) / reported actual",
+   "value": "1.85-2.05 / 2.09",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2027: first guide (2026-08-12) / reported actual",
+   "value": "0.395-0.415 / 0.406",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses Q1 FY2027: first guide (2026-08-12) / reported actual",
+   "value": "400-420 / 412.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP tax rate Q1 FY2027: first guide (2026-08-12) / reported actual",
+   "value": "0.18-0.2 / 0.19",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q2 FY2027 consensus as of 2026-11-16",
+   "value": "2660",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "FY2027 pro forma revenue growth (management) FY2027 consensus as of 2026-11-16",
+   "value": "11110",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "first $4B revenue quarter (management) FY2028 consensus as of 2026-11-16",
+   "value": "15280",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "FY28 revenue 14,869 vs Zacks 15.28B (snapshot src 42); the >=4,000 floor is still met inside FY28.",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check first $4B revenue quarter (management) FY2028 why"
+  },
+  {
+   "item": "quarterly revenue above $3B (management target) Q4 FY2026 (progress): first guide (2026-08-12) / reported actual",
+   "value": "3000-None / 2045.5",
+   "basis": "guidance",
+   "source_url": "https://futurumgroup.com/insights/coherent-q4-fy-2026-earnings-1-6t-transceivers-ramp-cpo-revenue-approaches/",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "quarterly revenue above $3B (management target) Q1 FY2027 (progress): first guide (2026-08-12) / reported actual",
+   "value": "3000-None / 2370.3",
+   "basis": "guidance",
+   "source_url": "https://futurumgroup.com/insights/coherent-q4-fy-2026-earnings-1-6t-transceivers-ramp-cpo-revenue-approaches/",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "first quarter of non-GAAP gross margin >45% (management target) >42% target (set 2025-05-28, 3-4 years): first guide (2025-05-28) / reported actual",
+   "value": "0.42-None / 0.406",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525129060/d908147dex992.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) FY2029 guide as of 2025-05-28",
+   "value": "0.24-None",
+   "basis": "non-GAAP operating margin, a floor; guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525129060/d908147dex992.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) FY2026 (progress): first guide (2025-05-28) / reported actual",
+   "value": "0.24-None / 0.2047",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525129060/d908147dex992.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) Q1 FY2027 (progress): first guide (2025-05-28) / reported actual",
+   "value": "0.24-None / 0.232",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525129060/d908147dex992.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-18",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.lightwaveonline.com/home/article/55385918/data-center-interconnect-dci-demands-drive-27-ipodwdm-growth",
+   "checked": "2026-11-18",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "dc_mor US share / early stage / scenario weights / state windows",
+   "value": "0.693; 0.7; none 0.25 / texas 0.45 / spread 0.30",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Kilian 2026-11-17 11:54 AM ET yes to adding COHR, carve-out",
+   "value": "claim",
+   "basis": "decision",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Big-4 share of AI capex, base 2028",
+   "value": "1,330 / 2,155 = 0.617",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "hs_self_funded",
+   "value": "0.27 x 0.43 + 0.73 x 0.617 = 0.57",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "peak D&C haircut Q3 FY28",
+   "value": "15.24% x 0.43 = ~6.6%",
+   "basis": "estimate",
+   "source_url": "(set arithmetic on dc_mor.json)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "2026-11-16 close",
+   "value": "203.43",
+   "basis": "reported",
+   "source_url": "/mnt/project-files/valuation/data/daily_COHR.csv",
+   "checked": "2026-11-18",
+   "feeds": "supervisor fair_value / sizing"
+  },
+  {
+   "item": "InP doubling again by end CY2027; Sherman/Sweden 6-inch; Zurich 6-inch 1H CY2027; PhotonLink >$100M March quarter, >$250M a quarter before end CY2027; ~$20B LTA from early CY2028",
+   "value": "as stated",
+   "basis": "management",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "Zacks gap: 1.74-1.47, 1.41-1.21, 1.29-1.11, 1.16-0.93 = 0.88; Q1 FY27 Street pair 0.19-0.21",
+   "value": "0.88 / 0.19-0.21",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/earnings_history.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Investing.com Q1 FY27 consensus; prior actuals",
+   "value": "1.97 EPS / $2.30B; 1.74/1.41/1.29/1.16",
+   "basis": "consensus",
+   "source_url": "https://in.investing.com/equities/coherent-earnings",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "TipRanks Q1 FY27 consensus",
+   "value": "1.99",
+   "basis": "consensus",
+   "source_url": "https://www.tipranks.com/stocks/cohr/earnings/q4-2026-report",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "cost of equity",
+   "value": "4.24% + 7.69% x (0.768 + 0.232 x 2.81) = 15.16%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/portfolio/data/tbill_3m_weekly.csv",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "D&C revenue FY26 / FY25; FY26 non-GAAP op income / revenue; FY25",
+   "value": "5,274.6 / 3,755.2; 1,456.9 / 7,118.2; 1,036.9 / 5,810.1",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "FY24 recast non-GAAP op income / revenue",
+   "value": "618.0 / 4,708",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312525179833/d22249dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "exit conversion factors and multiples",
+   "value": "0.9472 -> 19.81x -> 19.47x; 0.9307 -> 20.57x -> 20.22x",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "net debt / Q1 rate; Q1 capex; new credit lines",
+   "value": "2,247.7 at 5.87%; 775.5; 773",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "Q1 FY27 capex % of revenue; CFO capex higher in Q2",
+   "value": "32.7%",
+   "basis": "reported",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "balance.interest_rate row",
+   "value": "5.87% -> 5.89%; 309.66 -> 309.62",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/COHR/interest_rate/cohr_rate.py",
+   "checked": "2026-11-18",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "peer NTM P/E and median; own and exit P/E",
+   "value": "FN 18.9, AAOI 19.7, CRDO 22.1, CIEN 28.4, MTSI 32.4; median 22.1; own 20.63; exit 20.91",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-03/COHR/peers.md",
+   "checked": "2026-11-18",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "trailing P/E FN 26.6, CRDO 51.6, MTSI 75.4",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-03/COHR/peers.md",
+   "checked": "2026-11-18",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "premium/discount",
+   "value": "-5.3% at exit vs median; own -6.6%",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "LightCounting Bumpy Ride; capex file low case 2028 below 2027",
+   "value": "claim",
+   "basis": "industry",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-18",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "NVIDIA Q3 FY27 call",
+   "value": "Tue 2026-11-17, 5 p.m. ET; release 2026-10-28",
+   "basis": "reported",
+   "source_url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/",
+   "checked": "2026-11-18",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "book overlap at 2026-11-02 prices",
+   "value": "AVGO 13.9%, AMAT 9.2%, GOOGL 3.4%, NVDA 1.2% (27.7%)",
+   "basis": "reported",
+   "source_url": "/mnt/project-files/valuation/data/trades.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "D&C FY27/28/29 after dc_mor; dc_margin; ind_rev; ind_margin; lta booked",
+   "value": "9,371 / 13,106 / 18,122; 0.2672 / 0.2818 / 0.2901; 1,725.3 / 1,763.0 / 1,871.8; 0.2826 / 0.28 / 0.28; 0 / 375 / 1,963",
+   "basis": "engine",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-17/COHR/model_engine.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "balance.interest_rate debt stack",
+   "value": "Term A 1,140.6 SOFR+1.25% (1.25-2.25% grid); Term B-3 1,080 SOFR+1.75% due Jul 2029; 5.000% notes 990 due Dec 2029; 2026 Credit Lines 205 (475) at local less 61bp; Aug 2026 Facility 598 (950; USD SOFR+20bp / local less 71bp, currency not named); Germany 13.2 at 1.55%; local 6.7; revolver 669 available; 32.8 unamortized; cap 1; Q1 interest 46.3",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Treasury 1y / 2y on 2026-11-16 (src 59)",
+   "value": "4.62% / 4.83%",
+   "basis": "market",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS1,DGS2",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "SOFR now / Q1 average (src 60)",
+   "value": "3.93% (2026-11-16); ~3.70% Q1",
+   "basis": "market",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "swaps price hikes into 2027 (src 62)",
+   "value": "three 25bp hikes by June 2027; EFFR ~3.88%",
+   "basis": "market",
+   "source_url": "https://www.itiger.com/news/1127895764",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "operating cash 900",
+   "value": "median of 11 quarter-ends Jun-2023 to Dec-2025, 821-1,020",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000820318.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Q1 FY27 other income / FX gain; cash and ST investments",
+   "value": "27.2 / 13.9; 1,552.9 + 200.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "tax_rate 19%",
+   "value": "0.19",
+   "basis": "filing",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "shares.annual_change anchor",
+   "value": "155,805,474 -> 195,832,246; 150,397,328 -> 153,300,385",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000820318.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "sbc_pct_rev anchor; da / capex / NWC anchors",
+   "value": "193.8 / 7,118.2; 161.0 / 5,810.1; capex 775.5; PP&E 3,869.8; inventory 3,341.4; AR / AP",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "ind_rev held-for-sale inventory / PP&E",
+   "value": "31.9 / 21.3",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "contract liabilities",
+   "value": "63 -> 333",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "lta_rev / lta_real quotes",
+   "value": "~$20B over five years from early CY2028; upfront prepayment or NRE",
+   "basis": "management",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "dc_capture forward evidence (datacenter +17% q/q, comms +34%, Scale Across >$200M x2 by end CY2027, capacity doubled a quarter early, one-quarter lag, mix shift, booked out)",
+   "value": "as stated",
+   "basis": "management",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Dell'Oro DCI rates; TrendForce CPO/NPO; Cignal AI CPO ports",
+   "value": "ZR/ZR+ 29%, IPoDWDM 27%, disaggregated WDM 17%; ~$0.1B 2025 -> >$39B 2030; small 2026, growth 2027, take-off 2029/2030",
+   "basis": "industry",
+   "source_url": "https://www.lightwaveonline.com/home/article/55385918/data-center-interconnect-dci-demands-drive-27-ipodwdm-growth",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "constant:mkt growth inputs",
+   "value": "+120% 2026, +76% 2027, +50% capex 2027, +20% by 2031; optics 2.7% -> 3.1% -> 4.1% of top-5 capex",
+   "basis": "industry",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "SemiAnalysis 11-13 cut",
+   "value": "2027 770 -> 627, 2028 1,054 -> 758, 2029 1,352 -> 796; 5.8 GW; logic wafer 2027 -13% / 2028 -16%; HBM 2028 -30%; NVIDIA 2028 -39%",
+   "basis": "industry",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "hyperscaler 2027 capex commentary",
+   "value": "Alphabet \"increase significantly\", Amazon \"significantly more\", Microsoft no FY27 number",
+   "basis": "secondary",
+   "source_url": "https://456xresearch.substack.com/p/big-tech-q3-capex-deep-dive-2027",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "horizon P/E leg 1",
+   "value": "NTM EPS (3,592.3 - 5.89% x 0.81 x 4,008.3 = 191.2) / 204.28 = 16.65; 19.47x",
+   "basis": "judgment",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "Marvell-Lumentum adjustment",
+   "value": "282.2 + 601.2 + 280.5 = 1,163.9; x 19.47/19.59 = 1,156.8 ($5.66)",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/COHR/share_shift/share_shift.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "mid-cycle margin",
+   "value": "13.1% + (4.17% - 2.09%) = 15.2%; (15.2 + 25.8)/2 = 20.5%",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "transceivers +12..+8% q/q to Q2 FY28, +5%/+4% after; Scale Across x2 then +23%/yr; PhotonLink floors then market rate; telecom +2%",
+   "value": "as booked",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_capture"
+  },
+  {
+   "item": "250/500/750/1,000 then 1,088 a quarter",
+   "value": "2,500 + 16 x 1,088 = 19.9B",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver lta_rev"
+  },
+  {
+   "item": "30% incremental FY27, 32% FY28-29",
+   "value": "26.7 / 28.2 / 29.0%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_margin"
+  },
+  {
+   "item": "quarter path Q1 FY28-Q4 FY29",
+   "value": "9.89 / 14.41 / 15.24 / 10.72 / 1.69 / 1.13 / 0.85 / 0.85%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_mor"
+  },
+  {
+   "item": "28.0% from Q2 FY27 through FY29",
+   "value": "0.28",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver ind_margin"
+  },
+  {
+   "item": "CY2028 83.4B; CY2029 106.05B (+27.1%, fade to +20% by 2031)",
+   "value": "as booked",
+   "basis": "estimate",
+   "source_url": "https://www.lightwaveonline.com/home/article/55362899/ai-scale-up-raises-the-stakes-for-transceivers-and-cpo-adoption",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver constant:mkt"
+  },
+  {
+   "item": "revenue Q2 FY2027",
+   "value": "0/5/0, median 0.0331, adjusted 2737.7, ours 2600.3 inside -0.0188",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q2 FY2027",
+   "value": "3/2/0, median 0.0741, adjusted 2.5564, ours 2.32 inside -0.0252",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2027",
+   "value": "0/5/0, median 0.0025, adjusted 0.411",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP opex Q2 FY2027",
+   "value": "0/1/0, median 0.0049, adjusted 442.2",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP tax rate FY2027",
+   "value": "0/1/0, median None, adjusted None",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "FY2027 pro forma growth",
+   "value": "progress 0.56 vs 0.60 (-0.0667); ours 0.583 below -0.0283",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "first $3B quarter Q4 FY2027",
+   "value": "progress -0.3182 / -0.2099; ours 3206.3 above 0.0688",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "first $4B quarter FY2028",
+   "value": "progress -0.4074; ours 4159.2 above 0.0398",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": ">45% gross-margin target",
+   "value": "progress 0.406 vs 0.42 (-0.0333); position below",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin FY2029",
+   "value": "progress -0.1471 / -0.0333; ours 0.2715 above 0.1313",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "parts build; 1.9% under midpoint; 5% under record-adjusted 2,738 and Zacks 2,660",
+   "value": "2,600",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check revenue why"
+  },
+  {
+   "item": "internal/external laser mix shift (CEO); ~3% usual landing over midpoint",
+   "value": "claim",
+   "basis": "management",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check revenue why"
+  },
+  {
+   "item": "Zacks 2.14 + ~0.2 basis gap; interest 33.1 at 5.89% on 2,247.7",
+   "value": "2.32",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check EPS why"
+  },
+  {
+   "item": "pre-print model's interest 17.6 (Q4 FY26)",
+   "value": "17.6",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526346860/d128030dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check EPS why"
+  },
+  {
+   "item": "612.7 + 17.4% x 2,600 = 41.0% implied",
+   "value": "0.410",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check gross margin why"
+  },
+  {
+   "item": "opex +28 at the midpoint; most of it segment R&D for PhotonLink/OCS (10-Q: higher R&D)",
+   "value": "claim",
+   "basis": "filing",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check opex why"
+  },
+  {
+   "item": "record-adjusted 440 x 1.0049 = 442.2",
+   "value": "442.2",
+   "basis": "estimate",
+   "source_url": "(set arithmetic)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check opex why"
+  },
+  {
+   "item": "19% stated normalized FY27 rate",
+   "value": "0.19",
+   "basis": "filing",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check tax why"
+  },
+  {
+   "item": "FY27 11,097 = +58.3% on ~7,011; Zacks 11.11B; 5 of 5 over midpoint",
+   "value": "11,110",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check pro forma why"
+  },
+  {
+   "item": "Q4 FY27 3,206, Q3 2,920, D&C 2,762; release restatement",
+   "value": "claim",
+   "basis": "management",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check $3B why"
+  },
+  {
+   "item": "Q4 FY28 4,159; Q3 FY28 3,805; LTA 223; without LTA ~3,936; Q1 FY29 ~4,242; FY28 14,869 vs Zacks 15.28B",
+   "value": "claim",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/data/estimates/COHR.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check $4B why"
+  },
+  {
+   "item": "~27% op margin by Q2 FY29; target path 29-30%; sized alternative",
+   "value": "claim",
+   "basis": "estimate",
+   "source_url": "(set reasoning)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check >45% GM why"
+  },
+  {
+   "item": "FY29 27.2% (5,428.4 / 19,993.4); Q1 FY27 23.2%; leg 2 at 20.5%",
+   "value": "0.272",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor guidance_check op margin why"
+  },
+  {
+   "item": "one relayed paid forecast; growth-rate readings -4.5% / -5.0%",
+   "value": "claim",
+   "basis": "industry",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment call constant:mkt why"
+  },
+  {
+   "item": "base-round path misses the $4B-quarter statement; full-capacity path ignores the stated mix shift",
+   "value": "claim",
+   "basis": "management",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment call dc_capture why"
+  },
+  {
+   "item": "filed incremental record; target is a management statement; one quarter under on D&C margin",
+   "value": "claim",
+   "basis": "filing",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment call dc_margin why"
+  },
+  {
+   "item": "quarter = mean of monthly us_share x early_stage x active states; COHR fiscal quarters = calendar quarters shifted, Q1 FY28 = Jul-Sep 2027",
+   "value": "claim",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_mor derivation"
+  },
+  {
+   "item": "no lag between transceiver shipments and rack capitalization (estimate, as CRDO)",
+   "value": "claim",
+   "basis": "estimate",
+   "source_url": "(set reasoning)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_mor derivation"
+  },
+  {
+   "item": "Q1-Q4 FY28 9.89/14.41/15.24/10.72%; FY29 1.69/1.13/0.85/0.85%",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_mor derivation"
+  },
+  {
+   "item": "Kilian 2026-11-16 self-funding hyperscalers untouched; LTA counterparty an AI company",
+   "value": "claim",
+   "basis": "decision",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_mor derivation"
+  },
+  {
+   "item": "applied to all D&C ex LTA incl. Communications (slightly overstates)",
+   "value": "claim",
+   "basis": "estimate",
+   "source_url": "(set reasoning)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_mor derivation"
+  },
+  {
+   "item": "SemiAnalysis 11-13 counts 5.8 GW of delays; not booked in mkt",
+   "value": "5.8 GW",
+   "basis": "industry",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-18",
+   "feeds": "supervisor driver dc_mor derivation"
+  },
+  {
+   "item": "full capacity +15%/q",
+   "value": "as listed",
+   "basis": "management",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_capture"
+  },
+  {
+   "item": "base-round capped path",
+   "value": "as listed",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-03/COHR/supervisor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_capture"
+  },
+  {
+   "item": "Scale Across 17% / 29% after CY2027",
+   "value": "as listed",
+   "basis": "industry",
+   "source_url": "https://www.lightwaveonline.com/home/article/55385918/data-center-interconnect-dci-demands-drive-27-ipodwdm-growth",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_capture"
+  },
+  {
+   "item": "PhotonLink flat at 250 / doubling a year",
+   "value": "as listed",
+   "basis": "industry",
+   "source_url": "https://cignal.ai/2026/04/cpo-and-elsfp-1q26-update/ ; https://trendforce.com/presscenter/news/20260615-13098.html",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_capture"
+  },
+  {
+   "item": "100% / even 1,000 / back-weighted ramp",
+   "value": "as listed",
+   "basis": "management",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives lta_rev"
+  },
+  {
+   "item": "0% realization",
+   "value": "as listed",
+   "basis": "industry",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives lta_rev"
+  },
+  {
+   "item": "SemiAnalysis level / growth / incl. 2027 / net of dc_mor (6 builds)",
+   "value": "x0.72 / x0.59; +21% / +5%; x0.81",
+   "basis": "industry",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives constant:mkt"
+  },
+  {
+   "item": "capex-file low / high",
+   "value": "x0.561 / x1.401",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives constant:mkt"
+  },
+  {
+   "item": "LightCounting narrower ~20%/yr",
+   "value": "x0.9195 / x0.8678",
+   "basis": "industry",
+   "source_url": "https://www.lightwaveonline.com/home/article/55362899/ai-scale-up-raises-the-stakes-for-transceivers-and-cpo-adoption",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives constant:mkt"
+  },
+  {
+   "item": ">45% target / flat 26.06%",
+   "value": "as listed",
+   "basis": "management",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_margin"
+  },
+  {
+   "item": "held-for-sale not sold; flat 418.6; +3%/q; 29.1% held; 22.9% FY26 average",
+   "value": "as listed",
+   "basis": "filing",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives ind_rev / ind_margin"
+  },
+  {
+   "item": "GLW median 25.25x -> 20.00x; ratio 0.920 -> 18.91x; SBC-scaled 0.89 -> 18.29x; Zacks gap 0.94 -> 19.39x",
+   "value": "as listed",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-03/COHR/peers.md",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives horizon P/E leg 1"
+  },
+  {
+   "item": "window 0.5 / 0.25, ERCOT end, start Jan / Oct 2027, old design",
+   "value": "as listed",
+   "basis": "decision",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_mor"
+  },
+  {
+   "item": "pause ends with ERCOT 2026-12-10 reports",
+   "value": "as listed",
+   "basis": "regulator",
+   "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives dc_mor"
+  },
+  {
+   "item": "0.63 / 0.43 / 0.617 / none / LTA carve-out",
+   "value": "as listed",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives hs_self_funded"
+  },
+  {
+   "item": "SOFR 3.93% (src 60), 5.0% (src 59), ~4.6% swaps (src 62)",
+   "value": "as listed",
+   "basis": "market",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SOFR",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives balance.interest_rate"
+  },
+  {
+   "item": "Aug Facility all USD / all local; cheapest lines first; cash yield full / none; cash 1,553 / 821",
+   "value": "as listed",
+   "basis": "filing",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000082031826000023/iivi-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives balance.interest_rate"
+  },
+  {
+   "item": "evidence span vs list",
+   "value": "5.32%-6.23% spanned",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/COHR/interest_rate/cohr_rate.py",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_alternatives balance.interest_rate"
+  },
+  {
+   "item": "all 9 options: sources show the reasoning",
+   "value": "as stated",
+   "basis": "industry",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_calls_for_kilian constant:mkt"
+  },
+  {
+   "item": "3 options: sources show the reasoning",
+   "value": "as stated",
+   "basis": "management",
+   "source_url": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_calls_for_kilian dc_capture"
+  },
+  {
+   "item": "3 options: sources show the reasoning",
+   "value": "as stated",
+   "basis": "management",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/820318/000119312526447200/d176836dex991.htm",
+   "checked": "2026-11-18",
+   "feeds": "supervisor judgment_calls_for_kilian dc_margin"
+  }
+ ],
+ "note": "Gate round 2 (carry-forward fix: balance.interest_rate rebuilt from the 10-Q debt stack). 15 of 17 failures fixed or confirmed; 2 open rows (ind_rev FY28-29, constant:corp) carded for Kilian with engine-sized options. Engine 309.64. | 2026-11-19T02:23Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLHtEVg3Ly49CRicTYkP3TV9). | 2026-11-19T02:23Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLK1cvzX7PuA1RPPdDRYzB8m).",
+ "accepted_carried": [
+  {
+   "item": "FY28-29 +1.5% a quarter (~+6%/yr)",
+   "value": "1,763 / 1,872",
+   "cited": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "result": "unsupported",
+   "fix": "options carded for Kilian (brief: write the options and stop); Not supported here: no outside forecast sizes Industrial demand in FY28-29 and the company gives no end-market mix to map one onto (SEMI's July 2026 WFE forecast 2027 +21.8% / 2028 +14.1% covers only part of the segment). Per the brief: options written to judgment_calls_for_kilian (card 4: set +1.5%/q, flat at the FY27 exit -0.51%, +3%/q +0.53%; engine-sized in judgment_alternatives ind_rev); value unchanged, not picked. | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLHtEVg3Ly49CRicTYkP3TV9, card cmsg_01HdhANNPxz1f5xqDwR22cfLHtEVg3Ly49CRicTYkP3TV9): \"Chose \"+1.5% a quarter (set)\" on the decision card asking \"Which path should COHR Industrial revenue take in FY28-29?\"\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLHtEVg3Ly49CRicTYkP3TV9",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfLHtEVg3Ly49CRicTYkP3TV9",
+    "quote": "Chose \"+1.5% a quarter (set)\" on the decision card asking \"Which path should COHR Industrial revenue take in FY28-29?\"",
+    "utc": "2026-11-19T02:23Z"
+   }
+  },
+  {
+   "item": "-82 a quarter Q2-Q4 FY27; +5% a year FY28-29",
+   "value": "-326.2 / -344.4 / -361.6",
+   "cited": "/mnt/project-files/valuation/notes/transcripts/COHR_2026-11-04.md (src 40)",
+   "result": "unsupported",
+   "fix": "options carded for Kilian (brief: write the options and stop); Not supported here: the Q2 opex guide is not split by segment and no source gives corporate cost growth. Per the brief: options written to judgment_calls_for_kilian (card 5: set, opex-guide scaled -0.28%, +8%/yr -0.25%, no growth +0.40%; new judgment_alternatives item constant:corp, engine-sized); value unchanged, not picked. | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLK1cvzX7PuA1RPPdDRYzB8m, card cmsg_01HdhANNPxz1f5xqDwR22cfLK1cvzX7PuA1RPPdDRYzB8m): \"Chose \"-82 then +5% a year (set)\" on the decision card asking \"Which path should COHR unallocated corporate cost take through FY29?\"\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLK1cvzX7PuA1RPPdDRYzB8m",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfLK1cvzX7PuA1RPPdDRYzB8m",
+    "quote": "Chose \"-82 then +5% a year (set)\" on the decision card asking \"Which path should COHR unallocated corporate cost take through FY29?\"",
+    "utc": "2026-11-19T02:23Z"
+   }
+  }
+ ]
+}

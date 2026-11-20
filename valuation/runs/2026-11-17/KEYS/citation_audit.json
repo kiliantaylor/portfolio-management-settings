@@ -1,0 +1,1941 @@
+{
+ "date": "2026-11-19",
+ "symbol": "KEYS",
+ "round": 3,
+ "clean": true,
+ "checked": 205,
+ "ok": 194,
+ "fixed": 15,
+ "failures": [
+  {
+   "item": "constant:mkt",
+   "value": "CY2025 16,500 / 2026 36,300 / 2027 63,888 / 2028 83,438 / 2029 106,050 ($M)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1437424/000149315226014253/form20-f.htm",
+   "result": "wrong",
+   "fix": "constant:mkt: sourcing restated: only CY2025 16,500 is cited (POET 20-F src 28, which shows LightCounting Jan-2026 $26B for 2026); CY2026-2029 stated as derived from LightCounting Oct-2026 growth rates (src 17), src 51 optics/capex ratio and src 75 capex; basis estimate; Jan-2026 $26B CY2026 added to judgment_alternatives (wl_capture), engine-sized +4.34% (340.73), under 5%, not carded",
+   "origin": "supervisor model",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "cited": "https://ca.marketscreener.com/quote/stock/ADVANTEST-CORPORATION-6492081/valuation/",
+   "result": "not_found",
+   "fix": "Advantest MarketScreener (src 73): page has no estimate date (re-opened 2026-11-19); published_basis states the quote date is used, RULES.md 23 dated-source search recorded (timeliness.none_newer 2026-11-19: 2 queries, MarketScreener valuation/consensus-revisions, StockAnalysis checked; reconciled with actuals); timeliness.py passes",
+   "origin": "timeliness.py (forecast the set uses)",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "EISG median uses RAL 20.05 and AME 25.81 (sotp_1102.md, Yahoo 11-02 close) while the whole-company check uses RAL 20.21 and AME 25.98 (Nasdaq/Zacks, same date)",
+   "value": "25.61",
+   "cited": "/mnt/project-files/valuation/driver_models/KEYS/quarterly/sotp_1102.md",
+   "result": "arithmetic",
+   "fix": "EISG median: RAL 20.21 / AME 25.98 on the whole-company check's basis (as VIAV in round 2): EISG 25.70, SOTP 23.37x, P/E 20.06x, mid-cycle leg 283.22, research target (12m) 326.55 (was 326.43); swept through fair_value, summary, sizing, scenarios, reasoning, cards, alternatives",
+   "origin": "supervisor model.reconciled_inputs.comps_summary / inputs_detail horizon_multiples P/E",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "FY2027 +10% '... slowing from Q4's +15% organic as semis test plateaus'",
+   "value": "+15% organic",
+   "cited": "",
+   "result": "wrong",
+   "fix": "ei_rev FY2027 derivation: 'Q4's +15% organic' -> 'Q4's ~+18.5% organic' (drivers + inputs_detail); value unchanged",
+   "origin": "supervisor driver ei_rev derivation",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "ei_rev FY2029 +6%",
+   "value": "2,462.2",
+   "cited": "",
+   "result": "unsupported",
+   "fix": "ei_rev FY2029: small_flag_notes entry (range -0.02% / +0.01%, < 0.5%); small_flag.py check passes; closes on the standing card via small_flag.py accept / gate_accept by the thread (not run here)",
+   "origin": "supervisor driver path",
+   "status": "small-flag note; closes on the standing card (thread runs small_flag.py accept)"
+  },
+  {
+   "item": "horizon_multiples P/E: Advantest at the src 73 page's own price 30,610 JPY (2026-11-13) / 1,240.8 = 24.67x, with Chroma at 1,140 TWD (16.6x): EISG median (22.46+24.67)/2 = 23.57, SOTP 0.581x21.36 + 0.185x26.76 + 0.234x23.57 = 22.88x, P/E 19.97x ex-SBC, mid-cycle leg 12.104x22.88 + 0.34 = 277.22",
+   "value": "fv -0.70% (screen 324.14)",
+   "cited": "https://ca.marketscreener.com/quote/stock/ADVANTEST-CORPORATION-6492081/valuation/",
+   "result": "missing_alternative",
+   "fix": "Advantest at 30,610 JPY + Chroma at 1,140 TWD added to judgment_alternatives (P/E 19.97x, leg 277.29), engine-sized -0.73% (324.16), added as an option on card #3 (horizon P/E); Chroma-only alternative re-based (P/E 20.00x, leg 279.11, -0.50%)",
+   "origin": "supervisor judgment_alternatives",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "booked option links StockAnalysis Advantest forecast as a SOTP peer consensus page",
+   "value": "",
+   "cited": "https://stockanalysis.com/quote/tyo/6857/forecast/",
+   "result": "wrong",
+   "fix": "card horizon_multiples P/E booked option: StockAnalysis Advantest link replaced by MarketScreener src 73",
+   "origin": "supervisor judgment_calls_for_kilian #2 (horizon_multiples P/E)",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://ca.marketscreener.com/quote/stock/HENSOLDT-AG-112902521/valuation/",
+   "result": "not_found",
+   "fix": "Hensoldt MarketScreener (src 61): no estimate date on page; dated-source search recorded (timeliness.none_newer 2026-11-19) and published_basis restated",
+   "origin": "timeliness.py (forecast the set uses)",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "cited": "https://marketscreener.com/quote/stock/VIAVI-SOLUTIONS-INC-23320363/finances/ ; https://ca.marketscreener.com/quote/stock/RALLIANT-CORPORATION-190691702/finances/ ; https://uk.marketscreener.com/quote/stock/AMETEK-INC-11635/finances/ ; https://uk.marketscreener.com/quote/stock/ANRITSU-CORPORATION-6491444/finances/ ; https://uk.marketscreener.com/quote/stock/KEYSIGHT-TECHNOLOGIES-INC-18426374/finances/",
+   "result": "not_found",
+   "fix": "MarketScreener finances pages (src 52: VIAV, RAL, AME, Anritsu, KEYS): no estimate date; dated-source search recorded (timeliness.none_newer 2026-11-19), reconciled with VIAV/RAL 11-04 and Anritsu 10-29 results (all before the 11-18 quote)",
+   "origin": "timeliness.py (forecast the set uses)",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://ca.marketscreener.com/quote/stock/CHROMA-ATE-INC-6493860/valuation/",
+   "result": "not_found",
+   "fix": "Chroma MarketScreener (src 62): no estimate date; dated-source search recorded (timeliness.none_newer 2026-11-19)",
+   "origin": "timeliness.py (forecast the set uses)",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://uk.marketscreener.com/quote/stock/ANRITSU-CORPORATION-6491444/finances/",
+   "result": "not_found",
+   "fix": "Anritsu MarketScreener (src 60): no estimate date; dated-source search recorded; actuals 2026-10-29 precede the 11-18 quote and the set uses the revised 10-29 guide EPS 125.00 (src 59)",
+   "origin": "timeliness.py (forecast the set uses)",
+   "status": "fixed, pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "wireless_rev FY2027 +8% (customers' R&D median +7.6%: Qualcomm, Nokia, Ericsson)",
+   "value": "1,956.3",
+   "cited": "src 57",
+   "result": "rejected_by_kilian",
+   "fix": "wireless_rev FY2027-29 rebuilt ground-up on the H2 FY26 exit (1,936.5 a year): Spirent-origin 225 at 0% (Spirent FY2024 RNS src 79; Dell'Oro src 76); device/chipset R&D +5.7%/+10%/+10% (FY27 from stated 2027 plans: Qualcomm Q1 FY2027 opex guide $2.8B vs $2.45B, +14.3%, CFO Akash Palkhiwala, src 81/82, at a 40% weight; MediaTek, Apple and others 0%, no forward R&D statement, src 88; FY28-29 3GPP Rel-21 timeline src 78); network equipment R&D -1.0%/+4%/+4% (FY27 from stated cost plans: Ericsson operating costs 31.4% vs 34.4% of sales, -2.3%, CFO Lars Sandstr\u00f6m/CEO Per Narvinger, src 83/84, at 45%; Nokia cost reduction program src 85/86 and Samsung Networks 'telco investment headwinds' src 87 at 0%, no figure; FY28-29 Dell'Oro src 80); manufacturing test -10%/0%/+3% (IDC src 77); FY27 1,922.6, FY28 2,014.3, FY29 2,128.3 (CC FY23-25 quarter shape); Q4 FY26 495.4 unchanged; 11 alternatives engine-sized (-2.32% to +0.39%), card rewritten recommending the build; research target (12m) 325.03",
+   "origin": "Kilian 2026-11-19 13:10 ET via coordinator: 'fy27 wireless method is not acceptable'",
+   "status": "fixed, pending Kilian's acceptance (2026-11-19 wireless rebuild after round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "wireless_rev FY2028-29 +6%/+6%",
+   "value": "2,073.7 / 2,198.2",
+   "cited": "",
+   "result": "unsupported",
+   "fix": "wireless_rev FY2027-29 rebuilt ground-up on the H2 FY26 exit (1,936.5 a year): Spirent-origin 225 at 0% (Spirent FY2024 RNS src 79; Dell'Oro src 76); device/chipset R&D +5.7%/+10%/+10% (FY27 from stated 2027 plans: Qualcomm Q1 FY2027 opex guide $2.8B vs $2.45B, +14.3%, CFO Akash Palkhiwala, src 81/82, at a 40% weight; MediaTek, Apple and others 0%, no forward R&D statement, src 88; FY28-29 3GPP Rel-21 timeline src 78); network equipment R&D -1.0%/+4%/+4% (FY27 from stated cost plans: Ericsson operating costs 31.4% vs 34.4% of sales, -2.3%, CFO Lars Sandstr\u00f6m/CEO Per Narvinger, src 83/84, at 45%; Nokia cost reduction program src 85/86 and Samsung Networks 'telco investment headwinds' src 87 at 0%, no figure; FY28-29 Dell'Oro src 80); manufacturing test -10%/0%/+3% (IDC src 77); FY27 1,922.6, FY28 2,014.3, FY29 2,128.3 (CC FY23-25 quarter shape); Q4 FY26 495.4 unchanged; 11 alternatives engine-sized (-2.32% to +0.39%), card rewritten recommending the build; research target (12m) 325.03",
+   "origin": "citation gate rounds 1-2 (carded from round 2)",
+   "status": "fixed, pending Kilian's acceptance (2026-11-19 wireless rebuild after round 3 of 3, no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "csg_margin FY2027-29 (company-wide incremental applied to CSG: 40% booked, 66% picked option)",
+   "value": "35.7% / 36.1% / 36.4%",
+   "cited": "src 18, 40",
+   "result": "rejected_by_kilian",
+   "fix": "Rebuilt from CSG's own record: Ex.99.1 segment incrementals FY23-FY26 (src 89-94, 46-48, 68-71, 24, 3, 2), Spirent and IEEPA stripped (CFO core figures src 95, 96, 18): organic FY26 Q1 42.2% / Q2 54.0% / Q3 63.1%, 9M 55.9%; line through CSG up-years (FY25 21.2% at +8.9%, FY26 55.9% at +26.5%) capped at GM 70.8% less ~12% variable opex -> 42.0% / 21.9% / 21.9%; H2 exit 35.0% + ~$28M/$9M synergies -> CSG 36.1%/35.1%/33.9%; 66%-company option removed; card rewritten",
+   "origin": "Kilian 2026-11-20 via coordinator: 'why are you applying the company-wide figure to just csg'",
+   "status": "fixed, pending Kilian's acceptance (2026-11-20 rebuild after the accepted round 3; no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "eisg_margin FY2027-29 (company 40% leverage target)",
+   "value": "32.0% / 32.5% / 32.9%",
+   "cited": "src 40",
+   "result": "rejected_by_kilian",
+   "fix": "Rebuilt from EISG's own record (FY23 49.4%, FY25 55.6%, FY26 9M organic 67.0%), line through up-years capped at GM 64.1% less ~12% (52.1%) -> EISG 32.7%/34.0%/35.0%; no option >5%, so no EISG card (sized alternatives in judgment_alternatives)",
+   "origin": "Kilian 2026-11-20 via coordinator",
+   "status": "fixed, pending Kilian's acceptance (2026-11-20 rebuild after the accepted round 3; no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "mid-cycle EPS leg (0.30) and -0.6 post-horizon turn",
+   "value": "283.22 x 0.30; P/E 20.06x",
+   "cited": "src 15, 18, 40",
+   "result": "rejected_by_kilian",
+   "fix": "Mid-cycle leg removed (weights P/E 0.60, FCF yield 0.40, fcf_leg_policy); -0.6 turn replaced by a -3.8% cyclical exit compression on both legs = KEYS forward P/E at its FY22-23 margin peak 19.98 vs 2018-24 median 20.77 (GuruFocus src 97; margins SEC XBRL src 99); Teradyne peak check +16.0% (src 98); P/E 19.80x, FCF yield 4.474%; downside set to the Oct-2023 trough level (-4.74 turns) so compression is not double counted; cards: horizon rewritten, leg-weight removed, wl_capture and ei_rev carded (>5% after the reweight); research target (12m) 331.13; 2026-11-20 re-size (Kilian: 'try again or go from filings'): GuruFocus replaced by IBES point-in-time consensus forward P/E with CRSP prices (src 100) and SEC XBRL margin peaks (src 99, 101, 102): KEYS -0.6%, VIAVI +1.1%, Teradyne +33.6%, NI -25.5%, median +0.25% over 4 names -> compression 0.0% (expansion not credited); P/E 20.58x, FCF yield 4.304%, downside trough level (-5.52 turns); KEYS on the src 97 windows -4.2% (GuruFocus -3.8%); research target (12m) 344.19, provisional",
+   "origin": "Kilian 2026-11-20 00:29Z via coordinator: 'model cyclicality by a compressed exit multiple'",
+   "status": "fixed, pending Kilian's acceptance (2026-11-20 rebuild after the accepted round 3; no re-gate, RULES.md 24; gate_accept)"
+  }
+ ],
+ "open_failures": [
+  {
+   "item": "csg_margin FY2027-29 (company-wide incremental applied to CSG: 40% booked, 66% picked option)",
+   "value": "35.7% / 36.1% / 36.4%",
+   "cited": "src 18, 40",
+   "result": "rejected_by_kilian",
+   "fix": "Rebuilt from CSG's own record: Ex.99.1 segment incrementals FY23-FY26 (src 89-94, 46-48, 68-71, 24, 3, 2), Spirent and IEEPA stripped (CFO core figures src 95, 96, 18): organic FY26 Q1 42.2% / Q2 54.0% / Q3 63.1%, 9M 55.9%; line through CSG up-years (FY25 21.2% at +8.9%, FY26 55.9% at +26.5%) capped at GM 70.8% less ~12% variable opex -> 42.0% / 21.9% / 21.9%; H2 exit 35.0% + ~$28M/$9M synergies -> CSG 36.1%/35.1%/33.9%; 66%-company option removed; card rewritten",
+   "origin": "Kilian 2026-11-20 via coordinator: 'why are you applying the company-wide figure to just csg'",
+   "status": "fixed, pending Kilian's acceptance (2026-11-20 rebuild after the accepted round 3; no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "eisg_margin FY2027-29 (company 40% leverage target)",
+   "value": "32.0% / 32.5% / 32.9%",
+   "cited": "src 40",
+   "result": "rejected_by_kilian",
+   "fix": "Rebuilt from EISG's own record (FY23 49.4%, FY25 55.6%, FY26 9M organic 67.0%), line through up-years capped at GM 64.1% less ~12% (52.1%) -> EISG 32.7%/34.0%/35.0%; no option >5%, so no EISG card (sized alternatives in judgment_alternatives)",
+   "origin": "Kilian 2026-11-20 via coordinator",
+   "status": "fixed, pending Kilian's acceptance (2026-11-20 rebuild after the accepted round 3; no re-gate, RULES.md 24; gate_accept)"
+  },
+  {
+   "item": "mid-cycle EPS leg (0.30) and -0.6 post-horizon turn",
+   "value": "283.22 x 0.30; P/E 20.06x",
+   "cited": "src 15, 18, 40",
+   "result": "rejected_by_kilian",
+   "fix": "Mid-cycle leg removed (weights P/E 0.60, FCF yield 0.40, fcf_leg_policy); -0.6 turn replaced by a -3.8% cyclical exit compression on both legs = KEYS forward P/E at its FY22-23 margin peak 19.98 vs 2018-24 median 20.77 (GuruFocus src 97; margins SEC XBRL src 99); Teradyne peak check +16.0% (src 98); P/E 19.80x, FCF yield 4.474%; downside set to the Oct-2023 trough level (-4.74 turns) so compression is not double counted; cards: horizon rewritten, leg-weight removed, wl_capture and ei_rev carded (>5% after the reweight); research target (12m) 331.13",
+   "origin": "Kilian 2026-11-20 00:29Z via coordinator: 'model cyclicality by a compressed exit multiple'",
+   "status": "fixed, pending Kilian's acceptance (2026-11-20 rebuild after the accepted round 3; no re-gate, RULES.md 24; gate_accept)"
+  }
+ ],
+ "verified": [
+  {
+   "item": "revenue Q1 FY2025: first guide (2024-11-19) / reported actual",
+   "value": "1265.0-1285.0 / 1298.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 46)",
+   "value": "Alternatives: wireless back to the FY24 decline (-7%, CC FY24 2,271 vs FY23 2,435, src 46); ...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver wireless_rev derivation"
+  },
+  {
+   "item": "claim (src 46, 47, 48)",
+   "value": "Quarters by the mean ADG quarter share of FY23-FY25 (25.2/24.4/24.1/26.3%; src 46-48).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev derivation"
+  },
+  {
+   "item": "claim (src 46, 47, 48)",
+   "value": "Quarters by the mean EISG quarter share of FY23-FY25 (25.7/24.5/24.9/24.9%; src 46-48; ...)",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev derivation"
+  },
+  {
+   "item": "claim (src 46)",
+   "value": "Variant: industrial/auto downturn as FY24 (-12%, src 46).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev derivation"
+  },
+  {
+   "item": "claim (src 46, 68, 69, 70, 71)",
+   "value": "Downcycle reference: EISG 21% in Q4 FY24 (income from operations 83 on revenue 393, Q4 FY24 Ex.99.1, src 46) and 24.7% in FY25 (...src 68-71)...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver eisg_margin derivation"
+  },
+  {
+   "item": "revenue Q2 FY2026: first guide (2026-02-23) / reported actual",
+   "value": "1690.0-1710.0 / 1717.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000003/exhibit991-q126pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "EPS diluted non-GAAP Q2 FY2026: first guide (2026-02-23) / reported actual",
+   "value": "2.27-2.33 / 2.87",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000003/exhibit991-q126pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) long-term guide as of 2026-08-18",
+   "value": "0.31-0.32",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) Q3 FY2026: first guide / reported actual",
+   "value": "0.31-0.32 / 0.332",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 40)",
+   "value": "...CFO Neil Dougherty: supply will 'likely be a governor of our ability to convert demand into revenue for the next several quarters', src 40...",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check revenue Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 40, 18)",
+   "value": "...the CFO says FY27 will outperform the 40% leverage target with the synergies (src 40)...",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check non-GAAP operating margin (long-term target) long-term why"
+  },
+  {
+   "item": "claim (src 40)",
+   "value": "...CSG revenue +43% reported vs +36% core in Q3 FY26 (CFO Neil Dougherty, Q3 FY26 call, src 40; core excludes acquisitions of the last 12 months and currency)...",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev derivation"
+  },
+  {
+   "item": "claim (src 40, 18)",
+   "value": "FY2027 +9% (...Europe sovereign spending per CEO, src 40)...",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev derivation"
+  },
+  {
+   "item": "claim (src 40)",
+   "value": "...Q3 EISG +21.6% reported less ~0.5pt acquisitions, estimate from the CFO's total and CSG reported-vs-core gaps, src 40...",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev derivation"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) long-term consensus as of 2026-11-18",
+   "value": "0.3395",
+   "basis": "consensus",
+   "source_url": "https://uk.marketscreener.com/quote/stock/KEYSIGHT-TECHNOLOGIES-INC-18426374/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 4)",
+   "value": "...plus +5pt from Spirent's PNT line, which was in the base for only two weeks of Q4 FY25 (closed 2025-10-15, 10-Q src 4)...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev derivation"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "legs 0.42x328.56 + 0.28x369.73 + 0.30x283.02; SOTP 0.581x21.36+0.185x26.76+0.234x25.61",
+   "value": "326.43 / 23.35x",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "post-horizon turn: 0.35x-2 + 0.15x-1.5 + 0.35x+1.0; engine 0 turn 330.07, -0.4 327.66, -0.9 324.64",
+   "value": "-0.575 -> -0.6",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "mid-cycle leg weight 0.25 -> 329.53 (+0.95%), 0 -> 345.03 (+5.70%); agents 1/4/5 0.3, agent_2 0.25, agent_3 none",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-02/KEYS/agent_3.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Anritsu 2,680 / (149/365x125.00 + 216/365x160.9) = 146.25 -> 18.33x; company FY3/27 EPS guide 117.19 -> 125.00 (2026-10-29)",
+   "value": "18.33x",
+   "basis": "estimate",
+   "source_url": "https://dl.cdn-anritsu.com/en-en/about-anritsu/ir/other-materials/fy2026/261029-04e.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "MarketScreener Anritsu FY3/28E EPS 160.9",
+   "value": "160.9",
+   "basis": "consensus",
+   "source_url": "https://uk.marketscreener.com/quote/stock/ANRITSU-CORPORATION-6491444/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "peer multiples on one SBC basis: VIAV 55.4/261.0 = 0.212; RAL 66.86 / 3.308 = 20.21x; VIAV 28.21/1.321 = 21.36x",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "net interest: 20 on 2,605 = 3.1%, 26 on 2,517 = 4.1% annualised; ~$40M on ~$2.0B net cash",
+   "value": "~2.0%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "research target 325.55 -> 326.43 (round 2), 333.99 -> 325.55 (round 1)",
+   "value": "326.43",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "2.0% cap / 0.45; peer counts CC 3, ADG 4, EISG 6; whole-company alternative -0.99%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "0.42 x 20.05x, 0.28 x FCF 4.30%, 0.30 x 283.02; own 23.65x; downside 192.25 / upside 449.7",
+   "value": "326.43",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor summary"
+  },
+  {
+   "item": "ei_rev FY2029 +6%: SEMI stops at 2028, IMF at 2027; range -0.02% / +0.01%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.semi.org/en/semi-press-release/global-semiconductor-equipment-sales-forecast-to-reach-a-record-229-billion-dollars-in-2028-semi-reports",
+   "checked": "2026-11-19",
+   "feeds": "supervisor small_flag_notes"
+  },
+  {
+   "item": "Q4 build 566.2 + 495.4 + 379.5 + 510.5 = 1,951.7; FY28 op margin (2,442+755)/9,091 = 35.2%; 20.05/0.906 = 22.1x, ~4.5% earnings yield",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reasoning"
+  },
+  {
+   "item": "consensus FY28 EBIT margin 34.0% (MarketScreener 2026-11-18, src 74)",
+   "value": "33.95%",
+   "basis": "consensus",
+   "source_url": "https://uk.marketscreener.com/quote/stock/KEYSIGHT-TECHNOLOGIES-INC-18426374/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reasoning"
+  },
+  {
+   "item": "SOTP weights CC 58.1 / ADG 18.5 / EISG 23.4 from FY28 SBC-costed segment earnings; fits 0.565 / 0.435",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.comps_summary"
+  },
+  {
+   "item": "k-rule 23.35x(23.65/23.35)^0.8 = 23.59; -0.6 = 22.99; x0.906 = 20.83; x0.9628 = 20.05",
+   "value": "20.05",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.comps_summary"
+  },
+  {
+   "item": "FCF yield: median(4.81,5.30,4.14,4.00) = 4.476% -> 22.34x; own 286.30/11.639 = 24.60x; 22.34x(24.60/22.34)^0.8 = 24.13 x 0.9628 = 23.23 -> 4.304%",
+   "value": "0.043043",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.horizon_multiples"
+  },
+  {
+   "item": "multiple_pct 5/15.05 = 0.3322, 4/24.05 = 0.1663; 15.05/0.906 = 16.6x, 24.05/0.906 = 26.5x; China 17.5% x 50% = 8.7%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.scenarios"
+  },
+  {
+   "item": "weights 0.42/0.28/0.30, 20.05x, 4.304%, $283.02",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.structure_note"
+  },
+  {
+   "item": "CFO: total revenue +36% reported / +31% core; CSG $1.345B +43% reported / +36% core (7pt gap); ADG $339M +14%",
+   "value": "+43% / +36%",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "Q4 FY26 379.5 = 330 x (1 + 10% organic + 5pt Spirent PNT); 7pt x 10/13 = ~5pt",
+   "value": "379.5",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "CEO: ADG orders 'up double digits with growth across all regions', 'record budgets'; CEO 'we built backlog'; 'Sovereign investments in Europe is another tailwind'",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "Roll Call: ~$60B reconciliation obligated since late July (~90% of $156B); FY26 base ~$860B largest",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://rollcall.com/2026/09/30/dod-spent-record-fiscal-2026-funds-at-breakneck-pace-in-final-weeks/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "ClearanceJobs: CR to 2026-12-11, no new starts, prior-year levels",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://news.clearancejobs.com/2026/10/01/the-pentagon-starts-fiscal-2027-on-a-stopgap-heres-how-it-affects-defense-jobs/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "GovExec: marks match $1.1T; +$91B vs total FY26 enacted incl ~$152B reconciliation; no $350B markup; future base > $1T",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.govexec.com/defense/2026/08/how-congress-reshaping-administrations-fy27-budget/415336/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "CSIS: national defense -16% real FY27->FY28, then flat with inflation; base discretionary above FY26-27",
+   "value": "",
+   "basis": "forecast",
+   "source_url": "https://www.csis.org/analysis/unpacking-15-trillion-fy-2027-defense-budget-topline",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "ICDS/NATO: European Allies and Canada 2.53% of GDP 2026; 3.5% core by 2035 -> +3.7%/yr + 2% = 5.8%",
+   "value": "5.8%",
+   "basis": "estimate",
+   "source_url": "https://icds.ee/en/defence-spending-who-is-doing-what-july-2026/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev"
+  },
+  {
+   "item": "adg_rev Q4 FY26 +15%, FY2027 +9%, FY2028 +2.9%, FY2029 +3.9%",
+   "value": "379.5 / 1,588.7 / 1,634.7 / 1,698.5",
+   "basis": "estimate",
+   "source_url": "https://www.govexec.com/defense/2026/08/how-congress-reshaping-administrations-fy27-budget/415336/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path"
+  },
+  {
+   "item": "Q4 FY26 510.5 = 429 x 1.19; acquisitions ~0.5pt = 5pt x 1,352 (~$68M) less 7pt x 940 (~$66M) = ~$2M",
+   "value": "510.5",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev"
+  },
+  {
+   "item": "Teradyne Q3 1,306 (Q2 1,329), Q4 guide 1,250-1,350",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000097210/000119312526434981/ter-ex99_1.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev"
+  },
+  {
+   "item": "Advantest Test System Apr-Sep 2026 +61.2%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.advantest.com/en/investors/financial-highlights/review",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev"
+  },
+  {
+   "item": "SEMI test $15.3B 2026 (+31.0%), $20.8B 2028 -> +16.6%/yr; IMF 3.4% 2027; 0.32x16.6 + 0.68x3.4 = 7.6%",
+   "value": "7.6% -> 7%",
+   "basis": "estimate",
+   "source_url": "https://www.semi.org/en/semi-press-release/global-semiconductor-equipment-sales-forecast-to-reach-a-record-229-billion-dollars-in-2028-semi-reports",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev"
+  },
+  {
+   "item": "CEO: EISG record orders, 'meaningful double-digit order growth across all three markets'",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev"
+  },
+  {
+   "item": "ei_rev Q4 FY26 +19%, FY2027 +10%, FY2028 +7%",
+   "value": "510.5 / 2,170.9 / 2,322.8",
+   "basis": "estimate",
+   "source_url": "https://www.semi.org/en/semi-press-release/global-semiconductor-equipment-sales-forecast-to-reach-a-record-229-billion-dollars-in-2028-semi-reports",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path"
+  },
+  {
+   "item": "CFO: EISG GM 64.1%, op margin 31.0%; Q4 155 + 52.1% x 9.5 + 1 = 161.0 / 510.5 = 31.5%",
+   "value": "31.5%",
+   "basis": "estimate",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver eisg_margin"
+  },
+  {
+   "item": "FY27 (632 + 0.4x148 + 3)/2,171 = 32.0%; FY28 755/2,323 = 32.5%; FY29 811/2,462 = 32.9%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver eisg_margin"
+  },
+  {
+   "item": "CFO 'outperform our 40% leverage target' (FY27); Kary 'higher levels of profitability'",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver eisg_margin"
+  },
+  {
+   "item": "Downcycle reference EISG 21% Q4 FY24 (83 on 393); 24.7% FY25 (407/1,649)",
+   "value": "21% / 24.7%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver eisg_margin derivation"
+  },
+  {
+   "item": "eisg_margin Q4 FY26-FY29 31.5/32.0/32.5/32.9%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path"
+  },
+  {
+   "item": "revenue Q4 FY2026: 8 periods actual/mid, median +2.68%, record-adjusted 1,940 x 1.0268 = 1,992; ours 1,951.7 (+0.6%)",
+   "value": "1,951.7",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "EPS Q4 FY2026: 3.37 x 1.0705 = 3.61; ours 3.41 (+1.2%)",
+   "value": "3.41",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP op margin LT: FY24 0.263, FY25 0.26, Q3 FY26 0.332 vs 0.315 -> -0.1651/-0.1746/+0.054; median -0.1651; adj 0.263; ours 0.3516 -> +11.62%; beat 1 / miss 2",
+   "value": "0.3516",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000114036126002381/ny20058135x3_def14a.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "driver:adg_rev arithmetic and label",
+   "value": "1,457.5 / 1,588.7 / 1,634.7 / 1,698.5",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:ei_rev arithmetic and label",
+   "value": "1,973.5 / 2,170.9 / 2,322.8 / 2,462.2",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:eisg_margin arithmetic and label",
+   "value": "0.3076 / 0.3197 / 0.3250 / 0.3292",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples P/E arithmetic: Anritsu 146.25 -> 18.33; Hensoldt 2.166 -> 38.63; Advantest 1,240.8 -> 28.83; Chroma 67.50 -> 25.41; medians 21.36/26.76/25.61",
+   "value": "20.05",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Advantest MarketScreener FY3/27E 1,036, FY3/28E 1,382 (reported basis)",
+   "value": "28.83x",
+   "basis": "estimate",
+   "source_url": "https://ca.marketscreener.com/quote/stock/ADVANTEST-CORPORATION-6492081/valuation/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail horizon_multiples P/E"
+  },
+  {
+   "item": "Hensoldt 2026E 1.589 / 2027E 2.277",
+   "value": "38.63x",
+   "basis": "estimate",
+   "source_url": "https://ca.marketscreener.com/quote/stock/HENSOLDT-AG-112902521/valuation/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail horizon_multiples P/E"
+  },
+  {
+   "item": "Chroma 2026E 48.00 / 2027E 71.26",
+   "value": "25.41x",
+   "basis": "estimate",
+   "source_url": "https://ca.marketscreener.com/quote/stock/CHROMA-ATE-INC-6493860/valuation/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail horizon_multiples P/E"
+  },
+  {
+   "item": "FCF yield: weight = 0.4 x 0.70 = 0.28; deltas 0.3322 / 0.1663",
+   "value": "0.28",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/data/fcf_leg_policy.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "constant:mkt: 16,500 x 2.20 = 36,300; x1.76 = 63,888; x(1,330/1,080)x(3.5/3.3) = 83,438; x1.271 = 106,050",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1437424/000149315226014253/form20-f.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "custom: Mid-cycle EPS: 9,127 x (0.29-0.032) = 2,354.8; + 43.3; x0.86 / 170.38 = 12.104; x 23.35 = 282.68; + 0.34 = 283.02",
+   "value": "283.02",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "custom: Mid-cycle EPS x through-cycle P/E: 29% vs anchor 28.2% (+0.8pt for $100M synergies)",
+   "value": "283.02",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000114036126002381/ny20058135x3_def14a.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (norm_margin)"
+  },
+  {
+   "item": "guidance_check revenue Q4 why: 'beat the revenue midpoint in 8 of 8 quarters (median +2.7%)'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "card csg_margin why: 'company's own stated floor'; '66% is one quarter's core figure'",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "card leg weight why; card wireless why",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "wl_capture derivation: wireline > wireless in Q3 (CFO); record wireline orders more than double (CEO); supply 'governor' (CFO); 2/3-1/3 split",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "wl_capture: FY27 +40.5% -> 2,631, FY28 +16.3% -> 3,060, FY29 +14.4% -> 3,502; capture 4.12/3.67/3.30%; elasticity 0.086",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "wireless_rev: CEO orders grew significantly, Q4 orders slightly up; CC shares 24.3/25.0/25.4/25.3",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "csg_margin: Q4 458 + 56.8% x 95.6 + 5 = 517.6 on 1,440.6; FY27 1,951/5,571 + 40% x 603 + 12 = 2,205/6,176",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "adg/ei/eisg derivation sentences listed",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "wl_capture: optics/network customers' R&D elasticity 0.086",
+   "value": "fv -2.69%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001730168.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "wl_capture: R&D at VIAVI ex-Spirent pace (NSE 376.1 less 52.7 vs 216.0 = +49.7%; CEO organic ~+50%)",
+   "value": "fv +3.70%",
+   "basis": "estimate",
+   "source_url": "https://www.webull.com/news/15867833301951488",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "wl_capture: straight fade of LightCounting growth (+62% 2028, +48% 2029)",
+   "value": "fv +3.29%",
+   "basis": "estimate",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "wl_capture: 'Bumpy Ride' flat CY2028 then +20% CY2029; wireline FY28 2,631, FY29 2,912; capture x0.8598 / x0.8315",
+   "value": "fv -3.04%",
+   "basis": "estimate",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "wireless_rev: FY24-type decline (CC 2,271 vs 2,435 = -7%)",
+   "value": "fv -2.92%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "wireless_rev: faster 6G ramp (orders grew significantly, funded programs)",
+   "value": "fv +0.98%",
+   "basis": "estimate",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "wireless_rev: 5G development stagnant (Anritsu) -> FY27 flat; FY28 +3%; FY29 +3%",
+   "value": "fv -1.28% / -0.41% / -0.02%",
+   "basis": "estimate",
+   "source_url": "https://dl.cdn-anritsu.com/en-en/about-anritsu/ir/financial-materials/fy2026/261029-02e.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "wireless_rev: FY2028-29 at customers' R&D median +7.6% (Qualcomm +17.1%)",
+   "value": "fv +0.23%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000804328.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "adg_rev: full-year CR FY27 +3%; reconciliation-led +12%; US-led 0/+2%; Europe-led +5.8%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://news.clearancejobs.com/2026/10/01/the-pentagon-starts-fiscal-2027-on-a-stopgap-heres-how-it-affects-defense-jobs/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "adg_rev: US half on CSIS -16% real FY27->FY28 (0.84x1.02-1 = -14.3%); FY28 -4.25% -> 1,521, FY29 +3.9% -> 1,580",
+   "value": "fv -0.79%",
+   "basis": "estimate",
+   "source_url": "https://www.csis.org/analysis/unpacking-15-trillion-fy-2027-defense-budget-topline",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "ei_rev: FY24-type downturn -12%; semis boom +15%; FY29 IMF 3.4%; FY29 7.6% mapping",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "csg_margin: FY26 base 40% (CFO tariff 'won't repeat'); 66% core; reversion to 30.3%/VIAVI 29%; $50M synergy step",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "eisg_margin: FY26 base 40%; 60% incrementals; reversion to FY25 24.7%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000121/exhibit991-q425pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "horizon_multiples P/E: whole-company 20.8x; no turn; no growth term (KEYS.json FY28 n=1); Chroma at 1,140 TWD -> EISG 24.14, SOTP 23.01, 19.99x, 278.84",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://ca.marketscreener.com/quote/stock/CHROMA-ATE-INC-6493860/valuation/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "leg weight mid-cycle: 0.25 / 0 (WRDS README)",
+   "value": "+0.95% / +5.70%",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/wrds/results/blend_weights/README.md",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "FCF yield weight: no FCF leg (set.json); 50% share (policy evidence ~0.5 in tech)",
+   "value": "-3.53% / +0.88%",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/data/fcf_leg_policy.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "FCF yield multiple: no k-rule 21.51x -> 4.649%; peer mean 4.563% -> 23.14x -> 4.321%",
+   "value": "-2.35% / -0.12%",
+   "basis": "estimate",
+   "source_url": "https://uk.marketscreener.com/quote/stock/KEYSIGHT-TECHNOLOGIES-INC-18426374/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "options booked / 66% / FY26 base / reversion; context",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000912093/000162828026070170/viavq1fy278-kex991.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #0 (csg_margin)"
+  },
+  {
+   "item": "options 0.30 / 0.25 / 0; context agents 1/4/5 0.3, agent_2 0.25, agent_3 none",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-02/KEYS/agent_1.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #1 (leg weight)"
+  },
+  {
+   "item": "no turn 20.58x / no growth term 20.83x / whole-company 19.58x; context",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://dl.cdn-anritsu.com/en-en/about-anritsu/ir/other-materials/fy2026/261029-04e.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #2 (horizon_multiples P/E)"
+  },
+  {
+   "item": "six options and context (FY27 +8% customer R&D median, FY28-29 +6%)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://dl.cdn-anritsu.com/en-en/about-anritsu/ir/financial-materials/fy2026/261029-02e.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #3 (wireless_rev)"
+  },
+  {
+   "item": "transcript speakers for figures used in the changed rows (src 18, 40, 54)",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers"
+  },
+  {
+   "item": "revenue Q4 FY2026 guide as of 2026-08-18 (GAAP revenue)",
+   "value": "1930.0-1950.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000029/exhibit991-q326pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "EPS diluted non-GAAP Q4 FY2026 guide as of 2026-08-18 (non-GAAP, excludes SBC, amortization, acquisition/integration, restructuring; 14% tax)",
+   "value": "3.34-3.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000029/exhibit991-q326pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "shares.diluted_now / annual_change anchor (company_stated, as of 2026-08-18): Q4 FY26 guide based on ~172M weighted diluted shares (Ex.99.1)",
+   "value": "172.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000029/exhibit991-q326pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (shares) anchor"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "/mnt/project-files/valuation/data/estimates/RAL.json",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q4 FY2026 consensus as of 2026-11-11",
+   "value": "1940.0",
+   "basis": "consensus",
+   "source_url": "https://finviz.com/news/421346/keysights-supply-chain-not-demand-sets-the-bar-for-a-record-fourth-quarter",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "EPS diluted non-GAAP Q4 FY2026 consensus as of 2026-11-11",
+   "value": "3.36",
+   "basis": "consensus",
+   "source_url": "https://finviz.com/news/421346/keysights-supply-chain-not-demand-sets-the-bar-for-a-record-fourth-quarter",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 49)",
+   "value": "Consensus 1,940 (Earnings Whispers, 2026-11-11, src 49).",
+   "basis": "claim",
+   "source_url": "https://finviz.com/news/421346/keysights-supply-chain-not-demand-sets-the-bar-for-a-record-fourth-quarter",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check revenue Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 49, 2026)",
+   "value": "Consensus 3.36 (src 49, 2026-11-11).",
+   "basis": "claim",
+   "source_url": "https://finviz.com/news/421346/keysights-supply-chain-not-demand-sets-the-bar-for-a-record-fourth-quarter",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check EPS diluted non-GAAP Q4 FY2026 why"
+  },
+  {
+   "item": "revenue Q4 FY2025: first guide (2025-08-19) / reported actual",
+   "value": "1370.0-1390.0 / 1419.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000088/exhibit991-q325pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 56, 41)",
+   "value": "Q4 FY26 566.2 built from what drives each part: the R&D two-thirds (346.7) grows +5.7% in the quarter (+25% a year annualised: below the customer R&D basket's +36.0% y/y in its latest quarter, src 56\u2026",
+   "basis": "claim",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001730168.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001835632.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000820318.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001633978.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001596532.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000936395.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver wl_capture derivation"
+  },
+  {
+   "item": "claim (src 56, 17, 51)",
+   "value": "R&D growth = the customers' R&D-to-market elasticity x market growth: the wireline customer basket's R&D rose +36.0% y/y (src 56) while LightCounting's CY2026 market grows +120% (src 17), elasticity \u2026",
+   "basis": "claim",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001730168.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001835632.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000820318.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001633978.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001596532.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000936395.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver wl_capture derivation"
+  },
+  {
+   "item": "revenue Q4 FY2024: first guide (2024-08-20) / reported actual",
+   "value": "1245.0-1265.0 / 1287.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000055/exhibit991-q324pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "/mnt/project-files/valuation/data/estimates/AME.json",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "/mnt/project-files/valuation/data/estimates/VIAV.json",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "claim (src 57, 18, 40, 58)",
+   "value": "Q4 FY26 495.4: the 486 Q3 estimate plus one quarter of an +8% a year growth rate (+1.9% in the quarter); +8% a year is the wireless customers' R&D growth (median of Qualcomm +17.1%, Nokia +7.6%, Eric\u2026",
+   "basis": "claim",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000804328.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000924613.json ; https://data.sec.gov/api/xbrl/companyfacts/CIK0000717826.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver wireless_rev derivation"
+  },
+  {
+   "item": "revenue Q1 FY2026: first guide (2025-11-24) / reported actual",
+   "value": "1530.0-1550.0 / 1600.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000121/exhibit991-q425pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) FY2024: first guide (2023 analyst day) / reported actual",
+   "value": "0.31-0.32 / 0.263",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000114036126002381/ny20058135x3_def14a.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin (long-term target) FY2025: first guide (2023 analyst day) / reported actual",
+   "value": "0.31-0.32 / 0.26",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000114036126002381/ny20058135x3_def14a.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 15, 41)",
+   "value": "This is a peak-cycle margin vs the 30.3% FY23 prior peak (src 15) and VIAVI's 29% (Ex.99.1, src 41), so 30% of the value sits on a 29% mid-cycle margin leg and the downside case cuts segment margins \u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000114036126002381/ny20058135x3_def14a.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check non-GAAP operating margin (long-term target) long-term why"
+  },
+  {
+   "item": "claim (src 15, 41)",
+   "value": "Peak-cycle risk: these are above KEYS's 30.3% FY23 prior peak (proxy, src 15) and VIAVI's 29% (src 41); the mid-cycle leg (30% weight) and the downside case (-4pt) carry that risk.",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000114036126002381/ny20058135x3_def14a.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver csg_margin derivation"
+  },
+  {
+   "item": "claim (src 64)",
+   "value": "US part: FY2028 flat in nominal terms (base discretionary held near the $1.1T FY2027 level while reconciliation money ends, src 64/65), FY2029 +2% (flat real with inflation at the Fed's 2% target, sr\u2026",
+   "basis": "claim",
+   "source_url": "https://www.csis.org/analysis/unpacking-15-trillion-fy-2027-defense-budget-topline",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev derivation"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://stockanalysis.com/quote/tyo/6857/forecast/",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.imf.org/-/media/files/publications/weo/2026/october/english/execsum.pdf",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "/mnt/project-files/valuation/data/estimates/KEYS.json",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q3 FY2025: first guide (2025-05-20) / reported actual",
+   "value": "1305.0-1325.0 / 1352.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000053/exhibit991-q225pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.semi.org/en/semi-press-release/global-semiconductor-equipment-sales-forecast-to-reach-a-record-229-billion-dollars-in-2028-semi-reports",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://lightcounting.com/newsletter/en/july-2026-cloud-data-center-optics-385",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "claim (src 66)",
+   "value": "Europe part: +5.8% a year = the share path from 2.53% of GDP (2026) to 3.5% by 2035 (+3.7% a year, src 66) plus 2% inflation (ECB target). 0.5 x 0% + 0.5 x 5.8% = 2.9% (FY28); 0.5 x 2% + 0.5 x 5.8% =\u2026",
+   "basis": "claim",
+   "source_url": "https://icds.ee/en/defence-spending-who-is-doing-what-july-2026/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver adg_rev derivation"
+  },
+  {
+   "item": "revenue Q3 FY2026: first guide (2026-05-19) / reported actual",
+   "value": "1730.0-1750.0 / 1846.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000019/exhibit991-q226pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "EPS diluted non-GAAP Q3 FY2026: first guide (2026-05-19) / reported actual",
+   "value": "2.43-2.49 / 3.07",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000019/exhibit991-q226pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 26, 49, 40, 18)",
+   "value": "Drivers give 3.41, just above the 3.34-3.40 range (+1.2% vs the 3.37 midpoint) and below the record-adjusted guide 3.61 (midpoint x the median of the 10 past beats, notes.md src 26), below every one \u2026",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/driver_models/KEYS/quarterly/notes.md",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check EPS diluted non-GAAP Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 18, 40)",
+   "value": "FY27 +8% (customers' R&D median +7.6%, rounded; funded 6G development programs and AI-RAN / NTN per the CEO, src 18) -> 1,956; FY28 +6% -> 2,074; FY29 +6% -> 2,198: below the customers' R&D median (r\u2026",
+   "basis": "claim",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver wireless_rev derivation"
+  },
+  {
+   "item": "claim (src 18, 63, 67)",
+   "value": "FY2027 +10% (EISG record orders with 'meaningful double-digit order growth across all three markets', CEO src 18; semis test +16.6% a year 2026-28 per SEMI, src 63; slowing from Q4's +15% organic as \u2026",
+   "basis": "claim",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver ei_rev derivation"
+  },
+  {
+   "item": "revenue Q2 FY2025: first guide (2025-02-25) / reported actual",
+   "value": "1270.0-1290.0 / 1306.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000006/exhibit991-q125pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "driver year paths",
+   "value": "see row",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "VIAVI NSE 376.1 (+74.1%), op margin 29.0% (Ex.99.1)",
+   "value": "376.1 / 29.0%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000912093/000162828026070170/viavq1fy278-kex991.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Spirent product lines $52.7M; Oct-Dec op margin guide 29.3% +/-30bp (VIAVI CFO)",
+   "value": "52.7 / 29.3%",
+   "basis": "reported",
+   "source_url": "https://www.webull.com/news/15867833301951488",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Zacks relay: Spirent $52.7M, 29.3% guide",
+   "value": "52.7 / 29.3%",
+   "basis": "reported",
+   "source_url": "https://www.zacks.com/stock/news/3024514/viav-q1-earnings-beat-estimates-on-data-center-a-d-strength",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "tax_rate anchor 0.14 (adjusted)",
+   "value": "0.14",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (tax_rate) anchor"
+  },
+  {
+   "item": "mid-cycle margin anchor 0.282",
+   "value": "0.282",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (norm_margin) anchor"
+  },
+  {
+   "item": "tax_rate 0.14",
+   "value": "0.14",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "scenario: China shock 938/5,375 x 50% = 8.7%",
+   "value": "8.7%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "29% mid-cycle margin vs anchor 0.282 (bridge: $100M Spirent cost synergies)",
+   "value": "0.29",
+   "basis": "estimate",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (norm_margin)"
+  },
+  {
+   "item": "judgment call csg why (40% floor, 66% one quarter)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "judgment call mid-cycle weight why (cycle-high margins)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "wireless orders significant / CEO orders slightly up / supply",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "wireless FY26 1,811 (+29%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "wireless CC quarter shares",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "adg Q4 build (CEO orders, $60B, CR, Spirent 2025-10-15)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "adg alternatives list",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "ei Q4 build (Q3 organic, Teradyne flat)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "ei FY2029 open judgment",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "csg Q4 build",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "csg FY2027 build",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "csg FY28-29 40%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "csg quarter spread",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "eisg Q4 build",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "eisg FY2027 build",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "eisg FY28-29 (EISG President)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "eisg quarter spread",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited sentence"
+  },
+  {
+   "item": "FY2027 stopgap to 2026-12-11, no new starts",
+   "value": "2026-12-11",
+   "basis": "reported",
+   "source_url": "https://news.clearancejobs.com/2026/10/01/the-pentagon-starts-fiscal-2027-on-a-stopgap-heres-how-it-affects-defense-jobs/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "Polymarket China invades Taiwan by 2027-06-30: 6%",
+   "value": "0.06",
+   "basis": "prediction market",
+   "source_url": "https://www.frenzycap.com/predictions/event/polymarket/will-china-invade-taiwan-by-june-30-2027",
+   "checked": "2026-11-19",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "Kalshi 2027 recession: 20%",
+   "value": "0.20",
+   "basis": "prediction market",
+   "source_url": "https://www.frenzycap.com/predictions/kalshi/KXRECSSNBER-27",
+   "checked": "2026-11-19",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "comps_review",
+   "value": "null",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "CSG GM 70.8%, EISG GM 64.1%, core incremental 66%, synergies 80-90% of $100M run-rate exiting FY26",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "ADG Q3 +14%, 9M +19%; EISG Q3 +21% incl. acquisitions +4pt; Spirent closed 2025-10-15",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "IEEPA refund claims $64M outstanding",
+   "value": "64",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "NWC anchor: AR 1,067 + inventory 1,047 - AP 424; contract liabilities 957 vs 765 (2025-07-31)",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Teradyne Q3 1,306 (Q2 1,329), Q4 guide 1,250-1,350",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0000097210/000119312526434981/ter-ex99_1.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "DoD ~$60B reconciliation obligated, ~90% of $156B, FY26 ~$860B base largest ever",
+   "value": "",
+   "basis": "news",
+   "source_url": "https://rollcall.com/2026/09/30/dod-spent-record-fiscal-2026-funds-at-breakneck-pace-in-final-weeks/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "CC FY24/FY23 2,271/2,435; EISG FY24/FY23 1,559/1,779; Q4 FY24 segments",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104624000072/exhibit991-q424pressrelease.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "sbc_pct_rev anchor",
+   "value": "0.0325",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing anchor"
+  },
+  {
+   "item": "interest_rate anchor",
+   "value": "0.031",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing anchor"
+  },
+  {
+   "item": "nwc_pct_incr_rev anchor",
+   "value": "0.095",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing anchor"
+  },
+  {
+   "item": "capex_pct_rev anchor",
+   "value": "0.0205",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing anchor"
+  },
+  {
+   "item": "da_pct_rev anchor",
+   "value": "0.0228",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing anchor"
+  },
+  {
+   "item": "norm_margin anchor",
+   "value": "0.282",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing anchor"
+  },
+  {
+   "item": "sbc_treatment / sbc_pct_rev",
+   "value": "3.2%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "shares.diluted_now / annual_change",
+   "value": "172.0M; -0.9%/yr",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "balance.interest_rate",
+   "value": "0.02",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.nwc_pct_incr_rev",
+   "value": "12%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.capex_pct_rev",
+   "value": "0.021",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.da_pct_rev",
+   "value": "0.022",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Peer NTM FCF yield: VIAVI",
+   "value": "0.04814",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Peer NTM FCF yield: Ralliant",
+   "value": "0.05298",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Peer NTM FCF yield: AMETEK",
+   "value": "0.04138",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "Peer NTM FCF yield: Anritsu",
+   "value": "0.04003",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "adjustments IEEPA / China shock / shareholder returns / net debt",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "balance.interest_rate 0.02 vs 0.031",
+   "value": "0.02",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (interest_rate)"
+  },
+  {
+   "item": "NWC 12% vs 0.095",
+   "value": "0.12",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (nwc_pct_incr_rev)"
+  },
+  {
+   "item": "company's stated 40% floor; 66% one quarter's core figure",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/ ; https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call csg why"
+  },
+  {
+   "item": "margins at a cycle high",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call mid-cycle why"
+  },
+  {
+   "item": "alternatives move the target by less than 3%",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call horizon P/E why"
+  },
+  {
+   "item": "transcript speakers check (src 18, 25, 40)",
+   "value": "",
+   "basis": "",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers"
+  }
+ ],
+ "note": "Gate round 3 of 3 (last): 11 failures; 10 fixed by the fix agent and listed in open_failures as pending Kilian's acceptance (round 3 of 3, no re-gate, RULES.md 24; gate_accept); ei_rev FY2029 is a small-flag note (small_flag.py check passes) to close on the standing card; wireless_rev FY2028-29 stays carded from round 2. clean stays false until Kilian accepts (a fix agent may not certify itself). | 2026-11-19T18:07Z: 1 small flagged row(s) closed on standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z (RULES.md 26). | 2026-11-19 ~13:15-14:00 ET: wireless_rev FY2027 (Kilian: method not acceptable) and FY2028-29 (gate: unsourced) rebuilt ground-up from four sourced components; listed as fixed pending Kilian's acceptance (no gate round left); research target (12m) 325.03 (FY27 customer rates from stated 2027 spend plans, coordinator follow-up 2026-11-19). | 2026-11-19T18:43Z: 13 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es). | 2026-11-20: segment margins rebuilt from each segment's own record (CSG 36.1%/35.1%/33.9%, EISG 32.7%/34.0%/35.0%); mid-cycle leg removed and a -3.8% cyclical exit compression booked on both legs; listed as fixed pending Kilian's acceptance; research target (12m) 331.13. | 2026-11-20 (later): exit compression re-sized from filings and the WRDS IBES/CRSP panel (KEYS and 3 peers, median margin-peak gap +0.25%) to 0.0%; research target (12m) 344.19; provisional, may be carried into the post-print update; pending Kilian's acceptance.",
+ "accepted_carried": [
+  {
+   "item": "ei_rev FY2029 +6%",
+   "value": "2,462.2",
+   "cited": "",
+   "result": "unsupported",
+   "fix": "ei_rev FY2029: small_flag_notes entry (range -0.02% / +0.01%, < 0.5%); small_flag.py check passes; closes on the standing card via small_flag.py accept / gate_accept by the thread (not run here) | rule 26 small flagged path, standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z: \"Skip under 0.5%, note it (options -0.02% to +0.01%, rule 26)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "quote": "Skip under 0.5%, note it (options -0.02% to +0.01%, rule 26)",
+    "utc": "2026-11-19T18:07Z",
+    "rule": "RULES.md 26"
+   }
+  },
+  {
+   "item": "constant:mkt",
+   "value": "CY2025 16,500 / 2026 36,300 / 2027 63,888 / 2028 83,438 / 2029 106,050 ($M)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1437424/000149315226014253/form20-f.htm",
+   "result": "wrong",
+   "fix": "constant:mkt: sourcing restated: only CY2025 16,500 is cited (POET 20-F src 28, which shows LightCounting Jan-2026 $26B for 2026); CY2026-2029 stated as derived from LightCounting Oct-2026 growth rates (src 17), src 51 optics/capex ratio and src 75 capex; basis estimate; Jan-2026 $26B CY2026 added to judgment_alternatives (wl_capture), engine-sized +4.34% (340.73), under 5%, not carded | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "cited": "https://ca.marketscreener.com/quote/stock/ADVANTEST-CORPORATION-6492081/valuation/",
+   "result": "not_found",
+   "fix": "Advantest MarketScreener (src 73): page has no estimate date (re-opened 2026-11-19); published_basis states the quote date is used, RULES.md 23 dated-source search recorded (timeliness.none_newer 2026-11-19: 2 queries, MarketScreener valuation/consensus-revisions, StockAnalysis checked; reconciled with actuals); timeliness.py passes | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "EISG median uses RAL 20.05 and AME 25.81 (sotp_1102.md, Yahoo 11-02 close) while the whole-company check uses RAL 20.21 and AME 25.98 (Nasdaq/Zacks, same date)",
+   "value": "25.61",
+   "cited": "/mnt/project-files/valuation/driver_models/KEYS/quarterly/sotp_1102.md",
+   "result": "arithmetic",
+   "fix": "EISG median: RAL 20.21 / AME 25.98 on the whole-company check's basis (as VIAV in round 2): EISG 25.70, SOTP 23.37x, P/E 20.06x, mid-cycle leg 283.22, research target (12m) 326.55 (was 326.43); swept through fair_value, summary, sizing, scenarios, reasoning, cards, alternatives | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "FY2027 +10% '... slowing from Q4's +15% organic as semis test plateaus'",
+   "value": "+15% organic",
+   "cited": "",
+   "result": "wrong",
+   "fix": "ei_rev FY2027 derivation: 'Q4's +15% organic' -> 'Q4's ~+18.5% organic' (drivers + inputs_detail); value unchanged | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "horizon_multiples P/E: Advantest at the src 73 page's own price 30,610 JPY (2026-11-13) / 1,240.8 = 24.67x, with Chroma at 1,140 TWD (16.6x): EISG median (22.46+24.67)/2 = 23.57, SOTP 0.581x21.36 + 0.185x26.76 + 0.234x23.57 = 22.88x, P/E 19.97x ex-SBC, mid-cycle leg 12.104x22.88 + 0.34 = 277.22",
+   "value": "fv -0.70% (screen 324.14)",
+   "cited": "https://ca.marketscreener.com/quote/stock/ADVANTEST-CORPORATION-6492081/valuation/",
+   "result": "missing_alternative",
+   "fix": "Advantest at 30,610 JPY + Chroma at 1,140 TWD added to judgment_alternatives (P/E 19.97x, leg 277.29), engine-sized -0.73% (324.16), added as an option on card #3 (horizon P/E); Chroma-only alternative re-based (P/E 20.00x, leg 279.11, -0.50%) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "booked option links StockAnalysis Advantest forecast as a SOTP peer consensus page",
+   "value": "",
+   "cited": "https://stockanalysis.com/quote/tyo/6857/forecast/",
+   "result": "wrong",
+   "fix": "card horizon_multiples P/E booked option: StockAnalysis Advantest link replaced by MarketScreener src 73 | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://ca.marketscreener.com/quote/stock/HENSOLDT-AG-112902521/valuation/",
+   "result": "not_found",
+   "fix": "Hensoldt MarketScreener (src 61): no estimate date on page; dated-source search recorded (timeliness.none_newer 2026-11-19) and published_basis restated | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "cited": "https://marketscreener.com/quote/stock/VIAVI-SOLUTIONS-INC-23320363/finances/ ; https://ca.marketscreener.com/quote/stock/RALLIANT-CORPORATION-190691702/finances/ ; https://uk.marketscreener.com/quote/stock/AMETEK-INC-11635/finances/ ; https://uk.marketscreener.com/quote/stock/ANRITSU-CORPORATION-6491444/finances/ ; https://uk.marketscreener.com/quote/stock/KEYSIGHT-TECHNOLOGIES-INC-18426374/finances/",
+   "result": "not_found",
+   "fix": "MarketScreener finances pages (src 52: VIAV, RAL, AME, Anritsu, KEYS): no estimate date; dated-source search recorded (timeliness.none_newer 2026-11-19), reconciled with VIAV/RAL 11-04 and Anritsu 10-29 results (all before the 11-18 quote) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://ca.marketscreener.com/quote/stock/CHROMA-ATE-INC-6493860/valuation/",
+   "result": "not_found",
+   "fix": "Chroma MarketScreener (src 62): no estimate date; dated-source search recorded (timeliness.none_newer 2026-11-19) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://uk.marketscreener.com/quote/stock/ANRITSU-CORPORATION-6491444/finances/",
+   "result": "not_found",
+   "fix": "Anritsu MarketScreener (src 60): no estimate date; dated-source search recorded; actuals 2026-10-29 precede the 11-18 quote and the set uses the revised 10-29 guide EPS 125.00 (src 59) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "wireless_rev FY2028-29 +6%/+6%",
+   "value": "2,073.7 / 2,198.2",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/08/25/keysight-keys-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "fix": "wireless_rev FY2027-29 rebuilt ground-up on the H2 FY26 exit (1,936.5 a year): Spirent-origin 225 at 0% (Spirent FY2024 RNS src 79; Dell'Oro src 76); device/chipset R&D +5.7%/+10%/+10% (FY27 from stated 2027 plans: Qualcomm Q1 FY2027 opex guide $2.8B vs $2.45B, +14.3%, CFO Akash Palkhiwala, src 81/82, at a 40% weight; MediaTek, Apple and others 0%, no forward R&D statement, src 88; FY28-29 3GPP Rel-21 timeline src 78); network equipment R&D -1.0%/+4%/+4% (FY27 from stated cost plans: Ericsson operating costs 31.4% vs 34.4% of sales, -2.3%, CFO Lars Sandstr\u00f6m/CEO Per Narvinger, src 83/84, at 45%; Nokia cost reduction program src 85/86 and Samsung Networks 'telco investment headwinds' src 87 at 0%, no figure; FY28-29 Dell'Oro src 80); manufacturing test -10%/0%/+3% (IDC src 77); FY27 1,922.6, FY28 2,014.3, FY29 2,128.3 (CC FY23-25 quarter shape); Q4 FY26 495.4 unchanged; 11 alternatives engine-sized (-2.32% to +0.39%), card rewritten recommending the build; research target (12m) 325.03 | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "origin": "supervisor driver path",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "wireless_rev FY2027 +8% (customers' R&D median +7.6%: Qualcomm, Nokia, Ericsson)",
+   "value": "1,956.3",
+   "cited": "src 57",
+   "result": "rejected_by_kilian",
+   "fix": "wireless_rev FY2027-29 rebuilt ground-up on the H2 FY26 exit (1,936.5 a year): Spirent-origin 225 at 0% (Spirent FY2024 RNS src 79; Dell'Oro src 76); device/chipset R&D +5.7%/+10%/+10% (FY27 from stated 2027 plans: Qualcomm Q1 FY2027 opex guide $2.8B vs $2.45B, +14.3%, CFO Akash Palkhiwala, src 81/82, at a 40% weight; MediaTek, Apple and others 0%, no forward R&D statement, src 88; FY28-29 3GPP Rel-21 timeline src 78); network equipment R&D -1.0%/+4%/+4% (FY27 from stated cost plans: Ericsson operating costs 31.4% vs 34.4% of sales, -2.3%, CFO Lars Sandstr\u00f6m/CEO Per Narvinger, src 83/84, at 45%; Nokia cost reduction program src 85/86 and Samsung Networks 'telco investment headwinds' src 87 at 0%, no figure; FY28-29 Dell'Oro src 80); manufacturing test -10%/0%/+3% (IDC src 77); FY27 1,922.6, FY28 2,014.3, FY29 2,128.3 (CC FY23-25 quarter shape); Q4 FY26 495.4 unchanged; 11 alternatives engine-sized (-2.32% to +0.39%), card rewritten recommending the build; research target (12m) 325.03 | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "origin": "Kilian 2026-11-19 13:10 ET via coordinator: 'fy27 wireless method is not acceptable'",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  },
+  {
+   "item": "wireless_rev FY2028-29 +6%/+6%",
+   "value": "2,073.7 / 2,198.2",
+   "cited": "",
+   "result": "unsupported",
+   "fix": "wireless_rev FY2027-29 rebuilt ground-up on the H2 FY26 exit (1,936.5 a year): Spirent-origin 225 at 0% (Spirent FY2024 RNS src 79; Dell'Oro src 76); device/chipset R&D +5.7%/+10%/+10% (FY27 from stated 2027 plans: Qualcomm Q1 FY2027 opex guide $2.8B vs $2.45B, +14.3%, CFO Akash Palkhiwala, src 81/82, at a 40% weight; MediaTek, Apple and others 0%, no forward R&D statement, src 88; FY28-29 3GPP Rel-21 timeline src 78); network equipment R&D -1.0%/+4%/+4% (FY27 from stated cost plans: Ericsson operating costs 31.4% vs 34.4% of sales, -2.3%, CFO Lars Sandstr\u00f6m/CEO Per Narvinger, src 83/84, at 45%; Nokia cost reduction program src 85/86 and Samsung Networks 'telco investment headwinds' src 87 at 0%, no figure; FY28-29 Dell'Oro src 80); manufacturing test -10%/0%/+3% (IDC src 77); FY27 1,922.6, FY28 2,014.3, FY29 2,128.3 (CC FY23-25 quarter shape); Q4 FY26 495.4 unchanged; 11 alternatives engine-sized (-2.32% to +0.39%), card rewritten recommending the build; research target (12m) 325.03 | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es): \"accept the KEYS fix\"",
+   "origin": "citation gate rounds 1-2 (carded from round 2)",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXe42nX4VGihkc2HbaHv2Es",
+    "card": null,
+    "quote": "accept the KEYS fix",
+    "utc": "2026-11-19T18:43Z"
+   }
+  }
+ ]
+}

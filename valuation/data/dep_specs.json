@@ -1,0 +1,329 @@
+{
+ "META": {
+  "note": "Capex = purchases of property and equipment + finance lease principal (the set's capex driver). D&A = total depreciation and amortization (the set's D&A in foa_margin). Servers and network 3-4 years before 2022, 4.5 years from 2022 and 5.5 years from 2025 (10-K changes of estimate, applied prospectively to the remaining book value); buildings 25-30 years (10-K range up to 30); land and building shell not depreciated before in service. | 2026-11-18 (META update thread): three classes with the 10-K building life (25-30y), fit also to filed CIP (cip_manual) and checked against filed server depreciation (Q1-Q3 2025/2026 10-Qs): servers 65% / lag 3q / 5.5y, buildings 25% / 8q / 25y, other 10% / 5y. The earlier two-class grid hit its 10-year building floor because 'buildings and other' soaked up servers waiting in CIP. Scratch fit with the server-depreciation term: driver_models/META/dep_cip_1117/dep_fit3.json.",
+  "dep": [
+   "DepreciationDepletionAndAmortization"
+  ],
+  "capex": [
+   "PaymentsToAcquirePropertyPlantAndEquipment",
+   "FinanceLeasePrincipalPayments"
+  ],
+  "start_year": 2012,
+  "fit_from": "2022Q3",
+  "set_scale": 1000000.0,
+  "classes": [
+   {
+    "name": "servers and network",
+    "share": [
+     0.6,
+     0.65,
+     0.7
+    ],
+    "lag": [
+     2,
+     3,
+     4
+    ],
+    "life": {
+     "else": [
+      10,
+      12
+     ],
+     "changes": [
+      [
+       "2022Q2",
+       18
+      ],
+      [
+       "2025Q1",
+       22
+      ]
+     ]
+    }
+   },
+   {
+    "name": "buildings",
+    "share": [
+     0.2,
+     0.25
+    ],
+    "lag": [
+     6,
+     8,
+     10
+    ],
+    "life": [
+     100,
+     120
+    ]
+   },
+   {
+    "name": "equipment, leasehold and finance-lease assets",
+    "share": null,
+    "lag": [
+     0,
+     2,
+     4
+    ],
+    "life": [
+     20
+    ]
+   }
+  ],
+  "legacy_life": [
+   20
+  ],
+  "cip": true,
+  "cip_manual": {
+   "2024Q4": 26802000000.0,
+   "2025Q4": 50521000000.0,
+   "2026Q1": 61017000000.0,
+   "2026Q2": 80345000000.0,
+   "2026Q3": 91389000000.0
+  },
+  "cip_note": "CIP balances from the PP&E notes: Dec-24 26,802 and Dec-25 50,521 (FY2025 10-K, accn 0001628280-26-003942), Mar-26 61,017 (10-Q 0001628280-26-028526), Jun-26 80,345 (10-Q 0001628280-26-050705), Sep-26 89,499 + 1,890 moved to held-for-sale in Jul-26 (mostly CIP and land, 10-Q 0001628280-26-066773) so the series tracks spend not yet in service. 10-Q: CIP 'mostly relates to data centers, servers, and network infrastructure', so servers also wait in CIP: the server lag grid is widened to 4 quarters."
+ },
+ "T": {
+  "note": "Depreciation = total D&A less amortization of intangibles (cash-flow statement). Capex = cash capital expenditures (vendor-financing payments not included; the lag and shares absorb the timing). AT&T 10-K lives: network equipment and software 3-15 years, outside plant (fiber, cable) 10-40+, buildings 35-45. Capex tag changed in 2018 (PaymentsToAcquireProductiveAssets). DirecTV (2021) and WarnerMedia (2022) left the group, so the fit starts in 2023 and old vintages run off through the fitted legacy term.",
+  "dep": {
+   "total": [
+    "DepreciationDepletionAndAmortization"
+   ],
+   "less": [
+    "AmortizationOfIntangibleAssets"
+   ]
+  },
+  "capex": [
+   "PaymentsToAcquirePropertyPlantAndEquipment|PaymentsToAcquireProductiveAssets"
+  ],
+  "start_year": 2010,
+  "fit_from": "2023Q1",
+  "set_scale": 1000000.0,
+  "cip": false,
+  "classes": [
+   {
+    "name": "network electronics and software",
+    "share": [
+     0.4,
+     0.5,
+     0.6,
+     0.7
+    ],
+    "lag": [
+     0,
+     1,
+     2
+    ],
+    "life": [
+     24,
+     28,
+     32,
+     40
+    ]
+   },
+   {
+    "name": "outside plant, fiber, towers, buildings",
+    "share": null,
+    "lag": [
+     1,
+     2,
+     4,
+     6
+    ],
+    "life": [
+     60,
+     80,
+     100,
+     140
+    ]
+   }
+  ],
+  "legacy_life": [
+   40,
+   60,
+   80
+  ]
+ },
+ "DY": {
+  "note": "Depreciation = total D&A less amortization of intangibles; the set's dep_rate is depreciation ex amortization. Dycom fleet (trucks, equipment) 1-15 years, mostly 3-7; buildings up to 35.",
+  "dep": {
+   "total": [
+    "DepreciationDepletionAndAmortization"
+   ],
+   "less": [
+    "AmortizationOfIntangibleAssets"
+   ]
+  },
+  "capex": [
+   "PaymentsToAcquirePropertyPlantAndEquipment"
+  ],
+  "start_year": 2012,
+  "fit_from": "2023Q1",
+  "set_scale": 1000000.0,
+  "cip": false,
+  "classes": [
+   {
+    "name": "fleet and equipment",
+    "share": [
+     0.8,
+     0.85,
+     0.9,
+     0.95
+    ],
+    "lag": [
+     0,
+     0.5,
+     1
+    ],
+    "life": [
+     16,
+     20,
+     24,
+     28,
+     32
+    ]
+   },
+   {
+    "name": "buildings and other",
+    "share": null,
+    "lag": [
+     0,
+     2,
+     4
+    ],
+    "life": [
+     60,
+     100,
+     140
+    ]
+   }
+  ],
+  "legacy_life": [
+   20,
+   40
+  ]
+ },
+ "MOD": {
+  "note": "Depreciation = total D&A less amortization of intangibles. Modine machinery 3-15 years, buildings 20-40. History includes businesses since sold (Performance Technologies), so the fit is looser.",
+  "dep": {
+   "total": [
+    "DepreciationDepletionAndAmortization"
+   ],
+   "less": [
+    "AmortizationOfIntangibleAssets"
+   ]
+  },
+  "capex": [
+   "PaymentsToAcquirePropertyPlantAndEquipment"
+  ],
+  "start_year": 2010,
+  "fit_from": "2023Q1",
+  "set_scale": 1000000.0,
+  "cip": false,
+  "classes": [
+   {
+    "name": "machinery and equipment",
+    "share": [
+     0.6,
+     0.7,
+     0.8,
+     0.9
+    ],
+    "lag": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "life": [
+     28,
+     40,
+     48,
+     60
+    ]
+   },
+   {
+    "name": "buildings",
+    "share": null,
+    "lag": [
+     2,
+     4,
+     6
+    ],
+    "life": [
+     80,
+     120,
+     160
+    ]
+   }
+  ],
+  "legacy_life": [
+   20,
+   40,
+   60
+  ]
+ },
+ "INTC": {
+  "note": "Depreciation = total D&A less amortization of intangibles. Gross capex (partner contributions not netted: the consolidated fabs depreciate in full). Intel machinery 5 years, extended to 8 years for some production equipment from 2023 (10-K change of estimate); buildings 10-25 years. Construction in progress is very large (Ohio, Magdeburg paused), so building lags are long.",
+  "dep": [
+   "Depreciation"
+  ],
+  "capex": [
+   "PaymentsToAcquirePropertyPlantAndEquipment"
+  ],
+  "start_year": 2008,
+  "fit_from": "2023Q1",
+  "set_scale": 1000000.0,
+  "cip": false,
+  "classes": [
+   {
+    "name": "machinery and equipment",
+    "share": [
+     0.55,
+     0.6,
+     0.65,
+     0.7,
+     0.75
+    ],
+    "lag": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "life": {
+     "else": [
+      20
+     ],
+     "changes": [
+      [
+       "2023Q1",
+       28
+      ]
+     ]
+    }
+   },
+   {
+    "name": "buildings and fab shells",
+    "share": null,
+    "lag": [
+     6,
+     8,
+     12,
+     16,
+     20
+    ],
+    "life": [
+     40,
+     60,
+     80,
+     100
+    ]
+   }
+  ],
+  "legacy_life": [
+   20,
+   40
+  ]
+ }
+}

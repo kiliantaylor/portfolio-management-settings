@@ -1,0 +1,852 @@
+{
+ "date": "2026-11-17",
+ "symbol": "AMZN",
+ "clean": true,
+ "checked": 68,
+ "ok": 55,
+ "fixed": 13,
+ "failures": [
+  {
+   "item": "supervisor driver aws_ebitda_m derivation: 'operating margin stayed 35-39%' (FY2023-Q3 FY2026)",
+   "value": "35-39%",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "aws_ebitda_m derivation now states 27.1% FY2023, 37.0% FY2024, 35.4% FY2025, 38.65% Q3 FY2026 (owner edit before the fix step; checked against the inputs)"
+  },
+  {
+   "item": "supervisor driver aws_turn derivation: turnover years quoted in the text",
+   "value": "0.6526 / 0.5285 / 0.5142 / 0.4616 on aws_ppe 268.86 / 458.13 / 649.88 / 830.21",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "aws_turn derivation years restated to the booked 0.6555 / 0.5400 / 0.5154 / 0.4778 on aws_ppe 266.8 / 447.0 / 646.3 / 799.7 (owner edit; equal to drivers aws_turn.years)"
+  },
+  {
+   "item": "supervisor driver aws_turn quarter_derivation: Q4 FY2026 AWS revenue $49,663M 'built from capacity in service': in-service PP&E +18.0% at a yield 8.4% below Q3",
+   "value": "49,663",
+   "cited": "",
+   "result": "back_solved",
+   "fix": "Q4 FY2026 AWS revenue rebuilt as Q4 FY2025 $35,579M x 1.38 = $49,099M, the same +38% (2 pts under the CEO's 'north of 40%' and consensus 'at least 40%') as FY2027-28, with the in-service capacity cross-check (+18% q/q vs revenue +6.8%); the yield cut is gone. Booked value change by the owner: research target (12m) $306.54 -> $305.87 (engine). forecast_lint round prints []"
+  },
+  {
+   "item": "supervisor driver aws_turn quarters FY2027-29: quarter split by FY2023-25 average shares 23.2/24.3/25.5/27.0%",
+   "value": "Q1 FY2027 56.13 vs Q4 FY2026 49.66; Q1 FY2028 77.46 vs Q4 FY2027 65.44",
+   "cited": "",
+   "result": "unsupported",
+   "fix": "FY2027-29 quarters now grow at one q/q rate within each year from the prior Q4 (+8.42% / +8.37% / +0.84%); FY2023-25 shares dropped; no +49% quarter (owner edit)"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m FY2029: AWS operating margin 38% FY2029",
+   "value": "38%",
+   "cited": "",
+   "result": "unsupported",
+   "fix": "FY2029 38% tied to Kilian's 38% card answer (2026-11-17 21:36Z), stated as no forecaster and no value effect (outside NTM and the net-debt span; engine check) (owner edit)"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m source: src 88 / 89 / 90 cited by number",
+   "value": "src 88, 89, 90",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "sources 88 (UBS / Investing.com 2026-10-26) and 90 (Morgan Stanley / Yahoo 2026-10-19) added with URLs; 89 marked unused and all references removed (owner edit)"
+  },
+  {
+   "item": "supervisor driver_build aws_dep (useful lives): servers 5-6 years, subset 6 -> 5 years from 2025-01-01 (+$1.4B FY2025, mainly AWS); buildings up to 40 years; heavy equipment 10-13 years",
+   "value": "cited",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+   "result": "not_found",
+   "fix": "Useful lives verified in the same FY2025 10-K via its XBRL pages: R23 policies (buildings lesser of forty years or remaining life; servers and networking 'Five to six years'; heavy equipment 'Ten to thirteen years'), R45 (5-6 / 10-13 / 40 years), R35 (Change In Property And Equipment Useful Life: servers and networking 6 -> 5 years from 2025-01-01, accelerated D&A $1,400M, net income -$1,000M); 'primarily impacted our AWS segment' confirmed in the 10-K by EDGAR full-text search; CIP $71,745M (R58). Cited in constants_note aws_dep source; wording 'buildings up to forty years' -> 'lesser of forty years or the remaining life'. No value change"
+  },
+  {
+   "item": "supervisor driver:aws_ppe (guidance_check, variant): guidance_check and variant fields",
+   "value": "'The set books the physical build: FY2026 $248,919M net ... vendor credit carried as debt-like'; variant 'Q4 cash at the ~$220B plan ... $273.18'",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "aws_ppe guidance_check now states the ~$220B cash plan booked as a declared guide use; variant points to the engine-sized alternatives (owner edit)"
+  },
+  {
+   "item": "supervisor judgment_alternatives aws_ppe: booked text and alternative 1",
+   "value": "booked 'Q4 FY2026 build $78,112M ... carried as debt-like'; alternative 1 'Q4 cash at the ~$220B plan' fv 0.0%",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "judgment_alternatives aws_ppe booked line = the ~$220B cash plan; alternatives regenerated and re-sized (Q3 received property $304.60 -0.41%, consensus Q4 $305.77, 12th-best D&A fit $305.81); stale 'why' ('beyond what the debt-like booking already counts') rewritten in this step"
+  },
+  {
+   "item": "supervisor judgment_alternatives aws_ppe: missing build",
+   "value": "Q4 = Q3 received property $78,112M with the ~$28.9B unpaid carried as debt-like",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "result": "missing_alternative",
+   "fix": "added: Q4 = Q3 received property $78,112M with ~$28.9B unpaid as debt-like, engine-sized $304.60 (-0.41%), under 5% so no card (owner edit; re-sized by judgment_check.py size 2026-11-18)"
+  },
+  {
+   "item": "supervisor thesis_triggers: FCF trigger: 'net debt above the set's $161.3B horizon path ... incl. the ~$28.9B Q4 vendor credit counted as debt-like'",
+   "value": "161.3B",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "FCF trigger now at the engine horizon net debt $133.8B (stated $103,466M + roll $30,328M = $133,794M, model_engine value() bridge re-checked) (owner edit)"
+  },
+  {
+   "item": "supervisor sizing: reason",
+   "value": "'research target (12m) is $271.87 (engine ...)'",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "sizing.reason now $305.87 (engine) (owner edit)"
+  },
+  {
+   "item": "supervisor judgment_calls_for_kilian aws_ebitda_m option 3: Morgan Stanley 42% / 44%",
+   "value": "reasoning: 'margins expand as custom silicon (Trainium) lowers unit cost and the new capacity fills'",
+   "cited": "https://finance.yahoo.com/markets/stocks/articles/amazon-soars-5-morgan-stanley-191852197.html",
+   "result": "wrong",
+   "fix": "option 3 reasoning now states only what the page shows (Nowak, 42% FY2027 / 44% FY2028); no booking change (owner edit)"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "supervisor model: Diluted shares at the horizon",
+   "value": "11,040.3M (10,929M x 1.009^1.131)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q4 FY2026 guide as of 2026-10-29",
+   "value": "240000.0-247000.0 (guidance)",
+   "basis": "GAAP ($M); net sales",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000038/amzn-20260930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q4 FY2026 guide as of 2026-10-29",
+   "value": "28500.0-33500.0 (guidance)",
+   "basis": "GAAP ($M); operating income",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000038/amzn-20260930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: capex FY2026 guide as of 2026-10-29",
+   "value": "220000.0-220000.0 (guidance)",
+   "basis": "cash capital expenditures, approximate ($M; purchases of property and equipment NET of proceeds from sales and incentives)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000038/amzn-20260930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model: Diluted shares now (Q3 2026 weighted average)",
+   "value": "10,929M (reported)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001018724/000101872426000038/amzn-20260930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q3 FY2024: first guide (2024-08-01) / reported actual",
+   "value": "154000.0-158500.0 / 158900.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000128/amzn-20240630xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q3 FY2024: first guide (2024-08-01) / reported actual",
+   "value": "11500.0-15000.0 / 17400.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000128/amzn-20240630xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "181500.0-188500.0 / 187800.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000158/amzn-20240930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "16000.0-20000.0 / 21200.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000158/amzn-20240930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q1 FY2025: first guide (2025-02-06) / reported actual",
+   "value": "151000.0-155500.0 / 155700.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000002/amzn-20241231xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q1 FY2025: first guide (2025-02-06) / reported actual",
+   "value": "14000.0-18000.0 / 18400.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000002/amzn-20241231xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q2 FY2025: first guide (2025-05-01) / reported actual",
+   "value": "159000.0-164000.0 / 167700.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000034/amzn-20250331xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q2 FY2025: first guide (2025-05-01) / reported actual",
+   "value": "13000.0-17500.0 / 19200.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000034/amzn-20250331xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q3 FY2025: first guide (2025-07-31) / reported actual",
+   "value": "174000.0-179500.0 / 180200.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000084/amzn-20250630xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q3 FY2025: first guide (2025-07-31) / reported actual",
+   "value": "15500.0-20500.0 / 17400.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000084/amzn-20250630xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q4 FY2025: first guide (2025-10-30) / reported actual",
+   "value": "206000.0-213000.0 / 213400.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q4 FY2025: first guide (2025-10-30) / reported actual",
+   "value": "21000.0-26000.0 / 25000.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q1 FY2026: first guide (2026-02-05) / reported actual",
+   "value": "173500.0-178500.0 / 181500.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20251231xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q1 FY2026: first guide (2026-02-05) / reported actual",
+   "value": "16500.0-21500.0 / 23900.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20251231xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q2 FY2026: first guide (2026-04-29) / reported actual",
+   "value": "194000.0-199000.0 / 200600.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000012/amzn-20260331xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q2 FY2026: first guide (2026-04-29) / reported actual",
+   "value": "20000.0-24000.0 / 27500.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000012/amzn-20260331xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q3 FY2026: first guide (2026-07-30) / reported actual",
+   "value": "197000.0-202000.0 / 201944.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q3 FY2026: first guide (2026-07-30) / reported actual",
+   "value": "22500.0-26500.0 / 28076.0 (guidance)",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260630xex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: net sales Q4 FY2026 consensus as of 2026-10-29",
+   "value": "244500.0",
+   "basis": "consensus",
+   "source_url": "https://finance.yahoo.com/markets/stocks/live/amazon-earnings-live-q3-earnings-miss-sends-stock-lower-203345870.html",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: operating income Q4 FY2026 consensus as of 2026-10-29",
+   "value": "32990.0",
+   "basis": "consensus",
+   "source_url": "https://finance.yahoo.com/markets/stocks/live/amazon-earnings-live-q3-earnings-miss-sends-stock-lower-203345870.html",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: capex FY2025: first guide (2025-02-06) / reported actual",
+   "value": "105200.0-105200.0 / 128320.0",
+   "basis": "guidance",
+   "source_url": "https://www.nextplatform.com/2025/02/07/amazon-will-spend-nearly-a-year-of-aws-revenue-on-ai-investments/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance: capex FY2026 consensus as of 2026-11-13",
+   "value": "222265.0",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/AMAZON-COM-INC-12864605/finances/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance_check capex FY2026 why: claim (src 80)",
+   "value": "MarketScreener consensus FY2026 capex $222,265M (net basis, snapshot 2026-11-13, src 80), 1.0% above the ~$220B guide",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/AMAZON-COM-INC-12864605/finances/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance_check operating income Q4 FY2026 why: claim (src 79)",
+   "value": "AWS margin under Q3's 38.65% (CFO: AI margin pressure, component pricing, src 79)",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance_check operating income Q4 FY2026 why: claim (src 79)",
+   "value": "AWS margin no step-up (CFO: AI margin pressure, component pricing, src 79)",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance_check capex FY2026 why: claim (src 79)",
+   "value": "management restated the year on the call: 'We still expect 2026 cash CapEx of approximately $220 billion', Jassy",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn derivation: claim (src 79, 64, 81)",
+   "value": "Jassy: 'we believe that AWS can grow north of 40% in each of 2027 and in 2028' and 'very good visibility into 2027 and 2028 and some of 2029'",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m derivation: claim (src 88, 89, 90, 79)",
+   "value": "CFO Olsavsky on the Q3 call: 'the outsized growth of AI puts margin pressure on the business as a whole', 'headwinds from component pricing', 'we expect AWS operating margins to fluctuate' (src 79)",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn derivation: claim (src 82)",
+   "value": "Jassy's 'trillion-dollar revenue business in the next five to 10 years'",
+   "basis": "claim",
+   "source_url": "https://techcrunch.com/2026/10/29/aws-will-be-a-1t-business-jassy-says-but-first-it-will-spend-big/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor fair_value / scenarios: research target (12m), legs, scenarios",
+   "value": "306.54 (P/E 330.79, SOTP 282.29); downside 200.41, upside 379.01",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model (AWS revenue growth / EBIT margin): AWS revenue and EBIT FY2026-29",
+   "value": "36.3/38.0/38.0/14.7%; 38.4/38.0/38.0/38.0%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model (D&A % revenue): D&A % revenue FY2026-29",
+   "value": "10.13 / 11.32 / 13.10 / 15.36%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model (Capex % revenue): Capex % revenue FY2026-29",
+   "value": "27.12 / 31.81 / 30.63 / 22.84%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model (Stated EPS at the horizon; SOTP parts; legal): NTM EPS and NTM metrics",
+   "value": "EPS 13.381; AWS 94,038; ads 40,344; stores 3,408; legal -31,624",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model (Net debt at the horizon): engine horizon net debt",
+   "value": "133,060 = 103,466 + 25,890 + 3,704",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ppe / driver_build aws_dep: AWS PP&E roll and placed-in-service D&A",
+   "value": "YE2026 344.8, YE2028 742.2, YE2029 851.3; years 266.8/447.0/646.3/799.7; AWS D&A Q4 9.4, FY2027 54.4, FY2028 86.8, FY2029 124.3",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m derivation: EBITDA margins from 38% + D&A/revenue",
+   "value": "57.8 / 60.5 / 64.0 / 70.4%; D&A 22.5 / 26.0 / 32.4% of revenue",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m FY2027: AWS operating margin 38% FY2027",
+   "value": "38%",
+   "basis": "estimate",
+   "source_url": "https://uk.investing.com/news/stock-market-news/ubs-on-amazon-streets-aws-margin-estimates-for-2027-are-too-low-4932049",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m FY2028: AWS operating margin 38% FY2028 (no step)",
+   "value": "38%",
+   "basis": "judgment (owner card)",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m (Morgan Stanley): MS AWS operating margin 42% FY2027 / 44% FY2028",
+   "value": "42 / 44%",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/amazon-soars-5-morgan-stanley-191852197.html",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn derivation: Jassy 'north of 40% in each of 2027 and in 2028'; 'the amount that we add every quarter is not equal' answering Justin Post",
+   "value": "cited",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn derivation: consensus at least 40% AWS growth 2027-28 (S&P Global MI)",
+   "value": "cited",
+   "basis": "outside forecast",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/ceo-andy-jassy-just-told-142200832.html",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn derivation: $1T in 5-10 years; FY2029 +14.7%",
+   "value": "14.7%",
+   "basis": "estimate",
+   "source_url": "https://techcrunch.com/2026/10/29/aws-will-be-a-1t-business-jassy-says-but-first-it-will-spend-big/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor capex_q / aws_ppe: MarketScreener capex consensus",
+   "value": "2025 128,320; 2026 222,265; 2027 298,982; 2028 334,611 (net)",
+   "basis": "outside forecast",
+   "source_url": "https://www.marketscreener.com/quote/stock/AMAZON-COM-INC-12864605/finances/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor judgment_calls_for_kilian aws_ebitda_m context: what the set books / forecasts",
+   "value": "Q3 38.65%; consensus 38%, UBS 46%, MS 42/44",
+   "basis": "estimate",
+   "source_url": "https://uk.investing.com/news/stock-market-news/ubs-on-amazon-streets-aws-margin-estimates-for-2027-are-too-low-4932049",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor judgment_calls_for_kilian aws_ebitda_m option 1: 38% with no FY2028 step",
+   "value": "reasoning",
+   "basis": "estimate",
+   "source_url": "https://uk.investing.com/news/stock-market-news/ubs-on-amazon-streets-aws-margin-estimates-for-2027-are-too-low-4932049 | https://www.fool.com/earnings/call-transcripts/2026/10/30/amazon-amzn-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor judgment_calls_for_kilian aws_ebitda_m option 2: 38% / 40%",
+   "value": "reasoning: consensus + MS 2-pt step 'as operating leverage on the backlog ($578B) offsets AI cost pressure'",
+   "basis": "estimate",
+   "source_url": "https://uk.investing.com/news/stock-market-news/ubs-on-amazon-streets-aws-margin-estimates-for-2027-are-too-low-4932049 | https://finance.yahoo.com/markets/stocks/articles/amazon-soars-5-morgan-stanley-191852197.html",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor judgment_alternatives aws_ebitda_m: listed alternatives MS 42/44 (+9.94%, carded), UBS 46% FY2027 (+1.43%), 38/40 (+3.07%)",
+   "value": "sized",
+   "basis": "estimate",
+   "source_url": "https://uk.investing.com/news/stock-market-news/ubs-on-amazon-streets-aws-margin-estimates-for-2027-are-too-low-4932049 | https://finance.yahoo.com/markets/stocks/articles/amazon-soars-5-morgan-stanley-191852197.html",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance (net sales, operating income, capex arithmetic): record counts, medians, adjusted guides, gaps",
+   "value": "7/2/0 1.86 248,029.1 +0.69%; 7/2/0 17.78 36,511.8 +5.51%; 1/0/0 22.0 268,400 0.0",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model normalizing anchors (tax, SBC, NWC, interest, shares, D&A, capex): anchor arithmetic",
+   "value": "23.4%; 2.49%; 0.138; 4.611%; 10,929 / 11,020; 9.69%; 26.42%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m derivation: 'operating margin stayed 35-39%' (FY2023-Q3 FY2026)",
+   "value": "fixed: aws_ebitda_m derivation now states 27.1% FY2023, 37.0% FY2024, 35.4% FY2025, 38.65% Q3 FY2026 (owner edit before the fix step; checked against the inputs)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn derivation: turnover years quoted in the text",
+   "value": "fixed: aws_turn derivation years restated to the booked 0.6555 / 0.5400 / 0.5154 / 0.4778 on aws_ppe 266.8 / 447.0 / 646.3 / 799.7 (owner edit; equal to drivers aws_tu",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn quarter_derivation: Q4 FY2026 AWS revenue $49,663M 'built from capacity in service': in-service PP&E +18.0% at a yield 8.4% below Q3",
+   "value": "fixed: Q4 FY2026 AWS revenue rebuilt as Q4 FY2025 $35,579M x 1.38 = $49,099M, the same +38% (2 pts under the CEO's 'north of 40%' and consensus 'at least 40%') as FY20",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_turn quarters FY2027-29: quarter split by FY2023-25 average shares 23.2/24.3/25.5/27.0%",
+   "value": "fixed: FY2027-29 quarters now grow at one q/q rate within each year from the prior Q4 (+8.42% / +8.37% / +0.84%); FY2023-25 shares dropped; no +49% quarter (owner edit",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m FY2029: AWS operating margin 38% FY2029",
+   "value": "fixed: FY2029 38% tied to Kilian's 38% card answer (2026-11-17 21:36Z), stated as no forecaster and no value effect (outside NTM and the net-debt span; engine check) (",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver aws_ebitda_m source: src 88 / 89 / 90 cited by number",
+   "value": "fixed: sources 88 (UBS / Investing.com 2026-10-26) and 90 (Morgan Stanley / Yahoo 2026-10-19) added with URLs; 89 marked unused and all references removed (owner edit)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver_build aws_dep (useful lives): servers 5-6 years, subset 6 -> 5 years from 2025-01-01 (+$1.4B FY2025, mainly AWS); buildings up to 40 years; heavy equipment 10-13 years",
+   "value": "fixed: Useful lives verified in the same FY2025 10-K via its XBRL pages: R23 policies (buildings lesser of forty years or remaining life; servers and networking 'Five ",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/R35.htm",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor driver:aws_ppe (guidance_check, variant): guidance_check and variant fields",
+   "value": "fixed: aws_ppe guidance_check now states the ~$220B cash plan booked as a declared guide use; variant points to the engine-sized alternatives (owner edit)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor judgment_alternatives aws_ppe: booked text and alternative 1",
+   "value": "fixed: judgment_alternatives aws_ppe booked line = the ~$220B cash plan; alternatives regenerated and re-sized (Q3 received property $304.60 -0.41%, consensus Q4 $305.",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor judgment_alternatives aws_ppe: missing build",
+   "value": "fixed: added: Q4 = Q3 received property $78,112M with ~$28.9B unpaid as debt-like, engine-sized $304.60 (-0.41%), under 5% so no card (owner edit; re-sized by judgment",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor thesis_triggers: FCF trigger: 'net debt above the set's $161.3B horizon path ... incl. the ~$28.9B Q4 vendor credit counted as debt-like'",
+   "value": "fixed: FCF trigger now at the engine horizon net debt $133.8B (stated $103,466M + roll $30,328M = $133,794M, model_engine value() bridge re-checked) (owner edit)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor sizing: reason",
+   "value": "fixed: sizing.reason now $305.87 (engine) (owner edit)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor judgment_calls_for_kilian aws_ebitda_m option 3: Morgan Stanley 42% / 44%",
+   "value": "fixed: option 3 reasoning now states only what the page shows (Nowak, 42% FY2027 / 44% FY2028); no booking change (owner edit)",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/amazon-soars-5-morgan-stanley-191852197.html",
+   "checked": "2026-11-18",
+   "feeds": "fair_value"
+  }
+ ],
+ "checks": {
+  "model_engine": "OK 305.87 (P/E 330.11, SOTP 281.64)",
+  "forecast_lint": "[]",
+  "judgment_check": "ok (sized 2026-11-18)",
+  "timeliness": "15 refused"
+ },
+ "accepted_carried": [
+  {
+   "item": "stale_forecast src 29: AMZN consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 31: APP consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 33: COST consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 35: GOOGL consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 37: MELI consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 39: META consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 41: MSFT consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 43: ORCL consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 45: RDDT consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 47: SE consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 49: SHOP consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 51: WMT consensus EPS by fiscal year (Nasdaq.com earnings forecast, Zacks consensus), saved 2026-10-26",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "no_pub_date src 83: EMARKETER Commerce Media Ad Spending Forecast 2026 (relay: Net Influencer; EMARKETER original paywalled): US c",
+   "result": "no_pub_date",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "no_pub_date src 84: EMARKETER US Ecommerce 2026: 'Online sales will grow by 7.9% in 2026, with slight moderation during our foreca",
+   "result": "no_pub_date",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  },
+  {
+   "item": "stale_forecast src 88: Investing.com 2026-10-26: UBS on Amazon, Street's AWS margin estimates for 2027 are too low (consensus 38%, UB",
+   "result": "stale_forecast",
+   "found_by": "timeliness.py check (fix step; not in merged.json failures: the 10-26 consensus pages were already 22 days old on 2026-11-17, window 21)",
+   "fix": "not fixed: needs fresh Nasdaq/Zacks consensus for the peer set (would re-argue the peer medians and so booked multiples) or published dates for EMARKETER 83/84 (neither page prints a date, checked 2026-11-18); src 88 needs a newer AWS-margin consensus or a none_newer search | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe): \"I accept the fixes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe",
+    "card": null,
+    "quote": "I accept the fixes",
+    "utc": "2026-11-18T18:41Z"
+   }
+  }
+ ],
+ "note": " | 2026-11-18T18:41Z: 15 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7zVEkD6EyNMsFEiRm78KLe)."
+}

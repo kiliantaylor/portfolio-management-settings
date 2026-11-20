@@ -1,0 +1,2150 @@
+{
+ "date": "2026-11-17",
+ "symbol": "CRDO",
+ "clean": true,
+ "checked": 248,
+ "ok": 231,
+ "failures": [
+  {
+   "item": "claim (src 30, 60)",
+   "origin": "supervisor driver copper_share derivation",
+   "value": "FY25 non-AEC revenue is at most IP licensing $12.5M + engineering services $12.1M + non-AEC product sales [src 30]; the FY25 10-K says 'AEC products, which contributed over 95% of the increase in pro...",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025033813/crdo-20250503.htm",
+   "result": "not_found",
+   "fix": "Confirmed by EDGAR full-text search (efts.sec.gov search-index, forms=10-K, ciks=0001807794, generic User-Agent, 2026-11-17): 'engineering services' + '12.1 million' and 'IP license' + '12.5' each hit only the FY25 10-K (acc 0001628280-25-033813, crdo-20250503.htm) and the FY24 10-K (acc 0001628280-24-029629); the check is noted in the copper_share derivation and the src 30 title; the 'only hit' wording for the 95% phrase now reads 'among 10-Ks the only hit is the FY25 10-K; four 10-Qs also carry it'."
+  },
+  {
+   "item": "tax_rate FY2028-29 0.15 variant view and P/E row: '~1% gives research target (12m) ~$182.26 (+10.5%) on this set'",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "value": "182.26 (+10.5%)",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "Added the ~1% tax as a judgment_alternatives item 'years.tax_rate FY2028-FY2029' (patch years[1..2].tax_rate 0.01) and sized it: 237.52 (+12.07%, engine, 2026-11-17 booked set, research target (12m) 211.94); inputs_detail[4] derivation and [14] variant_view now quote it; over 5%, so carded as Kilian's 2026-10-26 decision ('Apply 15% from FY28', answer stands). No value changed."
+  },
+  {
+   "item": "driver:gm_optical year FY27 0.611 (agg wmean:optical_tam*optical_share)",
+   "origin": "supervisor model",
+   "value": "0.611",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "Driver unchanged. key_drivers[5] and inputs_detail driver:gm_optical value now label 0.611/0.568/0.5714 as simple quarter means with the revenue-weighted FY27 0.592; changes[11], fair_value.reason, model.reasoning, card 4 context and the gm_optical derivation state 59.2% (revenue-weighted) where a weighted figure is meant."
+  },
+  {
+   "item": "Trainium and TPU are Credo's two largest platforms",
+   "origin": "supervisor judgment call: SemiAnalysis cut why",
+   "value": "",
+   "cited": "https://www.itiger.com/news/1126271736",
+   "result": "wrong",
+   "fix": "Reworded in card 9 options 0 and 2 and why, and in update.json what_changed: Credo's largest end customer (read as Amazon, Trainium not cut) and its third (read as Google, TPU via Broadcom insulated), together ~46% of revenue, are on the insulated platforms, while ~54% sits on NVIDIA racks (the set's own split, src 11, 22, 50). The judgment (keep the paths, not booked) did not rest on the wrong ranking; the card's value effects are unchanged."
+  },
+  {
+   "item": "variant sizes: lower path -9.46%, GS full path +2.49%, Morgan Stanley +6.05%, attach 0.70% +9.96%",
+   "origin": "supervisor driver copper_tam derivation",
+   "value": "",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "copper_tam derivation (and inputs_detail copy) now quotes the engine sizes (engine, 2026-11-17 booked set, research target (12m) 211.94): lower path -9.49%, GS full path +3.32%, Morgan Stanley +7.23%, attach 0.70% +10.29%, plus capex file low/high -22.60%/+25.29% and SemiAnalysis reads -13.62% to -18.47%."
+  },
+  {
+   "item": "pairing one calendar quarter ahead (estimate, confidence low); no-lead pairing sized '+5.11%' and carded",
+   "origin": "supervisor driver copper_share derivation",
+   "value": "+5.11%",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "copper_share derivation (and copy): no-lead +5.59%; CY2029 GS +12% -0.02%, flat -0.02%, +17% -0.03%; 70% rise -1.19% (engine, 2026-11-17 booked set, research target (12m) 211.94)."
+  },
+  {
+   "item": "alternative sizes: '>$100M' line -33.16% / -29.32%; largest line 2.5x -28.26%; AEC ramp -36.80%; FY28 2x -25.57%; triple +17.29%; 300k +19.33%; ASP held +15.65%; HSBC mix +39.42%; blended ASP +4.91%; floor +0.20%; '>$500M' +0.09%; ZF H2 later -0.25%",
+   "origin": "supervisor driver optical_share derivation",
+   "value": "",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "optical_share derivation (and copy) now quotes the engine sizes (engine, 2026-11-17 booked set, research target (12m) 211.94): -31.16 / -27.58 / -26.52 / -34.71 / -23.81 / +15.60 / +18.16 / +13.70 / +36.45 / +4.32 / +0.71 / +0.31 / -0.82, PICs +2.88, FY29 flat -1.32, Marvell-Lumentum -3.56, optical_tam -17.12 / -13.26; the optical_tam derivation's stale sizes were updated the same way (-1.35 / +3.30 / -1.93 / -17.12 / -13.26)."
+  },
+  {
+   "item": "alternative sizes +0.65% / -0.91% / -0.43% / -0.09%; blended GM 'FY27 67.7%, FY28 66.5%, FY29 66.5% (optics at 65%)'",
+   "origin": "supervisor driver gm_copper derivation",
+   "value": "",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "gm_copper derivation (and copy): +0.79 / -1.12 / -0.53 / -0.11 (engine, 2026-11-17 booked set, research target (12m) 211.94); blend restated from the engine on the booked Coherent optical anchor: FY27 66.6%, FY28 63.3%, FY29 63.3% (optical revenue-weighted 59.2 / 56.8 / 57.1% at 18 / 39 / 40% of revenue), replacing the 65%-optical blend."
+  },
+  {
+   "item": "alternative sizes +0.78 / +1.90 / -0.68 / -0.35 / +0.21 / -7.49",
+   "origin": "supervisor driver hs_self_funded derivation",
+   "value": "",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "hs_self_funded derivation (and copy): +0.81 / +1.99 / -0.72 / -0.37 / +0.22 / -7.91 (engine, 2026-11-17 booked set, research target (12m) 211.94)."
+  },
+  {
+   "item": "alternatives: plan intensity +4.90%; TTM held +2.03%; Astera 26.6% -5.23%",
+   "origin": "supervisor driver opex derivation",
+   "value": "",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "opex derivation (and copy): +6.00 / +2.50 / -6.44 (engine, 2026-11-17 booked set, research target (12m) 211.94)."
+  },
+  {
+   "item": "Morgan Stanley 2026-11-08 bars $1,224B / $1,338B (src 44)",
+   "origin": "supervisor judgment_alternatives copper_tam",
+   "value": "+7.23%",
+   "cited": "https://fourweekmba.com/ai-morgan-stanley-pegs-google-2027-capex-at-375b-in-1-6t-call/",
+   "result": "not_found",
+   "fix": "Tried again 2026-11-17 (FourWeekMBA, InvestingLive, CryptoBriefing all refused automated reads; no other outlet found with the 2026-11-08 per-company bars). Kept on the NVDA gate's 2026-11-12 read of the relay page (HTTP 200 ~06:00Z) and the owner's confirmation that the note is real (2026-11-10 05:43Z; NVDA card 2026-11-12 14:57Z 'Keep on this morning's check'), stated in src 44, the copper_tam derivation and card 0 option; an alternative only, no booked value depends on it."
+  },
+  {
+   "item": "'one 400G AEC per GB200 GPU per network layer' (src 43), also in card 9 context",
+   "origin": "supervisor judgment_alternatives copper_tam",
+   "value": "",
+   "cited": "https://semifundamental.substack.com/p/active-electrical-cable-aec-fundamentals",
+   "result": "wrong",
+   "fix": "Reworded to src 43 in judgment_alternatives copper_tam alt 7, card 9 context and update.json: one 400G AEC per GB200 GPU at the first network layer; upper back-end layers the same count because scale-out traffic is all-to-all; front-end counts depend on oversubscription (re-opened 2026-11-17). Volume-scaling point unchanged; no value changed."
+  },
+  {
+   "item": "InnoLight/Eoptolink 47.5% anchor rows (sources src 77 + FourWeekMBA URL)",
+   "origin": "supervisor judgment_alternatives gm_optical",
+   "value": "+2.88% / +2.91%",
+   "cited": "https://fourweekmba.com/ai-innolight-eoptolink-filings-show-8-8b-sold-abroad-in-h1/",
+   "result": "not_found",
+   "fix": "src 95 (remio: InnoLight 46.59%, Eoptolink 48.46%) added beside src 77 in both InnoLight/Eoptolink rows' sources and builds; reference-only alternative, sizes +2.88% / +2.91% unchanged."
+  },
+  {
+   "item": "unlisted build: DSP share of module BOM up to 40% (SimpleTechTrend src 74, cited for the $400 module price) or ~30% (Deep Fundamental src 79) gives a DSP+PIC cost share up to ~54% (40% + PIC 14%)",
+   "origin": "supervisor judgment_alternatives gm_optical",
+   "value": "",
+   "cited": "https://www.simpletechtrend.com/en/post/800g-vs-16t-optical-module-bom-teardown-en",
+   "result": "missing_alternative",
+   "fix": "Added the SimpleTechTrend build (src 74 DSP 'roughly 25-40%' at its top + PIC 14% = cost share 54%, ZF 61.4% on Coherent 40.6%) as gm_optical alternative in the style of the cost-share rows; sized +3.79% (engine, 2026-11-17 booked set, research target (12m) 211.94), under 5%; quoted in the gm_optical derivation and card 4 context/Coherent option (src 74 added)."
+  },
+  {
+   "item": "unlisted builds on the cited NVDA dc_mor timing card (src 35, card 7): window 0.25, start Jan 2027, start Oct 2027, old design (Apr 2027-Jun 2028 x 0.5)",
+   "origin": "supervisor judgment_alternatives dc_mor",
+   "value": "",
+   "cited": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "result": "missing_alternative",
+   "fix": "The NVDA timing card (runs/2026-11-09/NVDA card 6) is unanswered and the 2026-11-05 owner cards fixed weights/redirect/basis/Georgia, not timing, so all its options are now sized dc_mor alternatives with the shared formula on Credo's quarter ends: window 0.5 +1.60%, window 0.25 +2.40%, ERCOT reports +2.74%, start Jan 2027 +2.84%, start Oct 2027 -0.92%, old design +0.89% (engine, 2026-11-17 booked set, research target (12m) 211.94); window 0.5 and ERCOT rows rebuilt to the card's definition (Georgia/NY unchanged). None over 5%; stated in the dc_mor derivation."
+  },
+  {
+   "item": "options' sources src 35-39, 56, 8, 57, 44, 100, 22",
+   "origin": "supervisor judgment_calls_for_kilian copper_tam (card 0)",
+   "value": "",
+   "cited": "",
+   "result": "not_found",
+   "fix": "Same as the Morgan Stanley row: card 0's option says the relay failed on 2026-11-17 and now states the figures rest on the NVDA gate's 2026-11-12 read and the owner's 2026-11-10 confirmation; alternative only."
+  },
+  {
+   "item": "options' sources src 82, 83, 50, 43",
+   "origin": "supervisor judgment_calls_for_kilian copper_tam SemiAnalysis (card 9)",
+   "value": "",
+   "cited": "",
+   "result": "wrong",
+   "fix": "Card 9 'Keep the paths' reasoning, option 2 and why reworded to the set's split (largest end customer read as Amazon/Trainium and third as Google/TPU, ~46%, insulated; ~54% on NVIDIA racks), src 50 added; context's AEC wording set to src 43's first-layer statement."
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue (quarterly) Q2 FY2027 guide as of 2026-09-01 (GAAP revenue, $M)",
+   "value": "525.0-535.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q2 FY2027 / FY2027 guide as of 2026-09-01 (non-GAAP, excluding SBC (and acqu\u2026",
+   "value": "0.67-0.69",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q2 FY2027 / FY2027 guide as of 2026-09-01 (non-GAAP, excluding SBC, acquisition and integration cos\u2026",
+   "value": "100.0-105.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 10, 22)",
+   "value": "Bottom-up from the capex path and the optical line build, not the midpoint (Kilian 2026-11-09): 531.6 is inside the $525-535M range, +0.3% on the midpoint, below the last two beats (+1.6%, +1.9%), th\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check revenue (quarterly) Q2 FY2027 why"
+  },
+  {
+   "item": "claim (src 10, 58)",
+   "value": "It uses Credo's own recent intensity and Marvell's (src 10, 58); the plan-intensity case needs leverage the last four quarters did not show.",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Opex: keep revenue x intensity moving from Credo's TTM 19.6% to Marvell's 21.55%, or use \u2026 why"
+  },
+  {
+   "item": "claim (src 10, 22, 28)",
+   "value": "Cross-checks only (not inputs): Q2 FY27 total 531.6 vs the $525-535M guide [src 10] (+0.3% on the midpoint); FY27 total $2,372.7M (+77.7%) vs the '>85%' guide [src 22] and the Zacks $2.50B consensus \u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "revenue (quarterly) Q2 FY25: first guide (2024-09-04) / reported actual",
+   "value": "65-68 / 72.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828024039309/credoq12025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q2 FY25: first guide (2024-09-04) / reported actual",
+   "value": "0.62-0.64 / 0.636",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828024039309/credoq12025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q2 FY25: first guide (2024-09-04) / reported actual",
+   "value": "36-38 / 37.6",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828024039309/credoq12025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q3 FY25: first guide (2024-12-02) / reported actual",
+   "value": "115-125 / 135.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828024049564/credoq22025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q3 FY25: first guide (2024-12-02) / reported actual",
+   "value": "0.61-0.63 / 0.638",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828024049564/credoq22025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q3 FY25: first guide (2024-12-02) / reported actual",
+   "value": "42-44 / 43.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828024049564/credoq22025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q4 FY25: first guide (2025-03-04) / reported actual",
+   "value": "155-165 / 170.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025009813/credoq32025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q4 FY25: first guide (2025-03-04) / reported actual",
+   "value": "0.63-0.65 / 0.674",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025009813/credoq32025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q4 FY25: first guide (2025-03-04) / reported actual",
+   "value": "50-52 / 52.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025009813/credoq32025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q1 FY26: first guide (2025-06-02) / reported actual",
+   "value": "185-195 / 223.1",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025028827/credoq42025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q1 FY26: first guide (2025-06-02) / reported actual",
+   "value": "0.64-0.66 / 0.676",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025028827/credoq42025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q1 FY26: first guide (2025-06-02) / reported actual",
+   "value": "54-56 / 54.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025028827/credoq42025ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q2 FY26: first guide (2025-09-03) / reported actual",
+   "value": "230-240 / 268.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000180779425000018/credoq12026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q2 FY26: first guide (2025-09-03) / reported actual",
+   "value": "0.64-0.66 / 0.677",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000180779425000018/credoq12026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q2 FY26: first guide (2025-09-03) / reported actual",
+   "value": "56-58 / 57.3",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000180779425000018/credoq12026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q3 FY26: first guide (2025-12-01) / reported actual",
+   "value": "335-345 / 407.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025054428/credoq22026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q3 FY26: first guide (2025-12-01) / reported actual",
+   "value": "0.64-0.66 / 0.686",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025054428/credoq22026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q3 FY26: first guide (2025-12-01) / reported actual",
+   "value": "68-72 / 77.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025054428/credoq22026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 16, 14, 13, 10, 58)",
+   "value": "Intensity starts at Credo's TTM to Q1 FY27, 311.6 / 1,591.0 = 19.59% (Q2 FY26-Q1 FY27 [src 16, 14, 13, 10]), and moves in a straight line to Marvell's 21.55% (mean of its Q2 FY27 actual 22.3% and Q3 \u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025054428/credoq22026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver opex derivation"
+  },
+  {
+   "item": "revenue (quarterly) Q4 FY26: first guide (2026-03-02) / reported actual",
+   "value": "425-435 / 437.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026013205/credoq32026ex-9911.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q4 FY26: first guide (2026-03-02) / reported actual",
+   "value": "0.64-0.66 / 0.683",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026013205/credoq32026ex-9911.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q4 FY26: first guide (2026-03-02) / reported actual",
+   "value": "76-80 / 81.7",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026013205/credoq32026ex-9911.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q1 FY27: first guide (2026-06-01) / reported actual",
+   "value": "465-475 / 479.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026039474/credoq42026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin (quarterly; FY2027 \"broadly consistent with fiscal year 26\") Q1 FY27: first guide (2026-06-01) / reported actual",
+   "value": "0.67-0.69 / 0.68",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026039474/credoq42026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q1 FY27: first guide (2026-06-01) / reported actual",
+   "value": "86-90 / 95.2",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026039474/credoq42026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue growth (annual) FY2027 guide as of 2026-09-01 (GAAP revenue growth y/y, \"more than 85%\"; within it optical revenue \"more than $600 million\" (ZeroFlap o\u2026",
+   "value": "0.85-None",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP net margin (FY2027 guide only; no past net-margin guide exists) FY2027 guide as of 2026-09-01 (non-GAAP net income / revenue, \"in the vicinity of 50%\")",
+   "value": "0.5-0.5",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "optical revenue (annual) FY2027 guide as of 2026-09-01 ($M, 'more than $600 million of optical revenue in fiscal 27', ZeroFlap optics, SiPh PICs and optical DS\u2026",
+   "value": "600.0-None",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 22, 58)",
+   "value": "FY27 $473.3M is 19.9% of the built revenue against the plan's 17.7%: Credo's intensity has been 18.7-21.4% for four quarters while it funds the 1.6T/3.2T, NPO, ALC and OmniConnect programmes [src 22]\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP operating expenses (quarterly; FY2027 growth ~55%) Q2 FY2027 / FY2027 why"
+  },
+  {
+   "item": "claim (src 22)",
+   "value": "Built by product line, not set at the floor (the >$600M is a cross-check only): $425.5M is 29.1% below the company's 'more than $600 million' [src 22].",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check optical revenue (annual) FY2027 why"
+  },
+  {
+   "item": "claim (src 22)",
+   "value": "The CEO's COGS and ASP advantage (src 22) is real but unsized.",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin: keep 65% (Credo's mid-60s ZF Optics target), or anchor ZF optics on\u2026 why"
+  },
+  {
+   "item": "claim (src 22)",
+   "value": "ALC is placed in optical, OmniConnect gearboxes (electrical, first revenue FY28 [src 22]) here.",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 22)",
+   "value": "FY28 optical 322.2 / 356.0 / 393.3 / 434.5 = $1,505.9M (share 2.357%); the FY28 additions management dates without sizes (PIC next-generation design wins, ALC first revenue, NPO [src 22]) are left ou\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 22)",
+   "value": "FY29: ZF units grow at the CEO-quoted pluggable-transceiver unit forecast, 60M in 2026 to 175M in 2030, +30.7% a year [src 22], from the 400k-a-month FY28 exit (1,255.0k / 1,341.8k / 1,434.7k / 1,534\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 22, 28, 70)",
+   "value": "Cross-checks only (not inputs): FY27 total revenue $2,372.7M (+77.7%) vs the '>85%' guide [src 22] and Zacks' $2.50B [src 28]; FY28 $3,703.3M after dc_mor vs Zacks' $3.79B [src 28]; the CFO's ~+11% i\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 22, 59)",
+   "value": "Real-world case: Credo's operating leverage has run out (FY24 61% -> FY25 38.6% -> FY26 20.3%, then 18.7-21.4% for four quarters as new programmes (1.6T/3.2T, NPO, ALC, OmniConnect [src 22]) and Dust\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver opex derivation"
+  },
+  {
+   "item": "claim (src 22)",
+   "value": "Quarters (fifth gate fix 2026-11-16: same intensity path on the rebuilt revenue): Q2 FY27 105.1, Q3 119.8, Q4 153.2 (FY27 $473.3M, +74.7% vs the ~+55% plan [src 22]: the plan implies 17.70% of the bu\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver opex derivation"
+  },
+  {
+   "item": "revenue growth (annual) FY2026: first guide (2026-02-09) / reported actual",
+   "value": "2.0-None / 2.0568",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026006370/feb20268-kex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue growth (annual) FY2027 consensus as of 2026-11-16",
+   "value": "0.8725",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/CRDO.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 28, 3)",
+   "value": "Built from the drivers, the guide is a cross-check: the build lands FY27 below the '>85%' floor (+77.7%, -8.6% on 0.85) and 5.1% below the Zacks $2.50B consensus (7 estimates, retrieved 2026-11-16 [s\u2026",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/data/estimates/CRDO.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check revenue growth (annual) FY2027 why"
+  },
+  {
+   "item": "claim (src 11, 94, 70)",
+   "value": "Fifth gate fix: the Q1 split now sits inside the 10-Q's cap, AEC products 'contributed over 90% of the increase in revenue' (Q1 FY27 10-Q [src 11]; the phrase is confirmed in that 10-Q by SEC full-te\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check revenue (quarterly) Q2 FY2027 why"
+  },
+  {
+   "item": "claim (src 11)",
+   "value": "Below the ~50% point guide: 46.2% before interest income (EBIT $1,107.5M x 0.99 / $2,372.7M), lower than the guide because opex is built at ~19.9% of revenue against the plan's ~17.7% and optics (17.\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP net margin (FY2027 guide only; no past net-margin guide exists) FY2027 why"
+  },
+  {
+   "item": "claim (src 11, 94)",
+   "value": "Fifth gate fix: the 10-Q caps Q1 FY27 optical at ~35.6 (AEC products 'over 90% of the increase in revenue' [src 11]; the phrase is confirmed in that 10-Q by SEC full-text search [src 94]), so Q1 is 3\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check optical revenue (annual) FY2027 why"
+  },
+  {
+   "item": "claim (src 11)",
+   "value": "Gate fix 2026-11-16 (replaces the FY27 share taken from the >85% growth guide and consensus, and the H2 quarters shaped to them): copper_q = Q1 FY27 copper 444 (fifth gate fix: 479.0 less optical 35.\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 11)",
+   "value": "Actual quarters: copper = reported revenue (8-K Ex-99.1 releases (acc 0001807794-25-000018, 0001628280-25-054428, 0001628280-26-013205, 0001628280-26-039474): 223.1 / 268.0 / 407.0 / 437.0; Q1 FY27 8\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 11, 12)",
+   "value": "(1) Q1 FY27 split within the 10-Q cap: revenue rose $255.9M y/y (479.0 vs 223.1) and AEC products 'contributed over 90% of the increase in revenue' (Q1 FY27 10-Q [src 11]), so the non-AEC rise was un\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 11, 22)",
+   "value": "Booked 35.0 (estimate; AEC products 'contributed over 90% of the increase in revenue' (Q1 FY27 10-Q [src 11]) puts it below the 35.6 bound): optical DSPs 25.6 ('record revenue' [src 22]; FY26 base x1\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 11, 69, 63)",
+   "value": "DustPhotonics brings little revenue of its own: pro forma results not presented as not material, its intangibles booked as one $361.7M total, inventory $4.6M at the close, contingent consideration $3\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 70)",
+   "value": "The gap is split: optical at $425.5M against the company's '>$600M' (the floor read for FY27 is +0.71%, carded with the optical card) and the copper path's one-quarter lead (no-lead pairing +5.59%, c\u2026",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/credo-at-goldman-sachs-conference-optical-ramp-drives-bigger-vision-93CH-4896721",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check revenue growth (annual) FY2027 why"
+  },
+  {
+   "item": "claim (src 70, 61, 22)",
+   "value": "(2) What the CEO's 'units' are: at the Goldman Sachs conference (2026-09-10), asked how investors should think about the growth rate 'specifically for optics', the CEO said 'I have indicated previous\u2026",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/credo-at-goldman-sachs-conference-optical-ramp-drives-bigger-vision-93CH-4896721",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 70, 76, 61)",
+   "value": "Units rise at a constant monthly rate (x1.50 a month) from the capped Q1 (11.0k) to 200k a month in April 2027, the smallest reading of 'hundreds of thousands' at the year end [src 70, 76]: 11.0k / 3\u2026",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/credo-at-goldman-sachs-conference-optical-ramp-drives-bigger-vision-93CH-4896721",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 70, 76, 75)",
+   "value": "FY28: ZF units double over the year at a constant monthly rate to 400k a month by April 2028, the lower reading of 'double and then even triple' [src 70] and of Benzinga's 'two to three-times volume \u2026",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/credo-at-goldman-sachs-conference-optical-ramp-drives-bigger-vision-93CH-4896721",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 61, 70, 76, 71)",
+   "value": "ZF optics are complete transceivers at 'three digit' ASPs against two-digit DSPs and PICs [src 61]; the CEO gave a year-end rate of 'hundreds of thousands of units per month' without naming the produ\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/01/credo-crdo-q4-2026-earnings-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check optical revenue (annual) FY2027 why"
+  },
+  {
+   "item": "claim (src 61, 71, 22, 73)",
+   "value": "(3) ZF-specific evidence the units build must also fit: ZF optics are complete transceivers at 'three digit' ASPs against 'two digit' for DSPs and PICs, ZF 'clearly our largest revenue contributor fo\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/01/credo-crdo-q4-2026-earnings-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 61)",
+   "value": "That is 4.9x FY27 ZF revenue because FY27 is back-loaded (1.7x the Q4 FY27 exit run-rate of $675.6M a year, 5.4x the FY27 H2); management's 'even more than double or triple that the following year' [\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/01/credo-crdo-q4-2026-earnings-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 74, 11)",
+   "value": "Why it lands below the floor: the Q1 start is capped, the exit rate is read at its smallest (200k a month), the module price at the 800G market $400 with no ZeroFlap premium or 1.6T mix [src 74], and\u2026",
+   "basis": "claim",
+   "source_url": "https://www.simpletechtrend.com/en/post/800g-vs-16t-optical-module-bom-teardown-en",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check optical revenue (annual) FY2027 why"
+  },
+  {
+   "item": "claim (src 74, 61)",
+   "value": "ASP $400 a module, the 800G market price [src 74], inside Credo's 'three digit' [src 61], with no ZeroFlap premium and no 1.6T mix (1.6T modules ~$1,300-1,500 [src 74]).",
+   "basis": "claim",
+   "source_url": "https://www.simpletechtrend.com/en/post/800g-vs-16t-optical-module-bom-teardown-en",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 69, 22, 61)",
+   "value": "Against it: management has said '>$600M' twice, raised from 'greater than $500 million' in April [src 69, 22, 61], and beat all 8 first quarterly revenue guides (median +10.4%).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026024892/april20268-kex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check optical revenue (annual) FY2027 why"
+  },
+  {
+   "item": "claim (src 12)",
+   "value": "The MaxLinear evidence is new to the set (the call Quartr dates 23 Oct 2026 and the 2026-10-23 write-up predate your 10-27 card but had not been read into the set); the one-quarter lead rests on Cred\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Copper share FY28-29: book the MaxLinear 1.6T AEC loss and the one-quarter capex lead, or\u2026 why"
+  },
+  {
+   "item": "claim (src 12)",
+   "value": "Q2 FY29 with Q4 CY2028, Q4 FY29 with Q2 CY2029), because part of Credo's revenue is billed to ODMs, CMs and module makers [src 12] before the finished racks reach the hyperscalers' capex.",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 12, 51)",
+   "value": "AEC share of copper 0.90 (estimate, confidence medium): the FY26 10-K says the AEC ramp 'contributed over 99% of the increase in revenue' [src 12, 51], so FY26 non-AEC revenue rose by less than 1% x \u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 32, 66)",
+   "value": "The booked ZF line rests on the CEO's unit rate as Benzinga reports Credo's plan for ZF transceivers (a named outlet, not Credo's own transcript, so it is our estimate) and is held at the low or midd\u2026",
+   "basis": "claim",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical FY27-29: keep the units x ASP build ($426M FY27, $1.51B FY28), or ZF from its own\u2026 why"
+  },
+  {
+   "item": "claim (src 32)",
+   "value": "FY27 by line: (a) optical DSPs: the FY26 base at LightCounting's +120% 2026 rate (x1.2179 a quarter [src 32]): 25.6 / 31.2 / 37.9 / 46.2 = $140.9M (1.6T DSP revenue later in FY27 left out).",
+   "basis": "claim",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 32)",
+   "value": "DSPs + PICs at the FY27 share of LightCounting's market (+76% [src 32]) = $329.6M, at a constant quarterly rate from the Q4 FY27 exit: 71.3 / 78.2 / 85.9 / 94.3.",
+   "basis": "claim",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 32, 66, 28)",
+   "value": "Is it conservative (point checked 2026-11-16): each ZF reading is at its low or middle end (200k exit, doubling not tripling, -25% erosion where the market's blended price per unit falls an estimated\u2026",
+   "basis": "claim",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 53)",
+   "value": "Credo's mid-60s target (src 53) is the only company evidence, and it is direct, but it is a target with no date, known through a summary of the deal call.",
+   "basis": "claim",
+   "source_url": "https://quartr.com/events/credo-technology-group-holding-ltd-crdo-m-a-announcement_Fktv9vX5",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin: keep 65% (Credo's mid-60s ZF Optics target), or anchor ZF optics on\u2026 why"
+  },
+  {
+   "item": "claim (src 53, 22)",
+   "value": "Level: Credo's own mid-60s gross-margin target for ZF Optics with integrated SiPh [src 53]; optical DSPs and PICs are chip-level products, ZF optics complete transceivers [src 22].",
+   "basis": "claim",
+   "source_url": "https://quartr.com/events/credo-technology-group-holding-ltd-crdo-m-a-announcement_Fktv9vX5",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver gm_optical derivation"
+  },
+  {
+   "item": "claim (src 53)",
+   "value": "Since the 2026-11-16 optical rebuild ZF transceivers are 56% of FY27 optical (fifth gate fix) and 78% of FY28, so this margin now carries more weight; the 65% is Credo's stated mid-60s target for ZF \u2026",
+   "basis": "claim",
+   "source_url": "https://quartr.com/events/credo-technology-group-holding-ltd-crdo-m-a-announcement_Fktv9vX5",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver gm_optical derivation"
+  },
+  {
+   "item": "claim (src 95, 96)",
+   "value": "That is above every module margin in the evidence: China peers at a high give 47.5% (InnoLight 46.59%, Eoptolink 48.46%, H1 2026, src 95, 96), Coherent 40.6%, SiPh modules 30-40%, and AAOI and scaled...",
+   "basis": "claim",
+   "source_url": "https://www.remio.ai/post/innolight-and-eoptolink-lead-technology-news-as-ai-optics-growth-spreads-across",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin: keep 65% (Credo's mid-60s ZF Optics target), or anchor ZF optics on... why"
+  },
+  {
+   "item": "claim (src 59, 10)",
+   "value": "Astera Labs is larger than Credo by quarterly revenue (Q3 2026 $584.9M vs Credo's Q1 FY27 $479.0M, src 59, 10) and its Q4 2026 guide midpoints imply 26.6% (our computation), so the peer evidence span...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000044/q326exhibit991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Opex: keep revenue x intensity moving from Credo's TTM 19.6% to Marvell's 21.55%, or use ... why"
+  },
+  {
+   "item": "claim (src 97, 98, 99)",
+   "value": "No current public AEC market forecast was found: LightCounting's December 2023 newsletter put AOC, DAC and AEC sales at $2.8B by 2028 (stale, src 97); its December 2025 update is a paid report ($5,99...",
+   "basis": "claim",
+   "source_url": "https://lightcounting.com/newsletter/en/december-2023-aocs-dacs-linear-drive-pluggable-and-co-packaged-optics-209",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_tam derivation"
+  },
+  {
+   "item": "claim (src 40, 43)",
+   "value": "The 0.60% attach is a calibration: it makes Credo's FY2026 copper revenue (~$1,275M, see segment base) ~52% of the TAM; MaxLinear's CEO estimated that Credo accounts for 93% to 99% of the AEC cable m...",
+   "basis": "claim",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/crdo-stock-hits-6-month-low-after-max-linear-targets-credo-dominated-cable-market/cZxyk1CRBxY",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_tam derivation"
+  },
+  {
+   "item": "claim (src 40, 22)",
+   "value": "Against: MaxLinear sells silicon, not cables, the target is its own, it focuses on one or two large US data centers, and its CEO estimated Credo at 93% to 99% of the AEC cable market (Stocktwits para...",
+   "basis": "claim",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/crdo-stock-hits-6-month-low-after-max-linear-targets-credo-dominated-cable-market/cZxyk1CRBxY",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 33)",
+   "value": "Cross-check: LightCounting puts optics sales to the top five cloud providers at 2.7% of their capex in 2025 (Lightwave 2026-03-10 on the 'Optics for AI Clusters' report [src 33]), so copper at 0.6% i...",
+   "basis": "claim",
+   "source_url": "https://lightwaveonline.com/home/article/55362899/ai-scale-up-raises-the-stakes-for-transceivers-and-cpo-adoption",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_tam derivation"
+  },
+  {
+   "item": "claim (src 56, 8, 23, 57)",
+   "value": "Variant view: attach rising with AEC penetration at 1.6T and scale-up (e.g. 0.6% -> 0.7% by CY2028) would lift FY29 copper ~17% at the same share; Street CY2027 Big-4 consensus $934.5B (IO Fund [src ...",
+   "basis": "claim",
+   "source_url": "https://io-fund.com/ai-stocks/ai-capex-1-trillion-estimates-too-low",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_tam derivation"
+  },
+  {
+   "item": "claim (src 35)",
+   "value": "Shared path quarters [src 35]: Q3 CY2026 207.41, Q4 221.88, CY2027 233.85 / 246.47 / 259.77 / 273.79, CY2028 297.98 / 324.30 / 352.95 / 384.13 ($B).",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 67)",
+   "value": "Q1-Q2 CY2029 (fourth gate fix; replaces +12% carried from Goldman Sachs' 2028 rate, which no 2029 source supported): the shared path ends at CY2028; Dell'Oro's July 2026 forecast puts worldwide data-...",
+   "basis": "claim",
+   "source_url": "https://www.telecomtv.com/content/digital-platforms-services/ai-buildout-maintains-momentum-as-datacentre-capex-to-surpass-3tn-by-2030-delloro-group-56102/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 42, 66, 41, 40)",
+   "value": "MaxLinear loss_q = AEC share of copper 0.90 x 1.6T share of AEC revenue (56% from TrendForce's 2027 pluggable optical mix [src 42], used as a proxy for AECs, held through FY29 (fourth gate fix; was +...",
+   "basis": "claim",
+   "source_url": "https://www.trendforce.com/presscenter/news/20261102-13291.html",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 43)",
+   "value": "Why book the loss (base case moderately conservative, Kilian 2026-11-10): a named competitor gave a share target on its call and dates its revenue; Marvell's retimer chips are 'the most widely adopte\u2026",
+   "basis": "claim",
+   "source_url": "https://semifundamental.substack.com/p/active-electrical-cable-aec-fundamentals",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "claim (src 76, 72)",
+   "value": "The earlier statement he refers to was reported by Benzinga in June 2026 as Credo's plan for ZF transceivers: 'Credo plans to ship hundreds of thousands of ZF transceiver units per month by late fisc\u2026",
+   "basis": "claim",
+   "source_url": "https://www.benzinga.com/trading-ideas/movers/26/06/60023965/credo-wires-agentic-ai-with-10-billion-plus-market-in-sight",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 62, 63, 68)",
+   "value": "(b) SiPh PICs: Q1 ~$5M for the two months after the close, then a constant share of Tower Semiconductor's silicon-photonics output, DustPhotonics' sole foundry [src 62, 63, 68]: 5.0 / 10.6 / 12.1 / 1\u2026",
+   "basis": "claim",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262264767-",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 45, 64, 65)",
+   "value": "No Marvell-Lumentum socket loss is booked: the coverage found gives no quantified share effect [src 45, 64, 65].",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001633978/000119312526442758/d163169dex991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "claim (src 78, 53)",
+   "value": "BOOKED 2026-11-16 (Kilian card 17:36Z 'Coherent anchor from Q2 FY27'): ZF optics = Coherent 40.6% Q1 FY27 non-GAAP GM (src 78) + 0.65 x 36% DSP+PIC cost share x (1-0.406) = 54.5%; merchant DSPs/PICs \u2026",
+   "basis": "claim",
+   "source_url": "https://finviz.com/news/415844/coherent-corp-reports-first-quarter-fiscal-2027-results",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver gm_optical derivation"
+  },
+  {
+   "item": "claim (src 78, 79, 75, 80, 77)",
+   "value": "Alternatives sized in judgment_alternatives (engine, sixth gate fix 2026-11-16): ZF optics = module-maker anchor + the chip margin Credo keeps on its own DSP and PIC (0.65 x 36% cost share x (1 - anc\u2026",
+   "basis": "claim",
+   "source_url": "https://finviz.com/news/415844/coherent-corp-reports-first-quarter-fiscal-2027-results",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver gm_optical derivation"
+  },
+  {
+   "item": "method: 0.42 x P/E 181.18 + 0.30 x EV/sales 237.21 + 0.28 x FCF yield 231.00 = 211.94",
+   "value": "211.94",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "reason: 206.57 -> 211.94 (+2.6%); 195.15 -> 206.57; fifth fix 201.60 -> 204.73 (+1.6%); Coherent booking 204.73 -> 195.15 (-4.68%); no-FCF-leg 197.99 (+7.05%)",
+   "value": "211.94",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "reason: SemiAnalysis Nov 13 cut mostly NVIDIA price deflation, Trainium and Broadcom ASIC insulated, silicon area +80% in 2028",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://456xresearch.substack.com/p/semianalysis-slashes-ai-accelerator",
+   "checked": "2026-11-17",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "reason: capex file low/high Big-4 $880B/$800B and $1,360B/$1,750B (2027/2028)",
+   "value": "",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "MaxLinear booked ramp ~11% at 2027-12-31 (8.3% Q2 FY28, 12.5% Q3 FY28)",
+   "value": "",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "Q1 FY27 end customers D 33%, C 28%, E 13%, F 10%; largest a third at 33%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "shared path CY2027 $1,013.88B",
+   "value": "1013.88",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "Q1 FY27 '>$600 million' optical statement; set's line build ~$426M",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "FY28 consensus revenue $3.88B (TIKR); FY27 $2.50B",
+   "value": "3.88 $B",
+   "basis": "claim",
+   "source_url": "https://www.tikr.com/blog/credo-sinks-13-in-a-week-as-maxlinear-says-the-market-is-diversifying",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "24/7 Wall St 2026-11-10: FY27 $2.50B, EPS $6.3093; FY28 EPS $9.7121, basis not stated",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://247wallst.com/investing/2026/11/10/wall-street-may-be-underestimating-this-ai-chip-stocks-next-growth-phase/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "24/7 Wall St: FY28 EPS $8.69 -> $9.70 in 90 days, 14 up-revisions; FY27 non-GAAP net margin near 50%; top two customers 33% + 28%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://247wallst.com/investing/2026/09/21/credo-technology-crashed-for-3-months-this-wall-street-pro-says-its-about-to-double/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Zacks FY28 EPS $8.30 on a basis below company non-GAAP",
+   "value": "8.30",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/data/estimates/CRDO.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "management FY27 non-GAAP net margin 'in the vicinity of 50%'",
+   "value": "0.5",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Mizuho cut its target to $245 from $290 on lower peer multiples",
+   "value": "245",
+   "basis": "claim",
+   "source_url": "https://ca.investing.com/news/stock-market-news/why-is-credo-technology-stock-rallying-today-93CH-4846693",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Q2 FY27 earnings: TipRanks estimates 2026-12-01 after the close, not confirmed",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.tipranks.com/stocks/crdo/earnings",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "S&P: six hyperscalers ~$1.3T in 2027, only Microsoft FCF positive",
+   "value": "1.3 $T",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "agent 4 EV/sales leg 11x on $4.0B + $1.8B cash / 205M = ~$223; agent 5 NTM 0.5/0.5 = $10.35, 24x = ~$248",
+   "value": "",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "last close $210.97 on 2026-09-25; $150.09 on 2026-09-14; $147.29 on 2026-10-23",
+   "value": "210.97",
+   "basis": "reported",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CRDO?period1=1788220800&period2=1792972800&interval=1d",
+   "checked": "2026-11-17",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "thesis break $125 = 15.1x Zacks FY28 EPS $8.30",
+   "value": "15.1x",
+   "basis": "arithmetic",
+   "source_url": "/mnt/project-files/valuation/data/estimates/CRDO.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "rows for the fifth gate fix (201.60 -> 204.73), the Coherent booking (204.73 -> 195.15), the 11-17 update (195.15 -> 206.57) and the FCF gate fix (206.57 -> 211.94)",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "FCF gate fix: old step median 2.85% / 1.007 = 2.8302%",
+   "value": "0.028302",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "211.94 / 131.51 - 1 = 61.2%; thesis break $125 is 4.95% below; 4% x 4.95% = 0.20%",
+   "value": "61.2%",
+   "basis": "arithmetic",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-13/CRDO/allocation.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "TipRanks estimates Q2 print 2026-12-01 after the close, not confirmed",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.tipranks.com/stocks/crdo/earnings",
+   "checked": "2026-11-17",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "ten driver lines vs drivers[].base/years",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "keys",
+   "value": "null",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor comps_review / long_dated_review"
+  },
+  {
+   "item": "base.revenue FY26 $1,335.1M",
+   "value": "1335.116",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "copper base 1,275.1 = 1,335.1 - 60; non-AEC pool <= 145.0 + 13.4 + 24.6 + 9.0 = 192.0",
+   "value": "1275.116",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "optical base ~$60M (10/12/17/21)",
+   "value": "60",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "tax_rate FY2027 0.01: FY26 non-GAAP ETR (669.3 pretax, NI 661.5) = 1.15%; Q1 FY27 (238.7, 236.3) = 1.0%",
+   "value": "0.01",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026039474/credoq42026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "da_pct_rev 0.025 (34.6 / 1,335.1 = 2.6%)",
+   "value": "0.025",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "capex_pct_rev 0.04 (57.3 / 1,335.1 = 4.3%; TTM 61.8 / 1,591.0 = 3.9%)",
+   "value": "0.04",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "sbc_pct_rev 0.14 labelled estimate: 182.6 / 1,335.1 = 13.7%; Q1 88.0 / 479.0 = 18.4%",
+   "value": "0.14",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "net_debt -764.3 = cash 466.9 + STI 297.4",
+   "value": "-764.3",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "interest_rate 0.04 (30.4 on ~0.9B = 3.4%)",
+   "value": "0.04",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026039474/credoq42026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "shares.diluted_now 200 (Q2 guide ~200M; Q1 non-GAAP 197.5M)",
+   "value": "200",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "shares.annual_change 0.039: FY25 181.158M -> FY26 188.232M = +3.9%",
+   "value": "0.039",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "scenarios 0.25 / 0.5 / 0.25 = agents' medians",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "other_uses FY2027 102.4 refundable deposits (10-Q)",
+   "value": "102.4",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "revenue Q2 FY2027 record: 8/0/0, median 0.1038, adjusted 585.0, ours 531.6 inside +0.003",
+   "value": "531.6",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP GM Q2 FY2027: 6/2/0, median 0.0408, adjusted 0.7077, ours 0.676 inside -0.0059",
+   "value": "0.676",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP opex Q2 FY2027: 3/5/0, median 0.0191, adjusted 104.46, ours 105.1 above +0.0254",
+   "value": "105.1",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue growth FY2027: FY26 2.0568 vs 2.0 floor (0.0284); adjusted 0.8741; ours 0.7771 below -0.0858",
+   "value": "0.7771",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP net margin FY2027: ours 0.4621 below -0.0758",
+   "value": "0.4621",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "optical revenue FY2027: adjusted 617.0, ours 425.5 below -0.2908",
+   "value": "425.5",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "anchor 0.21: +71.2 +160.8 +43.6 -51.2 -30.4 -5.5 = +188.5 on +898.3",
+   "value": "0.21",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model normalizing (nwc_pct_incr_rev) anchor"
+  },
+  {
+   "item": "182.6 / 1,335.1 = 13.7%; Q1 18.4%",
+   "value": "0.137",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model normalizing (sbc_pct_rev) anchor"
+  },
+  {
+   "item": "years.nwc_pct_incr_rev 0.25 bridge arithmetic",
+   "value": "0.25",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.sbc_pct_rev 0.14",
+   "value": "0.14",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples[P/E].value 23.5: median of 23.5/24/21/22/24 x 1.007 = 23.66",
+   "value": "23.5",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples[P/E].weight 0.42 = 0.7 x 0.6; 0.5/(0.5+0.2) = 0.71",
+   "value": "0.42",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/wrds/results/blend_evs_pe/README.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples[EV/sales].value 11.0: median 10/11/11/9/11.5 x 1.007 = 11.08",
+   "value": "11.0",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:copper_tam 410/750.70/1,013.88/1,359.36 x 0.006 = 2.46/4.504/6.083/8.156",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:copper_share year means 0.4323/0.3846/0.3396",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:optical_share: Q1 cap 0.10 x 255.9 = 25.6 -> <=35.6; booked 25.6 + 5.0 + 4.4 = 35.0; FY27 35.0 + 56.6 + 100.1 + 233.8 = 425.5; 425.5 / 36,300 = 1.172%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:gm_optical ZF 40.6% + 0.65 x 0.36 x 0.594 = 54.5%; 54.3% anchor needed for 65%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://finviz.com/news/415844/coherent-corp-reports-first-quarter-fiscal-2027-results",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "driver:opex 311.6/1,591.0 = 19.59%; Marvell (22.3% + 20.8%)/2 = 21.55%; Astera 197/740 = 26.6%; plan 270.9 x 1.55 / 2,372.7 = 17.70%; quarters sum 473.3 / 791.5 / 985.2",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples[FCF yield].value 0.025954 (basis-clean NTM step)",
+   "value": "0.025954",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-17/CRDO/peers_fcf_2026-11-17.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FCF yield leg consensus revenue ALAB",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/alab/forecast/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FCF yield leg consensus revenue MRVL",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/forecast/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FCF yield leg consensus revenue AVGO",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/avgo/forecast/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FCF yield leg consensus revenue LITE",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://tickflow.io/stock/LITE/forecast",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FCF yield leg consensus revenue MTSI",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mtsi/forecast/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FCF yield leg consensus revenue CIEN",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/cien/forecast/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "FCF yield leg consensus revenue RMBS",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/rmbs/forecast/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "horizon_multiples[FCF yield].weight 0.28 = 0.4 x 0.7",
+   "value": "0.28",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/wrds/results/pe_fcf_leg/README.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.nwc_pct_incr_rev 0.25 vs anchor 0.21",
+   "value": "0.25",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model normalizing (nwc_pct_incr_rev)"
+  },
+  {
+   "item": "A ZF H2 a quarter later is -0.82% on the target",
+   "value": "-0.82%",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check revenue (quarterly) Q2 FY2027 why"
+  },
+  {
+   "item": "Q2 FY27 67.60%, inside 67-69%, 0.4pt under the midpoint; Q1 FY27 landed at the midpoint after the guide reset",
+   "value": "0.676",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP gross margin why"
+  },
+  {
+   "item": "FY27 66.6% vs 68.1% FY26; ZF 60% of Q2-Q4 FY27 optical; FY27 optical ~59%",
+   "value": "0.666",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026039474/credoq42026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP gross margin why"
+  },
+  {
+   "item": "65% target +5.73%, transceiver-heavy -0.72%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP gross margin why"
+  },
+  {
+   "item": "Q2 105.1 +2.5% on midpoint; overspends +10.6%, +4.7%, +8.2%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP operating expenses why"
+  },
+  {
+   "item": "plan intensity +6.00% on the 2026-11-17 set",
+   "value": "+6.00%",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP operating expenses why"
+  },
+  {
+   "item": "no past net-margin guide",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP net margin why"
+  },
+  {
+   "item": "FY28 onward drops ~7pt on the 15% minimum tax the 10-K expects from FY2028",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check non-GAAP net margin why"
+  },
+  {
+   "item": "floor +0.71%; >$100M line -31.16% / -27.58%; AEC-ramp -34.71%; FY28 2x -23.81%; 300k +18.16%; triple +15.60%; ASP held +13.70%; HSBC mix +36.45%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check optical revenue why"
+  },
+  {
+   "item": "No public optical consensus found",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor guidance_check optical revenue why"
+  },
+  {
+   "item": "lower path rests on pre-Q3 consensus; higher ones on a relayed image or an unquantified claim",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://io-fund.com/ai-stocks/ai-capex-1-trillion-estimates-too-low",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Copper TAM keep shared path why"
+  },
+  {
+   "item": "October forecast newer and year-specific; ~20% a five-year average on a smaller market definition",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical market CY2027-28 why"
+  },
+  {
+   "item": "+30.7% counts units",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical market CY2027-28 why"
+  },
+  {
+   "item": "FY28 sits at Street before the moratorium haircut",
+   "value": "",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/data/estimates/CRDO.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical FY27-29 why"
+  },
+  {
+   "item": "Coherent pick 2026-11-16 17:36Z moved 65% by -4.68% to $195.15",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin why"
+  },
+  {
+   "item": "to reach 65% on ZF a module would need a 54.3% base margin",
+   "value": "0.543",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin why"
+  },
+  {
+   "item": "Coherent the only current, scaled, non-China listed figure; biases (own lasers, a margin near a high) lean up",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://finviz.com/news/415844/coherent-corp-reports-first-quarter-fiscal-2027-results",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin why"
+  },
+  {
+   "item": "AAOI and Singularity anchors not like-for-like; InnoLight/Eoptolink excluded by rule 10",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://highwaterinvesting.substack.com/p/applied-optoelectronics-aaoi-the",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin why"
+  },
+  {
+   "item": "ZF 60% of Q2-Q4 FY27 optical; FY27 guide cannot tell 66.6% from 67.7%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin why"
+  },
+  {
+   "item": "PIC cost share has no source (28-44% -1.68% to +1.69%); over 5%: +5.73% and -7.56%; under: -2.34%, -4.70%, -1.68%, -0.72%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://singularityresearchfund.com/optics-supply-chain",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin why"
+  },
+  {
+   "item": "Your pick of the Coherent anchor is booked",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Optical gross margin why"
+  },
+  {
+   "item": "Kilian's 2026-11-16 instruction",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: DECIDED carve-out why"
+  },
+  {
+   "item": "two cuts point opposite ways (0.01-0.19 vs 0.61-0.75); ~55 names a month; market-wide 0-0.1; 50/50 support from thin-margin growers",
+   "value": "",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/wrds/results/blend_evs_pe/README.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: EV/sales weight why"
+  },
+  {
+   "item": "cut mostly lands on NVIDIA prices and neocloud volume rather than Trainium and TPU",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: SemiAnalysis cut why"
+  },
+  {
+   "item": "file ends dated 2026-10-05, before the Q3 calls raised 2026 guides",
+   "value": "",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: Copper TAM capex-file scenarios why"
+  },
+  {
+   "item": "LightCounting Dec 2023 $2.8B AOC+DAC+AEC by 2028 (stale); Dec 2025 paid ($5,995); 650 Group release no figure",
+   "value": "2.8 $B",
+   "basis": "claim",
+   "source_url": "https://lightcounting.com/newsletter/en/december-2023-aocs-dacs-linear-drive-pluggable-and-co-packaged-optics-209",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_tam derivation"
+  },
+  {
+   "item": "plain reading, scaling device, attach cancels, shared NVDA 11-09 path, TAM arithmetic, FY/CY pairing, quarters carry year level",
+   "value": "",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_tam derivation"
+  },
+  {
+   "item": "copper quarters 475.0 / 500.6 / 527.6; 544.4-635.9; 676.2 / 718.7 / 697.8 / 677.5; share_q = copper_q x 4 / TAM",
+   "value": "",
+   "basis": "arithmetic",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "FY25 quarter shares 13.7/16.5/30.9/38.9% (Q1 FY25 59.8); FY26 16.7/20.1/30.5/32.7%",
+   "value": "",
+   "basis": "arithmetic",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001807794.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "Bear: dual-sourcing carried by top_customer_pct",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation"
+  },
+  {
+   "item": "Copper Q1 = 479.0 - 35.0 = 444.0; FY27 optical 425.5; share 1.172%; 29.1% below '>$600M'; after dc_mor $425.5M / $1,449.4M / $1,844.6M; FY26 optical 10/12/17/21",
+   "value": "",
+   "basis": "arithmetic",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "merchant-chip reading: Q1 DSP $25.6M at two-digit ASPs = order of a hundred thousand DSPs a month",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/01/credo-crdo-q4-2026-earnings-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "ZF reading rests on a named outlet's report (confidence medium); CEO's units unnamed",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.benzinga.com/trading-ideas/movers/26/06/60023965/credo-wires-agentic-ai-with-10-billion-plus-market-in-sight",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "build below Street FY27, at Street FY28 before dc_mor; no input lowered",
+   "value": "",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/data/estimates/CRDO.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation"
+  },
+  {
+   "item": "Gate-fix history: 65% flat; FY27 blend then 67.7% (1,605.3 / 2,372.7)",
+   "value": "0.6766",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver gm_optical derivation"
+  },
+  {
+   "item": "actual opex 54.5 / 57.3 / 77.4 / 81.7; Q1 FY27 95.2 (accession numbers)",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver opex derivation"
+  },
+  {
+   "item": "second gate fix: opex_q = revenue_q x intensity_q",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver opex derivation"
+  },
+  {
+   "item": "FY27-29 up 83% / 35% / 34%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path copper_tam"
+  },
+  {
+   "item": "FY27 rise from Q1 444 on capex quarters; FY28-29 share down with MaxLinear loss",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/crdo-stock-hits-6-month-low-after-max-linear-targets-credo-dominated-cable-market/cZxyk1CRBxY",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path copper_share"
+  },
+  {
+   "item": "FY27 68.24% held; FY28-29 67.49%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://semifundamental.substack.com/p/active-electrical-cable-aec-fundamentals",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path gm_copper"
+  },
+  {
+   "item": "CY2026 +120%, CY2027 +76%, CY2028 ratio +42.2%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path optical_tam"
+  },
+  {
+   "item": "FY27 line build; FY28 ZF units double, ASP -25%; FY29 units +30.7%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.investing.com/news/transcripts/credo-at-goldman-sachs-conference-optical-ramp-drives-bigger-vision-93CH-4896721",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path optical_share"
+  },
+  {
+   "item": "Q2 FY27-FY29 Coherent anchor 62.3% -> ~57%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://finviz.com/news/415844/coherent-corp-reports-first-quarter-fiscal-2027-results",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path gm_optical"
+  },
+  {
+   "item": "intensity 19.59% -> 21.55% by Q4 FY29",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path opex"
+  },
+  {
+   "item": "0.33 held",
+   "value": "0.33",
+   "basis": "filing",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path top_customer_pct"
+  },
+  {
+   "item": "FY28 11.16%, FY29 2.40%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/driver_models/shared/dc_mor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path dc_mor"
+  },
+  {
+   "item": "0.74 -> 0.63 by Q4 FY29",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/01/credo-crdo-q4-2026-earnings-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path hs_self_funded"
+  },
+  {
+   "item": "Q2 FY27 revenue 531.6 (+0.3% on mid), GM 67.6%, opex 105.1; FY27 revenue +77.7% vs >85%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver path guided years back-solve check"
+  },
+  {
+   "item": "attach rising to 0.65% / 0.70% (src 22)",
+   "value": "+10.29%",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/09/08/credo-crdo-q1-2027-earnings-call-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam"
+  },
+  {
+   "item": "pre-update path 733 / 1,080 / 1,330 (src 23)",
+   "value": "+1.41%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam"
+  },
+  {
+   "item": "lower consensus path ~$980B (IO Fund $934.5B, S&P $1,029.1B) + GS +12%",
+   "value": "-9.49%",
+   "basis": "estimate",
+   "source_url": "https://io-fund.com/ai-stocks/ai-capex-1-trillion-estimates-too-low",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam"
+  },
+  {
+   "item": "capex file low 880 / 800 and high 1,360 / 1,750",
+   "value": "-22.60% / +25.29%",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam"
+  },
+  {
+   "item": "Goldman Sachs full path +54% / +12%",
+   "value": "+3.32%",
+   "basis": "estimate",
+   "source_url": "https://www.techflowpost.com/en-US/article/34264",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam"
+  },
+  {
+   "item": "SemiAnalysis all-platform -13% / -16%, net and gross; platform-weighted NVIDIA -14% / -35%; dollar -19% / -28%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam"
+  },
+  {
+   "item": "10-27 hold; no MaxLinear loss; MaxLinear 20% / 30%; 70% mix rise; no lead; CY2029 variants",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stocktwits.com/news-articles/markets/equity/crdo-stock-hits-6-month-low-after-max-linear-targets-credo-dominated-cable-market/cZxyk1CRBxY",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_share"
+  },
+  {
+   "item": "no price response; 17.5% gap; 7.5% on all 1.6T; 70% mix",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://semifundamental.substack.com/p/active-electrical-cable-aec-fundamentals",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives gm_copper"
+  },
+  {
+   "item": "capex-only 2028; interpolated +62%; old ratio; LC ~+20% a year; CEO units +30.7%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://lightwaveonline.com/home/article/55362899/ai-scale-up-raises-the-stakes-for-transceivers-and-cpo-adoption",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives optical_tam"
+  },
+  {
+   "item": "all alternatives (>$100M line, largest line, AEC ramp, FY28 2x, triple, 300k, ASP held, blended ASP, HSBC mix, floor, >$500M, H2 slip, PICs $100M, FY29 flat, Marvell-Lumentum 15%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/01/credo-crdo-q4-2026-earnings-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives optical_share"
+  },
+  {
+   "item": "65% target; transceiver-heavy; mix fade; Coherent from FY28; DF 35%; AAOI 29.35%; Singularity 22.5%; cost share 28% / 44%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://deepfundamental.substack.com/p/deep-dive-optical-module-market",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives gm_optical"
+  },
+  {
+   "item": "plan intensity 17.70%; TTM held 19.59%; Astera 26.6%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000044/q326exhibit991.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives opex"
+  },
+  {
+   "item": "window 0.5 (NVDA card 7, src 35); ERCOT 2026-12-10 reports",
+   "value": "+1.94% / +3.08%",
+   "basis": "estimate",
+   "source_url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives dc_mor"
+  },
+  {
+   "item": "flat 0.74; all four (84%); two named (61%); no carve-out; neocloud bases 4% / 12%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/06/01/credo-crdo-q4-2026-earnings-transcript/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives hs_self_funded"
+  },
+  {
+   "item": "trailing 1.73%; discounted like P/E 3.84%; no FCF leg",
+   "value": "+15.61 / -9.73 / -6.58",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-17/CRDO/peers_fcf_2026-11-17.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives horizon_multiples[FCF yield].value"
+  },
+  {
+   "item": "50/50; EV/sales 0.4 / 0.1 / 0.7",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "/mnt/project-files/wrds/results/blend_evs_pe/README.md",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives horizon_multiples[P/E].weight / [EV/sales].weight"
+  },
+  {
+   "item": "",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives scenario_vol / top_customer_pct / FCF weight why_none"
+  },
+  {
+   "item": "context and option sources src 40, 41, 43, 12, 22, 35",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian copper_share (card 1)"
+  },
+  {
+   "item": "options' sources src 32, 33, 22",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian optical_tam (card 2)"
+  },
+  {
+   "item": "options' sources src 70, 76, 61, 11, 74, 75, 66, 73",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian optical_share (card 3)"
+  },
+  {
+   "item": "context and options' sources src 53, 22, 10, 78, 80, 79, 77, 95, 75",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian gm_optical (card 4)"
+  },
+  {
+   "item": "options' sources src 10, 58, 22, 59",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian opex (card 5)"
+  },
+  {
+   "item": "options' sources src 48, 49, 22, 61, 47",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian hs_self_funded (card 6)"
+  },
+  {
+   "item": "context and options src 46, 86",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian horizon_multiples[EV/sales].weight (card 7)"
+  },
+  {
+   "item": "context: 50/50 +3.41% on the booked set (+5.67% before the FCF leg)",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian horizon_multiples[P/E].weight (card 8)"
+  },
+  {
+   "item": "context and options src 85-93, 86, 27",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian horizon_multiples[FCF yield].value (card 10)"
+  },
+  {
+   "item": "options' sources src 23, 56, 35, 36, 38",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian copper_tam capex-file scenarios (card 11)"
+  },
+  {
+   "item": "claim (src 30, 60) (fixed)",
+   "value": "FY25 non-AEC revenue is at most IP licensing $12.5M + engineering services $12.1M + non-AEC product sales [src 30]; the FY25 10-K says 'AEC products, which contributed over 95% of the increase in pro...",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1807794/000162828025033813/crdo-20250503.htm",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation",
+   "fix": "Confirmed by EDGAR full-text search (efts.sec.gov search-index, forms=10-K, ciks=0001807794, generic User-Agent, 2026-11-17): 'engineering services' + '12.1 million' and 'IP license' + '12.5' each hit only the FY25 10-K (acc 0001628280-25-033813, crdo-20250503.htm) and the FY24 10-K (acc 0001628280-"
+  },
+  {
+   "item": "tax_rate FY2028-29 0.15 variant view and P/E row: '~1% gives research target (12m) ~$182.26 (+10.5%) on this set' (fixed)",
+   "value": "182.26 (+10.5%)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail",
+   "fix": "Added the ~1% tax as a judgment_alternatives item 'years.tax_rate FY2028-FY2029' (patch years[1..2].tax_rate 0.01) and sized it: 237.52 (+12.07%, engine, 2026-11-17 booked set, research target (12m) 211.94); inputs_detail[4] derivation and [14] variant_view now quote it; over 5%, so carded as Kilian"
+  },
+  {
+   "item": "driver:gm_optical year FY27 0.611 (agg wmean:optical_tam*optical_share) (fixed)",
+   "value": "0.611",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor model",
+   "fix": "Driver unchanged. key_drivers[5] and inputs_detail driver:gm_optical value now label 0.611/0.568/0.5714 as simple quarter means with the revenue-weighted FY27 0.592; changes[11], fair_value.reason, model.reasoning, card 4 context and the gm_optical derivation state 59.2% (revenue-weighted) where a w"
+  },
+  {
+   "item": "Trainium and TPU are Credo's two largest platforms (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.itiger.com/news/1126271736",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment call: SemiAnalysis cut why",
+   "fix": "Reworded in card 9 options 0 and 2 and why, and in update.json what_changed: Credo's largest end customer (read as Amazon, Trainium not cut) and its third (read as Google, TPU via Broadcom insulated), together ~46% of revenue, are on the insulated platforms, while ~54% sits on NVIDIA racks (the set'"
+  },
+  {
+   "item": "variant sizes: lower path -9.46%, GS full path +2.49%, Morgan Stanley +6.05%, attach 0.70% +9.96% (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_tam derivation",
+   "fix": "copper_tam derivation (and inputs_detail copy) now quotes the engine sizes (engine, 2026-11-17 booked set, research target (12m) 211.94): lower path -9.49%, GS full path +3.32%, Morgan Stanley +7.23%, attach 0.70% +10.29%, plus capex file low/high -22.60%/+25.29% and SemiAnalysis reads -13.62% to -1"
+  },
+  {
+   "item": "pairing one calendar quarter ahead (estimate, confidence low); no-lead pairing sized '+5.11%' and carded (fixed)",
+   "value": "+5.11%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver copper_share derivation",
+   "fix": "copper_share derivation (and copy): no-lead +5.59%; CY2029 GS +12% -0.02%, flat -0.02%, +17% -0.03%; 70% rise -1.19% (engine, 2026-11-17 booked set, research target (12m) 211.94)."
+  },
+  {
+   "item": "alternative sizes: '>$100M' line -33.16% / -29.32%; largest line 2.5x -28.26%; AEC ramp -36.80%; FY28 2x -25.57%; triple +17.29%; 300k +19.33%; ASP held +15.65%; HSBC mix +39.42%; blended ASP +4.91%; floor +0.20%; '>$500M' +0.09%; ZF H2 later -0.25% (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver optical_share derivation",
+   "fix": "optical_share derivation (and copy) now quotes the engine sizes (engine, 2026-11-17 booked set, research target (12m) 211.94): -31.16 / -27.58 / -26.52 / -34.71 / -23.81 / +15.60 / +18.16 / +13.70 / +36.45 / +4.32 / +0.71 / +0.31 / -0.82, PICs +2.88, FY29 flat -1.32, Marvell-Lumentum -3.56, optical_"
+  },
+  {
+   "item": "alternative sizes +0.65% / -0.91% / -0.43% / -0.09%; blended GM 'FY27 67.7%, FY28 66.5%, FY29 66.5% (optics at 65%)' (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver gm_copper derivation",
+   "fix": "gm_copper derivation (and copy): +0.79 / -1.12 / -0.53 / -0.11 (engine, 2026-11-17 booked set, research target (12m) 211.94); blend restated from the engine on the booked Coherent optical anchor: FY27 66.6%, FY28 63.3%, FY29 63.3% (optical revenue-weighted 59.2 / 56.8 / 57.1% at 18 / 39 / 40% of rev"
+  },
+  {
+   "item": "alternative sizes +0.78 / +1.90 / -0.68 / -0.35 / +0.21 / -7.49 (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver hs_self_funded derivation",
+   "fix": "hs_self_funded derivation (and copy): +0.81 / +1.99 / -0.72 / -0.37 / +0.22 / -7.91 (engine, 2026-11-17 booked set, research target (12m) 211.94)."
+  },
+  {
+   "item": "alternatives: plan intensity +4.90%; TTM held +2.03%; Astera 26.6% -5.23% (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor driver opex derivation",
+   "fix": "opex derivation (and copy): +6.00 / +2.50 / -6.44 (engine, 2026-11-17 booked set, research target (12m) 211.94)."
+  },
+  {
+   "item": "Morgan Stanley 2026-11-08 bars $1,224B / $1,338B (src 44) (fixed)",
+   "value": "+7.23%",
+   "basis": "estimate",
+   "source_url": "https://fourweekmba.com/ai-morgan-stanley-pegs-google-2027-capex-at-375b-in-1-6t-call/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam",
+   "fix": "Tried again 2026-11-17 (FourWeekMBA, InvestingLive, CryptoBriefing all refused automated reads; no other outlet found with the 2026-11-08 per-company bars). Kept on the NVDA gate's 2026-11-12 read of the relay page (HTTP 200 ~06:00Z) and the owner's confirmation that the note is real (2026-11-10 05:"
+  },
+  {
+   "item": "'one 400G AEC per GB200 GPU per network layer' (src 43), also in card 9 context (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://semifundamental.substack.com/p/active-electrical-cable-aec-fundamentals",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives copper_tam",
+   "fix": "Reworded to src 43 in judgment_alternatives copper_tam alt 7, card 9 context and update.json: one 400G AEC per GB200 GPU at the first network layer; upper back-end layers the same count because scale-out traffic is all-to-all; front-end counts depend on oversubscription (re-opened 2026-11-17). Volum"
+  },
+  {
+   "item": "InnoLight/Eoptolink 47.5% anchor rows (sources src 77 + FourWeekMBA URL) (fixed)",
+   "value": "+2.88% / +2.91%",
+   "basis": "estimate",
+   "source_url": "https://fourweekmba.com/ai-innolight-eoptolink-filings-show-8-8b-sold-abroad-in-h1/",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives gm_optical",
+   "fix": "src 95 (remio: InnoLight 46.59%, Eoptolink 48.46%) added beside src 77 in both InnoLight/Eoptolink rows' sources and builds; reference-only alternative, sizes +2.88% / +2.91% unchanged."
+  },
+  {
+   "item": "unlisted build: DSP share of module BOM up to 40% (SimpleTechTrend src 74, cited for the $400 module price) or ~30% (Deep Fundamental src 79) gives a DSP+PIC cost share up to ~54% (40% + PIC 14%) (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.simpletechtrend.com/en/post/800g-vs-16t-optical-module-bom-teardown-en",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives gm_optical",
+   "fix": "Added the SimpleTechTrend build (src 74 DSP 'roughly 25-40%' at its top + PIC 14% = cost share 54%, ZF 61.4% on Coherent 40.6%) as gm_optical alternative in the style of the cost-share rows; sized +3.79% (engine, 2026-11-17 booked set, research target (12m) 211.94), under 5%; quoted in the gm_optica"
+  },
+  {
+   "item": "unlisted builds on the cited NVDA dc_mor timing card (src 35, card 7): window 0.25, start Jan 2027, start Oct 2027, old design (Apr 2027-Jun 2028 x 0.5) (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-09/NVDA/supervisor.json",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_alternatives dc_mor",
+   "fix": "The NVDA timing card (runs/2026-11-09/NVDA card 6) is unanswered and the 2026-11-05 owner cards fixed weights/redirect/basis/Georgia, not timing, so all its options are now sized dc_mor alternatives with the shared formula on Credo's quarter ends: window 0.5 +1.60%, window 0.25 +2.40%, ERCOT reports"
+  },
+  {
+   "item": "options' sources src 35-39, 56, 8, 57, 44, 100, 22 (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian copper_tam (card 0)",
+   "fix": "Same as the Morgan Stanley row: card 0's option says the relay failed on 2026-11-17 and now states the figures rest on the NVDA gate's 2026-11-12 read and the owner's 2026-11-10 confirmation; alternative only."
+  },
+  {
+   "item": "options' sources src 82, 83, 50, 43 (fixed)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-17",
+   "feeds": "supervisor judgment_calls_for_kilian copper_tam SemiAnalysis (card 9)",
+   "fix": "Card 9 'Keep the paths' reasoning, option 2 and why reworded to the set's split (largest end customer read as Amazon/Trainium and third as Google/TPU, ~46%, insulated; ~54% on NVIDIA racks), src 50 added; context's AEC wording set to src 43's first-layer statement."
+  }
+ ],
+ "note": "Fix pass 2 of gate round 2 (2026-11-17). Values unchanged: research target (12m) 211.94 (P/E 181.18 w0.42, EV/sales 237.21 w0.30, FCF yield 231.00 w0.28); model_engine.py check OK; judgment_check.py size (84 alternatives) + check ok. New card: years.tax_rate FY2028-FY2029 (~1% tax +12.07%), recorded as Kilian's 2026-10-26 decision. Morgan Stanley 2026-11-08 bars (src 44) still unreachable; kept on the NVDA gate's 2026-11-12 read and the owner's 2026-11-10 confirmation (alternative only)."
+}

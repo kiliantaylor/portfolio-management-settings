@@ -1,0 +1,963 @@
+{
+ "date": "2026-11-04",
+ "symbol": "APP",
+ "clean": true,
+ "checked": 110,
+ "ok": 99,
+ "fixed": 11,
+ "failures": [
+  {
+   "item": "supervisor driver adj_ebitda_m derivation: claim (src 51)",
+   "value": "UP: revenue is net of publisher payouts, so costs are mostly compute and a small team; Q2->Q3 flow-through was ~87%, above the 84% margin, and data center costs fell as a share of revenue (CEO, src 51).",
+   "cited": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "result": "not_found",
+   "fix": "claim on transcript after edit: 87% flow-through / 84% margin (CFO), data center costs down as % of revenue (CEO and CFO); unsupported publisher-payout sentence removed; no value change"
+  },
+  {
+   "item": "supervisor fair_value: Exit P/E used for 419.43",
+   "value": "13.42x",
+   "cited": "comps_summary / data/estimates/*.json",
+   "result": "wrong",
+   "fix": "fair_value.reason now 13.52x (matches comps_summary and model_engine check 419.43)"
+  },
+  {
+   "item": "supervisor fair_value: Zacks APP FY26/FY27 EPS (2026-10-30 build text)",
+   "value": "15.63 / 19.90",
+   "cited": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast (saved copy data/estimates/APP.json, retrieved 2026-11-04)",
+   "result": "wrong",
+   "fix": "stale build text removed; current 15.61 / 19.63 from saved copy"
+  },
+  {
+   "item": "supervisor thesis_break_reason: $185 = ~9.3x FY27 Zacks EPS $19.90 (2026-10-30 text)",
+   "value": "19.90",
+   "cited": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast (saved copy data/estimates/APP.json, retrieved 2026-11-04)",
+   "result": "wrong",
+   "fix": "now ~9.4x on $19.63; $185 unchanged"
+  },
+  {
+   "item": "supervisor thesis_break_reason: Oct 30 -10.4%, no company news; close $228.50",
+   "value": "-10.4% / 228.50",
+   "cited": "https://www.trefis.com/stock/app/articles/621864/what-just-happened-to-applovin-stock/2026-11-01",
+   "result": "not_found",
+   "fix": "opened 2026-11-05: Trefis shows -10.4% Oct 30, no company announcements, close $228.50; verified, no change"
+  },
+  {
+   "item": "supervisor disagreements[haircut]: Zacks FY27 EPS $19.90",
+   "value": "19.90",
+   "cited": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast (saved copy data/estimates/APP.json, retrieved 2026-11-04)",
+   "result": "wrong",
+   "fix": "now $19.63 (11-04 snapshot)"
+  },
+  {
+   "item": "supervisor disagreements[Unity]: Suit: TRO in SF Superior Court + JAMS arbitration; Unity: 'increased competition and slowing growth'",
+   "value": "",
+   "cited": "https://mobilegamer.biz/applovin-sues-unity-over-alleged-data-collection-through-its-ad-quality-sdk/",
+   "result": "not_found",
+   "fix": "opened 2026-11-05: MobileGamer shows TRO in Superior Court of California in San Francisco, JAMS arbitration, Ad Quality SDK / MAX data, Unity quote 'increased competition and slowing growth'; verified, no change"
+  },
+  {
+   "item": "supervisor model.inputs_detail[P/E multiple]: derivation text vs value",
+   "value": "13.52x",
+   "cited": "comps_summary; data/estimates/*.json",
+   "result": "wrong",
+   "fix": "derivation rebuilt: 21.35x / 12.06x / 13.52x on 15.61 / 19.63; value unchanged"
+  },
+  {
+   "item": "supervisor model.comps_summary[GOOGL]: basis_reconciliation 'Restated FY26 = Zacks 20.40 - 8.06 = 12.34; FY27 15.07'",
+   "value": "20.40 / 15.07",
+   "cited": "https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast (saved copy data/estimates/GOOGL.json)",
+   "result": "wrong",
+   "fix": "now 19.86 - 8.06 = 11.80; FY27 14.93"
+  },
+  {
+   "item": "supervisor guidance_check revenue why: mean +4.0% gives $2,476M (-2% on value)",
+   "value": "-2%",
+   "cited": "arithmetic",
+   "result": "arithmetic",
+   "fix": "now 'about -1% on value', consistent with judgment card -1.0%"
+  },
+  {
+   "item": "supervisor guidance_check revenue why: No post-print consensus yet.",
+   "value": "",
+   "cited": "none cited",
+   "result": "invented",
+   "fix": "sentence removed"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "revenue (quarterly) Q3-2026: first guide (2026-08-05) / reported actual",
+   "value": "2055.0-2085.0 / 2184.815",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "shares.diluted_now anchor (reported_history, as of 2026-09-30): Q3-26 diluted weighted average",
+   "value": "334.769",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model normalizing (shares) anchor"
+  },
+  {
+   "item": "shares.diluted_now",
+   "value": "334.769",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "revenue (quarterly) Q4-2026 guide as of 2026-11-04",
+   "value": "2365.0-2395.0",
+   "basis": "GAAP revenue ($M; all advertising, continuing operations)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EBITDA (quarterly) Q4-2026 guide as of 2026-11-04",
+   "value": "1995.0-2025.0",
+   "basis": "adjusted EBITDA (excludes SBC, D&A, interest, taxes, transaction and restructuring costs, other income)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "driver_build.quarters.reported[Q3 FY2026]",
+   "value": "revenue 2,184.8; ebit 1,709.0; D&A 34.2; SBC 84.2; tax 17.49%; EPS 4.30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "revenue (quarterly) Q3-2025: first guide (2025-08-06) / reported actual",
+   "value": "1320.0-1340.0 / 1405.045",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000069/exhibit991-2q25earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EBITDA (quarterly) Q3-2025: first guide (2025-08-06) / reported actual",
+   "value": "1070.0-1090.0 / 1157.654",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000069/exhibit991-2q25earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q4-2025: first guide (2025-11-05) / reported actual",
+   "value": "1570.0-1600.0 / 1657.944",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000079/exhibit991-3q25earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EBITDA (quarterly) Q4-2025: first guide (2025-11-05) / reported actual",
+   "value": "1290.0-1320.0 / 1398.679",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000079/exhibit991-3q25earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q1-2026: first guide (2026-02-11) / reported actual",
+   "value": "1745.0-1775.0 / 1842.449",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000005/exhibit991-4q25earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EBITDA (quarterly) Q1-2026: first guide (2026-02-11) / reported actual",
+   "value": "1465.0-1495.0 / 1556.919",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000005/exhibit991-4q25earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarterly) Q2-2026: first guide (2026-05-06) / reported actual",
+   "value": "1915.0-1945.0 / 1923.686",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000042/exhibit991-1q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EBITDA (quarterly) Q2-2026: first guide (2026-05-06) / reported actual",
+   "value": "1615.0-1645.0 / 1613.823",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000042/exhibit991-1q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "adjusted EBITDA (quarterly) Q3-2026: first guide (2026-08-05) / reported actual",
+   "value": "1710.0-1740.0 / 1842.23",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000057/exhibit991-2q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 21, 22)",
+   "value": "No quarterly Street Q4 revenue is public on our sources (StockAnalysis quarterly estimates are paywalled); derived only: Street FY2026 $8.08B (src 21) - Q1-Q2 actual 3,766.1 - Q3 Street 2,080 (src 22) = ~2,234 (estimate, pre-print).",
+   "basis": "claim",
+   "source_url": "https://stockanalysis.com/stocks/app/forecast/",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance_check revenue (quarterly) Q4-2026 why"
+  },
+  {
+   "item": "claim (src 47, 2, 3, 16)",
+   "value": "FY2027-29 built from the two demand engines (not disclosed separately; one revenue driver): revenue = installs x net revenue per install (10-Q MD&A: Q3 installs +2%, NRPI +55%; Q2 -2%/+58%; Q1 -18%/+93%; FY2025 +3%/+72%; src 47, 2, 3, 16)...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 51, 46)",
+   "value": "SPLIT (estimate, not disclosed; CFO Q3 call: no split given, src 51): gaming ~84% / consumer ~16% of FY2026 revenue, triangulated from the Q3 call: total +55.5% y/y (src 46) with consumer 'triple digits' ... gaming 'nearly 50%' ...; Q1 lower and the Q4 peak higher (src 51).",
+   "basis": "claim",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 51)",
+   "value": "Q3-26 gaming grew 'nearly 50%' y/y with the next-generation model only partly rolled out; the rest of the transition is ahead but with no committed cadence (CEO, src 51).",
+   "basis": "claim",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 51, 49, 17)",
+   "value": "CONSUMER (web/e-commerce): advertiser spend 'growing triple digits' y/y and 'double digits' q/q in Q3-26 (CFO, src 51); ... CEO Q3: 'really early', 'lightly penetrated', new-customer acquisition now a growth component, the new model helps most where data is sparse, 'exactly where our consumer vertical lives' (src 51); still slow to ramp: incrementality studies, SMB 'further into the future' (src 51).",
+   "basis": "claim",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 51)",
+   "value": "Whole-business path FY2026-29 compounds at +30.1% a year, in line with management's 'roughly 30% annually over the long term' (src 51) and below its 'run well ahead' aim.",
+   "basis": "claim",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 51)",
+   "value": "DOWN: model training investment is rising, CTV pilots and the consumer/international push need spend, and the CFO: 'We manage this business to EBITDA dollars and free cash flow rather than to a margin percentage' (src 51), i.e. reinvest rather than let margin climb.",
+   "basis": "claim",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver adj_ebitda_m derivation"
+  },
+  {
+   "item": "claim (src 51, 47)",
+   "value": "Buybacks at 85% of FCF (company record since program start, CFO Q3 call, src 51; 9M-26 80%, Q3 alone ~99%, FY2025 65%) with FCF = 72.5% of adj. EBITDA (midpoint of the CFO's FY2026 70-75%, src 51, ...; Q3 77%), retired at $311.44, the September 2026 average repurchase price (10-Q Item 2 table, src 47)...",
+   "basis": "claim",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver dil_sh derivation"
+  },
+  {
+   "item": "claim (src 49, 51)",
+   "value": "The Q1-26 call's '$1 billion run rate a year ago' (src 49) is not stated as revenue or advertiser spend; APP reports net revenue ('net revenue dollars', gross spend near $20B annualized vs ~$8.7B revenue, src 51), so it is not used for the split.",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-applovin-beats-q1-2026-forecasts-stock-rises-93CH-4665979",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 49, 51)",
+   "value": "Management's earlier gaming expectation was 20-30% a year with law-of-large-numbers drag (analyst recap, Q3 call; CEO Q1-26 call 'way over' it every quarter, src 49, 51); the CEO now commits only to ~30% for the whole business and says gaming 'could' grow faster if the new model is optimized (src 51).",
+   "basis": "claim",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-applovin-beats-q1-2026-forecasts-stock-rises-93CH-4665979",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 50)",
+   "value": "GAMING: end market flat (mobile game IAP $82B, +1% in 2025, Sensor Tower, src 50); APP grows by share and per-install pricing.",
+   "basis": "claim",
+   "source_url": "https://sensortower.com/press/press-release-sensor-tower-state-of-gaming-gaming-drove-52-billion-downloads-82b-iap-revenue-on-mobile-and-12b-premium-revenue-on-steam",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 17, 51)",
+   "value": "Quarters: y/y declining linearly within each year, solved to hit each year's total (Q2 seasonally weakest, Q4 peak, src 17); Q1-27 +4.8% q/q vs +11% in Q1-26 and +16% in Q1-25, as the consumer mix br…",
+   "basis": "claim",
+   "source_url": "https://equibles.com/stocks/app/calls/2026-q2",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "claim (src 17, 46)",
+   "value": "FY2027-29 quarters = the 2026 margin of the same quarter (Q1 84.50%, Q2 83.89%, Q3 84.32%, Q4 84.52%): margins have held 83.9-84.5% for five quarters (Q4-25..Q4-26 guide), and the CFO's Q2-call 'low …",
+   "basis": "claim",
+   "source_url": "https://equibles.com/stocks/app/calls/2026-q2",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver adj_ebitda_m derivation"
+  },
+  {
+   "item": "Q3 +55.5% y/y; FY2026-29 +30.1% a year; margin ~84.3%; tax 16.5%; buybacks 85% of FCF",
+   "value": "55.5% / 30.1% / 84.3%",
+   "basis": "reported/estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm ; https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Net debt 342.4 at 9-30; authorization $3.6B after October $3.2B raise",
+   "value": "342.4 / 3.6B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "$1.8B authorization left at 6-30 (2026-10-30 text)",
+   "value": "1.8B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000059/app-20260630.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "CEO Form 4s aff10b5One=false; June sales 29,457+52,165+22,544 sh = $51.1m",
+   "value": "$51.1m",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000184839526000010/primarydocument.xml (+ -000011, -000012, -000005)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[CEO 10b5-1]"
+  },
+  {
+   "item": "Form 144 planAdoptionDates empty",
+   "value": "empty",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000195004726005915/primary_doc.xml",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[CEO 10b5-1]"
+  },
+  {
+   "item": "Webb plan Mar 3 2026, up to 40,000 sh; no other officer/director",
+   "value": "Mar 3 2026 / 40,000",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000044/app-20260331.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[CEO 10b5-1]"
+  },
+  {
+   "item": "Class period Feb 12-Aug 5 2026",
+   "value": "Feb 12-Aug 5 2026",
+   "basis": "reported",
+   "source_url": "https://www.newsfilecorp.com/release/317416/Kaplan-Fox-Advises-AppLovin-Corporation-APP-Investors-to-Act-Before-the-Lead-Plaintiff-Deadline-on-November-16-2026",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[CEO 10b5-1]"
+  },
+  {
+   "item": "Edgewater Q4 +8-9% q/q",
+   "value": "+8-9%",
+   "basis": "reported",
+   "source_url": "https://247wallst.com/investing/2026/09/23/applovin-drops-5-as-edgewater-warns-market-share-growth-has-stalled",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[haircut]"
+  },
+  {
+   "item": "Street-implied Q4 ~2.23B = StockAnalysis FY26 8.08B - 1,842.4 - 1,923.7 - 2,080",
+   "value": "8.08B / 2.08B",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/app/forecast/ ; https://finance.yahoo.com/markets/stocks/articles/applovin-nasdaq-app-misses-q2-203826929.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[haircut]"
+  },
+  {
+   "item": "Unity Q2 Strategic Grow $329m (+63%); Q3 guide $380-385m (+68-70%, ~+16% q/q)",
+   "value": "329 / 380-385",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000041/a2026q2ex-991.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[Unity]"
+  },
+  {
+   "item": "APP Q3 guide ~+7.6% q/q on $1.92B; +$146m vs Unity +$53m",
+   "value": "7.6% / 146 / 53",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000057/exhibit991-2q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[Unity]"
+  },
+  {
+   "item": "Q3 report Wed Nov 4 after close, call 5:00 PM ET",
+   "value": "Nov 4",
+   "basis": "reported",
+   "source_url": "https://www.marketbeat.com/earnings/reports/2026-11-4-applovin-co-stock/",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[report date]"
+  },
+  {
+   "item": "H1-26 3.28M sh for $1.5B; $1.8B left; ~0.95B Q1 / ~0.55B Q2",
+   "value": "3.28M / 1.5B",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000059/app-20260630.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor disagreements[buybacks]"
+  },
+  {
+   "item": "Q3 date Nov 4 (announced Oct 7); CEO sales discretionary",
+   "value": "",
+   "basis": "reported",
+   "source_url": "see disagreements rows",
+   "checked": "2026-11-04",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "Q4 guide above Street (pre-print)",
+   "value": "2,365-2,395 vs ~2,234",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "(null)",
+   "value": "",
+   "basis": "",
+   "source_url": "",
+   "checked": "2026-11-04",
+   "feeds": "supervisor comps_review / long_dated_review"
+  },
+  {
+   "item": "ad_rev / adj_ebitda_m / sbc / dil_sh year values",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "model.reconciled_inputs.drivers",
+   "checked": "2026-11-04",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "Peer Zacks FY26/FY27 EPS META 29.01/33.91, GOOGL 19.86/14.93, TTD .52/.53, MGNI .61/.91, PINS .56/.70, RDDT 5.35/6.90; APP 15.61/19.63",
+   "value": "",
+   "basis": "reported",
+   "source_url": "data/estimates/<SYM>.json (retrieved 2026-11-04)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.comps_summary"
+  },
+  {
+   "item": "Q3 balance sheet / FCF / tax / other income facts (cash 3,173.7; LT debt 3,516.1; AR 2,388.8; prepaid 141.8; AP 838.2; accrued 661.2; capex 7,476; tax 305.0/1,743.9; 9M 769.8/4,680.9; other income 86.0; remeasurement 46.9; interest expense 51.1, 9M 153.4)",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm ; https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail"
+  },
+  {
+   "item": "10-Q tax drivers: more foreign income at different rates, smaller SBC benefits, offset by FDII; annual-ETR method",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[tax_rate]"
+  },
+  {
+   "item": "Sep-26 avg price $311.44; Q3 4.054M sh; $394.3M left; +$3.2B Oct; no material equity awards",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[dil_sh]"
+  },
+  {
+   "item": "CFO: $9.4B since start = 85% of FCF; Q3 FCF $1.4B = 77%; FY 70-75%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[dil_sh]"
+  },
+  {
+   "item": "Installs/NRPI: Q3 +2%/+55%; Q2 -2%/+58%; Q1 -18%/+93%; FY2025 +3%/+72%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm ; Q2/Q1 10-Q ; FY2025 10-K",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[ad_rev]"
+  },
+  {
+   "item": "Q3 call: gaming 'nearly 50%', partial rollout, no cadence; consumer spend +double digits q/q, triple digits y/y; no split; ~30% long term, 'run well ahead'; analyst recap 20-30%; gaming 'could' grow faster; 'tougher Q1s'; 'really early', 'lightly penetrated'; sparse data = consumer; 'net revenue dollars'; ~$20B gross spend (analyst); incrementality; SMB 'further into the future'",
+   "value": "",
+   "basis": " reported",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[ad_rev]"
+  },
+  {
+   "item": "Q1-26 call: games 20-30%, 'way over'; '$1 billion run rate a year ago'; >$70k per customer; near-zero churn after 30 days; June worldwide opening; customers mostly Western",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.investing.com/news/transcripts/earnings-call-transcript-applovin-beats-q1-2026-forecasts-stock-rises-93CH-4665979",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[ad_rev]"
+  },
+  {
+   "item": "Q2 call: 'low 80 percent' margin; Q2 seasonally weakest; Q4 seasonal peak; mid-market first",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://equibles.com/stocks/app/calls/2026-q2",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[ad_rev/adj_ebitda_m]"
+  },
+  {
+   "item": "Mobile game IAP $82B in 2025, +1%",
+   "value": "82B / +1%",
+   "basis": "reported",
+   "source_url": "https://sensortower.com/press/press-release-sensor-tower-state-of-gaming-gaming-drove-52-billion-downloads-82b-iap-revenue-on-mobile-and-12b-premium-revenue-on-steam",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[ad_rev]"
+  },
+  {
+   "item": "CFO 'EBITDA dollars ... rather than margin percentage'; data center costs fell as % of revenue; Q2->Q3 flow-through 87%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[adj_ebitda_m]"
+  },
+  {
+   "item": "SBC Q4-25 80.5, Q1-Q3-26 83.5/85.8/84.2",
+   "value": "",
+   "basis": "reported",
+   "source_url": "Q1-26, Q2-26 and Q3-26 releases; XBRL",
+   "checked": "2026-11-04",
+   "feeds": "supervisor model.inputs_detail[sbc]"
+  },
+  {
+   "item": "Q4-26 2,491.4; FY2027-29 +37.2/+30.1/+23.5% (gaming +30/25/20, consumer +75/50/35)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf) ; https://www.investing.com/news/transcripts/earnings-call-transcript-applovin-beats-q1-2026-forecasts-stock-rises-93CH-4665979",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver path ad_rev"
+  },
+  {
+   "item": "FY2027-29 = 2026 same-quarter margins (~84.3%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm ; https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver path adj_ebitda_m"
+  },
+  {
+   "item": "$85M a quarter Q4-26 to FY2029",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver path sbc"
+  },
+  {
+   "item": "335.3/320.3/299.8/273.3",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf) ; https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver path dil_sh"
+  },
+  {
+   "item": "record arithmetic",
+   "value": "4/1/0; median 0.0468; adj 2491.4; gap 0.0468",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance revenue Q4-2026"
+  },
+  {
+   "item": "record arithmetic",
+   "value": "4/0/1; median 0.068; adj 2146.7; ours 2105.8; gap 0.0477",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance adj. EBITDA Q4-2026"
+  },
+  {
+   "item": "769.8/4,680.9",
+   "value": "0.1645",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor tax_rate anchor"
+  },
+  {
+   "item": "(1,031.2-609.9)/((2,184.8-1,657.9)x4)",
+   "value": "0.200",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor nwc_pct_incr_rev anchor"
+  },
+  {
+   "item": "7,476/2,184,815",
+   "value": "0.0034",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor capex_pct_rev anchor"
+  },
+  {
+   "item": "(86.0-46.9-3.6)x4/3,113.5",
+   "value": "0.044",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor interest_rate anchor"
+  },
+  {
+   "item": "3,516.1-3,173.7",
+   "value": "342.4",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor balance.net_debt"
+  },
+  {
+   "item": "0.165",
+   "value": "0.165",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor tax_rate"
+  },
+  {
+   "item": "0.20",
+   "value": "0.20",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor nwc_pct_incr_rev"
+  },
+  {
+   "item": "4,165/6,019/7,830/9,673",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor shareholder_returns"
+  },
+  {
+   "item": "7.5/2,184.8",
+   "value": "0.0034",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor capex_pct_rev"
+  },
+  {
+   "item": "~4.4%",
+   "value": "0.044",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor balance.interest_rate"
+  },
+  {
+   "item": "split and build",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver:ad_rev"
+  },
+  {
+   "item": "Q4 0.8452",
+   "value": "0.8452",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver:adj_ebitda_m"
+  },
+  {
+   "item": "338.4/340",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver:sbc"
+  },
+  {
+   "item": "335.3/320.3/299.8/273.3",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver:dil_sh"
+  },
+  {
+   "item": "3,600x(5.68%-4.4%)/4",
+   "value": "11.5",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor carry_q"
+  },
+  {
+   "item": "mean of seven residuals",
+   "value": "5.4",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor oth_q"
+  },
+  {
+   "item": "median +4.68% (four beats of +4.6-5.6%, one inside -0.3%); 2,491.4",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance_check revenue why"
+  },
+  {
+   "item": "pre-print +1% haircut was the main miss on Q3 (actual +5.5%)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "set's own figures",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance_check revenue why"
+  },
+  {
+   "item": "Guide mid 2,010 + 86% x 111 = 2,106 (84.52%)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance_check adj. EBITDA why"
+  },
+  {
+   "item": "record median +6.8% -> 2,147",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance_check adj. EBITDA why"
+  },
+  {
+   "item": "No Street Q4 adj. EBITDA found (the $1.75B on file was the Q3 figure, Aug 5)",
+   "value": "1.75B",
+   "basis": "reported",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/applovin-nasdaq-app-misses-q2-203826929.html",
+   "checked": "2026-11-04",
+   "feeds": "supervisor guidance_check adj. EBITDA why"
+  },
+  {
+   "item": "Q3 gaming nearly 50%, partial rollout, consumer triple digits, ~30% long-term aim",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor judgment call gaming growth why"
+  },
+  {
+   "item": "Re-carded 2026-11-05",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-04",
+   "feeds": "supervisor judgment call gaming growth why"
+  },
+  {
+   "item": "median vs mean",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-04",
+   "feeds": "supervisor judgment call Q4 median/mean why"
+  },
+  {
+   "item": "Q3 2,184.8 (+55.5%)",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "Q4 2,491.4 / record / haircut",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "gaming path +30/25/20 (rollout completes 1H27)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf) ; https://www.investing.com/news/transcripts/earnings-call-transcript-applovin-beats-q1-2026-forecasts-stock-rises-93CH-4665979",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "consumer path +75/50/35",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html (checked vs q3_2026_call_transcript.pdf)",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "Totals 11,583/15,070/18,615; consumer share 20/24/26%; 10%/20% sensitivity -3.4%/+2.3%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "Alternative: gaming +20, consumer +50/40/30 -> FY27 +24.8%, CAGR 23.6%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver ad_rev derivation"
+  },
+  {
+   "item": "Q4 0.8452 via 86% flow-through; Q2->Q3 87.5%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver adj_ebitda_m derivation"
+  },
+  {
+   "item": "Flat is the midpoint of two forces; 1pt ~1.3% of target",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver adj_ebitda_m derivation"
+  },
+  {
+   "item": "flat 83.5-85.8 three quarters; no material new awards",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver sbc derivation"
+  },
+  {
+   "item": "Start 331.3M + 1.1M gap",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000068/exhibit991-3q26earningspre.htm ; https://data.sec.gov/api/xbrl/companyfacts/CIK0001751008.json",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver dil_sh derivation"
+  },
+  {
+   "item": "Q4-26 330.6M; FY averages",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver dil_sh derivation"
+  },
+  {
+   "item": "$3.6B covers ~2-3 quarters; further raises as in 2025-26",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "checked": "2026-11-04",
+   "feeds": "supervisor driver dil_sh derivation"
+  },
+  {
+   "item": "supervisor driver adj_ebitda_m derivation: claim (src 51)",
+   "value": "claim on transcript after edit: 87% flow-through / 84% margin (CFO), data center costs down as % of revenue (CEO and CFO); unsupported publisher-payout sentence removed; no value change",
+   "basis": "claim",
+   "source_url": "q3_2026_call_transcript.pdf (src 51, local copy, pdftotext)",
+   "checked": "2026-11-05",
+   "feeds": "commentary"
+  },
+  {
+   "item": "supervisor fair_value: Exit P/E used for 419.43",
+   "value": "fair_value.reason now 13.52x (matches comps_summary and model_engine check 419.43)",
+   "basis": "estimate",
+   "source_url": "comps_summary",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor fair_value: Zacks APP FY26/FY27 EPS (2026-10-30 build text)",
+   "value": "stale build text removed; current 15.61 / 19.63 from saved copy",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast (saved copy data/estimates/APP.json, retrieved 2026-11-04)",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor thesis_break_reason: $185 = ~9.3x FY27 Zacks EPS $19.90 (2026-10-30 text)",
+   "value": "now ~9.4x on $19.63; $185 unchanged",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast (saved copy data/estimates/APP.json, retrieved 2026-11-04)",
+   "checked": "2026-11-05",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "supervisor thesis_break_reason: Oct 30 -10.4%, no company news; close $228.50",
+   "value": "opened 2026-11-05: Trefis shows -10.4% Oct 30, no company announcements, close $228.50; verified, no change",
+   "basis": "reported",
+   "source_url": "https://www.trefis.com/stock/app/articles/621864/what-just-happened-to-applovin-stock/2026-11-01",
+   "checked": "2026-11-05",
+   "feeds": "thesis_break"
+  },
+  {
+   "item": "supervisor disagreements[haircut]: Zacks FY27 EPS $19.90",
+   "value": "now $19.63 (11-04 snapshot)",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast (saved copy data/estimates/APP.json, retrieved 2026-11-04)",
+   "checked": "2026-11-05",
+   "feeds": "commentary"
+  },
+  {
+   "item": "supervisor disagreements[Unity]: Suit: TRO in SF Superior Court + JAMS arbitration; Unity: 'increased competition and slowing growth'",
+   "value": "opened 2026-11-05: MobileGamer shows TRO in Superior Court of California in San Francisco, JAMS arbitration, Ad Quality SDK / MAX data, Unity quote 'increased competition and slowing growth'; verified, no change",
+   "basis": "reported",
+   "source_url": "https://mobilegamer.biz/applovin-sues-unity-over-alleged-data-collection-through-its-ad-quality-sdk/",
+   "checked": "2026-11-05",
+   "feeds": "commentary"
+  },
+  {
+   "item": "supervisor model.inputs_detail[P/E multiple]: derivation text vs value",
+   "value": "derivation rebuilt: 21.35x / 12.06x / 13.52x on 15.61 / 19.63; value unchanged",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/APP/earnings-forecast (saved copy data/estimates/APP.json, retrieved 2026-11-04)",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor model.comps_summary[GOOGL]: basis_reconciliation 'Restated FY26 = Zacks 20.40 - 8.06 = 12.34; FY27 15.07'",
+   "value": "now 19.86 - 8.06 = 11.80; FY27 14.93",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast (saved copy data/estimates/GOOGL.json)",
+   "checked": "2026-11-05",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor guidance_check revenue why: mean +4.0% gives $2,476M (-2% on value)",
+   "value": "now 'about -1% on value', consistent with judgment card -1.0%",
+   "basis": "estimate",
+   "source_url": "arithmetic",
+   "checked": "2026-11-05",
+   "feeds": "commentary"
+  }
+ ],
+ "note": "Gate fix 2026-11-05: 9 failures already fixed in supervisor.json by the supervisor and re-checked against the file and sources; Trefis and MobileGamer opened and verified. No value input changed; model_engine check 419.43 = fair_value."
+}

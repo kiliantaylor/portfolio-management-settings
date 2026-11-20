@@ -1,0 +1,2685 @@
+{
+ "symbol": "MRVL",
+ "agent_id": "agent_4",
+ "as_of": "2026-10-30",
+ "horizon": "2027-10-30",
+ "ladder_1m": [
+  {
+   "K": 157.12,
+   "p": 0.886
+  },
+  {
+   "K": 166.94,
+   "p": 0.81
+  },
+  {
+   "K": 176.76,
+   "p": 0.716
+  },
+  {
+   "K": 182.65,
+   "p": 0.653
+  },
+  {
+   "K": 188.54,
+   "p": 0.588
+  },
+  {
+   "K": 196.4,
+   "p": 0.5
+  },
+  {
+   "K": 204.26,
+   "p": 0.416
+  },
+  {
+   "K": 210.15,
+   "p": 0.356
+  },
+  {
+   "K": 216.04,
+   "p": 0.302
+  },
+  {
+   "K": 225.86,
+   "p": 0.223
+  },
+  {
+   "K": 235.68,
+   "p": 0.16
+  }
+ ],
+ "one_month_reasoning": "Window 2026-11-01 to 11-29. Scheduled or likely: (1) a Marvell-Lumentum announcement \"as soon as mid next week\" (CNBC, 10-30), all-stock, \"not a big premium\"; no 8-K, 425 or joint release found through 11-01. On a same-basis valuation the deal costs MRVL holders only ~$5/share if signed, and the stock already fell 22% in two sessions, so an announcement at a small premium is largely priced (mean ~0%); talks ending would likely bring a relief rally (+10%). (2) Lumentum and Coherent fiscal-Q1 reports in early November (laser supply, re-sourcing). (3) NVIDIA results ~mid/late November (AI capex read-through). Marvell's own Q3 FY27 report is due ~early December, outside the window. Model: mixture of lognormals around $196.40, 55% deal announced (mean 0%, sigma 0.19), 15% talks end (+10%, 0.17), 30% no resolution (+0.5%, 0.17); sigma trimmed from 80%/3.5 = 0.23 since the two-day drop inflates realized vol. P(>= spot) 0.50 (round 1: 0.53, which leaned on a reversal tilt we no longer add to the deal-announced branch).",
+ "fair_value": {
+  "value": 272.66,
+  "method": "Driver build (customer AI capex x Marvell share of wallet for Data Center, C&O, non-GAAP GM and opex; quarterly) valued at the horizon with 29.0x NTM P/E on the build's own EPS (~$10.5, weight 0.75) and 26x mid-cycle EPS (~$7.33 at a 32% margin, weight 0.25), less the Celestial earn-out and the Lumentum all-stock deal at expected value (p 0.546, ~-$2.75/share): research target (12m) $272.66 (standalone $275.40).",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 301.15,
+    "weight": 0.75,
+    "inputs": "NTM (Q4 FY28 + Q1-Q3 FY29) non-GAAP EPS ~$10.5 (SBC as dilution) x 29.0x (8-peer median 30.15x, exit rule 30.16x, -1.16 turns MRVL-specific risks); NTM revenue ~$26.1B, non-GAAP op margin ~41%, tax 11%, ~930M shares; includes deal and earn-out adjustments per share",
+    "inputs_detail": [
+     {
+      "input": "driver:dc_rev",
+      "value": "base 6100.3 (FY26); years [9884.2, 17550, 26670]",
+      "basis": "estimate",
+      "source_ids": [
+       11,
+       12,
+       13,
+       1,
+       14,
+       15,
+       34,
+       16,
+       19,
+       17,
+       18
+      ],
+      "fact_ids": [
+       "F3",
+       "F7"
+      ],
+      "derivation": "Actuals: FY26 Q1 1440.6 / Q2 1490.5 (from the FY27 10-Qs' prior-year columns), Q3 1517.9 (Q3 FY26 10-Q), Q4 1651.3 = FY 6100.3 - 9M 4449.0; FY27 Q1 1832.7 = 6M 4004.2 - Q2 2171.5. Q3 FY27 2,690 = 2171.5 x 1.239 (guide >20% q/q, plus the median +0.9% revenue beat; guidance_check). Q4 3,190 (+18.6% q/q: custom acceleration in H2 per the Q2 call). FY28 17,550 (+77.6%): custom more than doubles (call), AI capex 2027 +50% (standing file base 1,225 -> 1,841), scale-up optics/Celestial; set so FY28 total 19.8B sits 1% under the 20B investor-day target. FY29 26,670 (+52%): AI capex 2028 +22.5% (file base 2,255) plus share gains (Google TPU-attach programs, Kestrel qualification 2027-11-10), below the consensus path (FY29 total 31.3B).",
+      "confidence": "medium",
+      "variant_view": "Downside: AWS/Microsoft custom programs slip and AI capex digests (file low case) -> DC -30% in the downside case; upside: Google TPU-attach (up to ~$120B to FY2033 if all warrant tranches vest) lands early -> +22%."
+     },
+     {
+      "input": "driver:co_rev",
+      "value": "base 2094.3; years [2189.9, 2250, 2330]",
+      "basis": "estimate",
+      "source_ids": [
+       11,
+       12,
+       13,
+       1,
+       14
+      ],
+      "fact_ids": [
+       "F3"
+      ],
+      "derivation": "Actuals: FY26 Q1 454.7 = 6M 970.3 - 515.6; Q2 515.6; Q3 556.6 (enterprise 237.2 + carrier 167.8 + consumer 116.6 + auto/ind 35.0); Q4 567.4 = FY 2094.3 - (454.7+515.6+556.6). FY27 Q1 585.1 = 1152.9 - 567.8. Q3 FY27 492 = 567.8 x 0.867 (guide down low-to-mid teens). Q4 545 (recovery per call). FY28 +2.8%, FY29 +3.6%: enterprise/carrier recovery, no auto ethernet (sold Aug 2025).",
+      "confidence": "medium",
+      "variant_view": "Enterprise/carrier recovery could be faster (+5% upside) or stall (-10% downside); small for value."
+     },
+     {
+      "input": "driver:gm",
+      "value": "base 0.59451; years [0.58232, 0.56985, 0.56494]",
+      "basis": "estimate",
+      "source_ids": [
+       7,
+       6,
+       5,
+       4,
+       3,
+       2,
+       14
+      ],
+      "fact_ids": [],
+      "derivation": "Actuals = non-GAAP gross profit / revenue: 1133.5/1895.3, 1191.4/2006.1, 1238.1/2074.5, 1308.8/2218.7, 1423.8/2417.8, 1614.0/2739.3. Q3 FY27 58.0% = guide mid (record median -0.07pt). Then drifts down ~0.2pt a quarter to 56.4% by Q4 FY29 as custom XPU (lower GM) rises in the mix; management says FY28 in a similar range to Q3.",
+      "confidence": "medium",
+      "variant_view": "Custom XPU at ~50% GM could pull the mix down faster (-2pt downside); optics/connectivity strength holds 57.5%+ (upside +0.8pt)."
+     },
+     {
+      "input": "driver:opex",
+      "value": "base 1980.0; years [2547.7, 3365, 4200]",
+      "basis": "estimate",
+      "source_ids": [
+       7,
+       6,
+       5,
+       4,
+       3,
+       2,
+       14
+      ],
+      "fact_ids": [],
+      "derivation": "Actuals = non-GAAP GP - non-GAAP operating income: Q1 FY26 1133.5 - 648.2 (34.2% margin x 1895.3), Q2 1191.4-698.8, Q3 1238.1 - 753.0 (36.3% x 2074.5), Q4 1308.8-791.8, FY27 Q1 1423.8-846.9, Q2 1614.0-1003.2. Q3 655 (guide), Q4 705 so FY27 = 2,548 (~2.55B call). FY28 3,365 = +32% (half of +64% revenue growth). FY29 4,200 = +25% (half of ~+46%).",
+      "confidence": "medium",
+      "variant_view": "Celestial/XConn integration and 2nm/1.6T R&D could push opex growth above half of revenue growth (~-$0.2B EBIT)."
+     },
+     {
+      "input": "tax rate (non-GAAP)",
+      "value": "11%",
+      "basis": "estimate",
+      "source_ids": [
+       2
+      ],
+      "fact_ids": [],
+      "derivation": "Q2 FY27 non-GAAP pretax = 1,003.2 - 30.3 = 972.9; non-GAAP net income 865.9 -> tax 107.0 = 11.0%",
+      "confidence": "high"
+     },
+     {
+      "input": "net debt",
+      "value": "1,030.1 at 2026-08-01",
+      "basis": "estimate",
+      "source_ids": [
+       1
+      ],
+      "fact_ids": [
+       "F94",
+       "F87",
+       "F95"
+      ],
+      "derivation": "Derived, not stated in the 10-Q: long-term debt 4,962.9 + short-term debt 0 - cash and equivalents 3,932.8 = 1,030.1 (facts.md F95, derived). Debt 4,962.9 - cash 3,932.8; the $2.0B NVIDIA Series A preferred is as-converted (21.8M shares, in diluted count), so preferred = 0",
+      "confidence": "high"
+     },
+     {
+      "input": "share count annual change",
+      "value": "+0.8%/yr",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       17,
+       18
+      ],
+      "fact_ids": [
+       "F39",
+       "F60"
+      ],
+      "derivation": "SBC ~$1.25B/yr at ~$200 = ~6.2M (+0.7%) less buybacks $800M = ~4M (-0.4%) plus Celestial earn-out shares and treasury dilution of Google's 58.97M-share warrant at $206.58 (only ~1.4M vest in year 1 plus 0.25M per $500M of purchases) ~ +0.4-0.5%",
+      "confidence": "medium",
+      "variant_view": "If MRVL trades well above $206.58 and Google buys >$5B by the horizon, warrant dilution could add another ~0.5%."
+     },
+     {
+      "input": "horizon P/E (main leg)",
+      "value": "29.0x NTM",
+      "basis": "judgment",
+      "source_ids": [
+       35,
+       20,
+       19,
+       39,
+       17,
+       18,
+       11
+      ],
+      "fact_ids": [
+       "AVGO.pe_ntm",
+       "CRDO.pe_ntm",
+       "ALAB.pe_ntm",
+       "MTSI.pe_ntm",
+       "COHR.pe_ntm",
+       "AMD.pe_ntm",
+       "NVDA.pe_ntm",
+       "CIEN.pe_ntm"
+      ],
+      "derivation": "Peer median NTM P/E 30.15x on 8 whole-company peers (16.5, 20.8, 24.3, 25.8, 34.5, 36.4, 49.4, 71.3; median (25.8+34.5)/2); LITE dropped (bid target, fiscal-year-blend EPS) and RMBS (segment-only). Own NTM 30.2x (196.40 / 6.51 Street NTM). Exit rule 30.15 x (30.2/30.15)^0.8 = 30.16x. MRVL-specific post-horizon risks at the horizon, probability-weighted: custom XPU share loss -$10, Google-warrant dilution and contra revenue -$3 (supervisor finding, 8-K 2026-08-19), China (MRVL-specific half of -$5) -$2.5, Google TPU-attach upside +$4 = -$11.5 = -1.1 turns on ~$10.5 NTM EPS; rounded to 29.0x (-1.16). The sector-wide AI-capex digestion risk is in the peer median (every peer is AI-infrastructure exposed) and in the downside case, not deducted again.",
+      "confidence": "medium",
+      "variant_view": "Without the deduction (30.16x) the target rises ~$9; round 1's -2.6 turns would cut ~$11."
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 187.17,
+    "weight": 0.25,
+    "inputs": "Normalised-earnings P/E: mid-cycle EPS ~$7.33 (avg FY28-29 revenue ~$24.1B x 32% x 0.89 / 935M) x 26x; includes adjustments per share",
+    "inputs_detail": [
+     {
+      "input": "driver:dc_rev",
+      "value": "base 6100.3 (FY26); years [9884.2, 17550, 26670]",
+      "basis": "estimate",
+      "source_ids": [
+       11,
+       12,
+       13,
+       1,
+       14,
+       15,
+       34,
+       16,
+       19,
+       17,
+       18
+      ],
+      "fact_ids": [
+       "F3",
+       "F7"
+      ],
+      "derivation": "Actuals: FY26 Q1 1440.6 / Q2 1490.5 (from the FY27 10-Qs' prior-year columns), Q3 1517.9 (Q3 FY26 10-Q), Q4 1651.3 = FY 6100.3 - 9M 4449.0; FY27 Q1 1832.7 = 6M 4004.2 - Q2 2171.5. Q3 FY27 2,690 = 2171.5 x 1.239 (guide >20% q/q, plus the median +0.9% revenue beat; guidance_check). Q4 3,190 (+18.6% q/q: custom acceleration in H2 per the Q2 call). FY28 17,550 (+77.6%): custom more than doubles (call), AI capex 2027 +50% (standing file base 1,225 -> 1,841), scale-up optics/Celestial; set so FY28 total 19.8B sits 1% under the 20B investor-day target. FY29 26,670 (+52%): AI capex 2028 +22.5% (file base 2,255) plus share gains (Google TPU-attach programs, Kestrel qualification 2027-11-10), below the consensus path (FY29 total 31.3B).",
+      "confidence": "medium",
+      "variant_view": "Downside: AWS/Microsoft custom programs slip and AI capex digests (file low case) -> DC -30% in the downside case; upside: Google TPU-attach (up to ~$120B to FY2033 if all warrant tranches vest) lands early -> +22%."
+     },
+     {
+      "input": "normalised P/E leg",
+      "value": "26x on mid-cycle EPS (driver-linked; base ~$6.97)",
+      "basis": "judgment",
+      "source_ids": [
+       7,
+       2,
+       19,
+       25,
+       16
+      ],
+      "fact_ids": [],
+      "derivation": "Mid-cycle revenue = average of FY28 and FY29 revenue; mid-cycle non-GAAP operating margin 30% = midpoint of 23.3% (Q1 FY25 trough, Q1 FY26 release) and 36.6% (Q2 FY27); x (1 - 11%) / 935M shares; 26x = HSBC forward multiple, between Dolphin 23x and LITE 5-yr average 30x",
+      "confidence": "low",
+      "variant_view": "Using the build's own NTM margin (~41%) instead of 30% would lift this leg ~35%."
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 0.0,
+    "weight": 0.0,
+    "inputs": "Lumentum all-stock deal at expected value (equity adjustment inside both legs above): p 0.546 x V -4,680 $M (LITE $121.3B at the horizon on its own NTM earnings, 443.7M new shares at a 5% premium, net synergies -$6.0B) = -2.75/share; Celestial earn-out -618.5",
+    "inputs_detail": [
+     {
+      "input": "Celestial AI contingent consideration (net)",
+      "value": "-618.5",
+      "basis": "estimate",
+      "source_ids": [
+       1
+      ],
+      "fact_ids": [],
+      "derivation": "Derived (the 10-Q states no net figure): Level-3 contingent consideration liability 749.5 less the forward stock purchase contract asset 131.0 (fair-value table, 2026-08-01) = 618.5.",
+      "confidence": "high"
+     },
+     {
+      "input": "Lumentum deal probability",
+      "value": "0.60",
+      "basis": "estimate",
+      "source_ids": [
+       27,
+       23,
+       24,
+       28,
+       33
+      ],
+      "fact_ids": [],
+      "derivation": "P(signed) ~0.80: Bloomberg merger-rumor accuracy 80% within a year (Ahern & Sosyura via Quartz), \"advanced talks\" wording more accurate, corroborated by CNBC (Faber) on timing and premium. P(close or still pending on agreed terms at the horizon | signed) ~0.75: large semis deals need SAMR (Nvidia/Mellanox took 362 days; Qualcomm/NXP and Intel/Tower died in China review). 0.80 x 0.75 = 0.60",
+      "confidence": "medium",
+      "variant_view": "Talks could collapse on the share-price drop (MRVL -22% in two sessions makes the exchange ratio costlier): p 0.4 would lift the target ~$7."
+     },
+     {
+      "input": "Lumentum equity value (our view)",
+      "value": "$77.5B",
+      "basis": "estimate",
+      "source_ids": [
+       35,
+       23,
+       25,
+       32,
+       38
+      ],
+      "fact_ids": [
+       "LITE.pe_ntm",
+       "LITE.eps_growth_fwd"
+      ],
+      "derivation": "LITE market cap ~$83B (Bloomberg via TNW: ~$83-85B) at 42.5x NTM; exit-rule multiple vs the 9 other peers' median 30.2x: 30.2 x (42.5/30.2)^0.8 = 39.7x; 83 x 39.7/42.5 = $77.5B",
+      "confidence": "low",
+      "variant_view": "Sold out to early 2029 (CEO), so LITE may deserve its full $83B; that would cut the deal loss by ~$4/share."
+     },
+     {
+      "input": "Lumentum price paid",
+      "value": "$91.3B (10% premium)",
+      "basis": "estimate",
+      "source_ids": [
+       24,
+       23
+      ],
+      "fact_ids": [],
+      "derivation": "\"Won't be at a big premium\" (CNBC): $83B x 1.10; new MRVL shares = 91,300 / 196.40 = 464.9M",
+      "confidence": "low",
+      "variant_view": "At 0% premium the loss shrinks by ~$5/share; at 25% it grows by ~$7."
+     },
+     {
+      "input": "Lumentum synergies less costs and dis-synergies",
+      "value": "net $0 (PV synergies +$4.0B, integration/deal costs -$1.0B, customer dis-synergy -$3.0B)",
+      "basis": "judgment",
+      "source_ids": [
+       23,
+       25,
+       33
+      ],
+      "fact_ids": [],
+      "derivation": "RBC: complementary portfolios, best if the pluggable module business is sold; TIKR: Broadcom (a laser buyer) may see Marvell as a competitor and Coherent could gain share; Bernstein: integration risk. No cited synergy figure exists, so they net to zero.",
+      "confidence": "low",
+      "variant_view": "Captive laser supply in a sold-out market could be worth more ($8-10B), lifting V by ~$4-6/share."
+     },
+     {
+      "input": "Lumentum deal value V",
+      "value": "-31,874",
+      "basis": "estimate",
+      "source_ids": [
+       24,
+       23,
+       35,
+       27
+      ],
+      "fact_ids": [],
+      "derivation": "Standalone horizon value S = $269.93 (engine, deal excluded). Combined = (269.93 x 921.2 + 77,532 + 0) / (921.2 + 464.9) = $235.33; V = 921.2 x (235.33 - 269.93) = -31,874; x p 0.6",
+      "confidence": "low",
+      "variant_view": "If LITE is worth its price and MRVL shares are fairly priced at $196, V ~ 0; the loss here comes mostly from paying in MRVL stock we value above the market."
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "downside": {
+   "price": 118.31,
+   "story": "P10: an AI capex digestion starts in 2027 (standing file low case: 2027 $1,390B vs base $1,841B, 2028 $1,265B): customer capex -22% and Marvell's share of wallet -10% in every forecast quarter (custom programs slip, Trainium share to Alchip, Microsoft late), so DC revenue ~30% below base; C&O -10%; GM -2pt on under-absorption, opex only -4%; the market re-rates AI semis to ~21x NTM. Deal: signed at a small premium with optical-DSP customers moving sockets to Broadcom (the dis-synergy at the high end)."
+  },
+  "base": {
+   "price": 272.66,
+   "story": "Median: FY27 $12.07B (Q3 $3.18B, Q4 $3.74B; EPS $4.25 vs Street 4.22), FY28 $19.8B (-1% vs the $20B target; EPS $7.54 vs Street 7.33), FY29 $28.3B (-9% vs consensus); non-GAAP op margin 38.6% in Q4 FY27, 40% FY28, 41.8% FY29; horizon NTM EPS ~$10.5 x 29x on 75% weight, mid-cycle cross-check on 25%; Lumentum signed at ~5% premium with p 0.546, valued on the same horizon basis as MRVL (-$2.75/share expected)."
+  },
+  "upside": {
+   "price": 427.05,
+   "story": "P90: toward the standing file high case (customer capex +15%) with Google TPU-attach programs and scale-up optics landing early (share of wallet +6%): FY28 revenue ~$23B (above the $20B target, in line with Marvell's habit of raising targets every quarter in 2026), FY29 ~$34B; GM holds ~57.4%; the multiple re-rates to ~35x on visibility from the Google warrant tranches; Lumentum either priced near market with laser-supply synergies and no customer backlash, or abandoned."
+  }
+ },
+ "comps": [
+  {
+   "symbol": "AVGO",
+   "name": "Broadcom",
+   "why_comparable": "Custom AI ASIC (TPU, MTIA, OpenAI) and AI Ethernet switching/optics DSP leader; the closest business-model match",
+   "fwd_pe": 20.8,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +68.3%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "AVGO.pe_ntm",
+    "AVGO.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center: custom XPU + switching + optical DSP",
+    "revenue_share": 0.92,
+    "why": "Broadcom matches Marvell's data center: custom XPU + switching + optical DSP; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "CRDO",
+   "name": "Credo Technology",
+   "why_comparable": "AI DC connectivity: AECs, optical DSPs, SerDes; competes with Marvell DSPs",
+   "fwd_pe": 25.8,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +65.3%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "CRDO.pe_ntm",
+    "CRDO.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center connectivity / electro-optics",
+    "revenue_share": 0.5,
+    "why": "Credo Technology matches Marvell's data center connectivity / electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "ALAB",
+   "name": "Astera Labs",
+   "why_comparable": "AI scale-up connectivity (PCIe/CXL/UALink retimers and switches); overlaps XConn/Celestial",
+   "fwd_pe": 71.3,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +68.3%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "ALAB.pe_ntm",
+    "ALAB.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center connectivity / scale-up switching",
+    "revenue_share": 0.5,
+    "why": "Astera Labs matches Marvell's data center connectivity / scale-up switching; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "MTSI",
+   "name": "MACOM",
+   "why_comparable": "High-speed analog for optics (TIAs, drivers, lasers) and carrier/industrial RF; overlaps Marvell broadband analog and C&O",
+   "fwd_pe": 36.4,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +67.8%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "MTSI.pe_ntm",
+    "MTSI.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "DC electro-optics analog + carrier",
+    "revenue_share": 0.3,
+    "why": "MACOM matches Marvell's DC electro-optics analog + carrier; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "COHR",
+   "name": "Coherent",
+   "why_comparable": "Optical transceivers, lasers, OCS for AI DCs; laser supplier rival to Lumentum",
+   "fwd_pe": 24.3,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +50.7%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "COHR.pe_ntm",
+    "COHR.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center electro-optics",
+    "revenue_share": 0.5,
+    "why": "Coherent matches Marvell's data center electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "LITE",
+   "name": "Lumentum",
+   "why_comparable": "EML/CW lasers and transceivers for AI DCs; the reported deal target",
+   "fwd_pe": 42.5,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +67.2%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "LITE.pe_ntm",
+    "LITE.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center electro-optics",
+    "revenue_share": 0.5,
+    "why": "Lumentum matches Marvell's data center electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "RMBS",
+   "name": "Rambus",
+   "why_comparable": "Server memory-interface chips and interface IP for AI/cloud servers",
+   "fwd_pe": 30.2,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +15.1%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "RMBS.pe_ntm",
+    "RMBS.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center interface silicon",
+    "revenue_share": 0.3,
+    "why": "Rambus matches Marvell's data center interface silicon; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "AMD",
+   "name": "AMD",
+   "why_comparable": "Merchant AI accelerators and server CPUs; competes for the same AI compute budget as custom XPUs",
+   "fwd_pe": 49.4,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +117.5%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "AMD.pe_ntm",
+    "AMD.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center compute (custom XPU budget)",
+    "revenue_share": 0.4,
+    "why": "AMD matches Marvell's data center compute (custom XPU budget); share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "NVDA",
+   "name": "NVIDIA",
+   "why_comparable": "Merchant AI accelerators and networking; sets the AI capex cycle and is a Marvell investor (Series A preferred)",
+   "fwd_pe": 16.5,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +69.2%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "NVDA.pe_ntm",
+    "NVDA.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "data center compute + networking",
+    "revenue_share": 0.92,
+    "why": "NVIDIA matches Marvell's data center compute + networking; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  },
+  {
+   "symbol": "CIEN",
+   "name": "Ciena",
+   "why_comparable": "Coherent optics and DCI systems (scale-across); overlaps Marvell DCI DSPs and carrier",
+   "fwd_pe": 34.5,
+   "ev_ebitda_fwd": null,
+   "growth_next_yr": "EPS +73.2%",
+   "as_of": "2026-10-30",
+   "basis": "estimate",
+   "source_ids": [
+    35
+   ],
+   "fact_ids": [
+    "CIEN.pe_ntm",
+    "CIEN.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "DCI / carrier optics",
+    "revenue_share": 0.3,
+    "why": "Ciena matches Marvell's DCI / carrier optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+   }
+  }
+ ],
+ "comps_summary": {
+  "peer_median_fwd_pe": 30.15,
+  "peer_median_ev_ebitda": null,
+  "peer_range": "NTM P/E 16.5x (NVDA) to 71.3x (ALAB) on 8 whole-company peers; interquartile ~22.6x-42.9x",
+  "peers": [
+   "AVGO",
+   "CRDO",
+   "ALAB",
+   "MTSI",
+   "COHR",
+   "AMD",
+   "NVDA",
+   "CIEN"
+  ],
+  "rows": [
+   {
+    "peer": "AVGO",
+    "fwd_pe": 20.8,
+    "fit": {
+     "segment": "data center: custom XPU + switching + optical DSP",
+     "revenue_share": 0.92,
+     "why": "Broadcom matches Marvell's data center: custom XPU + switching + optical DSP; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "CRDO",
+    "fwd_pe": 25.8,
+    "fit": {
+     "segment": "data center connectivity / electro-optics",
+     "revenue_share": 0.5,
+     "why": "Credo Technology matches Marvell's data center connectivity / electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "ALAB",
+    "fwd_pe": 71.3,
+    "fit": {
+     "segment": "data center connectivity / scale-up switching",
+     "revenue_share": 0.5,
+     "why": "Astera Labs matches Marvell's data center connectivity / scale-up switching; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "MTSI",
+    "fwd_pe": 36.4,
+    "fit": {
+     "segment": "DC electro-optics analog + carrier",
+     "revenue_share": 0.3,
+     "why": "MACOM matches Marvell's DC electro-optics analog + carrier; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "COHR",
+    "fwd_pe": 24.3,
+    "fit": {
+     "segment": "data center electro-optics",
+     "revenue_share": 0.5,
+     "why": "Coherent matches Marvell's data center electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "LITE",
+    "fwd_pe": 42.5,
+    "fit": {
+     "segment": "data center electro-optics",
+     "revenue_share": 0.5,
+     "why": "Lumentum matches Marvell's data center electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "RMBS",
+    "fwd_pe": 30.2,
+    "fit": {
+     "segment": "data center interface silicon",
+     "revenue_share": 0.3,
+     "why": "Rambus matches Marvell's data center interface silicon; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "AMD",
+    "fwd_pe": 49.4,
+    "fit": {
+     "segment": "data center compute (custom XPU budget)",
+     "revenue_share": 0.4,
+     "why": "AMD matches Marvell's data center compute (custom XPU budget); share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "NVDA",
+    "fwd_pe": 16.5,
+    "fit": {
+     "segment": "data center compute + networking",
+     "revenue_share": 0.92,
+     "why": "NVIDIA matches Marvell's data center compute + networking; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   },
+   {
+    "peer": "CIEN",
+    "fwd_pe": 34.5,
+    "fit": {
+     "segment": "DCI / carrier optics",
+     "revenue_share": 0.3,
+     "why": "Ciena matches Marvell's DCI / carrier optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+    }
+   }
+  ],
+  "own_multiple": 30.2,
+  "own_multiple_basis": "196.40 / NTM Street non-GAAP EPS 6.51 (Q4 FY27 1.38 = FY27 4.22 - 0.80 - 0.94 - 1.10 guide mid; plus ~70% of FY28 7.33 = 5.13); StockAnalysis consensus; estimate",
+  "exit_k": 0.8,
+  "shrink_multiple": 30.16,
+  "long_dated_adjustment_turns": -1.16,
+  "resulting_multiple": 29.0,
+  "our_multiple_vs_peers": "29.0x NTM P/E at the horizon: 4% below the 30.15x median of 8 whole-company peers, inside the range; the k=0.8 shrink of today's 30.2x (30.16x) less 1.16 turns of probability-weighted MRVL-specific post-horizon risks.",
+  "premium_discount_justification": "No premium argued. The small discount covers only risks that are Marvell's and not the peers': custom XPU share loss at AWS (Alchip on Trainium 3/4: HSBC, Motley Fool) and Microsoft timing (-$10), Google-warrant dilution and contra revenue (-$3), the Marvell-specific part of China exposure (-$2.5), net of Google TPU-attach upside (+$4). The AI-capex digestion risk is shared by every peer and is left in the median (supervisor finding; we agree it was double counted at -2.6 turns).",
+  "peer_count_flag": "8 whole-company peers (AVGO, CRDO, ALAB, MTSI, COHR, AMD, NVDA, CIEN) for the median; LITE kept in comps for reference but excluded (bid target; its 42.5x is a fiscal-year blend, ~32.3x on MarketScreener consensus) and RMBS excluded (segment-only, single estimate). No further good US/EU AI-infrastructure fabless peers; Taiwan ASIC houses (Alchip, GUC) have no consensus in the table; ANET is systems."
+ },
+ "thesis_break_price": 135.0,
+ "thesis_break_reason": "At $135 (-31%) MRVL would trade ~12.9x the build's horizon NTM EPS (~$10.5) and ~18x FY28 EPS ($7.54): only consistent with the downside drivers (customer capex near the file's low case, custom ramps slipping a year, FY29 revenue near $20B) or a signed Lumentum deal at a large premium with a broad optical-DSP customer backlash, not ordinary volatility.",
+ "catalysts": [
+  {
+   "date": "2026-11 (first half)",
+   "event": "Possible Marvell-Lumentum definitive agreement (terms, ratio, premium) or end of talks",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11 (early)",
+   "event": "Lumentum and Coherent fiscal-Q1 results: laser supply, pricing, any customer re-sourcing",
+   "direction": "?"
+  },
+  {
+   "date": "2026-11 (mid/late)",
+   "event": "NVIDIA Q3 FY27 results: AI capex read-through",
+   "direction": "?"
+  },
+  {
+   "date": "2026-12 (early)",
+   "event": "Marvell Q3 FY27 results and Q4 guide (record: +0.3% to +4.6% over the guide mid)",
+   "direction": "+"
+  },
+  {
+   "date": "2027-01/02",
+   "event": "Hyperscaler Q4 calls with first numeric 2027 capex guides (Alphabet signalled >$300B)",
+   "direction": "+"
+  },
+  {
+   "date": "2027-03 (early)",
+   "event": "Marvell Q4 FY27 results; first formal FY28 outlook",
+   "direction": "?"
+  },
+  {
+   "date": "2027 (H1)",
+   "event": "SAMR and other antitrust reviews if a Lumentum deal is signed",
+   "direction": "-"
+  },
+  {
+   "date": "2027-06 / 2027-08",
+   "event": "Q1/Q2 FY28 results: custom ramp (Microsoft, Google TPU-attach) and scale-up optics/CPO",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Whether the Lumentum deal is signed, at what ratio, and whether it closes past SAMR",
+  "Custom XPU share at AWS (Trainium 3/4 vs Alchip) and timing of Microsoft and Google programs",
+  "AI capex durability into 2028 (standing file base +22% vs low case -31%)",
+  "Gross-margin dilution from custom mix and opex discipline at half the revenue growth rate",
+  "Mid-cycle margin and multiple for a business with no AI-era downturn yet"
+ ],
+ "long_dated_risks": [
+  {
+   "risk": "AI capex digestion in calendar 2028-29 (standing file low case: 2028 $1,265B vs base $2,255B)",
+   "probability": 0.25,
+   "when": "CY2028-2029 (FY2029-FY2030)",
+   "cash_flow_effect": "DC revenue -30% vs base in FY30, margins -4pt on under-absorption; shared by every AI-infrastructure peer, so the peer median carries it (round-2 change)",
+   "value_effect_per_share": -16.0,
+   "how_applied": "scenario (sector-wide: in the peer median and the downside case; not deducted from the multiple)",
+   "sources": [
+    34,
+    31
+   ]
+  },
+  {
+   "risk": "Custom XPU share loss (AWS Trainium 3/4 design work to Alchip; Microsoft ramp delays; hyperscalers in-sourcing)",
+   "probability": 0.3,
+   "when": "FY2028-FY2031",
+   "cash_flow_effect": "custom revenue -25% from FY29 (~-8% of total revenue)",
+   "value_effect_per_share": -10.0,
+   "how_applied": "multiple (part of the -1.16 turns)",
+   "sources": [
+    19,
+    16,
+    39
+   ]
+  },
+  {
+   "risk": "China export controls / domestic substitution (36% of FY26 revenue by ship-to destination, much of it assembly for US customers)",
+   "probability": 0.2,
+   "when": "any time; escalations through 2028",
+   "cash_flow_effect": "-5% to -10% of revenue",
+   "value_effect_per_share": -2.5,
+   "how_applied": "multiple (Marvell-specific half of -$5; the rest is in peers)",
+   "sources": [
+    11
+   ]
+  },
+  {
+   "risk": "Google warrant dilution and contra revenue (up to 58.97M shares at $206.58, one tranche per $500M of custom revenue through FY2033)",
+   "probability": 0.3,
+   "when": "FY2029-FY2033",
+   "cash_flow_effect": "up to ~6% more shares and contra revenue on vested tranches",
+   "value_effect_per_share": -3.0,
+   "how_applied": "multiple (part of the -1.16 turns); ~1M shares in the horizon drift",
+   "sources": [
+    17,
+    18
+   ]
+  },
+  {
+   "risk": "Google TPU-attach programs beyond FY2029 (warrant tranches per $500M purchases to FY2033; Kestrel qualification 2027-11-10)",
+   "probability": 0.5,
+   "when": "FY2029-FY2033",
+   "cash_flow_effect": "+$5-10B revenue a year by FY31 if programs land",
+   "value_effect_per_share": 4.0,
+   "how_applied": "multiple (offsets part of the -1.16 turns)",
+   "sources": [
+    17,
+    18,
+    15
+   ]
+  },
+  {
+   "risk": "Lumentum combination: optical-DSP and laser customer switching, SAMR conditions after closing",
+   "probability": 0.546,
+   "when": "FY2028-FY2030",
+   "cash_flow_effect": "~15% of ~$4.5B electro-optics revenue at risk; LITE customers aligned with Broadcom re-sourcing lasers",
+   "value_effect_per_share": -4.69,
+   "how_applied": "adjustment (the -$8B dis-synergy inside the deal V, at p 0.546)",
+   "sources": [
+    41,
+    42,
+    43,
+    25
+   ]
+  }
+ ],
+ "reverse_dcf_check": "29x NTM non-GAAP P/E at the horizon on ~$10.5 EPS implies buyers then expect roughly 20-25% EPS growth a year for FY30-FY33 at a ~40-42% operating margin (revenue ~$45-50B by FY31, near the $46.85B consensus and well short of the $70-90B target), then GDP-plus growth; plausible only if AI capex keeps growing after 2028, with the 1.16-turn deduction for Marvell's own share-loss and warrant risks and the digestion risk carried by the peer median and the downside case.",
+ "sbc_treatment": {
+  "sbc_last_fy_musd": 590.8,
+  "basis": "added to share count",
+  "note": "Non-GAAP EPS and EBIT exclude SBC, so the share count grows by SBC dilution net of buybacks (+0.8%/yr, including Google-warrant and Celestial earn-out shares); peers' NTM P/E are on consensus non-GAAP (ex-SBC) EPS, the same basis. TTM SBC $828.9M (8.8% of revenue).",
+  "sources": [
+   11,
+   1
+  ]
+ },
+ "reasoning": "Round 2. Standalone first: Data Center revenue is rebuilt as customer AI capex (the standing file's base: CY25 711, CY26 1,225, CY27 1,841, CY28 2,255 $B, mapped to Marvell FY+1) x Marvell's share of wallet ($M per $B: 8.58 FY26 -> 8.07 FY27 -> 9.53 FY28 -> 11.53 FY29), calibrated to reported DC revenue; FY29 DC trimmed to 26.0B from 26.67B after the supervisor's FY29 review (we keep more share gain than its 25.2B because of the investor-day custom FY29 >$12B target and Google TPU-attach). C&O, GM (58.0% Q3 guide mid drifting to 56.4% on custom mix) and opex (half the revenue growth rate) as in round 1, FY29 opex 4,150. Model EPS FY27 $4.25 / FY28 $7.54 vs Street 4.22 / 7.33 (+0.8% / +2.8%) and vs the whisper (Street + Marvell's usual ~1-2% beat: Q2 0.94 vs 0.93, whisper 0.97) ~4.26 / ~7.48: we sit at the whisper for FY27 and ~1% above it for FY28; FY29 revenue $28.3B is 9% under MarketScreener's 31.3B. Horizon P/E: peer median 30.15x on 8 whole-company peers (LITE and RMBS dropped per the supervisor), exit rule 30.16x, less 1.16 turns for Marvell-specific risks only (custom share loss, Google warrant, part of China, net of TPU-attach upside); the -2.6 turns of round 1 double counted sector-wide AI-capex digestion that the AI-heavy peer median already prices, as the supervisor said. Normalised leg at a 32% mid-cycle margin (average of own FY25 28.9% and FY26 35.3%) x 26x, weight 0.25 (playbook 0.2-0.4). Deal: the supervisor showed our round-1 V compared MRVL at its horizon value with LITE held at today's price; LITE is now valued on its own horizon NTM consensus net income (MarketScreener, less 10% to match our below-consensus MRVL build) at the exit-rule 31.86x = $121.3B, against 443.7M new MRVL shares at a 5% premium and a -$8B optical-DSP customer dis-synergy (Broadcom/Marvell DSP duopoly per PhotonCap; Marvell >80% of 800G per Global Technology Research). V -4,680 $M, p 0.546 (0.70 x 0.78): -$2.75/share expected. Research target (12m) $272.66 (standalone $275.40). Social and alt-data items (getquin, Stocktwits, SentiSense sentiment, job postings, web traffic) are context only: none moves a number. Lane sources this round: two independent Substack newsletters on optical DSP share; consensus and filings for basic facts.",
+ "lane": "alternative",
+ "sources": [
+  {
+   "title": "Marvell 10-Q Q2 FY2027 (period 2026-08-01)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/mrvl-20260801.htm",
+   "date": "2026-08-28",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q2 FY2027 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "date": "2026-08-27",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q1 FY2027 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000014/q127_8kx522026ex-991.htm",
+   "date": "2026-05-27",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q4 FY2026 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000006/q426_8kx1312026ex-991.htm",
+   "date": "2026-03-05",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q3 FY2026 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000193/q326_8kx1112025ex-991.htm",
+   "date": "2025-12-02",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q2 FY2026 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000187/q226_8kx822025ex-991.htm",
+   "date": "2025-08-28",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q1 FY2026 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000115/q126_8kx532025ex-991.htm",
+   "date": "2025-05-29",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q4 FY2025 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000051/q425_8kx212025ex-991.htm",
+   "date": "2025-03-05",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q3 FY2025 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563224000197/q325_8kx1122024ex-991.htm",
+   "date": "2024-12-03",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell Q2 FY2025 results release (8-K ex. 99.1)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563224000140/q225_8kx832024ex-991.htm",
+   "date": "2024-08-29",
+   "type": "company",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell 10-K FY2026 (period 2026-01-31)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000011/mrvl-20260131.htm",
+   "date": "2026-03-11",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell 10-Q Q3 FY2026 (period 2025-11-01)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000197/mrvl-20251101.htm",
+   "date": "2025-12-03",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Marvell 10-Q Q1 FY2027 (period 2026-05-02)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000019/mrvl-20260502.htm",
+   "date": "2026-05-28",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "Moomoo community: Marvell Q2 FY2027 earnings call summary (FY27 ~$12B, FY28 ~$18B, DC Q3 >20% q/q, C&O down low-mid teens, opex, 38-40% margin)",
+   "url": "https://www.moomoo.com/community/feed/marvell-technology-q2-fy2027-earnings-conference-call-117169426464773",
+   "date": "2026-08-27",
+   "type": "forum",
+   "in_lane": true
+  },
+  {
+   "title": "KSL/Reuters: Marvell raises 2028 revenue forecast (~$20B FY28; $70-90B FY31; Google up to $120B)",
+   "url": "https://www.ksl.com/article/51632987/marvell-raises-2028-revenue-forecast-on-strong-ai-data-center-demand",
+   "date": "2026-10-06",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Dolphin Research (Longbridge) note on Marvell Q4 FY2026: FY27 target $10B->$11B, FY28 $13B->$15B; Trainium 3 mainly to Alchip; Celestial CPO ARR targets",
+   "url": "https://longportapp.cn/topics/39096551",
+   "date": "2026-03-06",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "HWBusters: Google-Marvell deal, $12.2B warrant that vests only as TPU orders land",
+   "url": "https://hwbusters.com/news/google-marvell-chip-deal-12-2-billion-in-stock-that-vests-only-as-tpu-orders-land/",
+   "date": "2026-08-20",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "The Next Platform: analysis of the Google-Marvell 8-K (warrant 58.97M shares, $500M purchase tranches, Kestrel qualification 2027-11-10)",
+   "url": "https://www.nextplatform.com/compute/2026/08/27/peel…REDACTED/5292984",
+   "date": "2026-08-27",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Yahoo Finance: HSBC starts Marvell at Hold, weak ASIC outlook (Trainium next-gen to Alchip; 26x forward P/E)",
+   "url": "https://finance.yahoo.com/news/marvell-started-hold-weak-asic-154522224.html",
+   "date": "2025-11-24",
+   "type": "sell-side",
+   "in_lane": false
+  },
+  {
+   "title": "StockAnalysis MRVL forecast (S&P Global consensus: FY27 rev $12.1B, EPS 4.22; FY28 rev $19.71B, EPS 7.33)",
+   "url": "https://stockanalysis.com/stocks/mrvl/forecast/",
+   "date": "2026-10-21",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "MarketScreener MRVL finances (FY27-29 revenue 12,070/19,699/31,270; EBIT 4,484/7,971/13,848)",
+   "url": "https://uk.marketscreener.com/quote/stock/MARVELL-TECHNOLOGY-GROUP--4934/finances/",
+   "date": "2026-10-16",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Earnings Whispers MRVL: Q2 EPS 0.94 vs 0.93 consensus / 0.97 whisper; Q3 consensus EPS 1.06, revenue $3.03B",
+   "url": "https://www.earningswhispers.com/epsdetails/MRVL",
+   "date": "2026-10-30",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "The Next Web (Bloomberg report): Marvell nears deal to buy Nvidia-backed Lumentum; likely in shares; LITE sold out to early 2029",
+   "url": "https://thenextweb.com/news/marvell-lumentum-deal-talks-bloomberg",
+   "date": "2026-10-29",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Seeking Alpha via TradingView: Marvell deal for Lumentum won't be at a big premium (CNBC, Faber)",
+   "url": "https://www.tradingview.com/news/seekingalpha:92a829481094b:0-marvell-deal-for-lumentum-won-t-be-at-a-big-premium-cnbc/",
+   "date": "2026-10-30",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "TIKR blog (David Hanson): Marvell sinks 12% as investors balk at reported Lumentum megadeal talks (LITE 42x fwd vs 30x 5-yr avg; Broadcom conflict; Coherent beneficiary)",
+   "url": "https://www.tikr.com/blog/marvell-sinks-12-as-investors-balk-at-reported-lumentum-megadeal-talks",
+   "date": "2026-10-29",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "getquin post by Tenbagger-Capital on Marvell/Lumentum talks (LITE +17% AH, MRVL -8%)",
+   "url": "https://app.getquin.com/en/post/cnIdqimFNR",
+   "date": "2026-10-28",
+   "type": "social",
+   "in_lane": true
+  },
+  {
+   "title": "Quartz on Ahern & Sosyura, \"Rumor Has It\": Bloomberg merger-rumor accuracy 80%; \"advanced stage\" wording more accurate",
+   "url": "https://qz.com/196027/how-to-tell-if-a-merger-rumor-will-come-true",
+   "date": "2014-04-01",
+   "type": "expert",
+   "in_lane": true
+  },
+  {
+   "title": "Akin Gump: Nvidia/Mellanox, China's close scrutiny of semiconductor deals continues (362-day SAMR review; Qualcomm/NXP ~18 months)",
+   "url": "https://www.akingump.com/en/insights/alerts/nvidiamellanox-chinas-close-scrutiny-of-semiconductor-deals-continues",
+   "date": "2020-04-20",
+   "type": "expert",
+   "in_lane": false
+  },
+  {
+   "title": "AltIndex MRVL job postings (Feb 2026 191 -> Jun 638 -> Jul 549; 3-month -8.9%; 490 active)",
+   "url": "https://altindex.com/ticker/mrvl/job-posts",
+   "date": "2026-10-31",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "Similarweb marvell.com company traffic (614.6K visits Jul-Sep 2026)",
+   "url": "https://www.similarweb.com/ko/company/marvell.com/",
+   "date": "2026-09-30",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "AI Weekly: Alphabet Q3 2026, 2026 capex $195-205B, 2027 capex set to top $300B",
+   "url": "https://aiweekly.co/alerts/alphabet-posts-1276b-q3-with-google-cloud-up-103-to-307b-as-2027-capex-set-to",
+   "date": "2026-10-28",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "Lumentum Q4 FY2026 results release (8-K ex. 99.1): FY26 revenue $3.01B; Q1 FY27 guide $1.225-1.275B, non-GAAP EPS $4.05-4.35",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001633978/000162828026055726/lite_ex991xq4fy26.htm",
+   "date": "2026-08-11",
+   "type": "filing",
+   "in_lane": false
+  },
+  {
+   "title": "TrendForce: Marvell eyes Lumentum acquisition, one of the 10 largest tech deals; Bernstein flags financing/integration",
+   "url": "https://www.trendforce.com/news/?p=65896",
+   "date": "2026-10-29",
+   "type": "trade",
+   "in_lane": true
+  },
+  {
+   "title": "Standing AI-capex input: AI data-center capex across NVIDIA customer groups 2026-2028 (base 2026 $1,225B, 2027 $1,841B, 2028 $2,255B)",
+   "url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "date": "2026-10-05",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Run peer comps table (peers.md; trailing from SEC filings, NTM from saved consensus snapshot)",
+   "url": "/mnt/attach/project-files/valuation/runs/2026-10-30/MRVL/peers.md",
+   "date": "2026-11-01",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Stocktwits: Marvell potential Lumentum deal sends LITE surging, MRVL sliding after hours (MRVL retail sentiment bearish, LITE bullish/high volume)",
+   "url": "https://stocktwits.com/news-articles/markets/equity/marvell-s-potential-lumentum-deal-sends-lite-surging-mrvl-sliding-after-hours/cZU9vfvR9Gp",
+   "date": "2026-10-28",
+   "type": "social",
+   "in_lane": true
+  },
+  {
+   "title": "SentiSense MRVL sentiment (30-day Strong Bullish but cooling; today Neutral; Reddit/X/news/YouTube)",
+   "url": "https://app.sentisense.ai/stocks/MRVL/sentiment",
+   "date": "2026-11-01",
+   "type": "alt-data",
+   "in_lane": true
+  },
+  {
+   "title": "TIKR blog: Lumentum CEO says AI optical components sold out through early 2029; ~70% of demand unmet for some products",
+   "url": "https://www.tikr.com/blog/lumentum-stock-jumps-ai-optical-components-sold-out-2029",
+   "date": "2026-10-09",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "Motley Fool: Marvell hits new high; reports Trainium3/4 design work to Alchip (unconfirmed); S&P 500 entry",
+   "url": "https://www.fool.com/investing/2026/06/18/marvell-stock-just-hit-a-new-high-a-quiet-amazon-d/",
+   "date": "2026-06-18",
+   "type": "press",
+   "in_lane": false
+  },
+  {
+   "title": "MarketScreener Lumentum (LITE) finances: consensus FY27-FY29 (June FY) net sales 6,337 / 9,947 / 14,016; net income 1,931 / 3,845 / 4,996 $M; EPS 21.54 / 37.11 / 52.43",
+   "url": "https://uk.marketscreener.com/quote/stock/LUMENTUM-HOLDINGS-INC-23132759/finances/",
+   "date": "2026-10-16",
+   "type": "data",
+   "in_lane": false
+  },
+  {
+   "title": "Global Technology Research (Substack, AYZ): What's going on with Marvell - 800G DSP share >80%, 800G chip revenue ~$1.8B 2025, Broadcom/MaxLinear price competition",
+   "url": "https://globaltechresearch.substack.com/p/whats-going-on-with-marvell-mrvl",
+   "date": "2025-05-16",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "PhotonCap (Substack): Chinese optical modules own 7 of the top 10 seats - optical DSP an effective Broadcom/Marvell duopoly; Broadcom Sian2 standard in NVIDIA's chain (Innolight, Eoptolink)",
+   "url": "https://photoncap.net/p/chinese-optical-modules-own-7-of",
+   "date": "2026-04-18",
+   "type": "newsletter",
+   "in_lane": true
+  },
+  {
+   "title": "TechNews (Taiwan): Marvell-Lumentum rumour, market disapproves - Stifel (Svanberg) near-term EPS dilution, Seaport premium worry, Evercore on LITE sold out to FY29, Marvell is a LITE laser customer, US and China review",
+   "url": "https://finance.technews.tw/2026/10/30/marvell-lumentum-acquisition-rumor-market-disapproves-financial-impact-concerns/",
+   "date": "2026-10-30",
+   "type": "trade",
+   "in_lane": false
+  }
+ ],
+ "model_inputs": {
+  "unit": "$M",
+  "ebit_basis": "adjusted",
+  "sbc_treatment": "dilution",
+  "base": {
+   "fy_end": "2026-01-31",
+   "revenue": 8194.6
+  },
+  "quarters": {
+   "labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027",
+    "Q3 FY2027",
+    "Q4 FY2027",
+    "Q1 FY2028",
+    "Q2 FY2028",
+    "Q3 FY2028",
+    "Q4 FY2028",
+    "Q1 FY2029",
+    "Q2 FY2029",
+    "Q3 FY2029",
+    "Q4 FY2029"
+   ],
+   "ends": [
+    "2025-05-03",
+    "2025-08-02",
+    "2025-11-01",
+    "2026-01-31",
+    "2026-05-02",
+    "2026-08-01",
+    "2026-10-31",
+    "2027-01-30",
+    "2027-05-01",
+    "2027-07-31",
+    "2027-10-30",
+    "2028-01-29",
+    "2028-04-29",
+    "2028-07-29",
+    "2028-10-28",
+    "2029-01-27"
+   ],
+   "actual": 6
+  },
+  "years": [
+   {
+    "label": "FY2027",
+    "revenue_growth": 0.47,
+    "ebit_margin": 0.37,
+    "tax_rate": 0.11,
+    "da_pct_rev": 0.033,
+    "capex_pct_rev": 0.045,
+    "nwc_pct_incr_rev": 0.1,
+    "sbc_pct_rev": 0.1,
+    "shareholder_returns": 1015.0,
+    "other_uses": 0.0,
+    "adj_ebitda_addback_pct_rev": 0.0
+   },
+   {
+    "label": "FY2028",
+    "tax_rate": 0.11,
+    "da_pct_rev": 0.028,
+    "capex_pct_rev": 0.042,
+    "nwc_pct_incr_rev": 0.1,
+    "sbc_pct_rev": 0.07,
+    "shareholder_returns": 1100.0
+   },
+   {
+    "label": "FY2029",
+    "tax_rate": 0.11,
+    "da_pct_rev": 0.025,
+    "capex_pct_rev": 0.038,
+    "nwc_pct_incr_rev": 0.1,
+    "sbc_pct_rev": 0.055,
+    "shareholder_returns": 1200.0
+   }
+  ],
+  "terminal": {
+   "ronic": null,
+   "ronic_basis": "not argued (no DCF leg for MRVL)"
+  },
+  "discount_rate": {
+   "pre_tax_cost_of_debt": null,
+   "basis": "engine sets; no DCF leg"
+  },
+  "contracts": [],
+  "balance": {
+   "as_of": "2026-08-01",
+   "net_debt": 1030.1,
+   "minorities": 0.0,
+   "preferred": 0.0,
+   "interest_rate": 0.045,
+   "net_debt_horizon": null
+  },
+  "shares": {
+   "diluted_now": 921.2,
+   "as_of": "2026-08-01",
+   "annual_change": 0.008,
+   "horizon": null
+  },
+  "dcf_weight": null,
+  "horizon_multiples": [
+   {
+    "metric": "P/E",
+    "value": 29.0,
+    "weight": 0.75,
+    "basis": "ntm",
+    "eps": null,
+    "fcf_per_share": null,
+    "levered": true,
+    "peer_basis": "peer median NTM P/E 30.15x (8 whole-company peers from peers.md: AVGO, CRDO, ALAB, MTSI, COHR, AMD, NVDA, CIEN; LITE dropped as the bid target, RMBS as segment-only); exit rule 30.15 x (30.2/30.15)^0.8 = 30.19x; less 1.2 turns for MRVL-specific post-horizon risks (custom XPU share loss, Google-warrant dilution, part of China) = 29.0x; on the build's own non-GAAP EPS with SBC as dilution, the peers' basis"
+   },
+   {
+    "metric": "P/E",
+    "value": 26.0,
+    "weight": 0.25,
+    "basis": "ntm",
+    "eps": 7.0,
+    "fcf_per_share": null,
+    "levered": true,
+    "peer_basis": "normalised-earnings cross-check: mid-cycle EPS (average FY28-FY29 build revenue x 32% mid-cycle non-GAAP operating margin, the FY25-FY26 average of 28.9% and 35.3% from the releases, x (1-11% tax) / 935M shares) x 26x through-cycle P/E (HSBC 26x forward; peers' NTM IQR)"
+   }
+  ],
+  "segments": [],
+  "sotp_weight": 0.0,
+  "adjustments": [
+   {
+    "name": "Celestial AI contingent consideration net of forward stock purchase contract",
+    "value": -618.5,
+    "probability": 1.0,
+    "note": "Level-3 contingent consideration liability $749.5M less forward stock purchase contract asset $131.0M at 2026-08-01 (10-Q fair-value table); revenue-milestone earn-out in cash and shares through FY2029"
+   },
+   {
+    "name": "Lumentum all-stock deal (expected value)",
+    "value": -4680.0,
+    "probability": 0.546,
+    "note": "V = N_now/(N_now+n) x (LITE horizon equity 121,270 + net synergies -6,000 - n x standalone 275.40), n = 87,150/196.40 = 443.7M new shares, N_now 921.2M; = -4,680 $M (-$5.08 per current share if the deal happens); p 0.546 = 0.70 signed x 0.78 closed or pending on signed terms at the horizon. LITE is valued on its own horizon NTM earnings with the same exit rule, as MRVL is."
+   }
+  ],
+  "custom": [],
+  "segment_build": [
+   {
+    "name": "Data Center",
+    "base_revenue": 6100.3,
+    "driver_note": "quarterly ai_capex ($B, standing file) x dc_share ($M of Marvell DC revenue per $B of capex)",
+    "years": [
+     {},
+     {},
+     {}
+    ]
+   },
+   {
+    "name": "Communications and other",
+    "base_revenue": 2094.3,
+    "driver_note": "quarterly co_rev driver: enterprise networking, carrier, consumer, industrial",
+    "years": [
+     {},
+     {},
+     {}
+    ]
+   }
+  ],
+  "financing_events": [],
+  "stakes": [],
+  "drivers": [
+   {
+    "id": "ai_capex",
+    "label": "Customer AI data-center capex (calendar year mapped to Marvell's fiscal year: FY(n+1) ~ CY(n))",
+    "unit": "$B per quarter",
+    "agg": "sum",
+    "base": 711,
+    "years": [
+     1225,
+     1841,
+     2255
+    ],
+    "quarters": [
+     150,
+     170,
+     185,
+     206,
+     270,
+     295,
+     320,
+     340,
+     410,
+     445,
+     475,
+     511,
+     535,
+     555,
+     575,
+     590
+    ],
+    "basis": "estimate",
+    "source": "Standing AI-capex file nvda_customer_capex.md (2026-10-05): base CY25 $711B (investor-day industry DC capex figure), CY26 $1,225B, CY27 $1,841B, CY28 $2,255B; Alphabet 2027 capex >$300B (AI Weekly 10-28)",
+    "derivation": "Annual totals are the standing file's base case; quarters split each year on a rising ramp (CY25 150/170/185/206; CY26 270/295/320/340; CY27 410/445/475/511; CY28 535/555/575/590), summing to the annual figure. The quarterly split is our estimate (the file is annual). Marvell FY ends late January, so FY2027 ~ CY2026.",
+    "why": "Playbook: accelerators/custom silicon/networking revenue = AI customer capex x the company's share of wallet. Supervisor's reconciled set uses the same split.",
+    "guidance_check": "Not a company guide; the standing file is the required base (brief).",
+    "flag": "No reported quarterly value exists: actual-quarter values are the file's annual figure split by our ramp, and dc_share for actual quarters is calibrated so DC revenue equals the reported figure."
+   },
+   {
+    "id": "dc_share",
+    "label": "Marvell DC revenue per $B of customer AI DC capex (share of wallet)",
+    "unit": "$M per $B",
+    "agg": "wmean:ai_capex",
+    "base": 8.5799,
+    "years": [
+     8.0687,
+     9.5329,
+     11.5299
+    ],
+    "quarters": [
+     9.604,
+     8.7676,
+     8.2049,
+     8.016,
+     6.7878,
+     7.361,
+     8.4062,
+     9.3824,
+     9.0244,
+     9.3258,
+     9.6842,
+     9.9804,
+     10.5607,
+     11.1712,
+     11.7913,
+     12.4915
+    ],
+    "basis": "estimate",
+    "source": "10-K FY2026 / 10-Qs end-market tables (DC revenue actuals); Q2 FY27 call (Q3 DC >20% q/q; custom >2x in FY28); investor day 2026-10-06 (FY28 ~$20B, custom FY29 >$12B)",
+    "derivation": "Actual quarters = reported DC revenue / ai_capex (FY26 6,100.3 / 711 = 8.58). Forecast DC revenue (Q3 FY27 2,690 = 2,171.5 x 1.239; Q4 3,190; FY28 17,550; FY29 26,000 = 5,650/6,200/6,780/7,370) / the capex path: FY27 8.069, FY28 9.533, FY29 11.53. FY28 share rises with the custom XPU ramp and scale-up optics; FY29 share rises a further ~22% (round 1: +24%) on Google TPU-attach programs and custom FY29 >$12B; trimmed from round 1's 26,670 after the supervisor's FY29 review (its 25.2B rests on +17.6% share growth; we keep part of the gap for the investor-day custom target).",
+    "why": "Share of wallet carries custom-XPU share (AWS Trainium vs Alchip, Microsoft, Google) and optical DSP share: the value turns on it.",
+    "guidance_check": "FY28 DC sits under the investor-day ~$18B DC target (FY28 revenue entry in guidance_check)."
+   },
+   {
+    "id": "co_rev",
+    "label": "Communications and other revenue",
+    "unit": "$M per quarter",
+    "agg": "sum",
+    "base": 2094.3,
+    "years": [
+     2189.9,
+     2250,
+     2330
+    ],
+    "quarters": [
+     454.7,
+     515.6,
+     556.6,
+     567.4,
+     585.1,
+     567.8,
+     492,
+     545,
+     540,
+     555,
+     570,
+     585,
+     575,
+     580,
+     585,
+     590
+    ],
+    "basis": "estimate",
+    "source": "10-K FY2026 / 10-Q end-market tables (actuals); Q2 FY27 call (Q3 down low-to-mid teens q/q, Q4 recovery)",
+    "derivation": "Actuals: FY26 Q1 454.7 = 6M 970.3 - 515.6; Q2 515.6; Q3 556.6 (enterprise 237.2 + carrier 167.8 + consumer 116.6 + auto/ind 35.0); Q4 567.4 = FY 2094.3 - (454.7+515.6+556.6). FY27 Q1 585.1 = 1152.9 - 567.8. Q3 FY27 492 = 567.8 x 0.867 (guide down low-to-mid teens). Q4 545 (recovery per call). FY28 +2.8%, FY29 +3.6%: enterprise/carrier recovery, no auto ethernet (sold Aug 2025).",
+    "why": "Second end market; cyclical enterprise/carrier recovery."
+   },
+   {
+    "id": "gm",
+    "label": "Non-GAAP gross margin",
+    "unit": "fraction",
+    "agg": "wmean:ai_capex*dc_share+co_rev",
+    "base": 0.59451,
+    "years": [
+     0.58232,
+     0.56985,
+     0.56494
+    ],
+    "quarters": [
+     0.59806,
+     0.59389,
+     0.59682,
+     0.58989,
+     0.58888,
+     0.5892,
+     0.58,
+     0.575,
+     0.572,
+     0.57,
+     0.57,
+     0.568,
+     0.566,
+     0.565,
+     0.565,
+     0.564
+    ],
+    "basis": "estimate",
+    "source": "Quarterly releases (non-GAAP gross profit / revenue); Q3 FY27 guide 57.5-58.5%; call: Q4 FY27 and FY28 in a similar range (custom mix)",
+    "derivation": "Actuals = non-GAAP gross profit / revenue: 1133.5/1895.3, 1191.4/2006.1, 1238.1/2074.5, 1308.8/2218.7, 1423.8/2417.8, 1614.0/2739.3. Q3 FY27 58.0% = guide mid (record median -0.07pt). Then drifts down ~0.2pt a quarter to 56.4% by Q4 FY29 as custom XPU (lower GM) rises in the mix; management says FY28 in a similar range to Q3.",
+    "why": "Mix of custom vs merchant connectivity sets the margin."
+   },
+   {
+    "id": "opex",
+    "label": "Non-GAAP operating expenses",
+    "unit": "$M per quarter",
+    "agg": "sum",
+    "base": 1980.0,
+    "years": [
+     2547.7,
+     3365,
+     4150
+    ],
+    "quarters": [
+     485.3,
+     492.6,
+     485.1,
+     517.0,
+     576.9,
+     610.8,
+     655,
+     705,
+     780,
+     820,
+     860,
+     905,
+     990,
+     1030,
+     1050,
+     1080
+    ],
+    "basis": "estimate",
+    "source": "Quarterly releases (non-GAAP gross profit - non-GAAP operating income); Q3 FY27 guide ~$655M; FY27 ~$2.55B; FY28 opex to grow at ~half the revenue rate (call)",
+    "derivation": "Actuals = non-GAAP GP - non-GAAP operating income: Q1 FY26 1133.5 - 648.2 (34.2% margin x 1895.3), Q2 1191.4-698.8, Q3 1238.1 - 753.0 (36.3% x 2074.5), Q4 1308.8-791.8, FY27 Q1 1423.8-846.9, Q2 1614.0-1003.2. Q3 655 (guide), Q4 705 so FY27 = 2,548 (~2.55B call). FY28 3,365 = +32% (half of +64% revenue growth). FY29 4,150 (990/1,030/1,050/1,080) = +23% (about half of the ~+42% revenue growth).",
+    "why": "Operating leverage: opex grows at half the revenue rate."
+   }
+  ],
+  "driver_build": {
+   "quarters": {
+    "segments": {
+     "Data Center": {
+      "revenue": "ai_capex*dc_share",
+      "ebit": "ai_capex*dc_share*gm - opex*ai_capex*dc_share/(ai_capex*dc_share+co_rev)"
+     },
+     "Communications and other": {
+      "revenue": "co_rev",
+      "ebit": "co_rev*gm - opex*co_rev/(ai_capex*dc_share+co_rev)"
+     }
+    },
+    "reported": {
+     "Q1 FY2027": {
+      "revenue": 2417.8,
+      "ebit": 846.9,
+      "segments": {
+       "Data Center": {
+        "revenue": 1832.7,
+        "ebit": 642.0
+       },
+       "Communications and other": {
+        "revenue": 585.1,
+        "ebit": 204.9
+       }
+      },
+      "eps": 0.8
+     },
+     "Q2 FY2027": {
+      "revenue": 2739.3,
+      "ebit": 1003.2,
+      "segments": {
+       "Data Center": {
+        "revenue": 2171.5,
+        "ebit": 795.3
+       },
+       "Communications and other": {
+        "revenue": 567.8,
+        "ebit": 207.9
+       }
+      },
+      "eps": 0.94
+     }
+    }
+   },
+   "set": {
+    "horizon_multiples[1].eps": "((ai_capex_y2*dc_share_y2+co_rev_y2+ai_capex_y3*dc_share_y3+co_rev_y3)/2*0.32*0.89)/935"
+   }
+  },
+  "scenarios": {
+   "downside": {
+    "deltas": {
+     "drivers": {
+      "ai_capex": {
+       "pct": -0.22
+      },
+      "dc_share": {
+       "pct": -0.1
+      },
+      "co_rev": {
+       "pct": -0.1
+      },
+      "gm": {
+       "add": -0.02
+      },
+      "opex": {
+       "pct": -0.04
+      }
+     },
+     "multiple": -8.0
+    },
+    "story": "P10: an AI capex digestion starts in 2027 (standing file low case: 2027 $1,390B vs base $1,841B, 2028 $1,265B): customer capex -22% and Marvell's share of wallet -10% in every forecast quarter (custom programs slip, Trainium share to Alchip, Microsoft late), so DC revenue ~30% below base; C&O -10%; GM -2pt on under-absorption, opex only -4%; the market re-rates AI semis to ~21x NTM. Deal: signed at a small premium with optical-DSP customers moving sockets to Broadcom (the dis-synergy at the high end)."
+   },
+   "upside": {
+    "deltas": {
+     "drivers": {
+      "ai_capex": {
+       "pct": 0.15
+      },
+      "dc_share": {
+       "pct": 0.06
+      },
+      "co_rev": {
+       "pct": 0.05
+      },
+      "gm": {
+       "add": 0.008
+      }
+     },
+     "multiple": 6.0
+    },
+    "story": "P90: toward the standing file high case (customer capex +15%) with Google TPU-attach programs and scale-up optics landing early (share of wallet +6%): FY28 revenue ~$23B (above the $20B target, in line with Marvell's habit of raising targets every quarter in 2026), FY29 ~$34B; GM holds ~57.4%; the multiple re-rates to ~35x on visibility from the Google warrant tranches; Lumentum either priced near market with laser-supply synergies and no customer backlash, or abandoned."
+   }
+  },
+  "scenario_vol": 0.15,
+  "comps_summary": {
+   "peer_median_fwd_pe": 30.15,
+   "peer_median_ev_ebitda": null,
+   "peer_range": "NTM P/E 16.5x (NVDA) to 71.3x (ALAB) on 8 whole-company peers; interquartile ~22.6x-42.9x",
+   "peers": [
+    "AVGO",
+    "CRDO",
+    "ALAB",
+    "MTSI",
+    "COHR",
+    "AMD",
+    "NVDA",
+    "CIEN"
+   ],
+   "rows": [
+    {
+     "peer": "AVGO",
+     "fwd_pe": 20.8,
+     "fit": {
+      "segment": "data center: custom XPU + switching + optical DSP",
+      "revenue_share": 0.92,
+      "why": "Broadcom matches Marvell's data center: custom XPU + switching + optical DSP; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "CRDO",
+     "fwd_pe": 25.8,
+     "fit": {
+      "segment": "data center connectivity / electro-optics",
+      "revenue_share": 0.5,
+      "why": "Credo Technology matches Marvell's data center connectivity / electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "ALAB",
+     "fwd_pe": 71.3,
+     "fit": {
+      "segment": "data center connectivity / scale-up switching",
+      "revenue_share": 0.5,
+      "why": "Astera Labs matches Marvell's data center connectivity / scale-up switching; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "MTSI",
+     "fwd_pe": 36.4,
+     "fit": {
+      "segment": "DC electro-optics analog + carrier",
+      "revenue_share": 0.3,
+      "why": "MACOM matches Marvell's DC electro-optics analog + carrier; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "COHR",
+     "fwd_pe": 24.3,
+     "fit": {
+      "segment": "data center electro-optics",
+      "revenue_share": 0.5,
+      "why": "Coherent matches Marvell's data center electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "LITE",
+     "fwd_pe": 42.5,
+     "fit": {
+      "segment": "data center electro-optics",
+      "revenue_share": 0.5,
+      "why": "Lumentum matches Marvell's data center electro-optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "RMBS",
+     "fwd_pe": 30.2,
+     "fit": {
+      "segment": "data center interface silicon",
+      "revenue_share": 0.3,
+      "why": "Rambus matches Marvell's data center interface silicon; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "AMD",
+     "fwd_pe": 49.4,
+     "fit": {
+      "segment": "data center compute (custom XPU budget)",
+      "revenue_share": 0.4,
+      "why": "AMD matches Marvell's data center compute (custom XPU budget); share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "NVDA",
+     "fwd_pe": 16.5,
+     "fit": {
+      "segment": "data center compute + networking",
+      "revenue_share": 0.92,
+      "why": "NVIDIA matches Marvell's data center compute + networking; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    },
+    {
+     "peer": "CIEN",
+     "fwd_pe": 34.5,
+     "fit": {
+      "segment": "DCI / carrier optics",
+      "revenue_share": 0.3,
+      "why": "Ciena matches Marvell's DCI / carrier optics; share = that part of Marvell FY2029 revenue (DC 92% of FY29 in the build; connectivity/electro-optics ~50%, compute ~40%, DCI/carrier and interface ~30%; estimates from end-market mix and call commentary)"
+     }
+    }
+   ],
+   "own_multiple": 30.2,
+   "own_multiple_basis": "196.40 / NTM Street non-GAAP EPS 6.51 (Q4 FY27 1.38 = FY27 4.22 - 0.80 - 0.94 - 1.10 guide mid; plus ~70% of FY28 7.33 = 5.13); StockAnalysis consensus; estimate",
+   "exit_k": 0.8,
+   "shrink_multiple": 30.16,
+   "long_dated_adjustment_turns": -1.16,
+   "resulting_multiple": 29.0,
+   "our_multiple_vs_peers": "29.0x NTM P/E at the horizon: 4% below the 30.15x median of 8 whole-company peers, inside the range; the k=0.8 shrink of today's 30.2x (30.16x) less 1.16 turns of probability-weighted MRVL-specific post-horizon risks.",
+   "premium_discount_justification": "No premium argued. The small discount covers only risks that are Marvell's and not the peers': custom XPU share loss at AWS (Alchip on Trainium 3/4: HSBC, Motley Fool) and Microsoft timing (-$10), Google-warrant dilution and contra revenue (-$3), the Marvell-specific part of China exposure (-$2.5), net of Google TPU-attach upside (+$4). The AI-capex digestion risk is shared by every peer and is left in the median (supervisor finding; we agree it was double counted at -2.6 turns).",
+   "peer_count_flag": "8 whole-company peers (AVGO, CRDO, ALAB, MTSI, COHR, AMD, NVDA, CIEN) for the median; LITE kept in comps for reference but excluded (bid target; its 42.5x is a fiscal-year blend, ~32.3x on MarketScreener consensus) and RMBS excluded (segment-only, single estimate). No further good US/EU AI-infrastructure fabless peers; Taiwan ASIC houses (Alchip, GUC) have no consensus in the table; ANET is systems."
+  },
+  "guidance_check": [
+   {
+    "metric": "revenue (quarter)",
+    "fy": "Q3 FY2027",
+    "guide_low": 2992.5,
+    "guide_high": 3307.5,
+    "guide_basis": "GAAP net revenue, $3.150B +/- 5%",
+    "guide_as_of": "2026-08-27",
+    "guide_source_ids": [
+     2
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "quarterly",
+     "periods": [
+      {
+       "period": "Q3 FY2025",
+       "first_guide_low": 1377.5,
+       "first_guide_high": 1522.5,
+       "first_guide_date": "2024-08-29",
+       "actual": 1516,
+       "actual_vs_mid_pct": 4.55,
+       "source_ids": [
+        10,
+        9
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q4 FY2025",
+       "first_guide_low": 1710.0,
+       "first_guide_high": 1890.0,
+       "first_guide_date": "2024-12-03",
+       "actual": 1817,
+       "actual_vs_mid_pct": 0.94,
+       "source_ids": [
+        9,
+        8
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q1 FY2026",
+       "first_guide_low": 1781.2,
+       "first_guide_high": 1968.8,
+       "first_guide_date": "2025-03-05",
+       "actual": 1895.3,
+       "actual_vs_mid_pct": 1.08,
+       "source_ids": [
+        8,
+        7
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q2 FY2026",
+       "first_guide_low": 1900.0,
+       "first_guide_high": 2100.0,
+       "first_guide_date": "2025-05-29",
+       "actual": 2006.1,
+       "actual_vs_mid_pct": 0.3,
+       "source_ids": [
+        7,
+        6
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q3 FY2026",
+       "first_guide_low": 1957.0,
+       "first_guide_high": 2163.0,
+       "first_guide_date": "2025-08-28",
+       "actual": 2074.5,
+       "actual_vs_mid_pct": 0.7,
+       "source_ids": [
+        6,
+        5
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q4 FY2026",
+       "first_guide_low": 2090.0,
+       "first_guide_high": 2310.0,
+       "first_guide_date": "2025-12-02",
+       "actual": 2218.7,
+       "actual_vs_mid_pct": 0.85,
+       "source_ids": [
+        5,
+        4
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q1 FY2027",
+       "first_guide_low": 2280.0,
+       "first_guide_high": 2520.0,
+       "first_guide_date": "2026-03-05",
+       "actual": 2417.8,
+       "actual_vs_mid_pct": 0.74,
+       "source_ids": [
+        4,
+        3
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q2 FY2027",
+       "first_guide_low": 2565.0,
+       "first_guide_high": 2835.0,
+       "first_guide_date": "2026-05-27",
+       "actual": 2739.3,
+       "actual_vs_mid_pct": 1.46,
+       "source_ids": [
+        3,
+        2
+       ],
+       "fact_ids": [
+        "F7"
+       ]
+      }
+     ],
+     "beat": 0,
+     "inside": 8,
+     "miss": 0,
+     "median_vs_mid_pct": 0.9,
+     "note": "All 8 first guides (+/-5% ranges) were beaten at the midpoint by +0.3% to +4.6% and none landed above the high end; Q1 FY26 used the 2025-03-05 guide (same $1.875B midpoint as the 2025-05-06 update). Beats are steady and small; no sign they came from channel stuffing (inventory fell to $1,360.6M at 2026-08-01 from $1,388.0M at 2026-01-31). Auto ethernet was sold in Aug 2025 (Q3 FY26 onward excludes it)."
+    },
+    "consensus": 3030.0,
+    "consensus_as_of": "2026-10-30",
+    "consensus_source_ids": [
+     22
+    ],
+    "record_adjusted_guide": 3178.3,
+    "drivers_imply": 3182.0,
+    "drivers_note": "DC 2,690 (+23.9% q/q vs guide >20%) + C&O 492 (-13% q/q, guide down low-to-mid teens) = 3,182",
+    "our_value": 3182.0,
+    "position": "inside",
+    "gap_to_mid_pct": 1.02,
+    "why": "Inside the range, +1.0% over the midpoint: matches the record-adjusted guide (+0.9% median beat) and the segment commentary; the Earnings Whispers consensus ($3.03B) looks stale against the company guide."
+   },
+   {
+    "metric": "non-GAAP gross margin (quarter)",
+    "fy": "Q3 FY2027",
+    "guide_low": 57.5,
+    "guide_high": 58.5,
+    "guide_basis": "non-GAAP (excludes SBC, amortization of acquired intangibles, restructuring)",
+    "guide_as_of": "2026-08-27",
+    "guide_source_ids": [
+     2
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "quarterly",
+     "periods": [
+      {
+       "period": "Q1 FY2026",
+       "first_guide_low": 60.0,
+       "first_guide_high": 60.0,
+       "first_guide_date": "2025-03-05",
+       "actual": 59.81,
+       "actual_vs_mid_pct": -0.32,
+       "source_ids": [
+        8,
+        7
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q2 FY2026",
+       "first_guide_low": 59.0,
+       "first_guide_high": 60.0,
+       "first_guide_date": "2025-05-29",
+       "actual": 59.39,
+       "actual_vs_mid_pct": -0.18,
+       "source_ids": [
+        7,
+        6
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q3 FY2026",
+       "first_guide_low": 59.5,
+       "first_guide_high": 60.0,
+       "first_guide_date": "2025-08-28",
+       "actual": 59.68,
+       "actual_vs_mid_pct": -0.12,
+       "source_ids": [
+        6,
+        5
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q4 FY2026",
+       "first_guide_low": 58.5,
+       "first_guide_high": 59.5,
+       "first_guide_date": "2025-12-02",
+       "actual": 58.99,
+       "actual_vs_mid_pct": -0.02,
+       "source_ids": [
+        5,
+        4
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q1 FY2027",
+       "first_guide_low": 58.25,
+       "first_guide_high": 59.25,
+       "first_guide_date": "2026-03-05",
+       "actual": 58.89,
+       "actual_vs_mid_pct": 0.24,
+       "source_ids": [
+        4,
+        3
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q2 FY2027",
+       "first_guide_low": 58.25,
+       "first_guide_high": 59.25,
+       "first_guide_date": "2026-05-27",
+       "actual": 58.92,
+       "actual_vs_mid_pct": 0.29,
+       "source_ids": [
+        3,
+        2
+       ],
+       "fact_ids": []
+      }
+     ],
+     "beat": 0,
+     "inside": 5,
+     "miss": 1,
+     "median_vs_mid_pct": -0.07,
+     "note": "Q1 FY26 guide was \"approximately 60%\" (treated as 60.0-60.0); actual 59.81% counts as a miss by 0.19pt. Gross margin lands at the midpoint; custom mix steps it down."
+    },
+    "consensus": null,
+    "consensus_as_of": "2026-10-30",
+    "consensus_source_ids": [],
+    "record_adjusted_guide": 57.96,
+    "drivers_imply": 58.0,
+    "drivers_note": "gm driver 58.0% in Q3 FY27, then -0.2pt a quarter to 56.4% by Q4 FY29 (custom XPU mix)",
+    "our_value": 58.0,
+    "position": "inside",
+    "gap_to_mid_pct": 0.0,
+    "why": "At the midpoint: the record (median -0.07pt) gives no reason to move, and management said Q4 and FY28 sit in a similar range."
+   },
+   {
+    "metric": "revenue (fiscal year)",
+    "fy": "FY2027",
+    "guide_low": 12000,
+    "guide_high": 12000,
+    "guide_basis": "\"about $12B\" (Q2 FY27 call), GAAP",
+    "guide_as_of": "2026-08-27",
+    "guide_source_ids": [
+     14
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "long-term target",
+     "periods": [],
+     "beat": 0,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.0,
+     "note": "No completed periods: the FY27 target was raised $10B -> $11B (2026-03-05) -> ~$11.5B (May) -> ~$12B (Aug), i.e. every quarter in 2026 (Dolphin Research; call summary). A raised-every-quarter record in an upcycle is pro-cycle evidence, not a forecast."
+    },
+    "consensus": 12100,
+    "consensus_as_of": "2026-10-21",
+    "consensus_source_ids": [
+     20
+    ],
+    "record_adjusted_guide": 12000,
+    "drivers_imply": 12074.1,
+    "drivers_note": "Q1 2,417.8 + Q2 2,739.3 (reported) + Q3 3,182 + Q4 3,735",
+    "our_value": 12074.1,
+    "position": "above",
+    "gap_to_mid_pct": 0.62,
+    "why": "0.6% above \"about $12B\" and 0.2% below the $12.1B consensus; H1 is reported, so only Q3/Q4 are forecast and both follow the quarterly record."
+   },
+   {
+    "metric": "revenue (fiscal year)",
+    "fy": "FY2028",
+    "guide_low": 20000,
+    "guide_high": 20000,
+    "guide_basis": "\"about $20B\" (investor day 2026-10-06), GAAP",
+    "guide_as_of": "2026-10-06",
+    "guide_source_ids": [
+     15
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "long-term target",
+     "periods": [],
+     "beat": 0,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.0,
+     "note": "Target path $13B -> $15B (Mar 2026) -> $16.5B (May) -> $18B (Aug) -> $20B (Oct): +54% in seven months (Dolphin; call summary; KSL/Reuters). Not yet testable against an actual."
+    },
+    "consensus": 19710,
+    "consensus_as_of": "2026-10-21",
+    "consensus_source_ids": [
+     20
+    ],
+    "record_adjusted_guide": 20000,
+    "drivers_imply": 19800,
+    "drivers_note": "DC 17,550 (+77.6%) + C&O 2,250 (+2.8%)",
+    "our_value": 19800,
+    "position": "below",
+    "gap_to_mid_pct": -1.0,
+    "why": "1% below the target and 0.5% above consensus: the standing AI-capex base (+50% in 2027) supports most of the target, but the Q3-26 chip selloff, AWS custom share loss (HSBC, Dolphin, Fool reports of Alchip on Trainium 3/4) and ramp timing for Microsoft keep us a touch under. The repeated raises argue for upside, which the upside case carries."
+   },
+   {
+    "metric": "non-GAAP operating margin target",
+    "fy": "Q4 FY2027 onward",
+    "guide_low": 38.0,
+    "guide_high": 40.0,
+    "guide_basis": "non-GAAP operating margin entering a 38-40% range in Q4 FY27 (call)",
+    "guide_as_of": "2026-08-27",
+    "guide_source_ids": [
+     14
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "long-term target",
+     "periods": [],
+     "beat": 0,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.0,
+     "note": "Non-GAAP operating margin has risen from 23.3% (Q1 FY25) to 36.6% (Q2 FY27) per the releases; target not yet testable."
+    },
+    "consensus": null,
+    "consensus_as_of": "2026-10-21",
+    "consensus_source_ids": [],
+    "record_adjusted_guide": 39.0,
+    "drivers_imply": 38.6,
+    "drivers_note": "Q4 FY27: 3,735 x 57.5% - 705 = 1,443 = 38.6%; FY28 40.0%; FY29 41.8%",
+    "our_value": 38.6,
+    "position": "inside",
+    "gap_to_mid_pct": -1.03,
+    "why": "Inside the range; FY29 rises above it (41.8%) only because opex grows at about half the revenue rate, as management says; the normalised leg values a 32% mid-cycle margin (FY25-FY26 average)."
+   },
+   {
+    "metric": "revenue (long-term target)",
+    "fy": "FY2031",
+    "guide_low": 70000,
+    "guide_high": 90000,
+    "guide_basis": "investor day 2026-10-06, GAAP",
+    "guide_as_of": "2026-10-06",
+    "guide_source_ids": [
+     15
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "long-term target",
+     "periods": [],
+     "beat": 0,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.0,
+     "note": "First FY31 target; no record."
+    },
+    "consensus": 46850,
+    "consensus_as_of": "2026-10-06",
+    "consensus_source_ids": [
+     15
+    ],
+    "record_adjusted_guide": 80000,
+    "drivers_imply": null,
+    "drivers_note": "The build ends at FY29 $28.3B; reaching $80B in FY31 needs a 68% CAGR FY29-31. The 29x horizon multiple implies roughly 20-25% EPS growth after FY29, i.e. FY31 revenue nearer $45-50B, close to the Visible Alpha consensus.",
+    "our_value": 47000,
+    "position": "below",
+    "gap_to_mid_pct": -41.25,
+    "why": "Not credible to copy: it would need customer AI capex to keep compounding ~50% a year to 2030 against the standing file's 2028 base growth of +22%; we sit near the $46.85B consensus."
+   }
+  ],
+  "inputs_detail": [
+   {
+    "input": "driver:ai_capex",
+    "value": "base 711 (CY25 -> FY26); years [1225, 1841, 2255] $B (quarters 150/170/185/206; 270/295/320/340; 410/445/475/511; 535/555/575/590)",
+    "basis": "estimate",
+    "source_ids": [
+     34,
+     31,
+     15
+    ],
+    "fact_ids": [],
+    "derivation": "Annual totals are the standing file's base case; quarters split each year on a rising ramp (CY25 150/170/185/206; CY26 270/295/320/340; CY27 410/445/475/511; CY28 535/555/575/590), summing to the annual figure. The quarterly split is our estimate (the file is annual). Marvell FY ends late January, so FY2027 ~ CY2026.",
+    "confidence": "medium",
+    "variant_view": "Standing-file low case (CY27 1,390, CY28 1,265) is the downside case (-22% on every forecast quarter); high case CY27 2,434 bounds the upside (+15%)."
+   },
+   {
+    "input": "driver:dc_share",
+    "value": "base 8.5799; years [8.0687, 9.5329, 11.5299] $M DC revenue per $B capex (DC revenue FY27 9,884.2 / FY28 17,550 / FY29 26,000)",
+    "basis": "estimate",
+    "source_ids": [
+     11,
+     12,
+     13,
+     1,
+     14,
+     15,
+     16,
+     19,
+     17,
+     18,
+     34
+    ],
+    "fact_ids": [
+     "F3",
+     "F7"
+    ],
+    "derivation": "Actual quarters = reported DC revenue / ai_capex (FY26 6,100.3 / 711 = 8.58). Forecast DC revenue (Q3 FY27 2,690 = 2,171.5 x 1.239; Q4 3,190; FY28 17,550; FY29 26,000 = 5,650/6,200/6,780/7,370) / the capex path: FY27 8.069, FY28 9.533, FY29 11.53. FY28 share rises with the custom XPU ramp and scale-up optics; FY29 share rises a further ~22% (round 1: +24%) on Google TPU-attach programs and custom FY29 >$12B; trimmed from round 1's 26,670 after the supervisor's FY29 review (its 25.2B rests on +17.6% share growth; we keep part of the gap for the investor-day custom target).",
+    "confidence": "medium",
+    "variant_view": "Supervisor's reconciled FY29 share 11.175 (DC 25.2B) would cut the target ~$9; consensus FY29 revenue 31.3B (share ~12.9) would add ~$25."
+   },
+   {
+    "input": "driver:co_rev",
+    "value": "base 2094.3; years [2189.9, 2250, 2330]",
+    "basis": "estimate",
+    "source_ids": [
+     11,
+     12,
+     13,
+     1,
+     14
+    ],
+    "fact_ids": [
+     "F3"
+    ],
+    "derivation": "Actuals: FY26 Q1 454.7 = 6M 970.3 - 515.6; Q2 515.6; Q3 556.6 (enterprise 237.2 + carrier 167.8 + consumer 116.6 + auto/ind 35.0); Q4 567.4 = FY 2094.3 - (454.7+515.6+556.6). FY27 Q1 585.1 = 1152.9 - 567.8. Q3 FY27 492 = 567.8 x 0.867 (guide down low-to-mid teens). Q4 545 (recovery per call). FY28 +2.8%, FY29 +3.6%: enterprise/carrier recovery, no auto ethernet (sold Aug 2025).",
+    "confidence": "medium",
+    "variant_view": "Enterprise/carrier recovery could be faster (+5% upside) or stall (-10% downside); small for value."
+   },
+   {
+    "input": "driver:gm",
+    "value": "base 0.59451; years [0.58232, 0.56985, 0.56494]",
+    "basis": "estimate",
+    "source_ids": [
+     7,
+     6,
+     5,
+     4,
+     3,
+     2,
+     14
+    ],
+    "fact_ids": [],
+    "derivation": "Actuals = non-GAAP gross profit / revenue: 1133.5/1895.3, 1191.4/2006.1, 1238.1/2074.5, 1308.8/2218.7, 1423.8/2417.8, 1614.0/2739.3. Q3 FY27 58.0% = guide mid (record median -0.07pt). Then drifts down ~0.2pt a quarter to 56.4% by Q4 FY29 as custom XPU (lower GM) rises in the mix; management says FY28 in a similar range to Q3.",
+    "confidence": "medium",
+    "variant_view": "Custom XPU at ~50% GM could pull the mix down faster (-2pt downside); optics/connectivity strength holds 57.5%+ (upside +0.8pt)."
+   },
+   {
+    "input": "driver:opex",
+    "value": "base 1980.0; years [2547.7, 3365, 4150]",
+    "basis": "estimate",
+    "source_ids": [
+     7,
+     6,
+     5,
+     4,
+     3,
+     2,
+     14
+    ],
+    "fact_ids": [],
+    "derivation": "Actuals = non-GAAP GP - non-GAAP operating income: Q1 FY26 1133.5 - 648.2 (34.2% margin x 1895.3), Q2 1191.4-698.8, Q3 1238.1 - 753.0 (36.3% x 2074.5), Q4 1308.8-791.8, FY27 Q1 1423.8-846.9, Q2 1614.0-1003.2. Q3 655 (guide), Q4 705 so FY27 = 2,548 (~2.55B call). FY28 3,365 = +32% (half of +64% revenue growth). FY29 4,150 (990/1,030/1,050/1,080) = +23% (about half of the ~+42% revenue growth).",
+    "confidence": "medium",
+    "variant_view": "Celestial/XConn integration and 2nm/1.6T R&D could push opex growth above half of revenue growth (~-$0.2B EBIT)."
+   },
+   {
+    "input": "base revenue FY2026",
+    "value": "8,194.6",
+    "basis": "reported",
+    "source_ids": [
+     11
+    ],
+    "fact_ids": [
+     "F3"
+    ],
+    "derivation": ""
+   },
+   {
+    "input": "segment base revenue",
+    "value": "DC 6,100.3; C&O 2,094.3",
+    "basis": "reported",
+    "source_ids": [
+     11
+    ],
+    "fact_ids": [
+     "F3"
+    ],
+    "derivation": "FY2026 end-market table, 10-K"
+   },
+   {
+    "input": "Q1/Q2 FY27 reported non-GAAP operating income",
+    "value": "846.9 / 1,003.2",
+    "basis": "reported",
+    "source_ids": [
+     3,
+     2
+    ],
+    "fact_ids": [
+     "F14"
+    ],
+    "derivation": "Q1 FY27 846.9 from the Q1 FY27 release [3]; Q2 FY27 1,003.2 from the Q2 FY27 release [2]. Non-GAAP reconciliation tables; segments split pro rata to revenue (Marvell reports one segment)"
+   },
+   {
+    "input": "tax rate (non-GAAP)",
+    "value": "11%",
+    "basis": "estimate",
+    "source_ids": [
+     2
+    ],
+    "fact_ids": [],
+    "derivation": "Q2 FY27 non-GAAP pretax = 1,003.2 - 30.3 = 972.9; non-GAAP net income 865.9 -> tax 107.0 = 11.0%",
+    "confidence": "high"
+   },
+   {
+    "input": "D&A ex acquired-intangible amortization",
+    "value": "3.3% / 2.8% / 2.5% of revenue",
+    "basis": "estimate",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [],
+    "derivation": "6M FY27 D&A 188.5 on revenue 5,157.1 = 3.7%; falls as revenue outgrows the fixed asset base",
+    "confidence": "medium"
+   },
+   {
+    "input": "capex",
+    "value": "4.5% / 4.2% / 3.8% of revenue",
+    "basis": "estimate",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [
+     "F53",
+     "F6"
+    ],
+    "derivation": "TTM capex 470.2 / TTM revenue 9,450.3 = 5.0%; 6M FY27 282.4/5,157.1 = 5.5%; fabless, falling with scale",
+    "confidence": "medium"
+   },
+   {
+    "input": "NWC",
+    "value": "10% of incremental revenue",
+    "basis": "estimate",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [],
+    "derivation": "AR 2,218.4 + inventory 1,360.6 - AP (balance sheet 2026-08-01) ~ 25% of annualised revenue less payables; 10% of the increment is conservative",
+    "confidence": "low"
+   },
+   {
+    "input": "SBC (for FCF/EBITDA only; dilution treatment)",
+    "value": "10% / 7% / 5.5% of revenue",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     11
+    ],
+    "fact_ids": [
+     "F36",
+     "F39"
+    ],
+    "derivation": "TTM SBC 828.9 / 9,450.3 = 8.8%; Q2 FY27 326.2 includes acquisition-related awards",
+    "confidence": "medium"
+   },
+   {
+    "input": "shareholder returns",
+    "value": "1,015 / 1,100 / 1,200 per year",
+    "basis": "estimate",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [
+     "F60",
+     "F67"
+    ],
+    "derivation": "Dividends ~$215M/yr (TTM 209.3) + buybacks ~$800M/yr (H1 FY27 $400M); $5.1B authorization remains",
+    "confidence": "medium"
+   },
+   {
+    "input": "net debt",
+    "value": "1,030.1 at 2026-08-01",
+    "basis": "estimate",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [
+     "F94",
+     "F87",
+     "F95"
+    ],
+    "derivation": "Derived, not stated in the 10-Q: long-term debt 4,962.9 + short-term debt 0 - cash and equivalents 3,932.8 = 1,030.1 (facts.md F95, derived). Debt 4,962.9 - cash 3,932.8; the $2.0B NVIDIA Series A preferred is as-converted (21.8M shares, in diluted count), so preferred = 0",
+    "confidence": "high"
+   },
+   {
+    "input": "interest rate on net debt",
+    "value": "4.5%",
+    "basis": "estimate",
+    "source_ids": [
+     2
+    ],
+    "fact_ids": [
+     "F75",
+     "F88"
+    ],
+    "derivation": "Q2 interest expense 61.6 x 4 / debt 4,962.9 = 5.0%; cash earns ~4%",
+    "confidence": "medium"
+   },
+   {
+    "input": "diluted shares now",
+    "value": "921.2M (Q2 FY27 weighted diluted, incl. preferred as converted)",
+    "basis": "reported",
+    "source_ids": [
+     2,
+     1
+    ],
+    "fact_ids": [
+     "F33"
+    ],
+    "derivation": "Q3 guide also 921M diluted"
+   },
+   {
+    "input": "share count annual change",
+    "value": "+0.8%/yr",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     17,
+     18
+    ],
+    "fact_ids": [
+     "F39",
+     "F60"
+    ],
+    "derivation": "SBC ~$1.25B/yr at ~$200 = ~6.2M (+0.7%) less buybacks $800M = ~4M (-0.4%) plus Celestial earn-out shares and treasury dilution of Google's 58.97M-share warrant at $206.58 (only ~1.4M vest in year 1 plus 0.25M per $500M of purchases) ~ +0.4-0.5%",
+    "confidence": "medium",
+    "variant_view": "If MRVL trades well above $206.58 and Google buys >$5B by the horizon, warrant dilution could add another ~0.5%."
+   },
+   {
+    "input": "horizon P/E (main leg)",
+    "value": "29.0x NTM",
+    "basis": "judgment",
+    "source_ids": [
+     35,
+     20,
+     19,
+     39,
+     17,
+     18,
+     11
+    ],
+    "fact_ids": [
+     "AVGO.pe_ntm",
+     "CRDO.pe_ntm",
+     "ALAB.pe_ntm",
+     "MTSI.pe_ntm",
+     "COHR.pe_ntm",
+     "AMD.pe_ntm",
+     "NVDA.pe_ntm",
+     "CIEN.pe_ntm"
+    ],
+    "derivation": "Peer median NTM P/E 30.15x on 8 whole-company peers (16.5, 20.8, 24.3, 25.8, 34.5, 36.4, 49.4, 71.3; median (25.8+34.5)/2); LITE dropped (bid target, fiscal-year-blend EPS) and RMBS (segment-only). Own NTM 30.2x (196.40 / 6.51 Street NTM). Exit rule 30.15 x (30.2/30.15)^0.8 = 30.16x. MRVL-specific post-horizon risks at the horizon, probability-weighted: custom XPU share loss -$10, Google-warrant dilution and contra revenue -$3 (supervisor finding, 8-K 2026-08-19), China (MRVL-specific half of -$5) -$2.5, Google TPU-attach upside +$4 = -$11.5 = -1.1 turns on ~$10.5 NTM EPS; rounded to 29.0x (-1.16). The sector-wide AI-capex digestion risk is in the peer median (every peer is AI-infrastructure exposed) and in the downside case, not deducted again.",
+    "confidence": "medium",
+    "variant_view": "Without the deduction (30.16x) the target rises ~$9; round 1's -2.6 turns would cut ~$11."
+   },
+   {
+    "input": "normalised P/E leg",
+    "value": "26x on mid-cycle EPS (driver-linked; ~$7.33)",
+    "basis": "judgment",
+    "source_ids": [
+     8,
+     4,
+     7,
+     2,
+     19,
+     25,
+     16
+    ],
+    "fact_ids": [],
+    "derivation": "Mid-cycle EPS = average FY28-FY29 build revenue (19,800 + 28,330)/2 = 24,065 x 32% x (1 - 11%) / 935M = $7.33. 32% = average of Marvell's own FY25 (28.9%) and FY26 (35.3%) non-GAAP operating margins (Q4 FY25 and Q4 FY26 releases): one trough-ish and one up-cycle year; round 1 used 30%. 26x through-cycle P/E: HSBC 26x forward and inside the 8-peer IQR (~23-38x).",
+    "confidence": "low",
+    "variant_view": "Supervisor's 34% margin and 25x give ~$181 (about -$2 on the blend); a 28.9% (FY25) margin gives ~$171."
+   },
+   {
+    "input": "Celestial AI contingent consideration (net)",
+    "value": "-618.5",
+    "basis": "estimate",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [],
+    "derivation": "Derived (the 10-Q states no net figure): Level-3 contingent consideration liability 749.5 less the forward stock purchase contract asset 131.0 (fair-value table, 2026-08-01) = 618.5.",
+    "confidence": "high"
+   },
+   {
+    "input": "AI customer capex path",
+    "value": "2026 $1,225B; 2027 $1,841B; 2028 $2,255B (base)",
+    "basis": "estimate",
+    "source_ids": [
+     34,
+     31
+    ],
+    "fact_ids": [],
+    "derivation": "Standing file base case; Alphabet's Q3 call (2027 capex to top $300B, 2026 $195-205B) is newer and sits within the file's 2027 Big-4 consensus band, so no deviation",
+    "confidence": "medium",
+    "variant_view": "File low case 2027 $1,390B / 2028 $1,265B underpins the downside case."
+   },
+   {
+    "input": "Street EPS",
+    "value": "FY27 4.22, FY28 7.33 (non-GAAP); Q3 FY27 1.06",
+    "basis": "consensus",
+    "source_ids": [
+     20,
+     22
+    ],
+    "fact_ids": [],
+    "derivation": "FY27 4.22 / FY28 7.33 non-GAAP from StockAnalysis (S&P Global) [20]; Q3 FY27 1.06 from Earnings Whispers [22]. Whisper = Street + usual beat (~+$0.01-0.02/quarter; Q2 0.94 vs 0.93): FY28 ~7.44",
+    "confidence": "medium"
+   },
+   {
+    "input": "Lumentum deal probability",
+    "value": "0.546",
+    "basis": "estimate",
+    "source_ids": [
+     27,
+     23,
+     24,
+     28,
+     33,
+     43
+    ],
+    "fact_ids": [],
+    "derivation": "P(signed) 0.70: Bloomberg merger rumours come true ~80% of the time (Ahern & Sosyura via Quartz), but the same study finds rumours about large, high-profile targets less likely to complete and MRVL's -13% on the report (TechNews) raises walk-away risk; no 8-K, 425 or joint release through 2026-11-01 (searches). P(closed or pending on signed terms at the horizon | signed) 0.78: needs US and China review (TechNews); SAMR cleared Nvidia/Mellanox after 362 days but blocked Qualcomm/NXP and Intel/Tower (Akin Gump). 0.70 x 0.78 = 0.546.",
+    "confidence": "medium",
+    "variant_view": "Round 1's 0.80 x 0.75 = 0.60 moves the expected effect by -$0.3/share; talks ending (p 0) adds +$2.7."
+   },
+   {
+    "input": "Lumentum NTM net income at the horizon (Nov 2027 - Oct 2028)",
+    "value": "4,228.7 consensus; 3,805.8 after a 10% haircut",
+    "basis": "estimate",
+    "source_ids": [
+     40,
+     38
+    ],
+    "fact_ids": [],
+    "derivation": "LITE fiscal year ends June: 8/12 x FY28 3,845 + 4/12 x FY29 4,996 = 4,228.7; haircut 10% to match our MRVL build (FY29 revenue 28.3B, 9.4% under the 31.3B MRVL consensus), so both companies are valued on below-consensus horizon earnings.",
+    "confidence": "medium",
+    "variant_view": "Sold out to early 2029 (CEO via TIKR) argues for no haircut: L +$13.5B, V +$9.1B, about +$5.3/share on the expected effect."
+   },
+   {
+    "input": "Lumentum horizon P/E",
+    "value": "31.86x",
+    "basis": "estimate",
+    "source_ids": [
+     40,
+     32,
+     35
+    ],
+    "fact_ids": [],
+    "derivation": "LITE NTM P/E now on MarketScreener consensus: $83,000M / (8/12 x 1,931 + 4/12 x 3,845 = 2,569.0) = 32.31x (the supervisor's ~32.3x; peers.md's 42.5x is a fiscal-year blend and is not used). Exit rule on the same 30.15x peer median: 30.15 x (32.31/30.15)^0.8 = 31.86x.",
+    "confidence": "medium",
+    "variant_view": "At the 30.15x peer median L falls by $6.5B (V -$4.4B, -$2.6/share before probability)."
+   },
+   {
+    "input": "Lumentum equity value at the horizon (our view)",
+    "value": "$121.3B",
+    "basis": "estimate",
+    "source_ids": [
+     40,
+     35
+    ],
+    "fact_ids": [],
+    "derivation": "31.86 x 3,805.8 = 121,270 $M. Round 1 held LITE at $77.5B with no growth while MRVL was valued at its horizon earnings; this is the same-basis value the supervisor asked for (its own figure $114.5B).",
+    "confidence": "medium",
+    "variant_view": "LITE consensus may embed laser pricing at the peak of a sold-out cycle; a 25% haircut gives L $101B and V -$17.7B (-$10.4/share expected)."
+   },
+   {
+    "input": "Lumentum price paid",
+    "value": "$87.15B (5% premium); 443.7M new MRVL shares",
+    "basis": "estimate",
+    "source_ids": [
+     24,
+     23,
+     43
+    ],
+    "fact_ids": [],
+    "derivation": "\"Won't be at a big premium\" (CNBC, Faber): $83,000M x 1.05 = 87,150; / $196.40 = 443.7M shares. Round 1 used 10%.",
+    "confidence": "low",
+    "variant_view": "At 15% premium n = 486.0M and V falls by ~$8.8B (-$5.2/share expected)."
+   },
+   {
+    "input": "Lumentum synergies less costs and dis-synergies",
+    "value": "net -$6.0B (synergies +$3.0B, integration and deal costs -$1.0B, optical-DSP and laser customer dis-synergy -$8.0B)",
+    "basis": "judgment",
+    "source_ids": [
+     41,
+     42,
+     43,
+     25,
+     33
+    ],
+    "fact_ids": [],
+    "derivation": "Dis-synergy: optical DSP is a Broadcom/Marvell duopoly (PhotonCap) in which Marvell held >80% of 800G with ~$1.8B 2025 revenue (AYZ, Global Technology Research); module makers that compete with Lumentum's transceiver business can move DSP sockets to Broadcom. Electro-optics revenue at the horizon ~$4.5B (our estimate) x 15% at risk x 50% contribution x (1 - 11%) x 26x = $7.8B, rounded to $8.0B. Synergies: no cited figure; analysts cite complementary portfolios and long-term cost savings (TechNews) and captive laser supply in a sold-out market (TIKR): +$3.0B judgment. Costs $1.0B (judgment; Bernstein integration risk via TrendForce).",
+    "confidence": "low",
+    "variant_view": "No customer backlash (dis-synergy 0) lifts V by ~$5.4B (+$3.2/share expected); a 30% loss of DSP sockets doubles it (-$4.6/share expected)."
+   },
+   {
+    "input": "Lumentum deal value V",
+    "value": "-4,680",
+    "basis": "estimate",
+    "source_ids": [
+     40,
+     24,
+     23,
+     35,
+     27
+    ],
+    "fact_ids": [],
+    "derivation": "Standalone horizon value S = $275.40 (engine, deal excluded). Combined per share = (275.40 x 921.2 + 121,270 - 6,000) / (921.2 + 443.7) = $270.32; V = 921.2 x (270.32 - 275.40) = -4,680 $M (-$5.08 per current share if it happens); x p 0.546 = -2,555 $M, ~-$2.75 per horizon share.",
+    "confidence": "low",
+    "variant_view": "With LITE held at today's $83B (round 1's method) V = -30.5B; we reject that as an asymmetry (MRVL at the horizon, LITE at spot)."
+   }
+  ],
+  "structure_note": "Quarterly driver set (16 quarters: the 4 FY26 base quarters and Q1-Q2 FY27 reported, 10 forecast). Value carried by two P/E horizon legs on the build's own non-GAAP EPS with SBC as dilution: (1) 29.0x NTM P/E at the horizon (weight 0.75; NTM = Q4 FY28 + Q1-Q3 FY29), the playbook's peer-anchored multiple on the driver build; (2) a normalised-earnings P/E (26x on mid-cycle EPS at a 32% margin, driver-linked through driver_build.set, weight 0.25), the semis cyclical cross-check. Data Center revenue = customer AI capex (standing file) x Marvell's share of wallet (dc_share), per the playbook; two segments (Data Center, Communications and other) as Marvell reports end markets; segment EBIT allocates non-GAAP opex pro rata to revenue because Marvell reports one operating segment. No SOTP (both end markets share the same cost base). No DCF (policy). Adjustments: Celestial earn-out net liability and the Lumentum deal at expected value (p 0.546). Weights are judgment.",
+  "gap_note": "For Kilian: (1) Lumentum deal at expected value: p 0.546, V -4,680 $M (-$5.08/share if it happens, ~-$2.75 expected), with LITE valued on its own horizon NTM earnings (consensus less 10%) at the exit-rule 31.86x; round 1's -$21 came from holding LITE at today's price. Main judgment inside it: the -$8B optical-DSP customer dis-synergy (low confidence). (2) Horizon P/E 29.0x = exit rule 30.16x less 1.16 turns of MRVL-specific post-horizon risks (round 1: -2.6 turns); the sector-wide capex digestion risk is now left to the peer median and the downside case. (3) Normalised leg at a 32% mid-cycle margin (FY25-26 average) and 26x, weight 0.25. (4) FY29 DC revenue 26.0B (share of wallet +22% on FY28), between the supervisor's 25.2B and round 1's 26.7B. (5) Google warrant (58.97M shares at $206.58) is in the share drift and the -1.16-turn deduction; contra revenue is not modelled. (6) The deal adjustment is fixed across scenarios; scenario stories state the deal assumption. (7) Marvell Q3 FY27 reports ~early December, after the 1-month window.",
+  "long_dated_risks": [
+   {
+    "risk": "AI capex digestion in calendar 2028-29 (standing file low case: 2028 $1,265B vs base $2,255B)",
+    "probability": 0.25,
+    "when": "CY2028-2029 (FY2029-FY2030)",
+    "cash_flow_effect": "DC revenue -30% vs base in FY30, margins -4pt on under-absorption; shared by every AI-infrastructure peer, so the peer median carries it (round-2 change)",
+    "value_effect_per_share": -16.0,
+    "how_applied": "scenario (sector-wide: in the peer median and the downside case; not deducted from the multiple)",
+    "sources": [
+     34,
+     31
+    ]
+   },
+   {
+    "risk": "Custom XPU share loss (AWS Trainium 3/4 design work to Alchip; Microsoft ramp delays; hyperscalers in-sourcing)",
+    "probability": 0.3,
+    "when": "FY2028-FY2031",
+    "cash_flow_effect": "custom revenue -25% from FY29 (~-8% of total revenue)",
+    "value_effect_per_share": -10.0,
+    "how_applied": "multiple (part of the -1.16 turns)",
+    "sources": [
+     19,
+     16,
+     39
+    ]
+   },
+   {
+    "risk": "China export controls / domestic substitution (36% of FY26 revenue by ship-to destination, much of it assembly for US customers)",
+    "probability": 0.2,
+    "when": "any time; escalations through 2028",
+    "cash_flow_effect": "-5% to -10% of revenue",
+    "value_effect_per_share": -2.5,
+    "how_applied": "multiple (Marvell-specific half of -$5; the rest is in peers)",
+    "sources": [
+     11
+    ]
+   },
+   {
+    "risk": "Google warrant dilution and contra revenue (up to 58.97M shares at $206.58, one tranche per $500M of custom revenue through FY2033)",
+    "probability": 0.3,
+    "when": "FY2029-FY2033",
+    "cash_flow_effect": "up to ~6% more shares and contra revenue on vested tranches",
+    "value_effect_per_share": -3.0,
+    "how_applied": "multiple (part of the -1.16 turns); ~1M shares in the horizon drift",
+    "sources": [
+     17,
+     18
+    ]
+   },
+   {
+    "risk": "Google TPU-attach programs beyond FY2029 (warrant tranches per $500M purchases to FY2033; Kestrel qualification 2027-11-10)",
+    "probability": 0.5,
+    "when": "FY2029-FY2033",
+    "cash_flow_effect": "+$5-10B revenue a year by FY31 if programs land",
+    "value_effect_per_share": 4.0,
+    "how_applied": "multiple (offsets part of the -1.16 turns)",
+    "sources": [
+     17,
+     18,
+     15
+    ]
+   },
+   {
+    "risk": "Lumentum combination: optical-DSP and laser customer switching, SAMR conditions after closing",
+    "probability": 0.546,
+    "when": "FY2028-FY2030",
+    "cash_flow_effect": "~15% of ~$4.5B electro-optics revenue at risk; LITE customers aligned with Broadcom re-sourcing lasers",
+    "value_effect_per_share": -4.69,
+    "how_applied": "adjustment (the -$8B dis-synergy inside the deal V, at p 0.546)",
+    "sources": [
+     41,
+     42,
+     43,
+     25
+    ]
+   }
+  ],
+  "reverse_dcf_check": "29x NTM non-GAAP P/E at the horizon on ~$10.5 EPS implies buyers then expect roughly 20-25% EPS growth a year for FY30-FY33 at a ~40-42% operating margin (revenue ~$45-50B by FY31, near the $46.85B consensus and well short of the $70-90B target), then GDP-plus growth; plausible only if AI capex keeps growing after 2028, with the 1.16-turn deduction for Marvell's own share-loss and warrant risks and the digestion risk carried by the peer median and the downside case."
+ },
+ "revisions": [
+  {
+   "item": "research target (12m)",
+   "from": "249.37",
+   "to": "272.66",
+   "why": "Deal V rebuilt on a same-horizon basis (supervisor), horizon P/E 28.0x -> 29.0x (8-peer median, smaller risk deduction), normalised leg at 32% margin; FY29 DC trimmed partly offsets."
+  },
+  {
+   "item": "a method",
+   "from": "Lumentum deal V -31,874 $M at p 0.60 (~-$21/share)",
+   "to": "V -4,680 $M at p 0.546 (~-$2.75/share)",
+   "why": "Supervisor: round 1 valued LITE at $77.5B with no growth against MRVL at its horizon value; LITE now on its own horizon NTM earnings (MarketScreener consensus -10%) x exit-rule 31.86x; premium 10% -> 5%; dis-synergy -$3B -> -$8B from the DSP-share evidence."
+  },
+  {
+   "item": "a fact",
+   "from": "LITE NTM P/E 42.5x (peers.md)",
+   "to": "32.3x on MarketScreener consensus net income",
+   "why": "Supervisor source_review: peers.md figure is a fiscal-year blend; verified on MarketScreener LITE finances (2026-10-16)."
+  },
+  {
+   "item": "a fact",
+   "from": "Deal probability 0.60 (0.80 x 0.75)",
+   "to": "0.546 (0.70 x 0.78)",
+   "why": "Supervisor: Ahern-Sosyura also finds rumours on large high-profile firms less likely to complete; MRVL's -13% deal-day fall raises walk-away risk; US and China review (TechNews)."
+  },
+  {
+   "item": "a method",
+   "from": "horizon P/E 28.0x (median 32.35x on 10 peers, exit 30.6x, -2.6 turns)",
+   "to": "29.0x (median 30.15x on 8 peers, exit 30.16x, -1.16 turns)",
+   "why": "Supervisor: drop LITE (bid target) and RMBS (segment-only); deduction beyond ~1 turn needs MRVL-specific evidence, AI-capex digestion is sector-wide and in the peer median."
+  },
+  {
+   "item": "a method",
+   "from": "normalised leg $159.94 (30% margin x 26x)",
+   "to": "$187.17 (32% margin x 26x)",
+   "why": "Mid-cycle margin from the company's own last two years (FY25 28.9%, FY26 35.3%, supervisor evidence); we keep 26x and do not adopt the supervisor's 34%, which leans on the up-cycle year."
+  },
+  {
+   "item": "a fact",
+   "from": "FY29 DC revenue 26,670 (FY29 revenue 29.0B)",
+   "to": "26,000 (28.3B); DC now ai_capex x dc_share",
+   "why": "Supervisor FY29 review (ours was the top of the range); playbook capex x share-of-wallet driver. We stay above the supervisor's 25.2B on the custom FY29 >$12B investor-day target."
+  },
+  {
+   "item": "a scenario",
+   "from": "downside 96.39 / upside 415.80",
+   "to": "downside 118.31 / upside 427.05",
+   "why": "Engine on the revised set; downside moves capex -22% and share -10% (DC ~-30% as before), upside capex +15% and share +6%, multiple -8 / +6 turns."
+  },
+  {
+   "item": "P(close >= K)",
+   "from": "P(>=196.40) 0.526",
+   "to": "0.50",
+   "why": "A same-basis deal cost of ~$5/share means an announcement is largely priced; no reversal tilt added to that branch."
+  },
+  {
+   "item": "thesis break",
+   "from": "135",
+   "to": "135",
+   "why": "Unchanged: ~12.9x the revised horizon NTM EPS; consistent only with the downside drivers."
+  }
+ ]
+}

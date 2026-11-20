@@ -1,0 +1,375 @@
+{
+ "symbol": "AMZN",
+ "as_of": "2026-11-19",
+ "horizon": "2027-11-19",
+ "spot": 257.37,
+ "target": 283.7597,
+ "expected": 301.1252,
+ "exp_return": 0.17,
+ "p_gain": 0.6084,
+ "take_profit": 358.8103,
+ "stop_loss": 179.2053,
+ "stop_basis": "10th percentile (downside-case level)",
+ "p_touch_tp": 0.435,
+ "p_touch_sl": 0.233,
+ "reward_risk": 1.3,
+ "quantiles": {
+  "q5": 156.9271,
+  "q10": 179.2053,
+  "q15": 196.0852,
+  "q25": 223.2592,
+  "q50": 283.7597,
+  "q75": 358.8103,
+  "q85": 406.4056,
+  "q90": 443.2005,
+  "q95": 503.3185
+ },
+ "analysts": {
+  "mean": 327.1,
+  "median": 330.0,
+  "low": 250.0,
+  "high": 400.0,
+  "n": 36,
+  "rating": "Strong Buy",
+  "as_of": "2026-11-19",
+  "source": "https://stockanalysis.com/stocks/amzn/forecast/",
+  "effective_n": 30.7,
+  "flat_median": 328.0,
+  "stockanalysis_median": 329.5,
+  "method": "weighted",
+  "top_firms": [
+   {
+    "firm": "Freedom Broker",
+    "target": 330.0,
+    "date": "2026-11-03",
+    "tier": "C",
+    "weight": 0.04
+   },
+   {
+    "firm": "UBS",
+    "target": 352.0,
+    "date": "2026-10-31",
+    "tier": "A",
+    "weight": 0.039
+   },
+   {
+    "firm": "KeyBanc",
+    "target": 345.0,
+    "date": "2026-10-30",
+    "tier": "B",
+    "weight": 0.039
+   },
+   {
+    "firm": "Mizuho",
+    "target": 335.0,
+    "date": "2026-10-30",
+    "tier": "B",
+    "weight": 0.039
+   },
+   {
+    "firm": "Cantor Fitzgerald",
+    "target": 280.0,
+    "date": "2026-10-30",
+    "tier": "B",
+    "weight": 0.039
+   }
+  ],
+  "weight": 0.0,
+  "target_ex_analysts": 278.4026
+ },
+ "market_only": {
+  "target": 271.2955,
+  "q15": 182.514,
+  "q75": 351.1531,
+  "p_gain": 0.5547
+ },
+ "llm_only": {
+  "target": 284.6188,
+  "q15": 202.2572,
+  "q75": 353.1997,
+  "p_gain": 0.6203
+ },
+ "agents": 3,
+ "agent_targets": [
+  279.28,
+  268.26,
+  264.98
+ ],
+ "research_as_of": "2026-11-17",
+ "agents_horizon": "2027-10-06",
+ "fair_values": [
+  290.0,
+  278.0,
+  267.0
+ ],
+ "fair_value_agents": 278.0,
+ "fair_value_median": 296.1952,
+ "fair_value_source": "driver_model",
+ "fair_value_reason": "model_engine reconciled set (model update round (update.json, name_update.py), clean citation audit); supervisor narrative 293.17",
+ "fair_value_gap": 0.1509,
+ "fair_value_range": [
+  267.0,
+  290.0
+ ],
+ "thesis_triggers": [
+  {
+   "event": "AWS growth falls below +30% y/y for two quarters while capex stays at or above the guide",
+   "check": "AWS segment revenue y/y in the 10-Q segment note vs the capex line; the set books +38% in FY2027 and FY2028",
+   "source_ids": [
+    64,
+    77
+   ]
+  },
+  {
+   "event": "AWS backlog stops growing quarter on quarter",
+   "check": "remaining performance obligations in the 10-Q ($578B at 9/30 vs $496B at 6/30, Q3 call)",
+   "source_ids": [
+    64,
+    77
+   ]
+  },
+  {
+   "event": "Free cash flow stays negative with net debt above the set's $133.8B horizon path (engine at 2027-11-17: stated $103.5B + the net debt link on consensus 2027 capex)",
+   "check": "TTM FCF and net debt (debt less cash and marketable securities) each quarter; 9/30 net debt $66.1B (10-Q)",
+   "source_ids": [
+    64,
+    77
+   ]
+  },
+  {
+   "event": "Anthropic IPO prices well below the $1.5T used for the stake",
+   "check": "S-1 pricing / listing price vs $1.5T; the stake adjustment is $194.9B after tax and lock-up",
+   "source_ids": [
+    62
+   ]
+  }
+ ],
+ "supervisor_used": false,
+ "supervisor_confidence": "low",
+ "supervisor_summary": "EXIT k=0.8 RE-SET 2026-10-26 (Kilian card 12:16Z: exit = peer median x (own / median)^0.8): P/E 21.3x -> 22.88x. Research target (12m) $256.82 -> $265.83 (engine: multiple: P/E (ntm) $284.30 x 0.425; sotp $247.35 x 0.425; scenarios bear $175.49 / base $265.83 / bull $327.78, median $258.46). Multiples and values quoted in the older text below are superseded by these. No Amazon-specific news since Sep 29 (EDGAR shows only a Form 4). The stock's +3.9% is mostly market beta, and the 10-year was flat then (US Treasury par yield curve: 4.99% on 2026-10-27). The delta agents' higher fair values come from inputs and method: a sourced FY28 consensus ($13.81, which I use at $13.20) and a SOTP rolled to the horizon. I fixed real errors: the $50B OpenAI stake was missing, the peer median was re-based to CY2027 [Oct 6 median removed at the 2026-11-17 gate: mixed adjusted/GAAP basis; multiples use comps_review_2026_10_26], and agent_2's net-debt bridge was wrong. The corrected fair value is $283 (+10% vs spot), but the blind agent confirms the multiple legs and I leave the 12-month ladder at the forecasters' mean: median ~$270, P(>=spot) 0.57. The citation gate re-based the peer set to Oct 6 closes (ORCL 17.9x, so the thesis break moves $185 -> $188), corrected the claim that AMZN alone has negative FCF (META, GOOGL, ORCL do too; multiple unchanged), and set the 1-month ladder to the agents 2-3 mean (P(>=spot) 0.501). The Q3 print (not yet dated, est. ~Oct 29) and the Oct 27-28 FOMC fall inside the 1-month window. No revise round is needed.",
+ "key_drivers": [
+  "AWS average net property and equipment (installed capacity, $): 146.8 -> 266.8/447.0/646.3/799.7 (estimate; quarterly, mean)",
+  "AWS revenue per $ of average net PP&E (capacity turnover): 0.8771 -> 0.6555/0.5400/0.5154/0.4778 (estimate; quarterly, wmean:aws_ppe)",
+  "AWS EBITDA margin (segment OI + segment D&A) / AWS sales: 0.5209 -> 0.5786/0.6054/0.6406/0.7052 (estimate; quarterly, wmean:aws_ppe*aws_turn; = AWS operating margin 38% (Kilian card) + placed-in-service D&A per revenue)",
+  "Advertising services revenue: 68.64 -> 81.63/94.62/106.8/117.3 (estimate; quarterly, sum)",
+  "North America + International revenue excluding advertising (stores, 3P services, subscriptions, other): 519.6 -> 572.2/617.4/666.1/718.7 (estimate; quarterly, sum)",
+  "Operating margin of NA + International excluding advertising (ads at an assumed 50% margin): 9.904e-05 -> 0.006736/0.006738/0.006738/0.006738 (estimate; quarterly, wmean:stores_rev)"
+ ],
+ "iv30": 0.3199,
+ "iv30_date": "2026-10-30",
+ "atm_iv_1y": 0.3828,
+ "low_confidence": false,
+ "ladder": [
+  {
+   "K": 64.3425,
+   "market": 0.9999,
+   "llm_mean": 0.9987,
+   "llm_sd": 0.0012,
+   "llm_used": 0.9999,
+   "llm_platt": 0.9999,
+   "final": 0.9999
+  },
+  {
+   "K": 102.948,
+   "market": 0.9943,
+   "llm_mean": 0.9947,
+   "llm_sd": 0.0015,
+   "llm_used": 0.999,
+   "llm_platt": 0.999,
+   "final": 0.9971
+  },
+  {
+   "K": 128.685,
+   "market": 0.9743,
+   "llm_mean": 0.9827,
+   "llm_sd": 0.0012,
+   "llm_used": 0.9918,
+   "llm_platt": 0.9918,
+   "final": 0.9852
+  },
+  {
+   "K": 154.422,
+   "market": 0.9295,
+   "llm_mean": 0.951,
+   "llm_sd": 0.0026,
+   "llm_used": 0.9677,
+   "llm_platt": 0.9677,
+   "final": 0.9541
+  },
+  {
+   "K": 180.159,
+   "market": 0.8575,
+   "llm_mean": 0.8943,
+   "llm_sd": 0.009,
+   "llm_used": 0.9167,
+   "llm_platt": 0.9167,
+   "final": 0.8973
+  },
+  {
+   "K": 205.896,
+   "market": 0.7644,
+   "llm_mean": 0.8087,
+   "llm_sd": 0.0242,
+   "llm_used": 0.8365,
+   "llm_platt": 0.8365,
+   "final": 0.8154
+  },
+  {
+   "K": 231.633,
+   "market": 0.6601,
+   "llm_mean": 0.696,
+   "llm_sd": 0.0375,
+   "llm_used": 0.7337,
+   "llm_platt": 0.7337,
+   "final": 0.7156
+  },
+  {
+   "K": 257.37,
+   "market": 0.5547,
+   "llm_mean": 0.5707,
+   "llm_sd": 0.0416,
+   "llm_used": 0.6203,
+   "llm_platt": 0.6203,
+   "final": 0.6084
+  },
+  {
+   "K": 283.107,
+   "market": 0.4557,
+   "llm_mean": 0.44,
+   "llm_sd": 0.0361,
+   "llm_used": 0.5066,
+   "llm_platt": 0.5066,
+   "final": 0.5026
+  },
+  {
+   "K": 308.844,
+   "market": 0.3674,
+   "llm_mean": 0.325,
+   "llm_sd": 0.0261,
+   "llm_used": 0.4001,
+   "llm_platt": 0.4001,
+   "final": 0.4046
+  },
+  {
+   "K": 347.4495,
+   "market": 0.2591,
+   "llm_mean": 0.1977,
+   "llm_sd": 0.0157,
+   "llm_used": 0.2672,
+   "llm_platt": 0.2672,
+   "final": 0.281
+  },
+  {
+   "K": 386.055,
+   "market": 0.1784,
+   "llm_mean": 0.1147,
+   "llm_sd": 0.0129,
+   "llm_used": 0.1701,
+   "llm_platt": 0.1701,
+   "final": 0.1884
+  },
+  {
+   "K": 450.3975,
+   "market": 0.0927,
+   "llm_mean": 0.0447,
+   "llm_sd": 0.0075,
+   "llm_used": 0.0758,
+   "llm_platt": 0.0758,
+   "final": 0.0925
+  },
+  {
+   "K": 514.74,
+   "market": 0.0472,
+   "llm_mean": 0.0177,
+   "llm_sd": 0.0047,
+   "llm_used": 0.0316,
+   "llm_platt": 0.0316,
+   "final": 0.044
+  },
+  {
+   "K": 643.425,
+   "market": 0.012,
+   "llm_mean": 0.0037,
+   "llm_sd": 0.0021,
+   "llm_used": 0.0058,
+   "llm_platt": 0.0058,
+   "final": 0.0101
+  }
+ ],
+ "platt": {
+  "p_up_raw": 0.6203,
+  "p_up_platt": 0.6203,
+  "log_shift": 0.0,
+  "frozen_at": {
+   "research": "2026-11-17",
+   "research_leg": "driver_model",
+   "log_shift": 0.0,
+   "skipped": "no Platt on a driver model leg (Kilian 2026-10-26 16:12Z)"
+  }
+ },
+ "revision": {
+  "snapshot": "2026-11-19",
+  "pct": 0.2303,
+  "bucket": "rest",
+  "log_shift": 0.0
+ },
+ "short_interest": {
+  "dtc": 2.001,
+  "pct": 0.0987,
+  "quintile": 1,
+  "log_shift": 0.01909,
+  "settle_date": "2026-10-30",
+  "source": "https://api.finra.org/data/group/otcMarket/name/consolidatedShortInterest (settlementDate = 2026-10-30); FINRA consolidated short interest, public data",
+  "excess_12m": 0.01927
+ },
+ "momentum": {
+  "mom": 0.1789,
+  "pct": 0.5683,
+  "bottom_fifth": false,
+  "log_shift": 0.0,
+  "as_of": "2026-11-19",
+  "cutoff": -0.0664
+ },
+ "cw_spread": {
+  "cw": null,
+  "z": null,
+  "cap": 2787086398372.0,
+  "log_shift": 0.0,
+  "as_of": "2026-11-17",
+  "reason": "above $5B: no tilt"
+ },
+ "method": {
+  "ensemble": "mean of independent forecasters",
+  "supervisor": "replaces mean only on high confidence",
+  "platt_applied_to": "P(close >= research-day spot), as a location shift frozen per research round",
+  "platt_a": 1.7321,
+  "w_market": 0.5,
+  "w_llm": 0.5,
+  "special_situation": false,
+  "target_definition": null
+ },
+ "citation_gate": {
+  "status": "clean",
+  "research": "2026-11-17",
+  "blocked_newer": []
+ },
+ "research_leg": {
+  "source": "driver_model",
+  "model_target": 296.19519351211085,
+  "model_fair_value": 296.19519351211085,
+  "quantiles": {
+   "q10": 193.4474341430703,
+   "q25": 236.70273293464373,
+   "q75": 367.728888246149,
+   "q90": 446.7714855821717
+  },
+  "file": "runs/2026-11-17/AMZN/model_engine.json",
+  "set_file": "runs/2026-11-17/AMZN/supervisor.json",
+  "basis": "model update round (update.json, name_update.py), clean citation audit",
+  "distribution": "model base case with downside (P10) and upside (P90)",
+  "recentre_log": -0.038995,
+  "ladder_median_before": 295.9621,
+  "mean_centre_log": -0.039783,
+  "leg_sd_log": 0.3257
+ }
+}
