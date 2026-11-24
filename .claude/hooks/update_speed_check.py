@@ -7,9 +7,12 @@ forward and make sure no future claudes can bypass this without telling me what 
    `python3 /mnt/project-files/valuation/secfacts.py untagged SYM URL --item "..."`. Registration runs the XBRL lookup on the
    item first; a tagged match needs --why and is then a logged bypass listed to Kilian. data.sec.gov (the XBRL API) and
    EDGAR full-text search are not filing documents and pass.
-2. SHEET COPY ROUTE. Drive create_file of "SYM driver model (D)" is refused while runs/D/SYM/gsheet_route.json says the
-   delta route (copy the last Sheet, push the changes); `name_update.py sheet D SYM --full --why "..."` sets the full route,
-   logged and listed to Kilian.
+2. CLAUDE SHEETS ONLY (Kilian 2026-11-24: "make sure ALL future sheet updates are pushed there from now on, do not upload to
+   google sheets or excel anymore"). Refused: Google Drive create_file or copy_file of a spreadsheet (Google Sheets or
+   Excel/xlsx) or of anything titled "SYM driver model (D)", and the Google Sheets tools that build or reshape a Sheet
+   (update_formulas, update_spreadsheet, copy_sheet_to_another_spreadsheet, insert_dimension). Driver-model Sheets go to
+   Claude Sheets: `name_update.py sheet D SYM` writes the brief (agents/claude_sheet_upload.md). The Fills tab's
+   get_values / append_values / update_values still pass.
 Prints nothing for any other call.
 """
 import json, os, re, sys
@@ -64,27 +67,25 @@ def sec_check(tool, inp):
             'if the lookup finds a tagged figure that registration needs --why and is listed to Kilian as a bypass.')
 
 
-def sheet_check(inp):
-    t = str(inp.get('title') or inp.get('name') or '')
-    m = SHEET_TITLE.match(t)
-    if not m: return None
-    mt = json.dumps(inp).lower()
-    if 'spreadsheet' not in mt: return None
-    s, d = m.group(1), m.group(2)
-    try: rt = json.load(open(os.path.join(VAL, 'runs', d, s, 'gsheet_route.json')))
-    except (OSError, ValueError): return None
-    if rt.get('route') != 'delta': return None
-    return ('SHEET CREATE REFUSED (RULES.md 28b, Kilian 2026-11-20). The delta route is set for this Sheet: Google Drive '
-            f"copy_file of {rt.get('base_url') or rt.get('base_id')} titled \"{t}\", then the batch files in "
-            f'{VAL}/runs/{d}/{s}/gsheet_delta/ (brief: runs/{d}/{s}/gsheet_upload_brief.md). A full build while the delta is ready '
-            f'needs `python3 {VAL}/name_update.py sheet {d} {s} --full --why "<reason>"` first (logged, listed to Kilian).')
+GS_BUILD = ('mcp__Google_Sheets__update_formulas', 'mcp__Google_Sheets__update_spreadsheet',
+            'mcp__Google_Sheets__copy_sheet_to_another_spreadsheet', 'mcp__Google_Sheets__insert_dimension')
+SHEETY = re.compile(r'spreadsheet|\.xlsx?\b|\.xlsm\b|ms-excel|driver model', re.I)
+
+
+def sheet_check(tool, inp):
+    if tool in GS_BUILD or SHEETY.search(json.dumps(inp)):
+        return ('SHEET UPLOAD REFUSED (RULES.md 28b, Kilian 2026-11-24: all Sheet updates go to Claude Sheets; no Google Sheets '
+                f'or Excel uploads). {tool} would build or upload a spreadsheet outside Claude Sheets. For a driver model run '
+                f'`python3 {VAL}/name_update.py sheet D SYM` and follow runs/D/SYM/gsheet_upload_brief.md (Claude Sheets import), '
+                f'then `name_update.py link D SYM <claude.ai/artifact URL>`.')
+    return None
 
 
 def main():
     try: ev = json.load(sys.stdin)
     except ValueError: return
     tool, inp = ev.get('tool_name') or '', ev.get('tool_input') or {}
-    if tool == 'mcp__Google_Drive__create_file': r = sheet_check(inp)
+    if tool.startswith(('mcp__Google_Drive__create_file', 'mcp__Google_Drive__copy_file')) or tool in GS_BUILD: r = sheet_check(tool, inp)
     else: r = sec_check(tool, inp)
     if r: deny(r)
 
