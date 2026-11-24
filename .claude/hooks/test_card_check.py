@@ -90,6 +90,7 @@ def main():
     r = run([allow, res('b1'), card(uid='c0'), res('c0')], card()); R.append(check('allow-next is used up by one card', r, True, 'No context', r))
     r = run([msg(GOOD)], card()); R.append(check('message without result yet (same batch) still counts', r, False, reason=r))
     R += gate_tests()
+    R += street_tests()
     shutil.rmtree(VAL, ignore_errors=True)
     print(f'{sum(R)}/{len(R)} passed')
     sys.exit(0 if all(R) else 1)
@@ -149,6 +150,22 @@ def gate_tests():
     r = run(dtouch + good, card(q=q)); R.append(check('gate: driver gate clean passes', r, False, reason=r))
     put('driver_models/MOD/set.json', {}, age=1)
     r = run(dtouch + good, card(q=q)); R.append(check('gate: set.json edited after gate refused', r, True, 'changed after gate.json', r))
+    return R
+
+
+def street_tests():
+    """RULES.md 42 (Kilian 2026-11-24, APP FY2027 revenue ~10% above the Street with no Street figure on any card)."""
+    R = []
+    rev = GOOD.replace('semis-systems revenue', 'semis-systems revenue for FY2027-28')
+    r = run([msg(rev), res('m1')], card()); R.append(check('street: revenue card naming FY2027-28 without a Street line refused', r, True, 'no Street figure for FY2027, FY2028', r))
+    part = rev.replace('\n\n**Keep', '\n- Street FY2027 revenue ($M): 31,200 (Zacks, 2026-11-24); booked 32,100 (+2.9% vs Street)\n\n**Keep')
+    r = run([msg(part), res('m1')], card()); R.append(check('street: one year still missing refused', r, True, 'no Street figure for FY2028', r))
+    full = part.replace('(+2.9% vs Street)', '(+2.9% vs Street)\n- Street FY2028 revenue ($M): no consensus published (checked 2026-11-24: Zacks, Nasdaq)')
+    r = run([msg(full), res('m1')], card()); R.append(check('street: every year shown passes', r, False, reason=r))
+    past = GOOD.replace('semis-systems revenue', 'semis-systems revenue (FY2024 actual 27,180)')
+    r = run([msg(past), res('m1')], card()); R.append(check('street: a past fiscal year needs no Street line', r, False, reason=r))
+    pe = GOOD.replace('semis-systems revenue', 'the FY2027 P/E multiple')
+    r = run([msg(pe), res('m1')], card()); R.append(check('street: a card without revenue/EPS words is not checked', r, False, reason=r))
     return R
 
 

@@ -17,6 +17,11 @@ What this hook refuses (the card is never posted; the session gets the list of p
   5. a section with no source link (http/https URL, or a Markdown link to a project file). Only when no outside source
      can exist (e.g. a pure workflow choice) may the section say "No source: <why>" with a reason of NOSRC_MIN+ chars,
   6. on a valuation card (VALUATION words in the card or message), a section with no sized number (a % or a price).
+  7. STREET FIGURE (RULES.md 42, Kilian 2026-11-24, after APP's FY2027 revenue ran ~10% above the Street and no card showed
+     it): a valuation message that talks about revenue / sales / EPS and names fiscal years (FY2027, FY27, FY2027-29) needs a
+     line with "Street" or "consensus" naming each of those years with its figure, or saying none is published (years
+     before the current calendar year are actuals and are skipped).
+     `judgment_check.py cards` prints those lines (consensus_gap.py).
 The text is checked for form only; whether the reasoning is right and the links show what it says is still on the
 session (and the gate text agent for model cards).
 
@@ -57,6 +62,10 @@ VALUATION = re.compile(r'research target|price target|\btarget\b|valuation|drive
 SIZED = re.compile(r'[+\-−]?\d+(?:\.\d+)?\s?%|\$\s?\d|\b\d+\.\d+\b|\bbp\b|\b\d+\s?bps?\b', re.I)
 URL = re.compile(r'https?://[^\s)\]>]+')
 MDLINK = re.compile(r'\[[^\]]+\]\(([^)\s]+)\)')
+REVEPS = re.compile(r'\brevenues?\b|\bsales\b|\beps\b', re.I)
+FYR = re.compile(r'\bFY\s?(20\d\d|\d\d)(?:\s?[-\u2013]\s?(?:FY\s?)?(20\d\d|\d\d))?\b', re.I)
+STREET = re.compile(r'\bstreet\b|\bconsensus\b', re.I)
+STREET_OK = re.compile(r'\d|none published|no consensus', re.I)
 NOSRC = re.compile(r'no (?:outside )?sources?\s*[:\-–—]\s*(.+)', re.I)
 ALLOW_CMD = re.compile(r'card_check\.py\s+allow-next\b')
 UNGATED_CMD = re.compile(r'card_check\.py\s+allow-ungated\b')
@@ -74,6 +83,27 @@ def _label_re(label):
     words = re.findall(r'\w+|[^\w\s]', label)
     words = [re.escape(w) for w in words if re.match(r'\w', w)] or [re.escape(label.strip())]
     return re.compile(PREFIX + r'[\W_]*'.join(words), re.I | re.M)
+
+
+def fiscal_years(text):
+    """FY2027 / FY27 / FY2027-29 / FY27-FY29 -> {2027, 2028, 2029}."""
+    out = set()
+    for a, b in FYR.findall(text or ''):
+        a = int(a) + (2000 if len(a) == 2 else 0); b = (int(b) + (2000 if len(b) == 2 else 0)) if b else a
+        out |= set(range(a, b + 1)) if 0 <= b - a <= 10 else {a}
+    return out
+
+
+def street_missing(text):
+    """Fiscal years a revenue / EPS message names with no Street line (RULES.md 42) -> sorted list ([] = fine)."""
+    text = text or ''
+    if not REVEPS.search(text): return []
+    named = {y for y in fiscal_years(text) if y >= dt.date.today().year}  # past fiscal years are actuals: no Street line needed
+    if not named: return []
+    have = set()
+    for line in text.splitlines():
+        if STREET.search(line) and STREET_OK.search(FYR.sub('', line)): have |= fiscal_years(line)
+    return sorted(named - have)
 
 
 def problems(text, labels, valuation=None):
@@ -109,6 +139,12 @@ def problems(text, labels, valuation=None):
                 P.append(f'option {i + 1} "{lab}": no linked source (a URL, or "No source: <why none can exist>")')
         if valuation and not SIZED.search(sec):
             P.append(f'option {i + 1} "{lab}": valuation card but no sized number (its research target (12m) or % effect)')
+    if valuation:
+        miss = street_missing(text)
+        if miss:
+            P.append('no Street figure for ' + ', '.join(f'FY{y}' for y in miss) + ' (RULES.md 42, Kilian 2026-11-24): a revenue / EPS card '
+                     'shows the consensus for each year it names, e.g. "Street FY2027 revenue ($M): 10,470 (Zacks, 2026-11-24); booked 11,494 '
+                     '(+9.8% vs Street)", or "no consensus published"; `python3 /mnt/project-files/valuation/judgment_check.py cards D SYM` prints them')
     return P
 
 
