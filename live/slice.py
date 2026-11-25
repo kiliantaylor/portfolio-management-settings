@@ -123,6 +123,10 @@ def wanted():
         sys.path.insert(0, V); import book  # allocate.py sizes unheld names only, as the nightly does
         now = {p['symbol'] for p in book.load()['positions'] if p.get('shares')}
         yield from traced('allocate.py', D, *[s for s in cands if s not in now])  # the inputs of beats_check.py's probe (allocate.py's own code up to its Sharpe test)
+        # 2026-11-25 (Kilian card 'Swap buys the full target'): live/swaps.py sizes a swap-in at its held-name target,
+        # review.py's own sizing on the book after the trade (valuation/swap_size.py), so its inputs for each candidate go in too
+        for s in cands:
+            if s not in now: yield from traced('swap_size.py', D, s)
     yield from traced_review()
 
 def base_key(data):  # the page computes the same key from its embedded DATA (applyLive in report_template.html)
