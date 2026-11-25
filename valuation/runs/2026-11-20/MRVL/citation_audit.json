@@ -1,0 +1,1693 @@
+{
+ "date": "2026-11-20",
+ "symbol": "MRVL",
+ "gate_round": 2,
+ "clean": true,
+ "checked": 161,
+ "ok": 129,
+ "fixed": 21,
+ "failures": [
+  {
+   "item": "NWC % of incremental revenue anchor (company_stated, as of 2026-08-27): Durn (CFO, src 14): ~$1B supplier capacity prepayments in FY27, part of which is alread\u2026",
+   "value": "0.15",
+   "cited": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "result": "mislabelled",
+   "origin": "supervisor model normalizing (nwc_pct_incr_rev) anchor",
+   "fix": "anchor now basis 'estimate' with the arithmetic ((1,000 - 333.7) / (11,994.7 - 8,194.6) = 17.5%, booked 15%) and confidence medium"
+  },
+  {
+   "item": "Shares annual change anchor (company_adjusted, as of 2026-08-01): Built from filed SBC (F39), buybacks (F60) and the warrant terms (src 12); reported history F\u2026",
+   "value": "0.004",
+   "cited": "/mnt/attach/project-files/valuation/runs/2026-10-30/MRVL/facts.md",
+   "result": "mislabelled",
+   "origin": "supervisor model normalizing (shares) anchor",
+   "fix": "anchor now basis 'estimate' with the derivation from F39/F60/src 12 and confidence medium; reported history +0.49% kept as comparison"
+  },
+  {
+   "item": "claim (src 52, 14)",
+   "value": "FY27 = Q1-Q2 reported (2,417.8 + 2,739.3) + Q3 Marvell's preliminary 3,150 (src 52) + Q4 (DC 3,094.3 from the ~+60% FY27 data-center statement, Murphy, src 14; comms 595.0 from the end-market build) \u2026",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "result": "back_solved",
+   "origin": "supervisor guidance_check revenue FY2027 why",
+   "fix": "carded: dc_share (card 'Where should MRVL's Q4 FY27 data-center revenue sit?')"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "cited": "https://finance.yahoo.com/quote/CRDO/analysis/",
+   "result": "not_found",
+   "origin": "timeliness.py (forecast the set uses)",
+   "fix": "CRDO consensus now dated by 247 Wall St 2026-11-11 (src 73: FY27 6.3093, FY28 9.7121, the same figures as Yahoo); Yahoo src 38 no longer carries an opened-date `published`"
+  },
+  {
+   "item": "open_flags: deal variants -13.8 to +11.3 per share, base +0.67",
+   "value": "base +0.67/share",
+   "cited": "",
+   "result": "wrong",
+   "origin": "supervisor sizing",
+   "fix": "open_flags restated: V +22,075 x 0.75 / 925.8M = +17.9 a share less -0.69 fee; sized LITE/synergy alternatives -32.2 to +1.1 a share"
+  },
+  {
+   "item": "reconciled_peer_median 23.2, exit_multiple 28.47, exit_k 0.8, spot_checks (NVDA 14.4 ... ALAB 43.0)",
+   "value": "23.2 / 28.47",
+   "cited": "",
+   "result": "wrong",
+   "origin": "supervisor comps_review",
+   "fix": "comps_review median 17.72, exit_multiple 18.03 (17.0 after the 1-turn deduction), spot checks restated to the current 8 peers and sources"
+  },
+  {
+   "item": "CRDO NTM EPS from Yahoo (FY27 6.31, FY28 9.71) in the 8-peer median",
+   "value": "CRDO 12.2x",
+   "cited": "https://finance.yahoo.com/quote/CRDO/analysis/",
+   "result": "mixed_basis",
+   "origin": "supervisor comps_review / horizon_multiples ntm_pe",
+   "fix": "CRDO basis shown: Yahoo's EPS actuals 1.20 (2026-07-31) and 1.16 (2026-04-30) equal Credo's non-GAAP diluted EPS (GAAP 0.67 / 0.88; 8-K Ex.99.1 2026-09-01, src 74), so the 6.31 / 9.71 consensus is non-GAAP like the other 7 peers; dated by src 73"
+  },
+  {
+   "item": "normalised peer_basis: 'x 23x through-cycle P/E (the corrected 23.2x peer median)', eps 7.5, 926.4M shares",
+   "value": "23x / 7.5 / 926.4M",
+   "cited": "",
+   "result": "wrong",
+   "origin": "supervisor horizon_multiples normalised",
+   "fix": "peer_basis restated: 17.7x (current 8-peer median 17.72x), /925.8M horizon shares, eps 8.13 (engine)"
+  },
+  {
+   "item": "custom FY27 2,000 / FY28 4,000 (= 12,000/3) / FY29 12,000, quarters on one constant 1.316 q/q rate (632 ... 4,323)",
+   "value": "2,000/4,000/12,000",
+   "cited": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "result": "back_solved",
+   "origin": "supervisor driver dc_share",
+   "fix": "carded: dc_share (card 'Where should MRVL's FY28-FY29 data-center revenue sit?')"
+  },
+  {
+   "item": "FY28-FY29 non-custom = 6.3351 x ai_capex (FY27 ratio held; 'it moved with capex in FY27')",
+   "value": "11,663 / 14,286",
+   "cited": "",
+   "result": "unsupported",
+   "origin": "supervisor driver dc_share",
+   "fix": "carded: dc_share (card 'Where should MRVL's FY28-FY29 data-center revenue sit?')"
+  },
+  {
+   "item": "FY29 2,458.5 = FY28 x 1.0486 (WSTS 2027 rates reused for CY2028); FY28-29 quarters on the mean shape of FY26 and FY27",
+   "value": "2,458.5",
+   "cited": "https://www.wsts.org/esraCMS/extension/media/f/WST/7618/WSTS_FC-Release-2026-May.pdf",
+   "result": "unsupported",
+   "origin": "supervisor driver comms_rev",
+   "fix": "carded: comms_rev (card 'How should MRVL's FY29 communications revenue grow?'; its all-flat alternative moves the FY29 part -0.78%, so not a rule 26 note)"
+  },
+  {
+   "item": "FY29 4,139.5 = FY28 x (1 + 0.5 x 59.6%) ('the same stated relationship'); quarter weights 23.5/24.5/25.5/26.5%",
+   "value": "4,139.5",
+   "cited": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "result": "unsupported",
+   "origin": "supervisor driver opex_ng",
+   "fix": "carded: opex_ng (card 'How fast should MRVL's FY29 operating expenses grow?')"
+  },
+  {
+   "item": "why: 'FY29 opex at 14.8% of revenue vs 24% in FY26'",
+   "value": "14.8%",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor driver opex_ng",
+   "fix": "why restated: 4,139.5 / 28,728.1 = 14.4% vs 24.2% in FY26"
+  },
+  {
+   "item": "revenue FY2027 guidance arithmetic (ours 12,022.1, above, gap +0.0018)",
+   "value": "12022.1",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor guidance",
+   "fix": "from the engine: our_value / drivers_imply 11,994.7 (Q4 3,687.6 = DC 3,094.3 + comms 593.3 after the RAN fix), gap -0.0004, below"
+  },
+  {
+   "item": "revenue FY2028 guidance arithmetic (ours 19,844.5, below, gap -0.0078)",
+   "value": "19844.5",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor guidance",
+   "fix": "from the engine: our_value / drivers_imply 17,998.9 (DC 15,662.9 + comms 2,336.0), gap -0.1001, below; consensus field now 19,840 (src 18, 2026-11-20)"
+  },
+  {
+   "item": "custom (XPU) revenue FY2029: our_value 10,500, gap -0.125, drivers_note 'FY29 DC ~25,200 = custom ~10.5B'",
+   "value": "10500",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor guidance",
+   "fix": "our_value / drivers_imply 12,000, gap 0, inside; drivers_note: custom FY29 quarters sum to 12,000, DC FY29 26,285.6"
+  },
+  {
+   "item": "non-GAAP EPS Q3 FY2027 drivers_imply 1.102 = (EBIT 1,167.0 - 61.8 + 36.1) x 0.89 / 921.7",
+   "value": "1.102",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor guidance",
+   "fix": "from the engine: drivers_imply 1.106 = (1,172.0 - 61.78 + 36.09) x 0.89 / 922.1M with opex 655; our_value 1.106, +0.55% vs the 1.10 midpoint (inside)"
+  },
+  {
+   "item": "Shares annual change: '~$220' price converting SBC and buyback dollars to shares",
+   "value": "~$220",
+   "cited": "",
+   "result": "unsupported",
+   "origin": "supervisor model",
+   "fix": "carded: Shares annual change (rule 26 small-flag note)"
+  },
+  {
+   "item": "Normalised leg: 34% x NTM-window revenue x 0.87 / 926.4M x 17.7x",
+   "value": "926.4M",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor model",
+   "fix": "ntm formulas, inputs_detail rows and peer_basis on 925.8M (921.2 x 1.004^1.246, engine shares_H 925.82)"
+  },
+  {
+   "item": "int_exp other interest 3.37/qtr held flat 10 quarters",
+   "value": "3.37",
+   "cited": "",
+   "result": "unsupported",
+   "origin": "supervisor model",
+   "fix": "carded: int_exp other interest (rule 26 small-flag note)"
+  },
+  {
+   "item": "oth_inc steady cost -6.84/qtr held flat",
+   "value": "-6.84",
+   "cited": "",
+   "result": "unsupported",
+   "origin": "supervisor model",
+   "fix": "carded: oth_inc steady cost (rule 26 small-flag note)"
+  },
+  {
+   "item": "deal: value change V if it happens = 22,047.1",
+   "value": "22047.1",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model",
+   "fix": "row derivation now V's own: 925.82 x (108,795 - 464.82 x 162.72) / 1,390.64 = +22,075.4 (re-solved on the current standalone)"
+  },
+  {
+   "item": "Non-custom DC held at its FY27 ratio (it tracked capex in FY27)",
+   "value": "",
+   "cited": "",
+   "result": "unsupported",
+   "origin": "supervisor guidance_check revenue FY2028 why",
+   "fix": "carded: dc_share (card 'Where should MRVL's FY28-FY29 data-center revenue sit?')"
+  },
+  {
+   "item": "LOW option link io-fund.com (2028 pullback, S&P only Microsoft FCF-positive)",
+   "value": "",
+   "cited": "https://io-fund.com/ai-stocks/ai-capex-1-trillion-estimates-too-low",
+   "result": "not_found",
+   "origin": "supervisor judgment_calls_for_kilian #1",
+   "fix": "io-fund link removed; LOW option now cites src 17 (the standing capex file, lines with the Meta 2023 cut and the S&P FCF point) plus the public pages behind them: Motley Fool 2026-09-06 (src 75: 'S&P Global is modeling for just one hyperscaler to have positive free cash flow next year') and Meta's 8-K releases (2023 capex guide $34-39B -> $28.10B actual)"
+  },
+  {
+   "item": "context: scale-up optics 'virtually no revenue today' but an FY28 outlook 'increased meaningfully'",
+   "value": "",
+   "cited": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "result": "wrong",
+   "origin": "supervisor judgment_calls_for_kilian #2",
+   "fix": "context quotes Murphy (Chairman and CEO, Investor Day, src 63) as said: 'We have virtually no revenue in this area today, with strong growth beginning next year'; FY28 raise 'driven by interconnect, scale-up optics, and switching'"
+  },
+  {
+   "item": "other interest 3.37/qtr held flat Q3 FY27-Q4 FY29",
+   "value": "3.37",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/mrvl-20260801.htm",
+   "result": "unsupported",
+   "origin": "supervisor driver_build int_exp",
+   "fix": "carded: int_exp other interest (rule 26 small-flag note)"
+  },
+  {
+   "item": "steady cost -6.84/qtr held flat",
+   "value": "-6.84",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/mrvl-20260801.htm",
+   "result": "unsupported",
+   "origin": "supervisor driver_build oth_inc",
+   "fix": "carded: oth_inc steady cost (rule 26 small-flag note)"
+  },
+  {
+   "item": "comms ~$2.5B FY31, 'very modest growth'; custom FY29 >$12B; FY28 ~$20B",
+   "value": "",
+   "cited": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "result": "mislabelled",
+   "origin": "supervisor sources speakers",
+   "fix": "speakers present on src 63 (Matt Murphy, Chairman and CEO); speaker.py check passes"
+  },
+  {
+   "item": "src 67 Dell'Oro Group, 'RAN Market Stability Continues as Industry Prepares for 6G Transition' (five-year forecast): 'Worldwide",
+   "value": "published 2026-01-27 (gate checker (page)), industry_forecast",
+   "cited": "https://www.delloro.com/news/ran-market-stability-continues-as-industry-prepares-for-6g-transition/",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (supervisor sources)",
+   "fix": "newer forecasts cited: Dell'Oro 2026-07-21 release (src 72, Pongratz: base case broadly flat) and RCR Wireless 2026-09-29 (src 71: base case essentially flat through 2030); src 67 timeliness.newer_forecast [71, 72]; carrier line re-argued from +1% to 0% (comms FY27-29 2,234.2 / 2,336.0 / 2,442.5; research target (12m) -0.03%); no src 67 citation left in the set"
+  },
+  {
+   "item": "src 19 MarketScreener MRVL finances (FY27-FY29 revenue 12,070 / 19,699 / 31,270; EBIT 4,484 / 7,971 / 13,848)",
+   "value": "published 2026-10-16 (date opened (consensus)), consensus",
+   "cited": "https://uk.marketscreener.com/quote/stock/MARVELL-TECHNOLOGY-GROUP--4934/finances/",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (agent_1 sources)",
+   "fix": "forecaster rerun (RULES.md 19b): agent_1 rerun 2026-11-23 on current consensus (old file agent_1.json.bak-stale1123); timeliness.py check agent_1.json: 0 refused; speaker.py: 0 problems"
+  },
+  {
+   "item": "src 20 Earnings Whispers MRVL (Q2 FY27 0.94 vs 0.93 consensus, whisper 0.97; Q3 FY27 consensus EPS 1.06, revenue $3.03B)",
+   "value": "published 2026-10-30 (date opened (consensus)), consensus",
+   "cited": "https://www.earningswhispers.com/epsdetails/MRVL",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (agent_1 sources)",
+   "fix": "forecaster rerun (RULES.md 19b): agent_1 rerun 2026-11-23 on current consensus (old file agent_1.json.bak-stale1123); timeliness.py check agent_1.json: 0 refused; speaker.py: 0 problems"
+  },
+  {
+   "item": "src 42 StockAnalysis MTSI forecast (non-GAAP EPS FY26 (Sep-26) 5.51, FY27 8.50; updated 2026-10-21)",
+   "value": "published 2026-10-21 (gate checker (page)), consensus",
+   "cited": "https://stockanalysis.com/stocks/mtsi/forecast/",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (agent_5 sources)",
+   "fix": "forecaster rerun (RULES.md 19b): agent_5 rerun 2026-11-23 on current consensus (old file agent_5.json.bak-stale1123); timeliness.py check agent_5.json: 0 refused; speaker.py: 0 problems"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "Diluted shares now anchor (company_stated, as of 2026-08-27): Durn (CFO, src 14): Q3 diluted shares ~921M; Q2 weighted diluted 921.2M (F33).",
+   "value": "921.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (shares) anchor"
+  },
+  {
+   "item": "Diluted shares now",
+   "value": "921.2M (Q2 FY27 weighted diluted, incl. 21.8M as-converted NVIDIA preferred)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "revenue Q3 FY2027 guide as of 2026-11-02 (GAAP net revenue $M: midpoint $3.150B from the Q2 FY27 release outlook (src 2); 2026-11-02 8-K: preliminary Q3 revenu\u2026",
+   "value": "3087.0-3213.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2027 guide as of 2026-08-27 (non-GAAP (ex-SBC, amortization, other))",
+   "value": "0.575-0.585",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2027: first guide (2026-05-27) / reported actual",
+   "value": "0.5825-0.5925 / 0.589",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q3 FY2027 guide as of 2026-08-27 (non-GAAP diluted EPS (ex-SBC, amortization, other; 11% tax))",
+   "value": "1.05-1.15",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "revenue FY2027 guide as of 2026-10-06 (GAAP revenue, \"roughly $12 billion\" (~+45-47%))",
+   "value": "12000.0-12000.0",
+   "basis": "guidance",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "Tax rate (non-GAAP) FY27 / FY28 / FY29 anchor (company_stated, as of 2026-08-27): Durn (CFO, Q2 call, src 14): non-GAAP tax 11% in Q3, 'approximately 13% in fi\u2026",
+   "value": "0.13",
+   "basis": "guidance",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (tax_rate) anchor"
+  },
+  {
+   "item": "revenue FY2028 guide as of 2026-10-06 (GAAP revenue, \"about $20 billion\" (Investor Day))",
+   "value": "20000.0-20000.0",
+   "basis": "guidance",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "custom (XPU) revenue FY2029 guide as of 2026-10-06 (Investor Day: custom >$12B in FY29 (from $10B), >3x FY28)",
+   "value": "12000.0-12000.0",
+   "basis": "guidance",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 15, 18)",
+   "value": "The segment build gives 18,007: 10% below the Investor Day ~$20B (Murphy, src 15) and 9% below consensus 19.84B (src 18).",
+   "basis": "claim",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check revenue FY2028 why"
+  },
+  {
+   "item": "claim (src 63)",
+   "value": "Booked at Marvell's stated >$12B (Murphy, Investor Day, src 63; 'more than triple from FY 2028'), declared guide use on dc_share.",
+   "basis": "claim",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check custom (XPU) revenue FY2029 why"
+  },
+  {
+   "item": "claim (src 63)",
+   "value": "Marvell says it ships custom silicon to all four U.S. hyperscalers (Murphy, src 63); the Investor Day names AWS (2024 agreement) and Google (TPU ecosystem) as programmes.",
+   "basis": "claim",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check custom (XPU) revenue FY2029 why"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.delloro.com/news/ran-market-stability-continues-as-industry-prepares-for-6g-transition/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.wsts.org/esraCMS/extension/media/f/WST/7618/WSTS_FC-Release-2026-May.pdf",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "research target (12m) 180.67 and bridge",
+   "value": "0.75x187.50+0.25x160.20=180.67; 260.04-5.82-1.60-71.95",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor fair_value"
+  },
+  {
+   "item": "upside ~48% (180.67 vs 122.28); 11-15% one-day AI selloff",
+   "value": "+47.8%; peers -10.8% to -15.2%",
+   "basis": "reported",
+   "source_url": "https://twelvedata.com/",
+   "checked": "2026-11-23",
+   "origin": "supervisor sizing"
+  },
+  {
+   "item": "summary card effects (+10.4%, -18.4/+17.9%, +9.3%/-9.5%, -6.2%), +48%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor summary"
+  },
+  {
+   "item": "key_drivers values",
+   "value": "comms 2235.9/2344.6/2458.5; gm 0.5833/0.5723/0.5664; DC 9,760/15,663/26,286; opex 2,550/3,189/4,139; 17.0x/17.7x",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor key_drivers"
+  },
+  {
+   "item": "8-peer NTM median 17.72x (calendar-weighted non-GAAP consensus at 11-20 closes)",
+   "value": "17.72x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/nvda/forecast/",
+   "checked": "2026-11-23",
+   "origin": "supervisor comps_review / horizon_multiples ntm_pe"
+  },
+  {
+   "item": "2026-11-23 legacy review lead; PREVIOUS 11-02 body",
+   "value": "260.04 -> 180.67",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model.reasoning"
+  },
+  {
+   "item": "Lumentum V = S0(X-NP)/(S0+N)",
+   "value": "+22,047.1",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor reconciled_inputs.adjustments"
+  },
+  {
+   "item": "unaffected 10-28 date, 4.5 ratio, >$1B synergies, close 1H CY2028, Q3 preliminary +/-2%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor reconciled_inputs.adjustments"
+  },
+  {
+   "item": "diluted_now 921.2, annual_change 0.004",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor reconciled_inputs.shares"
+  },
+  {
+   "item": "17.0x / 17.7x, weights 0.75/0.25",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor reconciled_inputs.structure_note"
+  },
+  {
+   "item": "src 14: comms Q3 decline / FY27 'approach our 10% target' / DC ~+60% / FY27 ~$12B / FY28 ~$18B (re-check of round-1 failure)",
+   "value": "",
+   "basis": "guidance",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor sources speakers"
+  },
+  {
+   "item": "src 63 Investor Day transcript: FY26 custom ~$1.5B; FY29 custom >$12B, >3x FY28; FY28 ~$20B, DC ~$18B; comms ~$2.5B FY31 'very modest growth'; all four U.S. hyperscalers",
+   "value": "",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "checked": "2026-11-23",
+   "origin": "supervisor sources speakers"
+  },
+  {
+   "item": "src 15 slide gallery: FY28 ~$20B, DC ~$18B, custom FY29 >$12B attributed to Murphy",
+   "value": "",
+   "basis": "guidance",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor sources speakers"
+  },
+  {
+   "item": "Q3 FY27 DC 2,662 = preliminary 3,150 - comms 488",
+   "value": "2,662",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver dc_share"
+  },
+  {
+   "item": "Q4 FY27 DC 3,094.3 = FY26 6,100.3 x 1.60 - Q1-Q3",
+   "value": "3,094.3",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver dc_share"
+  },
+  {
+   "item": "cross-checks: Investor Day FY28 DC ~$18B 15% above build; consensus FY28 19.84B 10% above 18,007",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/forecast/",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver dc_share"
+  },
+  {
+   "item": "end-market weights from Q3 FY26 split 42.6/30.1/20.9/6.3%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000193/q326_8kx1112025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver comms_rev"
+  },
+  {
+   "item": "carrier +1% a year (Dell'Oro five-year RAN CAGR)",
+   "value": "1%",
+   "basis": "industry forecast",
+   "source_url": "https://www.delloro.com/news/ran-market-stability-continues-as-industry-prepares-for-6g-transition/",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver comms_rev"
+  },
+  {
+   "item": "other end markets 6.53% = mean WSTS 2027 analog 6.6 / discrete 7.6 / opto 5.0 / sensors 6.9; weighted 4.86%",
+   "value": "6.53% / 4.86%",
+   "basis": "industry forecast",
+   "source_url": "https://www.wsts.org/esraCMS/extension/media/f/WST/7618/WSTS_FC-Release-2026-May.pdf",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver comms_rev"
+  },
+  {
+   "item": "Q3 FY27 488 inside Murphy's low-to-mid-teens decline; Q4 FY27 595.0 = Q4 FY26 567.4 x 1.0486",
+   "value": "488 / 595.0",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver comms_rev"
+  },
+  {
+   "item": "Q3 FY27 655; Q4 FY27 707.3 = FY27 2,550 - Q1-Q3; FY28 3,188.9 = 2,550 x (1 + 0.5 x 50.1%)",
+   "value": "655 / 707.3 / 3,188.9",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver opex_ng"
+  },
+  {
+   "item": "revenue Q3 FY2027: record-adjusted 3,178.7; DC +22.6% q/q; comms -14.1% / -12.3%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "D&A % revenue anchor 188.5/5,157.1; bridge capex 6.1/4.9/4.3%",
+   "value": "0.037",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (da_pct_rev) anchor"
+  },
+  {
+   "item": "Capex % revenue anchor 470.2/9,450.3; capex +24% vs revenue +42% FY26",
+   "value": "0.05",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (capex_pct_rev) anchor"
+  },
+  {
+   "item": "SBC % revenue anchor 828.9/9,450.3; SBC flat ~$600M FY24-26 while revenue +49%",
+   "value": "0.088",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (sbc_pct_rev) anchor"
+  },
+  {
+   "item": "Interest rate anchor 216.4/4,962.9",
+   "value": "0.0436",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (interest_rate) anchor"
+  },
+  {
+   "item": "avg of 28.9/35.3/35.9% non-GAAP op margin",
+   "value": "0.334",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (norm_margin) anchor"
+  },
+  {
+   "item": "Tax rate (non-GAAP) FY27/FY28/FY29 11/13/14%",
+   "value": "11/13/14%",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "Shares annual change +0.40% (arithmetic)",
+   "value": "+0.40%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "Horizon P/E 17.0x: MRVL own 122.28/6.753 = 18.11x; 17.72x(18.11/17.72)^0.8 = 18.03x; less 1 turn",
+   "value": "17.0x",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "driver_build.quarters.interest (int_exp) arithmetic",
+   "value": "61.8 ... 75.3",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "driver_build.quarters.other_income (oth_inc) arithmetic",
+   "value": "36.1 ... 203.3",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "deal: LITE equity at the horizon 106,138",
+   "value": "106,138",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "deal: synergies, dis-synergies, costs +11,027 / -6,579 / -1,791",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model"
+  },
+  {
+   "item": "Tax rate 11% / 13% / 14% vs anchor 0.13",
+   "value": "11/13/14%",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (tax_rate)"
+  },
+  {
+   "item": "preliminary 2026-11-02, midpoint maintained, range narrowed to +/-2%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check revenue Q3 FY2027 why"
+  },
+  {
+   "item": "no product-line margins are filed",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check non-GAAP gross margin Q3 FY2027 why"
+  },
+  {
+   "item": "opex at the CFO's 655; Street 1.06 (pre-preliminary)",
+   "value": "",
+   "basis": "guidance",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check non-GAAP EPS Q3 FY2027 why"
+  },
+  {
+   "item": "Kilian-approved override logged 02:01Z",
+   "value": "",
+   "basis": "",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-20/MRVL/lint_overrides.json",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check non-GAAP EPS Q3 FY2027 why"
+  },
+  {
+   "item": "management's raises FY28 ~$16.5B -> ~$18B -> ~$20B in 2026",
+   "value": "",
+   "basis": "guidance",
+   "source_url": "https://www.ksl.com/article/51632987/marvell-raises-2028-revenue-forecast-on-strong-ai-data-center-demand",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check revenue FY2028 why"
+  },
+  {
+   "item": "earlier 12.5% haircut had no cited slip; sized as an alternative",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check custom (XPU) revenue FY2029 why"
+  },
+  {
+   "item": "research target 48% above the Nov 20 price",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment call: Which day's peer prices should set MRVL's horizon P/E? why"
+  },
+  {
+   "item": "standing capex view on the Big-5 consensus band",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.yieldtheory.app/research/hyperscaler-capex-2027-forecast",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment call: Which customer AI-capex path ... why"
+  },
+  {
+   "item": "management's higher number rests on a new product line with no figure yet",
+   "value": "",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment call: Where should MRVL's FY28-FY29 data-center revenue sit? why"
+  },
+  {
+   "item": "same date's market level",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment call: How should Lumentum be valued ... why"
+  },
+  {
+   "item": "all end markets at RAN +1%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.delloro.com/news/ran-market-stability-continues-as-industry-prepares-for-6g-transition/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives comms_rev"
+  },
+  {
+   "item": "Q4 FY27 at the CEO's 'approach our 10% target'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives comms_rev"
+  },
+  {
+   "item": "WSTS analog 6.6% alone",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.wsts.org/esraCMS/extension/media/f/WST/7618/WSTS_FC-Release-2026-May.pdf",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives comms_rev"
+  },
+  {
+   "item": "file LOW case 1,390 / 1,265",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives ai_capex"
+  },
+  {
+   "item": "file HIGH case 2,434 / 3,160",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives ai_capex"
+  },
+  {
+   "item": "Street Big-5 $1.1T (GS $1.2T, 2028 $1.4T)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.yieldtheory.app/research/hyperscaler-capex-2027-forecast",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives ai_capex"
+  },
+  {
+   "item": "management FY28 DC ~$18B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives dc_share"
+  },
+  {
+   "item": "consensus FY28 19.84B less comms",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/forecast/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives dc_share"
+  },
+  {
+   "item": "FY29 custom 10,500 (old haircut)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives dc_share"
+  },
+  {
+   "item": "lowest forecaster FY28 18.26B / FY29 24.9B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-11-20/MRVL/agent_3.json",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives dc_share"
+  },
+  {
+   "item": "flat 58.0% (Durn Q4 same range, FY28 similar)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives gm_ng"
+  },
+  {
+   "item": "down to 56.0% (Investor Day FY31 56-59% low end)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives gm_ng"
+  },
+  {
+   "item": "opex glide to FY31 12.5% (OM 44-46%, GM 56-59%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives opex_ng"
+  },
+  {
+   "item": "18.0x without the 1-turn deduction",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/forecast/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives Horizon P/E (ntm) multiple"
+  },
+  {
+   "item": "Nov 19 closes: median 20.0x, 19.4x",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://twelvedata.com/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives Horizon P/E (ntm) multiple"
+  },
+  {
+   "item": "margin 28.9% (FY25)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000051/q425_8kx212025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives Normalised-earnings leg: mid-cycle operating margin and through-cycle P/E"
+  },
+  {
+   "item": "margin 35.9% (H1 FY27)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000022/q227_8kx812026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives Normalised-earnings leg: mid-cycle operating margin and through-cycle P/E"
+  },
+  {
+   "item": "LITE P/E moved with peers 25.36x -> exit 23.60x -> 85,538",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://twelvedata.com/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives deal: LITE equity at the horizon"
+  },
+  {
+   "item": "LITE at 11-20 close 460.54 x 101.0M",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://twelvedata.com/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives deal: LITE equity at the horizon"
+  },
+  {
+   "item": "deal-implied 4.5 x 122.28 x 101.0M",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives deal: LITE equity at the horizon"
+  },
+  {
+   "item": "Inphi 18-month ramp, full realization",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://investor.marvell.com/news-events/press-releases/detail/308/marvell-to-acquire-inphi---accelerating-growth-and-leadership-in-cloud-and-5g-infrastructure",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives deal: synergies, dis-synergies, costs"
+  },
+  {
+   "item": "leave synergies out until realized (BCG 2-3 years)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://bcg.com/publications/2018/lofty-valuations-put-spotlight-synergies-2018-m-and-a-report",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives deal: synergies, dis-synergies, costs"
+  },
+  {
+   "item": "custom path alternatives (the booked custom quarters are back-solved)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_alternatives dc_share"
+  },
+  {
+   "item": "options 17.0x / 19.4x: sources src 70, 34-37, 39, 41",
+   "value": "",
+   "basis": "",
+   "source_url": "https://twelvedata.com/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_calls_for_kilian #0"
+  },
+  {
+   "item": "Keep base: src 17 + Yield Theory",
+   "value": "",
+   "basis": "",
+   "source_url": "https://www.yieldtheory.app/research/hyperscaler-capex-2027-forecast",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_calls_for_kilian #1",
+   "fixed": "io-fund link removed; LOW option now cites src 17 (the standing capex file, lines with the Meta 2023 cut and the S&P FCF point) plus the public pages behind them: Motley Fool 2026-09-06 (src 75: 'S&P Global is modeling for just one hyperscaler to have positive free cash flow next year') and Meta's 8-K releases (2023 capex guide $34-39B -> $28.10B actual)"
+  },
+  {
+   "item": "HIGH option: +39% drift; Morgan Stanley $1.58T with leases",
+   "value": "",
+   "basis": "",
+   "source_url": "https://alcapitaladvisory.com/research/intelligence/ai-infrastructure.html",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_calls_for_kilian #1",
+   "fixed": "io-fund link removed; LOW option now cites src 17 (the standing capex file, lines with the Meta 2023 cut and the S&P FCF point) plus the public pages behind them: Motley Fool 2026-09-06 (src 75: 'S&P Global is modeling for just one hyperscaler to have positive free cash flow next year') and Meta's 8-K releases (2023 capex guide $34-39B -> $28.10B actual)"
+  },
+  {
+   "item": "options Keep (src 14, 63, 17) / Management (src 15, 16) / Lowest forecaster (src 69, 31)",
+   "value": "",
+   "basis": "",
+   "source_url": "https://2slides.com/de/gallery/marvell-investor-day-2026",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_calls_for_kilian #2"
+  },
+  {
+   "item": "options Keep (src 52, 54, 30) / peers-moved (src 70, 39, 52) / close (src 70) / deal-implied (src 52, 70)",
+   "value": "",
+   "basis": "",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_calls_for_kilian #3"
+  },
+  {
+   "item": "revenue FY2027 consensus as of 2026-10-07",
+   "value": "12100.0",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/forecast/",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://stockanalysis.com/stocks/alab/forecast/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://stockanalysis.com/stocks/amd/forecast/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "",
+   "source_url": "https://www.ksl.com/article/51632987/marvell-raises-2028-revenue-forecast-on-strong-ai-data-center-demand",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q3 FY2026: first guide (2025-08-28) / reported actual",
+   "value": "1957.0-2163.0 / 2074.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000187/q226_8kx822025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2026: first guide (2025-08-28) / reported actual",
+   "value": "0.595-0.6 / 0.597",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000187/q226_8kx822025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q3 FY2026: first guide (2025-08-28) / reported actual",
+   "value": "0.69-0.79 / 0.76",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000187/q226_8kx822025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q3 FY2027 consensus as of 2026-10-30",
+   "value": "3030.0",
+   "basis": "consensus",
+   "source_url": "https://www.earningswhispers.com/epsdetails/MRVL",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q3 FY2027 consensus as of 2026-10-30",
+   "value": "1.06",
+   "basis": "consensus",
+   "source_url": "https://www.earningswhispers.com/epsdetails/MRVL",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "revenue FY2028 consensus as of 2026-11-02",
+   "value": "19699.0",
+   "basis": "consensus",
+   "source_url": "https://uk.marketscreener.com/quote/stock/MARVELL-TECHNOLOGY-GROUP--4934/finances/",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://stockanalysis.com/stocks/cien/forecast/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "",
+   "source_url": "https://stockanalysis.com/stocks/mtsi/forecast/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q1 FY2026: first guide (2025-03-05) / reported actual",
+   "value": "1781.25-1968.75 / 1895.3",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000051/q425_8kx212025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2026: first guide (2025-03-05) / reported actual",
+   "value": "0.6-0.6 / 0.598",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000051/q425_8kx212025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q1 FY2026: first guide (2025-03-05) / reported actual",
+   "value": "0.56-0.66 / 0.62",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000051/q425_8kx212025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "",
+   "source_url": "https://stockanalysis.com/stocks/cohr/forecast/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://stockanalysis.com/stocks/avgo/forecast/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "",
+   "source_url": "https://stockanalysis.com/stocks/nvda/forecast/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "",
+   "source_url": "https://www.fierce-network.com/newswire/ran-market-growth-continues-2q-2026-says-delloro-group",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q4 FY2026: first guide (2025-12-02) / reported actual",
+   "value": "2090.0-2310.0 / 2218.7",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000193/q326_8kx1112025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2026: first guide (2025-12-02) / reported actual",
+   "value": "0.585-0.595 / 0.59",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000193/q326_8kx1112025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q4 FY2026: first guide (2025-12-02) / reported actual",
+   "value": "0.74-0.84 / 0.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000193/q326_8kx1112025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q2 FY2026: first guide (2025-05-29) / reported actual",
+   "value": "1900.0-2100.0 / 2006.1",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000115/q126_8kx532025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2026: first guide (2025-05-29) / reported actual",
+   "value": "0.59-0.6 / 0.594",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000115/q126_8kx532025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q2 FY2026: first guide (2025-05-29) / reported actual",
+   "value": "0.62-0.72 / 0.67",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563225000115/q126_8kx532025ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q1 FY2027: first guide (2026-03-05) / reported actual",
+   "value": "2280.0-2520.0 / 2417.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000006/q426_8kx1312026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2027: first guide (2026-03-05) / reported actual",
+   "value": "0.5825-0.5925 / 0.589",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000006/q426_8kx1312026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q1 FY2027: first guide (2026-03-05) / reported actual",
+   "value": "0.74-0.84 / 0.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000006/q426_8kx1312026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q4 FY2025: first guide (2024-12-03) / reported actual",
+   "value": "1710.0-1890.0 / 1817.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563224000197/q325_8kx1122024ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2025: first guide (2024-12-03) / reported actual",
+   "value": "0.6-0.6 / 0.601",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563224000197/q325_8kx1122024ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q4 FY2025: first guide (2024-12-03) / reported actual",
+   "value": "0.54-0.64 / 0.6",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563224000197/q325_8kx1122024ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q3 FY2025: first guide (2024-08-29) / reported actual",
+   "value": "1377.5-1522.5 / 1516.1",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563224000140/q225_8kx832024ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2025: first guide (2024-08-29) / reported actual",
+   "value": "0.61-0.61 / 0.605",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563224000140/q225_8kx832024ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "Lumentum deal terms in release",
+   "value": "~$1,132/LITE share, 23.9% premium to 10-28 unaffected close, >$1B run-rate cost synergies, close 1H CY2028, Q3 midpoint kept, range +/-2%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor disagreements/deal"
+  },
+  {
+   "item": "'primarily COGS' synergies; MRVL undisturbed ~$252 on 2026-10-28",
+   "value": "primarily COGS; ~$252",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex992.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor inputs_detail deal"
+  },
+  {
+   "item": "peers.md AVGO uses a fiscal year that has ended; MRVL 30.0x true NTM",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://stockanalysis.com/stocks/avgo/forecast/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment call peer NTM basis why"
+  },
+  {
+   "item": "release defines 10-28 as the last undisturbed close",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment call LITE valuation why"
+  },
+  {
+   "item": "'the release states the amount (primarily COGS)'",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment call synergies why"
+  },
+  {
+   "item": "revenue Q2 FY2027: first guide (2026-05-27) / reported actual",
+   "value": "2565.0-2835.0 / 2739.3",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000014/q127_8kx522026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS Q2 FY2027: first guide (2026-05-27) / reported actual",
+   "value": "0.88-0.98 / 0.94",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000014/q127_8kx522026ex-991.htm",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance"
+  },
+  {
+   "item": "uncited claim, unchanged since the base gate",
+   "value": "Record is on the midpoint (median -0.04%); custom XPU mix rising in H2 FY27 argues against a beat.",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance_check non-GAAP gross margin Q3 FY2027 why"
+  },
+  {
+   "item": "NWC % of incremental revenue anchor (company_stated, as of 2026-08-27): Durn (CFO, src 14): ~$1B supplier capacity prepayments in FY27, part of which is alread\u2026",
+   "value": "0.15",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (nwc_pct_incr_rev) anchor",
+   "fixed": "anchor now basis 'estimate' with the arithmetic ((1,000 - 333.7) / (11,994.7 - 8,194.6) = 17.5%, booked 15%) and confidence medium"
+  },
+  {
+   "item": "Shares annual change anchor (company_adjusted, as of 2026-08-01): Built from filed SBC (F39), buybacks (F60) and the warrant terms (src 12); reported history F\u2026",
+   "value": "0.004",
+   "basis": "reported",
+   "source_url": "/mnt/attach/project-files/valuation/runs/2026-10-30/MRVL/facts.md",
+   "checked": "2026-11-23",
+   "origin": "supervisor model normalizing (shares) anchor",
+   "fixed": "anchor now basis 'estimate' with the derivation from F39/F60/src 12 and confidence medium; reported history +0.49% kept as comparison"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/quote/CRDO/analysis/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (forecast the set uses)",
+   "fixed": "CRDO consensus now dated by 247 Wall St 2026-11-11 (src 73: FY27 6.3093, FY28 9.7121, the same figures as Yahoo); Yahoo src 38 no longer carries an opened-date `published`"
+  },
+  {
+   "item": "open_flags: deal variants -13.8 to +11.3 per share, base +0.67",
+   "value": "base +0.67/share",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor sizing",
+   "fixed": "open_flags restated: V +22,075 x 0.75 / 925.8M = +17.9 a share less -0.69 fee; sized LITE/synergy alternatives -32.2 to +1.1 a share"
+  },
+  {
+   "item": "reconciled_peer_median 23.2, exit_multiple 28.47, exit_k 0.8, spot_checks (NVDA 14.4 ... ALAB 43.0)",
+   "value": "23.2 / 28.47",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor comps_review",
+   "fixed": "comps_review median 17.72, exit_multiple 18.03 (17.0 after the 1-turn deduction), spot checks restated to the current 8 peers and sources"
+  },
+  {
+   "item": "CRDO NTM EPS from Yahoo (FY27 6.31, FY28 9.71) in the 8-peer median",
+   "value": "CRDO 12.2x",
+   "basis": "estimate",
+   "source_url": "https://finance.yahoo.com/quote/CRDO/analysis/",
+   "checked": "2026-11-23",
+   "origin": "supervisor comps_review / horizon_multiples ntm_pe",
+   "fixed": "CRDO basis shown: Yahoo's EPS actuals 1.20 (2026-07-31) and 1.16 (2026-04-30) equal Credo's non-GAAP diluted EPS (GAAP 0.67 / 0.88; 8-K Ex.99.1 2026-09-01, src 74), so the 6.31 / 9.71 consensus is non-GAAP like the other 7 peers; dated by src 73"
+  },
+  {
+   "item": "normalised peer_basis: 'x 23x through-cycle P/E (the corrected 23.2x peer median)', eps 7.5, 926.4M shares",
+   "value": "23x / 7.5 / 926.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor horizon_multiples normalised",
+   "fixed": "peer_basis restated: 17.7x (current 8-peer median 17.72x), /925.8M horizon shares, eps 8.13 (engine)"
+  },
+  {
+   "item": "why: 'FY29 opex at 14.8% of revenue vs 24% in FY26'",
+   "value": "14.8%",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor driver opex_ng",
+   "fixed": "why restated: 4,139.5 / 28,728.1 = 14.4% vs 24.2% in FY26"
+  },
+  {
+   "item": "revenue FY2027 guidance arithmetic (ours 12,022.1, above, gap +0.0018)",
+   "value": "12022.1",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance",
+   "fixed": "from the engine: our_value / drivers_imply 11,994.7 (Q4 3,687.6 = DC 3,094.3 + comms 593.3 after the RAN fix), gap -0.0004, below"
+  },
+  {
+   "item": "revenue FY2028 guidance arithmetic (ours 19,844.5, below, gap -0.0078)",
+   "value": "19844.5",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance",
+   "fixed": "from the engine: our_value / drivers_imply 17,998.9 (DC 15,662.9 + comms 2,336.0), gap -0.1001, below; consensus field now 19,840 (src 18, 2026-11-20)"
+  },
+  {
+   "item": "custom (XPU) revenue FY2029: our_value 10,500, gap -0.125, drivers_note 'FY29 DC ~25,200 = custom ~10.5B'",
+   "value": "10500",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance",
+   "fixed": "our_value / drivers_imply 12,000, gap 0, inside; drivers_note: custom FY29 quarters sum to 12,000, DC FY29 26,285.6"
+  },
+  {
+   "item": "non-GAAP EPS Q3 FY2027 drivers_imply 1.102 = (EBIT 1,167.0 - 61.8 + 36.1) x 0.89 / 921.7",
+   "value": "1.102",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor guidance",
+   "fixed": "from the engine: drivers_imply 1.106 = (1,172.0 - 61.78 + 36.09) x 0.89 / 922.1M with opex 655; our_value 1.106, +0.55% vs the 1.10 midpoint (inside)"
+  },
+  {
+   "item": "Normalised leg: 34% x NTM-window revenue x 0.87 / 926.4M x 17.7x",
+   "value": "926.4M",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model",
+   "fixed": "ntm formulas, inputs_detail rows and peer_basis on 925.8M (921.2 x 1.004^1.246, engine shares_H 925.82)"
+  },
+  {
+   "item": "deal: value change V if it happens = 22,047.1",
+   "value": "22047.1",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-23",
+   "origin": "supervisor model",
+   "fixed": "row derivation now V's own: 925.82 x (108,795 - 464.82 x 162.72) / 1,390.64 = +22,075.4 (re-solved on the current standalone)"
+  },
+  {
+   "item": "LOW option link io-fund.com (2028 pullback, S&P only Microsoft FCF-positive)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://io-fund.com/ai-stocks/ai-capex-1-trillion-estimates-too-low",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_calls_for_kilian #1",
+   "fixed": "io-fund link removed; LOW option now cites src 17 (the standing capex file, lines with the Meta 2023 cut and the S&P FCF point) plus the public pages behind them: Motley Fool 2026-09-06 (src 75: 'S&P Global is modeling for just one hyperscaler to have positive free cash flow next year') and Meta's 8-K releases (2023 capex guide $34-39B -> $28.10B actual)"
+  },
+  {
+   "item": "context: scale-up optics 'virtually no revenue today' but an FY28 outlook 'increased meaningfully'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "checked": "2026-11-23",
+   "origin": "supervisor judgment_calls_for_kilian #2",
+   "fixed": "context quotes Murphy (Chairman and CEO, Investor Day, src 63) as said: 'We have virtually no revenue in this area today, with strong growth beginning next year'; FY28 raise 'driven by interconnect, scale-up optics, and switching'"
+  },
+  {
+   "item": "comms ~$2.5B FY31, 'very modest growth'; custom FY29 >$12B; FY28 ~$20B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "checked": "2026-11-23",
+   "origin": "supervisor sources speakers",
+   "fixed": "speakers present on src 63 (Matt Murphy, Chairman and CEO); speaker.py check passes"
+  },
+  {
+   "item": "src 67 Dell'Oro Group, 'RAN Market Stability Continues as Industry Prepares for 6G Transition' (five-year forecast): 'Worldwide",
+   "value": "published 2026-01-27 (gate checker (page)), industry_forecast",
+   "basis": "estimate",
+   "source_url": "https://www.delloro.com/news/ran-market-stability-continues-as-industry-prepares-for-6g-transition/",
+   "checked": "2026-11-23",
+   "origin": "timeliness.py (supervisor sources)",
+   "fixed": "newer forecasts cited: Dell'Oro 2026-07-21 release (src 72, Pongratz: base case broadly flat) and RCR Wireless 2026-09-29 (src 71: base case essentially flat through 2030); src 67 timeliness.newer_forecast [71, 72]; carrier line re-argued from +1% to 0% (comms FY27-29 2,234.2 / 2,336.0 / 2,442.5; research target (12m) -0.03%); no src 67 citation left in the set"
+  }
+ ],
+ "note": "Gate round 2 fix (2026-11-23): 18 fixed; 11 must-card rows: 6 carded (dc_share x4 rows on two cards, opex_ng, comms_rev) and 5 closed as rule 26 small-flag notes (shares, int_exp x2, oth_inc x2) on the standing card; 3 agent-file timeliness rows need forecaster reruns (RULES.md 19b). Forecasters 1 and 5 rerun 2026-11-23 (RULES.md 19b): the 3 stale agent-file rows are closed; 6 carded rows stay open until Kilian picks. | 2026-11-23T17:51Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs). | 2026-11-23T17:51Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLASYNVbg38pWWkCwsw63X3c). | 2026-11-23T17:51Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLNx48DEGn2qHrMbCKSkZHLo). | 2026-11-23T17:51Z: 2 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs). | 2026-11-23T17:51Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLFqdqb4u1eAcqiaTYGWfavN).",
+ "accepted_carried": [
+  {
+   "origin": "supervisor model",
+   "item": "Shares annual change: '~$220' price converting SBC and buyback dollars to shares",
+   "value": "~$220",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "unsupported",
+   "page_shows": "",
+   "note": "No source for ~$220; the set's own price is 122.28 (11-20) and its research target 180.67. At 122.28: 10.63 + 1.36 + 0 (warrant out of the money at $206.58) - 6.54 = +5.45M = +0.59%/yr; at 180.67: +4.13M = +0.45%/yr.",
+   "_src": "text",
+   "fix": "carded: Shares annual change (rule 26 small-flag note) | rule 26 small flagged path, standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z: \"Skip under 0.5%, note it (options -0.14% to +0.00%, rule 26)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "quote": "Skip under 0.5%, note it (options -0.14% to +0.00%, rule 26)",
+    "utc": "2026-11-23T04:35Z",
+    "rule": "RULES.md 26"
+   }
+  },
+  {
+   "origin": "supervisor model",
+   "item": "int_exp other interest 3.37/qtr held flat 10 quarters",
+   "value": "3.37",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "unsupported",
+   "page_shows": "",
+   "note": "Mean of three filed residuals held flat (rule 4). Sized under 0.05%: eligible for a rule 26 note, not a card.",
+   "_src": "text",
+   "fix": "carded: int_exp other interest (rule 26 small-flag note) | rule 26 small flagged path, standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z: \"Skip under 0.5%, note it (options -0.00% to -0.00%, rule 26)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "quote": "Skip under 0.5%, note it (options -0.00% to -0.00%, rule 26)",
+    "utc": "2026-11-23T04:35Z",
+    "rule": "RULES.md 26"
+   }
+  },
+  {
+   "origin": "supervisor model",
+   "item": "oth_inc steady cost -6.84/qtr held flat",
+   "value": "-6.84",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "unsupported",
+   "page_shows": "",
+   "note": "Mean of five past residuals held flat (rule 4); sized +0.04 to +0.46% (under 0.5%): rule 26 note.",
+   "_src": "text",
+   "fix": "carded: oth_inc steady cost (rule 26 small-flag note) | rule 26 small flagged path, standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z: \"Skip under 0.5%, note it (options -0.03% to +0.10%, rule 26)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "quote": "Skip under 0.5%, note it (options -0.03% to +0.10%, rule 26)",
+    "utc": "2026-11-23T04:35Z",
+    "rule": "RULES.md 26"
+   }
+  },
+  {
+   "origin": "supervisor driver_build int_exp",
+   "item": "other interest 3.37/qtr held flat Q3 FY27-Q4 FY29",
+   "value": "3.37",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/mrvl-20260801.htm",
+   "result": "unsupported",
+   "page_shows": "",
+   "note": "Residual = mean of filed Q4 FY26-Q2 FY27 less the note stack, held flat for 10 quarters with no forward case (rule 4 level held at a past average). Small.",
+   "_src": "text",
+   "carried_from_round": 1,
+   "fix": "carded: int_exp other interest (rule 26 small-flag note) | rule 26 small flagged path, standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z: \"Skip under 0.5%, note it (options -0.00% to -0.00%, rule 26)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "quote": "Skip under 0.5%, note it (options -0.00% to -0.00%, rule 26)",
+    "utc": "2026-11-23T04:35Z",
+    "rule": "RULES.md 26"
+   }
+  },
+  {
+   "origin": "supervisor driver_build oth_inc",
+   "item": "steady cost -6.84/qtr held flat",
+   "value": "-6.84",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000025/mrvl-20260801.htm",
+   "result": "unsupported",
+   "page_shows": "",
+   "note": "Mean of five past residuals held flat for every forecast quarter; nothing says what the cost is or that it persists. Rest of the line (cash x 3m forward) is built from the balance sheet and curve.",
+   "_src": "text",
+   "carried_from_round": 1,
+   "fix": "carded: oth_inc steady cost (rule 26 small-flag note) | rule 26 small flagged path, standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z: \"Skip under 0.5%, note it (options -0.03% to +0.10%, rule 26)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "quote": "Skip under 0.5%, note it (options -0.03% to +0.10%, rule 26)",
+    "utc": "2026-11-23T04:35Z",
+    "rule": "RULES.md 26"
+   }
+  },
+  {
+   "origin": "supervisor guidance_check revenue FY2028 why",
+   "item": "Non-custom DC held at its FY27 ratio (it tracked capex in FY27)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "unsupported",
+   "page_shows": "",
+   "note": "Same as the dc_share non-custom row: FY27 is the set's own guide plug, so the 'tracked capex' claim is circular.",
+   "_src": "text",
+   "fix": "carded: dc_share (card 'Where should MRVL's FY28-FY29 data-center revenue sit?') | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs): \"Keep the segment build (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs",
+    "card": null,
+    "quote": "Keep the segment build (booked)",
+    "utc": "2026-11-23T17:51Z"
+   }
+  },
+  {
+   "origin": "supervisor driver opex_ng",
+   "item": "FY29 4,139.5 = FY28 x (1 + 0.5 x 59.6%) ('the same stated relationship'); quarter weights 23.5/24.5/25.5/26.5%",
+   "value": "4,139.5",
+   "basis": "estimate",
+   "source_url": "https://singjupost.com/transcript-marvell-tech-mrvl-q2-fy27-earnings-call-conference/",
+   "result": "unsupported",
+   "page_shows": "Durn's half-the-rate statement covers fiscal 2028 only",
+   "note": "FY29 carries the FY28 relationship into a year it was not stated for (rule 4); the Investor Day FY31 glide is the only FY29-relevant evidence and is the alternative. The even 1-pt quarter steps have no source (rule 9). Arithmetic computes (28,744.1/18,007.5 = +59.6%).",
+   "_src": "text",
+   "fix": "carded: opex_ng (card 'How fast should MRVL's FY29 operating expenses grow?') | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLASYNVbg38pWWkCwsw63X3c): \"FY29 on the Investor Day glide\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLASYNVbg38pWWkCwsw63X3c",
+    "card": null,
+    "quote": "FY29 on the Investor Day glide",
+    "utc": "2026-11-23T17:51Z"
+   }
+  },
+  {
+   "origin": "supervisor driver comms_rev",
+   "item": "FY29 2,458.5 = FY28 x 1.0486 (WSTS 2027 rates reused for CY2028); FY28-29 quarters on the mean shape of FY26 and FY27",
+   "value": "2,458.5",
+   "basis": "estimate",
+   "source_url": "https://www.wsts.org/esraCMS/extension/media/f/WST/7618/WSTS_FC-Release-2026-May.pdf",
+   "result": "unsupported",
+   "page_shows": "WSTS covers 2025-2027 only",
+   "note": "FY29 (~CY2028) carries the 2027 product rates into a year WSTS does not forecast (rule 4 carried rate; 'latest outside figures' is not a 2028 case). Quarter shares come from 2 years, one half forecast (rule 9 needs >=3 filed years). FY28 (~CY2027) is supported. Small line (8% of FY29 revenue).",
+   "_src": "text",
+   "fix": "carded: comms_rev (card 'How should MRVL's FY29 communications revenue grow?'; its all-flat alternative moves the FY29 part -0.78%, so not a rule 26 note) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLNx48DEGn2qHrMbCKSkZHLo): \"FY29 flat at FY28\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLNx48DEGn2qHrMbCKSkZHLo",
+    "card": null,
+    "quote": "FY29 flat at FY28",
+    "utc": "2026-11-23T17:51Z"
+   }
+  },
+  {
+   "origin": "supervisor driver dc_share",
+   "item": "custom FY27 2,000 / FY28 4,000 (= 12,000/3) / FY29 12,000, quarters on one constant 1.316 q/q rate (632 ... 4,323)",
+   "value": "2,000/4,000/12,000",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mrvl/transcripts/724088-investor-day-2026/",
+   "result": "back_solved",
+   "page_shows": "Murphy: FY29 custom 'more than triple from FY 2028, reaching more than $12 billion'; FY28 'more than double' FY27 (src 14)",
+   "note": "FY28 is the FY29 statement divided by 3 and FY27 the cap implied by 'more than double'; the quarters grow at the one rate (3^(1/4)) that compounds to the stated figures, so the eight quarters sum exactly to 4,000 and 12,000. Rule 5 (11-23): a reading of a statement / a multi-year Investor Day target has no guide_use way out, and compound-to-target quarters are barred. Needs a programme-level build (named XPU ramps, Google warrant tranches, customer capex) or a card.",
+   "_src": "text",
+   "fix": "carded: dc_share (card 'Where should MRVL's FY28-FY29 data-center revenue sit?') | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs): \"Keep the segment build (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs",
+    "card": null,
+    "quote": "Keep the segment build (booked)",
+    "utc": "2026-11-23T17:51Z"
+   }
+  },
+  {
+   "origin": "supervisor driver dc_share",
+   "item": "FY28-FY29 non-custom = 6.3351 x ai_capex (FY27 ratio held; 'it moved with capex in FY27')",
+   "value": "11,663 / 14,286",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "unsupported",
+   "page_shows": "",
+   "note": "The ratio is held flat at its FY27 level (rule 4: a rate held at a past year), and FY27 itself is the +60% guide plug less booked custom 2,000, so 'tracked capex in FY27 (+68.7% vs +72.3%)' is circular, not evidence. FY26 ratio 6.470 vs FY27 6.335 is one comparison. Needs a non-custom case (interconnect/optics/switching demand, attach per $ capex from outside data). Arithmetic computes: 6.3351x1,841 = 11,663; x2,255 = 14,286.",
+   "_src": "text",
+   "fix": "carded: dc_share (card 'Where should MRVL's FY28-FY29 data-center revenue sit?') | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs): \"Keep the segment build (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL2Wpir9pCYS2A9ek656Kivs",
+    "card": null,
+    "quote": "Keep the segment build (booked)",
+    "utc": "2026-11-23T17:51Z"
+   }
+  },
+  {
+   "origin": "supervisor guidance_check revenue FY2027 why",
+   "item": "claim (src 52, 14)",
+   "value": "FY27 = Q1-Q2 reported (2,417.8 + 2,739.3) + Q3 Marvell's preliminary 3,150 (src 52) + Q4 (DC 3,094.3 from the ~+60% FY27 data-center statement, Murphy, src 14; comms 595.0 from the end-market build) \u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1835632/000119312526442714/d81187dex991.htm",
+   "result": "back_solved",
+   "page_shows": "2026-11-02 release (Marvell-Lumentum acquisition, item 2.02): preliminary Q3 revenue 'consistent with previously provided guidance, maintaining the midpoint of its prior guidance while narrowing the expected range to plus or minus 2%' (prior midpoint $3.150B). No dollar figure, no FY27 or ~60% data-center statement on this page. The ~60% is on the Q2 call (src 14): Matt Murphy, CEO: 'which we now expect to grow by approximately 60% this fiscal year'.",
+   "note": "Source part OK: Q3 3,150 = maintained midpoint (paraphrase holds); ~+60% DC is Murphy's (CEO) on the Q2 call. But Q4 data-center 3,094.3 'from the ~+60% FY27 data-center statement' is a stated year figure less the reported quarters (rule 5, Kilian 11-23 year-residual): back_solved.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": "",
+   "speaker": "Matt Murphy",
+   "speaker_role": "CEO",
+   "speaker_firm": "",
+   "actuals_released": "",
+   "actuals_through": "",
+   "_src": "shard",
+   "fix": "carded: dc_share (card 'Where should MRVL's Q4 FY27 data-center revenue sit?') | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLFqdqb4u1eAcqiaTYGWfavN): \"CEO's ~+60% data-center year (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLFqdqb4u1eAcqiaTYGWfavN",
+    "card": null,
+    "quote": "CEO's ~+60% data-center year (booked)",
+    "utc": "2026-11-23T17:51Z"
+   }
+  }
+ ]
+}

@@ -1,0 +1,1788 @@
+{
+ "symbol": "DY",
+ "as_of": "2026-11-24",
+ "research_as_of": "DY",
+ "spot": 179.01,
+ "agents": [
+  {
+   "agent": "agent_1",
+   "fair_value": 235.93,
+   "method_text": "Segment driver build to FY2029 (revenue 7,742 / 8,258 / 9,023 $M; adjusted EPS ex-amortization after SBC ~17.15 / 18.96 / 22.13 at a 26% tax rate) valued at an 11.0x NTM P/E (peer median 14.55x at 2026-11-24 prices shrunk toward DY's 10.2x at k=0.8; weight 0.75) and 8.2x NTM EBITDA (weight 0.25), less 204.4 of debt-like supplier finance.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 228.35,
+     "weight": 0.75,
+     "inputs": "Horizon NTM adjusted EPS (FY2029-weighted, ~$21.4) x 11.0x, less supplier finance 204.4 / 29.6M shares",
+     "inputs_detail": [
+      {
+       "input": "tax_rate",
+       "value": "0.26",
+       "basis": "estimate",
+       "source_ids": [
+        29,
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F97",
+        "F98"
+       ],
+       "derivation": "Company-stated non-GAAP effective tax rate 26.0% (Outlook Expectations Summary, src 29); Q3 FY27 adjusted 25.3% (adjusted net income 158.13 / adjusted pre-tax 211.76, release src 2). The P/E leg runs on adjusted (ex-amortization) EPS, so the adjusted rate applies; round 1 used GAAP history (23.6% FY26, 22.3% YTD) and is withdrawn.",
+       "confidence": "high",
+       "variant_view": "GAAP-history 23.5%: about +3% on the research target (12m).",
+       "anchor": {
+        "value": 0.26,
+        "kind": "company_stated",
+        "as_of": "2026-08-26",
+        "source_ids": [
+         29
+        ],
+        "fact_ids": [],
+        "note": "non-GAAP ETR 26.0%"
+       }
+      },
+      {
+       "input": "interest_rate",
+       "value": "0.06",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        22
+       ],
+       "fact_ids": [
+        "F82"
+       ],
+       "derivation": "Q3 FY27 net interest expense $39.0M x 4 / net debt $2,616M = 5.96%",
+       "confidence": "high",
+       "variant_view": "",
+       "anchor": {
+        "value": 0.0596,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         1,
+         22
+        ],
+        "fact_ids": [
+         "F82"
+        ],
+        "note": "39.0*4/2616"
+       }
+      },
+      {
+       "input": "shares.diluted_now",
+       "value": "30.1",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F80",
+        "F26"
+       ],
+       "derivation": "29.8M outstanding at 2026-11-20 (F80) + ~0.3M dilutive (Q3 weighted diluted 30.2M, F26, included shares bought during the quarter)",
+       "confidence": "high",
+       "variant_view": "",
+       "anchor": {
+        "value": 30.2,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         1
+        ],
+        "fact_ids": [
+         "F26"
+        ],
+        "note": "Q3 weighted diluted"
+       }
+      },
+      {
+       "input": "shares.annual_change",
+       "value": "-0.018",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1
+       ],
+       "fact_ids": [
+        "F60"
+       ],
+       "derivation": "$150M/yr buybacks (new $200M authorization through May 2028; $136.4M TTM, F60) at ~$190 = ~0.8M shares (2.6%) less ~0.25M SBC issuance (0.8%)",
+       "confidence": "medium",
+       "variant_view": "No buybacks (M&A instead): 0.8% dilution, ~-$7/share",
+       "anchor": {
+        "value": -0.018,
+        "kind": "company_stated",
+        "as_of": "2026-11-24",
+        "source_ids": [
+         4
+        ],
+        "fact_ids": [
+         "F60"
+        ],
+        "note": "authorization and stated priority"
+       }
+      },
+      {
+       "input": "P/E exit multiple",
+       "value": "11.0x",
+       "basis": "estimate",
+       "source_ids": [
+        10,
+        16,
+        23,
+        24,
+        25,
+        27,
+        19
+       ],
+       "fact_ids": [],
+       "derivation": "All on one date (2026-11-24 closes, src 27/19) and one consensus vintage (Nasdaq/Zacks feeds read 2026-11-25). NTM EPS = 1/12 x CY2026 + 11/12 x CY2027: MTZ 0.73+10.97=11.70 -> 152.44/11.70 = 13.0x; PWR 1.39+18.13=19.53 -> 589.64/19.53 = 30.2x; PRIM 0.16+4.47=4.63 -> 55.35/4.63 = 11.95x; MYRG 1.12+14.95=16.07 -> 259.09/16.07 = 16.1x. Whole-company median (13.0, 16.1) = 14.55x. Own: 179.01 / NTM consensus 17.55 (2.28+3.94+5.38+5.95, src 10) = 10.2x; the DY feed is still pre-print, but my own NTM build (Q4 FY27 ~2.6 + 3/4 of FY28 18.96 = ~16.8-17.6) gives 10.2-10.7x, so the vintage gap barely moves it. Exit = 14.55 x (10.2/14.55)^0.8 = 10.95x -> 11.0x (k=0.8). Round 1 mixed 2026-11-02 peer prices (17.1x median) with the post-print DY price.",
+       "confidence": "medium",
+       "variant_view": "Peer median at 2026-11-02 prices (17.1x) with k=0.8 gives 11.3x: about +2%; STRL added to the whole-company median (13.0x median) gives ~10.6x: about -3%."
+      },
+      {
+       "input": "adjustments: supplier finance, debt-like part",
+       "value": "-204.4",
+       "basis": "estimate",
+       "source_ids": [
+        32,
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F82"
+       ],
+       "derivation": "SupplierFinanceProgramObligation 524.0 at 2026-10-31 (src 32). FY26 year-end balance = additions 407.0 - settlements 180.6 = 226.4. Scaling that by revenue growth (Q3 FY27 2,056.3 / Q4 FY26 1,457.5 = 1.411) gives 319.6 that normal payables would carry; the excess 524.0 - 319.6 = 204.4 is payables stretch financed by the banks and is treated as debt (playbook trap: supplier finance inflates operating cash flow).",
+       "confidence": "medium",
+       "variant_view": "Whole program as debt (-524.0): about -$11/share vs no adjustment; none as debt: about +$7/share."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 258.69,
+     "weight": 0.25,
+     "inputs": "Horizon NTM EBITDA (~$1.24B, after SBC) x 8.2x less net debt at horizon and supplier finance",
+     "inputs_detail": [
+      {
+       "input": "net_debt",
+       "value": "2616.0",
+       "basis": "reported",
+       "source_ids": [
+        1,
+        3
+       ],
+       "fact_ids": [
+        "F82"
+       ],
+       "derivation": "Debt $2,818.8M less cash $202.8M (F82); notional $2,637.7M incl. $2.4M finance leases (src 3). Supplier finance carried separately as an adjustment (see that row).",
+       "confidence": "high",
+       "variant_view": ""
+      },
+      {
+       "input": "EV/EBITDA exit multiple",
+       "value": "8.2x",
+       "basis": "estimate",
+       "source_ids": [
+        28,
+        1
+       ],
+       "fact_ids": [
+        "F74",
+        "F32"
+       ],
+       "derivation": "Peer trailing median at 2026-11-24 closes 12.35x (PRIM 12.3x, MYRG 12.4x; secfacts, src 28). Own: EV $8.0B / GAAP EBITDA TTM ~973.5 (pretax 408.1 F74 + net interest ~135, estimate from Q3 39.0 and prior quarters + D&A 430.4 F32) = 8.2x. 12.35 x (8.2/12.35)^0.8 = 8.9x trailing; /1.08 for NTM growth = 8.2x.",
+       "confidence": "medium",
+       "variant_view": ""
+      },
+      {
+       "input": "adjustments: supplier finance, debt-like part",
+       "value": "-204.4",
+       "basis": "estimate",
+       "source_ids": [
+        32,
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F82"
+       ],
+       "derivation": "SupplierFinanceProgramObligation 524.0 at 2026-10-31 (src 32). FY26 year-end balance = additions 407.0 - settlements 180.6 = 226.4. Scaling that by revenue growth (Q3 FY27 2,056.3 / Q4 FY26 1,457.5 = 1.411) gives 319.6 that normal payables would carry; the excess 524.0 - 319.6 = 204.4 is payables stretch financed by the banks and is treated as debt (playbook trap: supplier finance inflates operating cash flow).",
+       "confidence": "medium",
+       "variant_view": "Whole program as debt (-524.0): about -$11/share vs no adjustment; none as debt: about +$7/share."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 116.84,
+     "prob": null
+    },
+    "base": {
+     "price": 235.93,
+     "prob": null
+    },
+    "upside": {
+     "price": 362.51,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 235.93,
+   "reasoning": "Round 2. The supervisor's findings changed five things. (1) Tax: the P/E leg runs on adjusted EPS, so it takes the company-stated 26.0% non-GAAP rate (src 29; Q3 adjusted 25.3%) instead of GAAP history 23.5% (about -3%). (2) Exit multiple on one date and one vintage: peers at 2026-11-24 closes and 2026-11-25 Zacks consensus give a whole-company median of 14.55x (MTZ 13.0x, PRIM 11.95x, MYRG 16.1x, PWR 30.2x), not 17.1x at 2026-11-02 prices; STRL moves to segment-only; own 10.2x; k=0.8 -> 11.0x (was 11.3x). EV/EBITDA: 12.35x peer median, own 8.2x -> 8.2x. (3) Supplier finance: 204.4 of the 524.0 program (the excess over the FY26 year-end balance scaled by revenue) is treated as debt. (4) FTTH share: the 9M arithmetic (Comms +17% YTD = ~+701 with FTTH +50%, src 4) does not fit 31%: solving it gives FY26 FTTH ~1,650 and FY27 ~2,320 (~38%); FY28 -15% (-348, the same dollar cut as round 1) keeps FY28 Comms at +4.5%, inside 'mid-single-digit', and FY29 +8% (CEO: accelerating). I keep FTTH below the supervisor's 44% because DCI, copper and M&O also grew in 9M. (5) DMV moratoria (Loudoun pause adopted 2026-11-18, Maryland county pauses; src 30, 31): new legislative applications are held, by-right and under-construction work continues, so I haircut Building Systems 3% in FY28 and 5% in FY29 on top of the labor cap (FY28 +14.5%, below 'high teens or better'). Q4 FY27 is now built just above the guide (1,715) from Q3 momentum; it moves value only through net debt. Result: adjusted EPS ~17.15 / 18.96 / 22.13 (within 1% of pre-print consensus for FY28-29), research target (12m) $235.93 (was $252.17): P/E 228.35 (0.75), EV/EBITDA 258.69 (0.25). Scenarios keep the playbook's drivers (FTTH, DCI, copper/BEAD, Building Systems capture, margin, multiple): P10 $116.84, P90 $362.51. Where I differ from the supervisor's set (273.65 on 13.0x): I reprice the exit at today's price because the peers' own prices and consensus moved too, and the k rule is about the current gap. Research limited to ~6 new queries.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": 252.17,
+     "to": 235.93,
+     "why": "Net of the items below: 26% tax, 11.0x exit on 2026-11-24 prices, supplier finance as debt, FTTH share rebuilt, DMV moratorium haircut."
+    },
+    {
+     "item": "a fact",
+     "from": "tax 23.5% (GAAP history)",
+     "to": "26.0% (company-stated non-GAAP rate)",
+     "why": "Supervisor feedback: adjusted-EPS basis carries the 26.0% rate (src 29); Q3 adjusted 25.3%."
+    },
+    {
+     "item": "a method",
+     "from": "P/E exit 11.3x (peer median 17.1x at 2026-11-02 prices)",
+     "to": "11.0x (median 14.55x at 2026-11-24 closes, 2026-11-25 consensus, STRL segment-only)",
+     "why": "Supervisor: put own and peer multiples on one date and consensus vintage."
+    },
+    {
+     "item": "a method",
+     "from": "EV/EBITDA exit 8.0x",
+     "to": "8.2x",
+     "why": "Peer trailing median and own multiple re-read at 2026-11-24 closes (12.35x / 8.2x, k=0.8, NTM trim)."
+    },
+    {
+     "item": "a fact",
+     "from": "supplier finance not treated",
+     "to": "-204.4 debt-like adjustment",
+     "why": "Supervisor: decide the debt-like part of the 524.0 program (XBRL, src 32)."
+    },
+    {
+     "item": "a fact",
+     "from": "FTTH FY26/27 1,250 / 1,850 (31% of Comms), FY28 1,510",
+     "to": "1,650 / 2,320 (38%), FY28 1,972",
+     "why": "Supervisor: 31% does not fit the 9M growth arithmetic (Comms +17% YTD with FTTH +50%); base Comms rebuilt to keep FY28 Comms at +4.5%."
+    },
+    {
+     "item": "a fact",
+     "from": "Building Systems FY28 1,988 (+18%), FY29 2,187",
+     "to": "FY28 1,946 (+14.5%), FY29 2,192",
+     "why": "Supervisor: no moratorium term; Loudoun pause (src 30) and Maryland pauses (src 31) give a 3%/5% haircut; FY27 base raised to 1,700."
+    },
+    {
+     "item": "a fact",
+     "from": "FY27 revenue 7,717 (inside guide)",
+     "to": "7,742 (just above)",
+     "why": "Supervisor: Q4 at the guide ignored the 7-of-7 beat record; Q4 built from Q3 momentum, small because FTTH moderation begins."
+    },
+    {
+     "item": "a scenario",
+     "from": "downside 127.12 / upside 380.45",
+     "to": "downside 116.84 / upside 362.51",
+     "why": "Same driver deltas on the new base; multiple deltas -2.3/+2.5 turns on an 11.0x base."
+    },
+    {
+     "item": "thesis trigger",
+     "from": "BS margin or DMV moratoria (generic)",
+     "to": "BS margin or DMV pauses widening (Loudoun Phase 2, by-right reach)",
+     "why": "Loudoun formal adoption 2026-11-18 (src 30)."
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "round-1 ladder",
+     "to": "unchanged",
+     "why": "No scheduled event before 2026-12-24; supervisor found no edge on the mean; my ladder already matched the forecasters' mean within 0.01."
+    }
+   ],
+   "round1": {
+    "fair_value": 252.17,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_2",
+   "fair_value": 250.21,
+   "method_text": "Engine base on a two-segment driver build (segment adjusted EBITDA margins, moratorium haircut on Building Systems, supplier finance in net debt): NTM adjusted EPS ~$22.2 x 10.9x P/E (whole-company peer median 14.5x at 2026-11-24 closes, shrunk from DY's 10.2x, k=0.8), weight 0.75 = $241.94; NTM adjusted EBITDA ~$1.27B x 8.5x less horizon net debt, weight 0.25 = $275.03.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 241.94,
+     "weight": 0.75,
+     "inputs": "NTM (Nov 2027-Nov 2028) adjusted EPS ex amortization, SBC costed, ~$22.2 (FY2028 ~$18.5, FY2029 ~$22) x 10.9x",
+     "inputs_detail": [
+      {
+       "input": "tax rate",
+       "value": "26%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F97",
+        "F98",
+        "F99"
+       ],
+       "derivation": "Company-stated non-GAAP tax rate ~26% (Q3 FY27 call); Q3 FY27 adjusted 25.3% (adjusted pre-tax 211.76, adjusted net income 158.13). Round 1's 24% averaged GAAP effective rates (supervisor finding: wrong basis for adjusted EPS).",
+       "confidence": "high",
+       "anchor": {
+        "value": 0.26,
+        "kind": "company_stated",
+        "as_of": "2026-11-24",
+        "source_ids": [
+         1
+        ],
+        "fact_ids": [],
+        "note": "non-GAAP rate"
+       }
+      },
+      {
+       "input": "P/E horizon multiple",
+       "value": "10.9x NTM",
+       "basis": "judgment",
+       "source_ids": [
+        17,
+        30,
+        31,
+        32,
+        29,
+        4
+       ],
+       "fact_ids": [],
+       "derivation": "Whole-company peer median NTM P/E 14.5x at 2026-11-24 closes (MTZ 13.0, PRIM 11.9, MYRG 16.1, PWR 30.2; NTM = FY26/12 + 11/12 FY27 consensus fetched 2026-11-25). DY own 10.2x = 179.01 / 17.5 (pre-print 17.55 adjusted: Q4 guide mid 2.63 vs 2.28, FY2028 quarters -2.6%). Exit = 14.5 x (10.2/14.5)^0.8 = 10.9x. Alternatives: set's 13.0x on 2026-11-02 prices (+19%); k=1 hold 10.2x (-5%); MYRG ex-amortization median 14.3x (-1%).",
+       "confidence": "medium",
+       "variant_view": "Market keeps DY at a cyclical-trough 9x on lower FY2028 EPS: -20%."
+      },
+      {
+       "input": "FY2028 consensus EPS (pre-print)",
+       "value": "$20.11 Zacks; $18.99 Nasdaq FY Jan-2028",
+       "basis": "consensus",
+       "source_ids": [
+        5,
+        4
+       ],
+       "fact_ids": [],
+       "derivation": "Feeds fetched 2026-11-25 00:53Z, still pre-print. Our FY2028 adjusted EPS ~18.5 is 2.6% below Nasdaq 18.99 and 8% below Zacks 20.11; FY2028 revenue 8,166 is 4.2% below Zacks 8.52B because Comms grows 3.9% (not ~9%) and BS carries the moratorium haircut.",
+       "confidence": "high"
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 275.03,
+     "weight": 0.25,
+     "inputs": "NTM adjusted EBITDA ~$1.27B x 8.5x = EV ~$10.8B less horizon net debt (from 2,863 incl. 247 supplier finance) / ~29.4M shares",
+     "inputs_detail": [
+      {
+       "input": "net debt",
+       "value": "$2,863M (2,616 + 247 supplier finance)",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        34
+       ],
+       "fact_ids": [
+        "F82",
+        "F81",
+        "F76"
+       ],
+       "derivation": "Debt 2,818.8 less cash 202.8 = 2,616.0 (F82) plus the debt-like part of supplier finance (program obligation 524.0 at 2026-10-31, XBRL). Debt-like part = AP beyond pre-program terms: pre-program AP at FY2025 end = 668.6 - 180.6 (YTD FY27 AP increase) - 223.2 (FY26 increase) = 264.8 = 5.63% of FY2025 revenue 4,702.0 (F2); at TTM revenue 7,484.6 (F6) normal AP = 421.5; 668.6 - 421.5 = 247.1. Alternatives: all 524 (about -3%), none (about +3%), supervisor 252.9.",
+       "confidence": "medium"
+      },
+      {
+       "input": "interest rate on net debt",
+       "value": "5.3%",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        3
+       ],
+       "fact_ids": [
+        "F91",
+        "F81"
+       ],
+       "derivation": "~5.8% on funded debt (round 1) x 2,616 / 2,863 = 5.3%, since the supplier-finance part bears no interest (10-Q).",
+       "confidence": "medium",
+       "anchor": {
+        "value": 0.058,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         2
+        ],
+        "fact_ids": [
+         "F81"
+        ],
+        "note": "funded debt; blended down for non-interest-bearing supplier finance"
+       }
+      },
+      {
+       "input": "EV/EBITDA horizon multiple",
+       "value": "8.5x NTM adjusted EBITDA",
+       "basis": "judgment",
+       "source_ids": [
+        16,
+        2,
+        29
+       ],
+       "fact_ids": [
+        "PRIM.ev_ebitda_ttm",
+        "MYRG.ev_ebitda_ttm",
+        "F82"
+       ],
+       "derivation": "Whole-company trailing GAAP EV/EBITDA at 2026-11-24 closes: PRIM 12.3x, MYRG 12.4x -> 12.35x. DY EV = 30.2 x 179.01 + 2,863 = 8,269; TTM EBITDA after SBC ~1,024 (adj. ~1,061 less SBC ~37) -> 8.07x. Exit = 12.35 x (8.07/12.35)^0.8 = 8.8x, applied to NTM EBITDA (conservative: trailing peer basis). The engine EBITDA is before SBC (adjusted), so the GAAP-basis 8.8x is put on that basis: 8.8 x 1,024/1,061 = 8.5x.",
+       "confidence": "medium"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 125.4,
+     "prob": null
+    },
+    "base": {
+     "price": 250.21,
+     "prob": null
+    },
+    "upside": {
+     "price": 398.58,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 250.21,
+   "reasoning": "Round 2 rebuild on the supervisor's findings. (1) Margins restated on the company's segment adjusted EBITDA basis (round 1 mixed EBITA and EBITDA): Comms 12.3/12.5/12.9%, BS 20.5/19.5/19.0%; engine EBIT = that less segment depreciation. BS moves up from 19%/18.5% adj. EBITDA to 0.5pt under the CEO's ~20% center, held below it for labor-cost pressure (EC&M: 83% of electrical contractors short of labor), moratorium idling and normalising lead-time pricing (rule 0c). (2) Supplier finance added: 247 of the 524 program is debt-like, from my AP-stretch arithmetic on XBRL (pre-program AP 5.63% of revenue), close to the supervisor's 252.9; interest blended to 5.3%. (3) Kilian's shared dc_mor haircut applied to Building Systems on the non-hyperscaler share (1-0.62), mapped to DY's Feb-Jan quarters (FY2028 0.106, FY2029 0.0865). (4) Tax to the company-stated 26% non-GAAP rate. (5) Multiples repriced on one date: peers and DY at 2026-11-24 closes on consensus fetched 2026-11-25 (DY on an estimated post-print NTM 17.5) -> whole-company median 14.5x (was 16.0x at 11-02 prices; peers fell), DY 10.2x, k=0.8 exit 10.9x; EV/EBITDA 12.35x vs DY 8.07x -> 8.8x GAAP = 8.5x adjusted. (6) Communications rebuilt in dollars by program: FTTH -340 (AT&T capex cut, MasTec deferrals), wireless +150, copper +75, long-haul 550/900 (trimmed for ramp), BEAD in FY2029 (AlixPartners: BEAD money mostly in 2027, mid-mile round 2H27): Comms +3.9% FY2028, +7.2% FY2029, just below the CEO's mid-single digit then accelerating as he said. Net: research target (12m) $250 (from $257): the lower peer median (-), supplier finance and moratorium (-), higher BS and Comms margins on the corrected basis and higher tax netting out. I disagree with the set's 13.0x exit: a price move across the whole peer group is evidence of the multiple the market pays on one date, and the supervisor itself asked for one date. P10 $125 / P90 $399 move drivers (FTTH spread, long-haul pace, BS labor/moratorium, margins) plus 2.5-3 turns.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": "257.09",
+     "to": "250.21",
+     "why": "Net of the items below (engine check)."
+    },
+    {
+     "item": "a method: P/E exit multiple",
+     "from": "11.2x (peers at 2026-11-02 prices, median 16.0x, LMB in)",
+     "to": "10.9x (peers and DY at 2026-11-24 closes, whole-company median 14.5x, LMB and segment-only peers out of the median)",
+     "why": "Supervisor: put own and peer multiples on one date and one consensus vintage; peer_count rule on segment-only peers."
+    },
+    {
+     "item": "a method: EV/EBITDA exit multiple",
+     "from": "8.2x",
+     "to": "8.5x adjusted (8.8x GAAP)",
+     "why": "Own multiple recomputed with supplier-finance debt and explicit GAAP-to-adjusted conversion instead of a rounding haircut."
+    },
+    {
+     "item": "a fact: margin basis",
+     "from": "Comms 9.5% / BS 18% EBITA labelled as margins",
+     "to": "segment adjusted EBITDA drivers (Comms 12.5%, BS 19.5% FY2028), EBIT = less depreciation",
+     "why": "Supervisor: Comms 9.5% was EBITA, not the adjusted EBITDA the company guides."
+    },
+    {
+     "item": "a fact: BS margin",
+     "from": "19%/18.5% adj. EBITDA (18%/17.5% EBITA)",
+     "to": "19.5%/19.0% adj. EBITDA",
+     "why": "Supervisor: below the CEO's ~20% center without evidence; moved up, kept 0.5pt under with EC&M labor evidence."
+    },
+    {
+     "item": "a fact: net debt",
+     "from": "2,616",
+     "to": "2,863 (incl. 247 supplier finance)",
+     "why": "Supervisor: supplier finance missing; my arithmetic from XBRL AP and program obligation 524.0."
+    },
+    {
+     "item": "a fact: moratorium haircut",
+     "from": "none",
+     "to": "dc_mor on BS non-hyperscaler share: FY2028 -4.0%, FY2029 -3.3% of BS",
+     "why": "Supervisor: dc_mor term missing (Kilian shared driver)."
+    },
+    {
+     "item": "a fact: tax rate",
+     "from": "24%",
+     "to": "26%",
+     "why": "Supervisor: company-stated non-GAAP rate 26%, Q3 adjusted 25.3%."
+    },
+    {
+     "item": "a scenario",
+     "from": "P10 130.76 / P90 409.07",
+     "to": "P10 125.4 / P90 398.58",
+     "why": "Same driver deltas on the rebuilt set (bs_gross replaces bs_rev)."
+    },
+    {
+     "item": "a fact: Communications FY2028 growth",
+     "from": "+2.5%",
+     "to": "+3.9%",
+     "why": "Rebuilt in dollars by program (wireless deferral and copper sized), FTTH -340 per the supervisor's dollar comparison."
+    },
+    {
+     "item": "thesis trigger",
+     "from": "none on moratoria",
+     "to": "moratoria spreading beyond the shared windows",
+     "why": "dc_mor now in the set."
+    }
+   ],
+   "round1": {
+    "fair_value": 257.09,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_3",
+   "fair_value": 229.38,
+   "method_text": "Engine value of the driver build: P/E 10.8x (peer median 14.4x at 2026-11-24 closes, shrunk k=0.8 from DY's 10.0x) on horizon NTM EPS ~$21.4 (26% non-GAAP tax, Comms margin 12.4%/12.7%), 0.75 weight; EV/EBITDA 7.8x NTM adj EBITDA, 0.25; less the $252.9M debt-like part of supplier finance.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 222.71,
+     "weight": 0.75,
+     "inputs": "Horizon NTM EPS ~$21.4 (0.2 x FY28 ~$19.2 + 0.8 x FY29 ~$22.6; ex-amortization, SBC costed, 26% tax) x 10.8x, less supplier-finance debt-like stretch $252.9M (~$8.7/share)",
+     "inputs_detail": [
+      {
+       "input": "driver:comms_rev",
+       "value": "5,450.1 -> 5,997 / 6,177 / 6,548",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        2,
+        8,
+        10
+       ],
+       "fact_ids": [
+        "F3",
+        "F6",
+        "F7"
+       ],
+       "derivation": "FY27: consolidated YTD revenue 6,027.0 (F6 derivation) + Q4 est 1,640 (low half of 1.63-1.70B guide) = 7,667, less Building Systems est 1,670 = 5,997. FY28 +3.0%: FTTH (largest driver, up 50% YTD) guided down y/y by CEO; offset by long-haul/DCI (backlog >$2B, multi-year, so ~$0.6-0.8B/yr burn), copper reclamation ramp and wireless ending FY28; 12-month comms backlog $5.4B (+8% vs $4.99B total 12m backlog a year ago) is the upside reading, but MSA backlog is estimated and the FTTH cuts were set 'in recent weeks', after much of it was booked. FY29 +6.0%: CEO says growth accelerates; haircut for BEAD timing slippage (only 'very small' BEAD in backlog).",
+       "confidence": "medium",
+       "variant_view": "Backlog-conversion build: 12m comms backlog $5.4B x TTM revenue/year-ago-12m-backlog 1.23 = ~$6.64B NTM (+8%); FY28 at +8% instead of +3% adds ~$1.0 EPS and ~+6% to value. Guide-reading (+5%) adds ~+2%."
+      },
+      {
+       "input": "driver:bs_rev",
+       "value": "95.8 -> 1,670 / 1,971 / 2,267",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        1,
+        21
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 1,670 (inside 1.66-1.69B guide; Q2 397.5 + Q3 441.7 + Q1/Q4 est ~415 each). FY28 +18% and FY29 +15%: demand (standing AI capex base 2026 $1,225B -> 2027 $1,841B, +50%) is not the binding constraint; union electrician headcount is (CEO), and 12m BS backlog $1.29B covers only 77% of FY27 revenue. Capacity, not capex, sets the ceiling, so we sit at the low end of 'high teens or better'.",
+       "confidence": "medium",
+       "variant_view": "Capture-ratio build on the standing AI capex base (+50% 2027) gives FY28 ~$2.5B: +$0.5B revenue, ~+$0.8 EPS, ~+5% value; rejected as labor-capped (CEO)."
+      },
+      {
+       "input": "driver:comms_m",
+       "value": "13.3% -> 12.2% / 12.4% / 12.7%",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        1,
+        2,
+        12,
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 12.2% = est Q1 11.5% + Q2 13.6% + Q3 12.8% + Q4 ~10.5% revenue-weighted (Q4 FY26 was 11.1%). FY28 12.4%: the CEO said Communications margin expands y/y in FY28 (src 1, CEO Dan Peyovich), so FY28 sits above FY27, but only +20bp, not back to FY26 13.3%: (a) fuel (~50bp in Q3) is repriced only at contract renewal, (b) crews kept and reallocated while FTTH shrinks under-absorb (if FTTH falls ~10-15% on ~40% of comms revenue with crews kept for ~2 quarters, ~5% of comms direct labor idles for half a year, ~25-35bp), (c) the 22.7 customer bad-debt reserve in Q3 (src 2) shows overbuilder credit losses recur. FY29 12.7% as long-haul/DCI (similar margin per CEO) ramps. Alternatives: FY26 13.3% less 0.5pt fuel = 12.8% (supervisor set, src 1/4); round-1 12.0% (under-absorption without the CEO's expansion statement); CEO long-run ~13%.",
+       "confidence": "medium",
+       "variant_view": "Supervisor set's FY26 less fuel (12.8-12.9% FY28) adds ~+3%; the no-recovery case (12.0%) takes ~-3%."
+      },
+      {
+       "input": "driver:bs_m",
+       "value": "11.6% -> 23.0% / 21.0% / 20.5%",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 ~23%. FY28 21% and FY29 20.5%: mean reversion toward the middle of management's own 17-22% range as union labor gets scarcer and the record quarters include project-timing benefits (CEO: 'every quarter is not always going to be exactly the same').",
+       "confidence": "medium",
+       "variant_view": "Holding Q3's 23.8% adds ~+3%."
+      },
+      {
+       "input": "tax_rate",
+       "value": "25.0% FY27, 26.0% FY28-29",
+       "basis": "estimate",
+       "source_ids": [
+        29,
+        2,
+        3
+       ],
+       "fact_ids": [
+        "F97",
+        "F98",
+        "F99"
+       ],
+       "derivation": "Company-stated non-GAAP effective tax rate 26.0% (Outlook Expectations Summary, src 29); our EPS is on the same adjusted ex-amortization basis, so FY28-29 use 26.0%. FY27 25.0%: GAAP YTD 22.3% (F98) and Q3 25.7% (F99) with Q4 at ~26%. Round 1 used 24.5% from GAAP history (FY26 23.6%, F97), which mixes discrete items into an adjusted-EPS set.",
+       "anchor": {
+        "value": 0.26,
+        "kind": "company_stated",
+        "as_of": "2026-08-26",
+        "source_ids": [
+         29
+        ],
+        "fact_ids": [],
+        "note": "non-GAAP effective tax rate 26.0% in the company's outlook summary"
+       },
+       "confidence": "high",
+       "variant_view": "GAAP-history 24.5% adds ~+1.5% to value."
+      },
+      {
+       "input": "interest_rate on net debt",
+       "value": "6.0%",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        9
+       ],
+       "fact_ids": [
+        "F82"
+       ],
+       "derivation": "Q3 FY27 net interest 39.0M x4 = 156M / net debt 2,616M (F82) = 5.96%; debt = $500M 4.50% notes 2029 + $1.54B TLA + $798M TLB (Investing.com slides).",
+       "anchor": {
+        "value": 0.0596,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         2
+        ],
+        "fact_ids": [
+         "F82"
+        ],
+        "note": "us-gaap:InterestIncomeExpenseNet Q3 -39.0M annualized over net debt"
+       }
+      },
+      {
+       "input": "adjustment: supplier finance (debt-like stretch)",
+       "value": "-252.9",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        30,
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "Program obligations 524.0 at 2026-10-31 (10-Q, src 2), paid to the bank about 60 days after invoice, no interest charged to DY; only the payable stretch it funds is debt-like. AP (src 30) 223.5/259.2/264.9/297.1 on quarterly revenue 1,084.5/1,258.6/1,377.9/1,451.8 x 91 = 18.75/18.74/17.49/18.62 days, avg 18.40 (pre-program, FY25 Q4-FY26 Q3) vs 668.6/2,056.3 x 91 = 29.59 days at 2026-10-31; excess 11.19 days x 2,056.3/91 = 252.9 (48% of 524.0).",
+       "confidence": "medium",
+       "variant_view": "Skeptic variant: all 524.0 is debt-like if banks pull the program and DY must pay suppliers on old terms (-$9.3/share vs this); the electrical acquisition (materials-heavy, longer AP days) means part of the stretch is mix, so the true debt-like part could be lower (+ up to $8/share)."
+      },
+      {
+       "input": "shares diluted_now",
+       "value": "30.0M",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F80",
+        "F26"
+       ],
+       "derivation": "Cover shares 29.8M at 2026-11-20 (F80) plus ~0.2M dilutive awards (Q3 diluted wavg 30.2M F26 less Q3 buyback of 345k shares).",
+       "anchor": {
+        "value": 30.2,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         2
+        ],
+        "fact_ids": [
+         "F26"
+        ],
+        "note": "Q3 diluted weighted average"
+       }
+      },
+      {
+       "input": "shares annual_change",
+       "value": "-1.5%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F36",
+        "F39"
+       ],
+       "derivation": "$150M/yr buyback (new $200M authorization through May 2028) at ~$180-230 retires ~0.75M shares (2.5%) less ~1% SBC dilution (SBC ~$35-40M/yr, F36, F39).",
+       "anchor": {
+        "value": -0.017,
+        "kind": "reported_history",
+        "as_of": "2026-11-20",
+        "source_ids": [
+         2
+        ],
+        "fact_ids": [
+         "F80",
+         "F23"
+        ],
+        "note": "29.4M FY26 wavg (F23) vs 29.8M cover (F80) shows dilution from the Power Solutions stock consideration; buyback pace now higher"
+       }
+      },
+      {
+       "input": "P/E horizon multiple",
+       "value": "10.8x",
+       "basis": "estimate",
+       "source_ids": [
+        22,
+        23,
+        24,
+        25,
+        7,
+        27,
+        26
+       ],
+       "fact_ids": [],
+       "derivation": "Peer median NTM P/E 14.4x (8 peers, table P/E repriced at 2026-11-24 closes; table-price median 16.3x). DY own NTM P/E 179.01 / 17.9 (Q4 FY27 2.28->guide mid 2.63 + Q1-Q3 FY28 consensus 3.94+5.38+5.95) = 10.0x. Exit = 14.4 x (10.0/14.4)^0.8 = 10.8x.",
+       "confidence": "medium",
+       "variant_view": "Table-price median 16.3x gives 11.8x (+9%)."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 249.4,
+     "weight": 0.25,
+     "inputs": "NTM adj EBITDA ~$1.32B at horizon x 7.8x, less net debt at horizon and the supplier-finance stretch $252.9M",
+     "inputs_detail": [
+      {
+       "input": "driver:comms_rev",
+       "value": "5,450.1 -> 5,997 / 6,177 / 6,548",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        1,
+        2,
+        8,
+        10
+       ],
+       "fact_ids": [
+        "F3",
+        "F6",
+        "F7"
+       ],
+       "derivation": "FY27: consolidated YTD revenue 6,027.0 (F6 derivation) + Q4 est 1,640 (low half of 1.63-1.70B guide) = 7,667, less Building Systems est 1,670 = 5,997. FY28 +3.0%: FTTH (largest driver, up 50% YTD) guided down y/y by CEO; offset by long-haul/DCI (backlog >$2B, multi-year, so ~$0.6-0.8B/yr burn), copper reclamation ramp and wireless ending FY28; 12-month comms backlog $5.4B (+8% vs $4.99B total 12m backlog a year ago) is the upside reading, but MSA backlog is estimated and the FTTH cuts were set 'in recent weeks', after much of it was booked. FY29 +6.0%: CEO says growth accelerates; haircut for BEAD timing slippage (only 'very small' BEAD in backlog).",
+       "confidence": "medium",
+       "variant_view": "Backlog-conversion build: 12m comms backlog $5.4B x TTM revenue/year-ago-12m-backlog 1.23 = ~$6.64B NTM (+8%); FY28 at +8% instead of +3% adds ~$1.0 EPS and ~+6% to value. Guide-reading (+5%) adds ~+2%."
+      },
+      {
+       "input": "driver:bs_rev",
+       "value": "95.8 -> 1,670 / 1,971 / 2,267",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        1,
+        21
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 1,670 (inside 1.66-1.69B guide; Q2 397.5 + Q3 441.7 + Q1/Q4 est ~415 each). FY28 +18% and FY29 +15%: demand (standing AI capex base 2026 $1,225B -> 2027 $1,841B, +50%) is not the binding constraint; union electrician headcount is (CEO), and 12m BS backlog $1.29B covers only 77% of FY27 revenue. Capacity, not capex, sets the ceiling, so we sit at the low end of 'high teens or better'.",
+       "confidence": "medium",
+       "variant_view": "Capture-ratio build on the standing AI capex base (+50% 2027) gives FY28 ~$2.5B: +$0.5B revenue, ~+$0.8 EPS, ~+5% value; rejected as labor-capped (CEO)."
+      },
+      {
+       "input": "driver:comms_m",
+       "value": "13.3% -> 12.2% / 12.4% / 12.7%",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        1,
+        2,
+        12,
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 12.2% = est Q1 11.5% + Q2 13.6% + Q3 12.8% + Q4 ~10.5% revenue-weighted (Q4 FY26 was 11.1%). FY28 12.4%: the CEO said Communications margin expands y/y in FY28 (src 1, CEO Dan Peyovich), so FY28 sits above FY27, but only +20bp, not back to FY26 13.3%: (a) fuel (~50bp in Q3) is repriced only at contract renewal, (b) crews kept and reallocated while FTTH shrinks under-absorb (if FTTH falls ~10-15% on ~40% of comms revenue with crews kept for ~2 quarters, ~5% of comms direct labor idles for half a year, ~25-35bp), (c) the 22.7 customer bad-debt reserve in Q3 (src 2) shows overbuilder credit losses recur. FY29 12.7% as long-haul/DCI (similar margin per CEO) ramps. Alternatives: FY26 13.3% less 0.5pt fuel = 12.8% (supervisor set, src 1/4); round-1 12.0% (under-absorption without the CEO's expansion statement); CEO long-run ~13%.",
+       "confidence": "medium",
+       "variant_view": "Supervisor set's FY26 less fuel (12.8-12.9% FY28) adds ~+3%; the no-recovery case (12.0%) takes ~-3%."
+      },
+      {
+       "input": "driver:bs_m",
+       "value": "11.6% -> 23.0% / 21.0% / 20.5%",
+       "basis": "estimate",
+       "source_ids": [
+        4,
+        5,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 ~23%. FY28 21% and FY29 20.5%: mean reversion toward the middle of management's own 17-22% range as union labor gets scarcer and the record quarters include project-timing benefits (CEO: 'every quarter is not always going to be exactly the same').",
+       "confidence": "medium",
+       "variant_view": "Holding Q3's 23.8% adds ~+3%."
+      },
+      {
+       "input": "net_debt",
+       "value": "2,616.0",
+       "basis": "reported",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [
+        "F82",
+        "F81",
+        "F76"
+       ],
+       "derivation": "F81 - F76"
+      },
+      {
+       "input": "adjustment: supplier finance (debt-like stretch)",
+       "value": "-252.9",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        30,
+        31
+       ],
+       "fact_ids": [],
+       "derivation": "Program obligations 524.0 at 2026-10-31 (10-Q, src 2), paid to the bank about 60 days after invoice, no interest charged to DY; only the payable stretch it funds is debt-like. AP (src 30) 223.5/259.2/264.9/297.1 on quarterly revenue 1,084.5/1,258.6/1,377.9/1,451.8 x 91 = 18.75/18.74/17.49/18.62 days, avg 18.40 (pre-program, FY25 Q4-FY26 Q3) vs 668.6/2,056.3 x 91 = 29.59 days at 2026-10-31; excess 11.19 days x 2,056.3/91 = 252.9 (48% of 524.0).",
+       "confidence": "medium",
+       "variant_view": "Skeptic variant: all 524.0 is debt-like if banks pull the program and DY must pay suppliers on old terms (-$9.3/share vs this); the electrical acquisition (materials-heavy, longer AP days) means part of the stretch is mix, so the true debt-like part could be lower (+ up to $8/share)."
+      },
+      {
+       "input": "EV/EBITDA horizon multiple",
+       "value": "7.8x (adjusted, NTM)",
+       "basis": "estimate",
+       "source_ids": [
+        26,
+        22
+       ],
+       "fact_ids": [],
+       "derivation": "Peer trailing GAAP EV/EBITDA median 12.3x (PRIM 12.3, MYRG 12.4, STRL 8.7: only names with a figure). DY EV 7,950 / NTM adj EBITDA ~1,140 = 7.0x. Exit = 12.3 x (7.0/12.3)^0.8 = 7.8x. Mid-cycle cross-check only.",
+       "confidence": "low",
+       "variant_view": "Peer basis is trailing GAAP vs DY NTM adjusted; mismatch understates DY's relative discount."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 125.52,
+     "prob": null
+    },
+    "base": {
+     "price": 229.38,
+     "prob": null
+    },
+    "upside": {
+     "price": 354.19,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 229.38,
+   "reasoning": "Round 2 (skeptic lane). Supervisor findings adopted: (1) supplier finance is not all debt: the 10-Q shows no interest and unchanged supplier terms, so only the payable stretch beyond the pre-program 18.4 days (29.6 days now, AP checked in SEC XBRL) is debt-like, 252.9 not 524.0 (+$9/share); (2) the CEO said Communications margin expands y/y in FY28, so FY28 moves from 12.0% to 12.4% (still only +20bp, below the supervisor set's 12.9%, because fuel reprices at renewal, crews are kept while FTTH shrinks and overbuilder bad debt recurs: $22.7M reserve in Q3); FY29 12.7%; (3) tax on the adjusted-EPS basis is the company-stated 26.0% non-GAAP rate, not GAAP history (24.5%). Net: base 219.49 -> 229.38. Kept: Comms FY28 +3% (below the CEO's mid-single digit; FTTH guided down and MTZ-type carrier pullbacks), Building Systems +18% labor-capped at a 21% margin, exit 10.8x on peers repriced at the same date as DY. Post-print consensus is not out yet (feeds still pre-print 2026-11-25). Follow-up searches for post-print downgrades returned only stale 2023-2025 notes (Wells Fargo 2023, B. Riley 2023, KeyBanc 2025), so research was limited and they move nothing. Earlier round-1 evidence stands: Q3 beat but FTTH cut guided for FY28, two customer defaults, OCF $14.1M with DSO 112, Ba2 credit. Range: downside $125.5 (deeper FTTH cuts, comms ~-3% and ~10.9% margin, BS margin -2pt, ~8.3x), upside $354 (backlog conversion, comms ~+8%, re-rate toward peers). Left tail fatter than right.",
+   "revisions": [
+    {
+     "item": "a fact",
+     "from": "supplier finance 524.0 all debt-like",
+     "to": "252.9 debt-like (payable stretch beyond pre-program 18.4 days)",
+     "why": "Supervisor: 10-Q shows supplier terms unchanged and no interest paid; AP days rebuilt from SEC XBRL (29.59 vs 18.40 days)."
+    },
+    {
+     "item": "a method",
+     "from": "Comms adj EBITDA margin 12.2/12.0/12.5% (FY27-29)",
+     "to": "12.2/12.4/12.7%",
+     "why": "Supervisor: CEO said Communications margin expands y/y in FY28; kept only +20bp for fuel lag, under-absorption and bad debt."
+    },
+    {
+     "item": "a method",
+     "from": "tax 23.5% FY27, 24.5% FY28-29 (GAAP history)",
+     "to": "25.0% FY27, 26.0% FY28-29",
+     "why": "Supervisor: company-stated non-GAAP 26.0% rate (Outlook Expectations Summary) fits our adjusted-EPS basis."
+    },
+    {
+     "item": "a method",
+     "from": "P/E leg 213.96, EV/EBITDA leg 236.09",
+     "to": "P/E 222.71, EV/EBITDA 249.40",
+     "why": "Recomputed by the engine after the three changes above; multiples unchanged (10.8x / 7.8x), post-print consensus not yet published."
+    },
+    {
+     "item": "research target (12m)",
+     "from": "219.49",
+     "to": "229.38",
+     "why": "Supplier finance +~$9.3/share, comms margin +~$5, tax -~$4."
+    },
+    {
+     "item": "a scenario",
+     "from": "downside 115.48 / upside 344.39",
+     "to": "downside 125.52 / upside 354.19",
+     "why": "Same deltas on the revised base; all-524 supplier-finance case named inside the downside story."
+    }
+   ],
+   "round1": {
+    "fair_value": 219.49,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_4",
+   "fair_value": 223.83,
+   "method_text": "Driver-built NTM adjusted EPS at the horizon (~$19.7) x 11.1x P/E (whole-company peer median 15.77x at 2026-11-24 closes shrunk k=0.8 from DY's 10.2x), weight 0.7, and NTM adj. EBITDA ~$1.26B x 7.6x, weight 0.3, less supplier-finance debt-like 262; engine base horizon value $223.83.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 218.96,
+     "weight": 0.7,
+     "inputs": "NTM (Nov-27 to Nov-28) adjusted EPS ~$19.7 from the build (FY28 adj. EBITDA ~$1.17B, FY29 ~$1.29B, tax 26%, ~29.8M shares) x 11.1x",
+     "inputs_detail": [
+      {
+       "input": "tax rate",
+       "value": "26% (FY27-29)",
+       "basis": "estimate",
+       "source_ids": [
+        30,
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F97",
+        "F98",
+        "F99"
+       ],
+       "derivation": "Adjusted-EPS basis: the company states a 26.0% non-GAAP effective tax rate (Outlook Expectations Summary 2026-08-26); Q3 FY27 adjusted came in near 25.3%. My round-1 24% averaged GAAP rates, the wrong basis for adjusted EPS.",
+       "anchor": {
+        "value": 0.26,
+        "kind": "company_stated",
+        "as_of": "2026-08-26",
+        "source_ids": [
+         30
+        ],
+        "fact_ids": [],
+        "note": "non-GAAP ETR guide for Q3 FY27"
+       }
+      },
+      {
+       "input": "interest rate on net debt",
+       "value": "6.0%",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F82"
+       ],
+       "derivation": "Q3 FY27 net interest $39.0M x4 = $156M / net debt $2,616M = 5.96% (InterestIncomeExpenseNet, 10-Q)",
+       "anchor": {
+        "value": 0.06,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         1
+        ],
+        "fact_ids": [
+         "F82"
+        ],
+        "note": "156/2616"
+       }
+      },
+      {
+       "input": "annual share change",
+       "value": "-1.3%/yr",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        2
+       ],
+       "fact_ids": [
+        "F55",
+        "F56",
+        "F57",
+        "F26"
+       ],
+       "derivation": "New $200M authorization through May 2028 (10-Q note 23). Assume ~$130M used by the horizon at ~$215 avg (between $179 and the round-1 $250s) = ~0.6M shares, then ~$100M/yr after the authorization (FY24-FY26 buybacks 49.7/65.6/30.2 and FY27 9M 136.4 -> ~$70-100M/yr run rate), less ~0.2M/yr RSU issuance net of tax withholding (SBC ~$40M / ~$200): 30.2 -> ~29.8M at the horizon, ~-1.3%/yr. Round 1 -2.5% assumed the whole $200M in ~18 months and nothing after.",
+       "anchor": {
+        "value": -0.013,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         1
+        ],
+        "fact_ids": [
+         "F55",
+         "F56",
+         "F57"
+        ],
+        "note": "buyback run rate net of RSU issuance"
+       }
+      },
+      {
+       "input": "P/E horizon multiple",
+       "value": "11.1x NTM adjusted EPS",
+       "basis": "estimate",
+       "source_ids": [
+        25,
+        21,
+        26,
+        27,
+        28,
+        7
+       ],
+       "fact_ids": [
+        "MTZ.price",
+        "PWR.price",
+        "PRIM.price",
+        "MYRG.price"
+       ],
+       "derivation": "whole-company peer median NTM P/E 15.77x, all at 2026-11-24 closes over Nasdaq/Zacks consensus fetched 2026-11-25 (MTZ 152.44/10.80 = 14.11x, PWR 589.64/18.60 = 31.70x, PRIM 55.35/4.31 = 12.84x, MYRG 259.09/14.87 = 17.42x; NTM = next four quarters Dec-26..Sep-27); DY own 179.01/17.55 = 10.20x on the same feed vintage (Q4 FY27 2.28 + Q1-Q3 FY28 3.94+5.38+5.95). Exit = 15.77 x (10.20/15.77)^0.8 = 11.1x",
+       "confidence": "medium",
+       "variant_view": "all 8 peers incl. segment-only EME/FIX/STRL/LMB: median 16.0x -> 11.2x (-$6/sh); post-print consensus cuts of ~5% raise DY's own P/E to ~10.7x -> 11.9x (+$9/sh)"
+      },
+      {
+       "input": "supplier finance (adjustment)",
+       "value": "-262.0",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "10-Q note 22: confirmed obligations 524.0 at 2026-10-31 (226.4 at 2026-01-31), paid to the bank generally within 60 days; AP 668.6 vs 497.3. Half treated as debt-like: 524.0 x 0.5 = 262.0.",
+       "confidence": "low",
+       "variant_view": "All 524 as debt (-$8.8/sh) or none (+$8.8/sh)."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 235.19,
+     "weight": 0.3,
+     "inputs": "NTM adj. EBITDA ~$1.26B x 7.6x less net debt at horizon ~$2.37B and supplier finance 262 over ~29.8M shares",
+     "inputs_detail": [
+      {
+       "input": "net debt",
+       "value": "$2,616M at 2026-10-31",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F81",
+        "F76",
+        "F82"
+       ],
+       "derivation": "debt 2,818.8 - cash 202.8; operating leases and any supplier-finance balance not added (see gap_note)"
+      },
+      {
+       "input": "EV/EBITDA horizon multiple",
+       "value": "7.6x NTM adjusted EBITDA",
+       "basis": "estimate",
+       "source_ids": [
+        25,
+        1
+       ],
+       "fact_ids": [
+        "PRIM.ev_ebitda_ttm",
+        "MYRG.ev_ebitda_ttm"
+       ],
+       "derivation": "whole-company trailing EV/EBITDA at 2026-11-24 closes PRIM 12.3x, MYRG 12.4x (secfacts) -> 12.35x, deflated by ~15% NTM EBITDA growth -> ~10.7x NTM; DY own NTM EV/EBITDA = (179.01 x 29.82M = 5,338 + net debt 2,616 + supplier finance 262 = 8,216) / ~1,180 NTM adj. EBITDA (build) = 7.0x; exit = 10.7 x (7.0/10.7)^0.8 = 7.6x",
+       "confidence": "low",
+       "variant_view": "peer NTM 12x -> 8.0x (+$9/sh on this leg)"
+      },
+      {
+       "input": "supplier finance (adjustment)",
+       "value": "-262.0",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "10-Q note 22: confirmed obligations 524.0 at 2026-10-31 (226.4 at 2026-01-31), paid to the bank generally within 60 days; AP 668.6 vs 497.3. Half treated as debt-like: 524.0 x 0.5 = 262.0.",
+       "confidence": "low",
+       "variant_view": "All 524 as debt (-$8.8/sh) or none (+$8.8/sh)."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 97.23,
+     "prob": null
+    },
+    "base": {
+     "price": 223.83,
+     "prob": null
+    },
+    "upside": {
+     "price": 366.55,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 223.83,
+   "reasoning": "Round 2. Kept the round-1 program build for Communications but restated FTTH as a range (FY27 1,700-2,670 undisclosed; central 2,000 = 33%) with a dollar cut of -360 in FY28 (CEO: down y/y, above FY26), so Comms grows +4.4% FY28 and +7.6% FY29, matching the CEO's mid-single-digit then accelerating shape. Building Systems now carries Kilian's shared moratorium haircut (dc_mor on the 38% non-self-funded share: -4.0% FY28, -3.3% FY29) and a margin fade to 20.5%/20%. Tax moved to the company's stated 26% non-GAAP rate (round 1 used GAAP rates). Buybacks extended past the $200M authorization at the historical run rate (-1.3%/yr net). Supplier finance (524.0 confirmed, 10-Q note 22) half treated as debt (-262). Exit multiples now read DY and the four whole-company peers on one date (2026-11-24 closes) and one consensus vintage (feeds fetched 2026-11-25): peer median 15.77x vs DY 10.2x -> 11.1x; EV/EBITDA 7.6x. My NTM EPS at the horizon (~$19.7) sits ~10% below the consensus-implied ~$21.8 (FY28 18.99 / FY29 22.37, pre-print): higher tax, the FTTH cut and the moratorium. Disagreement kept with the reconciled set's 13.0x exit: a 2026-11-02 peer price date mixes vintages; the price move after the FTTH guide is information about the FTTH cycle the multiple should carry. Alternative-lane evidence (VIC bear thesis, FBA/RVA passings, JobzMall postings as color only; the anonymous forum post moves no number). Research target $223.83, P10 $97 / P90 $367.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": "251.98",
+     "to": "223.83",
+     "why": "Same-date peer multiples (-), tax 26% (-), moratorium haircut (-), supplier finance (-), slower buyback (-), BS margin fade (-)"
+    },
+    {
+     "item": "P/E method (exit multiple)",
+     "from": "11.5x (peers at 2026-11-02 prices, median 18.65x)",
+     "to": "11.1x (peers at 2026-11-24 closes, median 15.77x)",
+     "why": "Supervisor: put own and peer multiples on one date and one consensus vintage"
+    },
+    {
+     "item": "EV/EBITDA method",
+     "from": "7.4x, 246.81/sh",
+     "to": "7.6x, 235.19/sh",
+     "why": "Peers' trailing EV/EBITDA at 2026-11-24 closes; own EV includes supplier finance; supplier finance and lower EBITDA lower value"
+    },
+    {
+     "item": "a fact: FTTH FY27 level",
+     "from": "1,700 (28% of Comms), FY28 -20%",
+     "to": "2,000 (33%, range 1,700-2,670), FY28 -18% (-360)",
+     "why": "Supervisor: show the derivation with a range and size it; 9M arithmetic allows up to ~44%"
+    },
+    {
+     "item": "a fact: supplier finance",
+     "from": "not checked (gap_note)",
+     "to": "-262 equity adjustment (half of 524.0 confirmed obligations)",
+     "why": "Supervisor: supplier finance left out; 10-Q note 22 verified"
+    },
+    {
+     "item": "a fact: Building Systems moratorium haircut",
+     "from": "none",
+     "to": "dc_mor 0.106 FY28 / 0.0865 FY29 on 38% non-self-funded share",
+     "why": "Supervisor: dc_mor term missing (Kilian's shared input)"
+    },
+    {
+     "item": "a fact: share count change",
+     "from": "-2.5%/yr",
+     "to": "-1.3%/yr",
+     "why": "Supervisor: buyback path past the May 2028 authorization; run-rate buybacks net of RSU issuance"
+    },
+    {
+     "item": "a fact: tax rate",
+     "from": "24%",
+     "to": "26%",
+     "why": "Supervisor: company states a 26.0% non-GAAP rate (Outlook Expectations Summary 2026-08-26)"
+    },
+    {
+     "item": "a scenario",
+     "from": "downside 121.23 / upside 402.41",
+     "to": "downside 97.23 / upside 366.55",
+     "why": "Lower base; downside adds +10pt moratorium spread"
+    },
+    {
+     "item": "thesis trigger",
+     "from": "3 triggers",
+     "to": "added data-center moratorium trigger",
+     "why": "dc_mor term now in the model"
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "round-1 ladder",
+     "to": "unchanged",
+     "why": "No scheduled event before 2026-12-24; supervisor's forecaster mean (0.480 at 179.01) matches"
+    }
+   ],
+   "round1": {
+    "fair_value": 251.98,
+    "p_gain": null,
+    "median": null
+   }
+  },
+  {
+   "agent": "agent_5",
+   "fair_value": 237.18,
+   "method_text": "Driver build (Comms core + long-haul/DCI + Building Systems, segment adj. EBITDA margins) valued at the horizon: 10.96x NTM adjusted EPS of ~$21.6 (P/E leg $227.62, weight 0.7) and 8.73x LTM adjusted EBITDA less net debt $2,100M (EV/EBITDA leg $259.49, weight 0.3), both after a -$262M supplier-finance adjustment (half of the 524.0M program); 29.55M shares.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 227.62,
+     "weight": 0.7,
+     "inputs": "NTM adj. EPS at 2027-11-24 ~$21.6 (own build; FY28 ~$19.2 / FY29 ~$22.0 vs Nasdaq/Zacks $18.99 / $22.37 pre-revision) x 10.96x (whole-company peer median 14.63x at 2026-11-24 closes on the 2026-11-25 feed vintage, shrunk toward DY's own 10.20x on the same vintage, k=0.8), less supplier finance 262/29.55 = $8.87/share",
+     "inputs_detail": [
+      {
+       "input": "driver:comms_core",
+       "value": "base 5,300.1; FY27 5,777; FY28 5,690; FY29 5,918 ($M)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        8,
+        7
+       ],
+       "fact_ids": [
+        "F3"
+       ],
+       "derivation": "FY27: Comms ~$6,027M (YTD reported plus Q4 at the seasonal Q4 share; inside the $6.00-6.04B guide, src 2) less est. LH/DCI $250M. FY28: -1.5% = FTTH down y/y (CEO, src 2) on ~a third of Comms (-3.5pt est.), +$150M wireless deferral then wrap (src 8, +2.5pt), copper reclamation ramp (+1pt), O&M +0.5pt, Q1 FY27 weather-favorable comp (-1.5pt, CEO src 2). FY29: +4% as FTTH pace resumes (customers keep 40-50M passings plan, CEO src 2) and BEAD construction (no backlog yet, so small), less wireless completion. Alternatives: management's mid-single-digit Comms FY28 statement (src 2) and Zacks FY28 revenue consensus $8.52B (src 7, pre-revision) both imply higher core revenue.",
+       "confidence": "medium",
+       "variant_view": "Management's mid-single-digit FY28 Comms growth (CEO, src 2) would put core ~$120M higher (+~$0.30 EPS, ~+1.5% to the target); a deeper FTTH cut (-7%, downside case) takes ~$400M off."
+      },
+      {
+       "input": "driver:lh_rev",
+       "value": "base 150; FY27 250; FY28 550; FY29 750 ($M)",
+       "basis": "estimate",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "derivation": "Base/FY27 split of 'several hundred millions over 2 years' (~$400M) as $150M/$250M. FY28 $550M = ~27% burn of the >$2B contracted backlog (multi-year linear routes); FY29 $750M as new awards against the $20B opportunity add. Low confidence; alternative: a 20% burn ($400M) or 35% ($700M).",
+       "confidence": "low",
+       "variant_view": "Burn of 20% vs 35% of the >$2B backlog moves FY28 revenue by -$150M/+$150M, about -/+1.5% on the target."
+      },
+      {
+       "input": "driver:bs_rev",
+       "value": "base 95.8; FY27 1,680; FY28 1,966; FY29 2,202 ($M)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        18,
+        8
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 $1,680M (Q1-Q3 reported plus Q4 from the Q3 $441.7M exit rate, inside the $1.66-1.69B segment outlook, src 2). FY28 $1,966M (+17%) built from capacity, not the statement: Q3 exit run rate $441.7M x 4 = $1,767M (+5% on FY27 before any growth) x ~+11% added electrician crews/productivity in FY28 (CEO: union electrician hiring is the binding limit, src 2) = ~$1,961M, rounded $1,966M. Backlog cover: 12-month BS backlog $1.3B (src 2) covers 66% of $1,966M; the rest is book-and-burn data-center fit-out work that ran at a similar share in FY27 (FY27 $1,680M vs the ~$1.0-1.1B 12-month backlog implied a year earlier by the first FY27 outlook of $1.15-1.25B, src 3). FY29 $2,202M (+12%): same crew-add pace on a larger base, less local data-center moratorium risk (src 8).",
+       "confidence": "medium",
+       "variant_view": "Round-1 +15% labor-only case ($1,932M) is -0.6% to the target; the CEO's 'high teens or better' at +19-20% (~$2,010M) is ~+0.8%; the AI-capex standing view (+50% 2027, src 18) is not reachable on electrician headcount; a moratorium haircut of ~20% of non-hyperscaler exposure in FY28 (downside) is ~-2%."
+      },
+      {
+       "input": "driver:comms_margin",
+       "value": "base 13.3%; FY27 12.2%; FY28 12.4%; FY29 12.8%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        10,
+        6,
+        7
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 12.2% reconciles the FY27 consensus adj. EPS (~$16.4-17.0, src 6/7) with BS at 22.5% and depreciation 3.3%: Q3 12.8% and Q2 13.6% reported (src 2, 10), Q1 and a seasonally weak Q4 (Q4 guide EBITDA $204-218M on $1.63-1.70B, src 2) lower. FY27 12.9% (decline guided, src 2). FY28 12.8%: FTTH deleverage, fuel (~50bp in Q3) only repriced as contracts renew, recurring customer credit losses (Q3 $22.7M reserve); management says expansion, we stay flat (rule 0c). FY29 13.1% as LH/DCI matures (similar margin per CEO) toward the ~13% long-run level.",
+       "confidence": "medium",
+       "variant_view": "Management's ~13% long-run level (src 2) reached in FY28 adds ~$0.9 EPS (~+5% to the target)."
+      },
+      {
+       "input": "driver:bs_margin",
+       "value": "base 11.6%; FY27 22.5%; FY28 19.5%; FY29 19.0%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        8
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 22.5% from Q2-Q3 levels with a seasonal Q4. FY28 19.5% at the center of the high-teens-to-low-20s statement; FY29 19.0% as lead-time pricing normalizes and new labor ramps.",
+       "confidence": "medium",
+       "variant_view": "Holding Q2-Q3's ~24% adds ~$0.6 EPS in FY29 (~+3%)."
+      },
+      {
+       "input": "driver:dep_pct",
+       "value": "base 3.6%; FY27 3.3%; FY28-29 3.2%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        1
+       ],
+       "fact_ids": [
+        "F29",
+        "F33",
+        "F3"
+       ],
+       "derivation": "Mix: Comms ~3.6% (FY26), BS asset-light (~1%); FY28 mix (76% Comms) -> 0.76*3.6%+0.24*1% = 3.0%. FY27 3.3% is what reconciles FY27 consensus EPS with the guided margin mix.",
+       "confidence": "medium",
+       "variant_view": "3.0% adds ~$0.5 EPS."
+      },
+      {
+       "input": "tax_rate",
+       "value": "24.5%",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        5
+       ],
+       "fact_ids": [
+        "F97",
+        "F98",
+        "F99"
+       ],
+       "derivation": "Between FY26 effective 23.6% (F97), YTD FY27 22.3% (F98) and Q3 25.7% (F99); statutory 21% + state 4.0% (F107) less credits.",
+       "anchor": {
+        "value": 0.236,
+        "kind": "reported_history",
+        "as_of": "2026-01-31",
+        "source_ids": [
+         5
+        ],
+        "fact_ids": [
+         "F97"
+        ],
+        "note": "FY26 effective rate 23.6%; YTD 22.3%; our 24.5% within ~1pt of the anchor, leaning to Q3's 25.7% as discrete benefits fade"
+       }
+      },
+      {
+       "input": "interest_rate on net debt",
+       "value": "6.0%",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F91",
+        "F81",
+        "F82"
+       ],
+       "derivation": "Interest paid YTD $118.0M (F91) over 9 months = $157M annualized on total debt $2,818.8M (F81) = 5.6%; on net debt $2,616M (F82) = 6.0%.",
+       "anchor": {
+        "value": 0.06,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         1
+        ],
+        "fact_ids": [
+         "F91",
+         "F82"
+        ],
+        "note": "157/2616 = 6.0%"
+       }
+      },
+      {
+       "input": "diluted shares now",
+       "value": "30.0M",
+       "basis": "estimate",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F26",
+        "F80"
+       ],
+       "derivation": "Q3 diluted weighted 30.2M (F26) less Q3 buyback of 345k shares partly in the average; cover 29.8M outstanding (F80) plus ~0.2-0.3M dilutive awards.",
+       "anchor": {
+        "value": 30.2,
+        "kind": "reported_history",
+        "as_of": "2026-10-31",
+        "source_ids": [
+         1
+        ],
+        "fact_ids": [
+         "F26"
+        ],
+        "note": "filed Q3 diluted average"
+       }
+      },
+      {
+       "input": "shares annual_change / horizon",
+       "value": "-1.5%/yr; 29.55M at horizon",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F39",
+        "F26"
+       ],
+       "derivation": "Buybacks ~$150M/yr (new $200M authorization through May 2028, CFO src 2) at ~$200 = -0.75M shares (-2.5%); SBC $39.8M TTM (F39) at ~$200 = +0.2M plus option/RSU vesting (+1%); net -1.5%. 30.0 x 0.985 = 29.55.",
+       "anchor": {
+        "value": -0.007,
+        "kind": "reported_history",
+        "as_of": "2026-01-31",
+        "source_ids": [
+         1
+        ],
+        "fact_ids": [
+         "F21",
+         "F23"
+        ],
+        "note": "diluted average 29.7M (FY24) -> 29.4M (FY26) = -0.5%/yr; buyback pace stepped up in Q3 FY27 ($100.5M)"
+       }
+      },
+      {
+       "input": "P/E horizon multiple",
+       "value": "10.96x NTM adjusted EPS",
+       "basis": "judgment",
+       "source_ids": [
+        21,
+        17,
+        22,
+        23,
+        24,
+        6
+       ],
+       "fact_ids": [],
+       "derivation": "One date, one consensus vintage (supervisor round-1 finding). Prices 2026-11-24 (src 21); NTM EPS = 0.1 x FY2026 + 0.9 x FY2027 consensus for Dec-year peers from the feeds fetched 2026-11-25 00:53Z: MTZ 0.1x8.75+0.9x11.97 = 11.65 -> 152.44/11.65 = 13.09x; PWR 0.1x16.73+0.9x19.78 = 19.48 -> 589.64/19.48 = 30.28x; PRIM 0.1x1.91+0.9x4.88 = 4.58 -> 55.35/4.58 = 12.08x; MYRG 0.1x13.46+0.9x16.31 = 16.03 -> 259.09/16.03 = 16.17x; median (13.09+16.17)/2 = 14.63x. DY NTM on the same feed: Q4 FY27 2.28 + Q1-Q3 FY28 3.94+5.38+5.95 = 17.55 -> 179.01/17.55 = 10.20x (the feed is pre-print for DY as for the peers, so the vintage matches; the Q4 guide 2.48-2.78 above 2.28 and the FY28 FTTH cut roughly offset). Exit 14.63 x (10.20/14.63)^0.8 = 14.63 x 0.749 = 10.96x. STRL, LMB, EME, FIX are segment-only or thinly covered and left out of the median.",
+       "confidence": "medium",
+       "variant_view": "Round-1 basis (peers at 2026-11-02 prices, DY own on an assumed -3% cut) gave 11.35x (+~2.5% to the target); the supervisor's reconciled 13.0x (peers at 11-02, DY at 11-02 price) is ~+12%; k=1.0 (own 10.2x) ~-5%. Base rates: DY 2018-19 stayed de-rated for 12 months (src 11, 12) while MTZ rose from $60.64 (Nov-2023 close, after its Oct-2023 guide cut) to $144.06 a year later (src 26, 27)."
+      },
+      {
+       "input": "supplier finance adjustment",
+       "value": "-524.0 x 0.5 = -262.0",
+       "basis": "estimate",
+       "source_ids": [
+        25,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "Obligation 524.0M at 2026-10-31 (XBRL us-gaap:SupplierFinanceProgramObligation, 10-Q filed 2026-11-24). It was zero before FY26 and AP itself is 668.6M; half of the balance is treated as the debt-like stretch of payable days created by the program (judgment: the 10-Q gives no pre-program terms comparison in tags).",
+       "confidence": "medium",
+       "variant_view": "All 524 as debt: -$8.9/share more on equity; none: +$8.9/share. The supervisor's set uses 252.9 debt-like (days beyond a pre-program 18.4), within $0.3/share of ours."
+      }
+     ]
+    },
+    {
+     "name": "EV/EBITDA",
+     "value": 259.49,
+     "weight": 0.3,
+     "inputs": "LTM adj. EBITDA at horizon (blend of FY28/FY29 own build) x 8.73x (PRIM 12.3x / MYRG 12.4x trailing at 2026-11-24 closes, median 12.35x, shrunk toward DY's own 8.0x, k=0.8) - net debt $2,100M - supplier finance 262, / 29.55M shares",
+     "inputs_detail": [
+      {
+       "input": "driver:bs_rev",
+       "value": "base 95.8; FY27 1,680; FY28 1,966; FY29 2,202 ($M)",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        18,
+        8
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 $1,680M (Q1-Q3 reported plus Q4 from the Q3 $441.7M exit rate, inside the $1.66-1.69B segment outlook, src 2). FY28 $1,966M (+17%) built from capacity, not the statement: Q3 exit run rate $441.7M x 4 = $1,767M (+5% on FY27 before any growth) x ~+11% added electrician crews/productivity in FY28 (CEO: union electrician hiring is the binding limit, src 2) = ~$1,961M, rounded $1,966M. Backlog cover: 12-month BS backlog $1.3B (src 2) covers 66% of $1,966M; the rest is book-and-burn data-center fit-out work that ran at a similar share in FY27 (FY27 $1,680M vs the ~$1.0-1.1B 12-month backlog implied a year earlier by the first FY27 outlook of $1.15-1.25B, src 3). FY29 $2,202M (+12%): same crew-add pace on a larger base, less local data-center moratorium risk (src 8).",
+       "confidence": "medium",
+       "variant_view": "Round-1 +15% labor-only case ($1,932M) is -0.6% to the target; the CEO's 'high teens or better' at +19-20% (~$2,010M) is ~+0.8%; the AI-capex standing view (+50% 2027, src 18) is not reachable on electrician headcount; a moratorium haircut of ~20% of non-hyperscaler exposure in FY28 (downside) is ~-2%."
+      },
+      {
+       "input": "driver:comms_margin",
+       "value": "base 13.3%; FY27 12.2%; FY28 12.4%; FY29 12.8%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        10,
+        6,
+        7
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 12.2% reconciles the FY27 consensus adj. EPS (~$16.4-17.0, src 6/7) with BS at 22.5% and depreciation 3.3%: Q3 12.8% and Q2 13.6% reported (src 2, 10), Q1 and a seasonally weak Q4 (Q4 guide EBITDA $204-218M on $1.63-1.70B, src 2) lower. FY27 12.9% (decline guided, src 2). FY28 12.8%: FTTH deleverage, fuel (~50bp in Q3) only repriced as contracts renew, recurring customer credit losses (Q3 $22.7M reserve); management says expansion, we stay flat (rule 0c). FY29 13.1% as LH/DCI matures (similar margin per CEO) toward the ~13% long-run level.",
+       "confidence": "medium",
+       "variant_view": "Management's ~13% long-run level (src 2) reached in FY28 adds ~$0.9 EPS (~+5% to the target)."
+      },
+      {
+       "input": "driver:bs_margin",
+       "value": "base 11.6%; FY27 22.5%; FY28 19.5%; FY29 19.0%",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        8
+       ],
+       "fact_ids": [],
+       "derivation": "FY27 22.5% from Q2-Q3 levels with a seasonal Q4. FY28 19.5% at the center of the high-teens-to-low-20s statement; FY29 19.0% as lead-time pricing normalizes and new labor ramps.",
+       "confidence": "medium",
+       "variant_view": "Holding Q2-Q3's ~24% adds ~$0.6 EPS in FY29 (~+3%)."
+      },
+      {
+       "input": "net debt at 2026-10-31",
+       "value": "2,616.0",
+       "basis": "reported",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [
+        "F82"
+       ],
+       "derivation": "F81 - F76; leases and any supplier-finance balances not included (see gap_note)."
+      },
+      {
+       "input": "net_debt_horizon",
+       "value": "2,100",
+       "basis": "estimate",
+       "source_ids": [
+        2,
+        1
+       ],
+       "fact_ids": [
+        "F82",
+        "F46",
+        "F53"
+       ],
+       "derivation": "Q4 FY27 OCF 'several hundred million' (CFO, src 2) taken as $300M less Q4 capex ~$60M and buyback ~$40M -> ~$2,416M at Jan-27; Feb-Nov 2027 FCF from the build (FY28 FCFF ~$560M less after-tax interest ~$100M = ~$460M x 10/12 = ~$380M) less buybacks ~$125M -> ~$2,160M; rounded to $2,100M assuming DSO normalization from 112 days (CFO). Variant: DSOs stay elevated -> ~$2,400M (-$10/share).",
+       "confidence": "medium"
+      },
+      {
+       "input": "EV/EBITDA horizon multiple",
+       "value": "8.73x LTM adjusted EBITDA",
+       "basis": "judgment",
+       "source_ids": [
+        28,
+        15,
+        1
+       ],
+       "fact_ids": [
+        "F82",
+        "F80",
+        "F74",
+        "F32"
+       ],
+       "derivation": "Peer trailing EV/EBITDA at the 2026-11-24 closes (secfacts.py, src 28): PRIM 12.3x, MYRG 12.4x -> median 12.35x (MTZ, PWR not computable from tags); DY EV = 29.8M x 179.01 + 2,616 = $7,950M over GAAP EBITDA TTM ~ pretax 408.1 + interest ~157 + D&A 430.4 = ~$995M -> 8.0x; 12.35 x (8.0/12.35)^0.8 = 8.73x. Repricing at 11-24 left the peer median where peers.md had it (12.35x).",
+       "confidence": "medium"
+      },
+      {
+       "input": "supplier finance adjustment",
+       "value": "-524.0 x 0.5 = -262.0",
+       "basis": "estimate",
+       "source_ids": [
+        25,
+        1
+       ],
+       "fact_ids": [],
+       "derivation": "Obligation 524.0M at 2026-10-31 (XBRL us-gaap:SupplierFinanceProgramObligation, 10-Q filed 2026-11-24). It was zero before FY26 and AP itself is 668.6M; half of the balance is treated as the debt-like stretch of payable days created by the program (judgment: the 10-Q gives no pre-program terms comparison in tags).",
+       "confidence": "medium",
+       "variant_view": "All 524 as debt: -$8.9/share more on equity; none: +$8.9/share. The supervisor's set uses 252.9 debt-like (days beyond a pre-program 18.4), within $0.3/share of ours."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 107.22,
+     "prob": null
+    },
+    "base": {
+     "price": 237.18,
+     "prob": null
+    },
+    "upside": {
+     "price": 382.2,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 237.18,
+   "reasoning": "Round 2. Base rates: DY fell 18% on the Q3 print (218.37 -> 179.01) after an August reset and is 68% off its high. Two precedents now anchor the range: DY's own Aug-2018/Feb-2019 guide-downs ($89 Jul-2018 -> $45 Feb-2019, still $44.5 Aug-2019, src 11, 12) show a reset contractor staying de-rated for a year; MasTec's Oct-2023 guide cut (-20% to $47.29, src 26) was followed by a re-rating to $144.06 by Nov-2024 (src 27) once power/data-center work carried growth. So the median keeps 80% of DY's discount (k=0.8) but the upside case adds 3 turns. Supervisor findings acted on: (1) the exit multiple now prices DY and the four whole-company peers on one date (2026-11-24 closes, src 21) and one feed vintage (2026-11-25): peer median 14.63x, DY 10.20x -> 10.96x (was 11.35x on mixed dates); (2) the supplier finance check is closed from XBRL: 524.0M at 2026-10-31 (src 25), half treated as debt-like (-262, -$8.87/share); (3) Building Systems FY28 rebuilt from the Q3 exit rate ($1,767M annualized) plus ~11% crew adds = $1,966M (+17%, was +15%), 66% covered by the $1.3B 12-month backlog; (4) added Verizon's net-90 payment terms (src 29) to long-dated risks. I keep my own Comms build (FY28 +3.5% total, below the CEO's mid-single-digit read; FY29 +6.9%, accelerating as he says) and the 24.5% tax rate on the GAAP-rate history; I disagree with the supervisor's 13.0x exit because it reads DY's own multiple at the 2026-11-02 price, before two resets the market has since priced, and the k rule is about today's gap. Macro odds (Kalshi 2027 recession 20%, src 20; fed funds above 4% through Oct 2027, src 14) keep carriers' cost of capital high, so no quick FTTH re-acceleration. Result: research target (12m) $237.18 (P/E $227.62, EV/EBITDA $259.49), P10 $107.22, P90 $382.20.",
+   "revisions": [
+    {
+     "item": "research target (12m)",
+     "from": "250.26",
+     "to": "237.18",
+     "why": "Net of the items below, one at a time: exit P/E 11.35x -> 10.96x on one date/vintage (~-$5.9 on the blend), supplier finance -262 (-$8.87), Building Systems FY28 +17% (~+$1.6)."
+    },
+    {
+     "item": "a method: P/E exit multiple",
+     "from": "11.35x (peers at 2026-11-02 prices, DY at post-print price on an assumed-cut NTM 17.0)",
+     "to": "10.96x (peers and DY at 2026-11-24 closes, 2026-11-25 feed vintage; median 14.63x, own 10.20x, k=0.8)",
+     "why": "Supervisor feedback: put own and peer multiples on one date and one consensus vintage."
+    },
+    {
+     "item": "a method: P/E leg value",
+     "from": "243.18",
+     "to": "227.62",
+     "why": "New exit multiple and supplier finance adjustment; EPS slightly higher from Building Systems."
+    },
+    {
+     "item": "a method: EV/EBITDA leg value",
+     "from": "266.77",
+     "to": "259.49",
+     "why": "Supplier finance adjustment; peer trailing median re-read at 2026-11-24 closes (12.35x, unchanged multiple 8.73x)."
+    },
+    {
+     "item": "a fact: supplier finance",
+     "from": "not checked (10-Q not fetched), nothing in net debt",
+     "to": "524.0M obligation at 2026-10-31 (XBRL), -262 debt-like adjustment (probability 0.5)",
+     "why": "Supervisor missed-item: close the check from XBRL via secfacts.py."
+    },
+    {
+     "item": "a fact: Building Systems FY28 revenue",
+     "from": "1,932 (+15%)",
+     "to": "1,966 (+17%)",
+     "why": "Supervisor: +15% below the CEO's 'high teens or better' with labor as the only argument; rebuilt from the Q3 exit rate plus crew adds, backlog covers 66%."
+    },
+    {
+     "item": "a scenario: downside (P10)",
+     "from": "119.39",
+     "to": "107.22",
+     "why": "Lower base multiple and the supplier finance deduction carried into the case."
+    },
+    {
+     "item": "a scenario: upside (P90)",
+     "from": "379.84",
+     "to": "382.20",
+     "why": "Multiple delta +2.5 -> +3.0 turns on the MasTec 2023-24 re-rating precedent (src 26, 27)."
+    },
+    {
+     "item": "thesis trigger",
+     "from": "4 triggers",
+     "to": "5 triggers (supplier finance program pulled)",
+     "why": "New XBRL evidence of a 524.0M program growing 43% in one quarter."
+    },
+    {
+     "item": "a fact: long-dated risks",
+     "from": "3 risks",
+     "to": "4 risks (carrier consolidation and Verizon net-90 terms)",
+     "why": "Supervisor long_dated_review listed agent_5 as missing it; verified at Wireless Estimator (src 29)."
+    },
+    {
+     "item": "P(close >= K)",
+     "from": "round-1 ladder",
+     "to": "unchanged",
+     "why": "No new event in the 1-month window; the supervisor found no edge on the mean."
+    }
+   ],
+   "round1": {
+    "fair_value": 250.26,
+    "p_gain": null,
+    "median": null
+   }
+  }
+ ],
+ "supervisor": {
+  "confidence": "low",
+  "used": false,
+  "confidence_reason": "My checks settled the rule question (no re-read required without a peer refresh) and the moratorium timing (correct), but neither moves the one-month direction; no DY event falls in the window and the revised forecasters' 1-month mean is unchanged.",
+  "changes": [
+   {
+    "item": "reconciled driver set (model.reconciled_inputs)",
+    "from": 273.65,
+    "to": 273.65,
+    "why": "No disagreement is settled by evidence the set gets wrong: the exit-multiple re-read is not required by the rule until a peer refresh, and the moratorium timing is correct."
+   },
+   {
+    "item": "judgment_calls_for_kilian 'Exit multiples at the 2026-11-24 price (forecasters)': card effect",
+    "from": -9.06,
+    "to": -11.02,
+    "why": "Options re-sized on the revised five (all now price peers and DY at 2026-11-24) plus the rule re-read on a peer refresh (10.93x). Growth term refreshed on the picked set (1.006): 10.99x."
+   },
+   {
+    "item": "judgment_calls_for_kilian 'bs_margin': options added",
+    "from": 7,
+    "to": 9,
+    "why": "Agent_4 revised 20.5%/20% (+5.69%) and agent_2 revised 19.5%/19% (+3.09%)."
+   },
+   {
+    "item": "judgment_alternatives: revised forecaster builds",
+    "from": 0,
+    "to": 14,
+    "why": "Comms growth (agents 1, 2, 4), Comms margin (agents 2, 3), Building Systems growth (agents 1, 2, 4, 5), Building Systems margin (agents 2, 4), supplier finance (agents 1, 2, 4-5); exit alternatives replaced with the revised five and the rule re-read."
+   }
+  ],
+  "changes_derived": false,
+  "median_mean": null,
+  "median_supervisor": 231.9260686606977,
+  "summary": "Research target (12m) $231.93 (+30% from $179.01) after Kilian's 2026-11-25 card picks: quarterly driver build on 10.99x NTM P/E (peers and DY repriced at the 2026-11-24 closes) and 10.21x LTM EV/EBITDA, downside case $93.81, upside case $377.67. The picks hold Communications margin at the FY27 quarter levels (no FY28-30 recovery, -14.1) and refresh the P/E exit to 10.93x (-28.5), 10.99x after the rule's growth term is refreshed on the picked set (+0.8); Building Systems margin 18%, crews +20% FY28 / +15% after and the program-build backlog stay as booked. Q3 FY27 beat (revenue 2,056.3, adjusted EPS 5.23 vs the Street's 4.33) but the stock fell ~18% on the FY28 Communications outlook (FTTH moderating). Open card: leg weights (equal weights +7.5%).",
+  "fair_value": {
+   "value": 231.93,
+   "reason": "Model update 2026-11-24 (update), after the Q3 FY27 print and Kilian's 2026-11-25 card picks: research target (12m) 231.93, -14.8% on the 2026-11-23 set's 272.14. Engine base horizon value (model_engine.py check): P/E NTM 10.99x 206.15 (w 0.7), EV/EBITDA LTM 10.21x 292.08 (w 0.3); downside case 93.81, upside case 377.67. What moved it: 273.65 after the print rebuild and the gate fixes (Communications rebuilt by program from the Q3 NTM backlog of 5,421, Building Systems rebuilt from the Q3 actual 441.7 with a full quarter of NTI, buybacks under the new $200M authorization priced at $179.01, supplier finance debt-like part 252.9, net debt 2,616.0 and the Q3 roll, growth term); then Kilian's card picks 2026-11-25: Communications margin 'No FY28-30 recovery' (FY27 quarter levels held) -14.10 (273.65 -> 259.56); exit multiple 'Refresh peers, rule re-read: P/E 10.93x' (peers and DY at the 2026-11-24 closes, median 14.35x, own 10.20x) -28.45 (-> 231.11); the rule's growth term refreshed on the picked set (exit_growth.py 1.0011 -> 1.006, P/E 10.93x -> 10.99x) +0.82 (-> 231.93); Building Systems margin 18%, crews 20%/15% and the program-build backlog kept as booked (no change). Open cards: leg weights (equal weights +7.4%) and wireless FY28 (flat wireless -0.5%)."
+  }
+ },
+ "supervisor_round1": {
+  "summary": "Research target (12m) $273.65 (+53% from $179.01), unchanged by this supervisor pass: quarterly driver build on 13.0x NTM P/E and 10.2x LTM EV/EBITDA, downside case $119.39, upside case $430.76. The five fresh forecasts (219.49-257.09) differ from the set mainly on the exit multiple: all reprice DY at the post-print price (10.8-11.5x), worth -9% to -15%, now a card with a keep recommendation because the drivers already carry the FTTH cut and the agents' own multiple uses pre-print consensus. Their driver builds (FTTH -18% to -20%, Communications FY28 +2.5% to +4.8%, Building Systems +15% to +19%, margins 18-21%) sit within -4.4% to +7.0% of the set and are listed as sized alternatives; the agents' 21% Building Systems margin (+7.0%) joins the existing margin card.",
+  "feedback": [
+   {
+    "agent": "agent_1",
+    "missed": [
+     "Tax 23.5% from GAAP history; the adjusted-EPS basis your P/E uses carries the company-stated 26.0% non-GAAP rate (src 49), Q3 FY27 adjusted 25.3% (release).",
+     "No moratorium term on Building Systems: the shared dc_mor input (driver_models/shared/dc_mor.json) haircuts non-hyperscaler data-center revenue ~21% in FY28.",
+     "Supplier finance ($524.0M at 2026-10-31, 10-Q) not treated: decide the debt-like part.",
+     "Your own NTM P/E divides the post-print $179.01 by pre-print NTM consensus (17.55, before the 5.23 beat and before any FY28 cut), and the peer multiples you set it against are at peers.md's 2026-11-02 prices: put both on one date and one consensus vintage.",
+     "Q4 FY27 at the guide ignores the 7-of-7 EPS beat record (median +14.8%)."
+    ],
+    "revisit": "Restate on the 26% rate, reprice the exit multiple consistently, and say whether FTTH at 31% of Communications (low confidence) or a higher share fits the 9M growth arithmetic (all 9M organic +704 vs FTTH +50%)."
+   },
+   {
+    "agent": "agent_2",
+    "missed": [
+     "Communications margin 9.5% is EBITA, not the segment adjusted EBITDA the company guides and the set uses; restate on one basis.",
+     "BS margin 18% / 17.5% sits at or below the bottom of the CEO's FY28 'high teens to low 20s, centered ~20%' (src 89) without new evidence.",
+     "Supplier finance and the dc_mor moratorium term are missing.",
+     "Your own NTM P/E divides the post-print $179.01 by pre-print NTM consensus (17.55, before the 5.23 beat and before any FY28 cut), and the peer multiples you set it against are at peers.md's 2026-11-02 prices: put both on one date and one consensus vintage."
+    ],
+    "revisit": "Restate margins on adjusted EBITDA, argue the BS margin below the band center with evidence or move it, and reprice the multiple on one date."
+   },
+   {
+    "agent": "agent_3",
+    "missed": [
+     "Supplier finance taken at the full 524.0: the 10-Q shows supplier terms unchanged and no interest paid; only the stretch beyond the pre-program days is debt-like (set 252.9).",
+     "Communications margin 12.0% FY28 is below FY27 12.2% although the CEO said it expands y/y (src 89); quantify the under-absorption if you keep it.",
+     "Tax 24.5% vs the company-stated 26% non-GAAP rate.",
+     "Own NTM P/E on pre-print consensus 17.9; your same-date peer repricing (14.4x) is the most consistent build of the five and is now on a card."
+    ],
+    "revisit": "Size the debt-like part of supplier finance from the payable stretch, argue the margin path against the CEO's statement, keep the repriced-peer method but on post-print DY consensus once published."
+   },
+   {
+    "agent": "agent_4",
+    "missed": [
+     "FTTH ~28% of Communications rests on your own derivation and a VIC write-up (medium-low confidence); the 9M arithmetic (FTTH +50% vs organic +704) allows up to ~44%.",
+     "Share change -2.5%/yr assumes the whole $200M in ~18 months at $180-250 and says nothing after May 2028.",
+     "Supplier finance left out; dc_mor moratorium term missing.",
+     "Your own NTM P/E divides the post-print $179.01 by pre-print NTM consensus (17.55, before the 5.23 beat and before any FY28 cut), and the peer multiples you set it against are at peers.md's 2026-11-02 prices: put both on one date and one consensus vintage."
+    ],
+    "revisit": "Show the FTTH share's derivation with a range and size it; extend the buyback path past the authorization; treat supplier finance."
+   },
+   {
+    "agent": "agent_5",
+    "missed": [
+     "Supplier finance check left open because the 10-Q was not fetched: the 10-Q shows $524.0M (XBRL SupplierFinanceProgramObligation); use secfacts.py instead of the filing page.",
+     "Building Systems +15% FY28 is below the CEO's 'high teens or better' with labor as the only argument; the 12-month backlog covers 67% of your own figure.",
+     "Only 5 unique sources: most of the set repeats the company documents and feeds the others used; the 2018-19 precedent and Kalshi odds are the lane's own contribution.",
+     "Your own NTM P/E divides the post-print $179.01 by pre-print NTM consensus (17.55, before the 5.23 beat and before any FY28 cut), and the peer multiples you set it against are at peers.md's 2026-11-02 prices: put both on one date and one consensus vintage."
+    ],
+    "revisit": "Close the supplier finance check from XBRL, argue BS growth against the backlog cover, and add base-rate evidence beyond DY's own 2018-19 episode (e.g. MasTec 2023)."
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "Exit multiples (P/E 13.01x / EV/EBITDA 10.21x booked vs 10.8-11.5x / 7.4-8.73x in all five forecasts)",
+    "resolution": "Not settled by evidence: it is a method choice worth 9-15% of the target, so it is carded (new card 'Exit multiples at the 2026-11-24 price (forecasters)', recommendation keep). The set is unchanged."
+   },
+   {
+    "topic": "FTTH FY28 cut (set -10% on an estimated 2,671.5 vs agents 1 and 4 at -18% / -20%)",
+    "resolution": "The FTTH share is not disclosed, so the percentages are not comparable; in dollars the gap is ~73 (agents' -340 vs -267). Set kept; the three builds are new alternatives: -18% on the set's base -2.62%, -20% -3.27%, the agents' -340 dollar cut -0.88%."
+   },
+   {
+    "topic": "Communications growth path (set FY28 +4.6%, FY29 +3.4% vs agents FY28 +2.5% to +4.8%, FY29 +6.0% to +8.0%)",
+    "resolution": "FY28 sits inside the agents' range; the FY29 shape is the existing comms_ntm_backlog card's 'FY29 acceleration (CEO)' option (+2.53%), and the agents' paths are added as alternatives (-1.51% to +2.16%). Set kept."
+   },
+   {
+    "topic": "Building Systems growth (set FY28 +18.6%, FY29 +18.0% vs agents +15-19% / +10-15%)",
+    "resolution": "Set kept (the haircut is Kilian's shared input); agents' paths added as alternatives, -0.81% to -2.36%."
+   },
+   {
+    "topic": "Building Systems margin (set 18% FY28-30 vs agents 18-21%)",
+    "resolution": "Already carded (bs_margin); the agents 3/4 build (+6.99%) is added to that card as an option; agent_5 +3.09%, agent_2 -0.81% are alternatives."
+   },
+   {
+    "topic": "Communications margin FY28 (set 12.88% vs agents 12.0-12.7%)",
+    "resolution": "Set kept: the CEO said Communications margin expands y/y in FY28 (src 89), which agent_3's 12.0% (below FY27 12.2%) contradicts; the agents' builds are alternatives, -4.42% to +0.01%, and the existing card carries the no-recovery case (-5.15%)."
+   },
+   {
+    "topic": "Tax rate (set 26% vs agents 23.5-24.5%)",
+    "resolution": "Set right on the adjusted-EPS basis: the company states a 26.0% non-GAAP rate and Q3 FY27 adjusted came in at 25.3%. Alternative added at 24.5% (+1.44%)."
+   },
+   {
+    "topic": "Q4 FY27 (set revenue 1,749.6, adjusted EPS 2.97, above the 1,630-1,700 / 2.48-2.78 guide; agents inside or at the top)",
+    "resolution": "Set kept (guidance_check: above the range, below the record-adjusted 3.02); Q4 FY27 sits before the horizon's NTM window and moves the target only through net debt."
+   },
+   {
+    "topic": "Supplier finance (set 252.9 debt-like of 524.0; agent_3 all 524; agents 1, 2, 4, 5 none)",
+    "resolution": "Set kept: 10-Q shows supplier terms unchanged and no interest paid; only the payable stretch beyond the pre-program 18.4 days is debt-like. Existing alternatives -3.37% (all) / +3.14% (none)."
+   },
+   {
+    "topic": "Range (set P10 119.39 / P90 430.76 vs agents P10 115-131 / P90 344-409)",
+    "resolution": "Follows the exit-multiple card; scenarios unchanged."
+   }
+  ]
+ }
+}

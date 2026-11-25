@@ -1,0 +1,2234 @@
+{
+ "symbol": "KEYS",
+ "agent_id": "agent_4",
+ "as_of": "2026-11-20",
+ "horizon": "2027-11-20",
+ "ladder_1m": [
+  {
+   "K": 209.21,
+   "p": 0.936
+  },
+  {
+   "K": 222.28,
+   "p": 0.869
+  },
+  {
+   "K": 235.36,
+   "p": 0.77
+  },
+  {
+   "K": 243.2,
+   "p": 0.699
+  },
+  {
+   "K": 251.05,
+   "p": 0.622
+  },
+  {
+   "K": 261.51,
+   "p": 0.515
+  },
+  {
+   "K": 271.97,
+   "p": 0.412
+  },
+  {
+   "K": 279.82,
+   "p": 0.34
+  },
+  {
+   "K": 287.66,
+   "p": 0.275
+  },
+  {
+   "K": 300.74,
+   "p": 0.186
+  },
+  {
+   "K": 313.81,
+   "p": 0.119
+  }
+ ],
+ "one_month_reasoning": "No Keysight print in the window (Q1 FY27 report is tentatively Feb 23 2027, src 15). Events inside Nov 23-Dec 20: the December FOMC (markets fully price a hike per src 21; the 10-year hit 5.12% on Nov 12), Nvidia's governance/SEC overhang that drove SOX -17% in the week to Nov 22 (VIX 35.9, src 21), and the usual post-earnings drift after a beat-and-raise (Q4 revenue 1,994 vs 1,930-1,950 guide, Q1 guide 2,050 vs 1,960 consensus, src 1/14) that the tape has so far overridden (stock -7.1% on Nov 20). The drift and a likely post-guide estimate upgrade cycle lean slightly up; the macro and AI-capex scare (52% of a BofA survey expect a hyperscaler capex cut within six months, src 21) lean down. I center at ~$263 (+0.6%) with a 15% one-month lognormal sigma (realized 48%/3.5 = 13.7%, widened for the VIX at 36).",
+ "fair_value": {
+  "value": 319.65,
+  "method": "Engine value of my driver set: horizon NTM P/E 18.85x on ex-SBC EPS (~$16.9, FY28-weighted; = 20.6x SBC-costed vs a 22.4x peer median) = $320 (w 0.45), LTM levered FCF at a 3.39% yield = $367 (w 0.30), mid-cycle 29% margin EPS $13.94 x 18.85x = $263 (w 0.25); blend $319.65.",
+  "methods": [
+   {
+    "name": "P/E",
+    "value": 319.52,
+    "weight": 0.45,
+    "inputs": "Horizon NTM (Nov 2027-Nov 2028) ex-SBC EPS ~$16.9 from the build (FY28 revenue 9,455, op margin 35.2%, 14% tax, ~170.6M shares) x 18.85x",
+    "inputs_detail": [
+     {
+      "input": "tax rate (non-GAAP)",
+      "value": "14%",
+      "basis": "estimate",
+      "source_ids": [
+       2
+      ],
+      "fact_ids": [
+       "F107"
+      ],
+      "derivation": "CFO: 14% non-GAAP rate for FY27.",
+      "anchor": {
+       "value": 0.14,
+       "kind": "company_stated",
+       "as_of": "2026-11-19",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "note": "FY26 non-GAAP rate 14% (src 1)"
+      }
+     },
+     {
+      "input": "diluted shares",
+      "value": "172.0M, -0.8%/yr net",
+      "basis": "estimate",
+      "source_ids": [
+       1,
+       2,
+       4
+      ],
+      "fact_ids": [
+       "F21",
+       "F22",
+       "F23"
+      ],
+      "derivation": "FY23-25 179/175/173 (-1.7%, -1.1%/yr), FY26 ~172; buybacks ~700/yr at ~$260-330 retire ~2.4M vs ~1.0M SBC issuance = ~-0.8%.",
+      "anchor": {
+       "value": -0.009,
+       "kind": "reported_history",
+       "as_of": "2026-10-31",
+       "source_ids": [
+        4,
+        1
+       ],
+       "fact_ids": [
+        "F21",
+        "F23"
+       ],
+       "note": "FY23->FY26 179->172 = -1.3%/yr; FY25->26 -0.6%"
+      },
+      "confidence": "medium"
+     },
+     {
+      "input": "horizon P/E",
+      "value": "18.85x NTM ex-SBC (= 20.6x SBC-costed)",
+      "basis": "judgment",
+      "source_ids": [
+       23,
+       14,
+       15
+      ],
+      "fact_ids": [
+       "VIAV.pe_ntm",
+       "TER.pe_ntm",
+       "AME.pe_ntm"
+      ],
+      "derivation": "Peer median 22.4x costed (VIAV, TER, AME); own costed NTM P/E: NTM consensus EPS 13.77 x 345/365 + 15.39 x 20/365 = 13.86 ex-SBC (src 15), less SBC 0.03 x 8,475 x 0.86 / 171.3 = 1.28 -> 12.58; 261.51/12.58 = 20.8x; exit 22.4 x (20.8/22.4)^0.8 = 21.1x; -0.5 turn net post-horizon risk = 20.6x; x 0.915 = 18.85x.",
+      "confidence": "medium",
+      "variant_view": "k = 1 (peer median) gives ~21.9x costed (+6%)."
+     }
+    ]
+   },
+   {
+    "name": "FCF yield",
+    "value": 367.22,
+    "weight": 0.3,
+    "inputs": "LTM-at-horizon (~FY27) levered FCF after SBC ~2.1B / ~171M shares / 3.39%",
+    "inputs_detail": [
+     {
+      "input": "SBC % revenue",
+      "value": "3.0%",
+      "basis": "estimate",
+      "source_ids": [
+       1
+      ],
+      "fact_ids": [
+       "F29"
+      ],
+      "derivation": "FY26 SBC 227 / 7,157 = 3.2% (src 1); FY25 162/5,375 = 3.0% (F29); 3.0% as revenue outgrows grants.",
+      "anchor": {
+       "value": 0.032,
+       "kind": "reported_history",
+       "as_of": "2026-10-31",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [],
+       "note": "FY26 227/7,157"
+      },
+      "confidence": "medium"
+     },
+     {
+      "input": "capex % revenue",
+      "value": "3.25% / 3.0% / 2.8%",
+      "basis": "estimate",
+      "source_ids": [
+       2,
+       1
+      ],
+      "fact_ids": [
+       "F43"
+      ],
+      "derivation": "FY27 ~275 (CFO) / 8,475 = 3.25%; easing as capacity program completes.",
+      "anchor": {
+       "value": 0.0325,
+       "kind": "company_stated",
+       "as_of": "2026-11-19",
+       "source_ids": [
+        2
+       ],
+       "fact_ids": [],
+       "note": "$275M FY27"
+      },
+      "confidence": "medium"
+     },
+     {
+      "input": "NWC % incremental revenue",
+      "value": "15%",
+      "basis": "judgment",
+      "source_ids": [
+       1
+      ],
+      "fact_ids": [],
+      "derivation": "FY26 OCF 1,886 vs non-GAAP NI 2,027 on +1,782 revenue: ~15% working-capital absorption.",
+      "anchor": {
+       "value": 0.15,
+       "kind": "reported_history",
+       "as_of": "2026-10-31",
+       "source_ids": [
+        1
+       ],
+       "fact_ids": [],
+       "note": "(2,027+SBC-type non-cash ~ - OCF)/\u0394rev ~ 0.15"
+      },
+      "confidence": "low"
+     },
+     {
+      "input": "horizon FCF yield",
+      "value": "3.39% (LTM, SBC-deducted)",
+      "basis": "judgment",
+      "source_ids": [
+       24,
+       1
+      ],
+      "fact_ids": [
+       "VIAV.fcf_yield",
+       "AME.fcf_yield",
+       "TER.fcf_yield"
+      ],
+      "derivation": "Peer median 3.2%; own 1,747/44,509 = 3.9%; exit 3.2 x 1.172 = 3.75% pre-SBC; x 0.905 = 3.39%.",
+      "confidence": "low"
+     }
+    ]
+   },
+   {
+    "name": "other",
+    "value": 262.8,
+    "weight": 0.25,
+    "inputs": "Mid-cycle: 9,455 x 29% + 24 non-op, x 0.86 / 170.6M = $13.94 x 18.85x",
+    "inputs_detail": [
+     {
+      "input": "mid-cycle op margin",
+      "value": "29%",
+      "basis": "judgment",
+      "source_ids": [
+       4,
+       25,
+       1,
+       2
+      ],
+      "fact_ids": [
+       "F1",
+       "F2",
+       "F3"
+      ],
+      "derivation": "GAAP op margin FY23 1,358/5,464, FY24 833/4,979, FY25 876/5,375, FY26 (1,116 YTD + 586 Q4)/7,157 = 24.9/16.7/16.3/23.8%, avg 20.4%; + FY26 non-GAAP gap (32.7 - 23.8 = 8.9 pts) = 29.3%.",
+      "confidence": "medium"
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": {
+  "downside": {
+   "price": 187.03,
+   "story": "10th percentile: AI-optics test digestion lands in CY2027 (LightCounting Bumpy Ride; 52% of BofA survey respondents expect a hyperscaler capex cut within six months, src 21) on top of AI-SKU supply limits; wireline -35% vs path (FY27 wireline ~1,800, about -9% on FY26), wireless -10% and EI -14% (FY24-type industrial/semis down-leg plus China), segment margins -5 pts back toward FY23-24 levels, P/E -5 turns (~14x ex-SBC, the 2022-24 trough), FCF yield multiple -25%, mid-cycle leg -30%."
+  },
+  "base": {
+   "price": 319.65,
+   "story": "Median: FY27 revenue 8,475 (+18.4%, just below the 20% base case) as supply caps wireline conversion at +40%; FY28 9,455; op margin ~35%; P/E 20.6x SBC-costed (inside the peer range), FCF yield 3.39%, mid-cycle leg pulls the blend down ~$15."
+  },
+  "upside": {
+   "price": 429.64,
+   "story": "90th percentile: supply loosens so the record backlog converts and 1.6T plus 3.2T R&D keep wireline near the market's growth (+30% vs path); wireless +4% on 6G, EI +6%, margins +1.5/+1 pt (CFO's above-40% leverage), P/E +4 turns (~22.9x ex-SBC, near AME), FCF yield multiple +15%."
+  }
+ },
+ "comps": [
+  {
+   "symbol": "VIAV",
+   "name": "Viavi Solutions",
+   "why_comparable": "Network and optical test (NSE): same CC wireline/wireless test end markets; Zacks non-GAAP EPS excludes SBC",
+   "fwd_pe": 18.8,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +16.9%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "VIAV.pe_ntm",
+    "VIAV.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "Commercial communications",
+    "revenue_share": 0.58,
+    "why": "CC FY28 5,447 of 9,455"
+   },
+   "in_whole_company_median": true
+  },
+  {
+   "symbol": "TER",
+   "name": "Teradyne",
+   "why_comparable": "Electronic test equipment with AI-driven demand and test-capex cyclicality",
+   "fwd_pe": 22.4,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +31.8%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "TER.pe_ntm",
+    "TER.pe_ttm",
+    "TER.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "AI-driven electronic test (wireline + EISG)",
+    "revenue_share": 0.55,
+    "why": "wireline 3,319 + EI 2,372 of 9,455"
+   },
+   "in_whole_company_median": true
+  },
+  {
+   "symbol": "AME",
+   "name": "AMETEK",
+   "why_comparable": "Electronic instruments: precision measurement, aerospace and industrial test; adjusted EPS includes SBC",
+   "fwd_pe": 26.0,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +10.2%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "AME.pe_ntm",
+    "AME.ev_ebitda_ttm",
+    "AME.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "ADG + EISG instruments",
+    "revenue_share": 0.42,
+    "why": "ADG 1,636 + EI 2,372 of 9,455"
+   },
+   "in_whole_company_median": true
+  },
+  {
+   "symbol": "FORM",
+   "name": "FormFactor",
+   "why_comparable": "Probe cards/test for semis: EISG semis segment only",
+   "fwd_pe": 25.1,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +28.0%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "FORM.pe_ntm",
+    "FORM.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "EISG semis test",
+    "revenue_share": 0.1,
+    "why": "segment-only"
+   },
+   "in_whole_company_median": false
+  },
+  {
+   "symbol": "ONTO",
+   "name": "Onto Innovation",
+   "why_comparable": "Metrology/inspection for semis: EISG semis only",
+   "fwd_pe": 17.3,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +19.8%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "ONTO.pe_ntm",
+    "ONTO.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "EISG semis",
+    "revenue_share": 0.05,
+    "why": "segment-only"
+   },
+   "in_whole_company_median": false
+  },
+  {
+   "symbol": "KLAC",
+   "name": "KLA",
+   "why_comparable": "Process control for semis: EISG semis only",
+   "fwd_pe": 26.7,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +21.5%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "KLAC.pe_ntm",
+    "KLAC.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "EISG semis",
+    "revenue_share": 0.05,
+    "why": "segment-only"
+   },
+   "in_whole_company_median": false
+  },
+  {
+   "symbol": "FTV",
+   "name": "Fortive",
+   "why_comparable": "Post-spin industrial instrumentation; T&M left with Ralliant",
+   "fwd_pe": 20.5,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +8.8%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "FTV.pe_ntm",
+    "FTV.ev_ebitda_ttm",
+    "FTV.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "none post-spin",
+    "revenue_share": 0.05,
+    "why": "segment-only"
+   },
+   "in_whole_company_median": false
+  },
+  {
+   "symbol": "CDNS",
+   "name": "Cadence Design Systems",
+   "why_comparable": "EDA/simulation software vs KEYS design software",
+   "fwd_pe": 43.3,
+   "ev_ebitda_fwd": null,
+   "ev_sales_ntm": null,
+   "growth_next_yr": "EPS +14.8%",
+   "as_of": "2026-11-20",
+   "basis": "estimate",
+   "source_ids": [
+    23
+   ],
+   "fact_ids": [
+    "CDNS.pe_ntm",
+    "CDNS.ev_ebitda_ttm",
+    "CDNS.eps_growth_fwd"
+   ],
+   "fit": {
+    "segment": "Software (EDA)",
+    "revenue_share": 0.1,
+    "why": "segment-only"
+   },
+   "in_whole_company_median": false
+  }
+ ],
+ "comps_summary": {
+  "peer_median_fwd_pe": 22.4,
+  "peer_median_ev_ebitda": null,
+  "peer_range": "Whole-company 18.8x (VIAV, ex-SBC) to 26.0x (AME); all eight table peers 17.3x-43.3x",
+  "our_multiple_vs_peers": "KEYS SBC-costed NTM P/E 20.8x today vs the 22.4x median; exit 21.1x (k = 0.8), 20.6x after the -0.5 turn post-horizon deduction, i.e. inside the peer range below the median; 18.85x on the engine's ex-SBC EPS.",
+  "premium_discount_justification": "No premium argued: the shrink rule keeps ~80% of today's discount, which reflects the market's doubt on the durability of AI-optics test demand (stock -21% in a month despite beats, src 15) and the cyclicality LightCounting describes (src 11). A -0.5 turn net deduction carries digestion and China risks after the horizon.",
+  "peer_count_flag": "3 whole-company peers (VIAV, TER, AME) from the run table; Anritsu and Ralliant are not in this run's table and I found no current dated forward-P/E page for them; Rohde & Schwarz is private; Advantest, FORM, ONTO, KLAC segment-only. No padding.",
+  "own_multiple": 20.8,
+  "exit_k": 0.8,
+  "exit_multiple": 21.1,
+  "rows": [
+   {
+    "symbol": "VIAV",
+    "peer": "VIAV",
+    "fwd_pe": 18.8,
+    "fit": {
+     "segment": "Commercial communications (network/optical test)",
+     "revenue_share": 0.58,
+     "why": "CC FY28 5,447 of 9,455"
+    },
+    "in_whole_company_median": true
+   },
+   {
+    "symbol": "TER",
+    "peer": "TER",
+    "fwd_pe": 22.4,
+    "fit": {
+     "segment": "AI-driven electronic test equipment (wireline + EISG semis)",
+     "revenue_share": 0.55,
+     "why": "test-capex cyclical with AI exposure; wireline 3,319 + EI 2,372 of 9,455"
+    },
+    "in_whole_company_median": true
+   },
+   {
+    "symbol": "AME",
+    "peer": "AME",
+    "fwd_pe": 26.0,
+    "fit": {
+     "segment": "Electronic instruments (ADG + EISG)",
+     "revenue_share": 0.42,
+     "why": "ADG 1,636 + EI 2,372 of 9,455"
+    },
+    "in_whole_company_median": true
+   },
+   {
+    "symbol": "FORM",
+    "peer": "FORM",
+    "fwd_pe": 25.1,
+    "fit": {
+     "segment": "EISG semis test",
+     "revenue_share": 0.1,
+     "why": "segment-only"
+    },
+    "in_whole_company_median": false
+   },
+   {
+    "symbol": "ONTO",
+    "peer": "ONTO",
+    "fwd_pe": 17.3,
+    "fit": {
+     "segment": "EISG semis",
+     "revenue_share": 0.05,
+     "why": "segment-only"
+    },
+    "in_whole_company_median": false
+   },
+   {
+    "symbol": "KLAC",
+    "peer": "KLAC",
+    "fwd_pe": 26.7,
+    "fit": {
+     "segment": "EISG semis",
+     "revenue_share": 0.05,
+     "why": "segment-only"
+    },
+    "in_whole_company_median": false
+   },
+   {
+    "symbol": "FTV",
+    "peer": "FTV",
+    "fwd_pe": 20.5,
+    "fit": {
+     "segment": "none post-spin",
+     "revenue_share": 0.05,
+     "why": "T&M left with Ralliant"
+    },
+    "in_whole_company_median": false
+   },
+   {
+    "symbol": "CDNS",
+    "peer": "CDNS",
+    "fwd_pe": 43.3,
+    "fit": {
+     "segment": "Software (EDA)",
+     "revenue_share": 0.1,
+     "why": "segment-only"
+    },
+    "in_whole_company_median": false
+   }
+  ],
+  "no_peers": {
+   "value": false,
+   "why": "genuine listed T&M peers exist"
+  }
+ },
+ "thesis_triggers": [
+  {
+   "event": "AI-optics test digestion: wireline/CC orders fall y/y or total book-to-bill drops below 1.0 for two quarters",
+   "check": "Orders line in each quarterly release (Q4 FY26 2,339, 1.17x); LightCounting monthly updates moving to the Bumpy Ride case; transceiver makers (Innolight, Coherent, Lumentum) guiding down",
+   "source_ids": [
+    1,
+    11,
+    21
+   ]
+  },
+  {
+   "event": "A top-4 hyperscaler cuts its CY2027 capex plan",
+   "check": "January-February 2027 capex guides; Morgan Stanley's 2028 cloud capex view already +7% (src 21); 52% of BofA survey respondents expect a cut within six months",
+   "source_ids": [
+    21
+   ]
+  },
+  {
+   "event": "Supply constraints persist past mid-2027 so revenue misses the quarterly guide while backlog keeps extending",
+   "check": "Quarter revenue below the guide low end (first time in the 4 quarters scored); CFO commentary on the 12-24 constrained SKUs and backlog extension beyond $200-300M",
+   "source_ids": [
+    3,
+    1
+   ]
+  },
+  {
+   "event": "China or Taiwan shock: export controls on T&M or a Taiwan conflict hitting APAC (orders +45%) demand",
+   "check": "10-K China revenue share and export-control notes; Polymarket Taiwan market (9% by end-2027)",
+   "source_ids": [
+    17,
+    20,
+    4
+   ]
+  }
+ ],
+ "catalysts": [
+  {
+   "date": "2026-12-09",
+   "event": "FOMC decision (hike priced, src 21)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01",
+   "event": "Hyperscaler Q4 prints and CY2027 capex guides",
+   "direction": "?"
+  },
+  {
+   "date": "2027-01-28",
+   "event": "Advantest and Anritsu Q3 FY3/27 results (AI test read-across)",
+   "direction": "?"
+  },
+  {
+   "date": "2027-02-23",
+   "event": "Keysight Q1 FY27 results and Q2 guide (tentative date, src 15)",
+   "direction": "+"
+  },
+  {
+   "date": "2027-03",
+   "event": "OFC 2027: 1.6T/3.2T and co-packaged optics test demos",
+   "direction": "+"
+  },
+  {
+   "date": "2027-05",
+   "event": "Keysight Q2 FY27 results",
+   "direction": "?"
+  },
+  {
+   "date": "2027-08",
+   "event": "Keysight Q3 FY27 results",
+   "direction": "?"
+  },
+  {
+   "date": "2027-11",
+   "event": "Keysight Q4 FY27 results and FY28 outlook (around the horizon date)",
+   "direction": "?"
+  }
+ ],
+ "key_uncertainties": [
+  "Wireline split of CC is not disclosed; my FY26 wireline estimate (1,976) sets the capture base",
+  "Whether supply or demand caps FY27 (backlog extension vs orders cooling)",
+  "Timing of LightCounting's expected flat/negative year (2027-2030)",
+  "Post-print consensus was not reachable; my FY27 EPS (~$15.0) sits ~9% above the pre-guide $13.77",
+  "SBC basis of TER's consensus EPS (moves the peer median 22.4x to ~23.5x)"
+ ],
+ "long_dated_risks": [
+  {
+   "risk": "AI-optics test digestion after the 800G/1.6T build (LightCounting: 2-3 year growth runs interrupted by a flat or negative year)",
+   "probability": 0.35,
+   "when": "FY2028-FY2029",
+   "cash_flow_effect": "Wireline revenue -30% vs path (~-1,100 by FY29), CSG margin -3 pt",
+   "value_effect_per_share": -8.5,
+   "how_applied": "multiple (0.35 x -1.5 turns = -0.5 of the -0.5 net, with the 25% mid-cycle leg already pricing margin reversion) and the downside case",
+   "sources": [
+    11,
+    21
+   ]
+  },
+  {
+   "risk": "Co-packaged optics shifts test from pluggable modules toward fewer, integrated test points",
+   "probability": 0.25,
+   "when": "FY2029-FY2031",
+   "cash_flow_effect": "Wireline manufacturing test (~1/3 of wireline) -25%",
+   "value_effect_per_share": -3.0,
+   "how_applied": "multiple (inside the -0.5 net)",
+   "sources": [
+    11,
+    22
+   ]
+  },
+  {
+   "risk": "China export controls / domestic substitution; Taiwan conflict tail",
+   "probability": 0.15,
+   "when": "FY2028+",
+   "cash_flow_effect": "China/Taiwan-exposed revenue -30%",
+   "value_effect_per_share": -4.0,
+   "how_applied": "multiple and downside case",
+   "sources": [
+    17,
+    4
+   ]
+  },
+  {
+   "risk": "Upside: 3.2T and 6G R&D cycles extend test demand (6G business doubled y/y)",
+   "probability": 0.4,
+   "when": "FY2028-FY2030",
+   "cash_flow_effect": "Wireless +10% and wireline R&D +10% vs path",
+   "value_effect_per_share": 7.0,
+   "how_applied": "multiple (offsets part of the deductions; net -0.5 turn)",
+   "sources": [
+    3,
+    2
+   ]
+  }
+ ],
+ "reverse_dcf_check": "The 20.6x SBC-costed exit on FY28 EPS implies roughly 7-9% revenue growth and ~33-35% non-GAAP operating margin held after FY29 at a ~9% cost of equity; plausible only if AI-optics digestion is a flat year rather than a multi-year decline, which is why 25% of the weight sits on a 29% mid-cycle margin.",
+ "sbc_treatment": {
+  "sbc_last_fy_musd": 227.0,
+  "basis": "costed in EPS/FCF",
+  "note": "FY26 SBC $227M (3.2% of revenue, src 1); FY25 $162M (F29). Costed at 3.0% of revenue in FCF; the engine's P/E reads ex-SBC NOPAT, so the SBC-costed exit 20.6x is converted x 0.915 to 18.85x; shares fall only net of SBC issuance (-0.8%/yr). Counted once.",
+  "sources": [
+   1,
+   4
+  ]
+ },
+ "reasoning": "Rebuilt after the Nov 19 Q4 FY26 print on the approved quarterly driver set. Facts: Q4 revenue 1,994 (guide 1,930-1,950), orders 2,339 (1.17x), non-GAAP op margin 35.8%, FY26 7,157 / 32.7%; FY27 base case +20% (CEO and CFO), Q1 guide 2,040-2,060 / $3.63-3.69, capex ~275, tax 14%; CFO expects mid-to-upper-40% operating leverage and says supply in 12-24 AI SKUs extended backlog by $200-300M. Alternative-lane evidence: Neo Reports (Nov 22) shows the AI tape breaking (SOX -17% week, VIX 36, a BofA survey with 52% expecting a hyperscaler capex cut, Morgan Stanley's +7% 2028 cloud capex), Navellier's Substack gives the order mix (CSG +75%, EISG +25%, APAC +45%; its 'backlog $8.13B' is FY orders, an error), Earnings Whispers shows sentiment falling to 28% before the print, Advantest's and Anritsu's raised forecasts (Oct 29) confirm AI test demand, Polymarket prices a 9% Taiwan-invasion risk by end-2027, and LightCounting (Oct 8) gives the market path plus an explicit correction warning. Build: wireline +40% (below the market's +76% and the orders-led case, above the Bumpy Ride case), wireless +10%, ADG +8%, EI +12% -> FY27 8,475 (+18.4%, below the guide by 1.3%), FY28 +11.6%, FY29 +8.4%; segment margins 36.5%/31.5% then 35.5%/31.0%. Value: P/E 18.85x ex-SBC (k = 0.8 shrink to a 22.4x costed peer median, -0.5 turn post-horizon risk), FCF yield 3.39% (tech-name leg), mid-cycle 29% leg. Downside (P10) moves every driver as an inventory-correction year with -5 turns; upside (P90) converts the backlog with +4 turns. Research limits: no dated post-print consensus page was reachable, so the 2026-11-19/20 pre-revision consensus is used and flagged; Benzinga, chartmill and quantisnow refused fetches; Stocktwits pages found were from 2024 and were dropped. The mid-cycle custom leg is not driver-linked.",
+ "lane": "alternative",
+ "sources": [
+  {
+   "title": "Keysight Q4 FY2026 earnings results (release, Nov 19 2026): revenue 1,994, orders 2,339, non-GAAP EPS 3.61, CSG 1,496/555, EISG 498/159, Q1 FY27 guide 2,040-2,060 / $3.63-3.69",
+   "url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q4/earnings-result/Q4-26-Earnings-Results.pdf",
+   "published": "2026-11-19",
+   "kind": "not_forecast",
+   "type": "company",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight Q4 FY2026 prepared remarks (CEO Satish Dhanasekaran, CFO Neil Dougherty)",
+   "url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q4/transcript/Q4-FY2026-Prepared-Remarks.pdf",
+   "published": "2026-11-19",
+   "kind": "not_forecast",
+   "type": "company",
+   "in_lane": false,
+   "speakers": [
+    {
+     "says": "our base case for fiscal 2027 is 20 percent revenue growth",
+     "speaker": "Satish Dhanasekaran",
+     "role": "CEO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "FY26 operating margin 32.7%; Q4 operating margin 35.8%; CSG op margin 37.1%, EISG 32.0%",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "gross margin continued stability without the one-time 110 bp IEEPA tariff refund tailwind of FY26",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "capital expenditures approximately $275 million; 14% non-GAAP tax rate; ~172M diluted shares for Q1",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "Q4 buyback ~450k shares at ~$332 ($150M); $833M remaining authorization",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "Wireline delivered record orders again; CC revenue +73% led by triple-digit growth in Wireline, robust double-digit growth in Wireless",
+     "speaker": "Satish Dhanasekaran / Neil Dougherty",
+     "role": "CEO / CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "We enter fiscal 2027 with a record backlog",
+     "speaker": "Satish Dhanasekaran",
+     "role": "CEO",
+     "firm": "Keysight"
+    }
+   ],
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Investing.com: Keysight fourth-quarter fiscal-year earnings call transcript (CEO Satish Dhanasekaran, CFO Neil Dougherty, analysts)",
+   "url": "https://ng.investing.com/news/stock-market-news/earnings-call-transcript-keysight-beats-q4-2026-estimates-shares-rise-after-hours-93CH-2819695",
+   "published": "2026-11-19",
+   "kind": "not_forecast",
+   "type": "press",
+   "in_lane": false,
+   "speakers": [
+    {
+     "says": "we do expect to outperform the 40% long-term target [operating leverage]; mid-to-upper-40% operating leverage fits FY27",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "supply constraints heavily concentrated within a dozen to two dozen SKUs tied to AI; backlog extension ~$200-300M from supply",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "AI bookings roughly 2.5 times the previous year",
+     "speaker": "Satish Dhanasekaran",
+     "role": "CEO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "Our 6G business doubled year-over-year",
+     "speaker": "Kailash Narayanan",
+     "role": "President, Communications Solutions Group",
+     "firm": "Keysight"
+    },
+    {
+     "says": "base case mid-single-digit sequential decline in orders Q4 to Q1 (seasonal)",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    },
+    {
+     "says": "backlog grew about $1 billion over the fiscal year (analyst framing, not restated by management as a figure)",
+     "speaker": "Matt Niknam",
+     "role": "analyst",
+     "firm": "Truist Securities"
+    },
+    {
+     "says": "questioned second-half FY27 visibility (analyst question)",
+     "speaker": "Q&A analysts",
+     "role": "analyst",
+     "firm": "various"
+    }
+   ],
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight 10-K FY2025 (operating income FY23-25)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000127/keys-20251031.htm",
+   "published": "2025-12-17",
+   "kind": "not_forecast",
+   "type": "filing",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight Q3 FY2026 release Ex.99.1 (Q3 actual 1,846; Q4 guide 1,930-1,950 / $3.34-3.40)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000029/exhibit991-q326pressrelease.htm",
+   "published": "2026-08-18",
+   "kind": "not_forecast",
+   "type": "company",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight Q2 FY2026 release Ex.99.1 (Q2 actual 1,717 / $2.87; Q3 guide 1,730-1,750 / $2.43-2.49)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000019/exhibit991-q226pressrelease.htm",
+   "published": "2026-05-19",
+   "kind": "not_forecast",
+   "type": "company",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight Q1 FY2026 release Ex.99.1 (Q1 actual 1,600; Q2 guide 1,690-1,710 / $2.27-2.33)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000003/exhibit991-q126pressrelease.htm",
+   "published": "2026-02-23",
+   "kind": "not_forecast",
+   "type": "company",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight Q4 FY2025 release Ex.99.1 (Q1 FY26 guide 1,530-1,550)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104625000121/exhibit991-q425pressrelease.htm",
+   "published": "2025-11-24",
+   "kind": "not_forecast",
+   "type": "company",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Seeking Alpha: Keysight expects FY2026 revenue growth at or above 7% target (CEO Satish Dhanasekaran, Q4 FY25 call)",
+   "url": "https://seekingalpha.com/news/4525656-keysight-expects-fy-2026-revenue-growth-at-or-above-7-percent-target-while-expanding-ai-and",
+   "published": "2025-11-24",
+   "kind": "not_forecast",
+   "type": "press",
+   "in_lane": false,
+   "speakers": [
+    {
+     "says": "FY2026 revenue growth at or above the 7% target",
+     "speaker": "Satish Dhanasekaran",
+     "role": "CEO",
+     "firm": "Keysight"
+    }
+   ],
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight Q3 FY2026 prepared remarks: 'Wireline revenue exceeded wireless revenue for the first time this quarter'",
+   "url": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q3/transcript/Q3-FY2026-Prepared-Remarks.pdf",
+   "published": "2026-08-18",
+   "kind": "not_forecast",
+   "type": "company",
+   "in_lane": false,
+   "speakers": [
+    {
+     "says": "Wireline revenue exceeded wireless revenue for the first time this quarter",
+     "speaker": "Neil Dougherty",
+     "role": "CFO",
+     "firm": "Keysight"
+    }
+   ],
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Lightwave (Sean Buckley): LightCounting - Ethernet optical transceivers +120% 2026, +76% 2027, +20% by 2031 ('Soft Landing'); 2-3 year growth runs interrupted by a flat or negative year, 'Bumpy Ride' correction risk",
+   "url": "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+   "published": "2026-10-08",
+   "kind": "industry_forecast",
+   "type": "trade",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "IEEE ComSoc Techblog: LightCounting optical transceiver sales surge (2026 +120%, 2027 +76%)",
+   "url": "https://techblog.comsoc.org/2026/10/02/light-counting-optical-transceiver-sales-surge-ieee-802-3-and-itu-t-optical-transport-standards-explained-uec-addendum/",
+   "published": "2026-10-02",
+   "kind": "industry_forecast",
+   "type": "newsletter",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Panabee (AI-generated recap): Keysight Q4 revenue +41%, orders +53% to $2.34B (1.17x), CC 57% of revenue and ~84% of the y/y increase",
+   "url": "https://www.panabee.com/news/keysight-earnings-q4-2026",
+   "published": "2026-11-19",
+   "kind": "not_forecast",
+   "type": "alt-data",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "stock3: Keysight +41% revenue, outlook well above expectations (pre-guide consensus Q1 1.96B/$3.21; FY27 8.15B/$13.77)",
+   "url": "https://stock3.com/news/keysight-41-prozent-umsatzplus-ausblick-klar-ueber-den-erwartungen-17405307",
+   "published": "2026-11-19",
+   "kind": "consensus",
+   "type": "newsletter",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Investing.com: Keysight earnings analysis, questions answered and next catalysts (consensus FY27 EPS 13.77 on 8.15B, FY28 EPS 15.39; next print Feb 23 2027 tentative)",
+   "url": "https://www.investing.com/news/stock-market-news/keysight-technologies-earnings-analysis-questions-answered-and-next-catalysts-93CH-5042519",
+   "published": "2026-11-20",
+   "kind": "consensus",
+   "type": "press",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Earnings Whispers via Finviz: Keysight's supply chain, not demand, sets the bar (bullish sentiment 28.3% from 35.8%; stock below 200-day)",
+   "url": "https://finviz.com/news/421346/keysights-supply-chain-not-demand-sets-the-bar-for-a-record-fourth-quarter",
+   "published": "2026-11-11",
+   "kind": "not_forecast",
+   "type": "alt-data",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Polymarket: Will China invade Taiwan by December 31, 2027? Yes 9%, volume $3.89M (quoted 2026-11-23)",
+   "url": "https://polymarket.com/zh-hant/event/will-china-invade-taiwan-by-december-31-2027",
+   "published": "2026-11-23",
+   "kind": "consensus",
+   "type": "prediction-market",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Quartr: Anritsu Q2 FY3/2027 summary (orders +59.6%, backlog +63.1%; FY forecast raised, T&M revenue 90.0bn yen)",
+   "url": "https://quartr.com/events/anritsu-corporation-6754-q2-2027_FVwePatC",
+   "published": "2026-10-29",
+   "kind": "industry_forecast",
+   "type": "alt-data",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "TechNews (Taiwan): Advantest raises FY3/2027 forecast again (revenue 1,863bn yen +65%, OP 967bn yen; CEO Douglas Lefever: 'megacycle')",
+   "url": "https://cdnfinance.technews.tw/2026/10/29/advantest-raises-full-year-forecast-again",
+   "published": "2026-10-29",
+   "kind": "industry_forecast",
+   "type": "newsletter",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Navellier Market Buzz (Substack, Louis Navellier): Wall Street sold this AI stock after earnings (KEYS; CSG orders +75%, EISG +25%; APAC +45%)",
+   "url": "https://louisnavellier.substack.com/p/wall-street-sold-this-ai-stock-after",
+   "published": "2026-11-20",
+   "kind": "not_forecast",
+   "type": "newsletter",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Neo Reports (Substack): Weekly AI Investment Review Nov 16-22 2026 (KEYS AI orders 2.5x; JPM $425, MS $425->$400; SOX -17.1% week, VIX 35.9; 52% of BofA survey expect a hyperscaler capex cut within 6 months; Morgan Stanley US cloud capex +7% in 2028)",
+   "url": "https://neoreports.substack.com/p/weekly-ai-investment-review-261122",
+   "published": "2026-11-22",
+   "kind": "sell_side",
+   "type": "newsletter",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Fabian's Substack: Keysight, 'the instrument shop behind every 800G and 1.6T transceiver' (DOJ: Keysight+Spirent 85% of US high-speed Ethernet test)",
+   "url": "https://iamfabian.substack.com/p/keysight-technologies-inc",
+   "published": "2026-05-19",
+   "kind": "not_forecast",
+   "type": "newsletter",
+   "in_lane": true,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Run peer table (peers.py; trailing from SEC filings, NTM P/E from Nasdaq.com/Zacks consensus snapshot)",
+   "url": "/mnt/project-files/valuation/runs/2026-11-20/KEYS/peers.md",
+   "published": "2026-11-20",
+   "kind": "consensus",
+   "type": "data",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "secfacts.py peers VIAV AME TER: filing-based trailing FCF yield (SEC XBRL + last close 2026-11-20)",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/",
+   "published": "2026-11-20",
+   "kind": "not_forecast",
+   "type": "data",
+   "in_lane": false,
+   "date": "2026-11-23"
+  },
+  {
+   "title": "Keysight 10-Q Q3 FY2026 (YTD operating income, SBC, buybacks; fact pack)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000036/keys-20260731.htm",
+   "published": "2026-09-02",
+   "kind": "not_forecast",
+   "type": "filing",
+   "in_lane": false,
+   "date": "2026-11-23"
+  }
+ ],
+ "model_inputs": {
+  "unit": "$M",
+  "ebit_basis": "adjusted",
+  "sbc_treatment": "cost",
+  "quarters": {
+   "labels": [
+    "Q1 FY2026",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027",
+    "Q2 FY2027",
+    "Q3 FY2027",
+    "Q4 FY2027",
+    "Q1 FY2028",
+    "Q2 FY2028",
+    "Q3 FY2028",
+    "Q4 FY2028",
+    "Q1 FY2029",
+    "Q2 FY2029",
+    "Q3 FY2029",
+    "Q4 FY2029"
+   ],
+   "ends": [
+    "2026-01-31",
+    "2026-04-30",
+    "2026-07-31",
+    "2026-10-31",
+    "2027-01-31",
+    "2027-04-30",
+    "2027-07-31",
+    "2027-10-31",
+    "2028-01-31",
+    "2028-04-30",
+    "2028-07-31",
+    "2028-10-31",
+    "2029-01-31",
+    "2029-04-30",
+    "2029-07-31",
+    "2029-10-31"
+   ],
+   "actual": 4
+  },
+  "base": {
+   "fy_end": "2026-10-31",
+   "revenue": 7157.0
+  },
+  "drivers": [
+   {
+    "id": "wl_capture",
+    "label": "Wireline revenue per point of the LightCounting Ethernet optical transceiver market index (CY2025 = 100)",
+    "unit": "$M per index point",
+    "quarters": [
+     8.659894,
+     8.501003,
+     8.720443,
+     9.755103,
+     8.404351,
+     7.389188,
+     6.743483,
+     6.38808,
+     6.564111,
+     6.548409,
+     6.555013,
+     6.583916,
+     6.268428,
+     5.949343,
+     5.646515,
+     5.3591
+    ],
+    "agg": "wmean:mkt",
+    "basis": "estimate",
+    "source": "Market index: LightCounting Ethernet optical transceivers +120% CY2026, +76% CY2027 (Lightwave 2026-10-08, src 11; ComSoc 2026-10-02, src 12); CY2028 +30.6% and CY2029 +27.1% are my estimates below LightCounting's Soft-Landing fade (+76% in 2027 to +20% by 2031) to allow for the flat/negative year it expects in 2027-2030. Index is a scale only: capture is fitted on wireline dollars, so the market level cancels. Wireline dollars are not disclosed: FY26 Q1-Q3 358/428/520 (Q3 above wireless, src 10) and Q4 670 = CC 1,145 - wireless est 475 (triple-digit wireline growth, robust double-digit wireless, src 2).",
+    "derivation": "FY27 wireline 2,766 (+40% on FY26 est 1,976): AI bookings 2.5x the prior year (CEO, src 3), record backlog, CC orders +75% in Q4 (src 20), but supply-limited in 12-24 AI SKUs with $200-300M of backlog extension (CFO, src 3) and R&D-heavy test lagging unit growth, so well under the market's +76%. FY28 +20% (3,319): 1.6T ramp and 3.2T R&D vs market +30.6%; FY29 +12% (3,717) as LightCounting's cycle points to a digestion year. Quarters at one constant sequential rate per year from Q4 FY26. Other evidence-based builds: (a) market-tracking capture (wireline +76% FY27) gives FY27 CC ~+30% more wireline, (b) orders-led: Q4 orders run-rate 2,339/qtr less mid-single-digit Q1 decline (src 3) supports ~8.6B total at the company base case; (c) LightCounting Bumpy Ride (flat CY2027) gives wireline ~+10%; I sit between (b) and (c), conservative per project rule 0c.",
+    "why": "Approved driver set (Kilian 2026-11-02): commercial-communications wireline rebuilt on the AI data-center optics market; same id and mapping.",
+    "flag": "wireline split of CC not disclosed; allocation estimate"
+   },
+   {
+    "id": "wireless_rev",
+    "label": "Wireless test revenue (CC less wireline)",
+    "unit": "$M",
+    "quarters": [
+     400,
+     430,
+     486,
+     475,
+     481.9,
+     488.9,
+     496.0,
+     503.2,
+     514.47,
+     525.98,
+     537.76,
+     549.79,
+     559.5,
+     569.38,
+     579.44,
+     589.67
+    ],
+    "agg": "sum",
+    "basis": "estimate",
+    "source": "CC end-market revenue (src 1) less wireline estimate; 6G business doubled y/y (Kailash Narayanan, src 3); wireless orders double digits (src 2).",
+    "derivation": "FY26 est 1,791 (400/430/486/475). FY27 +10% (1,970): 6G R&D doubling, NTN and AI-supply-chain wireless demand (src 2/3) on a base where 6G is still small; FY28 +8%, FY29 +8% as 6G pre-commercial trials build toward 2029-30. Variant: handset-cycle softness / China share loss gives +3%.",
+    "why": "Approved driver set."
+   },
+   {
+    "id": "adg_rev",
+    "label": "Aerospace, defense and government revenue",
+    "unit": "$M",
+    "quarters": [
+     366,
+     373,
+     339,
+     351,
+     364.38,
+     378.27,
+     392.69,
+     407.66,
+     408.19,
+     408.73,
+     409.27,
+     409.81,
+     417.54,
+     425.41,
+     433.44,
+     441.61
+    ],
+    "agg": "sum",
+    "basis": "estimate",
+    "source": "ADG FY26 1,429 (+15%), Q4 351 (+7%) (src 1); orders 'strongest quarter in the history of the business' (CEO, src 3).",
+    "derivation": "FY27 +8% (1,543): record Q4 orders vs a +7% Q4 revenue print; FY28 +6%, FY29 +5%. Variant: US continuing resolution / budget delay year +3%.",
+    "why": "Approved driver set."
+   },
+   {
+    "id": "ei_rev",
+    "label": "Electronic industrial (EISG) revenue",
+    "unit": "$M",
+    "quarters": [
+     476,
+     486,
+     501,
+     498,
+     517.61,
+     538.0,
+     559.18,
+     581.21,
+     585.89,
+     590.6,
+     595.36,
+     600.15,
+     611.28,
+     622.62,
+     634.17,
+     645.93
+    ],
+    "agg": "sum",
+    "basis": "estimate",
+    "source": "EISG FY26 1,961 (+19%), Q4 498 (+16%); orders up six straight quarters, semis orders double digits (src 1, 2); EISG Q4 orders +25% (src 20); Advantest 'megacycle' and raised FY3/27 forecast (src 19).",
+    "derivation": "FY27 +12% (2,196) on orders running ahead of revenue; FY28 +8%, FY29 +6% as semis test normalizes. Variant: FY24-type industrial downturn -12%.",
+    "why": "Approved driver set."
+   },
+   {
+    "id": "csg_margin",
+    "label": "CSG segment operating margin (non-GAAP, ex SBC/amortization)",
+    "unit": "fraction",
+    "quarters": [
+     0.274911,
+     0.333875,
+     0.34052,
+     0.370989,
+     0.365,
+     0.365,
+     0.365,
+     0.365,
+     0.365,
+     0.365,
+     0.365,
+     0.365,
+     0.355,
+     0.355,
+     0.355,
+     0.355
+    ],
+    "agg": "wmean:mkt*wl_capture+wireless_rev+adg_rev",
+    "basis": "estimate",
+    "source": "CSG FY26 1,733/5,196 = 33.4%, Q4 37.1% (src 1, 2); CFO: mid-to-upper-40% operating leverage in FY27, above the 40% long-term target (src 3); FY26 included a one-time 110 bp tariff refund (src 2).",
+    "derivation": "FY27-28 36.5% (just under the Q4 exit 37.1%, no tariff refund); FY29 35.5% (digestion risk). Company total FY27 op margin 35.2%, incremental (2,984-2,340)/1,318 = 49% on reported FY26, at the top of the CFO's mid-to-upper-40s. Alternatives: (a) incremental 45% gives total ~34.9%; (b) ex-refund base (2,261) + 47% gives ~33.9%; (c) Q4 run-rate held (37.1/32.0) gives ~36%.",
+    "why": "Approved driver set."
+   },
+   {
+    "id": "eisg_margin",
+    "label": "EISG segment operating margin",
+    "unit": "fraction",
+    "quarters": [
+     0.273109,
+     0.331276,
+     0.309381,
+     0.319277,
+     0.315,
+     0.315,
+     0.315,
+     0.315,
+     0.315,
+     0.315,
+     0.315,
+     0.315,
+     0.31,
+     0.31,
+     0.31,
+     0.31
+    ],
+    "agg": "wmean:ei_rev",
+    "basis": "estimate",
+    "source": "EISG FY26 605/1,961 = 30.9%, Q4 32.0% (src 1, 2); acquired businesses 11% -> 32% op margin Q1->Q4 (CEO, src 2).",
+    "derivation": "31.5% FY27-28, 31.0% FY29; alternatives as csg_margin.",
+    "why": "Approved driver set."
+   }
+  ],
+  "driver_build": {
+   "quarters": {
+    "segments": {
+     "CSG": {
+      "revenue": "mkt*wl_capture + wireless_rev + adg_rev",
+      "ebit_margin": "csg_margin"
+     },
+     "EISG": {
+      "revenue": "ei_rev",
+      "ebit_margin": "eisg_margin"
+     }
+    },
+    "corporate_ebit": "0",
+    "interest": "26",
+    "other_income": "32",
+    "reported": {
+     "Q1 FY2026": {
+      "revenue": 1600,
+      "ebit": 439,
+      "segments": {
+       "CSG": {
+        "revenue": 1124,
+        "ebit": 309
+       },
+       "EISG": {
+        "revenue": 476,
+        "ebit": 130
+       }
+      },
+      "corporate_ebit": 0,
+      "source": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000003/exhibit991-q126pressrelease.htm"
+     },
+     "Q2 FY2026": {
+      "revenue": 1717,
+      "ebit": 572,
+      "segments": {
+       "CSG": {
+        "revenue": 1231,
+        "ebit": 411
+       },
+       "EISG": {
+        "revenue": 486,
+        "ebit": 161
+       }
+      },
+      "corporate_ebit": 0,
+      "source": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000019/exhibit991-q226pressrelease.htm"
+     },
+     "Q3 FY2026": {
+      "revenue": 1846,
+      "ebit": 613,
+      "segments": {
+       "CSG": {
+        "revenue": 1345,
+        "ebit": 458
+       },
+       "EISG": {
+        "revenue": 501,
+        "ebit": 155
+       }
+      },
+      "corporate_ebit": 0,
+      "source": "https://www.sec.gov/Archives/edgar/data/1601046/000160104626000029/exhibit991-q326pressrelease.htm"
+     },
+     "Q4 FY2026": {
+      "revenue": 1994,
+      "ebit": 714,
+      "segments": {
+       "CSG": {
+        "revenue": 1496,
+        "ebit": 555
+       },
+       "EISG": {
+        "revenue": 498,
+        "ebit": 159
+       }
+      },
+      "corporate_ebit": 0,
+      "source": "https://s22.q4cdn.com/444849635/files/doc_earnings/2026/q4/earnings-result/Q4-26-Earnings-Results.pdf"
+     }
+    },
+    "note": "Segment income = company non-GAAP operating income (segments exclude SBC, amortization, acquisition/integration, restructuring). Q4 FY26 non-GAAP net income 623 = (714 + ~10 net non-operating) x 0.86 (src 1).",
+    "constants": {
+     "mkt": [
+      41.34,
+      50.347,
+      59.63,
+      68.682,
+      80.731,
+      92.986,
+      103.181,
+      110.302,
+      114.479,
+      122.381,
+      130.384,
+      138.44,
+      146.533,
+      155.587,
+      165.2,
+      175.407
+     ]
+    },
+    "constants_note": "mkt = LightCounting Ethernet optical transceiver market index, CY2025 = 100 (FY n = CY n; quarterly shape by log-linear interpolation through year midpoints): CY2026 220 (+120%), CY2027 387 (+76%) per src 11/12; CY2028 +30.6%, CY2029 +27.1% my estimates (see wl_capture)."
+   }
+  },
+  "segment_build": [
+   {
+    "name": "CSG",
+    "base_revenue": 5196.0,
+    "driver_note": "wireline (mkt index x wl_capture) + wireless + ADG"
+   },
+   {
+    "name": "EISG",
+    "base_revenue": 1961.0,
+    "driver_note": "electronic industrial revenue driver"
+   }
+  ],
+  "years": [
+   {
+    "label": "FY2027",
+    "tax_rate": 0.14,
+    "da_pct_rev": 0.025,
+    "capex_pct_rev": 0.0325,
+    "nwc_pct_incr_rev": 0.15,
+    "sbc_pct_rev": 0.03,
+    "shareholder_returns": 700.0
+   },
+   {
+    "label": "FY2028",
+    "capex_pct_rev": 0.03,
+    "shareholder_returns": 750.0
+   },
+   {
+    "label": "FY2029",
+    "capex_pct_rev": 0.028,
+    "shareholder_returns": 800.0
+   }
+  ],
+  "terminal": {
+   "ronic": null,
+   "ronic_basis": ""
+  },
+  "discount_rate": {
+   "pre_tax_cost_of_debt": null,
+   "basis": "engine sets the WACC"
+  },
+  "contracts": [],
+  "balance": {
+   "as_of": "2026-10-31",
+   "net_debt": -407.0,
+   "minorities": 0.0,
+   "preferred": 0.0,
+   "interest_rate": 0.04,
+   "net_debt_horizon": null
+  },
+  "shares": {
+   "diluted_now": 172.0,
+   "as_of": "2026-10-31",
+   "annual_change": -0.008,
+   "horizon": null
+  },
+  "dcf_weight": null,
+  "horizon_multiples": [
+   {
+    "metric": "P/E",
+    "value": 18.85,
+    "weight": 0.45,
+    "basis": "ntm",
+    "ebitda": "adjusted",
+    "eps": null,
+    "fcf_per_share": null,
+    "levered": true,
+    "peer_basis": "Whole-company peers on the SBC-costed basis: VIAV (18.8x ex-SBC, ~21x costed), TER 22.4x, AME 26.0x -> median 22.4x (peers.md). KEYS own SBC-costed NTM P/E 261.51 / (13.86 - 1.28) = 20.8x; exit 22.4 x (20.8/22.4)^0.8 = 21.1x, less 0.5 turn post-horizon risk = 20.6x costed; x 0.915 (my horizon costed/ex-SBC EPS 15.5/16.9) = 18.85x on the engine's ex-SBC EPS."
+   },
+   {
+    "metric": "FCF yield",
+    "value": 0.0339,
+    "weight": 0.3,
+    "basis": "ltm",
+    "levered": true,
+    "eps": null,
+    "fcf_per_share": null,
+    "peer_basis": "Peer median trailing FCF yield (OCF - capex, SBC not deducted) VIAV 2.3%, AME 3.8%, TER 3.2% -> 3.2% (secfacts). KEYS own FY26 FCF 1,747 / (261.51 x 170.2M) = 3.9%; exit 3.2% x (3.9/3.2)^0.8 = 3.75% pre-SBC; the engine's FCF deducts SBC after tax (sbc_treatment cost), so the yield is scaled by FY27 FCF after/before SBC (~0.905) to 3.39%."
+   }
+  ],
+  "custom": [
+   {
+    "name": "Mid-cycle normalised EPS x through-cycle P/E",
+    "value_per_share": 262.8,
+    "weight": 0.25,
+    "explanation": "Horizon NTM revenue ~9,455 (FY28 build) x mid-cycle non-GAAP op margin 29% = 2,742, + net non-operating ~24, x (1 - 14%) = 2,379 / 170.6M horizon shares = $13.94 ex-SBC EPS x 18.85x (the P/E leg's ex-SBC multiple) = $262.8. Mid-cycle margin: FY23-26 GAAP op margin average 20.4% (24.9/16.7/16.3/23.8%) plus the FY26 non-GAAP-GAAP gap 8.9 pts = 29.3%, rounded to 29%. Not driver-linked.",
+    "source_ids": [
+     1,
+     2,
+     4,
+     25
+    ]
+   }
+  ],
+  "scenarios": {
+   "downside": {
+    "deltas": {
+     "drivers": {
+      "wl_capture": {
+       "pct": -0.35
+      },
+      "wireless_rev": {
+       "pct": -0.1
+      },
+      "adg_rev": {
+       "pct": -0.04
+      },
+      "ei_rev": {
+       "pct": -0.14
+      },
+      "csg_margin": {
+       "add": -0.05
+      },
+      "eisg_margin": {
+       "add": -0.05
+      }
+     },
+     "multiple": -5.0,
+     "multiple_pct": -0.25,
+     "custom_pct": -0.3
+    },
+    "story": "10th percentile: AI-optics test digestion lands in CY2027 (LightCounting Bumpy Ride; 52% of BofA survey respondents expect a hyperscaler capex cut within six months, src 21) on top of AI-SKU supply limits; wireline -35% vs path (FY27 wireline ~1,800, about -9% on FY26), wireless -10% and EI -14% (FY24-type industrial/semis down-leg plus China), segment margins -5 pts back toward FY23-24 levels, P/E -5 turns (~14x ex-SBC, the 2022-24 trough), FCF yield multiple -25%, mid-cycle leg -30%."
+   },
+   "upside": {
+    "deltas": {
+     "drivers": {
+      "wl_capture": {
+       "pct": 0.3
+      },
+      "wireless_rev": {
+       "pct": 0.04
+      },
+      "adg_rev": {
+       "pct": 0.02
+      },
+      "ei_rev": {
+       "pct": 0.06
+      },
+      "csg_margin": {
+       "add": 0.015
+      },
+      "eisg_margin": {
+       "add": 0.01
+      }
+     },
+     "multiple": 4.0,
+     "multiple_pct": 0.15,
+     "custom_pct": 0.2
+    },
+    "story": "90th percentile: supply loosens so the record backlog converts and 1.6T plus 3.2T R&D keep wireline near the market's growth (+30% vs path); wireless +4% on 6G, EI +6%, margins +1.5/+1 pt (CFO's above-40% leverage), P/E +4 turns (~22.9x ex-SBC, near AME), FCF yield multiple +15%."
+   }
+  },
+  "scenario_vol": 0.15,
+  "structure_note": "Approved quarterly driver set (Kilian 2026-11-02: wl_capture, wireless_rev, adg_rev, ei_rev, csg_margin, eisg_margin; mkt constant), rolled forward to base FY2026 with Q4 FY26 actual and paths re-argued on the Q4 FY26 print. The market constant is now an index (CY2025 = 100) because only growth rates are dated-current; the CY2025 dollar level (Jan 2026 LightCounting figure) is stale and cancels out of the capture anyway. Value carried by (1) horizon NTM P/E on the build's FY28-weighted ex-SBC EPS with an SBC-converted multiple (w 0.45), (2) the tech FCF-yield leg on LTM levered FCF (w 0.30 = 40% of the P/E+FCF pair), (3) mid-cycle EPS x the same multiple (w 0.25, semis playbook; not driver-linked). No DCF leg (not a neocloud).",
+  "gap_note": "Judgment calls for Kilian: (a) wireline FY27 +40% vs the market +76% (orders-led alternative ~+50% adds ~+4% to the target; Bumpy-Ride +10% takes ~-9%: card); (b) mid-cycle leg weight 0.25 (0 adds ~+6%: card); (c) post-horizon net -0.5 turn; (d) the FCF leg departs from the rule's pre-SBC basis because the engine costs SBC under sbc_treatment cost, so the peer yield is scaled down instead (same answer up to rounding). TER's Zacks EPS basis on SBC is not confirmed; if TER is ex-SBC the costed median rises to ~23.5x (+~3%). Financing: none expected (net cash ~0.4B at Q4 FY26, FCF ~2B/yr), the $700M current debt is assumed refinanced at similar cost; no financing_events (<20%). Taiwan conflict by end-2027 at 9% on Polymarket ($3.9M volume): downside tail only. Research limited: no post-print consensus page with FY27 revisions was reachable (StockAnalysis still shows 2026-10-09 data; MarketBeat stale; Benzinga refused), so consensus is the 2026-11-19/20 pre-revision snapshot.",
+  "guidance_check": [
+   {
+    "metric": "revenue (quarterly, next quarter)",
+    "fy": "Q1 FY2027",
+    "guide_low": 2040.0,
+    "guide_high": 2060.0,
+    "guide_basis": "GAAP revenue",
+    "guide_as_of": "2026-11-19",
+    "guide_source_ids": [
+     1,
+     2
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "quarterly",
+     "periods": [
+      {
+       "period": "Q1 FY2026",
+       "first_guide_low": 1530.0,
+       "first_guide_high": 1550.0,
+       "first_guide_date": "2025-11-24",
+       "actual": 1600.0,
+       "actual_vs_mid_pct": 3.9,
+       "source_ids": [
+        8,
+        7
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q2 FY2026",
+       "first_guide_low": 1690.0,
+       "first_guide_high": 1710.0,
+       "first_guide_date": "2026-02-23",
+       "actual": 1717.0,
+       "actual_vs_mid_pct": 1.0,
+       "source_ids": [
+        7,
+        6
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q3 FY2026",
+       "first_guide_low": 1730.0,
+       "first_guide_high": 1750.0,
+       "first_guide_date": "2026-05-19",
+       "actual": 1846.0,
+       "actual_vs_mid_pct": 6.1,
+       "source_ids": [
+        6,
+        5
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q4 FY2026",
+       "first_guide_low": 1930.0,
+       "first_guide_high": 1950.0,
+       "first_guide_date": "2026-08-18",
+       "actual": 1994.0,
+       "actual_vs_mid_pct": 2.8,
+       "source_ids": [
+        5,
+        1
+       ],
+       "fact_ids": []
+      }
+     ],
+     "beat": 4,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 3.35,
+     "note": "4 quarters findable at source; all above the high end. Spirent (closed 2025-10-15) inside all four guides. Q2 FY26 includes a ~$40M IEEPA tariff refund."
+    },
+    "consensus": 1960.0,
+    "consensus_as_of": "2026-11-19",
+    "consensus_source_ids": [
+     14
+    ],
+    "record_adjusted_guide": 2118.7,
+    "drivers_imply": 2042.4,
+    "drivers_note": "Wireline 678 + wireless 482 + ADG 365 + EI 518 at one constant sequential rate per driver per year from Q4 FY26.",
+    "our_value": 2042.4,
+    "position": "inside",
+    "gap_to_mid_pct": -0.4,
+    "why": "Record says ~+3% beats (record-adjusted 2,119); I add no usual beat because the CFO says supply in 12-24 AI SKUs still sets conversion and orders fall mid-single-digit sequentially in Q1 (src 3); my build sits at the low end of the range. Pre-guide consensus 1,960 is below the range."
+   },
+   {
+    "metric": "non-GAAP EPS (quarterly)",
+    "fy": "Q1 FY2027",
+    "guide_low": 3.63,
+    "guide_high": 3.69,
+    "guide_basis": "non-GAAP, excludes SBC, amortization, acquisition/integration, restructuring; ~172M shares, 14% tax",
+    "guide_as_of": "2026-11-19",
+    "guide_source_ids": [
+     1,
+     2
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "quarterly",
+     "periods": [
+      {
+       "period": "Q2 FY2026",
+       "first_guide_low": 2.27,
+       "first_guide_high": 2.33,
+       "first_guide_date": "2026-02-23",
+       "actual": 2.87,
+       "actual_vs_mid_pct": 24.8,
+       "source_ids": [
+        7,
+        6
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q3 FY2026",
+       "first_guide_low": 2.43,
+       "first_guide_high": 2.49,
+       "first_guide_date": "2026-05-19",
+       "actual": 3.07,
+       "actual_vs_mid_pct": 24.8,
+       "source_ids": [
+        6,
+        5
+       ],
+       "fact_ids": []
+      },
+      {
+       "period": "Q4 FY2026",
+       "first_guide_low": 3.34,
+       "first_guide_high": 3.4,
+       "first_guide_date": "2026-08-18",
+       "actual": 3.61,
+       "actual_vs_mid_pct": 7.1,
+       "source_ids": [
+        5,
+        1
+       ],
+       "fact_ids": []
+      }
+     ],
+     "beat": 3,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 24.8,
+     "note": "Q2 FY26 includes ~$0.28 tariff refund (ex-refund +12.6%); with that the median of 7.1/12.6/24.8 is 12.6%. The two hot quarters came as revenue outran guides by 1-6%."
+    },
+    "consensus": 3.21,
+    "consensus_as_of": "2026-11-19",
+    "consensus_source_ids": [
+     14
+    ],
+    "record_adjusted_guide": 4.12,
+    "drivers_imply": 3.64,
+    "drivers_note": "(719.8 op income + 6 net non-operating) x 0.86 / 172M = $3.63-3.64.",
+    "our_value": 3.64,
+    "position": "inside",
+    "gap_to_mid_pct": -0.5,
+    "why": "Inside the low end: Q1 margin 35.2% dips from Q4's 35.8% (seasonal opex resets) and no beat is assumed for the supply reasons above; the record-adjusted $4.12 rests on two quarters with one-offs."
+   },
+   {
+    "metric": "revenue growth (annual base case)",
+    "fy": "FY2027",
+    "guide_low": 8588.4,
+    "guide_high": 8588.4,
+    "guide_basis": "GAAP revenue, base case 20% growth on FY26 7,157 (no range given)",
+    "guide_as_of": "2026-11-19",
+    "guide_source_ids": [
+     2,
+     3
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "annual",
+     "periods": [
+      {
+       "period": "FY2026",
+       "first_guide_low": 5751.3,
+       "first_guide_high": 5751.3,
+       "first_guide_date": "2025-11-24",
+       "actual": 7157.0,
+       "actual_vs_mid_pct": 24.4,
+       "source_ids": [
+        9,
+        1
+       ],
+       "fact_ids": []
+      }
+     ],
+     "beat": 1,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 24.4,
+     "note": "Only one annual first guide found at source (FY26 'at or above 7%' on FY25 5,375 = 5,751). FY26 was an AI-demand inflection year and included the Spirent acquisition; one period is a poor guide to the size of the next beat."
+    },
+    "consensus": 8150.0,
+    "consensus_as_of": "2026-11-20",
+    "consensus_source_ids": [
+     14,
+     15
+    ],
+    "record_adjusted_guide": 10683.0,
+    "drivers_imply": 8475.0,
+    "drivers_note": "Wireline 2,766 + wireless 1,970 + ADG 1,543 + EI 2,196 = 8,475 (+18.4%).",
+    "our_value": 8475.0,
+    "position": "below",
+    "gap_to_mid_pct": -1.3,
+    "why": "Below the 20% base case: supply-constrained wireline conversion (CFO: $200-300M backlog extension), the analyst-flagged H2 visibility gap and a market in an AI-capex scare (src 21) argue against assuming the FY26-style beat; the one-period record-adjusted figure (10.7B) is implausible against capacity. Above the pre-guide consensus 8,150, which predates the guide."
+   },
+   {
+    "metric": "capex",
+    "fy": "FY2027",
+    "guide_low": 275.0,
+    "guide_high": 275.0,
+    "guide_basis": "approximately $275M (CFO)",
+    "guide_as_of": "2026-11-19",
+    "guide_source_ids": [
+     2
+    ],
+    "guide_fact_ids": [],
+    "track_record": {
+     "granularity": "annual",
+     "periods": [],
+     "beat": 0,
+     "inside": 0,
+     "miss": 0,
+     "median_vs_mid_pct": 0.0,
+     "note": "No prior annual capex guide found at source."
+    },
+    "consensus": null,
+    "consensus_as_of": "",
+    "consensus_source_ids": [],
+    "record_adjusted_guide": 275.0,
+    "drivers_imply": 275.4,
+    "drivers_note": "3.25% x 8,475.",
+    "our_value": 275.4,
+    "position": "inside",
+    "gap_to_mid_pct": 0.1,
+    "why": "Capacity additions (four consecutive quarters, src 3) support the step-up from FY26 139; no evidence to differ. guide_use: kind guide; why_nothing_better: the company is the only source for its own capacity spend, there is no outside forecast of Keysight plant capex, and history (FY23-26 capex 197/154/128/139) predates the capacity program announced on the Q4 call, so a history-based figure would understate it; tried builds: capex/revenue history 2.0-2.4% (why_not: pre-dates capacity program).",
+    "guide_use": {
+     "kind": "guide",
+     "why_nothing_better": "Keysight's own capacity spend has no outside forecast; FY23-26 capex history (197/154/128/139, 1.9-3.6% of revenue) predates the multi-quarter manufacturing and supply-base expansion the CEO and CFO described on the Q4 FY26 call, so a history ratio would understate FY27 capex; effect on value is under 1%.",
+     "tried": [
+      {
+       "build": "capex/revenue at FY26 1.9% (139/7,157) or the FY23-26 average 2.7%",
+       "why_not": "both predate the manufacturing and supply-base capacity program the CEO and CFO described on the Q4 FY26 call, so they would understate FY27 spend"
+      }
+     ],
+     "source": "src 2 (Q4 FY2026 prepared remarks, CFO: capex approximately $275 million)",
+     "source_ids": [
+      2
+     ]
+    }
+   }
+  ],
+  "inputs_detail": [
+   {
+    "input": "driver:wl_capture",
+    "value": "FY27 2,766 / FY28 3,319 / FY29 3,717 wireline $M (capture per index point falls as the market outgrows test)",
+    "basis": "estimate",
+    "source_ids": [
+     11,
+     12,
+     2,
+     3,
+     10,
+     20
+    ],
+    "fact_ids": [],
+    "derivation": "FY27 wireline 2,766 (+40% on FY26 est 1,976): AI bookings 2.5x the prior year (CEO, src 3), record backlog, CC orders +75% in Q4 (src 20), but supply-limited in 12-24 AI SKUs with $200-300M of backlog extension (CFO, src 3) and R&D-heavy test lagging unit growth, so well under the market's +76%. FY28 +20% (3,319): 1.6T ramp and 3.2T R&D vs market +30.6%; FY29 +12% (3,717) as LightCounting's cycle points to a digestion year. Quarters at one constant sequential rate per year from Q4 FY26. Other evidence-based builds: (a) market-tracking capture (wireline +76% FY27) gives FY27 CC ~+30% more wireline, (b) orders-led: Q4 orders run-rate 2,339/qtr less mid-single-digit Q1 decline (src 3) supports ~8.6B total at the company base case; (c) LightCounting Bumpy Ride (flat CY2027) gives wireline ~+10%; I sit between (b) and (c), conservative per project rule 0c.",
+    "confidence": "medium",
+    "variant_view": "Bumpy Ride (flat CY27 market): wireline ~+10% FY27, target ~-9%; orders-led (+50%): ~+4%."
+   },
+   {
+    "input": "driver:wireless_rev",
+    "value": "1,970 / 2,128 / 2,298",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3
+    ],
+    "fact_ids": [],
+    "derivation": "FY26 est 1,791 (400/430/486/475). FY27 +10% (1,970): 6G R&D doubling, NTN and AI-supply-chain wireless demand (src 2/3) on a base where 6G is still small; FY28 +8%, FY29 +8% as 6G pre-commercial trials build toward 2029-30. Variant: handset-cycle softness / China share loss gives +3%.",
+    "confidence": "medium",
+    "variant_view": "+3%/yr: ~-2% to target."
+   },
+   {
+    "input": "driver:adg_rev",
+    "value": "1,543 / 1,636 / 1,718",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     3
+    ],
+    "fact_ids": [],
+    "derivation": "FY27 +8% (1,543): record Q4 orders vs a +7% Q4 revenue print; FY28 +6%, FY29 +5%. Variant: US continuing resolution / budget delay year +3%.",
+    "confidence": "medium",
+    "variant_view": "+3%: ~-1%."
+   },
+   {
+    "input": "driver:ei_rev",
+    "value": "2,196 / 2,372 / 2,514",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     19,
+     20
+    ],
+    "fact_ids": [],
+    "derivation": "FY27 +12% (2,196) on orders running ahead of revenue; FY28 +8%, FY29 +6% as semis test normalizes. Variant: FY24-type industrial downturn -12%.",
+    "confidence": "medium",
+    "variant_view": "-12% downturn year: ~-6%."
+   },
+   {
+    "input": "driver:csg_margin",
+    "value": "36.5% / 36.5% / 35.5%",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     3
+    ],
+    "fact_ids": [],
+    "derivation": "FY27-28 36.5% (just under the Q4 exit 37.1%, no tariff refund); FY29 35.5% (digestion risk). Company total FY27 op margin 35.2%, incremental (2,984-2,340)/1,318 = 49% on reported FY26, at the top of the CFO's mid-to-upper-40s. Alternatives: (a) incremental 45% gives total ~34.9%; (b) ex-refund base (2,261) + 47% gives ~33.9%; (c) Q4 run-rate held (37.1/32.0) gives ~36%.",
+    "confidence": "medium",
+    "variant_view": "Q4 run-rate 37.1% held: ~+3%; ex-refund 47% leverage: ~-3%."
+   },
+   {
+    "input": "driver:eisg_margin",
+    "value": "31.5% / 31.5% / 31.0%",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2
+    ],
+    "fact_ids": [],
+    "derivation": "31.5% FY27-28, 31.0% FY29; alternatives as csg_margin.",
+    "confidence": "medium",
+    "variant_view": "FY25 24.7%: downside case."
+   },
+   {
+    "input": "base revenue FY2026",
+    "value": "7,157 (CSG 5,196, EISG 1,961)",
+    "basis": "reported",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [],
+    "derivation": "Q4 FY26 release: FY revenue 7,157; CSG = CC 3,767 + ADG 1,429."
+   },
+   {
+    "input": "tax rate (non-GAAP)",
+    "value": "14%",
+    "basis": "estimate",
+    "source_ids": [
+     2
+    ],
+    "fact_ids": [
+     "F107"
+    ],
+    "derivation": "CFO: 14% non-GAAP rate for FY27.",
+    "anchor": {
+     "value": 0.14,
+     "kind": "company_stated",
+     "as_of": "2026-11-19",
+     "source_ids": [
+      2
+     ],
+     "fact_ids": [],
+     "note": "FY26 non-GAAP rate 14% (src 1)"
+    }
+   },
+   {
+    "input": "interest expense / other income per quarter",
+    "value": "26 / 32",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     25
+    ],
+    "fact_ids": [
+     "F89",
+     "F93",
+     "F97"
+    ],
+    "derivation": "Q3 FY26 interest expense 26 (F89), interest income 20 (F93), other non-op 22 (F97); Q4 non-GAAP implies ~+10 net (623/0.86 - 714). Debt 2,509 held (700 current assumed refinanced); other income 32 = interest income ~22 on ~2.9B cash + ~10 other.",
+    "anchor": {
+     "value": 6.0,
+     "kind": "reported_history",
+     "as_of": "2026-10-31",
+     "source_ids": [
+      1,
+      25
+     ],
+     "fact_ids": [
+      "F89",
+      "F93"
+     ],
+     "note": "net +6/qtr vs Q4 implied +10"
+    }
+   },
+   {
+    "input": "SBC % revenue",
+    "value": "3.0%",
+    "basis": "estimate",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [
+     "F29"
+    ],
+    "derivation": "FY26 SBC 227 / 7,157 = 3.2% (src 1); FY25 162/5,375 = 3.0% (F29); 3.0% as revenue outgrows grants.",
+    "anchor": {
+     "value": 0.032,
+     "kind": "reported_history",
+     "as_of": "2026-10-31",
+     "source_ids": [
+      1
+     ],
+     "fact_ids": [],
+     "note": "FY26 227/7,157"
+    },
+    "confidence": "medium"
+   },
+   {
+    "input": "capex % revenue",
+    "value": "3.25% / 3.0% / 2.8%",
+    "basis": "estimate",
+    "source_ids": [
+     2,
+     1
+    ],
+    "fact_ids": [
+     "F43"
+    ],
+    "derivation": "FY27 ~275 (CFO) / 8,475 = 3.25%; easing as capacity program completes.",
+    "anchor": {
+     "value": 0.0325,
+     "kind": "company_stated",
+     "as_of": "2026-11-19",
+     "source_ids": [
+      2
+     ],
+     "fact_ids": [],
+     "note": "$275M FY27"
+    },
+    "confidence": "medium"
+   },
+   {
+    "input": "D&A % revenue (depreciation only)",
+    "value": "2.5%",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     4
+    ],
+    "fact_ids": [
+     "F43"
+    ],
+    "derivation": "Depreciation tracks a capex base of ~2-3.5% of revenue; judgment.",
+    "anchor": {
+     "value": 0.025,
+     "kind": "reported_history",
+     "as_of": "2026-10-31",
+     "source_ids": [
+      4
+     ],
+     "fact_ids": [],
+     "note": "capex/revenue FY23-26 1.9-3.6%"
+    },
+    "confidence": "low"
+   },
+   {
+    "input": "NWC % incremental revenue",
+    "value": "15%",
+    "basis": "judgment",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [],
+    "derivation": "FY26 OCF 1,886 vs non-GAAP NI 2,027 on +1,782 revenue: ~15% working-capital absorption.",
+    "anchor": {
+     "value": 0.15,
+     "kind": "reported_history",
+     "as_of": "2026-10-31",
+     "source_ids": [
+      1
+     ],
+     "fact_ids": [],
+     "note": "(2,027+SBC-type non-cash ~ - OCF)/\u0394rev ~ 0.15"
+    },
+    "confidence": "low"
+   },
+   {
+    "input": "net debt 2026-10-31",
+    "value": "-407",
+    "basis": "reported",
+    "source_ids": [
+     1
+    ],
+    "fact_ids": [],
+    "derivation": "Debt 2,509 (700 current + 1,809 long-term) - cash 2,916."
+   },
+   {
+    "input": "diluted shares",
+    "value": "172.0M, -0.8%/yr net",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2,
+     4
+    ],
+    "fact_ids": [
+     "F21",
+     "F22",
+     "F23"
+    ],
+    "derivation": "FY23-25 179/175/173 (-1.7%, -1.1%/yr), FY26 ~172; buybacks ~700/yr at ~$260-330 retire ~2.4M vs ~1.0M SBC issuance = ~-0.8%.",
+    "anchor": {
+     "value": -0.009,
+     "kind": "reported_history",
+     "as_of": "2026-10-31",
+     "source_ids": [
+      4,
+      1
+     ],
+     "fact_ids": [
+      "F21",
+      "F23"
+     ],
+     "note": "FY23->FY26 179->172 = -1.3%/yr; FY25->26 -0.6%"
+    },
+    "confidence": "medium"
+   },
+   {
+    "input": "shareholder returns",
+    "value": "700 / 750 / 800",
+    "basis": "estimate",
+    "source_ids": [
+     1,
+     2
+    ],
+    "fact_ids": [],
+    "derivation": "FY26 buybacks 669, $833M authorization left (CFO); grown with FCF ~2B/yr.",
+    "confidence": "medium"
+   },
+   {
+    "input": "horizon P/E",
+    "value": "18.85x NTM ex-SBC (= 20.6x SBC-costed)",
+    "basis": "judgment",
+    "source_ids": [
+     23,
+     14,
+     15
+    ],
+    "fact_ids": [
+     "VIAV.pe_ntm",
+     "TER.pe_ntm",
+     "AME.pe_ntm"
+    ],
+    "derivation": "Peer median 22.4x costed (VIAV, TER, AME); own costed NTM P/E: NTM consensus EPS 13.77 x 345/365 + 15.39 x 20/365 = 13.86 ex-SBC (src 15), less SBC 0.03 x 8,475 x 0.86 / 171.3 = 1.28 -> 12.58; 261.51/12.58 = 20.8x; exit 22.4 x (20.8/22.4)^0.8 = 21.1x; -0.5 turn net post-horizon risk = 20.6x; x 0.915 = 18.85x.",
+    "confidence": "medium",
+    "variant_view": "k = 1 (peer median) gives ~21.9x costed (+6%)."
+   },
+   {
+    "input": "horizon FCF yield",
+    "value": "3.39% (LTM, SBC-deducted)",
+    "basis": "judgment",
+    "source_ids": [
+     24,
+     1
+    ],
+    "fact_ids": [
+     "VIAV.fcf_yield",
+     "AME.fcf_yield",
+     "TER.fcf_yield"
+    ],
+    "derivation": "Peer median 3.2%; own 1,747/44,509 = 3.9%; exit 3.2 x 1.172 = 3.75% pre-SBC; x 0.905 = 3.39%.",
+    "confidence": "low"
+   },
+   {
+    "input": "mid-cycle op margin",
+    "value": "29%",
+    "basis": "judgment",
+    "source_ids": [
+     4,
+     25,
+     1,
+     2
+    ],
+    "fact_ids": [
+     "F1",
+     "F2",
+     "F3"
+    ],
+    "derivation": "GAAP op margin FY23 1,358/5,464, FY24 833/4,979, FY25 876/5,375, FY26 (1,116 YTD + 586 Q4)/7,157 = 24.9/16.7/16.3/23.8%, avg 20.4%; + FY26 non-GAAP gap (32.7 - 23.8 = 8.9 pts) = 29.3%.",
+    "confidence": "medium"
+   }
+  ],
+  "comps_summary": {
+   "peers": [
+    "VIAV",
+    "TER",
+    "AME"
+   ],
+   "rows": [
+    {
+     "symbol": "VIAV",
+     "peer": "VIAV",
+     "fwd_pe": 18.8,
+     "fit": {
+      "segment": "Commercial communications (network/optical test)",
+      "revenue_share": 0.58,
+      "why": "CC FY28 5,447 of 9,455"
+     },
+     "in_whole_company_median": true
+    },
+    {
+     "symbol": "TER",
+     "peer": "TER",
+     "fwd_pe": 22.4,
+     "fit": {
+      "segment": "AI-driven electronic test equipment (wireline + EISG semis)",
+      "revenue_share": 0.55,
+      "why": "test-capex cyclical with AI exposure; wireline 3,319 + EI 2,372 of 9,455"
+     },
+     "in_whole_company_median": true
+    },
+    {
+     "symbol": "AME",
+     "peer": "AME",
+     "fwd_pe": 26.0,
+     "fit": {
+      "segment": "Electronic instruments (ADG + EISG)",
+      "revenue_share": 0.42,
+      "why": "ADG 1,636 + EI 2,372 of 9,455"
+     },
+     "in_whole_company_median": true
+    },
+    {
+     "symbol": "FORM",
+     "peer": "FORM",
+     "fwd_pe": 25.1,
+     "fit": {
+      "segment": "EISG semis test",
+      "revenue_share": 0.1,
+      "why": "segment-only"
+     },
+     "in_whole_company_median": false
+    },
+    {
+     "symbol": "ONTO",
+     "peer": "ONTO",
+     "fwd_pe": 17.3,
+     "fit": {
+      "segment": "EISG semis",
+      "revenue_share": 0.05,
+      "why": "segment-only"
+     },
+     "in_whole_company_median": false
+    },
+    {
+     "symbol": "KLAC",
+     "peer": "KLAC",
+     "fwd_pe": 26.7,
+     "fit": {
+      "segment": "EISG semis",
+      "revenue_share": 0.05,
+      "why": "segment-only"
+     },
+     "in_whole_company_median": false
+    },
+    {
+     "symbol": "FTV",
+     "peer": "FTV",
+     "fwd_pe": 20.5,
+     "fit": {
+      "segment": "none post-spin",
+      "revenue_share": 0.05,
+      "why": "T&M left with Ralliant"
+     },
+     "in_whole_company_median": false
+    },
+    {
+     "symbol": "CDNS",
+     "peer": "CDNS",
+     "fwd_pe": 43.3,
+     "fit": {
+      "segment": "Software (EDA)",
+      "revenue_share": 0.1,
+      "why": "segment-only"
+     },
+     "in_whole_company_median": false
+    }
+   ],
+   "peer_count_flag": "3 whole-company peers (VIAV, TER, AME) from the run table; Anritsu and Ralliant are not in this run's table and I found no current dated forward-P/E page for them; Rohde & Schwarz is private; Advantest, FORM, ONTO, KLAC segment-only. No padding.",
+   "own_multiple": 20.8,
+   "exit_k": 0.8,
+   "exit_multiple": 21.1
+  },
+  "revisions": []
+ }
+}

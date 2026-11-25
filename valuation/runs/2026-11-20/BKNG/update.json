@@ -1,0 +1,53 @@
+{
+ "symbol": "BKNG",
+ "update_date": "2026-11-20",
+ "base": "2026-11-16",
+ "mode": "update",
+ "mode_reason": "base 2026-11-16 is a driver model (no full runs: Kilian 2026-11-04)",
+ "trigger": "EPS tie-out (RULES.md 29, Kilian card 2026-11-23 'Possible >3% names now, rest later'): add sourced non-operating lines driver_build.quarters.interest / .other_income",
+ "playbook": "software_internet",
+ "base_fair_value": 170.5842711554278,
+ "base_fair_value_source": "driver model",
+ "filings_since_base": [],
+ "created_utc": "2026-11-23T01:45Z",
+ "changed_inputs": [
+  "Net interest (adjusted), per year",
+  "quarter constant coupon_interest",
+  "quarter constant cash_income",
+  "driver_build.quarters.interest",
+  "driver_build.quarters.other_income",
+  "driver_build.quarters.reported Q1 FY2026",
+  "driver_build.quarters.reported Q2 FY2026",
+  "driver_build.quarters.reported Q3 FY2026",
+  "balance.nonop_excluded"
+ ],
+ "what_changed": "Non-operating lines (RULES.md 29, EPS tie-out; Kilian card 2026-11-23 'Possible >3% names now, rest later'). The quarter EPS charged rate x net debt (5.7% x 4,247 / 4 = -60.5 a quarter) while the filings show interest expense 253 / 300 / 311 and interest and dividend income 187 / 201 / 221 (Q1-Q3 FY2026, XBRL) plus FX gains and equity marks. It now books driver_build.quarters.interest (coupon interest) and .other_income (cash income = yield x average cash, net of the cash-pooling gross-up), each forecast quarter split from the already-gated 'Net interest (adjusted), per year' row by its schedule (coupons by note dates, cash income by the priced ECB path and the cash schedule); quarter sums equal the row: net -101.0 Q4 FY2026, -417.7 / -447.6 / -455.3 FY2027-29. Reported quarters carry the filed gross lines; FX transaction gains (euro-debt remeasurement), FX derivatives and equity marks are named per quarter in balance.nonop_excluded (Booking's adjusted EPS, the Zacks basis, excludes them; Q3 the release takes out FX $127M and equity losses $18M). The P/E and FCF legs already read the per-year net interest row through driver_build.ntm (stated per-share terms), so the research target (12m) is unchanged at 170.58; the quarter EPS moves (Q4 FY2026 by about -0.045). eps_tieout forecast check now OK. No filings or logged news moves since the base round (driver_news.json BKNG: none); other rows unchanged. Base-round lint overrides on unchanged rows (opex drift card, take/sh coincidences) re-logged for this round.",
+ "driver_model": true,
+ "flags": [],
+ "gate_rounds": [
+  {
+   "utc": "2026-11-23T01:48Z",
+   "why": "first round"
+  },
+  {
+   "utc": "2026-11-23T02:00Z",
+   "why": "trigger: gate round 1 fixes to the 'Net interest (adjusted), per year' row (quarter cash-income arithmetic restated as schedule scaled to the row totals, confidence added) and guidance_check adjusted EPS FY2026 (10.27 -> 10.29, also in driver:opex guidance_check); reason: the fixes were made in this thread and a fix may not certify itself, so one independent re-check of these changed rows beats asking Kilian to accept arithmetic he has not seen; the take flight-path trend_only row is left unchanged for a card, not re-checked",
+   "trigger": "gate round 1 fixes to the 'Net interest (adjusted), per year' row (quarter cash-income arithmetic restated as schedule scaled to the row totals, confidence added) and guidance_check adjusted EPS FY2026 (10.27 -> 10.29, also in driver:opex guidance_check)",
+   "reason": "the fixes were made in this thread and a fix may not certify itself, so one independent re-check of these changed rows beats asking Kilian to accept arithmetic he has not seen; the take flight-path trend_only row is left unchanged for a card, not re-checked",
+   "changed": [
+    "model.reconciled_inputs.driver_build",
+    "driver opex (Other operating expense ex marketing, ex impairment and transformation costs, % of revenue (GAAP, incl. SBC and D&A))",
+    "guidance_check adjusted EPS growth FY2026",
+    "judgment_alternatives take",
+    "judgment_alternatives mkt",
+    "judgment_alternatives rn",
+    "judgment_alternatives gbrn",
+    "judgment_alternatives opex",
+    "judgment_alternatives sh",
+    "judgment_alternatives FCF conversion",
+    "judgment_alternatives Leg weights",
+    "inputs_detail row \"Net interest (adjusted), per year\""
+   ]
+  }
+ ]
+}

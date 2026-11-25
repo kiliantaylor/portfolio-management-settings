@@ -1,0 +1,2323 @@
+{
+ "date": "2026-11-03",
+ "symbol": "SNOW",
+ "clean": true,
+ "checked": 185,
+ "ok": 93,
+ "fixed": 92,
+ "method": "split gate (run_digest.py gate) + fix step (gate/brief_fix.md); fix-step pages opened 2026-11-03: Q1 FY27, Q2 FY27, Q4 FY26, Q4 FY25 Ex.99.1, Q2 FY27 10-Q, StockAnalysis SNOW forecast; 10-K figures from the SEC XBRL companyfacts cache built by secfacts.py this run",
+ "failures": [
+  {
+   "item": "balance.net_debt",
+   "origin": "agent_3 model_inputs",
+   "value": "-1,309.2 (pro forma 2026-10-01)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "result": "not_found",
+   "fix": "basis set to estimate in agent_3 and a supervisor inputs_detail row added: 4,329.2 (10-Q 7/31) + ~3,700 net proceeds - 383.5 capped calls - 548.3 repurchase = 7,097.4 less principal 5,788.2 = 1,309.2; sources [6,7,10]; confidence high"
+  },
+  {
+   "item": "product revenue Q1 FY2026: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "955-960 / 996.813",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q2 FY2026: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "1035-1040 / 1090.496",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "years.tax_rate (non-GAAP)",
+   "origin": "agent_1 model_inputs",
+   "value": "0.25",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; derivation now shows the arithmetic from the reconciliation lines (Q2: GAAP provision 3.430 + tax effect 75.005 = 78.435 / non-GAAP pre-tax 313.743 = 25.0%; Q1: 49.332 / 197.327 = 25.0%), opened 2026-11-03; kind company_adjusted (implied), confidence high"
+  },
+  {
+   "item": "product revenue Q3 FY2026: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "1125-1130 / 1158.377",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2026: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.1083",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "constants.ps_gm (non-GAAP PS gross margin)",
+   "origin": "agent_1 model_inputs",
+   "value": "-0.08",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "result": "wrong",
+   "fix": "value -0.08 kept; source corrected to Q1 FY27 Ex.99.1 (non-GAAP PS GM (8%)) and Q2 FY27 Ex.99.1 ((8%) Q2, (8.882)/111.554 six months); Q4 FY26 shows (1%) Q4 / 0% FY26 and is now cited only for that; opened 2026-11-03"
+  },
+  {
+   "item": "non-GAAP operating margin FY2025: first guide (2024-02-28) / reported actual",
+   "origin": "agent_2 guidance",
+   "value": "0.03-0.03 / 0.06",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "result": "wrong",
+   "fix": "agent_2 FY25 first margin guide corrected 0.03 -> 0.06 and actual 0.06 -> 0.064 (Q4 FY24 Ex.99.1); median and adjusted guide recomputed"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2025: first guide (None) / reported actual",
+   "origin": "agent_1",
+   "value": "None-None / 0.0504",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000122/fy2025q1earnings.htm",
+   "result": "wrong",
+   "fix": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2025: first guide (None) / reported actual",
+   "origin": "agent_1",
+   "value": "None-None / 0.0625",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000203/fy2025q2earnings.htm",
+   "result": "wrong",
+   "fix": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2025: first guide (None) / reported actual",
+   "origin": "agent_1",
+   "value": "None-None / 0.0941",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000242/fy2025q3earnings.htm",
+   "result": "wrong",
+   "fix": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2026: first guide (None) / reported actual",
+   "origin": "agent_1",
+   "value": "None-None / 0.088",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "result": "wrong",
+   "fix": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2026: first guide (None) / reported actual",
+   "origin": "agent_1",
+   "value": "None-None / 0.1114",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000094/fy2026q1earnings.htm",
+   "result": "wrong",
+   "fix": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2026: first guide (None) / reported actual",
+   "origin": "agent_1",
+   "value": "None-None / 0.1083",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000177/fy2026q2earnings.htm",
+   "result": "wrong",
+   "fix": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2026: first guide (None) / reported actual",
+   "origin": "agent_1",
+   "value": "None-None / 0.1084",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000207/fy2026q3earnings.htm",
+   "result": "wrong",
+   "fix": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "origin": "agent_1",
+   "value": "6105",
+   "cited": "https://stockanalysis.com/stocks/snow/forecast/",
+   "result": "not_found",
+   "fix": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "origin": "agent_2",
+   "value": "6100",
+   "cited": "https://stockanalysis.com/stocks/snow/forecast/",
+   "result": "not_found",
+   "fix": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "origin": "agent_3",
+   "value": "6100",
+   "cited": "https://stockanalysis.com/stocks/snow/forecast/",
+   "result": "not_found",
+   "fix": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "Street NTM non-GAAP EPS",
+   "origin": "agent_5",
+   "value": "2.83",
+   "cited": "https://stockanalysis.com/stocks/snow/forecast/",
+   "result": "mislabelled",
+   "fix": "labelled estimate: 0.25 x 2.22 (EPS This Year) + 0.75 x 3.03 (EPS Next Year) = 2.83; StockAnalysis SNOW summary box shows both, non-GAAP (opened 2026-11-03); confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 consensus as of 2026-09-14",
+   "origin": "agent_1",
+   "value": "0.145",
+   "cited": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "result": "mixed_basis",
+   "fix": "kept as aggregator estimate with basis note: MarketScreener EBIT 918.1 / 6,315 = 14.54%; non-GAAP basis inferred because its FY26 EBIT 489.7 equals company non-GAAP operating income (Q4 FY26 Ex.99.1); confidence medium"
+  },
+  {
+   "item": "product revenue Q3 FY2027 consensus as of 2026-09-14",
+   "origin": "agent_2",
+   "value": "1598",
+   "cited": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "result": "not_found",
+   "fix": "consensus field removed; kept as a derived estimate in a note (MarketScreener total revenue 1,654 less PS ~56; EBIT 258.1 / 1,654 = 15.6%), confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2027 consensus as of 2026-09-14",
+   "origin": "agent_2",
+   "value": "0.156",
+   "cited": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "result": "mislabelled",
+   "fix": "consensus field removed; kept as a derived estimate in a note (MarketScreener total revenue 1,654 less PS ~56; EBIT 258.1 / 1,654 = 15.6%), confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 consensus as of 2026-09-14",
+   "origin": "agent_2",
+   "value": "0.1454",
+   "cited": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "result": "mixed_basis",
+   "fix": "kept as aggregator estimate with basis note: MarketScreener EBIT 918.1 / 6,315 = 14.54%; non-GAAP basis inferred because its FY26 EBIT 489.7 equals company non-GAAP operating income (Q4 FY26 Ex.99.1); confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (MDB)",
+   "origin": "agent_2 comps",
+   "value": "44.75 / None / revenue +19% (NTM consensus)",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "wrong",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (MDB)",
+   "origin": "agent_4 comps",
+   "value": "44.7 / None / revenue +19.1% (FY28)",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "wrong",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (MDB)",
+   "origin": "agent_5 comps",
+   "value": "245.8 / None / revenue +18.8% (3.03B -> 3.60B); non-GAAP EPS +20.0%",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "mixed_basis",
+   "fix": "agent_5 fwd_pe relabelled as the GAAP NTM P/E from peers.md (fact id added; matches the table), growth labelled non-GAAP StockAnalysis; the supervisor median uses non-GAAP P/E only, so these do not feed the target"
+  },
+  {
+   "item": "product revenue Q1 FY2027: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "1262-1267 / 1334.329",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2027: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.1192",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2026: first guide (2025-02-26) / reported actual",
+   "origin": "supervisor guidance",
+   "value": "4280-4280 / 4472.3",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin FY2026: first guide (2025-02-26) / reported actual",
+   "origin": "supervisor guidance",
+   "value": "0.08-0.08 / 0.105",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP adjusted FCF margin FY2027 guide as of 2026-09-02",
+   "origin": "supervisor guidance",
+   "value": "0.23-0.23",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "constants.ps_gm (non-GAAP PS gross margin)",
+   "origin": "supervisor model",
+   "value": "-0.08",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "not_found",
+   "fix": "value -0.08 kept; source corrected to Q1 FY27 Ex.99.1 (non-GAAP PS GM (8%)) and Q2 FY27 Ex.99.1 ((8%) Q2, (8.882)/111.554 six months); Q4 FY26 shows (1%) Q4 / 0% FY26 and is now cited only for that; opened 2026-11-03"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DDOG)",
+   "origin": "agent_2 comps",
+   "value": "75.5 / None / revenue +23% (NTM consensus)",
+   "cited": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "result": "wrong",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DDOG)",
+   "origin": "agent_4 comps",
+   "value": "75.5 / None / revenue +22.7% (CY27)",
+   "cited": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "result": "wrong",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DDOG)",
+   "origin": "agent_5 comps",
+   "value": "232.4 / None / revenue +22.8% (4.47B -> 5.49B); non-GAAP EPS +17.8%",
+   "cited": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "result": "mixed_basis",
+   "fix": "agent_5 fwd_pe relabelled as the GAAP NTM P/E from peers.md (fact id added; matches the table), growth labelled non-GAAP StockAnalysis; the supervisor median uses non-GAAP P/E only, so these do not feed the target"
+  },
+  {
+   "item": "product revenue Q4 FY2026: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "1195-1200 / 1226.631",
+   "cited": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2026: first guide / reported actual",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.1084",
+   "cited": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (NET)",
+   "origin": "agent_2 comps",
+   "value": "171.9 / None / revenue +29% (NTM consensus)",
+   "cited": "https://stockanalysis.com/stocks/net/forecast/",
+   "result": "wrong",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (NET)",
+   "origin": "agent_4 comps",
+   "value": "171.9 / None / revenue +28.8% (CY27)",
+   "cited": "https://stockanalysis.com/stocks/net/forecast/",
+   "result": "wrong",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (NET)",
+   "origin": "agent_5 comps",
+   "value": "1286.7 / None / revenue +28.9% (2.87B -> 3.70B); non-GAAP EPS +33%",
+   "cited": "https://stockanalysis.com/stocks/net/forecast/",
+   "result": "mixed_basis",
+   "fix": "agent_5 fwd_pe relabelled as the GAAP NTM P/E from peers.md (fact id added; matches the table), growth labelled non-GAAP StockAnalysis; the supervisor median uses non-GAAP P/E only, so these do not feed the target"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DT)",
+   "origin": "agent_2 comps",
+   "value": "23.15 / None / revenue +17% (NTM consensus)",
+   "cited": "https://stockanalysis.com/stocks/dt/forecast/",
+   "result": "wrong",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (ESTC)",
+   "origin": "agent_2 comps",
+   "value": "25.17 / None / revenue +15% (NTM consensus)",
+   "cited": "https://stockanalysis.com/stocks/estc/forecast/",
+   "result": "not_found",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (TDC)",
+   "origin": "agent_2 comps",
+   "value": "17.5 / None / revenue +3% (YTD reported, used as NTM proxy)",
+   "cited": "https://www.sec.gov/Archives/edgar/data/816761/000162828026053103/tdc-20260630.htm",
+   "result": "not_found",
+   "fix": "fwd P/E 17.5 cited to peers.md TDC.pe_ntm (GAAP, Zacks); growth +3% matches the 10-Q; TDC excluded from the median"
+  },
+  {
+   "item": "non-GAAP adjusted FCF margin FY2025: first guide / reported actual",
+   "origin": "agent_3 guidance",
+   "value": "None-None / 0.26",
+   "cited": "",
+   "result": "not_found",
+   "fix": "source ids added: FY25 adjusted FCF 941.5 = 26% (Q4 FY25 Ex.99.1), FY26 1,192.7 = 25% (Q4 FY26 Ex.99.1), both opened 2026-11-03"
+  },
+  {
+   "item": "non-GAAP adjusted FCF margin FY2026: first guide / reported actual",
+   "origin": "agent_3 guidance",
+   "value": "None-None / 0.2546",
+   "cited": "",
+   "result": "not_found",
+   "fix": "source ids added: FY25 adjusted FCF 941.5 = 26% (Q4 FY25 Ex.99.1), FY26 1,192.7 = 25% (Q4 FY26 Ex.99.1), both opened 2026-11-03"
+  },
+  {
+   "item": "product revenue Q1 FY2025",
+   "origin": "supervisor guidance",
+   "value": "745-750 / 789.587",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q2 FY2025",
+   "origin": "supervisor guidance",
+   "value": "805-810 / 829.25",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q3 FY2025",
+   "origin": "supervisor guidance",
+   "value": "850-855 / 900.282",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q4 FY2025",
+   "origin": "supervisor guidance",
+   "value": "906-911 / 943.303",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2025",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.0437",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2025",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.0504",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2025",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.0625",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2025",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.0941",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2025: first guide (2024-02-28) / reported actual",
+   "origin": "supervisor guidance",
+   "value": "3250-3250 / 3462.4",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "origin": "supervisor guidance",
+   "value": "6105",
+   "cited": "",
+   "result": "not_found",
+   "fix": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin FY2025: first guide (2024-02-28) / reported actual",
+   "origin": "supervisor guidance",
+   "value": "0.06-0.06 / 0.064",
+   "cited": "",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 consensus as of 2026-09-14",
+   "origin": "supervisor guidance",
+   "value": "0.145",
+   "cited": "",
+   "result": "not_found",
+   "fix": "kept as aggregator estimate with basis note: MarketScreener EBIT 918.1 / 6,315 = 14.54%; non-GAAP basis inferred because its FY26 EBIT 489.7 equals company non-GAAP operating income (Q4 FY26 Ex.99.1); confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (ESTC)",
+   "origin": "agent_4 comps",
+   "value": "None / None / EPS +40% (Zacks basis)",
+   "cited": "https://api.nasdaq.com/api/analyst/ESTC/earnings-forecast",
+   "result": "not_found",
+   "fix": "cited to peers.md ESTC.eps_growth_fwd (+40.4%, Zacks GAAP basis) and labelled as that basis; not in the non-GAAP median"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DT)",
+   "origin": "agent_4 comps",
+   "value": "22.9 / None / EPS +28.7% (Zacks basis)",
+   "cited": "https://api.nasdaq.com/api/analyst/ESTC/earnings-forecast",
+   "result": "not_found",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "product revenue Q3 FY2027 guide as of 2026-09-02",
+   "origin": "supervisor guidance",
+   "value": "1588-1593",
+   "cited": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2027 guide as of 2026-09-02",
+   "origin": "supervisor guidance",
+   "value": "0.155-0.155",
+   "cited": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2027 guide as of 2026-09-02",
+   "origin": "supervisor guidance",
+   "value": "6070-6070",
+   "cited": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 guide as of 2026-09-02",
+   "origin": "supervisor guidance",
+   "value": "0.145-0.145",
+   "cited": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "years.tax_rate anchor (company_adjusted, as of 2026-07-31): non-GAAP tax effect / non-GAAP pre-tax income, Q1 and Q2 FY27 both 25.0%",
+   "origin": "supervisor model normalizing (tax_rate) anchor",
+   "value": "0.25",
+   "cited": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; derivation now shows the arithmetic from the reconciliation lines (Q2: GAAP provision 3.430 + tax effect 75.005 = 78.435 / non-GAAP pre-tax 313.743 = 25.0%; Q1: 49.332 / 197.327 = 25.0%), opened 2026-11-03; kind company_adjusted (implied), confidence high"
+  },
+  {
+   "item": "shares.diluted_now anchor (company_stated, as of 2026-09-02): Q3 FY27 guide",
+   "origin": "supervisor model normalizing (shares) anchor",
+   "value": "382.0",
+   "cited": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; Q2 FY27 Ex.99.1 shows the Q3 FY27 guide of 382M non-GAAP diluted shares (verified ok in agent_1 EV/sales row)"
+  },
+  {
+   "item": "shares.diluted_now",
+   "origin": "supervisor model",
+   "value": "382.0",
+   "cited": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; Q2 FY27 Ex.99.1 shows the Q3 FY27 guide of 382M non-GAAP diluted shares (verified ok in agent_1 EV/sales row)"
+  },
+  {
+   "item": "product revenue Q2 FY2027: first guide (None) / reported actual",
+   "origin": "supervisor guidance",
+   "value": "1415-1420 / 1491.861",
+   "cited": "https://www.marketbeat.com/instant-alerts/dynatrace-nysedt-releases-fy-2027-earnings-guidance-2026-08-05/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2027: first guide (None) / reported actual",
+   "origin": "supervisor guidance",
+   "value": "None-None / 0.1532",
+   "cited": "https://www.marketbeat.com/instant-alerts/dynatrace-nysedt-releases-fy-2027-earnings-guidance-2026-08-05/",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "MDB FY28 consensus EPS used for the P/E median (MDB is the median)",
+   "origin": "supervisor disagreements / comps_review",
+   "value": "7.85",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "result": "not_found",
+   "fix": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "peer median EV/NTM sales 7.14x (MDB DDOG NET DT ESTC)",
+   "origin": "supervisor comps_review",
+   "value": "7.14",
+   "cited": "https://stockanalysis.com/stocks/mdb/forecast/; peers.md",
+   "result": "mixed_basis",
+   "fix": "median is MDB 7.14x whatever basis the other rows use (DDOG 15.18x and NET 27.5x above even if EV is lower than market cap; DT 4.78x and ESTC 4.24x below); MDB row is EV (filings) / NTM consensus revenue 3.03B/3.60B shown on StockAnalysis MDB; labelled estimate, confidence medium"
+  },
+  {
+   "item": "SNOW Street NTM revenue (0.25 x FY27 6,320 + 0.75 x FY28 8,130)",
+   "origin": "supervisor comps_review / A24",
+   "value": "7,678",
+   "cited": "https://stockanalysis.com/stocks/snow/forecast/",
+   "result": "not_found",
+   "fix": "StockAnalysis SNOW summary box shows Revenue Next Year 8.13B (FY28) and This Year 6.32B (opened 2026-11-03): 0.25 x 6,320 + 0.75 x 8,130 = 7,677.5; labelled estimate, confidence medium"
+  },
+  {
+   "item": "SNOW Street NTM non-GAAP EPS (0.25 x 2.22 + 0.75 x 3.03)",
+   "origin": "supervisor comps_review / A23",
+   "value": "2.83",
+   "cited": "https://stockanalysis.com/stocks/snow/forecast/",
+   "result": "not_found",
+   "fix": "labelled estimate: 0.25 x 2.22 (EPS This Year) + 0.75 x 3.03 (EPS Next Year) = 2.83; StockAnalysis SNOW summary box shows both, non-GAAP (opened 2026-11-03); confidence medium"
+  },
+  {
+   "item": "non-GAAP tax rate (company_adjusted)",
+   "origin": "supervisor model inputs_detail / A16",
+   "value": "25%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "result": "not_found",
+   "fix": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; derivation now shows the arithmetic from the reconciliation lines (Q2: GAAP provision 3.430 + tax effect 75.005 = 78.435 / non-GAAP pre-tax 313.743 = 25.0%; Q1: 49.332 / 197.327 = 25.0%), opened 2026-11-03; kind company_adjusted (implied), confidence high"
+  },
+  {
+   "item": "horizon_multiples[EV/sales]",
+   "origin": "supervisor model",
+   "value": "12.62",
+   "cited": "",
+   "result": "mislabelled",
+   "fix": "confidence medium added; inputs and their sources listed in the derivation"
+  },
+  {
+   "item": "horizon_multiples[P/E]",
+   "origin": "supervisor model",
+   "value": "93.8",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "row value corrected 93.8 -> 88.3 = 44.75 x (104.6/44.75)^0.8, the figure horizon_multiples and the engine already use; confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY27: adjusted / gap",
+   "origin": "supervisor guidance",
+   "value": "0.185 / 0.013",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "margin record stated in points: adjusted 0.155 + 0.030 = 0.185 (additive, labelled); gap_to_mid_pct corrected to 0.168/0.155-1 = +0.0839 (gap_pt 0.013)"
+  },
+  {
+   "item": "non-GAAP operating margin FY27: per-year ratios, median, adjusted, gap",
+   "origin": "supervisor guidance",
+   "value": "0.065/0.3075, 0.1862, 0.1483, 0.0085",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed: 0.064/0.06-1 = 0.0667, 0.105/0.08-1 = 0.3125, median 0.1896, adjusted 0.145 x 1.1896 = 0.1725, gap 0.1535/0.145-1 = +0.0586; why text updated (ours is below the record-adjusted guide)"
+  },
+  {
+   "item": "non-GAAP operating margin FY27 (same figures)",
+   "origin": "agent_1 guidance",
+   "value": "0.1862 / 0.1483 / 0.0085",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed: 0.064/0.06-1 = 0.0667, 0.105/0.08-1 = 0.3125, median 0.1896, adjusted 0.145 x 1.1896 = 0.1725, gap 0.1535/0.145-1 = +0.0586; why text updated (ours is below the record-adjusted guide)"
+  },
+  {
+   "item": "non-GAAP operating margin FY27 adjusted / gap",
+   "origin": "agent_2 guidance",
+   "value": "0.17 / 0.0593",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_2 FY25 guide fixed to 0.06: ratios 0.0667 / 0.3075, median 0.1871, adjusted 0.1721"
+  },
+  {
+   "item": "product revenue FY27 adjusted",
+   "origin": "supervisor guidance",
+   "value": "5,971.3",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed per the rule: 6,070 x (1 + median) = 6,404.5 (agent_2 6,405.1); why text: ours 6,136.3 is 4.2% below the record-adjusted guide"
+  },
+  {
+   "item": "product revenue FY27 adjusted",
+   "origin": "agent_1 guidance",
+   "value": "5,971.3",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed per the rule: 6,070 x (1 + median) = 6,404.5 (agent_2 6,405.1); why text: ours 6,136.3 is 4.2% below the record-adjusted guide"
+  },
+  {
+   "item": "product revenue FY27 adjusted",
+   "origin": "agent_2 guidance",
+   "value": "5,972.2",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "recomputed per the rule: 6,070 x (1 + median) = 6,404.5 (agent_2 6,405.1); why text: ours 6,136.3 is 4.2% below the record-adjusted guide"
+  },
+  {
+   "item": "years.sbc_pct_rev dollar path FY27-30",
+   "origin": "supervisor model",
+   "value": "1,820 / 1,963 / 2,129 / 2,295 at '+3-6% a year'",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "text corrected to dollars +6.4/+7.9/+8.5/+7.8% a year (supervisor and agents); ratios unchanged"
+  },
+  {
+   "item": "Street NTM revenue in own EV/sales",
+   "origin": "agent_1 EV/sales",
+   "value": "7,678 (shown as 3/12 x 6,320 + 9/12 x 8,100 = 7,655)",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_1 formula corrected to 3/12 x 6,320 + 9/12 x 8,130 = 7,678 (StockAnalysis Revenue Next Year 8.13B)"
+  },
+  {
+   "item": "scenarios.downside.multiple",
+   "origin": "agent_1 model_inputs",
+   "value": "12.62 - 5.5 = 7.07x",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "corrected to 12.62 - 5.5 = 7.12x"
+  },
+  {
+   "item": "years.da_pct_rev",
+   "origin": "agent_3 model_inputs",
+   "value": "0.045",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_3 inputs_detail value restated to the value its own set uses and its derivation gives (D&A 0.024, capex 0.015, returns 600/700/700/700); view unchanged"
+  },
+  {
+   "item": "years.capex_pct_rev",
+   "origin": "agent_3 model_inputs",
+   "value": "0.02",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_3 inputs_detail value restated to the value its own set uses and its derivation gives (D&A 0.024, capex 0.015, returns 600/700/700/700); view unchanged"
+  },
+  {
+   "item": "years.shareholder_returns",
+   "origin": "agent_3 model_inputs",
+   "value": "800 / 900 / 1,000 / 1,000",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_3 inputs_detail value restated to the value its own set uses and its derivation gives (D&A 0.024, capex 0.015, returns 600/700/700/700); view unchanged"
+  },
+  {
+   "item": "scenarios EV/sales -4.5x / +4.0x -> 6.5x / 15.0x",
+   "origin": "agent_3 model_inputs",
+   "value": "6.5 / 15.0",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "agent_3 text corrected to 12.62 - 4.5 = 8.12x and 12.62 + 4.0 = 16.62x"
+  },
+  {
+   "item": "years.da_pct_rev",
+   "origin": "supervisor model normalizing (da_pct_rev)",
+   "value": "0.025 vs anchor 0.047",
+   "cited": "https://stockanalysis.com/stocks/estc/forecast/",
+   "result": "unsupported",
+   "fix": "anchor replaced by FY26 depreciation ex acquired-intangible amortization 110.3 / 4,683.9 = 2.35% (10-K: D&A 220.4 F36 = depreciation 110.3 + amortization 110.1; TTM 2.06% via F39/F6 and Q2 FY27 Ex.99.1); value 0.025 within tolerance; norm_check ok"
+  },
+  {
+   "item": "years.capex_pct_rev",
+   "origin": "supervisor model normalizing (capex_pct_rev)",
+   "value": "0.015 vs anchor 0.022",
+   "cited": "https://stockanalysis.com/stocks/estc/forecast/, file:///mnt/project-files/wrds/results/blend_weights/README.md",
+   "result": "unsupported",
+   "fix": "anchor replaced by FY24-FY26 reported average 183.0 / 11,116.8 = 1.65% (F55-F57 / F1-F3; FY26 2.17%, TTM 1.07% F60/F6; no capitalized software in FY26); value 0.015 within tolerance; norm_check ok"
+  },
+  {
+   "item": "years.nwc_pct_incr_rev",
+   "origin": "supervisor model normalizing (nwc_pct_incr_rev)",
+   "value": "-0.3 vs anchor -0.41",
+   "cited": "https://stockanalysis.com/stocks/estc/forecast/",
+   "result": "unsupported",
+   "fix": "anchor replaced by the company-stated FY27 adjusted FCF margin guide 23.0% (Q1/Q2 FY27 Ex.99.1) solved on the set FY27 lines: -0.279; reported FY26 FCF 1,120.3 (F50-F57) cross-check; value -0.30 within tolerance; norm_check ok"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "peer GAAP P/E NTM",
+   "value": "MDB 245.8x, DDOG 232.4x, ESTC 109.9x, TDC 17.5x, NET 1286.7x, DT 38.2x",
+   "basis": "estimate",
+   "source_url": null,
+   "checked": "2026-11-03",
+   "feeds": "agent_1 P/E"
+  },
+  {
+   "item": "MDB fwd P/E / fwd EV/EBITDA / growth",
+   "value": "245.8 / None / EPS +92.4% (Zacks GAAP, peers.md); revenue YTD y/y +28.0% (filings)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/MDB/earnings-forecast; snapshot data/estimates/MDB.json retrieved 2026-11-03T16:39:27Z",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "DDOG fwd P/E / fwd EV/EBITDA / growth",
+   "value": "232.4 / None / EPS +50.0% (Zacks GAAP, peers.md); revenue YTD y/y +34.0% (filings)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/DDOG/earnings-forecast; snapshot data/estimates/DDOG.json retrieved 2026-11-03T16:39:31Z",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "NET fwd P/E / fwd EV/EBITDA / growth",
+   "value": "1286.7 / None / EPS +125.2% (Zacks GAAP, peers.md); revenue YTD y/y +34.7% (filings)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/NET/earnings-forecast; snapshot data/estimates/NET.json retrieved 2026-11-03T16:39:36Z",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "ESTC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "109.9 / None / EPS +40.4% (Zacks GAAP, peers.md); revenue YTD y/y +15.1% (filings)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/ESTC/earnings-forecast; snapshot data/estimates/ESTC.json retrieved 2026-11-03T16:39:38Z",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "DT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "38.2 / None / EPS +28.7% (Zacks GAAP, peers.md); revenue YTD y/y +16.8% (filings)",
+   "basis": "estimate",
+   "source_url": "Nasdaq.com analyst earnings forecast (Zacks consensus EPS), https://api.nasdaq.com/api/analyst/DT/earnings-forecast; snapshot data/estimates/DT.json retrieved 2026-11-03T16:39:43Z",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 comps"
+  },
+  {
+   "item": "ESTC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "109.9 / None / EPS +40.4% (peers.md, thin out-year estimates)",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ESTC",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "TDC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "17.5 / None / EPS +8.5% (peers.md)",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TDC",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "DT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "38.2 / None / EPS +28.7% (peers.md)",
+   "basis": "estimate",
+   "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/DT",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 comps"
+  },
+  {
+   "item": "shares.diluted_now (non-GAAP diluted)",
+   "value": "382.0",
+   "basis": "company_stated",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 EV/sales"
+  },
+  {
+   "item": "product revenue Q3 FY2027 guide as of 2026-09-02 (product revenue (GAAP))",
+   "value": "1588-1593",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "product revenue FY2027 guide as of 2026-09-02 (GAAP product revenue)",
+   "value": "6070-6070",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 guide as of 2026-09-02 (non-GAAP)",
+   "value": "0.145-0.145",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2027 guide as of 2026-09-02",
+   "value": "0.155-0.155",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2026: first guide / reported actual",
+   "value": "None-None / 0.088",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2026: first guide / reported actual",
+   "value": "None-None / 0.1114",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "MDB fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +30.5% (latest quarter y/y, filings)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001441816.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "DDOG fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +35.6% (latest quarter y/y, filings)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001561550.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "ESTC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +15.1% (latest quarter y/y, filings)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001707753.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "TDC fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +0.5% (latest quarter y/y, filings)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000816761.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "NET fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +35.9% (latest quarter y/y, filings)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001477333.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "DT fwd P/E / fwd EV/EBITDA / growth",
+   "value": "None / None / revenue +17.4% (latest quarter y/y, filings)",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001773383.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 comps"
+  },
+  {
+   "item": "product revenue Q2 FY2027: first guide / reported actual",
+   "value": "1415-1420 / 1491.861",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2027: first guide / reported actual",
+   "value": "None-None / 0.1532",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2027: first guide / reported actual",
+   "value": "0.125-0.125 / 0.1532",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 guidance"
+  },
+  {
+   "item": "product revenue Q1 FY2027: first guide / reported actual",
+   "value": "1262-1267 / 1334.329",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2027: first guide / reported actual",
+   "value": "None-None / 0.1192",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2027: first guide / reported actual",
+   "value": "0.09-0.09 / 0.1192",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 guidance"
+  },
+  {
+   "item": "product revenue FY2027 (in progress): first guide (2026-02-25)",
+   "value": "5660-5660 / None",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 guidance"
+  },
+  {
+   "item": "non-GAAP adjusted free cash flow margin FY2027 guide as of 2026-02-25",
+   "value": "0.23-0.23",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 guidance"
+  },
+  {
+   "item": "product revenue Q1 FY2025: first guide / reported actual",
+   "value": "745-750 / 789.587",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2025: first guide / reported actual",
+   "value": "None-None / 0.0437",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "product revenue FY2025: first guide (2024-02-28) / reported actual",
+   "value": "3250-3250 / 3462.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin FY2025: first guide (2024-02-28) / reported actual",
+   "value": "0.06-0.06 / 0.064",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance"
+  },
+  {
+   "item": "product revenue FY2025: first guide (2024-02-28) / reported actual",
+   "value": "3250-3250 / 3462.5",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 guidance"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2025: first guide / reported actual",
+   "value": "0.03-0.03 / 0.0437",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 guidance"
+  },
+  {
+   "item": "product revenue Q2 FY2025: first guide (None) / reported actual",
+   "value": "805-810 / 829.25",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000122/fy2025q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2025: first guide (None) / reported actual",
+   "value": "0.03-0.03 / 0.0504",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000122/fy2025q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3"
+  },
+  {
+   "item": "product revenue Q3 FY2025: first guide (None) / reported actual",
+   "value": "850-855 / 900.282",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000203/fy2025q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2025: first guide (None) / reported actual",
+   "value": "0.03-0.03 / 0.0625",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000203/fy2025q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3"
+  },
+  {
+   "item": "product revenue Q4 FY2025: first guide (None) / reported actual",
+   "value": "906-911 / 943.303",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000242/fy2025q3earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2025: first guide (None) / reported actual",
+   "value": "0.04-0.04 / 0.0941",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000242/fy2025q3earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3"
+  },
+  {
+   "item": "product revenue Q1 FY2026: first guide (None) / reported actual",
+   "value": "955-960 / 996.813",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2026: first guide (None) / reported actual",
+   "value": "0.05-0.05 / 0.088",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3"
+  },
+  {
+   "item": "product revenue Q2 FY2026: first guide (None) / reported actual",
+   "value": "1035-1040 / 1090.496",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000094/fy2026q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2026: first guide (None) / reported actual",
+   "value": "0.08-0.08 / 0.1114",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000094/fy2026q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3"
+  },
+  {
+   "item": "product revenue Q3 FY2026: first guide (None) / reported actual",
+   "value": "1125-1130 / 1158.377",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000177/fy2026q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2026: first guide (None) / reported actual",
+   "value": "0.09-0.09 / 0.1083",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000177/fy2026q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3"
+  },
+  {
+   "item": "product revenue Q4 FY2026: first guide (None) / reported actual",
+   "value": "1195-1200 / 1226.631",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000207/fy2026q3earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2026: first guide (None) / reported actual",
+   "value": "0.07-0.07 / 0.1084",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000207/fy2026q3earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3"
+  },
+  {
+   "item": "product revenue FY2026: first guide (2025-02-26) / reported actual",
+   "value": "4280-4280 / 4472.3",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin FY2026: first guide (2025-02-26) / reported actual",
+   "value": "0.08-0.08 / 0.105",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "non-GAAP operating margin FY2026: first guide (2025-02-26) / reported actual",
+   "value": "0.08-0.08 / 0.1046",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_2"
+  },
+  {
+   "item": "SBC last fiscal year ($M)",
+   "value": "1599.5",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000008/snow-20260131.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1"
+  },
+  {
+   "item": "SBC last fiscal year ($M)",
+   "value": "1599.5",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001640147.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 sbc"
+  },
+  {
+   "item": "SBC last fiscal year ($M)",
+   "value": "1599.5",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001640147.json",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 sbc"
+  },
+  {
+   "item": "product revenue FY2024: first guide (2023-03-01) / reported actual",
+   "value": "2705-2705 / 2666.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014723000004/fy2023q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 guidance"
+  },
+  {
+   "item": "2026-10-01 notes: $2.0B 2029 + $1.75B 2031, net ~3.70B",
+   "value": "3,750 principal / 3,700 net",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000043/exhibit992-pricingpressrel.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "capped calls cost",
+   "value": "383.5",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000043/exhibit992-pricingpressrel.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "2027-note repurchase",
+   "value": "548.3 for 261.8 principal",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000043/exhibit992-pricingpressrel.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "option exercise not confirmed",
+   "value": "n/a",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000043/exhibit992-pricingpressrel.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "cash + investments 2026-07-31 (LT investments 1,984.5)",
+   "value": "4,329.2",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "ESTC FY27 (Apr-27) non-GAAP EPS, 27 analysts, updated 2026-10-23",
+   "value": "3.36",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/estc/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "peer median non-GAAP NTM P/E 44.75x",
+   "value": "44.75",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/estc/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "EV at 180 = 180 x 382 - 1,309; 8.8x Street NTM 7,678",
+   "value": "67.5B / 8.8x",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor thesis_break_reason"
+  },
+  {
+   "item": "NRR base (Q2 FY27 reported)",
+   "value": "126%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor key_drivers / A2"
+  },
+  {
+   "item": "FY27 non-GAAP product GM guide",
+   "value": "74.0%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor key_drivers / A4"
+  },
+  {
+   "item": "Q3 FY27 guide: product 1,588-1,593, op margin 15.5%, diluted 382M",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "FY27 guide: product 6,070, op margin 14.5%, adj FCF 23%",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Q2 FY27 product revenue / revenue",
+   "value": "1,491.861 / 1,546.793",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Q2 FY27 SBC-related charges",
+   "value": "456.363",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Q2 FY27 non-GAAP diluted shares",
+   "value": "377.878M",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Q2 FY27 acquired-intangible amortization",
+   "value": "42.2",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Q2 FY27 interest income; cash+inv 2026-01-31 4,784.7",
+   "value": "41.996 / 4,784.7",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "CoCo 9,100 accounts, +2,000 in Q2; CFO third consecutive quarter of acceleration",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "new notes convert ~$500/$484, cap $820.30",
+   "value": "500.38 / 483.98 / 820.30",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000043/exhibit992-pricingpressrel.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor sizing / long_dated_review"
+  },
+  {
+   "item": "net debt -2,029.2 -> -1,309.2",
+   "value": "-1,309.2",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000043/exhibit992-pricingpressrel.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "product revenue Q3 FY27 adjusted / gap",
+   "value": "1,663.7 / +0.0171",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "shares.annual_change",
+   "value": "0.015",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "balance.interest_rate",
+   "value": "0.037",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "years.da_pct_rev / capex / nwc / buybacks",
+   "value": "0.025 / 0.015 / -0.30 / 600-650",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "model.reconciled_inputs.inputs_detail drivers, net cash, NTM sums",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "owner earnings value_per_share",
+   "value": "111.2",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 other"
+  },
+  {
+   "item": "exit P/E",
+   "value": "88.2",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 P/E"
+  },
+  {
+   "item": "horizon NTM revenue / op income / SBC",
+   "value": "9,795 / 1,851 / 2,106",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 EV/sales / P/E / other"
+  },
+  {
+   "item": "custom SBC-burdened value",
+   "value": "98.7",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 model_inputs"
+  },
+  {
+   "item": "net cash at horizon / shares",
+   "value": "2,476 / 388.7",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 EV/sales"
+  },
+  {
+   "item": "balance.interest_rate",
+   "value": "0.039",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 model_inputs"
+  },
+  {
+   "item": "exit P/E 93.6x",
+   "value": "93.6",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 P/E"
+  },
+  {
+   "item": "balance.net_debt",
+   "value": "-1,309.2",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 / agent_5 model_inputs"
+  },
+  {
+   "item": "exit EV/sales 12.1x; exit P/E 98.0x",
+   "value": "12.1 / 98.0",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 EV/sales / P/E"
+  },
+  {
+   "item": "horizon_multiples P/E 93.8x",
+   "value": "93.8",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 model_inputs"
+  },
+  {
+   "item": "owner earnings / custom value",
+   "value": "2,364 / 131",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 other / model_inputs"
+  },
+  {
+   "item": "balance.net_debt",
+   "value": "-1,309.2 (pro forma 2026-10-01)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 model_inputs",
+   "fixed": "basis set to estimate in agent_3 and a supervisor inputs_detail row added: 4,329.2 (10-Q 7/31) + ~3,700 net proceeds - 383.5 capped calls - 548.3 repurchase = 7,097.4 less principal 5,788.2 = 1,309.2; sources [6,7,10]; confidence high"
+  },
+  {
+   "item": "product revenue Q1 FY2026: first guide / reported actual",
+   "value": "955-960 / 996.813",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q2 FY2026: first guide / reported actual",
+   "value": "1035-1040 / 1090.496",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "years.tax_rate (non-GAAP)",
+   "value": "0.25",
+   "basis": "company_adjusted",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 model_inputs",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; derivation now shows the arithmetic from the reconciliation lines (Q2: GAAP provision 3.430 + tax effect 75.005 = 78.435 / non-GAAP pre-tax 313.743 = 25.0%; Q1: 49.332 / 197.327 = 25.0%), opened 2026-11-03; kind company_adjusted (implied), confidence high"
+  },
+  {
+   "item": "product revenue Q3 FY2026: first guide / reported actual",
+   "value": "1125-1130 / 1158.377",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2026: first guide / reported actual",
+   "value": "None-None / 0.1083",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "constants.ps_gm (non-GAAP PS gross margin)",
+   "value": "-0.08",
+   "basis": "company_adjusted",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026011631/fy2026q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 model_inputs",
+   "fixed": "value -0.08 kept; source corrected to Q1 FY27 Ex.99.1 (non-GAAP PS GM (8%)) and Q2 FY27 Ex.99.1 ((8%) Q2, (8.882)/111.554 six months); Q4 FY26 shows (1%) Q4 / 0% FY26 and is now cited only for that; opened 2026-11-03"
+  },
+  {
+   "item": "non-GAAP operating margin FY2025: first guide (2024-02-28) / reported actual",
+   "value": "0.03-0.03 / 0.06",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000031/fy2024q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 guidance",
+   "fixed": "agent_2 FY25 first margin guide corrected 0.03 -> 0.06 and actual 0.06 -> 0.064 (Q4 FY24 Ex.99.1); median and adjusted guide recomputed"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2025: first guide (None) / reported actual",
+   "value": "None-None / 0.0504",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000122/fy2025q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2025: first guide (None) / reported actual",
+   "value": "None-None / 0.0625",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000203/fy2025q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2025: first guide (None) / reported actual",
+   "value": "None-None / 0.0941",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014724000242/fy2025q3earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2026: first guide (None) / reported actual",
+   "value": "None-None / 0.088",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000016/fy2025q4earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2026: first guide (None) / reported actual",
+   "value": "None-None / 0.1114",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000094/fy2026q1earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2026: first guide (None) / reported actual",
+   "value": "None-None / 0.1083",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000177/fy2026q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2026: first guide (None) / reported actual",
+   "value": "None-None / 0.1084",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014725000207/fy2026q3earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "first_guide_low/high filled from the guide the cited release shows (3%, 3%, 4%, 5%, 8%, 9%, 7%), same values as the agent_3 rows verified ok"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "value": "6105",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/snow/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "value": "6100",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/snow/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2",
+   "fixed": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "value": "6100",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/snow/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_3",
+   "fixed": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "Street NTM non-GAAP EPS",
+   "value": "2.83",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/snow/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_5",
+   "fixed": "labelled estimate: 0.25 x 2.22 (EPS This Year) + 0.75 x 3.03 (EPS Next Year) = 2.83; StockAnalysis SNOW summary box shows both, non-GAAP (opened 2026-11-03); confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 consensus as of 2026-09-14",
+   "value": "0.145",
+   "basis": "estimate",
+   "source_url": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "checked": "2026-11-03",
+   "feeds": "agent_1",
+   "fixed": "kept as aggregator estimate with basis note: MarketScreener EBIT 918.1 / 6,315 = 14.54%; non-GAAP basis inferred because its FY26 EBIT 489.7 equals company non-GAAP operating income (Q4 FY26 Ex.99.1); confidence medium"
+  },
+  {
+   "item": "product revenue Q3 FY2027 consensus as of 2026-09-14",
+   "value": "1598",
+   "basis": "consensus",
+   "source_url": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2",
+   "fixed": "consensus field removed; kept as a derived estimate in a note (MarketScreener total revenue 1,654 less PS ~56; EBIT 258.1 / 1,654 = 15.6%), confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2027 consensus as of 2026-09-14",
+   "value": "0.156",
+   "basis": "estimate",
+   "source_url": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2",
+   "fixed": "consensus field removed; kept as a derived estimate in a note (MarketScreener total revenue 1,654 less PS ~56; EBIT 258.1 / 1,654 = 15.6%), confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 consensus as of 2026-09-14",
+   "value": "0.1454",
+   "basis": "estimate",
+   "source_url": "https://in.marketscreener.com/quote/stock/SNOWFLAKE-INC-112440376/finances/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2",
+   "fixed": "kept as aggregator estimate with basis note: MarketScreener EBIT 918.1 / 6,315 = 14.54%; non-GAAP basis inferred because its FY26 EBIT 489.7 equals company non-GAAP operating income (Q4 FY26 Ex.99.1); confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (MDB)",
+   "value": "44.75 / None / revenue +19% (NTM consensus)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (MDB)",
+   "value": "44.7 / None / revenue +19.1% (FY28)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (MDB)",
+   "value": "245.8 / None / revenue +18.8% (3.03B -> 3.60B); non-GAAP EPS +20.0%",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 comps",
+   "fixed": "agent_5 fwd_pe relabelled as the GAAP NTM P/E from peers.md (fact id added; matches the table), growth labelled non-GAAP StockAnalysis; the supervisor median uses non-GAAP P/E only, so these do not feed the target"
+  },
+  {
+   "item": "product revenue Q1 FY2027: first guide / reported actual",
+   "value": "1262-1267 / 1334.329",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2027: first guide / reported actual",
+   "value": "None-None / 0.1192",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2026: first guide (2025-02-26) / reported actual",
+   "value": "4280-4280 / 4472.3",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin FY2026: first guide (2025-02-26) / reported actual",
+   "value": "0.08-0.08 / 0.105",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP adjusted FCF margin FY2027 guide as of 2026-09-02",
+   "value": "0.23-0.23",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "constants.ps_gm (non-GAAP PS gross margin)",
+   "value": "-0.08",
+   "basis": "company_adjusted",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model",
+   "fixed": "value -0.08 kept; source corrected to Q1 FY27 Ex.99.1 (non-GAAP PS GM (8%)) and Q2 FY27 Ex.99.1 ((8%) Q2, (8.882)/111.554 six months); Q4 FY26 shows (1%) Q4 / 0% FY26 and is now cited only for that; opened 2026-11-03"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DDOG)",
+   "value": "75.5 / None / revenue +23% (NTM consensus)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DDOG)",
+   "value": "75.5 / None / revenue +22.7% (CY27)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DDOG)",
+   "value": "232.4 / None / revenue +22.8% (4.47B -> 5.49B); non-GAAP EPS +17.8%",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 comps",
+   "fixed": "agent_5 fwd_pe relabelled as the GAAP NTM P/E from peers.md (fact id added; matches the table), growth labelled non-GAAP StockAnalysis; the supervisor median uses non-GAAP P/E only, so these do not feed the target"
+  },
+  {
+   "item": "product revenue Q4 FY2026: first guide / reported actual",
+   "value": "1195-1200 / 1226.631",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2026: first guide / reported actual",
+   "value": "None-None / 0.1084",
+   "basis": "guidance",
+   "source_url": "https://stockanalysis.com/stocks/ddog/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (NET)",
+   "value": "171.9 / None / revenue +29% (NTM consensus)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/net/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (NET)",
+   "value": "171.9 / None / revenue +28.8% (CY27)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/net/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (NET)",
+   "value": "1286.7 / None / revenue +28.9% (2.87B -> 3.70B); non-GAAP EPS +33%",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/net/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_5 comps",
+   "fixed": "agent_5 fwd_pe relabelled as the GAAP NTM P/E from peers.md (fact id added; matches the table), growth labelled non-GAAP StockAnalysis; the supervisor median uses non-GAAP P/E only, so these do not feed the target"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DT)",
+   "value": "23.15 / None / revenue +17% (NTM consensus)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/dt/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (ESTC)",
+   "value": "25.17 / None / revenue +15% (NTM consensus)",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/estc/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (TDC)",
+   "value": "17.5 / None / revenue +3% (YTD reported, used as NTM proxy)",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/816761/000162828026053103/tdc-20260630.htm",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 comps",
+   "fixed": "fwd P/E 17.5 cited to peers.md TDC.pe_ntm (GAAP, Zacks); growth +3% matches the 10-Q; TDC excluded from the median"
+  },
+  {
+   "item": "non-GAAP adjusted FCF margin FY2025: first guide / reported actual",
+   "value": "None-None / 0.26",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 guidance",
+   "fixed": "source ids added: FY25 adjusted FCF 941.5 = 26% (Q4 FY25 Ex.99.1), FY26 1,192.7 = 25% (Q4 FY26 Ex.99.1), both opened 2026-11-03"
+  },
+  {
+   "item": "non-GAAP adjusted FCF margin FY2026: first guide / reported actual",
+   "value": "None-None / 0.2546",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 guidance",
+   "fixed": "source ids added: FY25 adjusted FCF 941.5 = 26% (Q4 FY25 Ex.99.1), FY26 1,192.7 = 25% (Q4 FY26 Ex.99.1), both opened 2026-11-03"
+  },
+  {
+   "item": "product revenue Q1 FY2025",
+   "value": "745-750 / 789.587",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q2 FY2025",
+   "value": "805-810 / 829.25",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q3 FY2025",
+   "value": "850-855 / 900.282",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue Q4 FY2025",
+   "value": "906-911 / 943.303",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q1 FY2025",
+   "value": "None-None / 0.0437",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2025",
+   "value": "None-None / 0.0504",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2025",
+   "value": "None-None / 0.0625",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q4 FY2025",
+   "value": "None-None / 0.0941",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2025: first guide (2024-02-28) / reported actual",
+   "value": "3250-3250 / 3462.4",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2027 consensus as of 2026-10-23",
+   "value": "6105",
+   "basis": "consensus",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "product-revenue consensus removed from guidance_check (StockAnalysis shows total revenue only); kept as a derived estimate in a note: 6,320 total less ~225.6 PS = ~6,094, confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin FY2025: first guide (2024-02-28) / reported actual",
+   "value": "0.06-0.06 / 0.064",
+   "basis": "guidance",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 consensus as of 2026-09-14",
+   "value": "0.145",
+   "basis": "consensus",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "kept as aggregator estimate with basis note: MarketScreener EBIT 918.1 / 6,315 = 14.54%; non-GAAP basis inferred because its FY26 EBIT 489.7 equals company non-GAAP operating income (Q4 FY26 Ex.99.1); confidence medium"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (ESTC)",
+   "value": "None / None / EPS +40% (Zacks basis)",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/ESTC/earnings-forecast",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 comps",
+   "fixed": "cited to peers.md ESTC.eps_growth_fwd (+40.4%, Zacks GAAP basis) and labelled as that basis; not in the non-GAAP median"
+  },
+  {
+   "item": "fwd P/E / fwd EV/EBITDA / growth (DT)",
+   "value": "22.9 / None / EPS +28.7% (Zacks basis)",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/ESTC/earnings-forecast",
+   "checked": "2026-11-03",
+   "feeds": "agent_4 comps",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "product revenue Q3 FY2027 guide as of 2026-09-02",
+   "value": "1588-1593",
+   "basis": "product revenue (GAAP)",
+   "source_url": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY2027 guide as of 2026-09-02",
+   "value": "0.155-0.155",
+   "basis": "non-GAAP",
+   "source_url": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "product revenue FY2027 guide as of 2026-09-02",
+   "value": "6070-6070",
+   "basis": "GAAP product revenue",
+   "source_url": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin FY2027 guide as of 2026-09-02",
+   "value": "0.145-0.145",
+   "basis": "non-GAAP",
+   "source_url": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "years.tax_rate anchor (company_adjusted, as of 2026-07-31): non-GAAP tax effect / non-GAAP pre-tax income, Q1 and Q2 FY27 both 25.0%",
+   "value": "0.25",
+   "basis": "non-GAAP",
+   "source_url": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model normalizing (tax_rate) anchor",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; derivation now shows the arithmetic from the reconciliation lines (Q2: GAAP provision 3.430 + tax effect 75.005 = 78.435 / non-GAAP pre-tax 313.743 = 25.0%; Q1: 49.332 / 197.327 = 25.0%), opened 2026-11-03; kind company_adjusted (implied), confidence high"
+  },
+  {
+   "item": "shares.diluted_now anchor (company_stated, as of 2026-09-02): Q3 FY27 guide",
+   "value": "382.0",
+   "basis": "non-GAAP diluted",
+   "source_url": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model normalizing (shares) anchor",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; Q2 FY27 Ex.99.1 shows the Q3 FY27 guide of 382M non-GAAP diluted shares (verified ok in agent_1 EV/sales row)"
+  },
+  {
+   "item": "shares.diluted_now",
+   "value": "382.0",
+   "basis": "non-GAAP diluted (company_stated)",
+   "source_url": "https://www.snowflake.com/en/news/press-releases/snowflake-to-announce-financial-results-for-the-third-quarter-of-fiscal-2026-on-december-3-2025/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; Q2 FY27 Ex.99.1 shows the Q3 FY27 guide of 382M non-GAAP diluted shares (verified ok in agent_1 EV/sales row)"
+  },
+  {
+   "item": "product revenue Q2 FY2027: first guide (None) / reported actual",
+   "value": "1415-1420 / 1491.861",
+   "basis": "guidance",
+   "source_url": "https://www.marketbeat.com/instant-alerts/dynatrace-nysedt-releases-fy-2027-earnings-guidance-2026-08-05/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "non-GAAP operating margin Q2 FY2027: first guide (None) / reported actual",
+   "value": "None-None / 0.1532",
+   "basis": "guidance",
+   "source_url": "https://www.marketbeat.com/instant-alerts/dynatrace-nysedt-releases-fy-2027-earnings-guidance-2026-08-05/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; the same figures from the same releases are verified ok in the agent_1/agent_3 guidance rows (merged.json results); op-margin periods now carry first_guide_low/high"
+  },
+  {
+   "item": "MDB FY28 consensus EPS used for the P/E median (MDB is the median)",
+   "value": "7.85",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor disagreements / comps_review",
+   "fixed": "labelled estimate with derivation: peers.md price (2026-11-03 close) / time-weighted NTM non-GAAP EPS from the StockAnalysis page (MDB 0.25x6.54+0.75x7.85 -> 44.75x; DDOG 2/12x2.53+10/12x2.98 -> 75.5x; NET 2/12x1.26+10/12x1.68 -> 171.9x; DT 5/12x1.98+7/12x2.26 -> 22.8x; ESTC 0.5x3.36+0.5x3.96 -> 25.2x); every EPS input is shown on the page per the shard reads; the page P/E differs because it uses the page price and a single fiscal year; confidence medium"
+  },
+  {
+   "item": "peer median EV/NTM sales 7.14x (MDB DDOG NET DT ESTC)",
+   "value": "7.14",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/mdb/forecast/; peers.md",
+   "checked": "2026-11-03",
+   "feeds": "supervisor comps_review",
+   "fixed": "median is MDB 7.14x whatever basis the other rows use (DDOG 15.18x and NET 27.5x above even if EV is lower than market cap; DT 4.78x and ESTC 4.24x below); MDB row is EV (filings) / NTM consensus revenue 3.03B/3.60B shown on StockAnalysis MDB; labelled estimate, confidence medium"
+  },
+  {
+   "item": "SNOW Street NTM revenue (0.25 x FY27 6,320 + 0.75 x FY28 8,130)",
+   "value": "7,678",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/snow/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor comps_review / A24",
+   "fixed": "StockAnalysis SNOW summary box shows Revenue Next Year 8.13B (FY28) and This Year 6.32B (opened 2026-11-03): 0.25 x 6,320 + 0.75 x 8,130 = 7,677.5; labelled estimate, confidence medium"
+  },
+  {
+   "item": "SNOW Street NTM non-GAAP EPS (0.25 x 2.22 + 0.75 x 3.03)",
+   "value": "2.83",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/snow/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor comps_review / A23",
+   "fixed": "labelled estimate: 0.25 x 2.22 (EPS This Year) + 0.75 x 3.03 (EPS Next Year) = 2.83; StockAnalysis SNOW summary box shows both, non-GAAP (opened 2026-11-03); confidence medium"
+  },
+  {
+   "item": "non-GAAP tax rate (company_adjusted)",
+   "value": "25%",
+   "basis": "company_adjusted",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000033/fy2027q2earnings.htm",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model inputs_detail / A16",
+   "fixed": "supervisor top-level sources now equal reconciled_inputs.sources, so source_ids resolve to the cited Snowflake release; derivation now shows the arithmetic from the reconciliation lines (Q2: GAAP provision 3.430 + tax effect 75.005 = 78.435 / non-GAAP pre-tax 313.743 = 25.0%; Q1: 49.332 / 197.327 = 25.0%), opened 2026-11-03; kind company_adjusted (implied), confidence high"
+  },
+  {
+   "item": "horizon_multiples[EV/sales]",
+   "value": "12.62",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model",
+   "fixed": "confidence medium added; inputs and their sources listed in the derivation"
+  },
+  {
+   "item": "horizon_multiples[P/E]",
+   "value": "93.8",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model",
+   "fixed": "row value corrected 93.8 -> 88.3 = 44.75 x (104.6/44.75)^0.8, the figure horizon_multiples and the engine already use; confidence medium"
+  },
+  {
+   "item": "non-GAAP operating margin Q3 FY27: adjusted / gap",
+   "value": "0.185 / 0.013",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "margin record stated in points: adjusted 0.155 + 0.030 = 0.185 (additive, labelled); gap_to_mid_pct corrected to 0.168/0.155-1 = +0.0839 (gap_pt 0.013)"
+  },
+  {
+   "item": "non-GAAP operating margin FY27: per-year ratios, median, adjusted, gap",
+   "value": "0.065/0.3075, 0.1862, 0.1483, 0.0085",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "recomputed: 0.064/0.06-1 = 0.0667, 0.105/0.08-1 = 0.3125, median 0.1896, adjusted 0.145 x 1.1896 = 0.1725, gap 0.1535/0.145-1 = +0.0586; why text updated (ours is below the record-adjusted guide)"
+  },
+  {
+   "item": "non-GAAP operating margin FY27 (same figures)",
+   "value": "0.1862 / 0.1483 / 0.0085",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance",
+   "fixed": "recomputed: 0.064/0.06-1 = 0.0667, 0.105/0.08-1 = 0.3125, median 0.1896, adjusted 0.145 x 1.1896 = 0.1725, gap 0.1535/0.145-1 = +0.0586; why text updated (ours is below the record-adjusted guide)"
+  },
+  {
+   "item": "non-GAAP operating margin FY27 adjusted / gap",
+   "value": "0.17 / 0.0593",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 guidance",
+   "fixed": "agent_2 FY25 guide fixed to 0.06: ratios 0.0667 / 0.3075, median 0.1871, adjusted 0.1721"
+  },
+  {
+   "item": "product revenue FY27 adjusted",
+   "value": "5,971.3",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor guidance",
+   "fixed": "recomputed per the rule: 6,070 x (1 + median) = 6,404.5 (agent_2 6,405.1); why text: ours 6,136.3 is 4.2% below the record-adjusted guide"
+  },
+  {
+   "item": "product revenue FY27 adjusted",
+   "value": "5,971.3",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 guidance",
+   "fixed": "recomputed per the rule: 6,070 x (1 + median) = 6,404.5 (agent_2 6,405.1); why text: ours 6,136.3 is 4.2% below the record-adjusted guide"
+  },
+  {
+   "item": "product revenue FY27 adjusted",
+   "value": "5,972.2",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_2 guidance",
+   "fixed": "recomputed per the rule: 6,070 x (1 + median) = 6,404.5 (agent_2 6,405.1); why text: ours 6,136.3 is 4.2% below the record-adjusted guide"
+  },
+  {
+   "item": "years.sbc_pct_rev dollar path FY27-30",
+   "value": "1,820 / 1,963 / 2,129 / 2,295 at '+3-6% a year'",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model",
+   "fixed": "text corrected to dollars +6.4/+7.9/+8.5/+7.8% a year (supervisor and agents); ratios unchanged"
+  },
+  {
+   "item": "Street NTM revenue in own EV/sales",
+   "value": "7,678 (shown as 3/12 x 6,320 + 9/12 x 8,100 = 7,655)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 EV/sales",
+   "fixed": "agent_1 formula corrected to 3/12 x 6,320 + 9/12 x 8,130 = 7,678 (StockAnalysis Revenue Next Year 8.13B)"
+  },
+  {
+   "item": "scenarios.downside.multiple",
+   "value": "12.62 - 5.5 = 7.07x",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_1 model_inputs",
+   "fixed": "corrected to 12.62 - 5.5 = 7.12x"
+  },
+  {
+   "item": "years.da_pct_rev",
+   "value": "0.045",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 model_inputs",
+   "fixed": "agent_3 inputs_detail value restated to the value its own set uses and its derivation gives (D&A 0.024, capex 0.015, returns 600/700/700/700); view unchanged"
+  },
+  {
+   "item": "years.capex_pct_rev",
+   "value": "0.02",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 model_inputs",
+   "fixed": "agent_3 inputs_detail value restated to the value its own set uses and its derivation gives (D&A 0.024, capex 0.015, returns 600/700/700/700); view unchanged"
+  },
+  {
+   "item": "years.shareholder_returns",
+   "value": "800 / 900 / 1,000 / 1,000",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 model_inputs",
+   "fixed": "agent_3 inputs_detail value restated to the value its own set uses and its derivation gives (D&A 0.024, capex 0.015, returns 600/700/700/700); view unchanged"
+  },
+  {
+   "item": "scenarios EV/sales -4.5x / +4.0x -> 6.5x / 15.0x",
+   "value": "6.5 / 15.0",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-03",
+   "feeds": "agent_3 model_inputs",
+   "fixed": "agent_3 text corrected to 12.62 - 4.5 = 8.12x and 12.62 + 4.0 = 16.62x"
+  },
+  {
+   "item": "years.da_pct_rev",
+   "value": "0.025 vs anchor 0.047",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/estc/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model normalizing (da_pct_rev)",
+   "fixed": "anchor replaced by FY26 depreciation ex acquired-intangible amortization 110.3 / 4,683.9 = 2.35% (10-K: D&A 220.4 F36 = depreciation 110.3 + amortization 110.1; TTM 2.06% via F39/F6 and Q2 FY27 Ex.99.1); value 0.025 within tolerance; norm_check ok"
+  },
+  {
+   "item": "years.capex_pct_rev",
+   "value": "0.015 vs anchor 0.022",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/estc/forecast/, file:///mnt/project-files/wrds/results/blend_weights/README.md",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model normalizing (capex_pct_rev)",
+   "fixed": "anchor replaced by FY24-FY26 reported average 183.0 / 11,116.8 = 1.65% (F55-F57 / F1-F3; FY26 2.17%, TTM 1.07% F60/F6; no capitalized software in FY26); value 0.015 within tolerance; norm_check ok"
+  },
+  {
+   "item": "years.nwc_pct_incr_rev",
+   "value": "-0.3 vs anchor -0.41",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/estc/forecast/",
+   "checked": "2026-11-03",
+   "feeds": "supervisor model normalizing (nwc_pct_incr_rev)",
+   "fixed": "anchor replaced by the company-stated FY27 adjusted FCF margin guide 23.0% (Q1/Q2 FY27 Ex.99.1) solved on the set FY27 lines: -0.279; reported FY26 FCF 1,120.3 (F50-F57) cross-check; value -0.30 within tolerance; norm_check ok"
+  }
+ ],
+ "note": "research target (12m) unchanged at 325.46: no figure that feeds the engine changed value (ps_gm -0.08 is what Q1/Q2 FY27 show; normalizing rows re-anchored within tolerance; net cash and exit multiples verified as labelled estimates)"
+}

@@ -1,0 +1,1686 @@
+{
+ "date": "2026-11-18",
+ "symbol": "NFLX",
+ "clean": true,
+ "checked": 147,
+ "ok": 116,
+ "fixed": 31,
+ "failures": [
+  {
+   "item": "claim (src 1)",
+   "value": "Licensed: +13.3% FY25 and +8.9% 9M26 on a flat licensed balance (12,508.4 vs 12,182.2 a year earlier, +2.7%), the growth coming from live rights that amortize on airing (three NFL games and Fury vs J\u2026",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "not_found",
+   "origin": "supervisor driver content_amort derivation",
+   "fix": "fixed: every copy of the licensed claim now cites the 10-K (src 2) for FY25 and the content policy, the Q3 2026 10-Q (src 33) for 9M26 and the 9/30/26 balance, the Q3 2025 10-Q (src 37) for 9/30/25; the letter (src 1) only for the Q4 live slate"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "result": "not_found",
+   "origin": "timeliness.py (forecast the set uses)",
+   "fix": "fixed (rule): timeliness.py published_of treats a consensus page as showing the figures of the day it was opened; src 50 carries published 2026-11-18 (the read), as in the DY 2026-11-16 round; timeliness.py check passes"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://api.nasdaq.com/api/analyst/SONY/earnings-forecast",
+   "result": "not_found",
+   "origin": "timeliness.py (forecast the set uses)",
+   "fix": "fixed (rule): as row 1, src 55 published 2026-11-18 (the read)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "cited": "https://api.nasdaq.com/api/analyst/SPOT/earnings-forecast",
+   "result": "not_found",
+   "origin": "timeliness.py (forecast the set uses)",
+   "fix": "fixed (rule): as row 1, src 55 published 2026-11-18 (the read)"
+  },
+  {
+   "item": "Fox-Roku combination 'pending'; ROKU dropped as 'Fox takeover pending'",
+   "value": "pending",
+   "cited": "https://data.sec.gov/submissions/CIK0001428439.json",
+   "result": "wrong",
+   "origin": "supervisor long_dated_review / comps_review",
+   "fix": "fixed: long_dated_review and peers_dropped restate the Fox-Roku deal as closed (Form 25 2026-11-06, Form 15 2026-11-16, src 13)"
+  },
+  {
+   "item": "how_applied text: '18x, ~12% below the 20.4x peer median', '9.4% WACC', 'FY30 margin capped at 35.7%'",
+   "value": "18x / 20.4x / 35.7%",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor long_dated_review",
+   "fix": "fixed: how_applied rows rewritten to the current set (16.83x on 18.92x, no DCF leg, driver margins 32.3/32.9/33.4%); base-round figures marked superseded"
+  },
+  {
+   "item": "NFLX row: FY26 3.10 with 'Street Q4 0.73', NTM 3.663, 16.29x; exit 16.79x",
+   "value": "16.29x",
+   "cited": "runs/2026-11-17/NFLX/peers.md | valuation/data/estimates/<SYM>.json (api.nasdaq.com, retrieved 2026-11-18)",
+   "result": "wrong",
+   "origin": "peers.md 'Peer refresh 2026-11-18'",
+   "fix": "fixed: peers.md NFLX row to Q4 0.67, FY26 3.04, NTM 3.655, 16.33x, exit 16.81x x 1.0011 = 16.83x"
+  },
+  {
+   "item": "premium_discount_judgment",
+   "value": "21.82 x (18.44/21.82)^0.8 = 19.07x; 'NFLX 20.7% vs peers 21.1% 2-yr EPS CAGR'",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor comps_review",
+   "fix": "fixed: premium_discount_judgment rewritten on the 11-18 refresh (18.92 x (16.33/18.92)^0.8 = 16.81x x 1.0011 = 16.83x)"
+  },
+  {
+   "item": "GAAP EBIT margin path (driver output)",
+   "value": "FY26 16,154 / 51,166 = 31.6%; FY27 17,786; FY28 19,654; FY29 21,566 = 33.4%",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "fix": "fixed: EBIT margin row recomputed from the drivers after this round's changes: 16,147.9 / 17,976.3 / 19,791.3 / 21,583.5 (31.6/32.3/32.9/33.4%)"
+  },
+  {
+   "item": "Horizon P/E variant_view",
+   "value": "k 0.7: 19.39x ($77.50); k 0.9: 18.75x; median 21.82x: $87.24; own 18.44x: $73.70",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "fix": "fixed: variant_view points to the engine-sized 11-18 alternatives (median 18.94x +12.6%, own 16.35x -2.9%)"
+  },
+  {
+   "item": "Horizon roll flag",
+   "value": "'the -3.0%/yr share count already allows for it'",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "fix": "fixed: wording to -3.35%/yr (shares annual change row)"
+  },
+  {
+   "item": "M&A value leakage: 'Netflix agreed ... ~$82.7B (src 53) and walked away'",
+   "value": "-4,000 x 0.2",
+   "cited": "https://www.manifest-media.in/media-/051225/netflix-to-buy-warner-bros-for-usd-827-billion-after-discovery-globa.html",
+   "result": "wrong",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "fix": "fixed: 'walked away' replaced: Netflix declined to raise its offer, WBD went with Skydance and paid Netflix the $2.8B termination fee (src 43)"
+  },
+  {
+   "item": "revenue Q4 FY2026: guide x 1.003",
+   "value": "13,482.3",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "arithmetic",
+   "origin": "supervisor guidance",
+   "fix": "fixed (value changed): Q4 revenue = guide 13,442 x (1 + record median +0.40%) = 13,495.6, guide_use kind guide_x_beat (flagged); the ads-cut reason dropped (already in the guide); actual_vs_mid_pct added so forecast_lint sees the anchor; sub_rev Q4 12,575.4 and everything downstream recomputed"
+  },
+  {
+   "item": "EPS diluted Q4 FY2026 note",
+   "value": "0.70 = 3,545.8 x 0.822 / ~4,150; 'Street 0.73'",
+   "cited": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "result": "wrong",
+   "origin": "supervisor guidance",
+   "fix": "fixed: EPS note to Q4 operating income 3,539.8 and Street 0.67 (src 50); estimate 0.70 unchanged"
+  },
+  {
+   "item": "Q4 FY2026 5,005.6 = 4,329.9 x 1.119 + 161",
+   "value": "5,005.6",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "unsupported",
+   "origin": "supervisor driver other_opex",
+   "fix": "carded: Q4 other costs still scale Q4 2025's ratio (flagged in the derivation); the +14.8% build is the alternative; both in the other_opex card to Kilian (target effect 0.0%)"
+  },
+  {
+   "item": "FY2027 by line: COR ex amort +11% 'grow with revenue (+~11%)', S&M +8, T&D +6, G&A +5",
+   "value": "18,597.6 (+8.4%)",
+   "cited": "https://abc30.com/story/netflix-is-laying-off-6-workforce-1000-employees-biggest-round-job-cuts-streaming-giant-years/19938143/",
+   "result": "unsupported",
+   "origin": "supervisor driver other_opex",
+   "fix": "fixed (value changed): cost of revenues ex amortization and marketing now grow with the set's revenue (+8.7%), marketing tied to its record vs revenue (FY25 +13% vs +16%, 9M26 +14.4% vs +13.7%, src 2, 33); T&D/G&A FY27 unchanged (cut, src 45)"
+  },
+  {
+   "item": "FY2028-FY2029 (+9/+7/+8/+5; +8/+6/+7/+4)",
+   "value": "20,055.7 / 21,427.5",
+   "cited": "",
+   "result": "unsupported",
+   "origin": "supervisor driver other_opex",
+   "fix": "carded: FY28-29 lines now grow with revenue after the cut is lapped, evidence of the FY24-9M26 line growth vs revenue cited (src 2, 33); no forecast exists, so it is the other_opex card with overhead-leverage and cost-of-revenues alternatives; lines compounded (no fixed weights)"
+  },
+  {
+   "item": "FY2028-FY2029 (produced +8/+7, licensed +5/+5)",
+   "value": "20,419.3 / 21,638.0",
+   "cited": "https://au.variety.com/2026/tv/global/netflix-q4-2025-financial-earnings-subscribers-32133/",
+   "result": "unsupported",
+   "origin": "supervisor driver content_amort",
+   "fix": "carded: no forecast past 2026 exists; content_amort card with the cash-spend (-4.8%) and slower (+3.3%) alternatives"
+  },
+  {
+   "item": "Members +5.0/+4.0/+3.5% FY27-29",
+   "value": "members path",
+   "cited": "https://au.variety.com/2026/tv/global/netflix-q4-2025-financial-earnings-subscribers-32133/ | https://nairametrics.com/2024/10/16/netflix-subscribers-growth-slows-as-password-sharing-crackdown-fades | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "unsupported",
+   "origin": "supervisor driver sub_rev",
+   "fix": "carded (unchanged): members path is the sub_rev card"
+  },
+  {
+   "item": "ARM FY27 +1.5% = +1.1pt US carry-over - ~1pt mix",
+   "value": "+1.5%",
+   "cited": "https://www.thewrap.com/industry-news/business/netflix-price-increase-2026 | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "arithmetic",
+   "origin": "supervisor driver sub_rev",
+   "fix": "fixed (value changed): FY27 ARM +1.6% = US March 2026 rise carry-over +1.1pt (src 46, 1) + UK September 2026 rise +0.5pt (src 56, 57: UK 6.2% of revenue, ~+10% blended, ~9 months); the unsourced ~-1pt mix drag removed (Q3 2026 regional F/X-neutral growth 9-15%, src 1); Spain, Mexico, Germany rises (src 56, 58, 59) left out as unsized upside"
+  },
+  {
+   "item": "ARM FY28-29 +2.5% a year",
+   "value": "+2.5%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "unsupported",
+   "origin": "supervisor driver sub_rev",
+   "fix": "carded (unchanged): FY28-29 ARM is in the sub_rev card with the 14-month US cadence and no-rise alternatives"
+  },
+  {
+   "item": "'Guide use declared (guide x the record's +0.3%)'",
+   "value": "+0.3%",
+   "cited": "",
+   "result": "arithmetic",
+   "origin": "supervisor guidance_check revenue why",
+   "fix": "fixed: 'why' rewritten to the record median +0.40%"
+  },
+  {
+   "item": "booked text",
+   "value": "FY27-29 18,582 / 20,039 / 21,409",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_alternatives other_opex",
+   "fix": "fixed: booked line restated to the current drivers"
+  },
+  {
+   "item": "Q4 residual of the 26.0% guide + 0.3pt = 4,991.1",
+   "value": "4,991.1",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "back_solved",
+   "origin": "supervisor judgment_alternatives other_opex",
+   "fix": "fixed: the guide-residual alternative removed (back-solved, not evidence)"
+  },
+  {
+   "item": "FY27-29 every line at revenue growth (+10.9% / +8.6% / +7.8%)",
+   "value": "-2.98%",
+   "cited": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_alternatives other_opex",
+   "fix": "fixed: alternative replaced by evidence-based builds (cost of revenues keeps 2026's +3.4pt gap; FY28-29 overhead leverage), sized by the engine"
+  },
+  {
+   "item": "US rise mid-2027 + ~3% a year abroad: ARM +3.8/+4.0/+3.5%",
+   "value": "+10.36%",
+   "cited": "https://www.thewrap.com/industry-news/business/netflix-price-increase-2026 | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "not_found",
+   "origin": "supervisor judgment_alternatives sub_rev",
+   "fix": "fixed: '~3% a year abroad' dropped; the alternative is now the US cadence only (~14 months, ~+10% on UCAN 43.7%), no rises abroad counted; resized +10.6%"
+  },
+  {
+   "item": "alternatives empty (why_none: default exit rule)",
+   "value": "16.83x",
+   "cited": "runs/2026-11-17/NFLX/peers.md",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives Horizon P/E",
+   "fix": "fixed: peer median 18.94x (+12.6%) and own 16.35x (-2.9%) listed, sized and carded (Horizon P/E card, recommendation: keep Kilian's 10-26 rule)"
+  },
+  {
+   "item": "option US rise mid-2027 (src 46, 48, 50)",
+   "value": "+3.8/+4/+3.5% ARM incl. '~3% a year abroad'; FY27 ~+10.9%, consensus $56.67B",
+   "cited": "https://www.thewrap.com/industry-news/business/netflix-price-increase-2026 | https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/ | https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "result": "not_found",
+   "origin": "supervisor judgment_calls_for_kilian sub_rev",
+   "fix": "fixed: card option rewritten to the US cadence with its sources (src 46, 48, 50), engine-sized"
+  },
+  {
+   "item": "src 12 Nasdaq.com / Zacks consensus EPS forecast, NFLX (pre-print)",
+   "value": "published 2026-10-20 (date opened (consensus)), consensus",
+   "cited": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (agent_1 sources)",
+   "fix": "fixed: the base-round forecaster files were rerun from scratch on 2026-11-18 on current data (Kilian yes 2026-11-18 8:21 AM and 10:40 AM ET); every source in agent_1-5 passes timeliness.py (0 rows)"
+  },
+  {
+   "item": "src 21 Nasdaq.com / Zacks consensus EPS forecast, SPOT (FY2026 13.71, FY2027 17.28)",
+   "value": "published 2026-10-20 (date opened (consensus)), consensus",
+   "cited": "https://api.nasdaq.com/api/analyst/SPOT/earnings-forecast",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (agent_1 sources)",
+   "fix": "fixed: the base-round forecaster files were rerun from scratch on 2026-11-18 on current data (Kilian yes 2026-11-18 8:21 AM and 10:40 AM ET); every source in agent_1-5 passes timeliness.py (0 rows)"
+  },
+  {
+   "item": "src 31 Advanced Television: Forecast: Netflix to take nearly 10% of CTV ad spend in 2027 (WARC Media 3.7% 2025 -> 9.2% 2027; Om",
+   "value": "published 2026-02-18 (gate checker (page)), industry_forecast",
+   "cited": "https://www.advanced-television.com/2026/02/18/forecast-netflix-to-take-nearly-10-of-ctv-ad-spend-in-2027/",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (agent_2 sources)",
+   "fix": "fixed: the base-round forecaster files were rerun from scratch on 2026-11-18 on current data (Kilian yes 2026-11-18 8:21 AM and 10:40 AM ET); every source in agent_1-5 passes timeliness.py (0 rows)"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q4 FY2026 guide as of 2026-10-20 (GAAP)",
+   "value": "13442-13442",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Q4'26 Forecast revenue $13,442M",
+   "note": "",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q4 FY2026 guide as of 2026-10-20 (GAAP)",
+   "value": "0.26-0.26",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Q4'26 Forecast operating margin 26.0% (operating income $3,500M); 'includes ~120 basis points negative impact associated with our recently announced headcount reductions'",
+   "note": "",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "EPS diluted Q4 FY2026 guide as of 2026-10-20 (GAAP)",
+   "value": "0.67-0.67",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Q4'26 Forecast diluted EPS $0.67",
+   "note": "",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance_check operating margin Q4 FY2026 why",
+   "item": "claim (src 1)",
+   "value": "Built, not set: Q4 revenue less content amortization 4,945.4 (filed balances and schedule) less other costs 5,005.6 (moving with revenue plus the ~161 charge) = 26.2%, 0.2pt above the 26.0% guide; th\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Letter: Q4'26 forecast revenue 13,442, margin 26.0% incl ~120bp headcount charge (1.2% x 13,442 = 161)",
+   "note": "Checked only the src 1 part. Arithmetic: (13,482.3 - 4,945.4 - 5,005.6)/13,482.3 = 26.19%, 0.2pt above 26.0%.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 1, 38)",
+   "value": "Q4 slate (Q3 letter, src 1): East of Eden, The Diplomat S4, the final Emily in Paris, Fincher's Cliff Booth film, Brad Bird's Ray Gunn, and the biggest live slate to date (three NFL games, about $75M\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Letter Q4 slate: East of Eden, The Diplomat S4, 'sixth and final season of Emily in Paris', The Further Mis-Adventures of Cliff Booth (directed by David Fincher), Ray Gunn (directed by Brad Bird), 'our biggest quarterly live slate to date' (Thanksgiving Eve game, Christmas Day doubleheader, Fury vs. Joshua)",
+   "note": "Checked only the src 1 part; the ~$75M figure is attributed to src 38, not checked here.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 1)",
+   "value": "Cross-check (not the level): the Q4 margin guide of 26.0% on $13,442M revenue (src 1) leaves 9,942 of costs.",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Q4'26 Forecast revenue $13,442, operating income $3,500, margin 26.0%; 13,442 - 3,500 = 9,942",
+   "note": "",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 1)",
+   "value": "Other costs ex the Q3 2025 Brazil charge grew +20.8% / +16.8% / +14.8% y/y in Q1-Q3 2026 (slowing); at +11% to +15% in Q4 plus the ~161 headcount charge (~120bp, src 1), the guide leaves content amor\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "'~120 basis points negative impact associated with our recently announced headcount reductions' in the Q4 26.0% margin guide; 1.2% x 13,442 = 161",
+   "note": "Checked only the src 1 part; the y/y cost growth rates are derived from the 10-Qs.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 1)",
+   "value": "Cash/amortization: the ~1.1x annual guide (src 1) reads 1.12-1.14x on this FY26 depending on Q4 cash, consistent with it.",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "'We continue to expect an annual cash content spend to amortization ratio of ~1.1x.'",
+   "note": "1.12-1.14x is the agent's derivation (9M26 additions 14,934.2 / amortization 12,764.7 = 1.17x shown in the letter).",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver other_opex derivation",
+   "item": "claim (src 1, 33)",
+   "value": "FY27-FY29 rebuilt 2026-11-17 line by line on FY26 17,316.6 less the ~161 Q4 headcount charge (~120bp x 13,442, Q3 letter, src 1): 9M26 mix (10-Q, src 33) cost of revenues ex content amortization 5,23\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "~120bp headcount-reduction impact in the Q4 margin guide; 1.2% x 13,442 = 161",
+   "note": "Checked only the src 1 part; the 9M26 cost mix is src 33.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver other_opex derivation",
+   "item": "claim (src 1)",
+   "value": "QUARTERS: Q4 FY26 5,005.6 = costs that move with revenue (delivery, payment processing, live production, marketing for the slate) on Q4 revenue 13,482.3 against Q4 2025's 12,050.7 and 4,329.9 of othe\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Letter summary table: Q4'25 revenue $12,051, operating income $2,957; Q4'26 guide 13,442 and ~120bp headcount charge",
+   "note": "Checked only the src 1 part. 4,329.9 of Q4'25 other costs is derived (12,050.7 - 2,956.6 - Q4'25 amortization 4,764.2 = FY25 16,422.2 from the 10-K less 9M25 11,657.9); the amortization figure is not in this letter. 13,482.3 = 13,442 x 1.003 (agent's guide-based revenue).",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q1 FY2025: first guide (2025-01-21) / reported actual",
+   "value": "10416-10416 / 10543",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000033/ex991_q424.htm",
+   "result": "ok",
+   "page_shows": "Q1'25 Forecast revenue $10,416M",
+   "note": "Actual from the Q1'25 letter: $10,543M.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q1 FY2025: first guide (2025-01-21) / reported actual",
+   "value": "0.282-0.282 / 0.317",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000033/ex991_q424.htm",
+   "result": "ok",
+   "page_shows": "Q1'25 Forecast operating margin 28.2%",
+   "note": "Actual from the Q1'25 letter: 31.7%.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q2 FY2025: first guide (2025-04-17) / reported actual",
+   "value": "11035-11035 / 11079",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000175/ex991_q125.htm",
+   "result": "ok",
+   "page_shows": "Q2'25 Forecast revenue $11,035M",
+   "note": "Actual from the Q2'25 letter: $11,079M.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q2 FY2025: first guide (2025-04-17) / reported actual",
+   "value": "0.333-0.333 / 0.341",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000175/ex991_q125.htm",
+   "result": "ok",
+   "page_shows": "Q2'25 Forecast operating margin 33.3%",
+   "note": "Actual from the Q2'25 letter: 34.1%.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q3 FY2025: first guide (2025-07-17) / reported actual",
+   "value": "11526-11526 / 11510",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000322/ex991_q225.htm",
+   "result": "ok",
+   "page_shows": "Q3'25 Forecast revenue $11,526M",
+   "note": "Actual from the Q3'25 letter: $11,510M.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q3 FY2025: first guide (2025-07-17) / reported actual",
+   "value": "0.315-0.315 / 0.282",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000322/ex991_q225.htm",
+   "result": "ok",
+   "page_shows": "Q3'25 Forecast operating margin 31.5%",
+   "note": "Actual from the Q3'25 letter: 28.2% (includes the Brazil tax expense).",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q4 FY2025: first guide (2025-10-21) / reported actual",
+   "value": "11960-11960 / 12051",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000404/ex991_q325.htm",
+   "result": "ok",
+   "page_shows": "Q4'25 Forecast revenue $11,960M",
+   "note": "Actual from the Q4'25 letter: $12,051M.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q4 FY2025: first guide (2025-10-21) / reported actual",
+   "value": "0.239-0.239 / 0.245",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000404/ex991_q325.htm",
+   "result": "ok",
+   "page_shows": "Q4'25 Forecast operating margin 23.9%",
+   "note": "Actual from the Q4'25 letter: 24.5%.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q1 FY2026: first guide (2026-01-20) / reported actual",
+   "value": "12157-12157 / 12250",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000033/ex991_q425.htm",
+   "result": "ok",
+   "page_shows": "Q1'26 Forecast revenue $12,157M",
+   "note": "Actual from the Q1'26 letter: $12,250M.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q1 FY2026: first guide (2026-01-20) / reported actual",
+   "value": "0.321-0.321 / 0.323",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000033/ex991_q425.htm",
+   "result": "ok",
+   "page_shows": "Q1'26 Forecast operating margin 32.1%",
+   "note": "Actual from the Q1'26 letter: 32.3%.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "EPS diluted Q1 FY2026: first guide (2026-01-20) / reported actual",
+   "value": "0.76-0.76 / 1.23",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000033/ex991_q425.htm",
+   "result": "ok",
+   "page_shows": "Q1'26 Forecast diluted EPS $0.76 (post-split basis)",
+   "note": "Actual from the Q1'26 letter: $1.23.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 32)",
+   "value": "FY26 17,710.1 (+7.8%; Q4 +3.8% y/y on a Q4 2025 inflated by the Stranger Things 5 release), below the January \"~10% in 2026\" guide (src 32).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000033/ex991_q425.htm",
+   "result": "ok",
+   "page_shows": "'Our margin forecast also reflects content amortization growth of ~10% in 2026, with higher growth in the first half than the second half'; letter also cites 'the massive final season of Stranger Things' in Q4'25",
+   "note": "Checked only the src 32 part. 17,710.1/16,422.2 (10-K FY25) = +7.8%; 4,945.4/4,764.2 = +3.8% (agent's forecast).",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q2 FY2026: first guide (2026-04-16) / reported actual",
+   "value": "12574-12574 / 12560",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000137/ex991_q126.htm",
+   "result": "ok",
+   "page_shows": "Q2'26 Forecast revenue $12,574M",
+   "note": "Actual from the Q2'26 letter: $12,560M.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q2 FY2026: first guide (2026-04-16) / reported actual",
+   "value": "0.326-0.326 / 0.334",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000137/ex991_q126.htm",
+   "result": "ok",
+   "page_shows": "Q2'26 Forecast operating margin 32.6%",
+   "note": "Actual from the Q2'26 letter: 33.4%.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "EPS diluted Q2 FY2026: first guide (2026-04-16) / reported actual",
+   "value": "0.78-0.78 / 0.8",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000137/ex991_q126.htm",
+   "result": "ok",
+   "page_shows": "Q2'26 Forecast diluted EPS $0.78",
+   "note": "Actual from the Q2'26 letter: $0.80.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "revenue Q3 FY2026: first guide (2026-07-16) / reported actual",
+   "value": "12860-12860 / 12874",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000211/ex991_q226.htm",
+   "result": "ok",
+   "page_shows": "Q3'26 Forecast revenue $12,860M",
+   "note": "Actual from the Q3'26 letter: $12,874M.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q3 FY2026: first guide (2026-07-16) / reported actual",
+   "value": "0.332-0.332 / 0.346",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000211/ex991_q226.htm",
+   "result": "ok",
+   "page_shows": "Q3'26 Forecast operating margin 33.2%",
+   "note": "Actual from the Q3'26 letter: 34.6%.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "EPS diluted Q3 FY2026: first guide (2026-07-16) / reported actual",
+   "value": "0.82-0.82 / 0.87",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000211/ex991_q226.htm",
+   "result": "ok",
+   "page_shows": "Q3'26 Forecast diluted EPS $0.82",
+   "note": "Actual from the Q3'26 letter: $0.87.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor guidance_check revenue Q4 FY2026 why",
+   "item": "claim (src 52)",
+   "value": "Guide use declared: ours = the guide x 1.003, inside the record's -0.1% to +1.2% range and below its +0.4% median because the ads outlook was just cut (src 52).",
+   "basis": "claim",
+   "source_url": "https://ppc.land/netflix-ad-revenue-forecast-drops-to-2-7b-as-partner-integrations-slip/",
+   "result": "ok",
+   "page_shows": "PPC Land (2026-10-21): Netflix lowered its 2026 ad revenue outlook from about $3B to about $2.7B, citing 'slightly slower than expected rollout of some ad product capabilities' and partner-integration delays",
+   "note": "Checked only the src 52 part (the ads outlook cut); the record range/median is the agent's arithmetic.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver sub_rev derivation",
+   "item": "claim (src 49, 54, 1)",
+   "value": "Memberships (judgment, moderately conservative): 301.2M -> 325M+ in 2025, +8% (src 49), after the paid-sharing wave had faded in 2024 (src 54); in 2026 UCAN revenue growth slowed from 17-18% to 10-11\u2026",
+   "basis": "claim",
+   "source_url": "https://au.variety.com/2026/tv/global/netflix-q4-2025-financial-earnings-subscribers-32133/",
+   "result": "ok",
+   "page_shows": "Variety (2026-01-21): 'more than 325 million subscribers worldwide as of the end of 2025', up from 301.2 million a year earlier",
+   "note": "Checked only the src 49 part; +8% is derived (325/301.2 = +7.9%). Paid sharing is not mentioned here (src 54). Src 1 part, for reference: Q3'26 letter UCAN 5,431.7 vs 4,929.0 = +10% (10% constant currency); 2025 UCAN growth 17-18% per the letters (Q3'25 5,072/4,322 = +17.4%, Q4'25 5,339/4,517 = +18.2%).",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver sub_rev derivation",
+   "item": "claim (src 46, 1)",
+   "value": "ARM (judgment): the US rise of 2026-03-26 (+$1 / +$2 / +$2, src 46) laps by Q2 2027, adding ~+1.1pt to FY27 ARM (UCAN 44% of Q3 2026 revenue x ~10% x ~3 months of carry-over); Netflix says only that \u2026",
+   "basis": "claim",
+   "source_url": "https://www.thewrap.com/industry-news/business/netflix-price-increase-2026",
+   "result": "ok",
+   "page_shows": "TheWrap, dated 2026-03-26 12:23 PM: 'Standard With Ads plan goes up $1 to $8.99 per month'; 'the ad-free Standard and Premium plans will each increase by $2 to $19.99 and $26.99 per month'; 'effective Thursday' (2026-03-26 is a Thursday); 'Netflix previously raised prices in the U.S. in January 2025.'",
+   "note": "Only the 2026-03-26 US rise (+$1/+$2/+$2) is attributed to src 46; page shows it. The 'occasionally raise prices' quote and UCAN 44% are src 1; the +1.1pt carry-over is the agent's derivation.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver sub_rev derivation",
+   "item": "claim (src 48, 50)",
+   "value": "Cross-check: with ads 3,900 the FY27 total 55,553 is +8.6%, below the CFO's aim to 'sustain double-digit revenue growth' (src 48) and Zacks consensus $56.67B (src 50): the conservative side of both.",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/",
+   "result": "ok",
+   "page_shows": "CFO Spence Neumann: 'We look to sustain double-digit revenue growth, we look to expand margins, and we look to increase free cash flow.'",
+   "note": "Only the CFO quote is attributed to src 48; Zacks $56.67B is src 50 (not this page). +8.6% / 55,553 is the set's own arithmetic.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver ad_rev derivation",
+   "item": "claim (src 48, 32)",
+   "value": "FY26 2,700: Netflix's own figure (ads 'growing over 80% this year' on 2025's 'over $1.5B', src 48, 32), declared guide_use: no quarterly ad revenue is filed.",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/",
+   "result": "ok",
+   "page_shows": "Co-CEO Greg Peters: 'We are still growing our ads business over 80% this year.' Fool takeaways (editorial summary, not a quote): 'FY 2026 Ad Revenue Target -- $2.7 billion, adjusted downward from a previous target of approximately $3 billion'.",
+   "note": "The 'growing over 80%' quote is on the page. 'Over $1.5B' (2025) is attributed to src 32, not this page (not shown here). 2,700 = 1.5B x 1.8 as the claim states its basis; the $2.7B also appears in Fool's takeaways, as the article's summary.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver ad_rev derivation",
+   "item": "claim (src 48)",
+   "value": "The set's path ends FY29 at 6.2B and implies ~7.4B in 2030 at +19%, about 7% under Omdia: kept below the outside forecast because Netflix is behind its own 2026 target (src 48).",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/",
+   "result": "ok",
+   "page_shows": "Co-CEO Greg Peters: 'But we are currently a bit behind our aggressive target for the year.'",
+   "note": "Only 'Netflix is behind its own 2026 target' is attributed to src 48; the quote supports it. The 6.2B / ~7.4B / Omdia comparison is the agent's reasoning (Omdia is src 47).",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver sub_rev derivation",
+   "item": "claim (src 2, 33, 36, 37)",
+   "value": "FY27-FY29: Quarter split by the mean share of the year in FY2023-FY2025 total revenue (Q1 23.85 / Q2 24.44 / Q3 25.33 / Q4 26.38%; FY23 24.2/24.3/25.3/26.2, FY24 24.0/24.5/25.2/26.3, FY25 23.3/24.5/2\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm",
+   "result": "ok",
+   "page_shows": "Recomputed from the FY2023-FY2025 10-Ks and 10-Qs (Q4 = FY - 9M): revenue shares FY23 24.20/24.28/25.33/26.19, FY24 24.03/24.51/25.19/26.27, FY25 23.33/24.52/25.47/26.67; mean 23.85/24.44/25.33/26.38% (FY25 total 45,183.0).",
+   "note": "Derived figures; match to rounding. Checked against the locally saved filing texts.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 2, 33, 36, 37)",
+   "value": "FY27-FY29 quarters: split by the mean FY2023-FY2025 share of the year (Q1 23.9 / Q2 24.0 / Q3 24.6 / Q4 27.6%; FY23 24.4/24.0/25.2/26.4, FY24 24.0/24.6/24.2/27.2, FY25 23.3/23.3/24.4/29.0; src 2, 33,\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm",
+   "result": "ok",
+   "page_shows": "Content amortization shares: FY23 24.37/24.02/25.17/26.44, FY24 23.99/24.64/24.18/27.20, FY25 23.28/23.33/24.37/29.01; mean 23.88/24.00/24.57/27.55% (FY25 total 16,422.2).",
+   "note": "Derived; matches to rounding.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver other_opex derivation",
+   "item": "claim (src 2, 33, 36, 37)",
+   "value": "FY27-FY29 quarters: split by the mean FY2023-FY2025 share of the year (Q1 23.2 / Q2 23.6 / Q3 24.4 / Q4 28.8%; FY23 23.8/23.5/24.3/28.5, FY24 23.1/24.0/24.2/28.7, FY25 ex Brazil 22.8/23.4/24.6/29.2; \u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm",
+   "result": "ok",
+   "page_shows": "Revenue - operating income - content amortization: FY23 23.76/23.47/24.28/28.50, FY24 23.09/23.99/24.21/28.70, FY25 ex the $619M Q3 2025 Brazil non-income tax charge (Q3 2025 10-Q) 22.76/23.44/24.57/29.23; mean 23.21/23.63/24.35/28.81%.",
+   "note": "Derived; matches to rounding (claimed 23.2/23.6/24.4/28.8).",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver ad_rev derivation",
+   "item": "claim (src 47, 1)",
+   "value": "FY27-FY29 3,900 / 5,050 / 6,200 (+44% / +29% / +23%), re-sourced 2026-11-17 (BEFORE: 'growth keeps halving' and an agent's path): WARC Media puts Netflix at ~9.2% of global CTV ad spend in 2027 vs 3.\u2026",
+   "basis": "claim",
+   "source_url": "https://www.advanced-television.com/2026/02/18/forecast-netflix-to-take-nearly-10-of-ctv-ad-spend-in-2027/",
+   "result": "ok",
+   "page_shows": "Dated 2026-02-18, no byline (report author Celeste Huang, WARC Media). Netflix's share rises 'from 3.7 per cent in 2025 to 9.2 per cent in 2027', according to 'WARC Media global CTV advertising spend data'. Netflix ad revenue 'jumping to $8 billion by 2030, according to data from Omdia'. Actuals cited: 2025 ad revenue 'exceeded $1.5 billion', Q4 2025 paid subs 315M.",
+   "note": "Only the WARC/Omdia figures are attributed to src 47 (the 15-country rollout is src 1). No newer edition linked. The page cites actuals only through 2025. 2026-02-18 is ~272 days before the round, past the 120-day industry_forecast window; timeliness.py decides.",
+   "published": "2026-02-18",
+   "source_kind": "industry_forecast",
+   "newer_found": "",
+   "actuals_released": "",
+   "actuals_through": "2025-12-31 (page cites actuals through FY2025 only, not newer than the forecast)"
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 33)",
+   "value": "FY27-FY29 rebuilt 2026-11-17 by type (BEFORE: +9%/+8% with a ~1pt fade): FY26 split on the 9M mix, licensed 9,459 / produced 8,251 (9M 6,817.9 / 5,946.7, Q3 10-Q, src 33).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2026 10-Q: 9M26 amortization licensed 6,817.9 / produced 5,946.7 (total 12,764.7); 9M mix 53.4%/46.6% on 17,710.1 = 9,459 / 8,251.",
+   "note": "FY26 split derived from the filed 9M mix; arithmetic matches.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 33, 37, 36, 2, 49, 1)",
+   "value": "Produced amortization follows the production pipeline a year earlier: in production at 9/30/24 +1.6% y/y (9,197.7 vs 9,052.1) -> produced FY25 +1.3%; at 9/30/25 +6.7% (9,815.0) -> 9M26 produced +10.2\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "In production 9/30/23 9,052.1, 9/30/24 9,197.7 (+1.6%), 9/30/25 9,815.0 (+6.7%), 9/30/26 10,905.7 (+11.1%); produced amortization FY24 7,612.5 -> FY25 7,708.6 (+1.3%); 9M25 5,395.6 -> 9M26 5,946.7 (+10.2%); licensed FY25 8,713.6 vs 7,689.0 (+13.3%), 9M26 6,817.9 vs 6,262.3 (+8.9%); licensed balance 12,508.4 vs 12,182.2 (+2.7%).",
+   "note": "Filing figures from src 33/37/36/2 checked; the FY27-29 growth picks and the src 49/src 1 statements are not attributed to this page.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 33, 2)",
+   "value": "Back book: content already released at 2026-09-30 is 22,878.0 (licensed 12,508.4 + produced released 10,369.6, Q3 10-Q, src 33); the FY2025 10-K schedule says 10,690 of the 22,826 released at 2025-12\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2026 10-Q: licensed 12,508.4 + produced released 10,369.6 = 22,878.0. FY2025 10-K: ~$6,381M of $12,139M licensed and ~$4,309M of $10,687M released produced amortize in the next year = 10,690 of 22,826 (46.8%).",
+   "note": "14.61% a quarter and 3,342.3 are derived from these; arithmetic matches.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 33, 37)",
+   "value": "New releases: titles first available in Q4 come out of the 10,905.7 in production at 2026-09-30 (src 33; +11.1% on 9,815.0 a year earlier, src 37) plus new licensed and live rights.",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2026 10-Q in production 10,905,673K; Q3 2025 10-Q 9,815,003K; +11.1%.",
+   "note": "",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "claim (src 36)",
+   "value": "Cost made available in Q4 ~5,344 = 0.49 of the in-production balance: the content-asset roll (released balance change + amortization) gives 4,402 in Q4 2024 (0.48 of 9,197.7, src 36) and 5,502 in Q4 \u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528024000287/nflx-20240930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2024 10-Q: in production 9,197.7; released at 9/30/24 22,333.0 (12,307.7 + 10,025.3). With the FY2024 balances (22,573.9 at 12/31/24) and Q4 2024 amortization 4,161.5: roll 240.9 + 4,161.5 = 4,402 = 0.48 of 9,197.7. Q4 2025: 22,826.0 - 22,088.4 + 4,764.2 = 5,502 = 0.56 of 9,815.0.",
+   "note": "Derived from filed balances and presented as a derivation; arithmetic matches. The ~5,344 / 0.49 for Q4 2026 is the agent's estimate.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "supervisor driver other_opex derivation",
+   "item": "claim (src 45, 1, 48)",
+   "value": "FY27: delivery, live production and payment costs grow with revenue (+~11%) and the larger live slate, cost of revenues ex amortization +11%; marketing +8% (slate-driven, slower than 2026's ad-busine\u2026",
+   "basis": "claim",
+   "source_url": "https://abc30.com/story/netflix-is-laying-off-6-workforce-1000-employees-biggest-round-job-cuts-streaming-giant-years/19938143/",
+   "result": "ok",
+   "page_shows": "Dated 2026-10-14: Netflix cutting 'nearly 1,000 positions', 'about 6% of its workforce' of 'about 16,000 full-time employees worldwide'; 'product, tech, legal and human resources teams would be the most impacted'.",
+   "note": "Only the layoff facts are attributed to src 45. The cost-line growth picks, the 'aggressively invest' quote (src 1) and the CFO remark (src 48) are not attributed to this page.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": ""
+  },
+  {
+   "origin": "timeliness.py (forecast the set uses)",
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://api.nasdaq.com/api/analyst/DIS/earnings-forecast",
+   "result": "ok",
+   "page_shows": "Read from the script retrieval /mnt/project-files/valuation/data/estimates/DIS.json (retrieved_utc 2026-11-18T00:51:42Z): Zacks consensus via Nasdaq.com, FY9/2026 EPS 6.93, FY9/2027 7.46, FY9/2028 8.13, FY9/2029 8.69; Zacks sales FY9/2026 $101.59B, FY9/2027 $106.35B.",
+   "note": "The feed carries no publish date of its own. It is a live consensus that is current when retrieved, so published = the script's retrieval time (2026-11-18), as the file records it. The set's older retrievals of this feed (src 7/26, 2026-10-20/26) are superseded by src 55 (retrieved 2026-11-18). The feed was not opened directly.",
+   "published": "2026-11-18",
+   "source_kind": "consensus",
+   "newer_found": ""
+  },
+  {
+   "origin": "timeliness.py (forecast the set uses)",
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast",
+   "result": "ok",
+   "page_shows": "Read from the script retrieval /mnt/project-files/valuation/data/estimates/GOOGL.json (retrieved_utc 2026-11-18T00:51:55Z): Zacks consensus via Nasdaq.com, FY12/2026 EPS 19.81, FY2027 14.92, FY2028 18.38, FY2029 22.41; Zacks sales FY2026 $434.49B, FY2027 $574.27B.",
+   "note": "The feed carries no publish date of its own. It is a live consensus that is current when retrieved, so published = the script's retrieval time (2026-11-18), as the file records it. The set's older retrievals of this feed (src 7/26, 2026-10-20/26) are superseded by src 55 (retrieved 2026-11-18). The feed was not opened directly.",
+   "published": "2026-11-18",
+   "source_kind": "consensus",
+   "newer_found": ""
+  },
+  {
+   "origin": "timeliness.py (forecast the set uses)",
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://api.nasdaq.com/api/analyst/META/earnings-forecast",
+   "result": "ok",
+   "page_shows": "Read from the script retrieval /mnt/project-files/valuation/data/estimates/META.json (retrieved_utc 2026-11-18T00:51:49Z): Zacks consensus via Nasdaq.com, FY12/2026 EPS 29.01, FY2027 33.92, FY2028 39.44, FY2029 52.40; Zacks sales FY2026 $256.49B, FY2027 $313.94B.",
+   "note": "The feed carries no publish date of its own. It is a live consensus that is current when retrieved, so published = the script's retrieval time (2026-11-18), as the file records it. The set's older retrievals of this feed (src 7/26, 2026-10-20/26) are superseded by src 55 (retrieved 2026-11-18). The feed was not opened directly.",
+   "published": "2026-11-18",
+   "source_kind": "consensus",
+   "newer_found": ""
+  },
+  {
+   "origin": "timeliness.py (forecast the set uses)",
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.fool.com/investing/2026/09/09/prediction-netflix-s-advertising-business-passes-usd6-billion-in-2027/",
+   "result": "ok",
+   "page_shows": "Motley Fool, Daniel Sparks, 'Prediction: Netflix's Advertising Business Passes $6 Billion in 2027', dated Sep 9, 2026 1:41AM ET (modified time is the same). Sentence: 'I predict Netflix's advertising revenue passes $6 billion in 2027.' Cites 2025 ad revenue of 'over $1.5 billion' as an actual, and about $3B for 2026 as management's expectation.",
+   "note": "This is a named columnist's prediction. Classed as sell_side (90-day window), the nearest kind; it is 69 days old at the round date (2026-11-17). The page cites no actuals newer than the forecast. Netflix's Q3 2026 print (October) came after it, but the page does not cite it. 'Read Next' links November 2026 Netflix pieces, but none revisits the $6B forecast.",
+   "published": "2026-09-09",
+   "source_kind": "sell_side",
+   "newer_found": "",
+   "actuals_released": "",
+   "actuals_through": "2025-12-31"
+  },
+  {
+   "origin": "supervisor disagreements",
+   "item": "Paramount-WBD close",
+   "value": "Skydance completed merger 2026-10-06 at $31.01666668/WBD share",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1437107/000119312526415055/d200872d8k.htm",
+   "result": "ok",
+   "page_shows": "8-K Item 2.01 merger completed; $31.01666668 cash per share; Item 3.01 Nasdaq notice",
+   "note": ""
+  },
+  {
+   "origin": "supervisor disagreements",
+   "item": "12-state settlement approved 2026-09-30",
+   "value": "judge approval",
+   "basis": "reported",
+   "source_url": "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/09/30/judge-approves-paramounts-settlement-with-states-over-warner-buyout-allowing-merger-to-soon-close",
+   "result": "ok",
+   "page_shows": "AP: judge approved the 12-state settlement 2026-09-30",
+   "note": ""
+  },
+  {
+   "origin": "supervisor disagreements",
+   "item": "WBD EDGAR index",
+   "value": "S-8 POS and 25-NSE 2026-10-06, 15-12G 2026-10-16",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/submissions/CIK0001437107.json",
+   "result": "ok",
+   "page_shows": "25-NSE and S-8 POS 2026-10-06; 15-12G 2026-10-16",
+   "note": ""
+  },
+  {
+   "origin": "supervisor disagreements",
+   "item": "10y Treasury 2026-10-20",
+   "value": "5.12%",
+   "basis": "reported",
+   "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv",
+   "result": "ok",
+   "page_shows": "10/20/2026 10 Yr 5.12",
+   "note": ""
+  },
+  {
+   "origin": "supervisor disagreements",
+   "item": "Q3 buyback / diluted shares",
+   "value": "63.9M shares for $4.8B; diluted 4,195,127K",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "'bought back 63.9 million shares for $4.8B'; diluted weighted average 4,195,127K",
+   "note": "Implied Q3 average price ~$75.1."
+  },
+  {
+   "origin": "supervisor disagreements",
+   "item": "CFO quotes (double-digit growth, 2027 expense not quantified, margin each year)",
+   "value": "quotes",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/",
+   "result": "ok",
+   "page_shows": "Neumann: 'We look to sustain double-digit revenue growth'; 'not going to specifically quantify the expense impact in 2027'",
+   "note": ""
+  },
+  {
+   "origin": "supervisor disagreements",
+   "item": "base-round resolutions",
+   "value": "now prefixed '[Base-round record 2026-10-21; the 2026-11-17 set books a 16.83x exit P/E, no DCF leg (weight 0) and shares -3.35% a year]'",
+   "basis": "judgment",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "prefix matches inputs_detail (16.83x, DCF weight 0, -3.35%)",
+   "note": "Fixed since round 2."
+  },
+  {
+   "origin": "supervisor fair_value",
+   "item": "FY2026 outlook / Q4 guide",
+   "value": "FY26 $51.1B, 31.5%; Q4 $13,442M, 26.0%, EPS 0.67; ~120bp headcount charge",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Letter outlook 51.1B / 31.5%; Q4'26 forecast 13,442 / 3,500 / 26.0% / 0.67; ~120bp from headcount reductions",
+   "note": ""
+  },
+  {
+   "origin": "supervisor fair_value",
+   "item": "FY2026 ad revenue ~$2.7B",
+   "value": "2,700",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "'we currently expect 2026 ad revenue of ~$2.7B vs. approximately $3B previously'",
+   "note": ""
+  },
+  {
+   "origin": "supervisor fair_value",
+   "item": "target change $75.06 -> $66.54",
+   "value": "-11.4%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "66.54/75.06 - 1 = -11.35%",
+   "note": ""
+  },
+  {
+   "origin": "supervisor long_dated_review",
+   "item": "9M 2026 content cash / amortization 1.17x",
+   "value": "1.17x",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "additions to content assets 14,934.2 vs amortization 12,764.7 = 1.17x",
+   "note": ""
+  },
+  {
+   "origin": "supervisor key_drivers",
+   "item": "driver rows",
+   "value": "4.847e4/5.165e4/5.506e4/5.841e4; 1.771e4/...; 1.732e4/...",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "match model drivers (sub_rev 48,466/51,653/55,062/58,414; content 17,710/19,185/20,419/21,638; other 17,317/18,598/20,056/21,428)",
+   "note": "Fixed since round 2."
+  },
+  {
+   "origin": "supervisor comps_review",
+   "item": "peer P/Es 2026-11-18 refresh and median",
+   "value": "DIS 16.64, SONY 17.66, META 18.56, GOOGL 19.29, AMZN 24.73, SPOT 38.86; median 18.92x",
+   "basis": "estimate",
+   "source_url": "runs/2026-11-17/NFLX/peers.md | valuation/data/estimates/<SYM>.json (api.nasdaq.com, retrieved 2026-11-18) | Twelve Data daily series 2026-11-17",
+   "result": "ok",
+   "page_shows": "peers.md table recomputes (e.g. DIS (7.46-0.52) x 0.871 + (8.13-0.52) x 0.129 = 7.026, 116.94/7.026 = 16.64; META 618.87/33.344 = 18.56; GOOGL 280.2/14.529 = 19.29); estimates JSON shows DIS 7.46/8.13, SONY 1.46/1.54, META 33.92, GOOGL 14.92, AMZN 10.76, SPOT 15.86 FY27; Twelve Data closes 2026-11-17 GOOGL 280.20, META 618.87, NFLX 59.68; median (18.56+19.29)/2 = 18.92",
+   "note": "One EPS basis stated (GAAP/IFRS, one-offs out). Minor: FY26 rebuilds carried from 10-26 while Q4 consensus moved (META Q4 now 8.16 vs 8.25 used); at a 0.121 weight the effect is under 0.1%. DIS weight 0.871 vs 317/365 = 0.868 (negligible)."
+  },
+  {
+   "origin": "supervisor comps_review / inputs_detail Horizon P/E",
+   "item": "NFLX own NTM 16.33x; exit 16.81x x 1.0011 = 16.83x",
+   "value": "16.83x",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast | valuation/data/estimates/<SYM>.json (api.nasdaq.com, retrieved 2026-11-18)",
+   "result": "ok",
+   "page_shows": "NFLX.json: Q4 2026 consensus 0.67, FY2027 3.74, FY27 sales $56.67B; 59.68/(0.121 x 3.04 + 0.879 x 3.74 = 3.655) = 16.33; 18.92 x (16.33/18.92)^0.8 = 16.82; x 1.0011 = 16.84",
+   "note": "Round-2 'Street Q4 0.73' error fixed in supervisor.json."
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Base revenue FY2025",
+   "value": "45,183.0",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Regional base revenue FY2025",
+   "value": "UCAN 19,957.2 ...",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "FY2026 revenue growth by region",
+   "value": "51,053 (+13.0%)",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": "DCF reference only."
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "FY2027 revenue growth by region",
+   "value": "~$56.3B, +10.2%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": "Feeds only the DCF (weight 0) but is not marked reference-only; the driver total is 55,553 (+8.6%)."
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Tax rate",
+   "value": "15.5% vs Q2-Q3 2026 15.7%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": "(667.2+653.0)/(4,068.6+4,316.9) = 15.74%"
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "D&A % revenue",
+   "value": "0.8%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Capex incl. content gap",
+   "value": "7.5% FY26",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "SBC",
+   "value": "~1%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "WACC",
+   "value": "9.4% (reference only)",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Interest rate on net debt",
+   "value": "5.6%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Net debt now / horizon",
+   "value": "7,113.9 / 7,500",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": "letter reconciliation 15,132.4 + 59.3 + 145.2 - 8,194.3 - 28.7 = 7,113.9"
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Diluted shares now",
+   "value": "4,195.1M",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": ""
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Shares annual change",
+   "value": "-3.35%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": "4,195.127/4,340.392 - 1 = -3.35%"
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "Capex (driver-linked)",
+   "value": "0.10 x amort + 1.9%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "arithmetic recomputed from the Q3 2026 letter / 10-Q / 10-K figures in the derivation",
+   "note": "693.5/37,683.9 = 1.84%"
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "FY2028-FY2030 revenue growth by region / Terminal growth",
+   "value": "reference values",
+   "basis": "judgment",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "labelled judgment; DCF weight 0",
+   "note": "Not used for the target."
+  },
+  {
+   "origin": "supervisor model.reconciled_inputs.inputs_detail",
+   "item": "shares.buyback",
+   "value": "ref 67.5; 44.8 / 177.8 x3 M",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "177.8 x 67.5 = $12.0B; 177.8/4,195.1 = 4.24%; 44.8 = 177.8 x 92/365; 67.5 vs 68.69 = -1.7%",
+   "note": "Q3 2026 actual price ~$75.1; the 2026-11-17 close is 59.68 (k = 1 - 67.5/59.68 = -13%), so the nightly re-pricing should trigger."
+  },
+  {
+   "origin": "supervisor guidance",
+   "item": "operating margin Q4 FY2026",
+   "value": "26.19% built",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "13,482.3 - 4,945.4 - 5,005.6 = 3,531.3 / 13,482.3 = 26.19%; record actual-guide median +0.8pt (+3.5, +0.8, -3.3, +0.6, +0.2, +0.8, +1.4), range -3.3 to +3.5pt",
+   "note": "Not back-solved now (built from cost lines). track_record.summary still says '+0.3pt used' (stale)."
+  },
+  {
+   "origin": "supervisor driver content_amort",
+   "item": "Q4 FY2026 4,945.4 = back book 3,342.3 + new 1,603.1",
+   "value": "4,945.4",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm",
+   "result": "ok",
+   "page_shows": "10-Q: 12,508.4 + 10,369.6 = 22,878.0; in production 10,905.7; 10-K FY25 6,381 + 4,309 = 10,690 of 22,826 = 46.8%/yr -> 14.61%/qtr (constant-rate); 0.49 x 10,905.7 = 5,344; x 0.30 = 1,603",
+   "note": "'even quarterly run-off' is a constant-rate (declining balance) rate, not straight-line (11.7%). 0.49 / 0.30 rest on past-quarter ratios with a slate case (no Stranger Things-size series, more live)."
+  },
+  {
+   "origin": "supervisor driver content_amort",
+   "item": "FY2026 vs January guide",
+   "value": "17,710.1 (+7.8%) vs ~10%",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000033/ex991_q425.htm",
+   "result": "ok",
+   "page_shows": "Q4 2025 letter: content amortization growth ~10% in 2026",
+   "note": "Below the guide; disclosed."
+  },
+  {
+   "origin": "supervisor driver content_amort",
+   "item": "FY2027 by type (produced +11%, licensed +6%)",
+   "value": "19,185.2",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "in production 10,905.7 vs 9,815.0 = +11.1%; licensed 9M26 +8.9%, balance +2.7%; 9,459 x 1.06 + 8,251 x 1.11 = 19,185",
+   "note": "Licensed +6% is judgment between +2.7% and +8.9%."
+  },
+  {
+   "origin": "supervisor driver sub_rev",
+   "item": "FY2026 48,466.1 and Q4 12,562.1",
+   "value": "9M 37,683.9 - ads + Q4",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Q4 = 13,442 x 1.003 - 920.2 = 12,562.1 (guide_use declared)",
+   "note": ""
+  },
+  {
+   "origin": "supervisor driver ad_rev",
+   "item": "FY2027-FY2029 3,900 / 5,050 / 6,200",
+   "value": "+44% / +29% / +23%",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/2026/02/18/forecast-netflix-to-take-nearly-10-of-ctv-ad-spend-in-2027/ | https://ppc.land/netflix-ad-revenue-forecast-drops-to-2-7b-as-partner-integrations-slip/",
+   "result": "ok",
+   "page_shows": "WARC (2026-02-18): 3.7% of global CTV ad spend 2025 -> 9.2% 2027; Omdia ~$8B 2030; PPC/letter: 15 new countries in 2027, 12 in March; 'a bit behind our aggressive target'",
+   "note": "6,200 x 1.19 = 7,378, 7.8% under $8B (text says 'about 7%'). WARC is past the 120-day industry window and its 2026 premise is overtaken (timeliness screen)."
+  },
+  {
+   "origin": "supervisor driver ad_rev",
+   "item": "FY2026 2,700",
+   "value": "company figure",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "'expect 2026 ad revenue of ~$2.7B'",
+   "note": "guide_use declared."
+  },
+  {
+   "origin": "supervisor judgment call sub_rev why",
+   "item": "'price rise and faster member growth have no dated evidence'",
+   "value": "judgment",
+   "basis": "judgment",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "pure reasoning on the set's evidence",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment call ad_rev why",
+   "item": "'kept below them because Netflix just missed its own target'",
+   "value": "statement",
+   "basis": "reported",
+   "source_url": "https://ppc.land/netflix-ad-revenue-forecast-drops-to-2-7b-as-partner-integrations-slip/",
+   "result": "ok",
+   "page_shows": "PPC / call: 'a bit behind our aggressive target for the year'; 2026 cut ~$3B -> ~$2.7B",
+   "note": ""
+  },
+  {
+   "origin": "supervisor driver sub_rev derivation",
+   "item": "Base 43,683 / FY26 48,466.1 / growth +6.6/+6.6/+6.1% / Q4 12,562.1",
+   "value": "set arithmetic",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "45,183.0 - 1,500 = 43,683; 51,652.7 x 1.066 = 55,061.8; x 1.0609 = 58,414",
+   "note": ""
+  },
+  {
+   "origin": "supervisor driver ad_rev derivation",
+   "item": "quarter seasonal index 0.92/1.00/0.96/1.12",
+   "value": "judgment",
+   "basis": "judgment",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "labelled judgment, flagged as not citable",
+   "note": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "FY26 17,710.1; FY27-29 totals; Q4 4,945.4",
+   "value": "set arithmetic",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "12,764.7 + 4,945.4 = 17,710.1; 19,185.2/17,710.1 = +8.3%; 20,419.3 +6.4%; 21,638.0 +6.0%",
+   "note": ""
+  },
+  {
+   "origin": "supervisor driver content_amort derivation",
+   "item": "'roll gives 0.29 in Q4 2024 and Q4 2025 vs 0.15-0.24 other quarters'",
+   "value": "0.29",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "Q4 2025 (4,764.2 - 14.25% x 22,088.4)/5,501.8 = 0.29 (recomputed round 2)",
+   "note": "Other quarters not re-derived."
+  },
+  {
+   "origin": "supervisor driver other_opex derivation",
+   "item": "FY26 17,316.6; FY28-29 line rates; weighted +8.4/+7.8/+6.8%",
+   "value": "set arithmetic",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "12,311.0 + 5,005.6 = 17,316.6; weights 42.6/20.3/24.4/12.7% -> +8.41/+7.84/+6.84%",
+   "note": "Rates themselves unsupported (see driver rows)."
+  },
+  {
+   "origin": "supervisor driver other_opex derivation",
+   "item": "'Q4 operating margin 26.2% vs the 26.0% guide, inside the record's -3.3 to +3.5pt range'",
+   "value": "26.2%",
+   "basis": "estimate",
+   "source_url": "",
+   "result": "ok",
+   "page_shows": "3,531.3/13,482.3 = 26.19%; record range -3.3 to +3.5pt",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives content_amort",
+   "item": "Q4 2025-size slate (0.56 x 0.30) = 5,177.7",
+   "value": "5,177.7",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528025000406/nflx-20250930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2025 10-Q in production 9,815.0; Q4 2025 roll 5,502 = 0.56",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives content_amort",
+   "item": "Q4 2024-like slate (0.48 x 0.294) = 4,881.3",
+   "value": "4,881.3",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528024000287/nflx-20240930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2024 10-Q in production 9,197.7; roll 4,402 = 0.48",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives content_amort",
+   "item": "back book front-loaded (+~501) = 5,446.4",
+   "value": "5,446.4",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2026 made available 160.8 + 4,235.5 = 4,396.3; 4,235.5 - 14.61% x 22,717.2 = 916.5",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives content_amort",
+   "item": "straight-line 11.7%/qtr = 4,280.1",
+   "value": "4,280.1",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000034/nflx-20251231.htm",
+   "result": "ok",
+   "page_shows": "10-K: 10,690 of 22,826 in the next year; 22,878 x 0.117 = 2,677 + 1,603",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives content_amort",
+   "item": "FY27-29 slower (produced +8/+7/+6, licensed +4)",
+   "value": "+3.31%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "licensed balance +2.7% y/y",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives content_amort",
+   "item": "FY27-29 from cash spend +10%/yr at 1.1x",
+   "value": "-4.84%",
+   "basis": "estimate",
+   "source_url": "https://au.variety.com/2026/tv/global/netflix-q4-2025-financial-earnings-subscribers-32133/ | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "Variety: ~$20B 2026 spend; letter ~1.1x",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives other_opex",
+   "item": "Q4 +14.8% ex charge + 161 = 5,132.0",
+   "value": "5,132.0",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "Q3 2026 4,180.1 vs Q3 2025 4,259.3 - 619 = +14.8%; 4,329.9 x 1.148 + 161 = 5,132",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives other_opex",
+   "item": "FY27-29 no net savings (T&D +12%, G&A +10%)",
+   "value": "-1.94%",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/ | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000291/nflx-20260930.htm",
+   "result": "ok",
+   "page_shows": "CFO will not quantify 2027 impact; 9M T&D +20%, G&A +19%",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives sub_rev",
+   "item": "No price increases after the lap: ARM +0.5/+1.0/+1.0%",
+   "value": "-6.53%",
+   "basis": "estimate",
+   "source_url": "https://www.thewrap.com/industry-news/business/netflix-price-increase-2026 | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "no 2027 rise announced",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives sub_rev",
+   "item": "Members +3.5/+3/+3%",
+   "value": "-6.54%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "UCAN 17% -> 11%, EMEA 18% -> 11% through 2026",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives sub_rev",
+   "item": "Members +7/+5.5/+4.5%",
+   "value": "+9.24%",
+   "basis": "estimate",
+   "source_url": "https://au.variety.com/2026/tv/global/netflix-q4-2025-financial-earnings-subscribers-32133/ | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "301.2M -> 325M+ (+8%); churn improved globally and in the US",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives ad_rev",
+   "item": "even path to Omdia $8B 2030 (+31.2%/yr)",
+   "value": "-2.1%",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/2026/02/18/forecast-netflix-to-take-nearly-10-of-ctv-ad-spend-in-2027/",
+   "result": "ok",
+   "page_shows": "Omdia ~$8B 2030; 2,700 x 1.312^4 = 8,002",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_alternatives ad_rev",
+   "item": "slower +30/+22/+18%",
+   "value": "-3.78%",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/ | https://ppc.land/netflix-ad-revenue-forecast-drops-to-2-7b-as-partner-integrations-slip/",
+   "result": "ok",
+   "page_shows": "'a bit behind our aggressive target'; 'slightly slower than expected rollout'",
+   "note": "Rates are judgment."
+  },
+  {
+   "origin": "supervisor judgment_alternatives ad_rev",
+   "item": "Fool 'doubling' rebased: 5.4B FY27, 6.5B FY28, 7.3B FY29",
+   "value": "+7.76%",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/investing/2026/09/09/prediction-netflix-s-advertising-business-passes-usd6-billion-in-2027/",
+   "result": "ok",
+   "page_shows": "Sparks (2026-09-09): ad revenue to pass $6B in 2027 on ~$3B 2026; >250M MAV; ~$12/viewer/yr; upfront commitments nearly doubled; 15 more countries from 2027",
+   "note": "Premise ($3B) overtaken by the Oct cut; the rebase to 2 x 2.7 is stated."
+  },
+  {
+   "origin": "supervisor judgment_alternatives M&A",
+   "item": "No adjustment / -$15B x 0.15 (WBD scale ~$82.7B, src 53)",
+   "value": "+0.3% / -0.54%",
+   "basis": "judgment",
+   "source_url": "https://www.manifest-media.in/media-/051225/netflix-to-buy-warner-bros-for-usd-827-billion-after-discovery-globa.html | https://www.sec.gov/Archives/edgar/data/1437107/000119312526415055/d200872d8k.htm",
+   "result": "ok",
+   "page_shows": "Manifest Media: enterprise value USD 82.7B (2025-12-05); WBD 8-K: Skydance completed the merger",
+   "note": "Round-2 not_found fixed (src 53 added)."
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian sub_rev",
+   "item": "context",
+   "value": "members +5.0/+4.0/+3.5%, ARM +1.5/+2.5/+2.5%, FY27 +8.6%, 2% under consensus",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "result": "ok",
+   "page_shows": "matches the booked driver (55,553/51,166 = +8.6%; 55,553/56,670 = -2.0%)",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian sub_rev",
+   "item": "option Booked: no 2027 price rise (src 1, 46, 49)",
+   "value": "sources",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm | https://www.thewrap.com/industry-news/business/netflix-price-increase-2026 | https://au.variety.com/2026/tv/global/netflix-q4-2025-financial-earnings-subscribers-32133/",
+   "result": "ok",
+   "page_shows": "'occasionally raise prices'; UCAN/EMEA 10-11%; 301.2M -> 325M+",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian sub_rev",
+   "item": "option Members slow faster (src 1, 48)",
+   "value": "+3.5/+3/+3%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm | https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/",
+   "result": "ok",
+   "page_shows": "UCAN 17% -> 11%, EMEA 18% -> 11%; 'grow view hours faster'",
+   "note": "Round-2 YouTube link issue gone."
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian sub_rev",
+   "item": "option Members nearer +8% (src 49, 54, 1)",
+   "value": "+7/+5.5/+4.5%",
+   "basis": "estimate",
+   "source_url": "https://au.variety.com/2026/tv/global/netflix-q4-2025-financial-earnings-subscribers-32133/ | https://nairametrics.com/2024/10/16/netflix-subscribers-growth-slows-as-password-sharing-crackdown-fades | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "+8% in 2025; Nairametrics: paid-sharing surge faded in 2024; churn improved in Q3 2026",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian ad_rev",
+   "item": "context",
+   "value": "3.9 / 5.05 / 6.2B; ~7.4B 2030 'about 7% under Omdia'; Fool >$6B on $3B",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/investing/2026/09/09/prediction-netflix-s-advertising-business-passes-usd6-billion-in-2027/",
+   "result": "ok",
+   "page_shows": "booked path matches; Sparks >$6B 2027 on ~$3B",
+   "note": "7,378 is 7.8% under $8B (rounding)."
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian ad_rev",
+   "item": "option Booked (src 47, 52, 1)",
+   "value": "3.9/5.05/6.2B",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/2026/02/18/forecast-netflix-to-take-nearly-10-of-ctv-ad-spend-in-2027/ | https://ppc.land/netflix-ad-revenue-forecast-drops-to-2-7b-as-partner-integrations-slip/ | https://www.sec.gov/Archives/edgar/data/1065280/000106528026000290/ex991_q326.htm",
+   "result": "ok",
+   "page_shows": "WARC 9.2% 2027; 15 countries, 12 in March; behind 2026 target",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian ad_rev",
+   "item": "option Doubling in 2027 (src 51, 52)",
+   "value": "~5.4B FY27",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/investing/2026/09/09/prediction-netflix-s-advertising-business-passes-usd6-billion-in-2027/ | https://ppc.land/netflix-ad-revenue-forecast-drops-to-2-7b-as-partner-integrations-slip/",
+   "result": "ok",
+   "page_shows": "Sparks: >250M MAV, ~$12/viewer, upfront nearly doubled, new countries",
+   "note": ""
+  },
+  {
+   "origin": "supervisor judgment_calls_for_kilian ad_rev",
+   "item": "option Slower +30/+22/+18% (src 52, 48)",
+   "value": "3,510/4,282/5,053",
+   "basis": "estimate",
+   "source_url": "https://ppc.land/netflix-ad-revenue-forecast-drops-to-2-7b-as-partner-integrations-slip/ | https://www.fool.com/earnings/call-transcripts/2026/10/20/netflix-nflx-q3-2026-earnings-call-transcript/",
+   "result": "ok",
+   "page_shows": "slower rollout of ad products; behind target",
+   "note": ""
+  },
+  {
+   "item": "claim (src 1)",
+   "fix": "fixed: every copy of the licensed claim now cites the 10-K (src 2) for FY25 and the content policy, the Q3 2026 10-Q (src 33) for 9M26 and the 9/30/26 balance, the Q3 2025 10-Q (src 37) for 9/30/25; the letter (src 1) only for the Q4 live slate"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "fix": "fixed (rule): timeliness.py published_of treats a consensus page as showing the figures of the day it was opened; src 50 carries published 2026-11-18 (the read), as in the DY 2026-11-16 round; timeliness.py check passes"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "fix": "fixed (rule): as row 1, src 55 published 2026-11-18 (the read)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "fix": "fixed (rule): as row 1, src 55 published 2026-11-18 (the read)"
+  },
+  {
+   "item": "Fox-Roku combination 'pending'; ROKU dropped as 'Fox takeover pending'",
+   "fix": "fixed: long_dated_review and peers_dropped restate the Fox-Roku deal as closed (Form 25 2026-11-06, Form 15 2026-11-16, src 13)"
+  },
+  {
+   "item": "how_applied text: '18x, ~12% below the 20.4x peer median', '9.4% WACC', 'FY30 margin capped at 35.7%'",
+   "fix": "fixed: how_applied rows rewritten to the current set (16.83x on 18.92x, no DCF leg, driver margins 32.3/32.9/33.4%); base-round figures marked superseded"
+  },
+  {
+   "item": "NFLX row: FY26 3.10 with 'Street Q4 0.73', NTM 3.663, 16.29x; exit 16.79x",
+   "fix": "fixed: peers.md NFLX row to Q4 0.67, FY26 3.04, NTM 3.655, 16.33x, exit 16.81x x 1.0011 = 16.83x"
+  },
+  {
+   "item": "premium_discount_judgment",
+   "fix": "fixed: premium_discount_judgment rewritten on the 11-18 refresh (18.92 x (16.33/18.92)^0.8 = 16.81x x 1.0011 = 16.83x)"
+  },
+  {
+   "item": "GAAP EBIT margin path (driver output)",
+   "fix": "fixed: EBIT margin row recomputed from the drivers after this round's changes: 16,147.9 / 17,976.3 / 19,791.3 / 21,583.5 (31.6/32.3/32.9/33.4%)"
+  },
+  {
+   "item": "Horizon P/E variant_view",
+   "fix": "fixed: variant_view points to the engine-sized 11-18 alternatives (median 18.94x +12.6%, own 16.35x -2.9%)"
+  },
+  {
+   "item": "Horizon roll flag",
+   "fix": "fixed: wording to -3.35%/yr (shares annual change row)"
+  },
+  {
+   "item": "M&A value leakage: 'Netflix agreed ... ~$82.7B (src 53) and walked away'",
+   "fix": "fixed: 'walked away' replaced: Netflix declined to raise its offer, WBD went with Skydance and paid Netflix the $2.8B termination fee (src 43)"
+  },
+  {
+   "item": "revenue Q4 FY2026: guide x 1.003",
+   "fix": "fixed (value changed): Q4 revenue = guide 13,442 x (1 + record median +0.40%) = 13,495.6, guide_use kind guide_x_beat (flagged); the ads-cut reason dropped (already in the guide); actual_vs_mid_pct added so forecast_lint sees the anchor; sub_rev Q4 12,575.4 and everything downstream recomputed"
+  },
+  {
+   "item": "EPS diluted Q4 FY2026 note",
+   "fix": "fixed: EPS note to Q4 operating income 3,539.8 and Street 0.67 (src 50); estimate 0.70 unchanged"
+  },
+  {
+   "item": "Q4 FY2026 5,005.6 = 4,329.9 x 1.119 + 161",
+   "fix": "carded: Q4 other costs still scale Q4 2025's ratio (flagged in the derivation); the +14.8% build is the alternative; both in the other_opex card to Kilian (target effect 0.0%)"
+  },
+  {
+   "item": "FY2027 by line: COR ex amort +11% 'grow with revenue (+~11%)', S&M +8, T&D +6, G&A +5",
+   "fix": "fixed (value changed): cost of revenues ex amortization and marketing now grow with the set's revenue (+8.7%), marketing tied to its record vs revenue (FY25 +13% vs +16%, 9M26 +14.4% vs +13.7%, src 2, 33); T&D/G&A FY27 unchanged (cut, src 45)"
+  },
+  {
+   "item": "FY2028-FY2029 (+9/+7/+8/+5; +8/+6/+7/+4)",
+   "fix": "carded: FY28-29 lines now grow with revenue after the cut is lapped, evidence of the FY24-9M26 line growth vs revenue cited (src 2, 33); no forecast exists, so it is the other_opex card with overhead-leverage and cost-of-revenues alternatives; lines compounded (no fixed weights)"
+  },
+  {
+   "item": "FY2028-FY2029 (produced +8/+7, licensed +5/+5)",
+   "fix": "carded: no forecast past 2026 exists; content_amort card with the cash-spend (-4.8%) and slower (+3.3%) alternatives"
+  },
+  {
+   "item": "Members +5.0/+4.0/+3.5% FY27-29",
+   "fix": "carded (unchanged): members path is the sub_rev card"
+  },
+  {
+   "item": "ARM FY27 +1.5% = +1.1pt US carry-over - ~1pt mix",
+   "fix": "fixed (value changed): FY27 ARM +1.6% = US March 2026 rise carry-over +1.1pt (src 46, 1) + UK September 2026 rise +0.5pt (src 56, 57: UK 6.2% of revenue, ~+10% blended, ~9 months); the unsourced ~-1pt mix drag removed (Q3 2026 regional F/X-neutral growth 9-15%, src 1); Spain, Mexico, Germany rises (src 56, 58, 59) left out as unsized upside"
+  },
+  {
+   "item": "ARM FY28-29 +2.5% a year",
+   "fix": "carded (unchanged): FY28-29 ARM is in the sub_rev card with the 14-month US cadence and no-rise alternatives"
+  },
+  {
+   "item": "'Guide use declared (guide x the record's +0.3%)'",
+   "fix": "fixed: 'why' rewritten to the record median +0.40%"
+  },
+  {
+   "item": "booked text",
+   "fix": "fixed: booked line restated to the current drivers"
+  },
+  {
+   "item": "Q4 residual of the 26.0% guide + 0.3pt = 4,991.1",
+   "fix": "fixed: the guide-residual alternative removed (back-solved, not evidence)"
+  },
+  {
+   "item": "FY27-29 every line at revenue growth (+10.9% / +8.6% / +7.8%)",
+   "fix": "fixed: alternative replaced by evidence-based builds (cost of revenues keeps 2026's +3.4pt gap; FY28-29 overhead leverage), sized by the engine"
+  },
+  {
+   "item": "US rise mid-2027 + ~3% a year abroad: ARM +3.8/+4.0/+3.5%",
+   "fix": "fixed: '~3% a year abroad' dropped; the alternative is now the US cadence only (~14 months, ~+10% on UCAN 43.7%), no rises abroad counted; resized +10.6%"
+  },
+  {
+   "item": "alternatives empty (why_none: default exit rule)",
+   "fix": "fixed: peer median 18.94x (+12.6%) and own 16.35x (-2.9%) listed, sized and carded (Horizon P/E card, recommendation: keep Kilian's 10-26 rule)"
+  },
+  {
+   "item": "option US rise mid-2027 (src 46, 48, 50)",
+   "fix": "fixed: card option rewritten to the US cadence with its sources (src 46, 48, 50), engine-sized"
+  }
+ ],
+ "notes": [
+  "Gate round 3 fix 2026-11-18. Research target (12m) 67.11 (model_engine.py check; was 66.54 at the round-3 gate).",
+  "Carded rows (14, 16, 17, 18, 20) are in judgment_calls_for_kilian; they close with Kilian's picks (gate_accept).",
+  "2026-11-18 ~16:10Z: forecasters 1-5 rerun (research targets 72.59 / 67.82 / 66.01 / 69.32 / 71.90); timeliness gate_check 0 rows. The rerun forecaster files were checked for timeliness only, not by a full figure gate."
+ ]
+}

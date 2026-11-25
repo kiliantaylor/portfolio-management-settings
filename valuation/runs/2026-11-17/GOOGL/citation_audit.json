@@ -1,0 +1,1464 @@
+{
+ "date": "2026-11-17",
+ "symbol": "GOOGL",
+ "clean": true,
+ "checked": 125,
+ "ok": 82,
+ "failures": [
+  {
+   "item": "claim (src 77)",
+   "value": "CITATION GATE FIX 2026-11-09 (Cloud rebuild round): the FY2027-28 consensus is re-read from the set's own source (MarketScreener re-opened 2026-11-06 [src 77]): $308,024M / $352,387M (was 300,979 / 3\u2026",
+   "cited": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "result": "not_found",
+   "fix": "The 11-09 MarketScreener figures (308,024 / 352,387) marked HISTORY in drivers[7] and inputs_detail[64]; re-read MarketScreener 2026-11-19 [src 145]: capex 201,033 / 321,357 / 368,882 $M; the consensus move (-0.07% / -0.19% / +0.09%) noted; src 77 timeliness newer_forecast -> 145.",
+   "origin": "supervisor driver capex derivation",
+   "status": "fixed"
+  },
+  {
+   "item": "claim (src 77)",
+   "value": "Pre-delay FY2027-28 = 308.024 / 352.387, FY2029 held flat at 352.387 (no FY2029 consensus [src 77]; as the 11-06 fix), FY2024-25 quarter shape. dc_mor as before (h 0.1551, edge quarters 0.1039): $42.\u2026",
+   "cited": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "result": "not_found",
+   "fix": "Same as above: pre-delay 308.024 / 352.387 entry marked HISTORY; current consensus from src 145.",
+   "origin": "supervisor driver capex derivation",
+   "status": "fixed"
+  },
+  {
+   "item": "capex Q4 FY2025: first guide (2025-10-29) / reported actual",
+   "value": "27404.0-29404.0 / 27851.0",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "result": "not_found",
+   "fix": "First Q4 FY2025 guide re-cited to the Q3 2025 call transcript, CFO 'range of $91 billion to $93 billion in 2025' [src 146, speaker recorded]; guidance_check[1] source_ids [146, 3, 62] and first_guide_source set.",
+   "origin": "supervisor guidance",
+   "status": "fixed"
+  },
+  {
+   "item": "claim",
+   "value": "Cross-check: YE2029 backlog / Q4 FY2029 annualized Cloud revenue = 2.97x vs AWS $578B backlog / $184B run rate = 3.14x at Q3 2026 (AWS backlog 'growing triple digits' [src 108, 109]) and Google's own\u2026 (claim)",
+   "cited": "https://aboutamazon.com/news/company-news/amazon-earnings-q3-2026-report",
+   "result": "not_found",
+   "fix": "Backlog cross-check re-cited: $578B growing triple digits to Jassy (src 109, speaker recorded); $184B run rate to the Amazon release (src 108).",
+   "origin": "[supervisor driver cloud_backlog derivation]",
+   "status": "fixed"
+  },
+  {
+   "item": "Q4 FY2026 non-TAC Services costs = Q3 FY2026 x the median FY2022-25 Q4/Q3 cost step (1.1323)",
+   "value": "45,748",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "result": "trend_only",
+   "fix": "OPEN, carded (card 21, item segment_margins, gate_r3_row): booked seasonal step (45,748 / Q4 39.04%) vs the y/y route (39.77%, +0.41%) vs the TAC 10-Q build (0.00%); for Kilian.",
+   "origin": "supervisor model driver_build.quarters.constants_note svc_m",
+   "status": "open"
+  },
+  {
+   "item": "Distribution TAC rate Q4 FY2026 18.14% = Q4 2025 17.75% + the +0.38 pt y/y rise 'seen in Q3' (up y/y on 'growth in revenues subject to TAC', Q3 10-Q); Network TAC at 69% of Network revenue",
+   "value": "17.33% Q3-25 / 17.75% Q4-25 / 17.71% Q3-26 -> 18.14%",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "result": "wrong",
+   "fix": "svc_m derivation corrected to the 10-Q: Search TAC rate substantially consistent y/y, Network rate up; the +0.39 pt rise is implied by the set's 69% Network estimate (17.751 + 0.386 = 18.137 -> 18.14), labelled estimate.",
+   "origin": "supervisor model driver_build.quarters.constants_note svc_m",
+   "status": "fixed"
+  },
+  {
+   "item": "missing alternative: Q4 FY2026 Services TAC with the Search TAC rate flat y/y (10-Q)",
+   "value": "Search TAC rate 17.75% (Q4-25) instead of 18.14%; Network rate up",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "result": "missing_alternative",
+   "fix": "Alternative added: judgment_alternatives segment_margins 'TAC 10-Q build' (Search rate flat at 17.75% y/y, Network rate takes the rise; svc_m[7:20] and driver_build.ntm patches), engine-sized 0.00%; upper bound with no Network offset +0.14%; offered on card 21.",
+   "origin": "supervisor judgment_alternatives segment_margins",
+   "status": "fixed"
+  },
+  {
+   "item": "SOTP: Services and Cloud CY2028E after-tax OI (driver-linked)",
+   "value": "$128.9B / $78.6B NTM at the horizon (round 2)",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "result": "arithmetic",
+   "fix": "SOTP row re-read from the engine ntm_set 2026-11-19: Services 125,250.9 / Cloud 81,079.0 $M ($125.3B / $81.1B), SOTP leg $287.72.",
+   "origin": "supervisor model inputs_detail",
+   "status": "fixed"
+  },
+  {
+   "item": "Alphabet-level base = Q3 -7,655 less the +194 hedging gain it contains and ~325 excess depreciation = 7,136 a quarter",
+   "value": "7,136",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "result": "arithmetic",
+   "fix": "Fixed by the caller before this step: base 7,524 (the -7,655 line contains the +194 hedging gain); constants and ntm terms rescaled; prose corrected (constants_note, judgment_alternatives alpha_lvl, inputs_detail[58], segment note, fair_value.reason, model.reasoning).",
+   "origin": "supervisor model driver_build.quarters.constants_note alpha_lvl",
+   "status": "fixed"
+  },
+  {
+   "item": "FY2027 / FY2028 revenue (consensus) 615,038 / 734,199; EBIT margins 34.4 / 35.28 / 35.87%",
+   "value": "615,038 / 734,199",
+   "cited": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "result": "wrong",
+   "fix": "Consensus re-read MarketScreener 2026-11-19 [src 145]: sales 636,422 / 782,347 $M, EBIT margins 33.67% / 34.36% / 34.73%; inputs_detail[2]-[4] and reference.consensus updated; old figures marked history.",
+   "origin": "supervisor model inputs_detail",
+   "status": "fixed"
+  },
+  {
+   "item": "P/E multiple 21.2x = 20.8 x (21.3 / 20.8)^0.8",
+   "value": "21.2x",
+   "cited": "https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast",
+   "result": "wrong",
+   "fix": "Exit multiple re-derived on the 2026-11-17 Zacks re-read: peer median 21.43x, own 21.46x, exit 21.43 x (21.46 / 21.43)^0.8 = 21.45x [src 134-138, 141].",
+   "origin": "supervisor model inputs_detail",
+   "status": "fixed"
+  },
+  {
+   "item": "P/E leg peers and median 20.8x (MSFT 24.45, AMZN 23.29, META 18.94, RDDT 20.79, APP 13.08)",
+   "value": "median 20.8x",
+   "cited": "https://api.nasdaq.com/api/analyst/MSFT/earnings-forecast",
+   "result": "wrong",
+   "fix": "P/E peers re-read at the 10-23 closes on Zacks 2026-11-17: MSFT 23.99x, AMZN 23.05x, META 18.95x, RDDT 21.43x, APP 12.48x -> median 21.43x [src 134-138]; old values kept as was_2026_10_26.",
+   "origin": "supervisor comps_review",
+   "status": "fixed"
+  },
+  {
+   "item": "SOTP Services median 18.25x (META, RDDT, APP, NFLX) and Cloud 23.3x (MSFT, AMZN, ORCL re-based)",
+   "value": "18.25x / 23.3x",
+   "cited": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "result": "wrong",
+   "fix": "SOTP multiples re-read: Services 18.28x (NFLX 17.61x), Cloud 23.05x (ORCL re-based 17.44x), Other Bets 21.43x [src 139, 140]; Waymo add-back 181,443.9, Isomorphic 16,634.8; ORCL basis row, NFLX variant (card 7 re-sized +0.80%) and depreciation variant restated.",
+   "origin": "supervisor comps_review",
+   "status": "fixed"
+  },
+  {
+   "item": "key_drivers: srv_stock, cloud_share, capex paths",
+   "value": "srv_stock 202.240/350.420/528.795/757.876; cloud_share 0.520/0.498/0.479/0.469; capex 195.953/286.084/353.118/373.597",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "result": "wrong",
+   "fix": "key_drivers[3], [4], [7] restated from the driver rows: srv_stock 202.664 / 357.927 / 545.228 / 785.605; cloud_share 0.520 / 0.4970 / 0.4786 / 0.4683; capex 201.174 / 299.041 / 369.297 / 390.715 $B.",
+   "origin": "supervisor key_drivers",
+   "status": "fixed"
+  },
+  {
+   "item": "sizing.reason / peer_refresh_2026_10_26: 'the current research target (12m) is $303.96'",
+   "value": "$303.96",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "result": "wrong",
+   "fix": "sizing.reason restated at the current research target (12m) $294.56; the 11-06 $303.96 and peer_refresh text marked history.",
+   "origin": "supervisor sizing",
+   "status": "fixed"
+  },
+  {
+   "item": "capex and svc_other quarter split by the FY2024-25 quarter shares (20.8/24.8/25.5/28.8% and 22.7/23.9/25.5/27.9%)",
+   "value": "two-year mean shape",
+   "cited": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "result": "unsupported",
+   "fix": "OPEN, carded (card 22, item capex, gate_r3_row): three-year FY2023-25 shape (FY2023 quarters from XBRL) offered beside the booked two-year shape, engine-sized -0.13% (capex) / -0.00% (svc_other); srv_stock / depreciation limit stated (book.py run on a copy only).",
+   "origin": "supervisor model driver path",
+   "status": "open"
+  },
+  {
+   "item": "cloud_share sizing: 'new capacity at 0.52 +4.99% ($312.76); whole stock at 0.45 -3.80%; both under 5%'",
+   "value": "+4.99% / -3.80%",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "result": "arithmetic",
+   "fix": "cloud_share re-sized on the current set: 0.52 on new capacity +5.17% ($309.80), over 5%, so re-carded (card 23, both options with sources); whole stock 0.45 -3.94% ($282.95); 'both under 5%' wording removed.",
+   "origin": "supervisor model driver path",
+   "status": "fixed"
+  },
+  {
+   "item": "cloud_yield hold 1.1069; check 'Q4 FY2026 Cloud 35.63 $B vs 34.41 (+3.6%)'",
+   "value": "35.63",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "result": "arithmetic",
+   "fix": "cloud_yield check re-read from the engine: Q4 FY2026 Cloud 35.88 $B (+4.3% vs 34.41); card 17 re-sized.",
+   "origin": "supervisor model driver path",
+   "status": "fixed"
+  },
+  {
+   "item": "tpu_units 1.75M a year x $2,500 per TPU",
+   "value": "3.5 GW / ~1 kW = 3.5M units; fee $2,500",
+   "cited": "https://seekingalpha.com/news/4569836-googles-tpu-licensing-and-wiz-acquisition-lead-to-higher-cloud-revenues-wells-fargo",
+   "result": "not_found",
+   "fix": "OPEN, owner-decided: the $2,500 per-TPU fee is 'per Kilian 2026-11-09 04:17Z' (from the WF full note); no public page shows it. Close with gate_accept on his message.",
+   "origin": "supervisor model driver path",
+   "status": "open"
+  },
+  {
+   "item": "'CY2028E ... starts 69 days after the horizon, as CY2027 starts 69 days after the 10-23 price date' (P/E basis card)",
+   "value": "69 days",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "result": "mislabelled",
+   "fix": "P/E basis card (card 4) marked history with superseded_by: the set books 21.45x on NTM EPS at the 2027-11-17 horizon.",
+   "origin": "supervisor judgment call why",
+   "status": "fixed"
+  },
+  {
+   "item": "capex alternatives: three builds within -0.72% to +0.47%",
+   "value": "11-06 snapshot; guide midpoint; guide low end",
+   "cited": "file:///mnt/project-files/adhoc/nvda_customer_capex.md",
+   "result": "missing_alternative",
+   "fix": "Capex alternatives widened: three-year shape (-0.13%) and consensus +10% (src 13, +1.48%) added to judgment_alternatives capex.",
+   "origin": "supervisor judgment_alternatives capex",
+   "status": "fixed"
+  },
+  {
+   "item": "card context: 'The set now books cost builds: Services 41.31 / 40.74 / 40.40% ... Cloud 36.02 / 38.27 / 39.27% (FY2026 34.59%)'; options +5.65% / +6.6% on $297.91",
+   "value": "41.31/40.74/40.40; 36.02/38.27/39.27",
+   "cited": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "result": "mislabelled",
+   "fix": "Decided segment_margins card (card 18) restated at current figures (Services 40.53 / 39.70 / 39.11%, Cloud 37.11 / 39.36 / 40.36%, FY2026 Cloud 35.68%; options re-sized on $294.56); Kilian's decision record and the old context kept as history.",
+   "origin": "supervisor judgment_calls_for_kilian segment_margins",
+   "status": "fixed"
+  },
+  {
+   "item": "transcript source 65: speakers entry",
+   "value": "speaker not recorded",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "result": "mislabelled",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems.",
+   "origin": "supervisor sources speakers",
+   "status": "fixed"
+  },
+  {
+   "item": "transcript source 69: speakers entry",
+   "value": "speaker not recorded",
+   "cited": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "result": "mislabelled",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems.",
+   "origin": "supervisor sources speakers",
+   "status": "fixed"
+  },
+  {
+   "item": "transcript source 86: speakers entry",
+   "value": "speaker not recorded",
+   "cited": "https://www.marketbeat.com/instant-alerts/alphabet-q4-earnings-call-highlights-2026-02-04/",
+   "result": "mislabelled",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems.",
+   "origin": "supervisor sources speakers",
+   "status": "fixed"
+  },
+  {
+   "item": "transcript source 87: speakers entry",
+   "value": "speaker not recorded",
+   "cited": "https://www.tikr.com/blog/not-good-google-cloud-is-forgoing-short-term-revenues-to-feed-its-ai-researchers",
+   "result": "mislabelled",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems.",
+   "origin": "supervisor sources speakers",
+   "status": "fixed"
+  },
+  {
+   "item": "transcript source 123: speakers entry",
+   "value": "speaker not recorded",
+   "cited": "https://www.webull.com/news/15828153888932864",
+   "result": "mislabelled",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems.",
+   "origin": "supervisor sources speakers",
+   "status": "fixed"
+  },
+  {
+   "item": "transcript source 5: speakers entry",
+   "value": "speaker not recorded",
+   "cited": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Jul/22/2026_Q2_Earnings_Transcript.pdf",
+   "result": "mislabelled",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems.",
+   "origin": "supervisor sources speakers",
+   "status": "fixed"
+  },
+  {
+   "item": "transcript source 70: speakers entry",
+   "value": "speaker not recorded",
+   "cited": "https://finance.yahoo.com/markets/stocks/articles/alphabet-q3-earnings-call-highlights-050416594.html",
+   "result": "mislabelled",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems.",
+   "origin": "supervisor sources speakers",
+   "status": "fixed"
+  },
+  {
+   "item": "src 111 eMarketer: US Search Advertising Forecast 2026: Google 48.5% of US search ad spending in 2026, first time below half in ",
+   "value": "published ? (none), industry_forecast",
+   "cited": "https://www.emarketer.com/content/us-search-advertising-forecast-2026",
+   "result": "no_pub_date",
+   "fix": "OPEN: the eMarketer page states no publication date (title year only) and the raw HTML is behind Cloudflare bot protection (not worked around); timeliness_note recorded on src 111.",
+   "origin": "timeliness.py (supervisor sources)",
+   "status": "open"
+  },
+  {
+   "item": "src 114 TV Technology 2026-06-11 on AdImpact: 2025-26 political ad spend projected at a record $11.6B (2022 midterm $8.9B), CTV ",
+   "value": "published 2026-06-11 (gate checker (page)), industry_forecast",
+   "cited": "https://www.tvtechnology.com/business/study-2026-election-cycle-to-hit-record-usd11-6-billion-ad-spend",
+   "result": "stale_forecast",
+   "fix": "src 114: published 2026-06-11 recorded; actuals have come out: AdImpact final cycle figure $11.87B (CTV $2.6B) via The Current 2026-11-04 [src 147]; none_newer search (2 queries, pages checked) with reconciled numbers.",
+   "origin": "timeliness.py (supervisor sources)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 118 Sacra 2026-05-05: Waymo ~$355M annualized revenue (Feb 2026), ~$20 per ride vs ~$17 Uber/Lyft; profitability needs lower",
+   "value": "published 2026-05-05 (gate checker (page)), industry_forecast",
+   "cited": "https://sacra.com/research/waymo-at-355m-year/",
+   "result": "stale_forecast",
+   "fix": "src 118: none_newer search 2026-11-19 (2 queries; Sacra company page checked, no newer Waymo figure) with reconciled numbers.",
+   "origin": "timeliness.py (supervisor sources)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 5 Alphabet Q2 2026 earnings call transcript (IR PDF)",
+   "value": "",
+   "cited": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Jul/22/2026_Q2_Earnings_Transcript.pdf",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 7 Alphabet announces date of Q3 2026 results call (Oct 28, 1:30pm PT)",
+   "value": "",
+   "cited": "https://abc.xyz/investor/news/news-details/2026/Alphabet-Announces-Date-of-Third-Quarter-2026-Financial-Results-Conference-Call-2026-8tpGZsLS6v/default.aspx",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 65 Alphabet Q3 2026 earnings call transcript (Motley Fool)",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 69 Alphabet (GOOGL) Q3 2026 earnings call transcript (TradingKey): CFO Ashkenazi 'Our full year 2026 CapEx guidan",
+   "value": "",
+   "cited": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 70 Yahoo Finance: Alphabet Q3 earnings call highlights ('Alphabet maintained its 2026 CapEx guidance of $195 bill",
+   "value": "",
+   "cited": "https://finance.yahoo.com/markets/stocks/articles/alphabet-q3-earnings-call-highlights-050416594.html",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 86 MarketBeat: Alphabet Q4 2025 earnings call highlights (2026-02-04): CFO: just over half of 2026 ML compute to ",
+   "value": "",
+   "cited": "https://www.marketbeat.com/instant-alerts/alphabet-q4-earnings-call-highlights-2026-02-04/",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 87 TIKR on Pichai, Big Technology podcast 2026-10-20: Cloud 'forgoing short-term revenues', 'capacity constrained",
+   "value": "",
+   "cited": "https://www.tikr.com/blog/not-good-google-cloud-is-forgoing-short-term-revenues-to-feed-its-ai-researchers",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 117 TIKR 2026-10-22: Pichai (Big Technology podcast 2026-10-20): Google DeepMind's compute needs 'non-negotiable',",
+   "value": "",
+   "cited": "https://www.tikr.com/blog/pichai-says-google-cloud-is-giving-up-revenue-to-feed-ai-research-heres-what-that-means-for-alphabet-stock",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "src 123 Microsoft FY2027 Q1 earnings call transcript (Webull): CFO Hood: 'Microsoft Cloud gross margin percentage decl",
+   "value": "",
+   "cited": "https://www.webull.com/news/15828153888932864",
+   "result": "speaker_missing",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems.",
+   "origin": "speaker.py (script)",
+   "status": "fixed"
+  },
+  {
+   "item": "claim (src 65)",
+   "value": "Up: majority of AI Mode queries are incremental, ads now scaling in AI Overviews/AI Mode to more users and queries and international markets (Schindler, Q3 call [src 65]); 50B+ visual searches a mont\u2026",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "result": "speaker_missing",
+   "fix": "src 65 speakers record Philipp Schindler (SVP and Chief Business Officer) for the AI Mode / AI Overviews statements.",
+   "origin": "speaker.py (gate checker record)",
+   "status": "fixed"
+  },
+  {
+   "item": "claim (src 65, 115)",
+   "value": "No company, consensus or outside figure gives CPC beyond FY2026 (Q3 call: AI Mode monetizes lower, ads now scaling in AI Overviews/AI Mode, no CPC number [src 65]); best evidence = the latest reporte\u2026",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "result": "speaker_missing",
+   "fix": "src 65 speakers record Philipp Schindler (CBO) for the AI Mode monetization statement; no CPC figure is given on the call.",
+   "origin": "speaker.py (gate checker record)",
+   "status": "fixed"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "capex FY2025: first guide (2025-02-04) / reported actual",
+   "value": "75000.0-75000.0 / 91447.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex FY2026 guide as of 2026-10-28 (purchases of property and equipment ($M))",
+   "value": "195000.0-205000.0",
+   "basis": "guidance",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex Q4 FY2026 guide as of 2026-10-28 (implied (derived estimate, not a company guide; Alphabet gives no quarterly capex guide): FY2026 $195-205B (reaffirmed,\u2026",
+   "value": "63047.0-73047.0",
+   "basis": "guidance",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex FY2026 consensus as of 2026-11-16",
+   "value": "201174.0",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 124)",
+   "value": "Inside the reaffirmed range, 0.6% above the midpoint: Q4 is set from the post-print consensus (an outside forecast, src 124), backed by $35.9B of capex incurred but not yet paid at 9/30 (up $6.8B in \u2026",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check capex FY2026 why"
+  },
+  {
+   "item": "claim (src 124)",
+   "value": "Q4 69.2B = the current FY2026 consensus 201,174 (MarketScreener 2026-11-16 [src 124]) less YTD 131,953: 1.7% above the implied midpoint 68.0B and 3.7% above the record-adjusted 66.7B; inside the impl\u2026",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check capex Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 124, 76)",
+   "value": "No FY2029 consensus (MarketScreener ends at 2028 [src 124]); the Q3 10-Q's $924.4B commitments, 'significant majority' through 2031, and $130.5B leases commencing 2026-2031 show sustained spend witho\u2026",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call: Capex FY2029: at the FY2028 consensus ($368.5B pre-delay, MarketScreener 2026-11-16) or a\u2026 why"
+  },
+  {
+   "item": "claim (src 124)",
+   "value": "CITATION GATE FIX 2026-11-17 (round 2): recomputed on the current capex quarters (Q4 FY2026 69.221, consensus 321,975 / 368,539 [src 124], dc_mor as booked), same method (forecast vintages x 0.65 in \u2026",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver srv_stock derivation"
+  },
+  {
+   "item": "claim (src 124)",
+   "value": "CITATION GATE FIX 2026-11-17 (round 2): Kilian's rule unchanged (allocated capacity at 0.52, new capacity from Q1 FY2027 at 0.45); the stock weights are recomputed on the new server stock (capex re-r\u2026",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver cloud_share derivation"
+  },
+  {
+   "item": "claim (src 124, 115, 69, 3)",
+   "value": "CITATION GATE FIX 2026-11-17 (round 2) (Kilian 2026-11-16: source flagged paths): Q4 FY2026 = the current FY2026 consensus 201,174 (MarketScreener re-opened 2026-11-17 [src 124], an outside forecast \u2026",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver capex derivation"
+  },
+  {
+   "item": "claim (src 77, 124, 76)",
+   "value": "FY2027-28 pre-delay = the same page's consensus 321,975 / 368,539 (was the 11-06 snapshot 308,024 / 352,387 [src 77]); FY2029 pre-delay at the FY2028 consensus (no FY2029 column [src 124]; Q3 10-Q $9\u2026",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver capex derivation"
+  },
+  {
+   "item": "claim (src 77, 65)",
+   "value": "No FY2029 consensus exists (MarketScreener re-opened 2026-11-06 runs to 2028 only [src 77]); the company gives none (Q3 call [src 65]).",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver capex derivation"
+  },
+  {
+   "item": "claim (src 115)",
+   "value": "Spend already committed backs it: capex incurred but not yet paid $35.9B at 9/30 (XBRL), assets not yet in service $145.3B (10-Q p. 29 [src 115]).",
+   "basis": "claim",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check capex Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 115)",
+   "value": "Q3 10-Q: CPC +4% in Q3 and 9M 2026 (p. 51 [src 115]); no forward CPC figure exists.",
+   "basis": "claim",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call: Search cost-per-click FY2027-29: +4% a year (latest reported) or another rate? why"
+  },
+  {
+   "item": "claim (src 115, 65)",
+   "value": "CPC = price per paid click, built from auction demand vs click supply and mix: Q4 FY2026 103.5 (+3.5% y/y): Q3 reported +4% (Q3 10-Q monetization metrics, p. 51 [src 115]); Q4 carries 'a slightly lar\u2026",
+   "basis": "claim",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver cpc derivation"
+  },
+  {
+   "item": "claim (src 115)",
+   "value": "CLOUD REBUILD 2026-11-09 (Kilian card 2026-11-09 04:18Z option B 'Capacity-led, Cloud share falls'; proposal driver_models/GOOGL/proposal_cloud_path_2026-11-08.md): actual quarters = 4 x Cloud revenu\u2026",
+   "basis": "claim",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver cloud_yield derivation"
+  },
+  {
+   "item": "claim (src 65)",
+   "value": "Cloud is capacity-limited (Q3 call [src 65]) and this set and the dc_mor row already map capacity to Cloud revenue; server capacity built from reported 2021-25 capex (XBRL) and the consensus 2027-28 \u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call: Google Cloud FY2028-29: grow with server capacity (consensus capex) or keep the base roun\u2026 why"
+  },
+  {
+   "item": "claim (src 65)",
+   "value": "No forward bookings figure exists (Q3 call: deals 'in the works', no amount [src 65]); the last two reported quarters (10-Qs) are the only measured rate.",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call: Cloud bookings after Q4 FY2026: hold the reported Q2-Q3 2026 $77.0B a quarter, or a book-\u2026 why"
+  },
+  {
+   "item": "claim (src 65)",
+   "value": "Up: majority of AI Mode queries are incremental, ads now scaling in AI Overviews/AI Mode to more users and queries and international markets (Schindler, Q3 call [src 65]); 50B+ visual searches a mont\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver paid_clicks derivation"
+  },
+  {
+   "item": "claim (src 65, 115)",
+   "value": "No company, consensus or outside figure gives CPC beyond FY2026 (Q3 call: AI Mode monetizes lower, ads now scaling in AI Overviews/AI Mode, no CPC number [src 65]); best evidence = the latest reporte\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver cpc derivation"
+  },
+  {
+   "item": "claim (src 65, 122)",
+   "value": "Real-world basis: Cloud bookings = (1) renewal of what each quarter consumes (revenue drawn from the backlog is re-contracted: book-to-bill 1 on existing use) + (2) multi-year commitments for the new\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver cloud_backlog derivation"
+  },
+  {
+   "item": "claim (src 65)",
+   "value": "No company or consensus figure gives Cloud bookings after Q3 2026 (Q3 call: TPU partnerships with Crux AI and Oracle 'with more in the works', no amount [src 65]).",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver cloud_backlog derivation"
+  },
+  {
+   "item": "claim (src 78, 79, 80)",
+   "value": "The only dated PJM measure is the Virginia bill (approvals paused 3 years from July 1, 2027, January 2027 session; governor has not accepted a statewide moratorium; WTVR [src 78]); Ohio's Acton (proj\u2026",
+   "basis": "claim",
+   "source_url": "https://www.wtvr.com/news/local-news/richmond/state-senator-files-legislation-for-three-year-moratorium-on-new-data-centers",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call: dc_mor PJM timing for GOOGL: Virginia bill timing (capacity effect from Jul 2028, 3 years\u2026 why"
+  },
+  {
+   "item": "claim (src 81, 82, 83)",
+   "value": "Bottoms projected to win and said 'We need to pause' with no scope or duration (ABC News, WTOC [src 81, 82]); she takes office in the first week of the January 2027 session (O.C.G.A. 45-12-2 [src 83]\u2026",
+   "basis": "claim",
+   "source_url": "https://abcnews.com/Politics/georgia-2026-live-midterm-election-results/story?id=136761373",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call: dc_mor Georgia window Jan-Oct 2028 (spread scenario only): keep? why"
+  },
+  {
+   "item": "claim (src 112, 62, 65)",
+   "value": "Q4 FY2026 Search & other 69,065 = Q4 2025 63,073 (Q4-25 release [src 112]) x 1.095, built from the year-on-year drivers the company named: (a) underlying growth: Q3 FY2026 +12.0% (release [src 62]) w\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000012/googexhibit991q42025.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver paid_clicks derivation"
+  },
+  {
+   "item": "claim (src 103, 115)",
+   "value": "Cross-check: Tinuiti's Q3 2026 Google search sample +14% spend, +9% clicks, +4% CPC (relay [src 103]) vs Alphabet's reported +12% / clicks +8% / CPC +4% (Q3 10-Q, p. 51 [src 115]); the agency sample \u2026",
+   "basis": "claim",
+   "source_url": "https://www.karooya.com/blog/digital-ads-benchmark-report-by-tinuiti-q3-2026-key-highlights/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver paid_clicks derivation"
+  },
+  {
+   "item": "claim (src 103, 110)",
+   "value": "Traditional text ads: Tinuiti Q3 2026 text-ad CPC +6% on clicks +4% (AI Max and Gemini-based bidding lift conversions, e.g. Telstra +52% conversions at -36% cost per order, Q3 call), weight ~60% of c\u2026",
+   "basis": "claim",
+   "source_url": "https://www.karooya.com/blog/digital-ads-benchmark-report-by-tinuiti-q3-2026-key-highlights/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver cpc derivation"
+  },
+  {
+   "item": "claim (src 111, 103)",
+   "value": "Down: AI Mode 'lower monetization' (fewer ads per query), Google's US search ad share below half for the first time in more than 20 years (48.5% in 2026, eMarketer [src 111]); Microsoft search clicks\u2026",
+   "basis": "claim",
+   "source_url": "https://www.emarketer.com/content/us-search-advertising-forecast-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver paid_clicks derivation"
+  },
+  {
+   "item": "claim",
+   "value": "Forward cover on new capacity = (bookings - revenue) / the quarter's rise in annualized Cloud revenue, measured on the filed quarters: Q2 2026 (76.37 - 24.77) / 18.96 = 2.72 years, Q3 (77.61 - 30.71)\u2026 (src 126, 2, 76)",
+   "basis": "(claim)",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/GOOG-10-Q-Q1-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver cloud_backlog derivation]"
+  },
+  {
+   "item": "claim",
+   "value": "Best evidence = the reported signings rate: Q2 2026 bookings 513.9 - 462.3 + 24.768 = 76.37 and Q3 560.8 - 513.9 + 30.709 = 77.61 (Q1 / Q2 / Q3 10-Qs [src 126, 2, 76]), mean 76.99 $B a quarter held f\u2026 (claim)",
+   "basis": "(claim)",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/GOOG-10-Q-Q1-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver cloud_backlog derivation]"
+  },
+  {
+   "item": "claim",
+   "value": "Gemini 4's frontier standing (src 94, 96) points both ways: frontier training (Carbon rolled out 'with more compute', restricted access) and the 1B-user Gemini app pull new compute in-house, while fi\u2026 (claim)",
+   "basis": "(claim)",
+   "source_url": "https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver cloud_share derivation]"
+  },
+  {
+   "item": "claim",
+   "value": "Bloomberg Intelligence's >$135B TPU sales by 2028 (TIKR relay, src 100) sized as the outer bound: +16.94% ($367.08), carded with the Morgan Stanley path. (claim)",
+   "basis": "(claim)",
+   "source_url": "https://www.tikr.com/blog/is-alphabet-the-most-obvious-buy-morgan-stanley-sees-tpu-sales-jumping-to-84-billion",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver cloud_yield derivation]"
+  },
+  {
+   "item": "claim",
+   "value": "CITATION GATE FIX 2026-11-17 (round 2): sized numbers re-read on the $297.91 base (judgment_check.py size, after the capex consensus re-read, the Alphabet-level cost build and the Services other / Ot\u2026 (claim)",
+   "basis": "(claim)",
+   "source_url": "https://www.tikr.com/blog/is-alphabet-the-most-obvious-buy-morgan-stanley-sees-tpu-sales-jumping-to-84-billion",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver cloud_yield derivation]"
+  },
+  {
+   "item": "claim",
+   "value": "CLOUD REBUILD 2026-11-09 (Kilian card 2026-11-09 04:18Z option B 'Capacity-led, Cloud share falls'; proposal driver_models/GOOGL/proposal_cloud_path_2026-11-08.md): 3.5 GW / ~1 kW per TPU = ~3.5M uni\u2026 (claim)",
+   "basis": "(claim)",
+   "source_url": "https://www.businessday.co.za/world/international-companies/2026-09-29-anthropic-plans-518bn-ai-infrastructure-spend-80-non-cancellable/",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver tpu_units derivation]"
+  },
+  {
+   "item": "claim",
+   "value": "Cross-check (estimate, low confidence): Wells Fargo puts TPU licensing plus Wiz at ~7% of 2027 GCP revenue [src 93]; on this set's FY2027 Cloud ex license fees (~$193B, GCP the 'vast majority', Q3 ca\u2026 (claim)",
+   "basis": "(claim)",
+   "source_url": "https://seekingalpha.com/news/4569836-googles-tpu-licensing-and-wiz-acquisition-lead-to-higher-cloud-revenues-wells-fargo",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver tpu_units derivation]"
+  },
+  {
+   "item": "claim",
+   "value": "The Q3 10-Q's $924.4B material purchase commitments ('significant majority' fulfilled through 2031) and $130.5B leases commencing 2026-2031 [src 76] show spending at scale with no dated step, so pre-\u2026 (claim)",
+   "basis": "(claim)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver capex derivation]"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "(timeliness)",
+   "source_url": "https://abcnews.com/Politics/ohio-2026-live-midterm-election-results/story?id=136761684",
+   "checked": "2026-11-19",
+   "feeds": "[timeliness.py (forecast the set uses)]"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "(timeliness)",
+   "source_url": "https://sacra.com/research/waymo-at-355m-year/",
+   "checked": "2026-11-19",
+   "feeds": "[timeliness.py (forecast the set uses)]"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "(timeliness)",
+   "source_url": "https://www.tvtechnology.com/business/study-2026-election-cycle-to-hit-record-usd11-6-billion-ad-spend",
+   "checked": "2026-11-19",
+   "feeds": "[timeliness.py (forecast the set uses)]"
+  },
+  {
+   "item": "Q4 FY2026 Services margin 39.04%: arithmetic",
+   "value": "Services revenue 104,362; TAC 17,874; non-TAC 45,748 = 40,404 x 1.1323; OI 40,740",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note svc_m"
+  },
+  {
+   "item": "FY2022-25 Q4/Q3 non-TAC Services cost steps +13.1 / +13.3 / +14.0 / +11.3% (median +13.2%); revenue steps +9.9 to +12.2%; margin steps -0.2 to -1.3 pt",
+   "value": "13.1 / 13.3 / 14.0 / 11.3%",
+   "basis": "reported (derived)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/goog-20230930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note svc_m"
+  },
+  {
+   "item": "Q4 FY2026 Cloud margin 36.47%: arithmetic",
+   "value": "capacity revenue 35,878 (+16.8%); Q3 costs 19,468; elasticity 0.95 -> +16.0%; bridging +215; costs 22,795; OI 13,083",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note cloud_m"
+  },
+  {
+   "item": "FY2027-29 Services margin cost build re-run 40.53 / 39.70 / 39.11%",
+   "value": "40.53 / 39.70 / 39.11%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note svc_m"
+  },
+  {
+   "item": "FY2027-29 Cloud margin 37.11 / 39.36 / 40.36% (base 35.68% + 2.5 - 0.75 - 0.32; +1.5 + 0.75; +1.0)",
+   "value": "37.11 / 39.36 / 40.36%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note cloud_m"
+  },
+  {
+   "item": "fair_value.value / methods (P/E, SOTP, blend)",
+   "value": "P/E 301.03 = 21.2 x 13.023 + 24.94; SOTP 292.06 (3,356.8B / 12,486.5 = 268.83 + adj); blend 296.54",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Segment OI margins and Alphabet-level costs FY2026-28 (Q3 2026 update)",
+   "value": "Services 41.67% (Q4 39.04%) / 40.53 / 39.70 / 39.11%; Cloud 35.68% (Q4 36.47%) / 37.11 / 39.36 / 40.36%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Services margin re-anchored on the Q4 FY2026 exit (2026-11-04)",
+   "value": "40.53 / 39.70 / 39.11%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Alphabet-level FY2027-29 cost build (people +11/+9/+7.5%, depreciation with revenue, operations with internal compute)",
+   "value": "-35.5 / -44.1 / -54.4 $B",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note alpha_lvl"
+  },
+  {
+   "item": "capex FY2026 guidance arithmetic",
+   "value": "FY2025 75,000 -> 91,447 (+0.219); guide 195,000-205,000; adjusted 243,800; ours 201,174 inside +0.59%; 1/0/0",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex Q4 FY2026 guidance arithmetic",
+   "value": "Q4 FY2025 implied guide 27,404-29,404 -> 27,851 (-0.0195); guide 63,047-73,047; adjusted 66,722; ours 69,221 inside +1.72%; 0/1/0",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "D&A % revenue anchor 6.15% (FY2026 and FY2027-29)",
+   "value": "21,955 / 357,269 = 6.15%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (da_pct_rev) anchor"
+  },
+  {
+   "item": "Capex % revenue anchor 40.18%",
+   "value": "200,000 / 497,800",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (capex_pct_rev) anchor"
+  },
+  {
+   "item": "D&A % revenue FY2026 6.37%",
+   "value": "(21,955 + 9,741) / 497,800",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "D&A % revenue FY2027-29 8.90 / 11.62 / 14.27%",
+   "value": "54,948 / 85,744 / 125,992 over 617,440 / 737,710 / 882,946",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Capex % revenue FY2026-29 40.41 / 48.43 / 50.06 / 44.25%",
+   "value": "201,174 / 299,041 / 369,297 / 390,715 over revenue",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Stated EPS at the horizon (NTM 2027-11-17) $13.02; P/E leg 301.03",
+   "value": "21.2 x 13.023 + 24.94",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Scenario bear / base / bull 212.15 / 296.54 / 374.13; median 296.54; q25-q75 248.62-346.12",
+   "value": "212.15 / 296.54 / 374.13",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "SOTP: Alphabet-level and Other Bets parts -35,760 x 18.25; -7,960 x 20.8",
+   "value": "(0.1205 x -35,516 + 0.8795 x -44,122) x 0.83 = -35,760; OB -7,960",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "Net financial assets at the horizon $187,579M",
+   "value": "185,600 - (201,174 - 201,700) - 0.75 x (299,041 - 300,979)",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "FY2026 revenue growth 23.05% (H1 growth held, FY2026 495,699)",
+   "value": "23.05%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail"
+  },
+  {
+   "item": "disagreements (10-06 consensus EPS, peer set, horizon EPS, net financial assets, report date) and changes list",
+   "value": "history",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value / changes / disagreements"
+  },
+  {
+   "item": "paid_clicks / Search & other Q4 FY2026 69,065 (+9.5%) and clicks 118.88",
+   "value": "63,073 x 1.095; 69,065 / 56,133 / 1.035",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path"
+  },
+  {
+   "item": "cpc Q4 FY2026 103.5 and FY2027-29 +3.6 / +3.1 / +2.9%",
+   "value": "0.6 x 5 + 0.4 x 1.5 = 3.6; 0.5 x 4.5 + 0.5 x 1.5 = 3.0 -> 3.1; 0.45 x 4.5 + 0.55 x 1.5 = 2.85 -> 2.9",
+   "basis": "estimate",
+   "source_url": "https://www.karooya.com/blog/digital-ads-benchmark-report-by-tinuiti-q3-2026-key-highlights/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path"
+  },
+  {
+   "item": "cloud_backlog: forward cover 2.72 / 1.97 -> 2.35 years; YE2026-29 607 / 811 / 1,040 / 1,303 $B",
+   "value": "2.35",
+   "basis": "estimate",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path"
+  },
+  {
+   "item": "capex Q4 FY2026 69.221 and FY2027-28 consensus 321,975 / 368,539 (pre-delay), FY2029 at the FY2028 level",
+   "value": "201,174 - 131,953; dc_mor shift 44.35B",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path"
+  },
+  {
+   "item": "srv_stock 202.664 / 357.927 / 545.228 / 785.605 (capex x 0.65 server share)",
+   "value": "0.65 = Q3 call figure held",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path"
+  },
+  {
+   "item": "svc_other FY2027-29 by line 137,718 / 146,743 / 155,051",
+   "value": "YouTube +7.6/+8.0/+6.5%, Network -1.5/-2.0/-2.5%, subscriptions +11.0/+9.5/+8.5%",
+   "basis": "estimate",
+   "source_url": "https://ppc.land/wpp-media-sees-ai-as-advertisings-1-3-trillion-growth-engine-in-2026/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path"
+  },
+  {
+   "item": "Other Bets ob_rev / ob_oi (Waymo fleet x rides x fare; GFiber exit)",
+   "value": "Q3 Waymo ~130M; fleet 5,000 YE2026 / 15,000 YE2027; revenue 1,275 / 2,247 / 3,105; OI -8,938 / -9,680 / -10,260",
+   "basis": "estimate",
+   "source_url": "https://thenextweb.com/news/waymo-20000-robotaxis-2027",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path"
+  },
+  {
+   "item": "D&A % revenue FY2027-29 8.90 / 11.62 / 14.27% vs anchor 6.15%",
+   "value": "+2.8 to +8.1 pt",
+   "basis": "estimate",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model normalizing (da_pct_rev)"
+  },
+  {
+   "item": "'the CFO guided to a meaningful revenue ramp in 2027 for TPU systems'",
+   "value": "quote",
+   "basis": "company statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "'Q3 rose +71% y/y on shared AI R&D (Gemini 4)'",
+   "value": "-7,655 vs -4,467",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "'9M Services margin is 42.5% against the H1 base of 43.5%, and the CFO flags near-term Cloud margin headwinds'",
+   "value": "42.5% / 43.5%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "'Q3's ATM was 2.3x Q3's RSU tax payments'",
+   "value": "2.3x",
+   "basis": "reported",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "Cloud share card: 'Only filed figure is the CFO's just over half for 2026; internal model work competes for compute (Pichai, Q3 call/podcast)'",
+   "value": "quote",
+   "basis": "company statement",
+   "source_url": "https://www.marketbeat.com/instant-alerts/alphabet-q4-earnings-call-highlights-2026-02-04/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "TPU license units: 'Broadcom filing ~3.5 GW from 2027 at ~1 kW per TPU (heise)'",
+   "value": "3.5 GW / 1 kW",
+   "basis": "reported (relay)",
+   "source_url": "https://heise.de/-11247457",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "Morgan Stanley TPU output ~5M 2027 / ~7M 2028 vs ~7.9M prior four years; Fubon 12-15M in 2028",
+   "value": "5M / 7M; 12-15M",
+   "basis": "analyst estimate",
+   "source_url": "https://longbridge.com/en/news/268023378",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "dc_mor Georgia card: 'without Georgia $304.20 vs $303.96 (+0.08%)'",
+   "value": "+0.08%",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "remaining uncited 'why' sentences (FY2025 +22% over first guide; Q4 D&A 9,741; Kilian asked for a P/E and SOTP leg like AMZN's; NFLX out of the P/E leg per README; owner decisions 11-06 / 11-09; value-neutral notes)",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why"
+  },
+  {
+   "item": "cloud_yield / cloud_share / tpu_units / cpc / cloud_backlog / paid_clicks / svc_other / other_bets alternatives: sources opened",
+   "value": "see builds",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "segment_margins alternatives (old steps +6.13%, held +1.2%, Meta-style -1.87%, AWS leverage +6.63%, no leverage -4.86%, Q4 y/y route +0.4%, Q2 elasticity +0.98%)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://aboutamazon.com/news/company-news/amazon-earnings-q3-2026-report",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives segment_margins"
+  },
+  {
+   "item": "other cards: option links (cloud_yield TPU card, cpc, cloud_backlog, cloud_share, TPU units, capex FY2029, dc_mor, leg weights, excess depreciation, NFLX)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian"
+  },
+  {
+   "item": "depreciation_lag: no alternatives, why_none = fitted to filings; 12 best fits span within ~2%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives depreciation_lag"
+  },
+  {
+   "item": "claim (src 77)",
+   "value": "fixed in gate round 3",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver capex derivation",
+   "fix": "The 11-09 MarketScreener figures (308,024 / 352,387) marked HISTORY in drivers[7] and inputs_detail[64]; re-read MarketScreener 2026-11-19 [src 145]: capex 201,033 / 321,357 / 368,882 $M; the consensus move (-0.07% / -0.19% / +0.09%) noted; src 77 timeliness newer_forecast -> 145."
+  },
+  {
+   "item": "claim (src 77)",
+   "value": "fixed in gate round 3",
+   "basis": "claim",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver capex derivation",
+   "fix": "Same as above: pre-delay 308.024 / 352.387 entry marked HISTORY; current consensus from src 145."
+  },
+  {
+   "item": "capex Q4 FY2025: first guide (2025-10-29) / reported actual",
+   "value": "fixed in gate round 3",
+   "basis": "guidance",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance",
+   "fix": "First Q4 FY2025 guide re-cited to the Q3 2025 call transcript, CFO 'range of $91 billion to $93 billion in 2025' [src 146, speaker recorded]; guidance_check[1] source_ids [146, 3, 62] and first_guide_source set."
+  },
+  {
+   "item": "claim",
+   "value": "fixed in gate round 3",
+   "basis": "(claim)",
+   "source_url": "https://aboutamazon.com/news/company-news/amazon-earnings-q3-2026-report",
+   "checked": "2026-11-19",
+   "feeds": "[supervisor driver cloud_backlog derivation]",
+   "fix": "Backlog cross-check re-cited: $578B growing triple digits to Jassy (src 109, speaker recorded); $184B run rate to the Amazon release (src 108)."
+  },
+  {
+   "item": "Distribution TAC rate Q4 FY2026 18.14% = Q4 2025 17.75% + the +0.38 pt y/y rise 'seen in Q3' (up y/y on 'growth in revenues subject to TAC', Q3 10-Q); Network TAC at 69% of Network revenue",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note svc_m",
+   "fix": "svc_m derivation corrected to the 10-Q: Search TAC rate substantially consistent y/y, Network rate up; the +0.39 pt rise is implied by the set's 69% Network estimate (17.751 + 0.386 = 18.137 -> 18.14), labelled estimate."
+  },
+  {
+   "item": "SOTP: Services and Cloud CY2028E after-tax OI (driver-linked)",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail",
+   "fix": "SOTP row re-read from the engine ntm_set 2026-11-19: Services 125,250.9 / Cloud 81,079.0 $M ($125.3B / $81.1B), SOTP leg $287.72."
+  },
+  {
+   "item": "Alphabet-level base = Q3 -7,655 less the +194 hedging gain it contains and ~325 excess depreciation = 7,136 a quarter",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver_build.quarters.constants_note alpha_lvl",
+   "fix": "Fixed by the caller before this step: base 7,524 (the -7,655 line contains the +194 hedging gain); constants and ntm terms rescaled; prose corrected (constants_note, judgment_alternatives alpha_lvl, inputs_detail[58], segment note, fair_value.reason, model.reasoning)."
+  },
+  {
+   "item": "FY2027 / FY2028 revenue (consensus) 615,038 / 734,199; EBIT margins 34.4 / 35.28 / 35.87%",
+   "value": "fixed in gate round 3",
+   "basis": "consensus",
+   "source_url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/finances/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail",
+   "fix": "Consensus re-read MarketScreener 2026-11-19 [src 145]: sales 636,422 / 782,347 $M, EBIT margins 33.67% / 34.36% / 34.73%; inputs_detail[2]-[4] and reference.consensus updated; old figures marked history."
+  },
+  {
+   "item": "P/E multiple 21.2x = 20.8 x (21.3 / 20.8)^0.8",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "https://api.nasdaq.com/api/analyst/GOOGL/earnings-forecast",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model inputs_detail",
+   "fix": "Exit multiple re-derived on the 2026-11-17 Zacks re-read: peer median 21.43x, own 21.46x, exit 21.43 x (21.46 / 21.43)^0.8 = 21.45x [src 134-138, 141]."
+  },
+  {
+   "item": "P/E leg peers and median 20.8x (MSFT 24.45, AMZN 23.29, META 18.94, RDDT 20.79, APP 13.08)",
+   "value": "fixed in gate round 3",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/MSFT/earnings-forecast",
+   "checked": "2026-11-19",
+   "feeds": "supervisor comps_review",
+   "fix": "P/E peers re-read at the 10-23 closes on Zacks 2026-11-17: MSFT 23.99x, AMZN 23.05x, META 18.95x, RDDT 21.43x, APP 12.48x -> median 21.43x [src 134-138]; old values kept as was_2026_10_26."
+  },
+  {
+   "item": "SOTP Services median 18.25x (META, RDDT, APP, NFLX) and Cloud 23.3x (MSFT, AMZN, ORCL re-based)",
+   "value": "fixed in gate round 3",
+   "basis": "consensus",
+   "source_url": "https://api.nasdaq.com/api/analyst/NFLX/earnings-forecast",
+   "checked": "2026-11-19",
+   "feeds": "supervisor comps_review",
+   "fix": "SOTP multiples re-read: Services 18.28x (NFLX 17.61x), Cloud 23.05x (ORCL re-based 17.44x), Other Bets 21.43x [src 139, 140]; Waymo add-back 181,443.9, Isomorphic 16,634.8; ORCL basis row, NFLX variant (card 7 re-sized +0.80%) and depreciation variant restated."
+  },
+  {
+   "item": "key_drivers: srv_stock, cloud_share, capex paths",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor key_drivers",
+   "fix": "key_drivers[3], [4], [7] restated from the driver rows: srv_stock 202.664 / 357.927 / 545.228 / 785.605; cloud_share 0.520 / 0.4970 / 0.4786 / 0.4683; capex 201.174 / 299.041 / 369.297 / 390.715 $B."
+  },
+  {
+   "item": "sizing.reason / peer_refresh_2026_10_26: 'the current research target (12m) is $303.96'",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sizing",
+   "fix": "sizing.reason restated at the current research target (12m) $294.56; the 11-06 $303.96 and peer_refresh text marked history."
+  },
+  {
+   "item": "cloud_yield hold 1.1069; check 'Q4 FY2026 Cloud 35.63 $B vs 34.41 (+3.6%)'",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model driver path",
+   "fix": "cloud_yield check re-read from the engine: Q4 FY2026 Cloud 35.88 $B (+4.3% vs 34.41); card 17 re-sized."
+  },
+  {
+   "item": "'CY2028E ... starts 69 days after the horizon, as CY2027 starts 69 days after the 10-23 price date' (P/E basis card)",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/model_engine.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call why",
+   "fix": "P/E basis card (card 4) marked history with superseded_by: the set books 21.45x on NTM EPS at the 2027-11-17 horizon."
+  },
+  {
+   "item": "capex alternatives: three builds within -0.72% to +0.47%",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/adhoc/nvda_customer_capex.md",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives capex",
+   "fix": "Capex alternatives widened: three-year shape (-0.13%) and consensus +10% (src 13, +1.48%) added to judgment_alternatives capex."
+  },
+  {
+   "item": "card context: 'The set now books cost builds: Services 41.31 / 40.74 / 40.40% ... Cloud 36.02 / 38.27 / 39.27% (FY2026 34.59%)'; options +5.65% / +6.6% on $297.91",
+   "value": "fixed in gate round 3",
+   "basis": "estimate",
+   "source_url": "file:///mnt/project-files/valuation/runs/2026-11-17/GOOGL/supervisor.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian segment_margins",
+   "fix": "Decided segment_margins card (card 18) restated at current figures (Services 40.53 / 39.70 / 39.11%, Cloud 37.11 / 39.36 / 40.36%, FY2026 Cloud 35.68%; options re-sized on $294.56); Kilian's decision record and the old context kept as history."
+  },
+  {
+   "item": "transcript source 65: speakers entry",
+   "value": "fixed in gate round 3",
+   "basis": "company statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems."
+  },
+  {
+   "item": "transcript source 69: speakers entry",
+   "value": "fixed in gate round 3",
+   "basis": "company statement",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems."
+  },
+  {
+   "item": "transcript source 86: speakers entry",
+   "value": "fixed in gate round 3",
+   "basis": "company statement",
+   "source_url": "https://www.marketbeat.com/instant-alerts/alphabet-q4-earnings-call-highlights-2026-02-04/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems."
+  },
+  {
+   "item": "transcript source 87: speakers entry",
+   "value": "fixed in gate round 3",
+   "basis": "company statement",
+   "source_url": "https://www.tikr.com/blog/not-good-google-cloud-is-forgoing-short-term-revenues-to-feed-its-ai-researchers",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems."
+  },
+  {
+   "item": "transcript source 123: speakers entry",
+   "value": "fixed in gate round 3",
+   "basis": "company statement",
+   "source_url": "https://www.webull.com/news/15828153888932864",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems."
+  },
+  {
+   "item": "transcript source 5: speakers entry",
+   "value": "fixed in gate round 3",
+   "basis": "company statement",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Jul/22/2026_Q2_Earnings_Transcript.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems."
+  },
+  {
+   "item": "transcript source 70: speakers entry",
+   "value": "fixed in gate round 3",
+   "basis": "company statement",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-q3-earnings-call-highlights-050416594.html",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sources speakers",
+   "fix": "speakers entry recorded on the transcript source (speaker, role, firm, says covering the figures in the title); speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 114 TV Technology 2026-06-11 on AdImpact: 2025-26 political ad spend projected at a record $11.6B (2022 midterm $8.9B), CTV ",
+   "value": "fixed in gate round 3",
+   "basis": "forecast",
+   "source_url": "https://www.tvtechnology.com/business/study-2026-election-cycle-to-hit-record-usd11-6-billion-ad-spend",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (supervisor sources)",
+   "fix": "src 114: published 2026-06-11 recorded; actuals have come out: AdImpact final cycle figure $11.87B (CTV $2.6B) via The Current 2026-11-04 [src 147]; none_newer search (2 queries, pages checked) with reconciled numbers."
+  },
+  {
+   "item": "src 118 Sacra 2026-05-05: Waymo ~$355M annualized revenue (Feb 2026), ~$20 per ride vs ~$17 Uber/Lyft; profitability needs lower",
+   "value": "fixed in gate round 3",
+   "basis": "forecast",
+   "source_url": "https://sacra.com/research/waymo-at-355m-year/",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (supervisor sources)",
+   "fix": "src 118: none_newer search 2026-11-19 (2 queries; Sacra company page checked, no newer Waymo figure) with reconciled numbers."
+  },
+  {
+   "item": "src 5 Alphabet Q2 2026 earnings call transcript (IR PDF)",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Jul/22/2026_Q2_Earnings_Transcript.pdf",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 7 Alphabet announces date of Q3 2026 results call (Oct 28, 1:30pm PT)",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://abc.xyz/investor/news/news-details/2026/Alphabet-Announces-Date-of-Third-Quarter-2026-Financial-Results-Conference-Call-2026-8tpGZsLS6v/default.aspx",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 65 Alphabet Q3 2026 earnings call transcript (Motley Fool)",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 69 Alphabet (GOOGL) Q3 2026 earnings call transcript (TradingKey): CFO Ashkenazi 'Our full year 2026 CapEx guidan",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.tradingkey.com/news/transcripts/262249599-tradingkey",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 70 Yahoo Finance: Alphabet Q3 earnings call highlights ('Alphabet maintained its 2026 CapEx guidance of $195 bill",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-q3-earnings-call-highlights-050416594.html",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 86 MarketBeat: Alphabet Q4 2025 earnings call highlights (2026-02-04): CFO: just over half of 2026 ML compute to ",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.marketbeat.com/instant-alerts/alphabet-q4-earnings-call-highlights-2026-02-04/",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 87 TIKR on Pichai, Big Technology podcast 2026-10-20: Cloud 'forgoing short-term revenues', 'capacity constrained",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.tikr.com/blog/not-good-google-cloud-is-forgoing-short-term-revenues-to-feed-its-ai-researchers",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 117 TIKR 2026-10-22: Pichai (Big Technology podcast 2026-10-20): Google DeepMind's compute needs 'non-negotiable',",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.tikr.com/blog/pichai-says-google-cloud-is-giving-up-revenue-to-feed-ai-research-heres-what-that-means-for-alphabet-stock",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "src 123 Microsoft FY2027 Q1 earnings call transcript (Webull): CFO Hood: 'Microsoft Cloud gross margin percentage decl",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.webull.com/news/15828153888932864",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (script)",
+   "fix": "speakers recorded on the source; speaker.py check: 0 problems."
+  },
+  {
+   "item": "claim (src 65)",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (gate checker record)",
+   "fix": "src 65 speakers record Philipp Schindler (SVP and Chief Business Officer) for the AI Mode / AI Overviews statements."
+  },
+  {
+   "item": "claim (src 65, 115)",
+   "value": "fixed in gate round 3",
+   "basis": "transcript",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/29/alphabet-googl-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "speaker.py (gate checker record)",
+   "fix": "src 65 speakers record Philipp Schindler (CBO) for the AI Mode monetization statement; no CPC figure is given on the call."
+  }
+ ],
+ "note": "Fix step 2026-11-19 (gate round 3 of 3): 43 failures, 37 fixed, 6 open (two must-card rows and the TAC alternative carded for Kilian on cards 21 / 22, cloud_share re-carded on card 23, tpu_units fee owner-decided, eMarketer no publication date). Not certified: a fix agent may not certify its own fixes; Kilian accepts (gate_accept.py). Engine research target (12m) $296.54 -> $294.56 (P/E $301.40 = 21.45x x 12.867 + 25.40; SOTP $287.72). | 2026-11-19T02:47Z: 1 small flagged row(s) closed on standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z (RULES.md 26). | 2026-11-19T13:55Z: 5 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu).",
+ "accepted_carried": [
+  {
+   "item": "Q4 FY2026 non-TAC Services costs = Q3 FY2026 x the median FY2022-25 Q4/Q3 cost step (1.1323)",
+   "result": "trend_only",
+   "status": "accepted_by_kilian",
+   "fix": " | rule 26 small flagged path, standing card cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z: \"Skip under 0.5%, note it (options +0.00% to +0.41%, rule 26)\"",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL6x7Uwm1s8RxKyE9kDsHU8Z",
+    "quote": "Skip under 0.5%, note it (options +0.00% to +0.41%, rule 26)",
+    "utc": "2026-11-19T02:47Z",
+    "rule": "RULES.md 26"
+   }
+  },
+  {
+   "item": "capex and svc_other quarter split by the FY2024-25 quarter shares (20.8/24.8/25.5/28.8% and 22.7/23.9/25.5/27.9%)",
+   "result": "unsupported",
+   "status": "accepted_by_kilian",
+   "fix": " | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu): \"if you already did the fixes yeah just implement them, this holds for any other name you did this for as well\"",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu",
+    "card": null,
+    "quote": "if you already did the fixes yeah just implement them, this holds for any other name you did this for as well",
+    "utc": "2026-11-19T13:55Z"
+   }
+  },
+  {
+   "item": "tpu_units 1.75M a year x $2,500 per TPU",
+   "result": "not_found",
+   "status": "accepted_by_kilian",
+   "fix": " | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu): \"if you already did the fixes yeah just implement them, this holds for any other name you did this for as well\"",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu",
+    "card": null,
+    "quote": "if you already did the fixes yeah just implement them, this holds for any other name you did this for as well",
+    "utc": "2026-11-19T13:55Z"
+   }
+  },
+  {
+   "item": "src 111 eMarketer: US Search Advertising Forecast 2026: Google 48.5% of US search ad spending in 2026, first time below half in ",
+   "result": "no_pub_date",
+   "status": "accepted_by_kilian",
+   "fix": " | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu): \"if you already did the fixes yeah just implement them, this holds for any other name you did this for as well\"",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu",
+    "card": null,
+    "quote": "if you already did the fixes yeah just implement them, this holds for any other name you did this for as well",
+    "utc": "2026-11-19T13:55Z"
+   }
+  },
+  {
+   "item": "missing alternative: Q4 FY2026 Services TAC with the Search TAC rate flat y/y (10-Q)",
+   "result": "missing_alternative",
+   "status": "accepted_by_kilian",
+   "fix": " | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu): \"if you already did the fixes yeah just implement them, this holds for any other name you did this for as well\"",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu",
+    "card": null,
+    "quote": "if you already did the fixes yeah just implement them, this holds for any other name you did this for as well",
+    "utc": "2026-11-19T13:55Z"
+   }
+  },
+  {
+   "item": "cloud_share 0.52 on new capacity",
+   "result": "arithmetic",
+   "status": "accepted_by_kilian",
+   "fix": " | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu): \"if you already did the fixes yeah just implement them, this holds for any other name you did this for as well\"",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLRgSEyE8SYnV1ps2M6cgznu",
+    "card": null,
+    "quote": "if you already did the fixes yeah just implement them, this holds for any other name you did this for as well",
+    "utc": "2026-11-19T13:55Z"
+   }
+  }
+ ]
+}

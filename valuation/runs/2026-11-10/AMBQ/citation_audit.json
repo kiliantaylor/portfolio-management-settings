@@ -1,0 +1,960 @@
+{
+ "date": "2026-11-10",
+ "symbol": "AMBQ",
+ "clean": true,
+ "checked": 108,
+ "ok": 95,
+ "failures": [
+  {
+   "item": "supervisor fair_value: reason: description of the engine base and drivers ('5.02x ... 221.1 ... $50.13'; 'FY27 total on consensus 178.43'; 'FY28-29 revenue and FY27-29 opex are labeled trend extensions'; 'FY26 on the guides ~$135M')",
+   "value": "47.66",
+   "cited": "",
+   "result": "wrong",
+   "fix": "fair_value.reason rewritten to the update's build: 4.906x x NTM 213.7 + net cash 336.0 + 12.3 - 7.9 over 29.14M = $47.66 (engine check)"
+  },
+  {
+   "item": "supervisor comps_review: own_multiple / exit_multiple",
+   "value": "5.08x / 5.02x",
+   "cited": "",
+   "result": "wrong",
+   "fix": "comps_review own_multiple 4.77x (EV 882.9 / NTM 185.3), exit_multiple 4.906x, premium text +2.5%"
+  },
+  {
+   "item": "supervisor sizing: 'research target ~12% above the 11-03 close'",
+   "value": "~12%",
+   "cited": "file:valuation/data/daily_AMBQ.csv",
+   "result": "wrong",
+   "fix": "sizing.reason: +6.7% on the 11-03 close 44.68 (+5.3% on the 11-10 close 45.24)"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: US share of total 80.6% FY27, 80.5% FY28, 80% FY29",
+   "value": "80.6% FY27",
+   "cited": "",
+   "result": "arithmetic",
+   "fix": "US share FY27 corrected to 81.1% (153.212 / 188.823)"
+  },
+  {
+   "item": "supervisor model driver us_rev: Q4 2026 44.3: 'the low end 43.5 is what booked orders and secured supply cover' + 0.8 expedites",
+   "value": "44.3",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm | https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "fix": "Q4 claim rewritten to what the release/call say (range from customer forecasts and order activity, capacity secured); overage over the midpoint bounded 0 to +1.6 by Q3's supply-capped beat and the Q4 unfilled short-lead demand; 44.3 = midpoint + 0.3 (conservative end); value unchanged; 43.5 (-0.03%) and 45.6 (+0.05%) builds sized"
+  },
+  {
+   "item": "supervisor model driver us_rev: FY2029 wearables core accelerates to +10.5% (from +8.5% FY2028): 'Atomiq120 extends the family to vision [51]'",
+   "value": "+10.5%",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "fix": "FY2029 wearables core re-argued to +8.5% (units +3%/yr to 2030 CCS Insight [56]; on-device AI and ASP per IDC via TelecomLead [57]; Apollo5 [51]); FY29 total 247.4 -> 242.9; Atomiq120 claim limited to what the call says; units-only FY29 sized (0.0%); target unchanged"
+  },
+  {
+   "item": "supervisor model driver row_rev: named non-wearable wins 'largely US-headquartered, so only part lands here'",
+   "value": "FY28 4% / FY29 5%",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "result": "not_found",
+   "fix": "HQ claim removed; RoW 4%/5% re-argued as inside the filed share range (FY2025 5.9% [8], restated 9M 2026 2.9% [50]); FY29 12.4 -> 12.1 on the new total"
+  },
+  {
+   "item": "supervisor model driver ng_gm: 'held below the good peers' 53-88% [39,40,47]'",
+   "value": "53-88%",
+   "cited": "https://stockanalysis.com/stocks/amba/statistics/ | https://stockanalysis.com/stocks/ceva/statistics/ | https://stockanalysis.com/stocks/lscc/statistics/",
+   "result": "wrong",
+   "fix": "range corrected to 58.5-87.5% (AMBA 58.52%, LSCC 69.02%, CEVA 87.47%) in ng_gm and comps_summary"
+  },
+  {
+   "item": "supervisor model driver ng_gm: 'the MCU incumbents' 50%+' gross margin",
+   "value": "50%+",
+   "cited": "",
+   "result": "invented",
+   "fix": "'MCU incumbents 50%+' removed; no value rested on it"
+  },
+  {
+   "item": "supervisor model driver ng_opex: FY2028 116.5 (+12%), FY2029 128.2 (+10%)",
+   "value": "+12% / +10%",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/05/12/ambiq-micro-ambq-q1-2026-earnings-transcript/ | https://www.nasdaq.com/articles/why-ambiq-micro-stock-rocketed-45-higher-today",
+   "result": "unsupported",
+   "fix": "FY2028-29 opex rebuilt as Q4 exit x 4 (108.0 / 119.6) + IP/tape-out layer 8.5 / 8.6 at the company's 2026 IP budget $7-10M (Q2 call [37]); headcount flat flagged as judgment with both-way evidence [38,25,37,51]; values unchanged 116.5 / 128.2; alternatives sized (max -0.49%)"
+  },
+  {
+   "item": "supervisor model inputs_detail shares.diluted_now: 'warrants for 238,931 shares [50]'",
+   "value": "238,931",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm",
+   "result": "wrong",
+   "fix": "corrected: no warrants outstanding; 238,931 exercised in 9M 2026 for $3.0M, already in the count [50]; value unchanged"
+  },
+  {
+   "item": "supervisor model inputs_detail shares.annual_change: '1.36M awards granted in 2025 on ~18M (10-K [8])'",
+   "value": "1.36M",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm | https://data.sec.gov/api/xbrl/companyfacts/CIK0001500412.json",
+   "result": "not_found",
+   "fix": "replaced with 2025 option grants 165,349 (10-K XBRL [8,54]; RSU grant count not in XBRL) and the SBC-path dilution 1.5-1.9%/yr; 2.5% unchanged"
+  },
+  {
+   "item": "supervisor model inputs_detail scenarios.downside: 'AMBQ's March-2026 trough close 25.39 [15]'",
+   "value": "25.39",
+   "cited": "file:valuation/data/daily_AMBQ.csv",
+   "result": "wrong",
+   "fix": "corrected to 23.68 (2026-03-30) from data/daily_AMBQ.csv"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "supervisor model normalizing (shares) anchor: shares.annual_change anchor (reported_history, as of 2026-09-30): outstanding 24.146M (2026-06-30) -> 24.517M (2026-09-30) -> 24.881M (2026-11-06) [50]: +0.74M\u2026",
+   "value": "0.025",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model normalizing (shares) anchor"
+  },
+  {
+   "item": "supervisor guidance: net sales Q4 FY2026 guide as of 2026-11-10",
+   "value": "43.5-44.5",
+   "basis": "GAAP net sales (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP gross margin Q4 FY2026 guide as of 2026-11-10",
+   "value": "0.487-0.487",
+   "basis": "non-GAAP; 'approximately flat to 3Q 2026' (48.7%) (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP operating expense Q4 FY2026 guide as of 2026-11-10",
+   "value": "25.5-26.5",
+   "basis": "non-GAAP (incl. $0.5M IP and Atomiq110 / Apollo340 tape-out costs) (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP net loss per share Q4 FY2026 guide as of 2026-11-10",
+   "value": "-0.09--0.03",
+   "basis": "company non-GAAP (excl. SBC and D&A, incl. other income) on 24.6M weighted shares (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: net sales FY2026 guide as of 2026-11-10",
+   "value": "140.0-140.0",
+   "basis": "GAAP net sales ('approximately $140 million'; initial 2026 expectation 'more than $100 million', ~$135M on the Q2 call\u2026 (guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor model normalizing (tax_rate) anchor: years.tax_rate (non-GAAP) anchor (company_adjusted, as of 2026-09-30): Q3 2026 non-GAAP net loss reconciliation adds back income taxes of 4k on a 7.052M pre-ta\u2026",
+   "value": "",
+   "basis": "(reported)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model normalizing (tax_rate) anchor"
+  },
+  {
+   "item": "supervisor guidance: net sales Q3 FY2025: first guide (2025-09-04) / reported actual",
+   "value": "17.5-18.0 / 18.165",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000095017025113025/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: net sales Q4 FY2025: first guide (2025-11-06) / reported actual",
+   "value": "18.5-19.5 / 20.744",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312525269612/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: net sales Q1 FY2026: first guide (2026-03-05) / reported actual",
+   "value": "21.0-22.0 / 25.06",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526092653/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP gross margin Q1 FY2026: first guide (2026-03-05) / reported actual",
+   "value": "0.44-0.45 / 0.462",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526092653/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP operating expense Q1 FY2026: first guide (2026-03-05) / reported actual",
+   "value": "18.0-18.5 / 18.144",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526092653/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP net loss per share Q1 FY2026: first guide (2026-03-05) / reported actual",
+   "value": "-0.39--0.33 / -0.25",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526092653/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor model: years.tax_rate (non-GAAP)",
+   "value": "",
+   "basis": "(company_adjusted)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526092653/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model"
+  },
+  {
+   "item": "supervisor guidance: net sales Q2 FY2026: first guide (2026-05-12) / reported actual",
+   "value": "31.0-32.0 / 33.901",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526218189/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP gross margin Q2 FY2026: first guide (2026-05-12) / reported actual",
+   "value": "0.45-0.46 / 0.472",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526218189/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP operating expense Q2 FY2026: first guide (2026-05-12) / reported actual",
+   "value": "21.0-22.0 / 19.374",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526218189/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP net loss per share Q2 FY2026: first guide (2026-05-12) / reported actual",
+   "value": "-0.29--0.23 / -0.07",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526218189/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: net sales Q3 FY2026: first guide (2026-08-11) / reported actual",
+   "value": "36.0-37.0 / 38.138",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526343443/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP gross margin Q3 FY2026: first guide (2026-08-11) / reported actual",
+   "value": "0.465-0.475 / 0.487",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526343443/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP operating expense Q3 FY2026: first guide (2026-08-11) / reported actual",
+   "value": "24.0-25.0 / 22.756",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526343443/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP net loss per share Q3 FY2026: first guide (2026-08-11) / reported actual",
+   "value": "-0.2--0.12 / -0.05",
+   "basis": "(guidance)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526343443/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: net sales FY2026 consensus as of 2026-10-07",
+   "value": "135.2",
+   "basis": "(consensus)",
+   "source_url": "https://stockanalysis.com/stocks/ambq/forecast/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: net sales FY2027 consensus as of 2026-10-07",
+   "value": "178.43",
+   "basis": "(consensus)",
+   "source_url": "https://stockanalysis.com/stocks/ambq/forecast/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-GAAP operating expense FY2026 guide as of 2026-08-11",
+   "value": "85.0-85.0",
+   "basis": "non-GAAP ('approximately $85 million for the full year, including $7 million to $10 million of IP pur\u2026 (guidance)",
+   "source_url": "https://s206.q4cdn.com/849744944/files/doc_financials/2026/q2/Transcript-Ambiq-Micro-s-Second-Quarter-2026-Financial-Results.pdf",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor guidance: non-wearables share of net sales FY2028 guide as of 2026-11-10",
+   "value": "0.1-0.13",
+   "basis": "management: mid-single-digit % of revenue in 2026 and 2027, 'low double digits' in 2028 (read a\u2026 (guidance)",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "supervisor fair_value: reason: Q3 sales 38.1, GM 48.7%, EPS -0.05 vs Street -0.16",
+   "value": "38.1/48.7%/-0.05/-0.16",
+   "basis": "reported/consensus",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm | https://finviz.com/news/413894/ambiqs-supply-ceiling-faces-its-first-test-as-stock-slumps-despite-doubling-sales",
+   "checked": "2026-11-11",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "supervisor comps_review: precedent onsemi/SYNA ~$5.7B, ~4.2x NTM 1.35B",
+   "value": "5.7B / 4.2x",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/817720/000114036126038301/ef20083029_ex99-1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "supervisor disagreements: SYNA deal terms: $123 cash, vote 2026-11-17; 117.41 ~4.5% under $123",
+   "value": "$123 / 2026-11-17 / 4.5%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/817720/000114036126041591/ny20084801x1_defa14a.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "supervisor disagreements: AMBQ FY27 consensus 178.43 (+31.98%), 7 analysts",
+   "value": "178.43",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/ambq/forecast/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "supervisor long_dated_review: customers E/F/G 36/29/20% of FY2025; China 50% (2024) -> 9% (2025)",
+   "value": "36/29/20; 50->9",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "supervisor sizing: open flag: H2 2026 82.4 vs H2 2025 38.9 (+112%)",
+   "value": "+112%",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001500412.json",
+   "checked": "2026-11-11",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "supervisor key_drivers: FY totals and driver years",
+   "value": "141.4/188.8/218.8/247.4 etc.",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "supervisor changes: last change 50.13 -> 47.66 components",
+   "value": "-1.29/-0.85/+0.17/-0.52",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: Q4 guide 43.5-44.5; 7 customers >$1M vs 3; active customers +50%",
+   "value": "43.5-44.5; 7 vs 3; +50%",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: Call quotes: 'meaningful step-up', expedites 'not always something we can count on', 'extremely strong even into 2027', quantity and ASP, Apollo5 ASP, Apollo330 Plus/Apollo510 Lite early 2027, Atomiq110 sampling Q1 2027, Apollo340 sampling 2027, non-wearables mid-single digits 2027 / low double digits 2028 / 'additional upside', Atomiq120 vision",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: CCS Insight: smartwatches -4% 2026, gradual recovery 2027, 3% CAGR to 2030; rings +53% 2026, 32% CAGR",
+   "value": "",
+   "basis": "industry data",
+   "source_url": "https://www.ccsinsight.com/company-news/global-wearables-market-to-decline-in-2026-as-demand-for-smartwatches-slows/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: IDC wrist-worn -4.3% y/y Q2 2026; Huawei top vendor; growth from on-device AI",
+   "value": "",
+   "basis": "industry data (relay)",
+   "source_url": "https://telecomlead.com/smart-phone/global-wearables-market-falls-4-3-as-huawei-leads-and-vendors-bet-on-ai-screenless-bands-127670?amp=1",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: Futuresource rings/glasses (rings faster on small base)",
+   "value": "",
+   "basis": "industry data (relay)",
+   "source_url": "https://www.channelnews.com.au/smart-rings-and-ai-glasses-drive-new-phase-of-wearables-growth/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: Q1-on-Q4 +20.8%, FY24 Q1 share 20.0%, FY25 21.7%; top-4 79.2%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001500412.json | https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: no binding purchase commitments [8]",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: FY2027 arithmetic: quarters 44.96/46.31/47.93/49.61 = 188.8 (+33.5%); 177.2 = +25%; ~12% Q4-on-Q4",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model inputs_detail us_rev: FY2028/FY2029 arithmetic: 218.8 (+15.9%), 247.4 (+13.0%), wearables core +8.5% / +10.5%",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail us_rev"
+  },
+  {
+   "item": "supervisor model driver us_rev: FY2028 wearables content/ASP +5.5% [51,57]",
+   "value": "+5.5%",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/ | https://telecomlead.com/smart-phone/global-wearables-market-falls-4-3-as-huawei-leads-and-vendors-bet-on-ai-screenless-bands-127670?amp=1",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver us_rev"
+  },
+  {
+   "item": "supervisor model driver cn_rev: Q3 China 17.3% vs 6.7%; 'continued expansion within our existing high-value customer base in China'; Q3 6.606 (+43% q/q), H1 13.7%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/ | https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm | https://www.sec.gov/Archives/edgar/data/1500412/000119312526344145/ambq-20260630.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver cn_rev"
+  },
+  {
+   "item": "supervisor model driver cn_rev: higher-margin China policy, tariff and export-control risk [6,8]",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526344145/ambq-20260630.htm | https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver cn_rev"
+  },
+  {
+   "item": "supervisor model driver row_rev: RoW Q3 1.085 (+39% y/y), 9M +5%; restated H1",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm | https://www.sec.gov/Archives/edgar/data/1500412/000119312526344145/ambq-20260630.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver row_rev"
+  },
+  {
+   "item": "supervisor model driver ng_gm: Q4 guide 'approximately flat to 3Q 2026'; 'increased supply chain cost pressure'; CFO 'higher input and supply chain costs'; 'almost 300 basis points'; Apollo5 ASP; test times/throughput; rising wafer/packaging/test costs; sole TSMC",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm | https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/ | https://www.sec.gov/Archives/edgar/data/1500412/000119312526344145/ambq-20260630.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver ng_gm"
+  },
+  {
+   "item": "supervisor model driver ng_gm: FY2027-29 +0.1 pt/qtr, +0.4 pt/yr",
+   "value": "49.05/49.45/49.85%",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver ng_gm"
+  },
+  {
+   "item": "supervisor model driver ng_opex: Q4 25.8 build: Q3 22.756; slipped spend; 0.5 IP; tape-out variable costs; guide 25.5-26.5",
+   "value": "25.8",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm | https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver ng_opex"
+  },
+  {
+   "item": "supervisor model driver ng_opex: FY2026 86.1 vs ~85 guide; IP licensing beyond 340/110; R&D +90.1%; 'too early ... annual operating plan'",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://s206.q4cdn.com/849744944/files/doc_financials/2026/q2/Transcript-Ambiq-Micro-s-Second-Quarter-2026-Financial-Results.pdf | https://www.fool.com/earnings/call-transcripts/2026/05/12/ambiq-micro-ambq-q1-2026-earnings-transcript/ | https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver ng_opex"
+  },
+  {
+   "item": "supervisor model driver ng_opex: sustained non-GAAP profitability from 2028 (possibly 2H 2027) [38,25]",
+   "value": "",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/05/12/ambiq-micro-ambq-q1-2026-earnings-transcript/ | https://www.nasdaq.com/articles/why-ambiq-micro-stock-rocketed-45-higher-today",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model driver ng_opex"
+  },
+  {
+   "item": "supervisor model inputs_detail tax_rate: full valuation allowance; Q3 tax 4k on 7.052M loss; accumulated deficit 381.1 / 374.0",
+   "value": "0.0",
+   "basis": "company_adjusted",
+   "source_url": "https://ambiq.com/wp-content/uploads/2026/11/Ambiq-Q3-2026-Earnings-Balance-Sheet.pdf | https://www.sec.gov/Archives/edgar/data/1500412/000119312526344145/ambq-20260630.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail tax_rate"
+  },
+  {
+   "item": "supervisor model inputs_detail shares.diluted_now: 24.881M outstanding; RSU 2.027M; options/ESPP 2.017M; WAEP $11.27; close 45.24",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm | https://data.sec.gov/api/xbrl/companyfacts/CIK0001500412.json | file:valuation/data/daily_AMBQ.csv",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail shares.diluted_now"
+  },
+  {
+   "item": "supervisor model inputs_detail shares.annual_change: SBC 3.56M/qtr [5]; H1 shares 24.146 - 18.317 - 2.637 - 2.300 - 0.239 = +0.65M (+3.6%)",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526344145/ambq-20260630.htm | https://ambiq.com/wp-content/uploads/2026/11/Ambiq-Q3-2026-Earnings-Balance-Sheet.pdf",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail shares.annual_change"
+  },
+  {
+   "item": "supervisor model inputs_detail interest_rate: other income 2.976; cash 366.774 / 363.452",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://ambiq.com/wp-content/uploads/2026/11/Ambiq-Q3-2026-Earnings-Balance-Sheet.pdf | https://www.sec.gov/Archives/edgar/data/1500412/000119312526344145/ambq-20260630.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail interest_rate"
+  },
+  {
+   "item": "supervisor model inputs_detail sbc/d&a/capex: SBC FY25 6.835, Q1-Q3 3.362/3.557/4.017; D&A FY25 7.215, 1.740/1.785/1.814; capex FY25 7.443, Q1 4.021, Q2 1.880, Q3 1.784, 9M 7.685 (6.281+1.404); intangibles in payables 4.83; unrecognized RSU 49.7M/3.3y, options 1.2M/~2y",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526092653/ambq-ex99_1.htm | https://ambiq.com/wp-content/uploads/2026/11/Ambiq-Q3-2026-Earnings-Balance-Sheet.pdf | https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm | https://data.sec.gov/api/xbrl/companyfacts/CIK0001500412.json",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail sbc/d&a/capex"
+  },
+  {
+   "item": "supervisor model inputs_detail scenarios.upside: June-2026 close 90.48 [15]",
+   "value": "90.48",
+   "basis": "reported",
+   "source_url": "file:valuation/data/daily_AMBQ.csv",
+   "checked": "2026-11-11",
+   "feeds": "supervisor model inputs_detail scenarios.upside"
+  },
+  {
+   "item": "supervisor arithmetic: net sales Q4 FY2026 guidance arithmetic (5/0/0, median 0.0762, adj 47.35, ours 44.3 inside +0.0068)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: non-GAAP GM Q4 FY2026 (3/0/0, median 0.0374, adj 0.5052, ours 0.489 above 0.0041)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: non-GAAP opex Q4 FY2026 (0/1/2, median -0.0712, adj 24.15, ours 25.8 inside -0.0077)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: non-GAAP EPS Q4 FY2026 (3/0/0, median 0.6875, adj -0.019, ours -0.0503 inside -0.1617)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: net sales FY2026 (adj 150.7, ours 141.4 above 0.01)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: non-GAAP opex FY2026 (adj 78.95, ours 86.07 above 0.0126)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: net sales FY2027 (no guide, ours 188.82)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: non-wearables share FY2028 (guide 0.10-0.13, ours 0.11 inside -0.0435)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: sustained profitability FY2028 (ours 0.073 inside)",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: shares.diluted_now 28.42",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: balance.interest_rate 0.0326 -> 0.033",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: sbc % of revenue anchor 0.105 and path",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: d&a % of revenue anchor 0.048 and path",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: capex % of revenue anchor 0.079 and path",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: horizon_multiples EV/sales 4.906x",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: adjustments interest income +12.3",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: scenarios.downside -2.4x -> 2.51x",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor arithmetic: scenarios.upside +3.8x -> 8.71x",
+   "value": "",
+   "basis": "estimate/judgment",
+   "source_url": "",
+   "checked": "2026-11-11",
+   "feeds": "supervisor arithmetic"
+  },
+  {
+   "item": "supervisor guidance_check net sales FY2026 why: the 135.2 consensus is pre-print (2026-10-07); no Q4 consensus [60]",
+   "value": "",
+   "basis": "consensus",
+   "source_url": "https://stockanalysis.com/stocks/ambq/forecast/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check net sales FY2026 why"
+  },
+  {
+   "item": "supervisor guidance_check non-GAAP opex FY2026 why: ~85 FY guide not repeated on the Q3 call",
+   "value": "",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check non-GAAP opex FY2026 why"
+  },
+  {
+   "item": "supervisor guidance_check non-wearables FY2028 why: design cycles are long [51]",
+   "value": "",
+   "basis": "management statement",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "supervisor guidance_check non-wearables FY2028 why"
+  },
+  {
+   "item": "supervisor driver us_rev derivation: Q3 delivered +1.6 over its guide midpoint while supply-constrained [49]",
+   "value": "+1.6",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526454445/ambq-ex99_1.htm",
+   "checked": "2026-11-11",
+   "feeds": "supervisor driver us_rev derivation"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: pre-print Street FY2027 178.43",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 10 | src 60",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: FY2027 at Q4 exit rate (supply-bound)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 51",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: faster 2027 +5% sequential",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 51 | src 49",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: old +28.9% FY28-29",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 10",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: units-only wearables core +3%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 56",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: wearables core +15%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 51 | src 49",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: Q4 at guide low end 43.5",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 49",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: us_rev alt: old Q1 shape",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 1 | src 3 | src 8",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: cn_rev alts: 17.3% hold / 13.7% H1",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 50 | src 51 | src 6 | src 8",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: row_rev alts: old share path / 2.9% hold",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 4 | src 5 | src 6 | src 50",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: ng_gm alts: flat 48.7 / record beat 50.4 / -1 pt",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 49 | src 51 | src 3-5 | src 6",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: ng_opex alts: 24.15 / 0.416 ratio / +30% / flat breakeven",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 4 | src 5 | src 49 | src 1 | src 38 | src 25",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: horizon multiple alts: no growth term / 45.24 own / old 5.02 / no k premium",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "file:valuation/exit_growth.py | src 29 | src 59 | src 50 | src 17-41",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_alternatives: scenario multiple alts (2.0x / ~7.5x)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 43 | src 15 | src 17 | src 19",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_alternatives"
+  },
+  {
+   "item": "supervisor judgment_calls_for_kilian: us_rev card: context and 5 options' links and reasoning",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "src 51 | src 56 | src 57 | src 49 | src 10 | src 60",
+   "checked": "2026-11-11",
+   "feeds": "supervisor judgment_calls_for_kilian"
+  },
+  {
+   "item": "supervisor fair_value: research target (12m)",
+   "value": "47.66",
+   "basis": "estimate",
+   "source_url": "file:valuation/model_engine.py check",
+   "checked": "2026-11-11",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "supervisor comps_review: own / exit multiple",
+   "value": "4.77x / 4.906x",
+   "basis": "estimate",
+   "source_url": "https://stockanalysis.com/stocks/ambq/forecast/",
+   "checked": "2026-11-11",
+   "feeds": "comps"
+  },
+  {
+   "item": "supervisor sizing: target vs close",
+   "value": "+6.7% (11-03) / +5.3% (11-10)",
+   "basis": "estimate",
+   "source_url": "file:valuation/data/daily_AMBQ.csv",
+   "checked": "2026-11-11",
+   "feeds": "sizing"
+  },
+  {
+   "item": "us_rev US share FY27",
+   "value": "81.1%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm",
+   "checked": "2026-11-11",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "us_rev Q4 2026 total",
+   "value": "44.3",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/11/10/ambiq-micro-ambq-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-11",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "us_rev FY2029 wearables core / total",
+   "value": "+8.5% / 242.9",
+   "basis": "estimate",
+   "source_url": "https://www.ccsinsight.com/company-news/global-wearables-market-to-decline-in-2026-as-demand-for-smartwatches-slows/",
+   "checked": "2026-11-11",
+   "feeds": "scenarios"
+  },
+  {
+   "item": "row_rev FY28-29 share",
+   "value": "4% / 5%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526094004/ambq-20251231.htm",
+   "checked": "2026-11-11",
+   "feeds": "scenarios"
+  },
+  {
+   "item": "ng_gm peer GM range",
+   "value": "58.5-87.5%",
+   "basis": "reported",
+   "source_url": "https://stockanalysis.com/stocks/amba/statistics/",
+   "checked": "2026-11-11",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "ng_opex FY2028-29",
+   "value": "116.5 / 128.2",
+   "basis": "estimate",
+   "source_url": "https://s206.q4cdn.com/849744944/files/doc_financials/2026/q2/Transcript-Ambiq-Micro-s-Second-Quarter-2026-Financial-Results.pdf",
+   "checked": "2026-11-11",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "shares.diluted_now warrants",
+   "value": "none outstanding (238,931 exercised)",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1500412/000119312526455152/ambq-20260930.htm",
+   "checked": "2026-11-11",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "shares.annual_change 2025 option grants",
+   "value": "165,349",
+   "basis": "reported",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001500412.json",
+   "checked": "2026-11-11",
+   "feeds": "fair_value"
+  },
+  {
+   "item": "scenarios.downside March-2026 low close",
+   "value": "23.68",
+   "basis": "reported",
+   "source_url": "file:valuation/data/daily_AMBQ.csv",
+   "checked": "2026-11-11",
+   "feeds": "scenarios"
+  }
+ ],
+ "note": "Fix step 2026-11-11: 13 failures fixed in supervisor.json (corrections in citation_audit.corrections). One forecast number changed: FY2029 revenue 247.4 -> 242.9 (wearables core +10.5% unsupported -> +8.5%); research target (12m) unchanged at 47.66 (FY2029 is outside the horizon NTM window). forecast_lint round: only the overridden Q4 opex guide-anchor hit. judgment_check size/check ok."
+}

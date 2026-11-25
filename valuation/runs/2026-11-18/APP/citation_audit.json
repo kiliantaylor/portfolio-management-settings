@@ -1,0 +1,138 @@
+{
+ "symbol": "APP",
+ "round": "2026-11-18",
+ "gate_round": 3,
+ "checked": 51,
+ "verified": 49,
+ "failures": [
+  {
+   "origin": "timeliness.py (forecast the set uses)",
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://api.nasdaq.com/api/company/META/earnings-surprise",
+   "result": "not_found",
+   "page_shows": "Not opened. consensus_fetch.py refuses this URL ('not a consensus feed URL'). It handles only api.nasdaq.com/api/analyst/SYM/earnings-forecast and Zacks estimates. api.nasdaq.com refuses automated fetching, and the brief bars WebFetch or curl here and bars working around bot protection.",
+   "note": "No publication date found, so published is left empty and the script will refuse this source until a date is found. Also: this URL is for META, not APP, and earnings-surprise is a history of reported results against past estimates, not a forward forecast. Check why the APP set cites it. If a consensus figure is needed, the APP Zacks feed or api.nasdaq.com/api/analyst/APP/earnings-forecast through consensus_fetch.py would work.",
+   "published": "",
+   "source_kind": "",
+   "newer_found": "",
+   "actuals_released": "",
+   "actuals_through": "",
+   "speaker": "",
+   "speaker_role": "",
+   "speaker_firm": "",
+   "_src": "shard",
+   "fix": "src 45 is cited by no row since the 11-24 re-strike; set kind consensus with timeliness.newer_forecast [58] (the 11-24 peer Zacks feeds); timeliness.py check: 0 refused",
+   "status": "fixed"
+  },
+  {
+   "origin": "supervisor driver adj_ebitda_m",
+   "item": "[re-check earlier failure] FY2027-29 path (each quarter = 2026 margin of the same quarter: 84.50/83.89/84.32/84.01%)",
+   "value": "0.8417 / 0.8418 / 0.8418",
+   "basis": "estimate (judgment)",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "result": "unsupported",
+   "page_shows": "Q3 call gives forces both ways (CFO: 87% flow-through, data center cost down as % of revenue; 'We manage this business to EBITDA dollars and free cash flow rather than to a margin percentage'; CEO: ramping new-customer acquisition, CTV); Q4 guide 84-85% covers Q4-26 only; no source gives a margin level or direction for FY2027-29",
+   "note": "still failing: the years repeat the 2026 quarter margins (a level held from a past year, rule 4); the derivation itself says no source gives those years. On card 2 (adj_ebitda_m); alternatives -2.57% / +1.29%",
+   "_src": "text",
+   "fix": "carded to Kilian (must_card, RULES.md 24)",
+   "status": "carded"
+  },
+  {
+   "origin": "supervisor driver sbc",
+   "item": "[re-check earlier failure] path Q4 FY2026-FY2029 at $85M a quarter (340/yr)",
+   "value": "85.0 per quarter; 338.4 / 340 / 340 / 340",
+   "basis": "estimate (judgment)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "result": "unsupported",
+   "page_shows": "10-Q: 'There were no material equity award issuances during the three and nine months ended September 30, 2026'; the existing pool runs off (~$235M left at 9-30); nothing shows a new grant cycle, its size or timing",
+   "note": "still failing: driver unchanged; $85M is today's rate held flat with no source for FY2027-29. On card 3 (sbc); alternatives -1.6% / +1.11%",
+   "_src": "text",
+   "fix": "carded to Kilian (must_card, RULES.md 24)",
+   "status": "carded"
+  },
+  {
+   "origin": "supervisor judgment_alternatives balance.interest_rate",
+   "item": "[re-check earlier failure] alt: no rate change, spot 3-month bill 4.33% - 0.08 = 4.25%",
+   "value": "-0.28%",
+   "basis": "estimate",
+   "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS3MO,DGS6MO,DGS1,DGS2,DGS3",
+   "result": "not_found",
+   "page_shows": "FRED CSV still unreadable: WebFetch returns only the first 41,328 characters (ends 1968-09-10); curl gets HTTP/2 INTERNAL_ERROR, then empty reply over HTTP/1.1",
+   "note": "access failure, not a wrong figure; 4.33% (2026-11-17) unconfirmed",
+   "_src": "text",
+   "fix": "FRED fredgraph.csv opened 2026-11-24 by curl from the thread (the checkers' fetch was cut off): 2026-11-17 DGS3MO 4.33, DGS6MO 4.41, DGS1 4.60, DGS2 4.80, DGS3 4.84, as src 52 states; 4.33 - 0.08 = 4.25",
+   "status": "fixed"
+  }
+ ],
+ "open_failures": [],
+ "clean": true,
+ "note": "only must-card rows open (adj_ebitda_m FY2027-29 level, sbc level): carded to Kilian | 2026-11-24T13:55Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL3oyfLK1c6hYC2sjheSkfSn). | 2026-11-24T13:55Z: 0 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLWBaYcG6bYScDztWA3QNiC2). | 2026-11-24T13:56Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLWBaYcG6bYScDztWA3QNiC2). | 2026-11-24T14:59Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRioAgBvqdpm3ekGjXrcWeE). | 2026-11-24T15:05Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7KQ6gLcCMr89yHz2DWEqeC).",
+ "accepted_carried": [
+  {
+   "origin": "supervisor driver adj_ebitda_m",
+   "item": "[re-check earlier failure] FY2027-29 path (each quarter = 2026 margin of the same quarter: 84.50/83.89/84.32/84.01%)",
+   "value": "0.8417 / 0.8418 / 0.8418",
+   "basis": "estimate (judgment)",
+   "source_url": "https://finance.yahoo.com/quote/1APP.MI/earnings/1APP.MI-Q3-2026-earnings_call-725385.html",
+   "result": "unsupported",
+   "page_shows": "Q3 call gives forces both ways (CFO: 87% flow-through, data center cost down as % of revenue; 'We manage this business to EBITDA dollars and free cash flow rather than to a margin percentage'; CEO: ramping new-customer acquisition, CTV); Q4 guide 84-85% covers Q4-26 only; no source gives a margin level or direction for FY2027-29",
+   "note": "still failing: the years repeat the 2026 quarter margins (a level held from a past year, rule 4); the derivation itself says no source gives those years. On card 2 (adj_ebitda_m); alternatives -2.57% / +1.29%",
+   "_src": "text",
+   "fix": "carded to Kilian (must_card, RULES.md 24) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL3oyfLK1c6hYC2sjheSkfSn, card cmsg_01HdhANNPxz1f5xqDwR22cfL3oyfLK1c6hYC2sjheSkfSn): \"Chose \"Hold at 2026 levels (~572)\"\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL3oyfLK1c6hYC2sjheSkfSn",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfL3oyfLK1c6hYC2sjheSkfSn",
+    "quote": "Chose \"Hold at 2026 levels (~572)\"",
+    "utc": "2026-11-24T13:55Z"
+   }
+  },
+  {
+   "origin": "supervisor driver sbc",
+   "item": "[re-check earlier failure] path Q4 FY2026-FY2029 at $85M a quarter (340/yr)",
+   "value": "85.0 per quarter; 338.4 / 340 / 340 / 340",
+   "basis": "estimate (judgment)",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000069/app-20260930.htm",
+   "result": "unsupported",
+   "page_shows": "10-Q: 'There were no material equity award issuances during the three and nine months ended September 30, 2026'; the existing pool runs off (~$235M left at 9-30); nothing shows a new grant cycle, its size or timing",
+   "note": "still failing: driver unchanged; $85M is today's rate held flat with no source for FY2027-29. On card 3 (sbc); alternatives -1.6% / +1.11%",
+   "_src": "text",
+   "fix": "carded to Kilian (must_card, RULES.md 24) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLWBaYcG6bYScDztWA3QNiC2, card cmsg_01HdhANNPxz1f5xqDwR22cfLWBaYcG6bYScDztWA3QNiC2): \"Chose \"New grant cycle, $131.7M (~563)\"\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLWBaYcG6bYScDztWA3QNiC2",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfLWBaYcG6bYScDztWA3QNiC2",
+    "quote": "Chose \"New grant cycle, $131.7M (~563)\"",
+    "utc": "2026-11-24T13:56Z"
+   }
+  },
+  {
+   "origin": "consensus_gap.py (script)",
+   "item": "consensus gap eps FY2028",
+   "result": "unsupported",
+   "fix": "carded to Kilian 2026-11-24 (FY2028 EPS +6.2% vs Zacks) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLRioAgBvqdpm3ekGjXrcWeE, card cmsg_01HdhANNPxz1f5xqDwR22cfLRioAgBvqdpm3ekGjXrcWeE): \"Chose \"Accept as built (~492)\"\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLRioAgBvqdpm3ekGjXrcWeE",
+    "card": "cmsg_01HdhANNPxz1f5xqDwR22cfLRioAgBvqdpm3ekGjXrcWeE",
+    "quote": "Chose \"Accept as built (~492)\"",
+    "utc": "2026-11-24T14:59Z"
+   }
+  },
+  {
+   "origin": "consensus_gap.py (script)",
+   "item": "consensus gap eps FY2029",
+   "result": "unsupported",
+   "fix": "asked Kilian in the thread 2026-11-24 (FY2029 EPS +15% vs a single Zacks estimate) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL7KQ6gLcCMr89yHz2DWEqeC): \"yes\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL7KQ6gLcCMr89yHz2DWEqeC",
+    "card": null,
+    "quote": "yes",
+    "utc": "2026-11-24T15:05Z"
+   }
+  }
+ ]
+}

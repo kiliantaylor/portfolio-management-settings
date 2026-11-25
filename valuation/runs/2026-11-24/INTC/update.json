@@ -1,0 +1,74 @@
+{
+ "symbol": "INTC",
+ "update_date": "2026-11-24",
+ "base": "2026-11-23",
+ "mode": "update",
+ "mode_reason": "set by hand: supervisor pass over the five 11-23 forecaster reruns (Kilian 11-24 04:56Z/04:58Z: always let the five forecasters finish and run the supervisor; \"just do it in a new thread now\"); update.json written by hand because start needs priors/2026-11-24 (before the 11-24 close)",
+ "trigger": "Kilian 11-24: full forecaster flow (supervisor r1, revision round, supervisor r2, model_assumptions) over the 11-23 forecaster reruns; base 11-23 set RT 91.58 unpublished",
+ "playbook": "semis",
+ "base_fair_value": 91.58078522080146,
+ "base_fair_value_source": "driver model",
+ "filings_since_base": [],
+ "created_utc": "2026-11-24T05:28Z",
+ "changed_inputs": [
+  "driver:dcai_rev",
+  "driver:dcai_margin"
+ ],
+ "what_changed": "Supervisor pass over the five 11-23 forecaster reruns (round 1, revision round, round 2, model_assumptions), gate clean. Kilian's cards 2026-11-24: dcai_rev = median of the five revised forecasters 36,000 / 40,991 FY27/FY28 (was 37,178 / 47,936; card cmsg_01HdhANNPxz1f5xqDwR22cfLFzsG6GiNiCEnTZngJoQmX1); dcai_margin FY28-29 re-chained on the kept 40% fall-through (card cmsg_01HdhANNPxz1f5xqDwR22cfLUsCc6RnFSwH3YJMmV4yvH6); medians row by row and no mid-cycle leg kept booked.",
+ "driver_model": true,
+ "flags": [
+  "priors/2026-11-24/INTC.json is a stand-in copy of the 11-23 close chain (Kilian 'do it now' 01:17 ET); rerun market_dist.py INTC after the 11-24 close",
+  "update.json written by hand (start needs priors/2026-11-24); 8 base lint overrides carried from 11-23 on unchanged rows"
+ ],
+ "thread": "cmsg_01HdhANNPxz1f5xqDwR22cfLDQ9mCmATyeFp5kVLUrCUzz",
+ "gate_rounds": [
+  {
+   "utc": "2026-11-24T05:33Z",
+   "why": "first round"
+  },
+  {
+   "utc": "2026-11-24T05:45Z",
+   "why": "trigger: gate fix round 1 changed judgment_calls_for_kilian[9] (dcai_rev card: src 87 -> new src 92 TrendForce 2026-10-20 Unimicron; agent_4 option removed; recommendation now agent_1 path -10.68%), judgment_calls_for_kilian[12] (mid-cycle card relabelled, new +6.80% option), judgment_alternatives dcai_rev/dcai_margin/mid-cycle, sources[92], fair_value.reason, summary, model.reasoning; reason: these are new claims and a new source written by the fix agent, which may not certify itself (RULES 24); an independent re-check is needed before they go on cards, since carding them unverified would put unchecked evidence in front of Kilian and gate_accept is only for his own decisions",
+   "trigger": "gate fix round 1 changed judgment_calls_for_kilian[9] (dcai_rev card: src 87 -> new src 92 TrendForce 2026-10-20 Unimicron; agent_4 option removed; recommendation now agent_1 path -10.68%), judgment_calls_for_kilian[12] (mid-cycle card relabelled, new +6.80% option), judgment_alternatives dcai_rev/dcai_margin/mid-cycle, sources[92], fair_value.reason, summary, model.reasoning",
+   "reason": "these are new claims and a new source written by the fix agent, which may not certify itself (RULES 24); an independent re-check is needed before they go on cards, since carding them unverified would put unchecked evidence in front of Kilian and gate_accept is only for his own decisions",
+   "changed": [
+    "model.reasoning",
+    "model.set_review",
+    "supervisor.json changes",
+    "supervisor.json disagreements",
+    "supervisor.json fair_value",
+    "supervisor.json long_dated_review",
+    "supervisor.json sizing",
+    "supervisor.json summary",
+    "judgment_alternatives ccpg_rev",
+    "judgment_alternatives int_inc / int_exp",
+    "judgment_alternatives growth_term",
+    "judgment_alternatives Tax rate (non-GAAP)",
+    "judgment_alternatives forecaster medians (all drivers)",
+    "judgment_alternatives Mid-cycle normalized-earnings leg",
+    "judgment_alternatives Diluted shares (fully counted) 2026-10-30",
+    "judgment_alternatives dcai_rev",
+    "judgment_alternatives ccpg_margin",
+    "judgment_alternatives dcai_margin",
+    "judgment_alternatives foundry_oi",
+    "judgment_alternatives capex",
+    "judgment_alternatives SOTP parts",
+    "judgment_alternatives dc_mor",
+    "judgment_alternatives hs_self_funded",
+    "judgment_alternatives da_c",
+    "judgment_calls_for_kilian #12 (Mid-cycle normalized-earnings leg)",
+    "judgment_calls_for_kilian #9 (dcai_rev)"
+   ]
+  },
+  {
+   "utc": "2026-11-24T05:49Z",
+   "why": "trigger: gate round 2 failed 3 arithmetic items on one figure; the fix changed fair_value.reason and judgment_calls_for_kilian[12] (option 'Leg 0.25 at the 40.1x exit' research_target and why) from 97.89 to 97.81 (91.58 x 1.068); reason: the fix was written by the thread itself, which may not certify its own fix (RULES 24), and an arithmetic label is not a must-card item, so carding it would ask Kilian to rule on a rounding, not a judgment; the re-check covers only these three changed parts",
+   "trigger": "gate round 2 failed 3 arithmetic items on one figure; the fix changed fair_value.reason and judgment_calls_for_kilian[12] (option 'Leg 0.25 at the 40.1x exit' research_target and why) from 97.89 to 97.81 (91.58 x 1.068)",
+   "reason": "the fix was written by the thread itself, which may not certify its own fix (RULES 24), and an arithmetic label is not a must-card item, so carding it would ask Kilian to rule on a rounding, not a judgment; the re-check covers only these three changed parts",
+   "changed": [
+    "supervisor.json fair_value",
+    "judgment_calls_for_kilian #12 (Mid-cycle normalized-earnings leg)"
+   ]
+  }
+ ]
+}

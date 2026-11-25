@@ -1,0 +1,16 @@
+name: on-slice
+# Lives on branch live-data (copied there by live/nightly.sh push). A new slice means a new Price Targets build, and the
+# page applies only a patch made for its own build, so start the live refresh now (force: rebuild even off hours).
+on:
+  push:
+    branches: [live-data]
+permissions:
+  actions: write
+jobs:
+  kick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run live.yml --repo "$GITHUB_REPOSITORY" --ref main -f force=true

@@ -1,0 +1,774 @@
+{
+ "date": "2026-11-24",
+ "symbol": "INTC",
+ "clean": true,
+ "checked": 95,
+ "ok": 95,
+ "failures": [],
+ "open_failures": [],
+ "method": "split gate (run_digest.py gate): script check against SEC XBRL + shard agents by source URL",
+ "verified": [
+  {
+   "item": "revenue Q3 FY2026: first guide (2026-07-23) / reported actual",
+   "value": "15800-16800 / 16513",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000191/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://api.nasdaq.com/api/analyst/INTC/earnings-forecast",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "value: P/E 40.1x leg 95.27 x 0.5 + SOTP 87.89 x 0.5",
+   "value": "91.58",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "reason: card sizes (DCAI capacity path agent_1 36.7B / 42.0B, revised DCAI margin median, median-margin mid-cycle leg at 22.1x)",
+   "value": "81.80 (-10.7%), 85.44 (-6.7%), 84.75 (-7.5%)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "reason: mid-cycle leg at the 40.1x exit (re-check of round-2 arithmetic failure)",
+   "value": "97.81 (+6.8%)",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "$2.91 x 40.1x = $116.59 at 0.25 (re-check of round-2 arithmetic failure)",
+   "value": "97.81 (+6.8%)",
+   "basis": "judgment",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_calls_for_kilian [12] option 'Leg 0.25 at the 40.1x exit'"
+  },
+  {
+   "item": "horizon EPS ~$2.37 below mid-cycle EPS $2.91",
+   "value": "91.58 (0.0%)",
+   "basis": "judgment",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_calls_for_kilian [12] option 'No mid-cycle leg (booked)'"
+  },
+  {
+   "item": "$2.91 x 22.1x = $64.26 at 0.25",
+   "value": "84.75 (-7.46%)",
+   "basis": "judgment",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json | https://query1.finance.yahoo.com/v8/finance/chart/INTC?range=5d&interval=1d",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_calls_for_kilian [12] option 'Leg 0.25 on the median margin'"
+  },
+  {
+   "item": "$1.75 x 22.1x = $38.77 at 0.25",
+   "value": "78.38 (-14.42%)",
+   "basis": "judgment",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_calls_for_kilian [12] option 'Leg 0.25 on the mean margin'"
+  },
+  {
+   "item": "FY2028 revenue 82.3B x FY2016-25 median op margin 23.35% -> $2.91; mean 14.7% -> $1.75; 22.1x current NTM peer median, not through-cycle",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_calls_for_kilian [12] context"
+  },
+  {
+   "item": "Leg weights need empirical evidence and none exists; effect comes from the multiple swap; at the set's own 40.1x exit the leg raises the target +6.8% (97.81)",
+   "value": "97.81 (+6.8%)",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Add a mid-cycle normalized-earnings leg at 0.25 beside the P/E and SOTP legs? why"
+  },
+  {
+   "item": "the median-margin version is the one Intel's own last cycle supports",
+   "value": "median 23.35%",
+   "basis": "claim",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Add a mid-cycle normalized-earnings leg at 0.25 beside the P/E and SOTP legs? why"
+  },
+  {
+   "item": "The new pricing sources describe 2026-27 increases, not a 2028 cut",
+   "value": "src 88 / 89 / 90",
+   "basis": "claim",
+   "source_url": "https://www.tomshardware.com/pc-components/cpus/shifting-need-for-cpus-in-ai-workloads-drives-intensifying-shortages-price-hikes | https://trendforce.com/news/2026/10/12/news-cpu-price-hike-wave-intel-reportedly-up-to-20-qualcomm-10-amd-may-join-as-tsmc-costs-climb | https://www.tomshardware.com/pc-components/cpus/intel-reportedly-set-to-hike-cpu-prices-by-10-percent-ahead-of-major-annual-product-launch-in-march-2027-report-says-amd-will-follow-up-between-june-and-july",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI margin FY2028-29: keep the 40% fall-through (~39%) or fade toward 36%? why"
+  },
+  {
+   "item": "The bundle mixes rows with evidence (DCAI share loss, carded) and rows that are the forecasters' unsourced judgment",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Whole set: move every driver to the revised forecasters' medians, or decide row by row? why"
+  },
+  {
+   "item": "claim (src 69)",
+   "value": "Zacks post-print consensus $0.15 (12 est., range $0.11-$0.17, project snapshot retrieved 2026-11-23 [src 69]; SBC-expensed basis derived, see consensus_basis) compares with our $0.188 on that basis.",
+   "basis": "(claim)",
+   "source_url": "/mnt/project-files/valuation/data/estimates/INTC.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance_check non-GAAP EPS attributable to Intel Q4 FY2026 why"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2026 consensus as of 2026-11-23",
+   "value": "0.15",
+   "basis": "consensus",
+   "source_url": "/mnt/project-files/valuation/data/estimates/INTC.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 69)",
+   "value": "The current Zacks FY2026 revenue consensus ($61.57B, 2026-11-23 [src 69]) sits 0.3% under our FY2026 61,757, so the street now books Q4 near our build; the pre-print ~$17.1B is dropped.",
+   "basis": "claim",
+   "source_url": "/mnt/project-files/valuation/data/estimates/INTC.json",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance_check revenue Q4 FY2026 why"
+  },
+  {
+   "item": "revenue Q1 FY2026: first guide (2026-01-22) / reported actual",
+   "value": "11700-12700 / 13577",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2026: first guide (2026-01-22) / reported actual",
+   "value": "0.345-0.345 / 0.41",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q1 FY2026: first guide (2026-01-22) / reported actual",
+   "value": "0-0 / 0.29",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000009/q425earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://futurumgroup.com/insights/is-intels-20-billion-stock-offering-enough-to-tool-a-14a-fab/",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.trendforce.com/presscenter/news/20261022-13279.html",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q1 FY2025: first guide (2025-01-30) / reported actual",
+   "value": "11700-12700 / 12667",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q1 FY2025: first guide (2025-01-30) / reported actual",
+   "value": "0.36-0.36 / 0.392",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q1 FY2025: first guide (2025-01-30) / reported actual",
+   "value": "0-0 / 0.13",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "gross capital expenditure FY2025: first guide (2025-01-30) / reported actual",
+   "value": "20000.0-20000.0 / 17672.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000004/q424_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 25)",
+   "value": "Client is built from BofA's Q4 PC shipment forecast (-25% q/q, the less severe end of -25% to -30% [src 25]); data center sits on the CFO's mid-teens sequential guide (declared guide use on dcai_rev:\u2026",
+   "basis": "claim",
+   "source_url": "https://tech-insider.org/intel-plunges-25-q4-guidance-15-16-billion-pc-slump-2026/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance_check revenue Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "FY2028 is the swing year, and agent_1's path is the one built quarter by quarter from what the sources say: H1 2027 capped on Intel 3 and the +40% substrate capacity mostly in the back half (Zinsner,\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI revenue: do the revised forecaster builds change the kept 37.2B / 47.9B? why"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "Above the 38.0% point guide (39.7%): the build takes DCAI's Q4 cost down only by the Fab 28 item the CFO sized ('200 basis points to gross margin', almost all 10nm server, David Zinsner, CFO [src 42]\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance_check non-GAAP gross margin Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "About 3.6 cents over the $0.25 point guide because DCAI Q4 carries only the Fab 28 cost the CFO sized (200bp of gross margin [src 42]), not an unsized mix cut; revenue lands at the midpoint.",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance_check non-GAAP EPS attributable to Intel Q4 FY2026 why"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "Q4 is built from the Q3 run-rate and the ~40% sequential rise in firm equipment purchase orders, with most spend now on equipment (CFO [src 42]), not from the FY guide less nine months.",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance_check gross capital expenditure FY2026 why"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "It reads the CFO's substrate timing literally but phases it over four quarters for the Intel 3 lag, with no price gain and no capacity beyond the stated +40%; the floor ignores the H2 capacity the CF\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI revenue FY2027-28: keep the supply-led 37.2B / 47.9B? why"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "Each reported end rests on one quarter (peak tightness or before it); the booked path carries both forces named on the call [src 42].",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI margin from FY2027: keep 36-39% or use a reported quarter (41.5% Q3, 30.5% Q1)? why"
+  },
+  {
+   "item": "claim (src 42)",
+   "value": "The 2027 target predates the client slump and 18A underloading the CFO now describes; a flat path ignores 18A yield gains and 14A in 2028 [src 42].",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Foundry losses: keep -8.5B FY27 / -5.6B FY28 (breakeven after 2029)? why"
+  },
+  {
+   "item": "claim (src 42, 53, 64)",
+   "value": "The median (22.1x) is lifted by AMD (34.0x) and MRVL (26.3x) and cut by NVDA (11.4x) and AVGO (17.4x) at the 2026-11-23 closes; 18x sits between the low pair and parity, with a cited reason for a dis\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Products SOTP multiple: keep 18x NTM EBIT, or 12.8x (NVDA/AVGO) or 19.6x (peer parity)? why"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://trendforce.com/news/2026/10/12/news-cpu-price-hike-wave-intel-reportedly-up-to-20-qualcomm-10-amd-may-join-as-tsmc-costs-climb",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2026: first guide (2026-07-23) / reported actual",
+   "value": "0.42-0.42 / 0.441",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/q226earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q3 FY2026: first guide (2026-07-23) / reported actual",
+   "value": "0.38-0.38 / 0.52",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/q226earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "gross capital expenditure FY2026 guide as of 2026-10-29 (gross additions to PP&E, $M (~$20B, \"on track\"))",
+   "value": "20000.0-20000.0",
+   "basis": "guidance",
+   "source_url": "https://finance.yahoo.com/markets/stocks/articles/intel-corp-intc-q3-2026-051348065.html",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q4 FY2025: first guide (2025-10-23) / reported actual",
+   "value": "12800-13800 / 13674",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000169/q325earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2025: first guide (2025-10-23) / reported actual",
+   "value": "0.365-0.365 / 0.379",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000169/q325earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2025: first guide (2025-10-23) / reported actual",
+   "value": "0.08-0.08 / 0.15",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000169/q325earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.idc.com/promo/pcdforecast/",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q2 FY2025: first guide (2025-04-24) / reported actual",
+   "value": "11200-12400 / 12859",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000070/q125_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2025: first guide (2025-04-24) / reported actual",
+   "value": "0.365-0.365 / 0.297",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000070/q125_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q2 FY2025: first guide (2025-04-24) / reported actual",
+   "value": "0-0 / -0.1",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000070/q125_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q2 FY2026: first guide (2026-04-23) / reported actual",
+   "value": "13800-14800 / 16128",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000077/q126earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q2 FY2026: first guide (2026-04-23) / reported actual",
+   "value": "0.39-0.39 / 0.418",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000077/q126earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q2 FY2026: first guide (2026-04-23) / reported actual",
+   "value": "0.2-0.2 / 0.42",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000077/q126earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue Q3 FY2025: first guide (2025-07-24) / reported actual",
+   "value": "12600-13600 / 13653",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000107/q225_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q3 FY2025: first guide (2025-07-24) / reported actual",
+   "value": "0.36-0.36 / 0.4",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000107/q225_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q3 FY2025: first guide (2025-07-24) / reported actual",
+   "value": "0-0 / 0.23",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000107/q225_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://finance.yahoo.com/technology/articles/omdia-global-pc-shipments-fall-101800270.html",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://iconnect007.com/article/151540/omdia-us-pc-shipments-rise-10-in-2q26-fullyear-forecast-down-107/151537/ein",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "claim (src 92)",
+   "value": "Chien, Unimicron Chairman, TrendForce 2026-10-20 [src 92]).",
+   "basis": "claim",
+   "source_url": "https://trendforce.com/news/2026/10/20/news-unimicron-warns-of-ic-substrate-crunch-up-to-30-month-equipment-lead-times-20-material-gap-in-2027",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI revenue: do the revised forecaster builds change the kept 37.2B / 47.9B? why"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.trendforce.com/presscenter/news/20261111-13303.html",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q4 FY2026 guide as of 2026-10-29 (GAAP net revenue $M)",
+   "value": "15000.0-16000.0",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2026 guide as of 2026-10-29 (non-GAAP (ex acquisition amortization and SBC), at the revenue midpoint)",
+   "value": "0.38-0.38",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2026 guide as of 2026-10-29 (non-GAAP diluted EPS (ex SBC, acquisition amortization, restructuring, equity-investment a\u2026",
+   "value": "0.25-0.25",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 13, 42)",
+   "value": "The guide's drop from Q3's reported 44.1% non-GAAP gross margin to 38.0% [src 13] is 610bp: 200bp Fab 28 plus ~410bp the CFO describes only qualitatively (lower client volume, 18A underloading [src 4\u2026",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance_check non-GAAP gross margin Q4 FY2026 why"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.webull.com/news/15862351870583809",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.idc.com/resource-center/press-releases/idc-pc-tracker-3q26/",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "revenue Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "13300-14300 / 14260",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000147/q324_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "0.395-0.395 / 0.421",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000147/q324_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2024: first guide (2024-10-31) / reported actual",
+   "value": "0.12-0.12 / 0.13",
+   "basis": "guidance",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000147/q324_earningsrelease.htm",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.trendforce.com/presscenter/news/20261008-13264.html",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.trendforce.com/presscenter/news/20261119-13314.html",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.tomshardware.com/pc-components/cpus/intel-reportedly-set-to-hike-cpu-prices-by-10-percent-ahead-of-major-annual-product-launch-in-march-2027-report-says-amd-will-follow-up-between-june-and-july",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.counterpointresearch.com/insights/global-pc-shipments-plunge-21-percent-in-q3-2026",
+   "checked": "2026-11-24",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "open_flags",
+   "value": "DCAI FY2028 card: recommended option -10.7%",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "all lines",
+   "value": "unchanged since round 1",
+   "basis": "carried",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor key_drivers / thesis_triggers / model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "new pricing sources describe 2026-27 increases, not a 2028 cut",
+   "value": "src 88 / 89 / 90",
+   "basis": "claim",
+   "source_url": "https://www.tomshardware.com/pc-components/cpus/intel-reportedly-set-to-hike-cpu-prices-by-10-percent-ahead-of-major-annual-product-launch-in-march-2027-report-says-amd-will-follow-up-between-june-and-july",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI margin FY2028-29: keep the 40% fall-through (~39%) or fade toward 36%? why"
+  },
+  {
+   "item": "bundle mixes evidenced rows and forecasters' unsourced judgment",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Whole set: move every driver to the revised forecasters' medians, or decide row by row? why"
+  },
+  {
+   "item": "agent_1 revised capacity path: H1 capped on Intel 3, +40% substrates mostly H2, FY2028 flat at the Q4 2027 exit + 14th week on 30-month lead times (S.C. Chien [src 92]); TrendForce >40% 2027",
+   "value": "36,700 / 42,000",
+   "basis": "judgment",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/ | https://trendforce.com/news/2026/10/20/news-unimicron-warns-of-ic-substrate-crunch-up-to-30-month-equipment-lead-times-20-material-gap-in-2027 | https://www.trendforce.com/presscenter/news/20261022-13279.html",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_alternatives dcai_rev"
+  },
+  {
+   "item": "other alternatives (0-6, 8-11)",
+   "value": "unchanged text; re-sized only",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_alternatives dcai_rev"
+  },
+  {
+   "item": "missing-alternative screen",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.trendforce.com/presscenter/news/20261022-13279.html | https://trendforce.com/news/2026/10/20/news-unimicron-warns-of-ic-substrate-crunch-up-to-30-month-equipment-lead-times-20-material-gap-in-2027",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_alternatives dcai_rev"
+  },
+  {
+   "item": "agent_3 revised: FY2027 38% on Intel's reported ~10% CPU price rise ahead of March 2027 launch, products not specified (DigiTimes via Tom's Hardware [src 90]); FY2028-29 36% fade (TrendForce Arm ~30% [src 83]); 38% Q4 GM guide",
+   "value": "38% / 36%",
+   "basis": "judgment",
+   "source_url": "https://www.tomshardware.com/pc-components/cpus/intel-reportedly-set-to-hike-cpu-prices-by-10-percent-ahead-of-major-annual-product-launch-in-march-2027-report-says-amd-will-follow-up-between-june-and-july | https://www.trendforce.com/presscenter/news/20261022-13279.html | https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_alternatives dcai_margin"
+  },
+  {
+   "item": "other alternatives",
+   "value": "unchanged text; re-sized only",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_alternatives dcai_margin"
+  },
+  {
+   "item": "all alternatives",
+   "value": "texts and sources unchanged since round 1; only engine re-sizing (base 91.66, 2026-11-24T05:44Z)",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_alternatives ccpg_rev / int_inc / int_exp / growth_term / Tax rate (non-GAAP) / forecaster medians / Diluted shares / ccpg_margin / foundry_oi / capex / SOTP parts / dc_mor / hs_self_funded / da_c"
+  },
+  {
+   "item": "Booked FY2028 ~15% above Q4 FY2027 exit x4 (41.8B); five revised forecasters 37.1-43.2B, median 41.0B",
+   "value": "41.8B / 15% / 41.0B",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_calls_for_kilian [9] dcai_rev context"
+  },
+  {
+   "item": "TrendForce >+40% 2027, Arm ~30%, AMD rising, Intel next-gen 'in limited supply' [src 83]; Chien 30 months / 20% short in 2027 [src 92]; Zinsner 'supply-constrained throughout 2027 and into 2028' [src 42]",
+   "value": "30 months / 20% / >40%",
+   "basis": "claim",
+   "source_url": "https://www.trendforce.com/presscenter/news/20261022-13279.html | https://trendforce.com/news/2026/10/20/news-unimicron-warns-of-ic-substrate-crunch-up-to-30-month-equipment-lead-times-20-material-gap-in-2027 | https://www.fool.com/earnings/call-transcripts/2026/10/30/intel-intc-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment_calls_for_kilian [9] dcai_rev context"
+  },
+  {
+   "item": "all lines",
+   "value": "unchanged since base 2026-11-23",
+   "basis": "carried",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor key_drivers / thesis_triggers"
+  },
+  {
+   "item": "all 22 rows",
+   "value": "unchanged since base 2026-11-23",
+   "basis": "carried",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail"
+  },
+  {
+   "item": "revenue Q4 FY2026 guidance arithmetic",
+   "value": "4/4/0, median 0.0403, adjusted 16124.6, ours 15538.7 inside 0.0025",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "non-GAAP gross margin Q4 FY2026 guidance arithmetic",
+   "value": "7/0/1, median 0.0688, adjusted 0.4061, ours 0.3974 above 0.0458",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "gross capital expenditure FY2026 guidance arithmetic",
+   "value": "0/0/1, median -0.1164, adjusted 17672.0, ours 17741.0 below -0.1129",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "lower builds add a 2028 give-back with no sourced size",
+   "value": "agent_3 -17.6%, agent_5 -19.8%",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI revenue: do the revised forecaster builds change the kept 37.2B / 47.9B? why"
+  },
+  {
+   "item": "new pricing sources describe 2026-27 increases, not a 2028 cut",
+   "value": "src 88 / 89 / 90",
+   "basis": "claim",
+   "source_url": "https://www.tomshardware.com/pc-components/cpus/shifting-need-for-cpus-in-ai-workloads-drives-intensifying-shortages-price-hikes | https://trendforce.com/news/2026/10/12/news-cpu-price-hike-wave-intel-reportedly-up-to-20-qualcomm-10-amd-may-join-as-tsmc-costs-climb | https://www.tomshardware.com/pc-components/cpus/intel-reportedly-set-to-hike-cpu-prices-by-10-percent-ahead-of-major-annual-product-launch-in-march-2027-report-says-amd-will-follow-up-between-june-and-july",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI margin FY2028-29: keep the 40% fall-through (~39%) or fade toward 36%? why"
+  },
+  {
+   "item": "fall-through already lowers margin on smaller growth",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI margin FY2028-29: keep the 40% fall-through (~39%) or fade toward 36%? why"
+  },
+  {
+   "item": "bundle mixes evidenced and unsourced rows",
+   "value": "",
+   "basis": "reasoning",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Whole set: move every driver to the revised forecasters' medians, or decide row by row? why"
+  },
+  {
+   "item": "non-GAAP EPS attributable to Intel Q4 FY2026 guidance arithmetic: actual vs midpoint, record counts, record-adjusted guide, gap to midpoint, position",
+   "value": "7/0/1 beat/inside/miss, median 0.6217, adjusted 0.405, ours 0.286 above 0.1456",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "uncited claim, unchanged since the base gate",
+   "value": "Booked 38% has no source; the fall-through builds rest on the CFO's own rule of thumb, which he gave for gross margin, applied here to operating margin with opex held.",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: DCAI margin FY2028-29: keep 38%, or build it from the CFO fall-through? why"
+  },
+  {
+   "item": "uncited claim, unchanged since the base gate",
+   "value": "Booked steps are unsourced; the CFO's own later reading and the set's loadings method bracket it on either side.",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Foundry losses FY2027-28: keep -8.5B / -5.6B, or rebuild from evidence? why"
+  },
+  {
+   "item": "uncited claim, unchanged since the base gate",
+   "value": "The booked Q1 rests on a past seasonal ratio; the CFO gives the direction (correction in Q4 and Q1) but no size, so each option is a different reading of that timing with the FY2027 total unchanged.",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: CCPG Q1 FY2027: keep 5,395 (Q4 x mean Q1/Q4 ratio) or another build? why"
+  },
+  {
+   "item": "uncited claim, unchanged since the base gate",
+   "value": "The brief applies the growth term every update round in its default form unless consensus FY1 is distorted or a year is missing; neither holds here, so the consensus reading is booked.",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-24",
+   "feeds": "supervisor judgment call: Exit P/E growth term: book x1.224 (with Zacks), x1.187 (own path only), or none? why"
+  }
+ ],
+ "scope": "model update (update): changed rows of the reconciled set and its guidance_check",
+ "base_audit": "runs/2026-11-23/INTC/citation_audit.json"
+}

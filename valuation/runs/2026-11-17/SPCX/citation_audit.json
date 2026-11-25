@@ -1,0 +1,1904 @@
+{
+ "date": "2026-11-17",
+ "symbol": "SPCX",
+ "clean": true,
+ "checked": 201,
+ "ok": 194,
+ "failures": [
+  {
+   "item": "EchoStar spectrum closing 'expected November 2027, 424B4'",
+   "value": "2027-11",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "result": "not_found",
+   "origin": "supervisor long_dated_review",
+   "fix": "primary source found: EchoStar 10-Q Q3-26 (filed 2026-11-03) Note 1, 'The Spectrum Acquisition Closing is expected to occur on or about November 30, 2027' (src 73, new); citation moved off the 424B4 (which gives no date) in long_dated_review[6], inputs_detail shares + EchoStar rows; 'closes within weeks of the horizon' restated as ~2.5 weeks after 2027-11-13 or earlier if SpaceX elects; share count unchanged"
+  },
+  {
+   "item": "FY2026 / 27 / 28 revenue $45.0B / $142.6B / $216.4B, EBIT $6.5B / $56.3B / $69.1B",
+   "value": "45.0B / 6.5B (FY2026)",
+   "cited": "gate/values_r3.json (engine lines)",
+   "result": "arithmetic",
+   "origin": "supervisor model.reasoning",
+   "fix": "model.reasoning FY2026 revenue $45.0B -> $47.0B and EBIT $6.5B -> $8.4B (engine lines 46,955 / 8,429); FY2027-28 unchanged; swept (the remaining '$6.5B' is the separate SBC label on card #3)"
+  },
+  {
+   "item": "Q4-26 and FY2027 41% ('scale offsets V3 depreciation')",
+   "value": "0.41",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "result": "unsupported",
+   "origin": "supervisor driver path constant conn_m",
+   "fix": "carded: constant: Connectivity EBIT margin (conn_m) (card #5; Kilian's decided record 2026-11-16, card cmsg_01HdhANNPxz1f5xqDwR22cfL2Hb9po33LuA14dYr5RAGq5, pick '41% / 40% (booked)', so the thread can close it by gate_accept on that card); must-card row, not re-booked"
+  },
+  {
+   "item": "'Q3 45.1% incl. a ~3% one-off tariff refund (CFO, src 25)'; 'the CFO guides Q4 gross margin back toward Q2 levels' (also card #5 booked option: 'ex the one-off tariff refund, CFO on the Q3 call')",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "mislabelled",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail constant: Connectivity EBIT margin (conn_m) (speaker)",
+   "fix": "speaker recorded on sources[24].speakers (Bret Johnsen, CFO) for both quotes, verified on the Fool transcript speaker label; conn_m derivation, card #5 context and booked option rewritten: the ~3% is a Connectivity gross-margin one-off taken off the EBIT margin as our approximation, and the Q4 remark is total-company gross margin; value unchanged"
+  },
+  {
+   "item": "FY2027 +7.0M (1.75M a quarter) -> 22.3M: 'the 2026 pace (~6.4M) plus kit supply and new markets'",
+   "value": "22.3",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "origin": "supervisor driver path starlink_subs",
+   "fix": "carded: starlink_subs (card #8, re-sized with the Wells Fargo full build +10.85%); must-card row, not re-booked"
+  },
+  {
+   "item": "FY2028 +8.0M (2.0M a quarter) -> 30.3M: V3 on Starship partly offset by Amazon Leo",
+   "value": "30.3",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "origin": "supervisor driver path starlink_subs",
+   "fix": "carded: starlink_subs (card #8, same card); must-card row, not re-booked"
+  },
+  {
+   "item": "derivation: 'Other evidence-based builds (judgment_alternatives): MS, Wells Fargo, the 2025 pace (+4.5M), the previous +6.0M / +5.5M'",
+   "value": "",
+   "cited": "",
+   "result": "mislabelled",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail driver:starlink_subs",
+   "fix": "'the previous +6.0M / +5.5M' dropped from the inputs_detail and driver derivations; Wells Fargo full build named (added and sized)"
+  },
+  {
+   "item": "2029-33 ARPU -5% a year ('half the ~10% a year of 2023-25')",
+   "value": "43.4 -> 35.3",
+   "cited": "https://sec-api.io/insights/financial-analysis-of-spacex-the-three-audited-years-and-the-first-quarter-as-a-public-company",
+   "result": "trend_only",
+   "origin": "supervisor driver path Starlink DCF deck ARPU",
+   "fix": "carded: Starlink DCF long-run deck 2029-36, deck ARPU (card #10: ~10%/yr to 2031 -0.25%, no growth after FY2028 -3.39%); must-card row, not re-booked"
+  },
+  {
+   "item": "E&G +20% (2029) fading to +4% (2036); mobile $2.0B -> $9.0B (~17M -> ~75M paying users)",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "origin": "supervisor driver path Starlink DCF deck E&G and mobile",
+   "fix": "carded: Starlink DCF long-run deck 2029-36, deck E&G and mobile (card #11: mobile held at $1.3B -0.32%, no growth after FY2028 -3.39%); must-card row, not re-booked"
+  },
+  {
+   "item": "'Mobile V2 satellites from 2027 (src 25)'",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "mislabelled",
+   "origin": "supervisor model.reconciled_inputs.inputs_detail Starlink DCF (speaker)",
+   "fix": "speaker recorded (Gwynne Shotwell, President and COO: 'we'll begin flying Mobile V2 and Starmind satellites in 2027'), verified on the transcript; Starlink DCF derivation quotes her"
+  },
+  {
+   "item": "re-check: apps $11.2B FY27 / $15.8B FY28 (round-1 unsupported)",
+   "value": "11.2 / 15.8",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "origin": "supervisor driver path constant apps",
+   "fix": "carded: constant: SI app revenue (apps) (card #7: Cursor pace -0.13%, run-rate floor -1.27%); must-card row, not re-booked"
+  },
+  {
+   "item": "It is the cited floor for a large cluster under full demand; 0.85 is a smaller neocloud with weaker demand.",
+   "value": "",
+   "cited": "https://www.theenergymag.com/news/2026-03-06/northern-data-gpu-ai",
+   "result": "wrong",
+   "origin": "supervisor judgment call util why",
+   "fix": "card #6 why rewritten to what the pages say: Northern Data ~22,000 H100/H200 (larger than Meta's 16,384), demand 'accelerating', utilization 62% -> 66% and ~85% expected by end-Q1 2026, full capacity expected in Q1; Meta's >90% is one job's effective training time (uptime), not a rented share; 0.85 option reasoning rewritten to the page; recommendation 0.90 kept with that reason; value unchanged (must-card row)"
+  },
+  {
+   "item": "(unlisted) Wells Fargo full Starlink build: 46.7M subscribers by 2028 and Starlink revenue $30.2B (2027) / $51.455B (2028)",
+   "value": "",
+   "cited": "https://www.advanced-television.com/?p=292660",
+   "result": "missing_alternative",
+   "origin": "supervisor judgment_alternatives starlink_subs",
+   "fix": "added to judgment_alternatives starlink_subs (patch: subs 15.3 -> 46.7, E&G + mobile 3,165 / 3,324 / 3,491 / 3,665 ; 6,114 / 6,525 / 6,948 / 7,283 so Connectivity revenue = 30,200 / 51,455; deck and knock-on from model.py), sized 111.88 (+10.85%), plausible, carded on card #8"
+  },
+  {
+   "item": "'The linked transcript gives ... Shotwell's expectation that enterprise and government revenue will exceed consumer revenue'",
+   "value": "",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "mislabelled",
+   "origin": "supervisor judgment_calls_for_kilian #2 (starlink_eg_mobile) MS option",
+   "fix": "speaker recorded (Gwynne Shotwell, President and COO: 'We remain on pace for enterprise and government revenues to exceed consumer connectivity revenues in the future'); card #2 MS option and drivers[starlink_eg_mobile].source quote her"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "cited": "https://www.faa.gov/data_research/aviation/aerospace_forecasts/2026_Commercial_Space_2.pdf",
+   "result": "not_found",
+   "origin": "timeliness.py (forecast the set uses)",
+   "fix": "FAA FY2026-2046 forecast: published 2026-05-20 and none_newer search + reconciliation recorded in round 2 (src 55); timeliness.py check 0 refused"
+  },
+  {
+   "item": "utilisation 0.92 'base round estimate from the 424B4 lease terms and Q3 build', all forecast quarters",
+   "value": "0.92",
+   "cited": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "result": "unsupported",
+   "origin": "supervisor driver path constant util",
+   "fix": "carded: constant: utilisation (util) (card #6: 0.85 -8.73%, 0.92 +3.49%; 0.90 booked); must-card row, not re-booked"
+  },
+  {
+   "item": "src 33 Rallies.ai (Yahoo Finance / Investing.com relay): Rubin 2026 output forecasts cut to ~1.5M units on HBM4 qualification; ",
+   "value": "published 2026-04-06 (gate checker (page)), sell_side",
+   "cited": "https://rallies.ai/news/nvidia-cuts-rubin-gpu-output-forecast-to-15m-units-with-rack-shipments-halved",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (supervisor sources)",
+   "fix": "timeliness.newer_forecast [62] (Goldman Sachs via TrendForce 2026-10-16) recorded in round 2; the Rubin cut is no longer cited; timeliness.py check 0 refused"
+  },
+  {
+   "item": "src 40 New Street Research via Advanced Television (2026-05-28): Starlink could reach 100M subscribers by 2034 (~20,000 V3 sate",
+   "value": "published 2026-05-28 (gate checker (page)), sell_side",
+   "cited": "https://www.advanced-television.com/2026/05/28/forecast-starlink-could-reach-100m-subs-by-2034/",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (supervisor sources)",
+   "fix": "timeliness.newer_forecast [41, 39] with reconciliation recorded in round 2; New Street stays Kilian's deck pick; timeliness.py check 0 refused"
+  },
+  {
+   "item": "src 41 Wells Fargo via Advanced Television (2026-09-24): 17M Starlink subscribers at end-2026, 46.7M by 2028; revenue $30.2B (2",
+   "value": "published 2026-09-24 (gate checker (page)), sell_side",
+   "cited": "https://www.advanced-television.com/?p=292660",
+   "result": "stale_forecast",
+   "origin": "timeliness.py (supervisor sources)",
+   "fix": "timeliness.newer_forecast [39] (Morgan Stanley 2026-11-03) recorded in round 2; WF stays a sized alternative; timeliness.py check 0 refused"
+  }
+ ],
+ "open_failures": [],
+ "verified": [
+  {
+   "item": "nameplate compute capacity (GW, year-end) YE2026 (first guide \"over 2 GW\"; open: \"nearly 2.2 GW\" at end-October is the CFO's expectation, unscored): first guide",
+   "value": "2.0-2.0 / None",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nameplate compute capacity (GW, year-end) Starship cadence (Q2 call: \"at least one flight a day\" a year out; open: weekly H1-27 / twice weekly by end-2027 is the Q3-call expectation, unscored)",
+   "value": "365.0-365.0 / None",
+   "basis": "guidance",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 5)",
+   "value": "Below by 16%: ... the CFO's 'additional $6.7 billion of cloud services revenue ... over a six month period that begins ramping starting in October' (Bret Johnsen, CFO, Q2 call, src 5) ...",
+   "basis": "claim",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check annualised revenue run-rate (December revenue x 12) FY2026 why"
+  },
+  {
+   "item": "claim (src 24, 2, 5, 25)",
+   "value": "The guide needs ~$24-28B of SI rent in Q1-27 ... signed contracts cover $6.51B a quarter (Google $920M/month, src 24; ...)",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check revenue (quarter, total company, GAAP) Q1-2027 why"
+  },
+  {
+   "item": "claim (src 24, 19)",
+   "value": "Q4-26 $51.62, built from ... the Google Cloud Services Agreement, $920M a month from October 2026 for ~110,000 GPUs (src 24), is $11,040M a year ...",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://www.advanced-television.com/2026/07/29/forecast-102m-starlink-subs-by-2031/",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "research target (12m) = 0.4 x 149.53 + 0.4 x 53.52 + 0.2 x 98.53",
+   "value": "100.93",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Q4-26 external share 0.479: CFO's $6.7B contracted in early Q3 over six months from October, linear Oct-Mar ramp (1,914 in Q4)",
+   "value": "0.479",
+   "basis": "estimate",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Starlink ARPU on Morgan Stanley's post-Q3 path (~$62 Q4-26, $51.71 FY27, $45.63 FY28)",
+   "value": "65.50/51.71/45.63",
+   "basis": "estimate",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "fleet utilization 0.90 (Meta's >90% effective training time)",
+   "value": "0.90",
+   "basis": "estimate",
+   "source_url": "https://datacenterdynamics.com/en/news/meta-report-details-hundreds-of-gpu-and-hbm3-related-interruptions-to-llama-3-training-run",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Q4-26 price_w $51.62 = Google contract rate",
+   "value": "51.62",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/0001181412/000162828026041150/spacexagreementfwp.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "NTM GAAP EBITDA ~$140.1B at 2027-11-13",
+   "value": "140.1B",
+   "basis": "estimate",
+   "source_url": "gate/values_r3.json (engine lines)",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "SOTP parts: Space $32.8B, Starship $37.5B, knock-on -$9.0B, Cursor $60B",
+   "value": "32.8/37.45/-9.0/60",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "EchoStar -$9.6B = up to $8.5B cash + ~$2B interest funding - $856M paid",
+   "value": "-9,644",
+   "basis": "estimate",
+   "source_url": "https://ir.echostar.com/node/32686/pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor fair_value"
+  },
+  {
+   "item": "Musk 50-50 goal; Anthropic $1.25B/month ~325,000 GPUs to May 2029 = ~$24-33/W-yr",
+   "value": "0.50",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Loop Capital $165 = 10x 2027 EBITDA $12.8B (context only)",
+   "value": "10x",
+   "basis": "estimate",
+   "source_url": "https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "YE27 8.3 GW (MS) vs SemiAnalysis ~10 GW; 200,000 GB300s a month; GB300 140 kW / VR200 190 kW = 1.94 / 2.64 kW per GPU",
+   "value": "8.3",
+   "basis": "estimate",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Net debt rate: total interest $675M (incl. $351M related party) x 4 / $38,844M = 6.95%; Q3 capex $19,593M; Bernstein $36.5-39.5B/GW; $8B 800 MHz",
+   "value": "6.95%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "EchoStar: 261,792,453 Class A shares + up to $8.5B cash + ~$2B interest; Trust interest-only through at least 2027-11-30, no later than 2028-11-30, $856M paid",
+   "value": "-9.6B",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Musk restricted shares 1,302,072,285; vesting on Mars colony / 100 TW; Q3 basic 11,942M; diluted - basic = 533M",
+   "value": "1,302.1M",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Tesla: Polymarket 42.5% by Jun-27 / 62.5% by Dec-27; talks progressing, possible December announcement; no agreed terms",
+   "value": "-30B x 0.6",
+   "basis": "judgment",
+   "source_url": "https://247wallst.com/investing/2026/10/05/tesla-is-down-16-this-year-and-bettors-now-favor-a-musk-merger-with-spacex/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "Price path evidence: CFO 'slightly above the high end of the $30 to $50'; MS B300 1-yr index >50% YTD; Uvik 'prices are rising in 2026'; H100 ~$2.8; Nebius and AWS raised in October; H100 -64% ($8 -> $2.85-3.50), Silicon Data -23%; $1.3T 2027 capex",
+   "value": "51.62 ... 39",
+   "basis": "estimate",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor disagreements"
+  },
+  {
+   "item": "gate fix round 2: 100.80 -> 100.93, Q4-26 ext 0.395 -> 0.479 on the CFO's $6.7B (src 5, 1,914 in Q4-26)",
+   "value": "100.93",
+   "basis": "estimate",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor changes"
+  },
+  {
+   "item": "Lessees' 90-day exits; utilization 0.85 (Northern Data): 92.11 vs 100.93 = -8.82",
+   "value": "-8.82",
+   "basis": "estimate",
+   "source_url": "https://www.theenergymag.com/news/2026-03-06/northern-data-gpu-ai",
+   "checked": "2026-11-19",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "Capex overrun ~$50B/GW (SemiAnalysis 'At 50B per GW'): 90.80",
+   "value": "-10.13",
+   "basis": "estimate",
+   "source_url": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real",
+   "checked": "2026-11-19",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "Starship: (60,000 - 37,450) + 9,024 = 31,574 x 0.9 / 13,161.9 x 0.4 = -0.86; Tesla 100.01 vs 102.29; glut 51.32; age 0.75 -12.78",
+   "value": "-0.86/-2.28/-49.61/-12.78",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor long_dated_review"
+  },
+  {
+   "item": "FY2026-28 driver levels (gw 2.8/8.3/13.96; subs 15.3/22.3/30.3; E&G 7,342/10,410/13,500; launch_price 115.32/99; ext 0.479)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "gate/values_r3.json (engine lines)",
+   "checked": "2026-11-19",
+   "feeds": "supervisor key_drivers"
+  },
+  {
+   "item": "100.93; Q1-27 revenue $26.5B; FY2027 $142.6B vs Zacks $165.0B; Q4-26 capex $37.9B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "gate/values_r3.json (engine lines)",
+   "checked": "2026-11-19",
+   "feeds": "supervisor summary"
+  },
+  {
+   "item": "other figures: guided metrics (2.8 inside; 8.3 below; $37.9B inside; Q1-27 $26.5B below; Dec-26 ARR ~$84.0B; end-27 ~$190.9B); MS SI revenue per watt $26.12 / $21.48; DB 102M by 2031 added",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reasoning"
+  },
+  {
+   "item": "quarter build formulas and constants (ext Q4-26 0.479, util 0.90 forecast, si_capex_adj -5,494, sbc_tot, si_other = 0.6 x apps + 500)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "gate/values_r3.json (engine lines)",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.driver_build"
+  },
+  {
+   "item": "7%: Q3-26 total interest $675M (incl. $351M related party) x 4 / $38,844M = 6.95%",
+   "value": "0.07",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001181412.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Interest rate on net debt"
+  },
+  {
+   "item": "Q4-26 0.479 = (Anthropic 3,750 + Google 2,760 + rest of Q3 book 2,534 + CFO contract 1,914) / 22,879; 2027-28 0.50",
+   "value": "0.479 / 0.50",
+   "basis": "estimate",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: SI external share (ext)"
+  },
+  {
+   "item": "history: 9M-26 40.7% (5,211 / 12,796), Q3 45.1%, Q2 38.6%, Q1 36.5%",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: Connectivity EBIT margin (conn_m)"
+  },
+  {
+   "item": "sources: 13.6M at Q3 (+1.6M), V5 kits, 174 markets, Shotwell V3 mid-2027, 26 Tbps = 10 Falcon 9, Amazon Leo 5 countries / 3,000+ by 2028, FCC milestone July 2029, MS 25.2M / 37.1M, WF 46.7M",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail driver:starlink_subs"
+  },
+  {
+   "item": "Q4-26 +1.7M -> 15.3M",
+   "value": "15.3",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path starlink_subs"
+  },
+  {
+   "item": "New Street 100M by 2034 (~20,000 V3, 29x); +11.62M a year; ARPU 43.4 -> 35.3; mobile 17M -> 75M at $10; 12,000 planes (Shotwell); MS $111 x 12,882M = $1,429.9B",
+   "value": "240,645",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/2026/05/28/forecast-starlink-could-reach-100m-subs-by-2034/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Starlink DCF"
+  },
+  {
+   "item": "re-check: Q4-26 0.42 = Q3-26 calibration held (round-1 unsupported) = 0.395: was wrong (CFO's $6.7B)",
+   "value": "0.479",
+   "basis": "estimate",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path constant ext"
+  },
+  {
+   "item": "actual vs midpoint, counts 0/0/0, median 0.0, adjusted 35,000, ours 26,478 below, gap -24.35%",
+   "value": "26,478",
+   "basis": "estimate",
+   "source_url": "gate/values_r3.json (engine lines)",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance revenue Q1-2027"
+  },
+  {
+   "item": "counts 0/0/0, median 0.0, adjusted 100,000, ours 84,047 below, gap -15.95%",
+   "value": "84,047",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance annualised run-rate FY2026"
+  },
+  {
+   "item": "counts 0/0/0, median 0.0, adjusted 750,000, ours 190,926 below, gap -74.54%",
+   "value": "190,926",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance annualised run-rate FY2027"
+  },
+  {
+   "item": "Below the range by 24% to the midpoint ($26.5B ... vs $35B)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check revenue Q1-2027 why"
+  },
+  {
+   "item": "The set books 50% (Kilian kept it 2026-11-15) at spot.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check revenue Q1-2027 why"
+  },
+  {
+   "item": "No track record: the first quarterly revenue guide since the June 2026 IPO.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check revenue Q1-2027 why"
+  },
+  {
+   "item": "An even spread of the $6.7B (~$1.12B a month) would add ~$1.9B to the December run-rate.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check FY2026 run-rate why"
+  },
+  {
+   "item": "Moves value little: December revenue is not a model input.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check FY2026 run-rate why"
+  },
+  {
+   "item": "the remark gives no basis (the call does not say whether it counts internal use); even 100% of 8.3 GW at $47/W-yr is ~$300B",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check FY2027 run-rate why"
+  },
+  {
+   "item": "Neither the build pace nor funding supports it.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check FY2027 run-rate why"
+  },
+  {
+   "item": "readings span 0.72-0.94 and each step moves the target by more than 5%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call age_f why"
+  },
+  {
+   "item": "The booked path rests on the stated aviation backlog at a moderately conservative pace.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call starlink_eg_mobile why"
+  },
+  {
+   "item": "MS's broker build is evidence-based and moves the target by more than 5%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call starlink_eg_mobile why"
+  },
+  {
+   "item": "Grounded in scale-peer ratios and the filed 2026 run rate.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/R9.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call SBC why"
+  },
+  {
+   "item": "The neocloud ratio is evidence-based and moves the target by more than 5%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001769628.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call SBC why"
+  },
+  {
+   "item": "The level now rests on stated awards and the manifest, but the residual ~33 other flights is not sourced by category.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.ssc.spaceforce.mil/Newsroom/Article/4348694/space-systems-command-releases-national-security-space-launch-phase-3-lane-2-fy",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call launches why"
+  },
+  {
+   "item": "Every build is under 1%; Kilian kept 44 on 2026-11-16.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call launches why"
+  },
+  {
+   "item": "The booked margin rests on the filed 2026 segment margin at a moderately conservative level.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call conn_m why"
+  },
+  {
+   "item": "MS's 2028e jump to 52.7% is one broker's view ... (now +4.52%); Kilian decided it on 2026-11-16.",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call conn_m why"
+  },
+  {
+   "item": "sits below every outside forecast; MS needs V3 capacity sooner than Shotwell's mid-2027; most of its build's effect is its higher E&G line",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call starlink_subs why"
+  },
+  {
+   "item": "the one current, sized outside forecast and agrees with the company's own stated direction; the old $66 / $64 had no source",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://sec-api.io/insights/financial-analysis-of-spacex-the-three-audited-years-and-the-first-quarter-as-a-public-company",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call starlink_arpu why"
+  },
+  {
+   "item": "Q1-Q3 2026 $50 (Musk 'somewhere between $30 and $50'; CFO 'slightly above the high end of the $30 to $50 per watt range we were discussing just last quarter')",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "After FY2028: $36-30 (2029), $29-25 (2030), $23.5 (2031), $20.04 NPV-0 from 2032",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "The ~$42-44/W-yr figures are our conversions of hourly GPU prices",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "Other evidence-based builds (judgment_alternatives): hold into 2029, collapse in 2027-28, flat ~$43, signed contracts, MS revenue per watt (decided_alternatives)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "0.4: no terms after committee work (Musk 10-20)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Tesla combination"
+  },
+  {
+   "item": "0.8: Polymarket 62.5% by Dec-27 raised by the November reports",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://247wallst.com/investing/2026/10/05/tesla-is-down-16-this-year-and-bettors-now-favor-a-musk-merger-with-spacex/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Tesla combination"
+  },
+  {
+   "item": "Oracle 7.1% (4,811 / 67,357)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/R8.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: ongoing SBC (sbc_si, sbc_tot)"
+  },
+  {
+   "item": "CoreWeave 12.3% (630 / 5,131)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001769628.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: ongoing SBC (sbc_si, sbc_tot)"
+  },
+  {
+   "item": "Previous booked fade (71.8M at 2034)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/2026/05/28/forecast-starlink-could-reach-100m-subs-by-2034/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Starlink DCF long-run deck 2029-36"
+  },
+  {
+   "item": "ARPU ~10%/yr decline to 2031 from the booked 2028 level (45.51 -> 33.2)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://sec-api.io/insights/financial-analysis-of-spacex-the-three-audited-years-and-the-first-quarter-as-a-public-company",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Starlink DCF long-run deck 2029-36"
+  },
+  {
+   "item": "No growth after FY2028",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Starlink DCF long-run deck 2029-36"
+  },
+  {
+   "item": "Morgan Stanley Connectivity $111 a share = $1,429.9B, x5.9419",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Starlink DCF long-run deck 2029-36"
+  },
+  {
+   "item": "Deutsche Bank 102M consumer subscribers by 2031",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/2026/07/29/forecast-102m-starlink-subs-by-2031/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Starlink DCF long-run deck 2029-36"
+  },
+  {
+   "item": "0.72 / 0.75 / 0.79 / 0.82 / 0.85 / 0.88 / 0.90 / 1.00 a year (re-built at 90% utilization)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: fleet age curve (age_f)"
+  },
+  {
+   "item": "MS 43.0% / 52.7% (deck 40%) and with 52.7% held in the deck",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: Connectivity EBIT margin (conn_m)"
+  },
+  {
+   "item": "0.85 Northern Data allocation",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.theenergymag.com/news/2026-03-06/northern-data-gpu-ai",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: utilisation (util)"
+  },
+  {
+   "item": "0.92 previous booking",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://datacenterdynamics.com/en/news/meta-report-details-hundreds-of-gpu-and-hbm3-related-interruptions-to-llama-3-training-run",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: utilisation (util)"
+  },
+  {
+   "item": "Q4-26 at the Uvik B300 index ~$43; Q4-26 at the top of the $30-50 range $50",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives price_w"
+  },
+  {
+   "item": "MS ads + Cursor pace $10.8B / $15.3B; MS ads + run-rate floor $9.3B / $11.4B",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://dealroom.co/news/134107-cursor-tops-4b-annualized-revenue/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: SI app revenue (apps) and non-fleet SI costs (si_other)"
+  },
+  {
+   "item": "MS full Starlink build; MS subscribers only",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives starlink_subs"
+  },
+  {
+   "item": "Wells Fargo 46.7M by 2028 (ARPU, E&G, deck as booked)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/?p=292660",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives starlink_subs"
+  },
+  {
+   "item": "Back to the 2025 pace, +4.5M a year",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://sec-api.io/insights/financial-analysis-of-spacex-the-three-audited-years-and-the-first-quarter-as-a-public-company",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives starlink_subs"
+  },
+  {
+   "item": "MS FY averages flat; 2023-25 ~10%/yr decline; held at Q3 $69",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives starlink_arpu"
+  },
+  {
+   "item": "near Q3's +91% pace (+60% / +35%); +25% / +15% with mobile slipping; MS G&E; 2028 mobile at $10",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives starlink_eg_mobile"
+  },
+  {
+   "item": "FY2023 level 33; 50 a year on the new awards",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://sec-api.io/insights/financial-analysis-of-spacex-the-three-audited-years-and-the-first-quarter-as-a-public-company",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives launches"
+  },
+  {
+   "item": "FY2025 $95M (4,086 / 43); Q3-26 $147M; 9M-26 $115M (3,348 / 29)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives launch_price"
+  },
+  {
+   "item": "even spread 0.542; without the CFO contract 0.395; signed-book floor rejected (screen 999x)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives constant: SI external share (ext)"
+  },
+  {
+   "item": "Pre-Flight-15 probabilities 0.50 / 0.38 / 0.12 = $34.74B, knock-on -10,348",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "/mnt/project-files/valuation/runs/2026-10-22/SPCX/supervisor.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives Starship tree"
+  },
+  {
+   "item": "options 0.81 / 0.72 / 0.75 / 0.79 / 0.82 / 0.85 / 0.88 / 0.90 / 1.0; context $20.04 NPV-0 and re-sized targets",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #0 (age_f)"
+  },
+  {
+   "item": "options New Street / previous fade / ARPU decline / no growth / MS $111 / Deutsche Bank; context $240.6B",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.advanced-television.com/2026/05/28/forecast-starlink-could-reach-100m-subs-by-2034/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #1 (Starlink DCF deck)"
+  },
+  {
+   "item": "options booked / MS $11.9B / $24.3B / +60% / +35% / +25% / +15% / $10 mobile; context +5% a quarter = $10.4B, $13.5B 2028",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #2 (starlink_eg_mobile)"
+  },
+  {
+   "item": "options booked 3.0% / previous $5.5B / $6.5B / Oracle 7.1% / CoreWeave 12.3%",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/R9.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #3 (ongoing SBC)"
+  },
+  {
+   "item": "options 44 / 50 / 33; context mix ~9 NSSL + 2 crew + ~33 other; launch_price $99.0M and sizes",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://www.ssc.spaceforce.mil/Newsroom/Article/4348694/space-systems-command-releases-national-security-space-launch-phase-3-lane-2-fy",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #4 (launches)"
+  },
+  {
+   "item": "options booked 41% / 40%; MS 2027-28 only (+2.69%); MS held in the deck (+4.52%)",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #5 (conn_m)"
+  },
+  {
+   "item": "options 0.90 Meta / 0.85 Northern Data / 0.92 previous; context",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://datacenterdynamics.com/en/news/meta-report-details-hundreds-of-gpu-and-hbm3-related-interruptions-to-llama-3-training-run",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #6 (util)"
+  },
+  {
+   "item": "options booked $11.2B / $15.8B; MS ads + Cursor pace; floor",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "https://dealroom.co/news/134107-cursor-tops-4b-annualized-revenue/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #7 (apps)"
+  },
+  {
+   "item": "options booked / MS full / MS subs only / Wells Fargo / 2025 pace; context sizes",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #8 (starlink_subs)"
+  },
+  {
+   "item": "options MS path / $69 / ~10% decline / MS flat",
+   "value": "",
+   "basis": "judgment",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #9 (starlink_arpu)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://finviz.com/news/174059/loop-capital-starts-coreweave-crwv-coverage-at-buy-sets-165-price-target",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "claim (src 8, 36, 62, 33, 18, 7, 19)",
+   "value": "... on the H100 precedent on-demand rent fell from $8 to $2.85-3.50 an hour, '64% from peak levels in late 2024', as production caught up with shortage-era orders, while the Silicon Data H100 index fell 23% in under a year ($3.06 Sep-2024 to $2.36 Jun-2025) (Introl, src 8) ...",
+   "basis": "claim",
+   "source_url": "https://introl.com/blog/gpu-cloud-price-collapse-h100-64-percent-drop-2025",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.advanced-television.com/?p=292660",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "claim (src 2)",
+   "value": "The Anthropic contract ... ~$23.7/W-yr is our conversion ($1.25B a month = $15.0B a year over ~325,000 GPUs x 1.944 kW = ~632 MW; the 424B4, src 2, files the fee and the GPU count, no per-watt price).",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "timeliness",
+   "source_url": "https://fool.com/investing/2026/09/06/hyperscalers-driving-ai-capex-cash-flow",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "claim (src 7, 13)",
+   "value": "The Google rate was agreed in June 2026, before the 2026 rise in new-chip rent (Uvik 'prices are rising in 2026', src 7; Morgan Stanley B300 1-year index up >50% YTD to Sep-26, src 13), so as a Q4 sp\u2026",
+   "basis": "claim",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "nameplate compute capacity (GW, year-end) FY2026 guide as of 2026-10-20 (nameplate GW)",
+   "value": "2.5-3.0",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "nameplate compute capacity (GW, year-end) FY2027 guide as of 2026-10-20 (nameplate compute draw (424B4 definition); Musk \"highly confident of 10 gigawatts incr\u2026",
+   "value": "13.0-13.0",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "capex (quarter, total company, GAAP purchases of PP&E) Q4-2026 guide as of 2026-10-20 (GAAP)",
+   "value": "35000.0-40000.0",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "revenue (quarter, total company, GAAP) Q1-2027 guide as of 2026-10-20 (GAAP)",
+   "value": "33000.0-37000.0",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "annualised revenue run-rate (December revenue x 12) FY2026 guide as of 2026-10-20 (management target incl. Cursor)",
+   "value": "100000.0-100000.0",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "annualised revenue run-rate (end-2027) FY2027 guide as of 2026-10-20 (Musk remark on the Q3 call ($500B-1T ARR by end-2027; basis not stated))",
+   "value": "500000.0-1000000.0",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance"
+  },
+  {
+   "item": "claim (src 25, 6)",
+   "value": "It sits where the CFO (Bret Johnsen) put current pricing on the Q3 call, 'slightly above the high end of the $30 to $50 per watt range' (src 25), and with the CEO's (Elon Musk) word that contracts re\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "claim (src 25, 7, 13)",
+   "value": "Carry trace 2026-11-18 replaced the earlier $52, a hand step off the Q3 level with no build of its own. 2027: $52 / $51 / $49 / $47: the shortage holds into mid-2027 on management's word (renewals at\u2026",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver price_w derivation"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.advanced-television.com/2026/05/28/forecast-starlink-could-reach-100m-subs-by-2034/",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://rallies.ai/news/nvidia-cuts-rubin-gpu-output-forecast-to-15m-units-with-rack-shipments-halved",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "https://www.tikr.com/blog/stifel-just-cut-its-coreweave-target-from-120-to-60-even-after-a-raised-outlook",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "claim (src 62)",
+   "value": "The set books Morgan Stanley's post-Q3 8.3 GW ... packaging is not the limit on the build (Goldman Sachs: TSMC CoWoS +114% in 2027, src 62).",
+   "basis": "claim",
+   "source_url": "https://www.trendforce.com/news/2026/10/16/news-after-tsmcs-3q26-earnings-key-brokerage-takeaways-as-2028-capex-forecasts-reach-us105b/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor guidance_check nameplate compute capacity (GW, year-end) FY2027 why"
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date (timeliness)",
+   "basis": "timeliness",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)"
+  },
+  {
+   "item": "CRWV newer view: Stifel cut target to $60 from $120 on 2026-11-11, ~1.4x forward sales, 2027 revenue consensus $26.5B, loss per share $4.70, CRWV $61.25",
+   "value": "as stated",
+   "basis": "outside report",
+   "source_url": "https://www.tikr.com/blog/stifel-just-cut-its-coreweave-target-from-120-to-60-even-after-a-raised-outlook",
+   "checked": "2026-11-19",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "META EV/EBITDA 16.2x, MU 8.7x / 11.6x trailing (close 2026-10-22)",
+   "value": "16.2 / 8.7 / 11.6",
+   "basis": "SEC XBRL trailing",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor comps_review"
+  },
+  {
+   "item": "$139.94 close on 2026-11-13 (src 31)",
+   "value": "139.94",
+   "basis": "outside report",
+   "source_url": "https://247wallst.com/investing/2026/11/13/tesla-and-spacex-could-announce-a-merger-as-soon-as-december/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "lock-ups from 8 December, up to 797.6M shares, more in 2027 (Sovereign Magazine)",
+   "value": "797.6M",
+   "basis": "outside report",
+   "source_url": "https://www.sovereignmagazine.com/article/spacex-lockup-911-million-shares-unlock",
+   "checked": "2026-11-19",
+   "feeds": "supervisor sizing"
+  },
+  {
+   "item": "upside 'October price rises at Nebius and AWS, src 7'; downside 'CoWoS +114% in 2027, Goldman Sachs, src 62'; '$1.3T capex, src 18'",
+   "value": "\u2014",
+   "basis": "outside data",
+   "source_url": "https://www.trendforce.com/news/2026/10/16/news-after-tsmcs-3q26-earnings-key-brokerage-takeaways-as-2028-capex-forecasts-reach-us105b/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.scenarios"
+  },
+  {
+   "item": "build window at $39.5B/GW (Bernstein Vera Rubin, src 15); Q4-26 $36.5B/GW GB200",
+   "value": "39.5 / 36.5",
+   "basis": "outside report",
+   "source_url": "https://hao.cnyes.com/post/271235",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.sotp"
+  },
+  {
+   "item": "Starlink deck: New Street 100M subscribers by 2034 (~20,000 V3, 29x capacity)",
+   "value": "100M by 2034",
+   "basis": "outside forecast",
+   "source_url": "https://www.advanced-television.com/2026/05/28/forecast-starlink-could-reach-100m-subs-by-2034/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.sotp"
+  },
+  {
+   "item": "15x, Kilian's standing choice",
+   "value": "15",
+   "basis": "judgment",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail EV/EBITDA horizon multiple"
+  },
+  {
+   "item": "PV 470,282 of the listed flows at 9.19%",
+   "value": "470,282",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail SI compute fleet part"
+  },
+  {
+   "item": "+7 GW/yr at $39.5B/GW (Bernstein)",
+   "value": "89,397",
+   "basis": "estimate",
+   "source_url": "https://hao.cnyes.com/post/271235",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail SI build window 2029-30"
+  },
+  {
+   "item": "$20.04 at 90% use",
+   "value": "20.04",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Break-even (NPV-0) new-chip price"
+  },
+  {
+   "item": "see driver path rows",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail driver:gw_online"
+  },
+  {
+   "item": "Q4-26 2.8 GW: 2.2 GW end-October (CFO) + ~200k GB300/month x 1.944 kW for Nov-Dec = ~3.0, less ~7% slippage; inside 2.5-3.0",
+   "value": "2.8",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path gw_online"
+  },
+  {
+   "item": "FY2027 4.012 / 5.354 / 6.827 / 8.3 and FY2028 9.715 / 11.13 / 12.545 / 13.96 (Morgan Stanley post-Q3)",
+   "value": "8.3 / 13.96",
+   "basis": "broker forecast",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path gw_online"
+  },
+  {
+   "item": "'The conservative evidence-based level (trades over list prices); the readings span 0.72-0.94 and each step moves the target by more than 5%'",
+   "value": "0.81",
+   "basis": "industry data",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call age_f why"
+  },
+  {
+   "item": "'Kilian picked New Street on 2026-11-16.'",
+   "value": "",
+   "basis": "decision record",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call Starlink deck why"
+  },
+  {
+   "item": "'MS's $111 is far above it and moves the target by more than 5%; the previous fade and the floors are below it.'",
+   "value": "111",
+   "basis": "broker forecast",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call Starlink deck why"
+  },
+  {
+   "item": "'Grounded in scale-peer ratios and the filed 2026 run rate.' / 'The neocloud ratio ... moves the target by more than 5%'",
+   "value": "3.0% / 12.3%",
+   "basis": "filing",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/R79.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call SBC why"
+  },
+  {
+   "item": "'The booked margin rests on the filed 2026 segment margin' / 'MS's 2028e jump to 52.7% is one broker's view ... moves the target by more than 5%'",
+   "value": "41% / 52.7%",
+   "basis": "filing / broker",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call conn_m why"
+  },
+  {
+   "item": "'It is the cited floor for a large cluster under full demand; 0.85 is a smaller neocloud with weaker demand.'",
+   "value": "0.90",
+   "basis": "outside report",
+   "source_url": "https://www.theenergymag.com/news/2026-03-06/northern-data-gpu-ai",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call util why"
+  },
+  {
+   "item": "Q3 CFO pricing 'slightly above $50'; booked Q1-27 4.012 / Q2-27 5.354 GW",
+   "value": "4.012 / 5.354",
+   "basis": "estimate",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "Anthropic / Google 90-day notice; Q1-27 revenue guide low end $33B",
+   "value": "$33B",
+   "basis": "guidance",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "Tesla annual meeting 2026-12-03 (src 31)",
+   "value": "2026-12-03",
+   "basis": "reported",
+   "source_url": "https://247wallst.com/investing/2026/11/13/tesla-and-spacex-could-announce-a-merger-as-soon-as-december/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor thesis_triggers"
+  },
+  {
+   "item": "actual quarters 38.6 / 39.6 / 54.8 (SI capex / GW added); Q3 prepayment 16,444 - 0.3 x 36,500 = 5,494",
+   "value": "5,494",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail driver:capex_per_gw"
+  },
+  {
+   "item": "Ornn trades H100 $2.86, A100 $0.90, H200 $5.04 vs B200 $7.56; Uvik list H100 $4.20, A100 $2.75, H200 $5.70 vs B300 $9.50; pair rates 0.72/0.78/0.92, 0.85/0.94/0.91; trade mean 0.81, all-pair mean 0.853, median 0.88",
+   "value": "0.81",
+   "basis": "estimate",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: fleet age factor (age_f)"
+  },
+  {
+   "item": "Musk: old H100s 'renting for more than they rented when they were new' (src 4)",
+   "value": "-",
+   "basis": "management statement",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q3-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: fleet age factor (age_f)"
+  },
+  {
+   "item": "Q3 SI cash costs 7,560 - 4,953 = 2,607; fleet ~1,356 on ~1.55 GW = $3.5/W-yr",
+   "value": "3.5",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: fleet opex (opex_w)"
+  },
+  {
+   "item": "Q3 2,363 less 1,217 acquisition = 1,146; Q1 639, Q2 831; 9M 2,616 / 27,083 = 9.7%; Q3 1,146 / 14,575 = 7.9%",
+   "value": "1,146",
+   "basis": "reported/derived",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/R79.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: SI SBC and total ongoing SBC"
+  },
+  {
+   "item": "Nvidia 6,386 / 215,938 = 3.0%; Tesla 2,825 / 94,827 = 3.0%; Oracle 4,811 / 67,357 = 7.1%; CoreWeave 630 / 5,131 = 12.3%",
+   "value": "3.0 / 3.0 / 7.1 / 12.3",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/R9.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: SI SBC and total ongoing SBC"
+  },
+  {
+   "item": "Q3 986/5,248 = 18.8%, Q2 805/4,291 = 18.8%, Q1 783/3,257 = 24.0%; V3 5-year, Mobile V2 3-year design life (424B4)",
+   "value": "18.8 / 18.8 / 24.0",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: Connectivity D&A % (conn_da)"
+  },
+  {
+   "item": "Q3 1,543 / 5,248 = 29.4%; 9M 4,242 / 12,796 = 33.2%; 15,000 Mobile V2 satellites (FCC)",
+   "value": "29.4 / 33.2",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: Connectivity capex % (conn_cx)"
+  },
+  {
+   "item": "FY25 Space EBIT -657 + 3,004 Starship R&D = 2,347 (57% of 4,086); 9M-26 Space EBIT -1,211, 9M revenue 3,348 -> ~1,017/q Starship cost",
+   "value": "55%; 1,050",
+   "basis": "estimate",
+   "source_url": "https://sec-api.io/insights/financial-analysis-of-spacex-the-three-audited-years-and-the-first-quarter-as-a-public-company",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: Space margin / Starship R&D"
+  },
+  {
+   "item": "Space D&A Q3 185, 9M 509; capex Q3 1,606, 9M 3,832",
+   "value": "as stated",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: Space D&A and capex"
+  },
+  {
+   "item": "51,294 + 38,561 - 2,698 - 36,146 = -51,011",
+   "value": "-51,011",
+   "basis": "derived",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001181412.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Net debt 2026-09-30"
+  },
+  {
+   "item": "Q3 benefit -390 on pre-tax 4,014; 9M benefit -361 on pre-tax loss -774",
+   "value": "21%",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Tax rate FY2026-28"
+  },
+  {
+   "item": "13,579 - 1,302.1 + 533 + ~25 = 12,835",
+   "value": "12,835",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Economic diluted shares now"
+  },
+  {
+   "item": "12,835 + 261.8 + 0.05 x 1,302 = 13,161.9; closing expected November 2027 (424B4 via sec-api)",
+   "value": "13,161.9",
+   "basis": "estimate",
+   "source_url": "https://sec-api.io/insights/financial-analysis-of-spacex-the-three-audited-years-and-the-first-quarter-as-a-public-company",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Shares at horizon"
+  },
+  {
+   "item": "$8B cash for Grain Management 800 MHz airwaves; cash at closing, assumed H1-27",
+   "value": "8,000",
+   "basis": "reported",
+   "source_url": "https://broadbandbreakfast.com/earthquake-in-the-sky-spacex-pays-8-billion-for-grain-management-airwaves-to-advance-starlink-mobile/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail 800 MHz spectrum cash"
+  },
+  {
+   "item": "~$23B of the $60B attributed to retention/replacement awards; $1,217M in Q3",
+   "value": "$23B; 1,217",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Cursor acquisition SBC"
+  },
+  {
+   "item": "Hund-Monk-Tice (CFR 2024) challenge Berger-Ofek 13-15% discount as a matching artefact",
+   "value": "10%",
+   "basis": "judgment",
+   "source_url": "https://cfr.ivo-welch.info/published/papers/hund-monk-tice.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Holding-company discount"
+  },
+  {
+   "item": "-(8,500 + 2,000 - 856) = -9,644",
+   "value": "-9,644",
+   "basis": "estimate",
+   "source_url": "https://ir.echostar.com/node/32686/pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail EchoStar spectrum"
+  },
+  {
+   "item": "1,573",
+   "value": "1,573",
+   "basis": "reported",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Digital assets"
+  },
+  {
+   "item": "$60B equity value at closing",
+   "value": "60,000",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Cursor"
+  },
+  {
+   "item": "Q4-26 $36.5B, 2027 37.5/38.5/39.5/39.5, 2028 39.5 (Bernstein GB200 -> Vera Rubin)",
+   "value": "as stated",
+   "basis": "estimate",
+   "source_url": "https://hao.cnyes.com/post/271235",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path capex_per_gw"
+  },
+  {
+   "item": "41% 2027 / 40% 2028 held near the 9M-26 40.7%",
+   "value": "41 / 40",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor driver path constant conn_m"
+  },
+  {
+   "item": "FY2026 why: October build +0.5 GW in a month supports the top half; ~0.2 GW under the stated unit pace",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "FY2026 why: Not closed: no reported period yet",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "FY2027 why: 13 GW a CEO statement ('highly confident'), moved from 'closer to 10 than 5' (Q2) to 13 (Q3)",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "capex why: Inside, +1.3% to the midpoint, built from GW added and an outside cost per GW",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "capex why: Q3 carried ~$5.5B of October prepayment, which lowers Q4",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "Q1-27 why: Below the range by 21% to the midpoint",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "Q1-27 why: The set books 50% (Kilian kept it 2026-11-15) at spot",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "Q1-27 why: No track record: the first quarterly revenue guide since the June 2026 IPO",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://gloom.sh/stocks/spcx/transcripts/q2-2026",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "ARR FY2026 why: depends on December leasing; Q4-26 external share held at 0.42 because no new contract is sized",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "ARR FY2026 why: Moves value little: December revenue is not a model input",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "ARR FY2027 why: the remark gives no basis (call does not say whether it counts internal use); 100% of 8.3 GW at $47 is ~$300B",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "ARR FY2027 why: Neither the build pace nor funding supports it",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "age_f card why: readings span 0.72-0.94; each step moves the target >5%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://uvik.net/blog/gpu-price-index/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "ext card why: Kilian's choice on the company's stated split; floor shows reliance on unsigned contracts",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "Starlink deck why: Kilian picked New Street on 2026-11-16",
+   "value": "",
+   "basis": "claim",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "Starlink deck why: MS's $111 is far above and moves the target >5%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "E&G why: booked path rests on the stated aviation backlog at a moderately conservative pace",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "E&G why: MS's broker build is evidence-based and moves >5%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "SBC why: grounded in scale-peer ratios and the filed 2026 run rate",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/R9.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "SBC why: neocloud ratio evidence-based, moves >5%",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001769628.json",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "conn_m why: booked margin rests on the filed 2026 segment margin",
+   "value": "",
+   "basis": "claim",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066482/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "conn_m why: MS's 2028e 52.7% is one broker's view; holding it to 2036 is our extension",
+   "value": "",
+   "basis": "claim",
+   "source_url": "valuation/broker/notes/MS_SPCX_2026-11-03.pdf",
+   "checked": "2026-11-19",
+   "feeds": "supervisor uncited judgment sentence (section 4)"
+  },
+  {
+   "item": "EchoStar spectrum closing 'expected November 2027, 424B4'",
+   "value": "2027-11",
+   "basis": "estimate",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+   "checked": "2026-11-19",
+   "feeds": "supervisor long_dated_review",
+   "fixed": "primary source found: EchoStar 10-Q Q3-26 (filed 2026-11-03) Note 1, 'The Spectrum Acquisition Closing is expected to occur on or about November 30, 2027' (src 73, new); citation moved off the 424B4 ("
+  },
+  {
+   "item": "FY2026 / 27 / 28 revenue $45.0B / $142.6B / $216.4B, EBIT $6.5B / $56.3B / $69.1B",
+   "value": "45.0B / 6.5B (FY2026)",
+   "basis": "estimate",
+   "source_url": "gate/values_r3.json (engine lines)",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reasoning",
+   "fixed": "model.reasoning FY2026 revenue $45.0B -> $47.0B and EBIT $6.5B -> $8.4B (engine lines 46,955 / 8,429); FY2027-28 unchanged; swept (the remaining '$6.5B' is the separate SBC label on card #3)"
+  },
+  {
+   "item": "'Q3 45.1% incl. a ~3% one-off tariff refund (CFO, src 25)'; 'the CFO guides Q4 gross margin back toward Q2 levels' (also card #5 booked option: 'ex the one-off tariff refund, CFO on the Q3 call')",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail constant: Connectivity EBIT margin (conn_m) (speaker)",
+   "fixed": "speaker recorded on sources[24].speakers (Bret Johnsen, CFO) for both quotes, verified on the Fool transcript speaker label; conn_m derivation, card #5 context and booked option rewritten: the ~3% is "
+  },
+  {
+   "item": "derivation: 'Other evidence-based builds (judgment_alternatives): MS, Wells Fargo, the 2025 pace (+4.5M), the previous +6.0M / +5.5M'",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail driver:starlink_subs",
+   "fixed": "'the previous +6.0M / +5.5M' dropped from the inputs_detail and driver derivations; Wells Fargo full build named (added and sized)"
+  },
+  {
+   "item": "'Mobile V2 satellites from 2027 (src 25)'",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor model.reconciled_inputs.inputs_detail Starlink DCF (speaker)",
+   "fixed": "speaker recorded (Gwynne Shotwell, President and COO: 'we'll begin flying Mobile V2 and Starmind satellites in 2027'), verified on the transcript; Starlink DCF derivation quotes her"
+  },
+  {
+   "item": "It is the cited floor for a large cluster under full demand; 0.85 is a smaller neocloud with weaker demand.",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.theenergymag.com/news/2026-03-06/northern-data-gpu-ai",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment call util why",
+   "fixed": "card #6 why rewritten to what the pages say: Northern Data ~22,000 H100/H200 (larger than Meta's 16,384), demand 'accelerating', utilization 62% -> 66% and ~85% expected by end-Q1 2026, full capacity "
+  },
+  {
+   "item": "(unlisted) Wells Fargo full Starlink build: 46.7M subscribers by 2028 and Starlink revenue $30.2B (2027) / $51.455B (2028)",
+   "value": "",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/?p=292660",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_alternatives starlink_subs",
+   "fixed": "added to judgment_alternatives starlink_subs (patch: subs 15.3 -> 46.7, E&G + mobile 3,165 / 3,324 / 3,491 / 3,665 ; 6,114 / 6,525 / 6,948 / 7,283 so Connectivity revenue = 30,200 / 51,455; deck and k"
+  },
+  {
+   "item": "'The linked transcript gives ... Shotwell's expectation that enterprise and government revenue will exceed consumer revenue'",
+   "value": "",
+   "basis": "reported",
+   "source_url": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "checked": "2026-11-19",
+   "feeds": "supervisor judgment_calls_for_kilian #2 (starlink_eg_mobile) MS option",
+   "fixed": "speaker recorded (Gwynne Shotwell, President and COO: 'We remain on pace for enterprise and government revenues to exceed consumer connectivity revenues in the future'); card #2 MS option and drivers["
+  },
+  {
+   "item": "publication date of this forecast, and any newer edition or forecast of the same series",
+   "value": "published date",
+   "basis": "estimate",
+   "source_url": "https://www.faa.gov/data_research/aviation/aerospace_forecasts/2026_Commercial_Space_2.pdf",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (forecast the set uses)",
+   "fixed": "FAA FY2026-2046 forecast: published 2026-05-20 and none_newer search + reconciliation recorded in round 2 (src 55); timeliness.py check 0 refused"
+  },
+  {
+   "item": "src 33 Rallies.ai (Yahoo Finance / Investing.com relay): Rubin 2026 output forecasts cut to ~1.5M units on HBM4 qualification; ",
+   "value": "published 2026-04-06 (gate checker (page)), sell_side",
+   "basis": "estimate",
+   "source_url": "https://rallies.ai/news/nvidia-cuts-rubin-gpu-output-forecast-to-15m-units-with-rack-shipments-halved",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (supervisor sources)",
+   "fixed": "timeliness.newer_forecast [62] (Goldman Sachs via TrendForce 2026-10-16) recorded in round 2; the Rubin cut is no longer cited; timeliness.py check 0 refused"
+  },
+  {
+   "item": "src 40 New Street Research via Advanced Television (2026-05-28): Starlink could reach 100M subscribers by 2034 (~20,000 V3 sate",
+   "value": "published 2026-05-28 (gate checker (page)), sell_side",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/2026/05/28/forecast-starlink-could-reach-100m-subs-by-2034/",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (supervisor sources)",
+   "fixed": "timeliness.newer_forecast [41, 39] with reconciliation recorded in round 2; New Street stays Kilian's deck pick; timeliness.py check 0 refused"
+  },
+  {
+   "item": "src 41 Wells Fargo via Advanced Television (2026-09-24): 17M Starlink subscribers at end-2026, 46.7M by 2028; revenue $30.2B (2",
+   "value": "published 2026-09-24 (gate checker (page)), sell_side",
+   "basis": "estimate",
+   "source_url": "https://www.advanced-television.com/?p=292660",
+   "checked": "2026-11-19",
+   "feeds": "timeliness.py (supervisor sources)",
+   "fixed": "timeliness.newer_forecast [39] (Morgan Stanley 2026-11-03) recorded in round 2; WF stays a sized alternative; timeliness.py check 0 refused"
+  }
+ ],
+ "note": "Gate fix round 3 (2026-11-19), last round (RULES.md 24: no re-gate). Research target (12m) 100.93 -> 100.93 (no booked value changed). Fixed 12 of 19 failures (FY2026 reasoning figures, util card why, EchoStar closing date re-cited to EchoStar's 10-Q, four transcript speakers, starlink_subs derivation, Wells Fargo full build added and sized +10.85% and carded, Starship cadence row moved out of the compute track record; four timeliness rows already closed in round 2). Open: seven must-card rows carded for Kilian (conn_m, starlink_subs FY27/FY28, deck ARPU, deck E&G/mobile, apps, util; conn_m has his 2026-11-16 decided record) and five owner-decided rows (price_w FY27/FY28, E&G/mobile FY27/FY28, launches) that close by gate_accept on his cards. | 2026-11-19T17:43Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXgvrwfyRSfumkiMDa8fZpv). | 2026-11-19T17:43Z: 2 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLJJkmHKqz4Kyuz2VmXViF2P). | 2026-11-19T17:43Z: 2 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLNasP1T7uKTA21q4B4EDD1B). | 2026-11-19T17:43Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL2Hb9po33LuA14dYr5RAGq5). | 2026-11-19T18:24Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL9Ga63bVKRdup5vjUKWE5HL). | 2026-11-19T18:24Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL5n8dq8cHTrywxYUHyZbopw). | 2026-11-19T18:24Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL9UWT46t3KmMHeGRiXs9KqB). | 2026-11-19T18:24Z: 1 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLMzw5wgqWs74Akw8puEtmtL). | 2026-11-19T18:24Z: 2 open row(s) accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLHRbEK7DDrQL2AW7AqH7xeb).",
+ "accepted_carried": [
+  {
+   "item": "FY2027-28 44 a year: ~9 NSSL + 2 NASA crew + ~33 other Falcon customer flights",
+   "value": "44",
+   "cited": "https://www.investing.com/news/stock-market-news/spacexs-satellite-ambitions-squeeze-out-rivals-reliant-on-its-rockets-4833437",
+   "result": "unsupported",
+   "origin": "supervisor driver path launches",
+   "fix": "owner-decided: launches decided record {by Kilian, 2026-11-16T11:07:45Z, card cmsg_01HdhANNPxz1f5xqDwR22cfLXgvrwfyRSfumkiMDa8fZpv, pick '44 a year (booked)'}; must-card row, closes by gate_accept | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLXgvrwfyRSfumkiMDa8fZpv): \"44 a year (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLXgvrwfyRSfumkiMDa8fZpv",
+    "card": null,
+    "quote": "44 a year (booked)",
+    "utc": "2026-11-19T17:43Z"
+   }
+  },
+  {
+   "item": "FY2027 E&G +5% a quarter (2,415 / 2,536 / 2,663 / 2,796 = 10,410, +42%)",
+   "value": "10,410",
+   "cited": "https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/",
+   "result": "unsupported",
+   "origin": "supervisor driver path starlink_eg_mobile",
+   "fix": "owner-decided: starlink_eg_mobile decided record {by Kilian, 2026-11-16T11:28:21Z, card cmsg_01HdhANNPxz1f5xqDwR22cfLJJkmHKqz4Kyuz2VmXViF2P, pick '+42% 2027, +20% 2028 (booked)'}; must-card row, closes by gate_accept; card re-sized (MS +5.65%, $10 mobile -0.25%) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLJJkmHKqz4Kyuz2VmXViF2P): \"+42% 2027, +20% 2028 (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLJJkmHKqz4Kyuz2VmXViF2P",
+    "card": null,
+    "quote": "+42% 2027, +20% 2028 (booked)",
+    "utc": "2026-11-19T17:43Z"
+   }
+  },
+  {
+   "item": "FY2028 E&G +4.5% a quarter (12,500) + mobile $1.0B (~2M users at ~$40/month, 'our assumption with no cited price')",
+   "value": "13,500",
+   "cited": "https://www.satelliteinternet.com/resources/starlink-direct-to-cell",
+   "result": "unsupported",
+   "origin": "supervisor driver path starlink_eg_mobile",
+   "fix": "owner-decided: starlink_eg_mobile decided record {by Kilian, 2026-11-16T11:28:21Z, card cmsg_01HdhANNPxz1f5xqDwR22cfLJJkmHKqz4Kyuz2VmXViF2P, pick '+42% 2027, +20% 2028 (booked)'}; must-card row, closes by gate_accept; card re-sized (MS +5.65%, $10 mobile -0.25%) | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLJJkmHKqz4Kyuz2VmXViF2P): \"+42% 2027, +20% 2028 (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLJJkmHKqz4Kyuz2VmXViF2P",
+    "card": null,
+    "quote": "+42% 2027, +20% 2028 (booked)",
+    "utc": "2026-11-19T17:43Z"
+   }
+  },
+  {
+   "item": "FY2027 $52 / $51 / $49 / $47",
+   "value": "52/51/49/47",
+   "cited": "https://uvik.net/blog/gpu-price-index/",
+   "result": "unsupported",
+   "origin": "supervisor driver path price_w",
+   "fix": "owner-decided: price_w fade kept by Kilian on card cmsg_01HdhANNPxz1f5xqDwR22cfLNasP1T7uKTA21q4B4EDD1B (2026-11-16); must-card row, closes by gate_accept, unchanged | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLNasP1T7uKTA21q4B4EDD1B): \"Fade to $39 by Q4-28 (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLNasP1T7uKTA21q4B4EDD1B",
+    "card": null,
+    "quote": "Fade to $39 by Q4-28 (booked)",
+    "utc": "2026-11-19T17:43Z"
+   }
+  },
+  {
+   "item": "FY2028 $45 / $43 / $41 / $39 (through the ~$43 B300 index level to ~10% below it by Q4-28)",
+   "value": "45/43/41/39",
+   "cited": "https://introl.com/blog/gpu-cloud-price-collapse-h100-64-percent-drop-2025",
+   "result": "unsupported",
+   "origin": "supervisor driver path price_w",
+   "fix": "owner-decided: price_w fade kept by Kilian on card cmsg_01HdhANNPxz1f5xqDwR22cfLNasP1T7uKTA21q4B4EDD1B (2026-11-16); must-card row, closes by gate_accept, unchanged | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLNasP1T7uKTA21q4B4EDD1B): \"Fade to $39 by Q4-28 (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLNasP1T7uKTA21q4B4EDD1B",
+    "card": null,
+    "quote": "Fade to $39 by Q4-28 (booked)",
+    "utc": "2026-11-19T17:43Z"
+   }
+  },
+  {
+   "item": "Q4-26 and FY2027 41% ('scale offsets V3 depreciation')",
+   "value": "0.41",
+   "result": "unsupported",
+   "origin": "supervisor driver path constant conn_m",
+   "fix": "carded: constant: Connectivity EBIT margin (conn_m) (card #5; Kilian's decided record 2026-11-16, card cmsg_01HdhANNPxz1f5xqDwR22cfL2Hb9po33LuA14dYr5RAGq5, pick '41% / 40% (booked)', so the thread can close it by gate_accept on that card); must-card row, not re-booked | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL2Hb9po33LuA14dYr5RAGq5): \"41% / 40% (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL2Hb9po33LuA14dYr5RAGq5",
+    "card": null,
+    "quote": "41% / 40% (booked)",
+    "utc": "2026-11-19T17:43Z"
+   }
+  },
+  {
+   "item": "utilisation 0.92 'base round estimate from the 424B4 lease terms and Q3 build', all forecast quarters",
+   "value": "0.92",
+   "result": "unsupported",
+   "origin": "supervisor driver path constant util",
+   "fix": "carded: constant: utilisation (util) (card #6: 0.85 -8.73%, 0.92 +3.49%; 0.90 booked); must-card row, not re-booked | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL9Ga63bVKRdup5vjUKWE5HL): \"0.90 (booked)\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL9Ga63bVKRdup5vjUKWE5HL",
+    "card": null,
+    "quote": "0.90 (booked)",
+    "utc": "2026-11-19T18:24Z"
+   }
+  },
+  {
+   "item": "re-check: apps $11.2B FY27 / $15.8B FY28 (round-1 unsupported)",
+   "value": "11.2 / 15.8",
+   "result": "unsupported",
+   "origin": "supervisor driver path constant apps",
+   "fix": "carded: constant: SI app revenue (apps) (card #7: Cursor pace -0.13%, run-rate floor -1.27%); must-card row, not re-booked | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL5n8dq8cHTrywxYUHyZbopw): \"MS ads + Cursor pace\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL5n8dq8cHTrywxYUHyZbopw",
+    "card": null,
+    "quote": "MS ads + Cursor pace",
+    "utc": "2026-11-19T18:24Z"
+   }
+  },
+  {
+   "item": "E&G +20% (2029) fading to +4% (2036); mobile $2.0B -> $9.0B (~17M -> ~75M paying users)",
+   "value": "",
+   "result": "unsupported",
+   "origin": "supervisor driver path Starlink DCF deck E&G and mobile",
+   "fix": "carded: Starlink DCF long-run deck 2029-36, deck E&G and mobile (card #11: mobile held at $1.3B -0.32%, no growth after FY2028 -3.39%); must-card row, not re-booked | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfL9UWT46t3KmMHeGRiXs9KqB): \"Mobile held at $1.3B\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfL9UWT46t3KmMHeGRiXs9KqB",
+    "card": null,
+    "quote": "Mobile held at $1.3B",
+    "utc": "2026-11-19T18:24Z"
+   }
+  },
+  {
+   "item": "2029-33 ARPU -5% a year ('half the ~10% a year of 2023-25')",
+   "value": "43.4 -> 35.3",
+   "result": "trend_only",
+   "origin": "supervisor driver path Starlink DCF deck ARPU",
+   "fix": "carded: Starlink DCF long-run deck 2029-36, deck ARPU (card #10: ~10%/yr to 2031 -0.25%, no growth after FY2028 -3.39%); must-card row, not re-booked | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLMzw5wgqWs74Akw8puEtmtL): \"10% a year to 2031\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLMzw5wgqWs74Akw8puEtmtL",
+    "card": null,
+    "quote": "10% a year to 2031",
+    "utc": "2026-11-19T18:24Z"
+   }
+  },
+  {
+   "item": "FY2027 +7.0M (1.75M a quarter) -> 22.3M: 'the 2026 pace (~6.4M) plus kit supply and new markets'",
+   "value": "22.3",
+   "result": "unsupported",
+   "origin": "supervisor driver path starlink_subs",
+   "fix": "carded: starlink_subs (card #8, re-sized with the Wells Fargo full build +10.85%); must-card row, not re-booked | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLHRbEK7DDrQL2AW7AqH7xeb): \"Booked +7.0M / +8.0M\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLHRbEK7DDrQL2AW7AqH7xeb",
+    "card": null,
+    "quote": "Booked +7.0M / +8.0M",
+    "utc": "2026-11-19T18:24Z"
+   }
+  },
+  {
+   "item": "FY2028 +8.0M (2.0M a quarter) -> 30.3M: V3 on Starship partly offset by Amazon Leo",
+   "value": "30.3",
+   "result": "unsupported",
+   "origin": "supervisor driver path starlink_subs",
+   "fix": "carded: starlink_subs (card #8, same card); must-card row, not re-booked | accepted by Kilian (cmsg_01HdhANNPxz1f5xqDwR22cfLHRbEK7DDrQL2AW7AqH7xeb): \"Booked +7.0M / +8.0M\"",
+   "status": "accepted_by_kilian",
+   "owner_override": {
+    "msg": "cmsg_01HdhANNPxz1f5xqDwR22cfLHRbEK7DDrQL2AW7AqH7xeb",
+    "card": null,
+    "quote": "Booked +7.0M / +8.0M",
+    "utc": "2026-11-19T18:24Z"
+   }
+  }
+ ]
+}

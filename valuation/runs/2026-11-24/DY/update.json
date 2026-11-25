@@ -1,0 +1,198 @@
+{
+ "symbol": "DY",
+ "update_date": "2026-11-24",
+ "base": "2026-11-20",
+ "mode": "update",
+ "mode_reason": "base 2026-11-20 is a driver model (no full runs: Kilian 2026-11-04)",
+ "trigger": "unspecified",
+ "playbook": "ai_industrials",
+ "base_fair_value": 272.13580619853803,
+ "base_fair_value_source": "driver model",
+ "filings_since_base": [
+  {
+   "form": "10-Q",
+   "filed": "2026-11-24",
+   "items": "",
+   "url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000050/dy-20261031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-11-24",
+   "items": "2.02,9.01",
+   "url": "https://www.sec.gov/Archives/edgar/data/67215/000006721526000048/dy-20261124.htm"
+  }
+ ],
+ "created_utc": "2026-11-24T23:30Z",
+ "changed_inputs": [
+  "Net debt 2026-10-31",
+  "Supplier finance adjustment (debt-like share)",
+  "Interest rate on net debt",
+  "Diluted shares",
+  "Share change per year",
+  "Tax rate",
+  "Capex % revenue",
+  "NWC % of incremental revenue",
+  "P/E horizon multiple",
+  "EV/EBITDA horizon multiple",
+  "SBC % revenue (driver_build sbc_rate; years[].sbc_pct_rev 0 so it is costed once)",
+  "driver:comms_ntm_backlog",
+  "driver:comms_conv",
+  "driver:comms_margin",
+  "driver:bs_share",
+  "driver:bs_margin",
+  "D&A % revenue (depreciation ex amortization, years[].da_pct_rev and dep_rate)",
+  "Quarter interest expense, net (driver_build.quarters.interest = int_exp)",
+  "Quarter other income, net (driver_build.quarters.other_income = (gain_pct - misc_pct) x rev)",
+  "driver_build.quarters.constants (dep_rate, sbc_rate, other_addback, int_exp, gain_pct, misc_pct)",
+  "driver_build.quarters.reported (Q3 FY2027)",
+  "driver:comms_margin (Kilian card 2026-11-25: No FY28-30 recovery)",
+  "P/E horizon multiple (Kilian card 2026-11-25: peers refreshed, 10.93x)",
+  "comps_summary (peer refresh at the 2026-11-24 closes)",
+  "P/E horizon multiple 10.93x -> 10.99x (exit rule's growth term refreshed on the picked set, 1.0011 -> 1.006)",
+  "comps_summary.growth_term (exit_growth.py re-run 2026-11-25)"
+ ],
+ "what_changed": "Q3 FY2027 print (2026-11-24): revenue 2,056.3 vs ours 2,026.6, the pre-print blend 2,018 and the Street ~1,920; adjusted EPS 5.23 vs ours 5.01, Street 4.33, whisper 4.53. The stock fell ~18% on the FY28 Communications outlook (FTTH moderating) against a 20.7% implied move.\n\n| Q3 FY2027 | Ours (booked) | Pre-print blend | Street | Whisper | Actual |\n|---|---|---|---|---|---|\n| Communications prior NTM backlog | 5,362 | 5,362 | - | - | 5,362 |\n| Communications conversion | 0.3012 | 0.2952 (1,583) | - | - | 0.3011 |\n| Communications NTM backlog at quarter end | 5,420 | - | - | - | 5,421 |\n| Communications revenue | 1,615.0 | 1,583 | - | - | 1,614.6 |\n| Communications adj. EBITDA margin | 13.77% (222.4) | - | - | - | 12.78% (206.4) |\n| Building Systems revenue | 411.6 | 435 | - | - | 441.7 |\n| Building Systems adj. EBITDA margin | 21.0% (86.4) | - | - | - | 23.8% (105.2) |\n| Total revenue | 2,026.6 | 2,018 | ~1,920 | - | 2,056.3 |\n| Adjusted EBITDA (segments) | 308.9 | - | - | - | 311.7 |\n| Adjusted EBIT (op. income + amortization + reserve) | 244.9 | - | - | - | 249.3 |\n| Interest / other income, net | 38.4 / -0.9 | - | - | - | 39.0 / +1.5 |\n| Adjusted diluted EPS | 5.01 | - | 4.33 | 4.53 | 5.23 (GAAP 3.19) |\n\nWhat was wrong: (1) Building Systems revenue, a driver error: the crew chain started from Q2 FY27 397.5, which held only one month of NTI, so the base was ~30 too low; Q3 441.7 carries a full quarter. (2) Communications margin, mostly one-off: fuel cost 0.50pt (we had the Q2 0.35pt) and the inefficiency of accelerating work in the quarter (CFO), ~1.0pt below our 13.77%; we treat both as lapping in FY28, the no-recovery case is carded (-5.5%). (3) Building Systems margin 23.8% vs our 21.0%, a driver error on the mix of Power Solutions work; the FY28 band is carded. Not wrong: Communications revenue (1,615.0 vs 1,614.6) and the quarter-end backlog (5,420 vs 5,421); interest was 0.6 higher and other income 2.4 better (asset-sale gains). EPS beat ours by 0.22: +4.4 adjusted EBIT, +2.4 other income, -0.6 interest, tax 25.3% vs 26% (~+0.05). Blend legs: Communications customer leg 1,569 and peer leg 1,569 were 46 too low, the model leg 1,615 was right; Building Systems blend 435 was closer than the crew build 411.6 in the booked set, the agents' crew build 457 overshot by 15, the guide-implied ~415 was 27 low.\n\nWhat moved (research target (12m) 272.14 -> 274.67, +0.9%): Communications rebuilt by program from the Q3 NTM backlog 5,421 (FY28 6,350.2 vs 6,616.6 before; backlog -13.1, margin -3.3); Building Systems rebuilt from Q3 441.7 with crews +20% FY28 and +15% after (FY28 2,022.4 after the moratorium vs 1,784.5 before; +14.7); buybacks priced at $179.01 under the new $200M authorization (+7.9); supplier finance debt-like 252.9 of 524.0 (-1.7); net debt 2,616.0, the Q3 roll and DY's own interest on the SOFR curve (-2.5); growth term (+0.3). Guide: Q4 revenue 1.63-1.70B (record-adjusted 1,764.7, ours 1,749.6), adjusted EPS 2.48-2.78 (ours 2.97); FY27 7.66-7.73B (ours 7,776.6), a cross-check only.\n\nLogged news moves: comms_ntm_backlog FY2028 -4.5% RESIZED: built from the programs the CEO named (FTTH -10%, long-haul/DCI +300, wireless +150, copper +75), the FY28 quarter ends sit 4.5-6.2% below the previous path and FY29 7-9% below, with Communications FY28 revenue 6,350.2 inside the 6,261-6,381 the outlook implies. bs_share FY2028 +0.05pt TAKEN AND EXCEEDED: the screen assumed the old 15% chain; rebuilding from the Q3 actual with a full quarter of NTI and crews +20% lifts FY28 Building Systems to 2,111 before the moratorium haircut (2,022.4 after) vs 1,784.5 before.\n\nKilian's card picks (2026-11-25), research target (12m) 273.65 -> 231.11 (-15.5%): Kilian's card picks 2026-11-25: Communications margin 'No FY28-30 recovery' (FY27 quarter levels held) -14.10 (273.65 -> 259.56); exit multiple 'Refresh peers, rule re-read: P/E 10.93x' (peers and DY at the 2026-11-24 closes, median 14.35x, own 10.20x) -28.45 (-> 231.11); Building Systems margin 18%, crews 20%/15% and the program-build backlog kept as booked (no change). Downside 93.34, upside 376.65. comms_ntm_backlog's program build replaces his 2026-11-02 middle trim. New open card: leg weights (equal 0.5/0.5 +7.5%, agent_5 0.6/0.4 +3.8%). Growth term: the exit rule scales by the current growth factor each round, so exit_growth.py was re-run on the picked set (1.006: dG_ours +0.0755, dG_cons -0.0171): P/E 10.92 x 1.006 = 10.99x, research target 231.11 -> 231.93 (+0.36%; EV/EBITDA kept at 10.21x as picked, where the rule would add another +0.33%). Downside 93.81, upside 377.67. New open card 'wireless FY28': the +150 wireless deferral (Q2 FY27 release) vs the CEO's Q&A 'roughly flat year-over-year' (answering analyst Michael Stratoti, Guggenheim); wireless flat in FY28 moves the target -0.47%.",
+ "driver_model": true,
+ "flags": [
+  {
+   "flag": "research_target_move",
+   "holds": false,
+   "evidence": "272.14 -> 274.67 (+0.9%), well under ~10%.",
+   "handled": "No action; the offsetting segment rebuilds are itemized in what_changed."
+  },
+  {
+   "flag": "guidance_withdrawn_or_far_outside",
+   "holds": false,
+   "evidence": "FY27 guide raised to 7.66-7.73B from 7.48-7.66B (src 87); Q4 1.63-1.70B in line with its record.",
+   "handled": "guidance_check rows refreshed; cross-check only."
+  },
+  {
+   "flag": "stock_move_over_2x_implied",
+   "holds": false,
+   "evidence": "Stock ~-18% on the print vs a 20.7% implied earnings move: under 1x, not over 2x (src 92).",
+   "handled": "No flag; the drop reflects the FY28 FTTH commentary, which the Communications backlog rebuild now carries."
+  },
+  {
+   "flag": "thesis_trigger",
+   "holds": true,
+   "evidence": "Partly hit: 'a top carrier cutting or re-sourcing a fiber program'. Several large unnamed customers will moderate FTTH pace in FY28; plans kept, FY28 FTTH above FY26, book-to-bill 1.3x (src 89).",
+   "handled": "comms_ntm_backlog FY28-30 rebuilt by program (FTTH -10% FY28, +5% FY29), FY28 quarter ends 4.5-6.2% lower, Communications FY28 revenue 6,350.2 (-4.0%); FTTH -25% and flat-backlog alternatives sized (-4.9%, -2.4%); method change carded as a record; thesis_triggers updated."
+  },
+  {
+   "flag": "structural_news",
+   "holds": false,
+   "evidence": "None found: no deal, CEO/CFO change, litigation shift or restatement in the 10-Q, 8-K (items 2.02, 9.01) or news since 2026-11-20; a broker price-target cut only.",
+   "handled": "No action."
+  },
+  {
+   "flag": "eps_tieout_q3_pending",
+   "holds": true,
+   "evidence": "eps_tieout.py DY ties Q1/Q2 FY27; Q3 FY27 (2026-10-31) is not yet in the Zacks/Nasdaq surprise feed, so the 22.7 bad-debt reserve (0.57 a share, excluded from adjusted EPS 5.23) cannot yet be shown as a named filed piece.",
+   "handled": "Q3 reported line rebuilt from the release (GAAP EPS 3.19, adjusted 5.23 with the reserve added back as a one-off); re-run eps_tieout.py once Zacks records the actual."
+  }
+ ],
+ "bypasses": [
+  "forecast_lint override guide-anchor: Q4 FY27 adjusted EPS 2.968 sits near guide midpoint x the Q4 FY26 beat by coincidence; built from backlog conversion, margins and own non-operating lines (lint_overrides.json)",
+  "forecast_lint override carry-base: comms_conv Q4 FY27 recomputed on the filed 5,421 NTM backlog (lint_overrides.json)"
+ ],
+ "gate_rounds": [
+  {
+   "utc": "2026-11-24T23:58Z",
+   "why": "first round"
+  },
+  {
+   "utc": "2026-11-25T00:22Z",
+   "why": "trigger: round-1 fix pass changed driver rows comms_ntm_backlog (FY29-30 ends, source), comms_margin (FY28-30 quarter shape from FY24-26), bs_share and bs_margin derivations/sources, new FY29 acceleration and bs_share FY29 alternatives, guidance_check FY2027/Q4 why, consensus sources 94-96; reason: the fix agent may not certify its own new sources and figures (RULES 24), and these are new sourced paths rather than open questions for Kilian, so an independent re-check beats carding or gate_accept",
+   "trigger": "round-1 fix pass changed driver rows comms_ntm_backlog (FY29-30 ends, source), comms_margin (FY28-30 quarter shape from FY24-26), bs_share and bs_margin derivations/sources, new FY29 acceleration and bs_share FY29 alternatives, guidance_check FY2027/Q4 why, consensus sources 94-96",
+   "reason": "the fix agent may not certify its own new sources and figures (RULES 24), and these are new sourced paths rather than open questions for Kilian, so an independent re-check beats carding or gate_accept",
+   "changed": [
+    "model.reconciled_inputs.reference",
+    "supervisor.json fair_value",
+    "supervisor.json key_drivers",
+    "supervisor.json summary",
+    "supervisor.json thesis_triggers",
+    "driver bs_margin (Building Systems adjusted EBITDA margin)",
+    "driver bs_share (Building Systems revenue / US private data center construction put in place)",
+    "driver comms_conv (Communications revenue / prior quarter-end NTM backlog (quarterly burn))",
+    "driver comms_margin (Communications adjusted EBITDA margin)",
+    "driver comms_ntm_backlog (Communications next-12-month backlog (quarter end))",
+    "guidance_check revenue FY2027",
+    "guidance_check revenue Q4 FY2027",
+    "judgment_alternatives hs_self_funded",
+    "judgment_alternatives bs_margin",
+    "judgment_alternatives Supplier finance adjustment (debt-like share)",
+    "judgment_alternatives int_exp",
+    "judgment_alternatives Share change per year",
+    "judgment_alternatives dc_mor",
+    "judgment_alternatives dc_mkt",
+    "judgment_alternatives Leg weights",
+    "judgment_alternatives EV/EBITDA horizon multiple",
+    "judgment_alternatives other_income",
+    "judgment_alternatives comms_ntm_backlog",
+    "judgment_alternatives comms_conv",
+    "judgment_alternatives comms_margin",
+    "judgment_alternatives bs_share",
+    "judgment_calls_for_kilian #0 (bs_margin)",
+    "judgment_calls_for_kilian #1 (bs_share)",
+    "judgment_calls_for_kilian #2 (comms_margin)",
+    "judgment_calls_for_kilian #3 (comms_ntm_backlog)",
+    "inputs_detail row \"driver:bs_margin\"",
+    "inputs_detail row \"driver:bs_share\"",
+    "inputs_detail row \"driver:comms_conv\"",
+    "inputs_detail row \"driver:comms_margin\"",
+    "inputs_detail row \"driver:comms_ntm_backlog\""
+   ]
+  },
+  {
+   "utc": "2026-11-25T01:10Z",
+   "why": "trigger: round-2 fix pass changed the bs_share derivation sources (FY27 guide 1.66-1.69B to src 87, high-teens FY28 to src 89, NTI ~1 month dropped), src 89 speaker entries, the bs_share card context; the forecaster rerun and supervisor passes then added sources 94-104 (peer/DY consensus feeds, 11-24 closes, Loudoun pause) and rewrote summary, key_drivers and the exit-multiple / alternative texts; reason: these are new citations and figures from the fix agent and supervisor that no independent checker has opened, and they feed cards Kilian will read, so a last independent re-check beats carding uncited text or asking him to accept it",
+   "trigger": "round-2 fix pass changed the bs_share derivation sources (FY27 guide 1.66-1.69B to src 87, high-teens FY28 to src 89, NTI ~1 month dropped), src 89 speaker entries, the bs_share card context; the forecaster rerun and supervisor passes then added sources 94-104 (peer/DY consensus feeds, 11-24 closes, Loudoun pause) and rewrote summary, key_drivers and the exit-multiple / alternative texts",
+   "reason": "these are new citations and figures from the fix agent and supervisor that no independent checker has opened, and they feed cards Kilian will read, so a last independent re-check beats carding uncited text or asking him to accept it",
+   "changed": [
+    "model.set_review",
+    "model.set_review_prior_rounds",
+    "supervisor.json changes",
+    "supervisor.json changes_prior_rounds",
+    "supervisor.json comps_review",
+    "supervisor.json confidence_reason",
+    "supervisor.json disagreements",
+    "supervisor.json disagreements_prior_rounds",
+    "supervisor.json fair_value",
+    "supervisor.json feedback_for_agents",
+    "supervisor.json feedback_for_agents_prior_rounds",
+    "supervisor.json key_drivers",
+    "supervisor.json ladder_1m",
+    "supervisor.json one_month_reasoning",
+    "supervisor.json sizing",
+    "supervisor.json source_review",
+    "supervisor.json source_review_prior_rounds",
+    "supervisor.json summary",
+    "driver bs_share (Building Systems revenue / US private data center construction put in place)",
+    "judgment_alternatives hs_self_funded",
+    "judgment_alternatives bs_margin",
+    "judgment_alternatives Supplier finance adjustment (debt-like share)",
+    "judgment_alternatives int_exp",
+    "judgment_alternatives Share change per year",
+    "judgment_alternatives Exit multiples at the 2026-11-24 price (forecasters)",
+    "judgment_alternatives Tax rate",
+    "judgment_alternatives dc_mor",
+    "judgment_alternatives dc_mkt",
+    "judgment_alternatives Leg weights",
+    "judgment_alternatives EV/EBITDA horizon multiple",
+    "judgment_alternatives other_income",
+    "judgment_alternatives comms_ntm_backlog",
+    "judgment_alternatives comms_conv",
+    "judgment_alternatives comms_margin",
+    "judgment_alternatives bs_share",
+    "judgment_calls_for_kilian #0 (bs_margin)",
+    "judgment_calls_for_kilian #1 (bs_share)",
+    "judgment_calls_for_kilian #2 (comms_margin)",
+    "judgment_calls_for_kilian #3 (comms_ntm_backlog)",
+    "judgment_calls_for_kilian #4 (Exit multiples at the 2026-11-24 price (forecasters))",
+    "inputs_detail row \"driver:bs_share\""
+   ]
+  }
+ ],
+ "supervisor_pass_changes": [],
+ "supervisor_pass_note": "Supervisor round 1 (2026-11-25): no row of the reconciled set changed (engine 273.65 before and after); 26 forecaster alternatives added and sized, new card 'Exit multiples at the 2026-11-24 price (forecasters)', one option added to the bs_margin card. changed_inputs unchanged. Supervisor round 2 (2026-11-25): no row changed (engine 273.65 before and after); exit-multiple card re-sized on the revised five (rule re-read on a peer refresh 10.93x, -11.02%); dc_mor timing confirmed correct; 14 revised forecaster alternatives added. changed_inputs unchanged."
+}

@@ -1,0 +1,769 @@
+{
+ "symbol": "AMZN",
+ "as_of": "2026-11-24",
+ "research_as_of": "AMZN",
+ "spot": 252.29,
+ "agents": [
+  {
+   "agent": "agent_1",
+   "fair_value": 322.79,
+   "method_text": "Engine base horizon value $322.79: 60% P/E (24.4x on own NTM GAAP EPS ~$12.1 = $312) and 40% SOTP (AWS NTM EBIT ~$119B x 20x + retail ~$64B x 21x = $3.72T EV, less ~$160B net debt at the horizon, plus ~$193B stakes, over 11.05B shares = $339).",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 312.24,
+     "weight": 0.6,
+     "inputs": "NTM EPS at 2027-11-23 ~$12.1 (FY2027 $9.90, FY2028 $12.33 from the quarter build) x 24.4x + stakes ~$17.5/share - FTC adj ~$0.5/share",
+     "inputs_detail": [
+      {
+       "input": "FY2028 EPS (own)",
+       "value": "$12.33",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        3,
+        5,
+        15
+       ],
+       "fact_ids": [
+        "F33"
+       ],
+       "derivation": "Quarter build: EBIT $186.9B - interest $13.2B + interest income $3.6B, x (1 - 22.5%), over ~11.1B shares. Consensus FY2028 $14.58 (MarketScreener) / $14.07 (TIKR, normalized): we are 12-15% below. EBIT is 5% below consensus ($197.2B) because our capex path brings more D&A, and our interest and tax are higher.",
+       "confidence": "medium",
+       "variant_view": "consensus $14.58 x 24.4x = +$45/share on this leg"
+      },
+      {
+       "input": "FY2027 consensus EPS (for the own multiple)",
+       "value": "$10.66",
+       "basis": "consensus",
+       "source_ids": [
+        12
+       ],
+       "fact_ids": [],
+       "derivation": "MarketScreener consensus, snapshot 2026-11-20; StockAnalysis 'next year' non-GAAP $10.93 (2026-11-20).",
+       "confidence": "high",
+       "variant_view": ""
+      },
+      {
+       "input": "P/E multiple",
+       "value": "24.4x",
+       "basis": "judgment",
+       "source_ids": [
+        16,
+        12
+       ],
+       "fact_ids": [
+        "MSFT.pe_ntm",
+        "WMT.pe_ntm"
+       ],
+       "derivation": "peer median 32.8x x (22.6/32.8)^0.8",
+       "confidence": "medium",
+       "variant_view": "k=1 -> 22.6x"
+      }
+     ]
+    },
+    {
+     "name": "SOTP",
+     "value": 338.62,
+     "weight": 0.4,
+     "inputs": "AWS NTM operating income ~$119B x 20x EV/EBIT = $2.38T; NA + International NTM operating income ~$64B x 21x = $1.34T; less net debt at the horizon ~$160B; plus stakes ~$193B; adjustment -$5.3B; / 11.05B shares",
+     "inputs_detail": [
+      {
+       "input": "AWS multiple",
+       "value": "20x EV/EBIT",
+       "basis": "judgment",
+       "source_ids": [
+        16,
+        13
+       ],
+       "fact_ids": [
+        "MSFT.pe_ntm"
+       ],
+       "derivation": "MSFT 26.7x P/E x 0.775",
+       "confidence": "medium",
+       "variant_view": "14x -> -$64/share on the leg"
+      },
+      {
+       "input": "Retail multiple",
+       "value": "21x EV/EBIT",
+       "basis": "judgment",
+       "source_ids": [
+        16
+       ],
+       "fact_ids": [
+        "WMT.pe_ntm",
+        "COST.pe_ntm"
+       ],
+       "derivation": "retail-peer median 39.3x x 0.775 x 0.74 shrink, rounded down",
+       "confidence": "medium",
+       "variant_view": "30x -> +$43/share on the leg"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 208.92,
+     "prob": null
+    },
+    "base": {
+     "price": 322.79,
+     "prob": null
+    },
+    "upside": {
+     "price": 418.53,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 322.79,
+   "reasoning": "Rerun on current data (the earlier file used Oct 5-6 consensus and predated the Q3 print). Primary lane: the Q3 2026 release and 10-Q, the Q4 2025, Q1 and Q2 2026 releases (segment and ad tables, quarterly guides), XBRL quarterly capex/D&A/interest, and call excerpts with speakers. Key facts: Q3 revenue $201.9B (+12%), AWS $46.0B (+39%, 38.7% margin), ads $19.6B (+11%), operating income $28.1B (a record 13.9% margin). Q4 guide: $240-247B revenue and $28.5-33.5B operating income, ads 'high teens'. AWS backlog $578B (6.1-year life, +$82B q/q). TTM FCF -$42.4B on $215B TTM capex. 2026 capex ~$220B, 'meaningfully more' in 2027 (CEO). Anthropic carried at $238.7B and OpenAI at $35B in the 10-Q. Model: AWS grows +39.5% in FY2027 and +33% in FY2028 (sequential adds capped by capacity; 3.5 points under UBS's 43%) at a 37.5% margin, below 2026 as D&A climbs. Ads grow +17%/+15%, retail ex-ads +8.5%/+8%, and the retail margin rises +0.7/+0.6 points on the ads mix. Capex follows the project's Big-4 path at Amazon's 2026 share ($303.5B and $392.5B). The result: FY2027 revenue $962B (consensus $960B), EBIT $147B (consensus $147B), and FY2028 EBIT $187B (5% under consensus) with EPS $12.33 vs $14.58. Valuation: P/E with the 0.8 shrink, and a SOTP; stakes added after tax and illiquidity. Research target (12m) $322.8 (+24%). It sits close to the sell-side mean ($326.5) for a different reason: below-consensus EPS on a higher multiple of core earnings once the $18/share of stakes is taken out of today's multiple. Scenarios: P10 $209 (AWS -12% revenue and -3pt margin, multiple -5 turns, SOTP multiples -20%, stakes -40%) and P90 $419 (AWS +10% revenue and +2.5pt margin, multiple +3, SOTP multiples +12%, stakes +40%). The left tail is fatter, matching the AI capex digestion risk and the stock's 34% realized volatility. Decart: reported near a ~$7-7.5B deal but not signed; left out as value-neutral."
+  },
+  {
+   "agent": "agent_2",
+   "fair_value": 321.12,
+   "method_text": "P/E on our own NTM GAAP EPS at the horizon (~$11.1, Anthropic marks excluded; FY2027 $9.78, FY2028 $11.51) x 27.0x (8-peer median 32.8x shrunk toward AMZN's own 25.7x, k=0.8) + Anthropic 14.7% stake after tax and lock-up discount ($14.6/share) - probability-weighted Decart premium (-$0.2/share) = $321.1.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 321.12,
+     "weight": 1.0,
+     "inputs": "NTM EPS at 2027-11-23 ~$11.1 from the quarter build x 27.0x; plus stake $161.1B and Decart -$2.24B over ~11,042M horizon shares; net debt at horizon ~$129.8B (FCF negative)",
+     "inputs_detail": [
+      {
+       "input": "driver:cloud_mkt",
+       "value": "quarters [95300, 100000, 106900, 119100, 128600, 143000, 167700, 181032.0, 192900.0, 210210.0, 241488.0, 253444.8, 260415.0, 277477.2, 313934.4, 324409.3]",
+       "basis": "estimate",
+       "source_ids": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        28,
+        15,
+        16,
+        9
+       ],
+       "fact_ids": [],
+       "derivation": "Actuals ($M): Q1'25 95,300 (Q1'26 128.6B / 1.35), Q2'25 100,000 (Q2'26 143B / 1.43), Q3'25 106,900, Q4'25 119,100 (sum 421,300 vs Synergy FY2025 $419B, +0.5%); Q1'26 128,600, Q2'26 143,000, Q3'26 167,700. Forecast y/y: Q4'26 +52% (Q3 +55%, slight deceleration on a tougher Q4'25 base), 2027 +50/+47/+44/+40%, 2028 +35/+32/+30/+28%. Case: Big-4 capex rises 34.5% in 2027 and 29.3% in 2028 (NVDA model path) after ~+83% in 2026; capacity bought in 2026 lands in 2027 revenue, so growth stays above capex growth in 2027 and converges to it in 2028. Backlogs back it: AWS $578B, Microsoft RPO $677B (+73%), Google Cloud $561B. Alternatives: (a) market growth = Big-4 capex growth with no lag (2027 +34.5%, 2028 +29.3%): AWS FY2027 revenue ~-7%; (b) market holds the Q3'26 +55% through 2027: AWS FY2027 ~+5%.",
+       "confidence": "medium",
+       "variant_view": "A capacity-lag reading (revenue growth falling straight to capex growth in 2027) takes FY2027 AWS revenue ~7% lower, about -$5/share at the horizon."
+      },
+      {
+       "input": "driver:aws_cap",
+       "value": "quarters [0.3071, 0.30873, 0.30876, 0.29873, 0.29228, 0.29533, 0.2742, 0.27, 0.268, 0.265, 0.262, 0.259, 0.257, 0.254, 0.251, 0.248]",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        1,
+        4,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        15,
+        8,
+        21
+       ],
+       "fact_ids": [],
+       "derivation": "Actual capture = AWS revenue / Synergy market: Q1'25 30.7%, Q2'25 30.9%, Q3'25 30.9%, Q4'25 29.9%, Q1'26 29.2%, Q2'26 29.5%, Q3'26 27.4% (-3.5pt y/y). Forecast 27.0% Q4'26, then -0.3pt a quarter: 26.8/26.5/26.2/25.9% in 2027, 25.7/25.4/25.1/24.8% in 2028 (~1.2pt a year, a third of the last year's loss). Why slower than the last 4 quarters: Amazon's share of Big-4 capex is steady (~$220B of $750.7B = 29%) and its backlog doubled, so capacity, not demand, sets AWS's revenue; why still falling: Synergy names neoclouds and AI labs as eroding incumbents, Google Cloud grew 103% and Azure 48%. Alternatives: (a) capture held at Q3'26 27.4%: AWS FY2027 +~5% revenue; (b) the last year's -3.5pt/yr pace continues: AWS FY2027 revenue ~-6%; (c) Jassy's statement that AWS growth tops 40% in 2027 implies capture roughly flat with a ~45% market: +~4%.",
+       "confidence": "medium",
+       "variant_view": "Capture flat at 27.4% (Jassy's >40% AWS growth) adds ~$12/share; the full -3.5pt/yr pace takes ~$10/share off."
+      },
+      {
+       "input": "driver:aws_margin",
+       "value": "quarters [0.39454, 0.32909, 0.34642, 0.35035, 0.37675, 0.39356, 0.3865, 0.375, 0.372, 0.37, 0.368, 0.366, 0.364, 0.362, 0.36, 0.358]",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        1,
+        4,
+        9,
+        8,
+        21,
+        5
+       ],
+       "fact_ids": [
+        "F40",
+        "F39"
+       ],
+       "derivation": "Actual: 2025 39.5/32.9/34.6/35.0%; 2026 37.7/39.4/38.6%. Forecast Q4'26 37.5%, then -0.2pt a quarter to 35.8% by Q4'28. Case: D&A rose from $65.8B (FY2025) to $79.4B TTM and capex of ~$220B in 2026 and ~$290B+ in 2027 (Jassy 'meaningfully more') puts 5-6 year server depreciation into 2027-28 cost; UBS cut its 2027 AWS margin to 40% from 45%. Alternatives: (a) UBS 40% for 2027: +~$12/share; (b) FY2025 average 35.4% held: -~$6/share; (c) Q3'26 38.6% held flat: +~$7/share.",
+       "confidence": "medium",
+       "variant_view": "Pricing power on scarce GPU capacity could keep margins near 39-40% (UBS 40%), ~+$12/share."
+      },
+      {
+       "input": "driver:us_ecom",
+       "value": "quarters [303800, 307300, 314500, 320000, 329600, 341700, 347300, 347200.0, 355968.0, 369036.0, 375084.0, 374976.0, 382665.6, 396713.7, 403215.3, 403099.2]",
+       "basis": "estimate",
+       "source_ids": [
+        18,
+        19
+       ],
+       "fact_ids": [],
+       "derivation": "Actual ($M SA): Q1'25 303,800 (329.6B / 1.085), Q2'25 307,300 (341.7B / 1.112), Q3'25 314,500, Q4'25 320,000; Q1'26 329,600, Q2'26 341,700, Q3'26 347,300. Forecast Q4'26 +8.5% y/y (between Adobe's +6.7% holiday forecast and Census's +10.4% Q3), 2027 +8.0%, 2028 +7.5% (2025 ran +5.0-5.4%, 2026 +8.5-11.2%; we take the middle as inflation and price-led gains fade). Alternatives: (a) Adobe's +6.7% for every quarter: ~-$3/share; (b) Census Q3 +10.4% held: ~+$4/share.",
+       "confidence": "medium",
+       "variant_view": "A consumer slowdown back to 2025's +5% online growth takes ~$6/share off."
+      },
+      {
+       "input": "driver:na_margin",
+       "value": "quarters [0.06288, 0.07512, 0.04507, 0.09027, 0.07938, 0.07853, 0.0773, 0.087, 0.0844, 0.0835, 0.0823, 0.092, 0.0884, 0.0875, 0.0863, 0.096]",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        1,
+        4,
+        8,
+        17
+       ],
+       "fact_ids": [],
+       "derivation": "Actual: 2025 6.3/7.5/4.5% (Q3 incl. the $2.5B FTC settlement)/9.0%; 2026 7.9/7.9/7.7%. Forecast Q4'26 8.7% (Q4'25 9.0% plus the ~2pt usual Q4 lift on the 2026 Q1-Q3 7.8% average, less Leo satellite costs the CFO said weigh on Q4), then each quarter = same quarter a year before +0.5pt in 2027 and +0.4pt in 2028 (2026 Q1-Q3 ran +0.4 to +1.6pt y/y, avg +0.9pt; we take about half because Walmart's US advertising +37% and e-commerce +23% vs Amazon ads +11% show retail-media share loss). Alternatives: (a) the 2026 +0.9pt/yr pace: ~+$5/share; (b) flat y/y margins: ~-$5/share.",
+       "confidence": "medium",
+       "variant_view": "Ad growth returning to the 20s (Amazon expects high teens in Q4) would add ~0.5pt a year, ~+$5/share."
+      },
+      {
+       "input": "na_prem / in_prem (constants)",
+       "value": "NA +1.0% Q4'26, +0.5% 2027-28; Intl 0",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        1,
+        18,
+        17
+       ],
+       "fact_ids": [],
+       "derivation": "See driver_build.quarters.constants_note: 9M 2026 NA growth premium over Census +1.2pt; halved for Walmart's share gains. Alternatives: the full +1.2pt (+~$3/share) or 0 (-~$2/share).",
+       "confidence": "medium"
+      },
+      {
+       "input": "in_margin (constant)",
+       "value": "Q4'26 2.5%; same quarter a year before +0.4pt",
+       "basis": "estimate",
+       "source_ids": [
+        3,
+        2,
+        1,
+        4
+       ],
+       "fact_ids": [],
+       "derivation": "2026 Q1-Q3 International margin rose +0.4 to +0.6pt y/y; Q4 is seasonally low (Q4'25 2.05%).",
+       "confidence": "medium"
+      },
+      {
+       "input": "tax_rate",
+       "value": "19.5%",
+       "basis": "estimate",
+       "source_ids": [
+        6,
+        32
+       ],
+       "fact_ids": [
+        "F113",
+        "F112"
+       ],
+       "derivation": "FY2025 effective rate 19.6% (F113); FY2024 13.5% (F112) carried large SBC excess benefits. TTM 22.3% (F74/F81) is inflated by tax on Anthropic marks, which our EPS excludes.",
+       "confidence": "high",
+       "anchor": {
+        "value": 0.196,
+        "kind": "reported_history",
+        "as_of": "2025-12-31",
+        "source_ids": [
+         6
+        ],
+        "fact_ids": [
+         "F113"
+        ],
+        "note": "FY2025 effective rate; within 1 point"
+       }
+      },
+      {
+       "input": "interest expense (quarterly lines)",
+       "value": "$1.8B Q4'26 rising to $2.7B Q4'28",
+       "basis": "estimate",
+       "source_ids": [
+        5,
+        20,
+        32
+       ],
+       "fact_ids": [
+        "F68",
+        "F85",
+        "F67"
+       ],
+       "derivation": "Q3'26 $1,691M (F68) on $180.9B debt (F85) = 3.7% annualized; +~$100M a quarter as FCF stays negative (consensus FCF 2027 -$24.3B; our build more negative).",
+       "confidence": "medium",
+       "anchor": {
+        "value": 1691.0,
+        "kind": "reported_history",
+        "as_of": "2026-09-30",
+        "source_ids": [
+         5
+        ],
+        "fact_ids": [
+         "F68"
+        ],
+        "note": "last reported quarter"
+       }
+      },
+      {
+       "input": "interest income (quarterly lines, other_income)",
+       "value": "$1.1B Q4'26 falling to $0.9B",
+       "basis": "estimate",
+       "source_ids": [
+        5,
+        32
+       ],
+       "fact_ids": [
+        "F103",
+        "F83",
+        "F84"
+       ],
+       "derivation": "Q3'26 $1,187M (F103) on $114.2B cash + securities (F83+F84); falls as cash funds capex. Other non-operating items (Anthropic marks, -$703M Q3 F107) are excluded: balance.nonop_excluded.",
+       "confidence": "medium",
+       "anchor": {
+        "value": 1187.0,
+        "kind": "reported_history",
+        "as_of": "2026-09-30",
+        "source_ids": [
+         5
+        ],
+        "fact_ids": [
+         "F103"
+        ],
+        "note": "last reported quarter"
+       }
+      },
+      {
+       "input": "capex (quarterly constants)",
+       "value": "FY2026 $220.0B, FY2027 $292.7B, FY2028 $378.5B",
+       "basis": "estimate",
+       "source_ids": [
+        1,
+        28,
+        20,
+        29,
+        8
+       ],
+       "fact_ids": [
+        "F60",
+        "F61"
+       ],
+       "derivation": "Q4'26 on the guide (guide_use). 2027-28 = 29% of the Big-4 path (Amazon 2026 share 220/750.7 = 29.3%); consensus 2027 $298.7B (29.6%), 2028 $334.0B (25.6%) is a cross-check; Jassy 'meaningfully more' in 2027. Alternative: consensus capex (2028 $44.5B lower) raises horizon cash and the target by ~+$1/share.",
+       "confidence": "medium",
+       "anchor": {
+        "value": 0.293,
+        "kind": "company_stated",
+        "as_of": "2026-10-29",
+        "source_ids": [
+         1,
+         28
+        ],
+        "fact_ids": [],
+        "note": "share of Big-4 = $220B guide / $750.7B"
+       }
+      },
+      {
+       "input": "D&A (quarterly constants)",
+       "value": "FY2026 $81.9B, FY2027 $108.0B, FY2028 $142.8B",
+       "basis": "estimate",
+       "source_ids": [
+        5,
+        32
+       ],
+       "fact_ids": [
+        "F40",
+        "F39",
+        "F36"
+       ],
+       "derivation": "From $20,949M Q3'26 (F40), +~$2.1-2.2B a quarter as 2026-27 capex depreciates; only EBITDA and FCF use it (EBIT comes from segment margins).",
+       "confidence": "medium",
+       "anchor": {
+        "value": 0.0995,
+        "kind": "reported_history",
+        "as_of": "2026-09-30",
+        "source_ids": [
+         5
+        ],
+        "fact_ids": [
+         "F39",
+         "F6"
+        ],
+        "note": "TTM D&A 79,353 / TTM revenue 797,455"
+       }
+      },
+      {
+       "input": "SBC (quarterly constants)",
+       "value": "FY2026 ~$21.2B, ~2.5% of revenue",
+       "basis": "estimate",
+       "source_ids": [
+        6,
+        5,
+        32
+       ],
+       "fact_ids": [
+        "F43",
+        "F46"
+       ],
+       "derivation": "FY2025 $19,467M (F43), TTM $19,873M (F46), grown ~10%/yr; costed in GAAP EBIT.",
+       "confidence": "high",
+       "anchor": {
+        "value": 0.0249,
+        "kind": "reported_history",
+        "as_of": "2026-09-30",
+        "source_ids": [
+         5
+        ],
+        "fact_ids": [
+         "F46",
+         "F6"
+        ],
+        "note": "TTM SBC / TTM revenue"
+       }
+      },
+      {
+       "input": "nwc_pct_incr_rev",
+       "value": "-2%",
+       "basis": "estimate",
+       "source_ids": [
+        6,
+        32
+       ],
+       "fact_ids": [
+        "F50",
+        "F48"
+       ],
+       "derivation": "Amazon runs negative working capital (payables float); a small inflow per $ of new revenue.",
+       "confidence": "medium",
+       "anchor": {
+        "value": -0.02,
+        "kind": "reported_history",
+        "as_of": "2025-12-31",
+        "source_ids": [
+         6
+        ],
+        "fact_ids": [
+         "F50"
+        ],
+        "note": "judgment on the filed cash-flow statement"
+       }
+      },
+      {
+       "input": "shares.annual_change",
+       "value": "+0.9%/yr from 10,929M",
+       "basis": "estimate",
+       "source_ids": [
+        5,
+        6,
+        32
+       ],
+       "fact_ids": [
+        "F33",
+        "F30",
+        "F29",
+        "F28"
+       ],
+       "derivation": "Diluted shares 10,492 (FY23), 10,721 (FY24, +2.2%), 10,827 (FY25, +1.0%), 10,929 Q3'26 (+0.9% vs FY25); no buyback program in use.",
+       "confidence": "high",
+       "anchor": {
+        "value": 0.009,
+        "kind": "reported_history",
+        "as_of": "2026-09-30",
+        "source_ids": [
+         5
+        ],
+        "fact_ids": [
+         "F33",
+         "F30"
+        ],
+        "note": "10,929/10,827 - 1 = 0.9%"
+       }
+      },
+      {
+       "input": "balance.net_debt",
+       "value": "$67,041M",
+       "basis": "reported",
+       "source_ids": [
+        5,
+        32
+       ],
+       "fact_ids": [
+        "F92",
+        "F91",
+        "F83",
+        "F84"
+       ],
+       "derivation": "Debt $181,267M less cash $55,783M and securities $58,443M (F92); leases excluded, consistent with a P/E leg that carries lease cost in opex."
+      },
+      {
+       "input": "P/E horizon multiple",
+       "value": "27.0x NTM",
+       "basis": "judgment",
+       "source_ids": [
+        30,
+        20
+       ],
+       "fact_ids": [
+        "MSFT.pe_ntm",
+        "GOOGL.pe_ntm",
+        "ORCL.pe_ntm",
+        "WMT.pe_ntm",
+        "COST.pe_ntm",
+        "MELI.pe_ntm",
+        "SE.pe_ntm",
+        "SHOP.pe_ntm"
+       ],
+       "derivation": "Peer median 32.8x (8 peers); AMZN own NTM P/E on consensus = 259.33 / 10.1 (Q4'26 consensus-implied ~$2.4 + 3/4 of FY2027 $10.66) = 25.7x; exit = 32.8 x (25.7/32.8)^0.8 = 27.0x. Alternatives: cloud-only median 18.0x (~21x after shrink, -$65/share); retail-only median 39.3x (~31x, +$45/share).",
+       "confidence": "medium",
+       "variant_view": "Applying 27x to our EPS, which sits 8-21% below consensus, is the main lever; the market may value AMZN on consensus EPS instead."
+      },
+      {
+       "input": "Anthropic stake",
+       "value": "14.7% x $1.60T, cost $18B, tax 21%, 15% discount = $161.1B ($14.6/share)",
+       "basis": "estimate",
+       "source_ids": [
+        25,
+        24,
+        27,
+        26
+       ],
+       "fact_ids": [],
+       "derivation": "0.147 x 1,600,000 = 235,200 gross; tax 0.21 x (235,200 - 18,000) = 45,612; x 0.85 = 161,150. $1.60T = $1.49T x 89.11/83.",
+       "confidence": "medium",
+       "variant_view": "Counting the up-to-23.8% as-converted stake would add ~$9/share; a lock-up-expiry sell-off could cut ANT by a third (-$5/share)."
+      },
+      {
+       "input": "Decart adjustment",
+       "value": "-$3,200M x 0.7",
+       "basis": "estimate",
+       "source_ids": [
+        23
+       ],
+       "fact_ids": [],
+       "derivation": "Premium over the May mark: 7.5 - 7.5/1.75 = 3.2B; probability 0.7 the deal signs.",
+       "confidence": "low",
+       "variant_view": "If it signs at $7.0B: -$2.9B; if it does not sign: 0."
+      },
+      {
+       "input": "scenario deltas",
+       "value": "downside: market -10%, capture -5%, AWS margin -3pt, NA margin -1.2pt, e-commerce -2%, multiple -6, ANT -45%; upside: +8%, +4%, +2pt, +0.8pt, +1%, +3, +40%",
+       "basis": "judgment",
+       "source_ids": [
+        10,
+        16,
+        15,
+        17,
+        30,
+        27,
+        21
+       ],
+       "fact_ids": [],
+       "derivation": "Sized so each side is a 1-in-10 outcome against 34% realized volatility: downside -38% from base, upside +29%; ORCL (17.2x) and GOOGL (18.0x) show where debt-funded AI capex names trade.",
+       "confidence": "medium"
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 200.28,
+     "prob": null
+    },
+    "base": {
+     "price": 321.12,
+     "prob": null
+    },
+    "upside": {
+     "price": 414.31,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 321.12,
+   "reasoning": "Rerun on post-Q3 data (all forecast sources published Sep 28-Nov 23). Lane (industry): the cloud market measured by Synergy grew 55% in Q3 2026 to $167.7B while AWS grew 39%, so AWS capture fell from 30.9% to 27.4% in a year; Google Cloud (+103%, backlog $561B) and Azure (+48%, RPO $677B) are the share takers, and Synergy names neoclouds. That makes AWS = market x capture, with the market's growth tied to the Big-4 capex path (NVDA model: $750.7B -> $1,009.45B -> $1,305.26B), giving AWS +35% in 2027 and +26% in 2028, below Jassy's >40% statement and UBS's 43%. Retail is built from Census e-commerce (Q3 +10.4%) with a small premium, trimmed because Walmart's US e-commerce (+23%) and ads (+37%) outgrow Amazon's ads (+11%). Margins: AWS eases with depreciation (UBS cut 2027 to 40%; we use ~37%), NA +0.5pt a year. Q4 FY2026 lands inside both guides (revenue at the midpoint, OI +2.7%) and below the record-adjusted figures; Q4 capex sits on the ~$220B guide (flagged). Our FY2027/28 EPS ($9.78/$11.51) is 8%/21% below consensus ($10.66/$14.58, MarketScreener 2026-11-20). Value: P/E leg, 27.0x (8-peer median 32.8x shrunk to AMZN's 25.7x, k=0.8) on our NTM EPS, plus the Anthropic stake, now listed (ANT $89.11; 14.7% after tax and a 15% lock-up discount = $14.6/share; cost ~$18B), less a 70%-weighted $3.2B Decart premium (reported by Calcalist/Globes, not signed as of today). Research target (12m) $321 (+24%); downside P10 $200 and upside P90 $414 move the cloud market, capture, AWS and NA margins, e-commerce, the multiple and ANT. Not driver-linked: the stake and the Decart adjustment. Research: ~35 queries/fetches; SEC refused scripted access, so filings were read with WebFetch; no option prices or implied volatility used."
+  },
+  {
+   "agent": "agent_3",
+   "fair_value": 267.25,
+   "method_text": "Engine base on the skeptic driver set: P/E 22.83x (exit k=0.8 toward the 18.78x cloud/ads peer median) on build NTM EPS $12.01 at the horizon plus stakes = $300.13 (50%), and SOTP (AWS 18.78x, ads 18.51x, stores 39.95x on NTM after-tax segment OI, plus Anthropic/OpenAI stakes, legal and Decart adjustments) = $234.36 (50%) -> $267.25.",
+   "methods": [
+    {
+     "name": "P/E",
+     "value": 300.13,
+     "weight": 0.5,
+     "inputs": "NTM EPS at 2027-11-23 $12.01 (0.10 x FY2027 + 0.90 x FY2028 build EPS; consensus ~$13.8 on the same weights from 2027E $10.93 (src 66) and 2028E $14.07 (src 67), so mine is ~13% lower) x 22.83x, plus stakes and adjustments per share",
+     "inputs_detail": [
+      {
+       "input": "NTM EPS at the horizon",
+       "value": "$12.01",
+       "basis": "estimate",
+       "source_ids": [
+        64,
+        77,
+        79
+       ],
+       "fact_ids": [
+        "F6",
+        "F13",
+        "F33"
+       ],
+       "derivation": "Engine NTM from the driver build (driver_build.ntm): AWS EBIT from aws_ppe x aws_turn x aws_ebitda_m less placed-in-service D&A, ads at 50% margin, stores at stores_m, tax 23.4%, interest on net debt, 11,042M horizon shares.",
+       "confidence": "medium",
+       "variant_view": "Consensus ~$13.8: +$20-25/share on this leg."
+      },
+      {
+       "input": "Horizon P/E",
+       "value": "22.83x",
+       "basis": "judgment",
+       "source_ids": [
+        35,
+        36,
+        39,
+        40,
+        41,
+        42
+       ],
+       "fact_ids": [],
+       "derivation": "Peer median (MSFT 23.16x, GOOGL 18.78x, META 18.24x at Nov 17 close / CY2027 Zacks consensus published 2026-11-18) = 18.78x; own 23.97x; exit = 18.78 x (23.97/18.78)^0.8 = 22.83x (project exit rule k = 0.8)."
+      }
+     ]
+    },
+    {
+     "name": "SOTP",
+     "value": 234.36,
+     "weight": 0.5,
+     "inputs": "AWS NTM after-tax OI ~$80.1B x 18.78; ads ~$40.4B x 18.51; stores ~$3.4B x 39.95; + Anthropic stake (listed, after tax and lock-up), OpenAI at last round, other stakes, ventures add-back, legal remedies -$30.3B, Decart -$3.25B x 0.75; less net debt at the horizon ~$140B",
+     "inputs_detail": [
+      {
+       "input": "AWS NTM after-tax OI",
+       "value": "$80,106M",
+       "basis": "estimate",
+       "source_ids": [
+        64,
+        67,
+        79,
+        89
+       ],
+       "fact_ids": [],
+       "derivation": "0.766 x AWS EBIT in the NTM window from the skeptic driver path (see model_inputs driver:aws_turn / driver:aws_ebitda_m).",
+       "confidence": "medium",
+       "variant_view": "Reconciled AWS path ~$93.7B: about +$20/share."
+      }
+     ]
+    }
+   ],
+   "structured": true,
+   "scenarios": {
+    "downside": {
+     "price": 168.74,
+     "prob": null
+    },
+    "base": {
+     "price": 267.25,
+     "prob": null
+    },
+    "upside": {
+     "price": 348.76,
+     "prob": null
+    }
+   },
+   "p_gain": null,
+   "median": 267.25,
+   "reasoning": "Skeptic lane. I rebuilt my stale October file on the run's approved quarterly driver set rather than inventing new drivers (Kilian approves driver sets; rule 2), and changed only what my lane's evidence moves. (1) AWS growth: management says 'north of 40%' for 2027-28 and the $578B backlog is real, but 42.9% of it is OpenAI and Anthropic (Level-Headed Investing from the 10-Q/S-1, src 89), Anthropic's compute commitments are ~14x its revenue and it adds Google TPU capacity from 2027 (src 97), and UBS just cut 2027 AWS growth to 43% (src 67). I set turnover x0.97 in FY2027 and x0.93 after: AWS +33.9% / +32.3%. (2) AWS margin -1.5 pts (memory costs, lab pricing, depreciation life debate, src 23, 102, 103). (3) Decart ~$7.25B vs a $4B May mark, 75% likely, -$2.4B expected (talks, not signed as of today; src 91). (4) Capex kept at consensus cash ($303.5B/$339.1B gross FY2027-28), which matches the shared Big-4 path's 2027 (AMZN ~29.6% of $1,009B) but sits below it in 2028; the gap is a downside FCF risk. Credit is not the binding constraint (Moody's A1 stable, src 93; >$90B borrowed in 2026 at IG spreads, src 28, 70-73), but TTM FCF is -$46.9B (F94). Insider activity is routine 10b5-1 selling plus Bezos gifts (Form 4s), no signal. Result: NTM EPS $12.01 vs consensus ~$13.8; research target (12m) $267.25 (+3.1%). Downside P10 $168.74 carries a lab slowdown, -3 pts AWS margin, 17.3x P/E and stake markdowns; upside P90 $348.76 is management's 40%+ delivered with a 26x multiple. Judgment calls vs evidence: management/consensus AWS growth = +$20.6/share (card), Kilian's 38% margin = +$7.0. Research limits: ~12 searches/fetches; X/prediction markets not used. Lane share: 28 of 108 sources tagged in-lane, because the driver set reuses the run's 90 gate-checked citations (filings, consensus); 20 of the 21 sources added this round are in-lane. No option data used."
+  }
+ ],
+ "supervisor": {
+  "confidence": "low",
+  "used": false,
+  "confidence_reason": "My checks corrected inputs: the OpenAI stake, the Anthropic tax, the peer-median basis, agent_1's AWS multiple and agent_2's net-debt arithmetic. They moved my fair value to $283, but they largely offset agent by agent: agent_1's corrected FV falls to ~$283 and agent_2's rises to ~$281. None changes the distribution enough to beat the mean, so I leave the 12-month ladder at the forecasters' mean; the 1-month ladder is the mean of agents 2 and 3 (citation gate: agent_1's 1-month mixture leaned on press-only Polymarket odds).",
+  "changes": [
+   {
+    "item": "exit multiple (k=0.8 rule, Kilian card 2026-10-26 12:16Z)",
+    "from": "P/E 21.3x",
+    "to": "P/E 22.88x",
+    "why": "Exit = peer median x (own NTM multiple on the peers' basis / median)^0.8; research target (12m) $256.82 -> $265.83. See inputs_detail and comps_summary (own_multiple, exit_k)."
+   },
+   {
+    "item": "Fair value",
+    "from": 278.3,
+    "to": 283.0,
+    "why": "50/50 horizon P/E ($288.1) and corrected SOTP ($278.8), with the OpenAI stake added, Anthropic tax tightened and AWS at 25x on CY27 comps; agent_3's 20% DCF is not weighted."
+   },
+   {
+    "item": "Fact: OpenAI stake omitted by agents 1 and 2",
+    "from": 0.0,
+    "to": 50.0,
+    "why": "10-Q: $28.7B Series C at 6/30 plus $21.3B invested after quarter-end ($B, at cost)."
+   },
+   {
+    "item": "Estimate: Anthropic stake after tax ($B)",
+    "from": 160.0,
+    "to": 149.0,
+    "why": "10-Q: $190.4B carrying, $18.0B cash invested, $15.9B discrete tax on $62.8B of H1 gains -> ~24% on the $172.4B embedded gain (estimate)."
+   },
+   {
+    "item": "Fact: peer median forward P/E (agent_1 26.7x, agent_3 25.15x, agent_2 23.8x)",
+    "from": 26.7,
+    "to": 23.5,
+    "why": "Re-based 11 names to CY2027 on MarketScreener pages opened Oct 6 and dropped CPNG; MSFT is 24.5x on CY27, not 26.7x. [Citation gate 2026-10-29: this Oct 6 median is on a mixed EPS basis (adjusted ORCL/MSFT/BABA/PDD vs GAAP peers) and is superseded by the gated 2026-10-26 set (21.3x on AMZN's basis); it feeds no number.]"
+   },
+   {
+    "item": "AWS after-tax multiple in the SOTP (agent_1)",
+    "from": 26.0,
+    "to": 25.0,
+    "why": "The anchor (MSFT 26.7x) was a FY Jun-27 figure; MSFT is 24.5x on CY27."
+   },
+   {
+    "item": "Fact: agent_2 net debt bridge ($B)",
+    "from": 30.9,
+    "to": 31.3,
+    "why": "6/30 face debt $133.0B - cash $78.2B - securities $44.8B = $10.0B, plus the $21.3B OpenAI payment; the July notes are net-neutral."
+   },
+   {
+    "item": "Thesis break",
+    "from": 186.67,
+    "to": 188.0,
+    "why": "188/10.51 = 17.9x FY27 EPS, equal to ORCL's CY27 multiple at the Oct 6 close (17.9x; citation gate re-based from 17.6x at the Oct 5 close, which gave $185); agent_3's $190 is within noise."
+   },
+   {
+    "item": "Removed from numbers: $8B chip SPV, Polymarket odds, '24-year high' yield",
+    "from": "used in agent_2's discount justification and bear story, and in agent_1's 1-month reasoning",
+    "to": "context only",
+    "why": "Press or briefing only; not confirmed at a primary source (hard rule)."
+   },
+   {
+    "item": "Anthropic stake from the public S-1 (2026-10-26)",
+    "before": "$183.69B (17.60%, 0.5-yr lock-up); overlay -$26.03B",
+    "after": "$191.61B (18.61%, staged lock-up 11.50%); overlay -$26.82B",
+    "why": "S-1 share counts and lock-up schedule replace the press-based estimates; research target (12m) $266.05 -> $266.70"
+   },
+   {
+    "item": "Thesis break (citation gate 2026-10-29)",
+    "from": 188.0,
+    "to": 187.0,
+    "why": "$188 applied ORCL's adjusted-EPS 17.9x (Oct 6) to AMZN GAAP EPS; on one basis and one date (gated Oct 23 set) ORCL is 17.55x and AMZN CY27 consensus $10.65: 17.55 x 10.65 = $186.9."
+   },
+   {
+    "item": "AWS depreciation rebuild + AWS margin (2026-11-17)",
+    "before": "AWS D&A 3.5% a quarter of AWS net PP&E (FY2027 $61.9B); AWS EBITDA margin 58.72% flat (carry-forward) -> $276.26",
+    "after": "placed-in-service D&A by useful life (FY2027 $54.4B, FY2028 $86.8B); AWS operating margin 38% every year (Kilian card) -> EBITDA margin 57.8%/60.5%/64.0%/70.4%",
+    "why": "Kilian asked what justifies the EBITDA margin rise; the old D&A charged construction in progress, and the flat margin failed the carry-forward check."
+   }
+  ],
+  "changes_derived": false,
+  "median_mean": null,
+  "median_supervisor": 292.5073383434943,
+  "summary": "EXIT k=0.8 RE-SET 2026-10-26 (Kilian card 12:16Z: exit = peer median x (own / median)^0.8): P/E 21.3x -> 22.88x. Research target (12m) $256.82 -> $265.83 (engine: multiple: P/E (ntm) $284.30 x 0.425; sotp $247.35 x 0.425; scenarios bear $175.49 / base $265.83 / bull $327.78, median $258.46). Multiples and values quoted in the older text below are superseded by these. No Amazon-specific news since Sep 29 (EDGAR shows only a Form 4). The stock's +3.9% is mostly market beta, and the 10-year was flat then (US Treasury par yield curve: 4.99% on 2026-10-27). The delta agents' higher fair values come from inputs and method: a sourced FY28 consensus ($13.81, which I use at $13.20) and a SOTP rolled to the horizon. I fixed real errors: the $50B OpenAI stake was missing, the peer median was re-based to CY2027 [Oct 6 median removed at the 2026-11-17 gate: mixed adjusted/GAAP basis; multiples use comps_review_2026_10_26], and agent_2's net-debt bridge was wrong. The corrected fair value is $283 (+10% vs spot), but the blind agent confirms the multiple legs and I leave the 12-month ladder at the forecasters' mean: median ~$270, P(>=spot) 0.57. The citation gate re-based the peer set to Oct 6 closes (ORCL 17.9x, so the thesis break moves $185 -> $188), corrected the claim that AMZN alone has negative FCF (META, GOOGL, ORCL do too; multiple unchanged), and set the 1-month ladder to the agents 2-3 mean (P(>=spot) 0.501). The Q3 print (not yet dated, est. ~Oct 29) and the Oct 27-28 FOMC fall inside the 1-month window. No revise round is needed.",
+  "fair_value": {
+   "value": 293.85,
+   "reason": "Model update 2026-11-23 (update): research target (12m) $293.85 (was $294.62): the horizon rolled to 2027-11-23 (+$0.91), the signed Decart technology deal booked at the reported $7.5B on both legs (-$0.68) and the exit-multiple growth term (factor 0.9964: P/E 22.75x, AWS 18.71x, ads 18.44x, stores 39.81x; -$1.00); NVDA's Big-4 capex path (shared input) and the new quarter net interest line move no leg. Gate fixes 2026-11-23 (rounds 1-2): FY2029 AWS revenue rebuilt on the servers in service ($454.5B, +36.5%; it had rested on a long-range management statement) and FY2029 capex at the 2026 capex per $ of AWS revenue ($584.4B, the NVDA round's per-company method); no value effect (outside the NTM window and the net debt span; engine). Engine: P/E (ntm) $330.31 and SOTP $257.38 at equal weight, no DCF leg; downside $192.68 (P10), upside $362.80 (P90); horizon net debt $134.9B. | PEER REFRESH 2026-11-18 (rule 23 timeliness): research target (12m) $293.17 (engine: P/E (ntm) $329.54 and SOTP $256.79 at equal weight, no DCF leg; downside $192.14 (P10), upside $362.01 (P90); horizon net debt $133.8B). Step from $305.87: peer multiples refreshed at the Nov 17 2026 close and Zacks CY2027 consensus saved 2026-11-18 (P/E exit 22.88x -> 22.83x; AWS 21.3x -> 18.78x, ads 19.87x -> 18.51x, stores 37.56x -> 39.95x; Leo/Zoox add-backs, venture basis correction and legal pricing re-based). | BEFORE: GATE ROUND 3 FIX 2026-11-17 (AWS revenue +38% from Q4 FY2026, smooth quarters): research target (12m) $305.87 (engine: P/E (ntm) $330.11 and SOTP $281.64 at equal weight, no DCF leg; downside $199.97 (P10), upside $378.18 (P90); horizon net debt $133.8B, horizon shares 11,040.3M). Steps: $276.26 (cash-plan set, flat 58.72% AWS EBITDA margin) -> $306.54 with AWS D&A by placed-in-service vintages and useful lives (FY2027 $54.4B vs $61.9B) and the AWS operating margin at the consensus FY2027 38% with no FY2028 step (Kilian's card 21:36Z) -> $305.87 with AWS revenue +38% y/y from Q4 FY2026 (was the 10-29 Q4 view $49,663M) and smooth quarters. Q4 FY2026 cash capex sits on the ~$220B plan (declared guide use, flagged). | BEFORE: BOOKED 2026-11-17 (Kilian card 21:36Z, '38% with no FY2028 step', on the placed-in-service AWS D&A rebuild): research target (12m) $306.54 (engine check: P/E (ntm) $330.79 and SOTP $282.29 at equal weight, no DCF leg; downside $200.41 (P10), upside $379.01 (P90)). Steps from $276.26 (cash-plan set, flat 58.72% AWS EBITDA margin): AWS D&A by placed-in-service vintages and Amazon's useful lives (FY2027 $54.4B vs $61.9B at 3.5% a quarter) with the AWS operating margin at the consensus FY2027 38% held through FY2028 -> $306.54. Q4 FY2026 cash capex sits on the ~$220B plan (declared guide use, flagged). | BEFORE: GATE ROUND 2 2026-11-17 (Q4 vendor credit as debt): research target (12m) $271.87 (engine check: P/E (ntm) $294.76 = 22.88x on NTM EPS $11.81 plus equity adjustments per horizon share, and SOTP $248.99, each at weight 0.425 normalized to 0.5 / 0.5 with the DCF at 0: (294.76 + 248.99) / 2 = 271.87; horizon net debt $161.3B, horizon shares 11,040.3M). Steps from $275.83 (engine): Q4 FY2026 physical build $78.1B into AWS PP&E / D&A with Q4 cash at the ~$220B plan -$2.65 ($273.18); the full Q4 build in capex_q so the ~$28.9B the plan leaves unpaid is carried as debt-like -$1.31 ($271.87). Scenarios downside $176.15 (P10) / base $271.87 / upside $338.26 (P90), q25-q75 $216.35-$337.53. | CITATION GATE FIX 2026-11-17: research target (12m) $259.61 -> $275.83 (engine: P/E (ntm) $297.74 and SOTP $253.91, each carried at weight 0.425 in the set and normalized by the engine to 0.5 / 0.5 with the DCF at 0, so $275.83 = (P/E + SOTP) / 2; NTM EPS $11.94). Every 'x 0.425' in the text below is that half weight (0.425 x the two legs alone does not add up to the target). Steps (engine, in order): Q4 FY2026 capex from the consensus $51.5B (was $78.3B on a Q4/Q3 ratio) with FY2027-28 at the current consensus $303.5B / $339.1B gross (was $277.4B / $296.9B) -$3.32; AWS FY2028 +38% (was +25.2% with no source; CEO 'north of 40%' and consensus >=40%) and FY2029 +14.7% ($1T in 10 years) +$26.24; AWS EBITDA margin held at Q3's 58.72% (was a 58.5% / 60% step-up with no source) -$5.89; ads at the EMARKETER commerce-media path less Amazon's 2026 gap and stores at EMARKETER's 7.9% -$0.80; net debt at 9/30 $66.1B (10-Q current debt) and horizon $103.5B, interest 4.611%, P/E-leg interest cut $0.2428 -$0.28; Anthropic gain tax 22.6% (Q3 10-Q) +$0.27. Scenarios: downside $179.36 (P10) / base $275.83 / upside $342.57 (P90). | Model update 2026-11-17 (update): EPS basis fix (Kilian 'fix now'): tax 21% -> 23.4% (9M FY2026 rate on ordinary income, Q3 10-Q) everywhere the set taxes earnings, the quarter net interest at the Q4 run rate (4.873% on net debt), and Q4 FY2026 capex rebuilt from the quarter shape ($78.3B, FY $253.9B; it sat on the ~$220B guide, a forecast_lint hard stop); research target (12m) $269.55 -> $259.61 (tax and venture add-backs -$3.75, Q4 capex -$6.19; P/E $285.46 -> $280.34, SOTP $253.64 -> $238.88); engine quarter EPS now within $0.024 of Zacks (median, was $0.111). Citation gate fix 2026-10-30 (10-Q pass): research target (12m) $269.44 -> $269.55 after the 10-Q re-roll of the AWS drivers and the P/E-leg interest cut ($0.2363 a share); engine check: P/E (ntm) $285.46 x 0.425 (EPS 11.4054 from the driver_build.set formula, plus equity adjustments / horizon shares); SOTP $253.64 x 0.425; scenarios downside $177.50 (P10) / base $269.55 / upside $332.74 (P90), q25-q75 $216.34-$301.15. | Citation gate 2026-10-29: horizon net debt $98,775M -> $98,870M (302-day 2027 cash path); engine base $269.44 unchanged (P/E $287.87 x 0.425; SOTP $251.02 -> $251.01 x 0.425; scenarios bear $177.41 / base $269.44 / bull $332.61, median $261.98); thesis break $188 -> $187 (one EPS basis). | Model update 2026-10-29 (update): Q3 2026 rolled in from the release (10-Q not filed). AWS beat the path (+39%, $17.8B OI; 2027 growth 35% -> 38%) and outweighs lower ads (Q3 +11%, Q4 guided high teens), a re-derived horizon net debt ($58.4B -> $98.8B on the 9/30 balance after $48B of Q3 bond proceeds) and the horizon roll; research target (12m) $266.70 -> $269.44 (engine: P/E $287.87 x 0.425; SOTP $251.02 x 0.425; scenarios bear $177.42 / base $269.44 / bull $332.62, median $261.98). | ANTHROPIC S-1 UPDATE 2026-10-27: Amazon's stake from the public S-1 cap table 18.61% at the IPO, notes as converted (was 17.60%), staged lock-up 11.50% (was 10.37%): Anthropic $183.69B -> $191.61B, conglomerate overlay -$26.03B -> -$26.82B, net +$7.12B. Research target (12m) $266.05 -> $266.70 (engine: P/E $285.40 x 0.425; SOTP $247.99 x 0.425; scenarios bear $176.42 / base $266.70 / bull $328.63, median $259.31). Write-up: file:///mnt/project-files/valuation/runs/2026-10-23/GOOGL/anthropic_stake_s1_2026-10-27.md | Corrected 2026-10-26 after the gate: Leo/Zoox add-backs and the stores basis correction now also at 22.88x -> $266.05; legs multiple: P/E (ntm) $284.76 x 0.425; sotp $247.35 x 0.425. EXIT k=0.8 RE-SET 2026-10-26 (Kilian card 12:16Z: exit = peer median x (own / median)^0.8): P/E 21.3x -> 22.88x. Research target (12m) $256.82 -> $265.83 (engine: multiple: P/E (ntm) $284.30 x 0.425; sotp $247.35 x 0.425; scenarios bear $175.49 / base $265.83 / bull $327.78, median $258.46). Multiples and values quoted in the older text below are superseded by these. Model update 2026-10-23 (update): peer set refresh (Kilian 2026-10-26); P/E 23x -> 21.3x, AWS 25x -> 21.3x, retail segment split into ads 19.87x and stores 37.56x on the approved peer medians; research target (12m) $278.28 -> $256.82. Current legs (model_engine check 2026-10-26): P/E (ntm) $266.29 at 21.3x and SOTP $247.35 (AWS 21.3x, Advertising 19.87x, Stores 37.56x), weight 0.425 each with the DCF at 0, = $256.82. Superseded base-round build, kept for the record: 50/50 blend of two horizon (Oct-2027) values, $283.4, rounded to $283. (1) P/E: NTM EPS 0.25 x $10.51 + 0.75 x $13.20 = $12.53, x 23x = $288.1 (estimate). (2) SOTP: AWS NTM pre-tax OI $96.2B x 0.79 x 25 = $1,900B; North America + International $59.0B x 0.79 x 22 = $1,025B; Anthropic after tax $149.0B (estimate: 190.4 - 0.24 x (190.4 - 18.0) = 149.0; 24% rounds the implied H1-26 rate 15.9 / (62.8 + 4.5) = 23.6%, 10-Q); OpenAI $50.0B at cost (10-Q: $28.7B at 6/30 + $21.3B after quarter-end); less net debt $61.1B (estimate: 22.278 + 0.75 x (74.022 - 22.278), MarketScreener consensus) and Globalstar $10.9B (10-Q). That is $3,052B over 10.95B diluted shares (estimate: Q2-26 diluted 10,903M x ~1.005 for SBC and Globalstar stock) = $278.8. The segment estimates and multiples are agent_1's, except AWS at 25x, not 26x, after the CY27 peer re-basing. Against the agents' $290/$278/$267 (mean $278.3): agent_1 falls to ~$283 (23x and AWS 25x), agent_2 rises to ~$281 (OpenAI stake, tax), and agent_3's $267 is pulled down by a 20% DCF I do not weight. No news moved it; see delta_review."
+  }
+ }
+}

@@ -1,0 +1,856 @@
+{
+ "_meta": {
+  "what": "Which EPS measure Zacks reports per driver-model name (the measure our quarter calls are scored against) and the named items that convert the model's EPS basis to it. Read by valuation/eps_path.py (Kilian 2026-11-19 on the Self-scoring doc: 'this is not how you should do it; i suspect zacks is reporting adj. eps for some companies, you need to go find out what non-gaap measure they are using'). Replaces the median-of-gaps bridge.",
+  "checked": "2026-11-19",
+  "items": "forward conversion items, each computed from the engine's own forecast quarter (the model Sheet's lines): sbc = minus the quarter's stock comp x (1 - tax) / shares (tax 'quarter' = the quarter's own tax rate, or a number with its source); da = plus the quarter's D&A x (1 - tax) / shares. per_share basic_if_loss: a loss quarter goes on basic shares (diluted / basic ratio from the set's own share fields), as GAAP and Zacks report a loss.",
+  "zacks_source": "Zacks reported EPS = data/earnings_miss.json / data/preprint_calendar.json history (Nasdaq.com earnings-surprise feed, Zacks data)",
+  "gaap_source": "GAAP diluted EPS = SEC XBRL companyfacts us-gaap:EarningsPerShareDiluted (3-month periods; a fiscal Q4 is not tagged as a quarter)",
+  "model_gap": "after the conversion, Zacks minus the engine's formula on a reported quarter (at that quarter's own filed tax) is a MODEL gap: an item the engine leaves out (interest income on net cash, other income, share-count timing). It is shown and flagged, never added: the model is fixed instead (rule 4/5, never carry a past quarter's gap forward)."
+ },
+ "MRVL": {
+  "zacks": "company non-GAAP EPS less stock comp after tax at the non-GAAP rate",
+  "model": "company non-GAAP (before stock comp)",
+  "items": [
+   {
+    "item": "sbc",
+    "tax": "quarter"
+   }
+  ],
+  "quarters": [
+   {
+    "end": "2026-08-01",
+    "zacks": 0.62,
+    "gaap": 0.33,
+    "company": 0.94,
+    "sbc": 326.2,
+    "shares": 921.2,
+    "tax": 0.11,
+    "check": "0.94 - 326.2 x 0.89 / 921.2 = 0.625"
+   },
+   {
+    "end": "2026-05-02",
+    "zacks": 0.59,
+    "gaap": 0.04,
+    "company": 0.8,
+    "sbc": 207.6,
+    "shares": 893.3,
+    "tax": 0.11,
+    "check": "0.80 - 207.6 x 0.89 / 893.3 = 0.593"
+   },
+   {
+    "end": "2025-11-01",
+    "zacks": 0.62,
+    "gaap": 2.2,
+    "sbc": 152.1,
+    "note": "GAAP incl. the Automotive Ethernet sale gain"
+   },
+   {
+    "end": "2025-08-02",
+    "zacks": null,
+    "gaap": 0.22,
+    "company": 0.67,
+    "sbc": 153.6,
+    "shares": 870.4
+   }
+  ],
+  "src": [
+   "https://investor.marvell.com/news-events/press-releases/detail/1031/marvell-technology-inc-reports-second-quarter-of-fiscal-year-2027-financial-results"
+  ]
+ },
+ "KEYS": {
+  "zacks": "company non-GAAP EPS less stock comp after tax",
+  "model": "company non-GAAP (before stock comp)",
+  "items": [
+   {
+    "item": "sbc",
+    "tax": "quarter"
+   }
+  ],
+  "quarters": [
+   {
+    "end": "2026-07-31",
+    "zacks": 2.82,
+    "company": 3.07,
+    "sbc": 47.0,
+    "shares": 172.0,
+    "tax": 0.14,
+    "check": "3.07 - 47.0 x 0.86 / 172 = 2.835"
+   },
+   {
+    "end": "2026-04-30",
+    "zacks": 2.53,
+    "company": 2.86,
+    "sbc": 58.0,
+    "shares": 172.0,
+    "tax": 0.14,
+    "check": "2.86 - 58.0 x 0.86 / 172 = 2.57"
+   },
+   {
+    "end": "2026-01-31",
+    "zacks": 1.79,
+    "company": 2.195,
+    "sbc": 76.0,
+    "shares": 172.0,
+    "tax": 0.14,
+    "check": "2.195 - 76.0 x 0.86 / 172 = 1.815"
+   }
+  ],
+  "note": "first found 2026-11-17 (eps-one-path memory: Jul-26 3.07 - 0.27 = 2.82); company = the model's reported rows (from the releases); SBC = XBRL ShareBasedCompensation, quarter by YTD difference"
+ },
+ "COHR": {
+  "zacks": "company non-GAAP EPS less stock comp after tax",
+  "model": "company non-GAAP (before stock comp)",
+  "items": [
+   {
+    "item": "sbc",
+    "tax": "quarter"
+   }
+  ],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 1.8,
+    "company": 2.09,
+    "sbc": 74.4,
+    "shares": 202.0,
+    "tax": 0.19,
+    "check": "2.09 - 74.4 x 0.81 / 202 = 1.792"
+   }
+  ],
+  "note": "one quarter on the model so far; Sep-26 found 2026-11-17 (2.09 -> 1.80)"
+ },
+ "CRDO": {
+  "zacks": "company non-GAAP EPS less stock comp",
+  "model": "company non-GAAP (before stock comp)",
+  "items": [
+   {
+    "item": "sbc",
+    "tax": "quarter"
+   }
+  ],
+  "quarters": [
+   {
+    "end": "2026-08-01",
+    "zacks": 0.78,
+    "company": 1.2,
+    "sbc": 88.0,
+    "shares": 200.0,
+    "tax": 0.01,
+    "check": "1.20 - 88.0 x 0.99 / 200 = 0.764"
+   }
+  ],
+  "note": "found 2026-11-17 (Aug-26 1.20 less SBC -> 0.78)"
+ },
+ "SNOW": {
+  "zacks": "company non-GAAP EPS less stock comp net of the tax effect the company books on it (= GAAP plus after-tax amortization, acquisition and debt-cost items), on GAAP basic shares while a loss",
+  "model": "company non-GAAP (before stock comp), non-GAAP diluted shares",
+  "items": [
+   {
+    "item": "sbc",
+    "kind": "prorata_tax",
+    "gaap_tax_pct_rev": 0.00209,
+    "other_adj": {
+     "2026-10-31": 45.91,
+     "2027-01-31": 48.19,
+     "2027-04-30": 38.27,
+     "2027-07-31": 38.44,
+     "2027-10-31": 38.17,
+     "2028-01-31": 37.63,
+     "2028-04-30": 26.01,
+     "2028-07-31": 26.1,
+     "2028-10-31": 26.1,
+     "2029-01-31": 26.1,
+     "2029-04-30": 21.01,
+     "2029-07-31": 21.15,
+     "2029-10-31": 20.43,
+     "2030-01-31": 17.89
+    },
+    "why": "2026-11-25 (Kilian 'if any models cannot accurately model the business fix it'; audit/model_structure_1125.md): Zacks = company non-GAAP NI - SBC x (1 - tau), tau = the company's income tax effect of adjustments spread pro rata over its adjustments. That line = non-GAAP tax at 25% of non-GAAP pre-tax less the GAAP provision (Q2 FY27: 25% x 313.8 = 78.4 - 3.4 = 75.0 filed; Q1 FY27: 25% x 197.3 = 49.3 + 1.1 = 50.4 filed), so the SBC shield moves with profit and GAAP tax: Q2 FY27 456.4 / 502.1 x 75.0 = 68.2 (14.9%) -> Zacks (235.3 - 456.4 + 68.2) / 349.3 = -0.438 (-0.44 reported); Q1 FY27 433.7 / 494.0 x 50.4 = 44.3 (10.2%) -> (148.0 - 433.7 + 44.3) / 345.4 = -0.699 (-0.70 reported). The old fixed 14.7% fit Q2 only (Q1 off ~0.06).",
+    "gaap_tax_src": "GAAP provision / revenue, FY2025 4.1 + FY2026 17.1 + H1 FY2027 2.3 = 23.5 on revenue 3,626.4 + 4,683.9 + 2,937.8 (XBRL IncomeTaxExpenseBenefit, Revenues; 10-K FY26, 10-Q Q2 FY27): 0.209% of revenue; H1 FY27 provision 2.3 on pre-tax loss (484.9): no tax benefit booked on US losses, so the provision is the foreign / state current tax that scales with the business; kept for forecast quarters with GAAP pre-tax above 0 from ~FY2029 (NOL carryforwards shelter it; a valuation-allowance release is a one-off, not forecast).",
+    "other_adj_src": "Amortization of acquired intangibles from the 10-Q Q2 FY27 expected-amortization table (XBRL FiniteLivedIntangibleAssetsAmortizationExpense*: remainder FY27 85.9, FY28 132.8, FY29 86.7, FY30 66.9; by quarter evenly) + amortization of debt issuance costs (Q2 FY27 2.081 on 2,300 of 2027/2029 notes, 2027 share x 888.2/1,150 after the repurchase, to maturities 2027-10-01 / 2029-10-01; new notes ~50 of costs = 3,750 principal - ~3,700 net proceeds (Ex.99.2), by principal over 2026-10-01 to 2029-10-15 / 2031-10-15). Restructuring, impairment and acquisition expenses: 0 (not forecastable). The Q3 FY27 2027-note repurchase premium (548.3 for 261.8, ~286) is left out of both, as the set assumes."
+   }
+  ],
+  "per_share": "basic_if_loss",
+  "basic_key": "gaap_basic_q2_fy27",
+  "quarters": [
+   {
+    "end": "2026-07-31",
+    "zacks": -0.44,
+    "gaap": -0.55,
+    "company": 0.62,
+    "sbc": 456.363,
+    "shares": 377.9,
+    "basic": 349.3,
+    "check": "(235.3 - 456.4 + 67.2) / 349.3 = -0.44; also (-191.7 + 45.7 x 0.83) / 349.3 = -0.44",
+    "gaap_tax": 3.43,
+    "other_adj": 45.67,
+    "check_prorata": "456.4/502.1 x (25% x 313.7 - 3.4) = 68.1 -> (235.3-456.4+68.1)/349.3 = -0.438"
+   },
+   {
+    "end": "2026-04-30",
+    "zacks": -0.7,
+    "gaap": -0.86,
+    "sbc": 433.657,
+    "gaap_tax": -1.089,
+    "other_adj": 60.33,
+    "check_prorata": "433.7/494.0 x (25% x 197.3 + 1.1) = 44.3 -> (148.0-433.7+44.3)/345.4 = -0.699",
+    "src_q1": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000027/fy2027q1earnings.htm"
+   },
+   {
+    "end": "2025-10-31",
+    "zacks": -0.84,
+    "gaap": -0.87
+   }
+  ],
+  "src": [
+   "https://www.businesswire.com/news/home/20260902386235/en/Snowflake-Reports-Financial-Results-for-the-Second-Quarter-of-Fiscal-2027"
+  ]
+ },
+ "AMBQ": {
+  "zacks": "company non-GAAP net loss per share less stock comp (= GAAP net loss plus D&A, which Ambiq's non-GAAP adds back), basic shares",
+  "model": "non-GAAP operating income after D&A, before stock comp; EPS on fully diluted 28.42M",
+  "items": [
+   {
+    "item": "sbc",
+    "tax": 0.0
+   },
+   {
+    "item": "da",
+    "tax": 0.0
+   }
+  ],
+  "per_share": "basic_if_loss",
+  "basic_key": "basic_outstanding",
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": -0.22,
+    "gaap": -0.29,
+    "company": -0.05,
+    "sbc": 4.017,
+    "da": 1.814,
+    "basic": 24.27,
+    "check": "(-7.056 + 1.814) / 24.27 = -0.216"
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": -0.24,
+    "gaap": -0.32,
+    "company": -0.07,
+    "sbc": 3.557,
+    "da": 1.785,
+    "check": "(-7.115 + 1.785) / ~22.5 = -0.24"
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": -0.41,
+    "gaap": -0.5
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": -0.39,
+    "gaap": -0.72,
+    "company": -0.22,
+    "note": "pre-IPO share count; not used"
+   }
+  ],
+  "note": "the engine formula sat on Zacks only by offsets: no SBC in model EBIT (~-0.17), no interest/other income on net cash (engine interest is max(net debt, 0); other income +1.5-1.6M/qtr in the reported rows), fully diluted vs basic shares",
+  "src": [
+   "https://www.sec.gov/Archives/edgar/data/0001500412/000119312526454445/ambq-ex99_1.htm"
+  ]
+ },
+ "DY": {
+  "zacks": "company Non-GAAP Adjusted EPS (GAAP before intangible amortization, net of tax; stock comp NOT excluded)",
+  "model": "company adjusted",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-08-01",
+    "zacks": 5.29,
+    "gaap": 3.81,
+    "company": 5.29
+   },
+   {
+    "end": "2026-05-02",
+    "zacks": 4.42,
+    "gaap": 3.0,
+    "company": 4.42
+   },
+   {
+    "end": "2025-10-25",
+    "zacks": 3.63,
+    "gaap": 3.63
+   }
+  ],
+  "src": [
+   "https://dycomind.gcs-web.com/node/20776/html"
+  ]
+ },
+ "INTC": {
+  "zacks": "company non-GAAP EPS less Intel's own share-based compensation per-share line",
+  "model": "GAAP after stock comp, other company non-GAAP items excluded (the Zacks basis)",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-26",
+    "zacks": 0.41,
+    "gaap": 0.6,
+    "company": 0.52,
+    "sbc_ps": 0.11,
+    "check": "0.52 - 0.11 = 0.41"
+   },
+   {
+    "end": "2026-06-27",
+    "zacks": 0.3,
+    "gaap": -2.16
+   },
+   {
+    "end": "2026-03-28",
+    "zacks": 0.17,
+    "gaap": -0.73
+   },
+   {
+    "end": "2025-09-27",
+    "zacks": 0.11,
+    "gaap": 0.9,
+    "company": 0.23,
+    "sbc_ps": 0.12,
+    "check": "0.23 - 0.12 = 0.11"
+   }
+  ],
+  "src": [
+   "https://www.sec.gov/Archives/edgar/data/0000050863/000005086326000188/q326earningsrelease.htm"
+  ]
+ },
+ "NVDA": {
+  "zacks": "company non-GAAP EPS (NVIDIA includes stock comp in non-GAAP from Q1 FY27; excludes equity-security gains, acquisition costs, legal settlement, other)",
+  "model": "NVIDIA non-GAAP basis incl. stock comp",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-10-25",
+    "zacks": 2.68,
+    "gaap": 2.7,
+    "company": 2.68
+   },
+   {
+    "end": "2026-07-26",
+    "zacks": 2.22,
+    "gaap": 2.46,
+    "company": 2.22
+   },
+   {
+    "end": "2026-04-26",
+    "zacks": 1.87,
+    "gaap": 2.39
+   },
+   {
+    "end": "2025-10-26",
+    "zacks": 1.24,
+    "gaap": 1.3,
+    "company": 1.27,
+    "note": "company 1.27 restated incl. SBC; Zacks then deducted SBC from the old 1.30"
+   }
+  ],
+  "src": [
+   "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx"
+  ]
+ },
+ "AVGO": {
+  "zacks": "company non-GAAP EPS less stock comp (unconfirmed detail: Zacks sits +0.05 to +0.08 above non-GAAP less SBC at the 16% non-GAAP rate on non-GAAP shares)",
+  "model": "Broadcom non-GAAP operating income less SBC, non-GAAP diluted shares 4,940M",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-08-02",
+    "zacks": 3.03,
+    "gaap": 2.68,
+    "company": 3.32,
+    "sbc": 2019,
+    "shares": 4937,
+    "gaap_shares": 4887,
+    "check": "(16,372 - 2,019 x 0.84) / 4,937 = 2.973 (+0.057); on GAAP shares 3.003 (+0.027)"
+   },
+   {
+    "end": "2026-05-03",
+    "zacks": 2.17,
+    "gaap": 1.91,
+    "company": 2.44,
+    "sbc": 2092,
+    "shares": 4940,
+    "gaap_shares": 4876,
+    "check": "(12,074 - 2,092 x 0.844) / 4,940 = 2.087 (+0.083); on GAAP shares 2.114 (+0.056)"
+   },
+   {
+    "end": "2026-02-01",
+    "zacks": 1.76,
+    "gaap": 1.5,
+    "company": 2.05,
+    "sbc": 2176,
+    "shares": 4957,
+    "gaap_shares": 4888,
+    "check": "(10,185 - 2,176 x 0.835) / 4,957 = 1.688 (+0.072); on GAAP shares 1.712 (+0.048)"
+   }
+  ],
+  "open": "steady +0.03 to +0.08 not explained by a named filed item; candidates: Zacks on GAAP diluted shares (explains ~0.03) and a smaller SBC deduction (e.g. VMware acquisition-related awards left out). Not bridged until found.",
+  "src": [
+   "https://www.sec.gov/Archives/edgar/data/0001730168/000173016826000076/avgo-08022026x8kxex99.htm",
+   "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial"
+  ]
+ },
+ "APP": {
+  "zacks": "GAAP diluted EPS (AppLovin reports no non-GAAP EPS)",
+  "model": "GAAP after stock comp",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 4.3,
+    "gaap": 4.3
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 3.76,
+    "gaap": 3.76
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 3.56,
+    "gaap": 3.56
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": 2.45,
+    "gaap": 2.45
+   }
+  ]
+ },
+ "BKNG": {
+  "zacks": "company adjusted EPS (excludes the FTC matter, investment marks and other non-recurring items; stock comp not excluded)",
+  "model": "GAAP after stock comp, one-offs not forecast",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 4.66,
+    "gaap": 3.61,
+    "company": 4.66
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 2.54,
+    "gaap": 2.53
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 1.14,
+    "gaap": 1.36
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": 3.98,
+    "gaap": 3.38,
+    "company": 3.98
+   }
+  ],
+  "src": [
+   "https://stocktitan.net/articles/booking-holdings-q3-2026-earnings-ftc-900-million-revenue-cut"
+  ]
+ },
+ "ABT": {
+  "zacks": "company adjusted diluted EPS (excludes intangible amortization and specified items; stock comp not excluded)",
+  "model": "Abbott adjusted operating earnings",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 1.42,
+    "gaap": 0.53,
+    "company": 1.42
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 1.31,
+    "gaap": 0.53
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 1.15,
+    "gaap": 0.61
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": 1.3,
+    "gaap": 0.94
+   }
+  ],
+  "src": [
+   "https://www.biopharmawatch.com/news/ABT/abbott-reports-q3-2026-results-eps-guidance"
+  ]
+ },
+ "MOD": {
+  "zacks": "company adjusted EPS, whole company (Performance Technologies until the 2026-10-01 spin)",
+  "model": "Climate only (perimeter)",
+  "items": [],
+  "perimeter": true,
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 1.35,
+    "gaap": 0.56,
+    "company": 1.35
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": 1.06,
+    "gaap": 0.83,
+    "company": 1.06
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 1.53,
+    "gaap": 1.37
+   }
+  ],
+  "src": [
+   "https://finviz.com/news/414807/modine-reports-second-quarter-fiscal-2027-results"
+  ]
+ },
+ "T": {
+  "zacks": "company adjusted EPS (continuing operations, ex impairments, separation costs, other items)",
+  "model": "company adjusted",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 0.65,
+    "gaap": 0.12,
+    "company": 0.65,
+    "note": "release: diluted EPS from continuing operations 0.13 + 0.52 items (Mexico wireless impairment 0.41)"
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 0.65,
+    "gaap": 0.66
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 0.57,
+    "gaap": 0.54
+   }
+  ],
+  "src": [
+   "https://about.att.com/story/2026/3q-earnings.html"
+  ]
+ },
+ "META": {
+  "zacks": "GAAP diluted EPS excluding one-time items Meta itself calls out (Q3-26 $9.89B state AG charge, $3.57/sh; Q1-26 and Q3-25 one-time tax items)",
+  "model": "GAAP after stock comp, one-offs not forecast",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 7.4,
+    "gaap": 3.83,
+    "company": 7.4
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 6.18,
+    "gaap": 6.18
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 7.31,
+    "gaap": 10.44
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": 7.25,
+    "gaap": 1.05
+   }
+  ],
+  "src": [
+   "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx"
+  ]
+ },
+ "NFLX": {
+  "zacks": "GAAP diluted EPS ex one-off items (Netflix reports no non-GAAP EPS; Q1-26 left out the $2.7B one-off other income)",
+  "model": "GAAP after stock comp",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 0.87,
+    "gaap": 0.87
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 0.8,
+    "gaap": 0.8
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 0.7,
+    "gaap": 1.23
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": 0.59,
+    "gaap": 0.59
+   }
+  ]
+ },
+ "GOOGL": {
+  "zacks": "GAAP diluted EPS incl. equity-security marks",
+  "model": "GAAP after stock comp, marks excluded by design",
+  "items": [],
+  "marks": "Q3-26 -$8.2B OI&E (SpaceX unrealized loss); scored against Zacks ex marks"
+ },
+ "AMZN": {
+  "zacks": "GAAP diluted EPS incl. equity marks in Q3-26, ex the Anthropic stake gains in Q1/Q2-26",
+  "model": "GAAP after stock comp, marks excluded by design",
+  "items": [],
+  "marks": "Q3-26 -$648M mark (-0.046/sh)"
+ },
+ "VST": {
+  "zacks": "Vistra GAAP diluted EPS incl. unrealized hedge marks (Sep-25 1.75, Mar-26 2.87, Sep-26 3.23 = GAAP); Jun-26 Zacks 1.80 vs GAAP 0.76 = GAAP ex the 481 unrealized loss and 15 transition costs at the quarter's 28.6% tax (1.803); Dec-25 feed row 2.18 = Vistra's FY2025 EPS (feed error)",
+  "model": "ongoing adjusted EBIT less interest and preferred (hedge marks excluded by design)",
+  "items": [
+   {
+    "item": "marks",
+    "tax": "quarter",
+    "as_of": "2026-09-30",
+    "schedule": {
+     "2026-12-31": 4.1,
+     "2027-03-31": 274.5,
+     "2027-06-30": 43.9,
+     "2027-09-30": 547.5,
+     "2027-12-31": 1.3,
+     "2028-03-31": 90.4,
+     "2028-06-30": 14.4,
+     "2028-09-30": 180.3,
+     "2028-12-31": 1.3,
+     "2029-03-31": 90.4,
+     "2029-06-30": 14.4,
+     "2029-09-30": 180.3,
+     "2029-12-31": 0.4
+    },
+    "how": "expected pretax reversal ($M, + = gain) of commodity marks booked as of 2026-09-30 on positions settling in each quarter: 10-Q maturity table (<1 yr 870, 1-3 yrs 573, 4-5 yrs 178 net liability) spread by the FY2023-25 calendar shape of filed reversals (Q1 31.6%, Q2 5.0%, Q3 62.9%, Q4 0.5%); new marks 0. Build driver_models/VST/marks_1123/build.py (backtest in values.json: next-quarter error -141..+93M). Roll as_of forward at each 10-Q."
+   },
+   {
+    "item": "sbc",
+    "tax": "quarter",
+    "how": "non-cash compensation (GAAP expense, added back in ongoing Adj. EBITDA): the engine's own forecast quarter 'sbc'; filed 32/35/35 in Q1-Q3 26"
+   },
+   {
+    "item": "asset_closure",
+    "tax": "quarter",
+    "pretax": -20.0,
+    "how": "Asset Closure segment (retired plants, outside ongoing operations): Adj. EBITDA -24/-17/-17/-16/-19/-23/-18 over Q1-25..Q3-26 (mean -19.1), D&A ~0, interest 1 -> -20/qtr. No company guide for the segment; filed range -11..-24 since 2024"
+   },
+   {
+    "item": "decommissioning",
+    "tax": "quarter",
+    "pretax": -19.0,
+    "how": "decommissioning-related activities (PJM nuclear NDT income/loss, ARO accretion 25/qtr per 10-Q ARO note (75 over 9M-26), remediation, Moss Landing): mean of filed Q1-25..Q3-26 GAAP effect (-86, +34, +62, -15, -66, 0, -60) = -18.7. NDT returns are market-driven, so this is the 7-quarter mean, not a forecast of the market"
+   },
+   {
+    "item": "transition",
+    "tax": "quarter",
+    "pretax": -18.0,
+    "how": "transition and merger expenses: filed every quarter since 2023 (Energy Harbor, Lotus, Cogentrix closed 2026-10-30); 2025-26 quarters 18/22/22/13/11/15/26, mean 18.1"
+   },
+   {
+    "item": "purchase_accounting",
+    "tax": "quarter",
+    "pretax": -3.6,
+    "how": "purchase accounting impacts (acquired contract amortization): mean of filed Q1-25..Q3-26 add-backs 14/17/17/3/-1/-26/1 = 3.6; Cogentrix contracts not yet in the filings"
+   },
+   {
+    "item": "insurance",
+    "tax": "quarter",
+    "pretax": 0.0,
+    "how": "Martin Lake insurance: 10-Q Note 9 'we expect to receive additional property damage and business interruption insurance proceeds ... recorded as income in the period they are realized'; amount not disclosed, so 0 (realized 116 PD + 22 BI over 9M-26)"
+   },
+   {
+    "item": "other",
+    "tax": "quarter",
+    "pretax": 3.1,
+    "how": "'Other, net' reconciliation line: mean of filed Q1-25..Q3-26 add-backs (2, -33, -1, -5, 10, -3, 8) = -3.1 -> GAAP +3.1"
+   },
+   {
+    "item": "impairment",
+    "tax": "quarter",
+    "pretax": 0.0,
+    "how": "impairments are event-driven (Q3-26 Moss Landing battery 269, Q2-25 68): none announced, 0"
+   }
+  ],
+  "marks": "GAAP marks = reversal (scheduled) + new marks (0); Zacks dropped the marks in the Jun-26 loss quarter, so a print may still land ex marks",
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 3.23,
+    "gaap": 3.23,
+    "marks": 583,
+    "check": "unrealized 583 = reversals 605 + new marks -22 (10-Q derivative note); other GAAP items: impairment -269, non-cash comp -35, transition -26, decommissioning -60, insurance +65",
+    "sbc": 35,
+    "asset_closure": -14,
+    "decommissioning": -60,
+    "transition": -26,
+    "purchase_accounting": -1,
+    "insurance": 65,
+    "other": -8,
+    "impairment": -269
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 1.8,
+    "gaap": 0.76,
+    "marks": -481,
+    "check": "Zacks ex marks: 0.76 + (481 + 15) x 0.714 / 339.5 = 1.803",
+    "sbc": 35,
+    "asset_closure": -27,
+    "decommissioning": 0,
+    "transition": -15,
+    "purchase_accounting": 26,
+    "insurance": 48,
+    "other": 3,
+    "impairment": 0
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 2.87,
+    "gaap": 2.87,
+    "marks": 739,
+    "check": "unrealized 739 (commodity 723 + swaps 16)",
+    "sbc": 32,
+    "asset_closure": -22,
+    "decommissioning": -66,
+    "transition": -11,
+    "purchase_accounting": 1,
+    "insurance": 6,
+    "other": -10,
+    "impairment": 0
+   },
+   {
+    "end": "2025-09-30",
+    "zacks": 1.75,
+    "gaap": 1.75,
+    "marks": 174,
+    "sbc": 36,
+    "asset_closure": -17,
+    "decommissioning": 62,
+    "transition": -22,
+    "purchase_accounting": -17,
+    "insurance": 0,
+    "other": 1,
+    "impairment": -5
+   }
+  ],
+  "open": "Zacks dropped the marks (and transition costs) in the Jun-26 loss quarter; items with no forward figure in the filings use filed 2025-26 means (asset_closure, decommissioning, transition, purchase_accounting, other) or 0 (insurance amount undisclosed, impairments)",
+  "src": [
+   "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000025/vistra-20260930.htm",
+   "https://investor.vistracorp.com/sec-filings?cat=2",
+   "Vistra GAAP-to-Adjusted EBITDA reconciliations (quarterly decks / 10-Q segment note), consolidated incl. Asset Closure"
+  ]
+ },
+ "AMAT": {
+  "zacks": "company non-GAAP EPS (Applied includes stock comp in non-GAAP)",
+  "model": "company non-GAAP",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2025-10-26",
+    "zacks": 2.17,
+    "company": 2.17
+   },
+   {
+    "end": "2026-01-25",
+    "zacks": 2.38,
+    "gaap": 2.54
+   },
+   {
+    "end": "2026-04-26",
+    "zacks": 2.86,
+    "gaap": 3.51
+   },
+   {
+    "end": "2026-07-26",
+    "zacks": 3.5,
+    "gaap": 3.17
+   }
+  ],
+  "note": "only Oct-25 checked against the release; later quarters checked against GAAP only"
+ },
+ "SPCX": {
+  "zacks": "GAAP diluted EPS (Jun-26 -0.09, Sep-26 0.35 = GAAP), which includes the Cursor and Mesh Optical acquisition-related SBC",
+  "model": "GAAP after ongoing stock comp; Cursor acquisition-related SBC excluded from EBIT (its award shares are in the diluted count; base round row 'Cursor acquisition SBC', open card 2026-11-25)",
+  "items": [
+   {
+    "item": "acq_sbc",
+    "tax": "quarter",
+    "schedule": {
+     "2026-12-31": -1945.0,
+     "2027-03-31": -1945.0,
+     "2027-06-30": -1945.0,
+     "2027-09-30": -1945.0,
+     "2027-12-31": -1945.0,
+     "2028-03-31": -1945.0,
+     "2028-06-30": -1945.0,
+     "2028-09-30": -1945.0,
+     "2028-12-31": -1945.0
+    },
+    "how": "acquisition-related SBC (Cursor and Mesh Optical retention and replacement awards granted 2026-08-14), pretax $M, - = expense: ~$23B attributed to the awards (Q3-26 Ex. 99.1 / CFO, src 1) less $1,217M expensed in Q3-26 (10-Q Q3-26 Note 14: cost of revenue 6, R&D 1,022, SG&A 189) = ~$21.8B straight-line over the 2.8-year weighted-average period (Note 14) = $1,945M a quarter. Zacks (GAAP) deducts it; the model's EBIT does not. Build: driver_models/SPCX/nonop_1125/build.py docstring. If Kilian's card puts the expense into EBIT, this item goes to 0 (no double count)."
+   }
+  ],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "acq_sbc": -1217.0,
+    "gaap": 0.35,
+    "note": "10-Q Q3-26 Note 14 footnotes: acquisition SBC 6 + 1,022 + 189 = 1,217"
+   },
+   {
+    "end": "2026-06-30",
+    "acq_sbc": 0.0,
+    "gaap": -0.09,
+    "note": "no acquisition awards before the 2026-08-14 close"
+   }
+  ]
+ },
+ "TT": {
+  "zacks": "company adjusted continuing EPS (GAAP continuing EPS less after-tax M&A transaction costs, acquired-backlog intangible amortization, restructuring, and non-cash gains on acquisitions; stock comp not excluded)",
+  "model": "GAAP after stock comp (the engine's EBIT carries the company's adjusted items; they are small, ~$0.07 a share in Q3 2026)",
+  "items": [],
+  "quarters": [
+   {
+    "end": "2026-09-30",
+    "zacks": 4.86,
+    "gaap": 4.79,
+    "company": 4.86,
+    "check": "release Table 2: GAAP continuing 4.79 + 0.07 adjustments (M&A 0.8, backlog amortization 16.3, restructuring 3.6, tax -6.1; $M) = 4.86 = Zacks"
+   },
+   {
+    "end": "2026-06-30",
+    "zacks": 4.31,
+    "gaap": 4.16
+   },
+   {
+    "end": "2026-03-31",
+    "zacks": 2.63,
+    "gaap": 2.62
+   },
+   {
+    "end": "2025-12-31",
+    "zacks": 2.86,
+    "gaap": 2.65
+   }
+  ],
+  "src": [
+   "https://www.thailand-business-news.com/pr-news/trane-technologies-reports-strong-third-quarter-results-raises-full-year-revenue-guidance-reaffirms-full-year-eps-guidance",
+   "https://finviz.com/news/411189/trane-technologies-reports-strong-third-quarter-results-raises-full-year-revenue-guidance-reaffirms-full-year-eps-guidance"
+  ],
+  "checked": "2026-11-25 (Q3 2026 release relays; sec.gov exhibit 99.1 not fetched from the container); gaap for earlier quarters from XBRL EarningsPerShareDiluted (includes discontinued operations)"
+ }
+}

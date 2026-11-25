@@ -1,0 +1,38 @@
+{
+ "_note": "Kilian 2026-11-16 05:28Z 'yes beta method change is approved'. market_dist.beta(): a name with under 2 years of daily history and no data/beta_peers.json entry shrinks its raw beta toward this IPO prior instead of 1 (same n/504 schedule); a listed name with no price file yet uses the prior outright. Prior = generic (mean 2-year daily beta vs SPY, months 2-24, of 1,462 US IPOs worth $1B+ at listing in 2025 terms, 2000-2025) + k x tilt; names not listed below get the generic value. Walk-forward 2006-23 RMSE 0.436 vs 0.493 shrinking to 1. Study: wrds/results/ipo_beta/report.md, code wrds/code/ipo_beta_final.py. To add a name: compute tilt = coefs . inputs - centre (relsize = ln(cap $M / 66.4e6) clipped at -6.491, margin_w = oiadp/sale of the last pre-IPO FY clipped [-1, 0.4] (for a name already reporting quarters, the latest-quarter adjusted operating margin), loss = 1 if net loss, vc, sector dummies) and prior = generic + k x tilt. v2 inputs 2026-11-16 (Kilian 'don't use the first fiscal year post-ipo', 'ant had positive adjusted op margin'): 75 IPOs with no Compustat pre-IPO year now use their prospectus summary table, 93 are missing instead of using the first post-IPO year (wrds/code/ipo_prefin_parse.py, ipo_beta_v2.py; results/ipo_beta_v2/). AI-mix adjustment NOT applied: Kilian chose 'No AI-mix shift (1.34 / 1.36)' on 2026-11-16.",
+ "generic": 1.204,
+ "k": 0.5,
+ "tilt_coefs": {
+  "const": 0.392,
+  "relsize": 0.047,
+  "margin_w": -0.099,
+  "margin_w_na": -0.015,
+  "loss": 0.07,
+  "vc": 0.141,
+  "s_Health": -0.172,
+  "s_Defensive": -0.293
+ },
+ "relsize_clip": -6.491,
+ "names": {
+  "ANT": {
+   "prior": 1.344,
+   "band80_realized": [
+    0.787,
+    1.901
+   ],
+   "inputs": "$1.33T at $74 x 18,013M FD; Q3-26 adjusted operating margin +14.5% ($2,463M / $16,956M, S-1/A no. 2 filed 2026-11-10, quarterly table); GAAP net loss (loss = 1); VC; Tech",
+   "was": "1.396 on FY2025 adj. op. margin -106%",
+   "alt": "1.309 if the loss flag uses adjusted net income (positive); 1.348 on OIADP-like margin +8.2% (GAAP op. loss + non-cash charitable)"
+  },
+  "SPCX": {
+   "prior": 1.359,
+   "band80_realized": [
+    0.802,
+    1.916
+   ],
+   "inputs": "$2.19T at 6-30 close x 12,835M; FY2025 op. margin -14%; loss; VC; Industrials",
+   "check": "realized 6-12..11-13 ex first month 1.75 (s.e. 0.48)",
+   "was": "1.352 before the v2 financials fix"
+  }
+ }
+}

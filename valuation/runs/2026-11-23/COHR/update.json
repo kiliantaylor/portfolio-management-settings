@@ -1,0 +1,88 @@
+{
+ "symbol": "COHR",
+ "update_date": "2026-11-23",
+ "base": "2026-11-17",
+ "mode": "update",
+ "mode_reason": "base 2026-11-17 is a driver model (no full runs: Kilian 2026-11-04)",
+ "trigger": "Big-4 capex path: NVDA 11-20 gate-clean hs_capex (750.70/1,009.45/1,305.26) replaces older 733/1,080/1,330 path in constant:mkt/dc_capture (shared_inputs.py consumer; Kilian 'fix now' 11-23)",
+ "playbook": "semis",
+ "base_fair_value": 309.6385714996401,
+ "base_fair_value_source": "driver model",
+ "filings_since_base": [],
+ "created_utc": "2026-11-23T18:36Z",
+ "changed_inputs": [
+  "constant:mkt",
+  "driver:dc_capture",
+  "Quarter interest and other income (driver_build.quarters.interest = int_exp, other_income = oth_inc)",
+  "balance.interest_rate",
+  "horizon P/E (NTM) leg 1",
+  "leg 2 EPS (output: the leg-2 margin row x horizon NTM revenue, less interest, after tax, per share)",
+  "adjustment: Marvell-Lumentum after NTM"
+ ],
+ "what_changed": "Shared Big-4 capex path (owner NVDA, round 2026-11-20, gate-clean hs_capex 750.70/1,009.45/1,305.26 $B CY26/27/28; reconciled_inputs.shared_inputs.hs_capex) replaces the older 733/1,080/1,330 in constant:mkt: CY2028 D&C market 87,616 (from CY2027 63,888 x 1,305.26/1,009.45 x 3.5/3.3), CY2029 115,152; CY2025-27 totals unchanged. dc_capture re-derived as the unchanged capacity-bound D&C build (only PhotonLink outside the LTA moves with the market) over the new market; judgment alternatives on constant:mkt and dc_capture re-sized, Goldman +12% (2026-09-25) and CY2028-flat cases added. RULES 29: quarter interest and other income are now driver_build lines (int_exp / oth_inc from driver_models/COHR/interest_rate/cohr_lines.py on the 10-Q Note 8 stack); Q1 FY27 ties to filed GAAP 1.90, non-GAAP 2.09, Zacks 1.80. Date roll to 2026-11-23 re-derives leg 1 at 19.48x (NTM EPS 16.79), leg 2 20.23x on EPS 12.78, Marvell-Lumentum 1,157.4 $M. Research target 309.64 -> 312.17 (+0.82%: roll +0.74%, capex path +0.25%, non-operating lines -0.17%).",
+ "driver_model": true,
+ "flags": [],
+ "gate_rounds": [
+  {
+   "utc": "2026-11-23T22:10Z",
+   "why": "first round"
+  },
+  {
+   "utc": "2026-11-23T22:23Z",
+   "why": "trigger: round-1 fix pass of 28 failures changed changes, comps_review, disagreements, fair_value, long_dated_review, scenarios, driver dc_capture, driver lta_rev, guidance_check rows (Q2 FY27 EPS, first $4B quarter, FY29 op margin, FY27 growth), consensus sources and src 40 speakers; reason: these are the fix agent's own fixes, so the one independent re-check is better than carding the rows or asking for Kilian's gate_accept, which would accept unchecked fixes",
+   "trigger": "round-1 fix pass of 28 failures changed changes, comps_review, disagreements, fair_value, long_dated_review, scenarios, driver dc_capture, driver lta_rev, guidance_check rows (Q2 FY27 EPS, first $4B quarter, FY29 op margin, FY27 growth), consensus sources and src 40 speakers",
+   "reason": "these are the fix agent's own fixes, so the one independent re-check is better than carding the rows or asking for Kilian's gate_accept, which would accept unchecked fixes",
+   "changed": [
+    "model.reconciled_inputs.scenarios",
+    "supervisor.json changes",
+    "supervisor.json comps_review",
+    "supervisor.json disagreements",
+    "supervisor.json fair_value",
+    "supervisor.json long_dated_review",
+    "driver dc_capture (Datacenter & Communications revenue excluding the PhotonLink LTA as a share of the AI-cluster Ethernet optics market)",
+    "driver lta_rev (PhotonLink LTA contracted revenue (~$20B over five years from early CY2028, before realization))",
+    "guidance_check FY2027 pro forma revenue growth (management) FY2027",
+    "guidance_check first $4B revenue quarter (management) FY2028",
+    "guidance_check non-GAAP EPS diluted Q2 FY2027",
+    "guidance_check non-GAAP operating margin (long-term target) FY2029 (>24% 'next 3 to 4 years' from 2025-05-28)",
+    "guidance_check non-GAAP tax rate FY2027",
+    "judgment_alternatives dc_capture",
+    "judgment_alternatives constant:corp",
+    "judgment_alternatives lta_rev",
+    "judgment_alternatives constant:mkt",
+    "judgment_alternatives dc_margin",
+    "judgment_alternatives ind_rev",
+    "judgment_alternatives ind_margin",
+    "judgment_alternatives horizon P/E (NTM) leg 1",
+    "judgment_alternatives dc_mor",
+    "judgment_alternatives hs_self_funded",
+    "judgment_alternatives balance.interest_rate",
+    "judgment_calls_for_kilian #0 (constant:mkt)",
+    "judgment_calls_for_kilian #1 (dc_capture)",
+    "inputs_detail row \"balance.interest_rate\"",
+    "inputs_detail row \"driver:dc_capture\"",
+    "inputs_detail row \"driver:lta_rev\""
+   ]
+  },
+  {
+   "utc": "2026-11-23T22:30Z",
+   "why": "trigger: round-2 fix pass changed model.reconciled_inputs.scenarios (upside/downside stories re-measured from the 2026-11-20 close, Marvell-Lumentum variants -9.70/+24.50) and src 51 timeliness none_newer (Lightwave 55402198 opened: actuals only); reason: these are the fix agent's own fixes, so one independent re-check beats carding them or asking Kilian for gate_accept on unchecked text",
+   "trigger": "round-2 fix pass changed model.reconciled_inputs.scenarios (upside/downside stories re-measured from the 2026-11-20 close, Marvell-Lumentum variants -9.70/+24.50) and src 51 timeliness none_newer (Lightwave 55402198 opened: actuals only)",
+   "reason": "these are the fix agent's own fixes, so one independent re-check beats carding them or asking Kilian for gate_accept on unchecked text",
+   "changed": [
+    "model.reconciled_inputs.scenarios",
+    "judgment_alternatives dc_capture",
+    "judgment_alternatives constant:corp",
+    "judgment_alternatives lta_rev",
+    "judgment_alternatives constant:mkt",
+    "judgment_alternatives dc_margin",
+    "judgment_alternatives ind_rev",
+    "judgment_alternatives ind_margin",
+    "judgment_alternatives horizon P/E (NTM) leg 1",
+    "judgment_alternatives dc_mor",
+    "judgment_alternatives hs_self_funded",
+    "judgment_alternatives balance.interest_rate"
+   ]
+  }
+ ]
+}
