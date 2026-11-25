@@ -11,6 +11,8 @@ prices:
   score  = market_color/beats_check.py's whole-book Sharpe test; each holding is tried against its full planned position
            (sell it, drop its planned add, put both dollars into the candidate, keep every other planned add); NFLX is
            held out of the pool until the day after its next print; adds on an earnings hold are left out;
+  size   = the candidate's held-name target, review.py's own sizing on the book after the trade (valuation/swap_size.py,
+           Kilian 2026-11-25 card 'Swap buys the full target'), cut only by the stop budget / caps and the cash;
   winner = with the 10-name cap full, the swap's book Sharpe beats doing the planned adds instead; with a slot free, the
            plain buy does. The best winner is `swap`, which the page's next-share table shows as today's trade.
 Prints one JSON line (the page's DATA.live_swaps)."""
